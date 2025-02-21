@@ -1,8 +1,8 @@
 ---
 import { Picture } from "astro:assets";
-import heroImage from "assets/hero.png";
+import heroImage from "assets/Banner_for_site.png";
 import Link from "@components/ui/link.astro";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 ---
 
 <main
@@ -10,7 +10,7 @@ import { Icon } from "astro-icon";
   <div class="py-6 md:order-1 hidden md:block">
     <Picture
       src={heroImage}
-      alt="Astronaut in the air"
+      alt="Image of Nerando"
       widths={[200, 400, 600]}
       sizes="(max-width: 800px) 100vw, 620px"
       loading="eager"
@@ -20,36 +20,34 @@ import { Icon } from "astro-icon";
   <div>
     <h1
       class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
-      Marketing website done with Astro
+      Hi, I am Nerando
     </h1>
-    <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      Astroship is a starter template for startups, marketing websites & landing
-      pages.<wbr /> Built with Astro.build and TailwindCSS. You can quickly
-      create any website with this starter.
+    <h2> </h2>
+    <p class="text-medium mt-4 text-black-400 max-w-xl">
+
+      I am software developer currently working in the front-end in Vue and JavaScript space.
+      Previously worked on the MERN stack with a little PM and DevOps skills thrown in.
+      Outside of tech, I am bookwork with a spatula among other things.
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link
-        href="#"
-        href="https://web3templates.com/templates/astroship-starter-website-template-for-astro"
+        href="https://tinyurl.com/NerajnoLearning"
         target="_blank"
         class="flex gap-1 items-center justify-center"
         rel="noopener">
-        <Icon class="text-white w-5 h-5" name="bx:bxs-cloud-download" />
-
-         Download for Free
+        <Icon class="text-white w-5 h-5" name="bx:bxs-cloud-download"/>
+        <!-- <Icon class="text-white w-5 h-5" name="quill:link-out" /> -->
+        <!-- <Icon class="text-white w-5 h-5" name="bx bx-link-external" /> -->
+        Currently Learning
       </Link>
       <Link
-        size="lg"
         style="outline"
         rel="noopener"
-        href="https://github.com/surjithctly/astroship"
-        <Fragment>
-          <!-- TODO: Pop out modal that contains the contact form -> fill out => error <=> completed => thank you close -->
-        </Fragment>
+        href="https://tinyurl.com/ynfvwtbt"
         class="flex gap-1 items-center justify-center"
         target="_blank">
         <Icon class="text-black w-4 h-4" name="bx:bxl-github" />
-         GitHub Repo
+         Currently Building
       </Link>
     </div>
   </div>
