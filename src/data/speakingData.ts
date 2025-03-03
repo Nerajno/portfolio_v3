@@ -17,8 +17,9 @@ interface SpeakingEvent {
     conferenceWebsite?: string;
     slides?: string;
     github?: string;
+    resources?: string;
   };
-  type: 'conference' | 'workshop' | 'meetup' | 'webinar';
+  type: 'conference' | 'meetup' | 'webinar';
   tags?: string[];
 }
 
@@ -26,20 +27,22 @@ export const speakingData: SpeakingEvent[] = [
   {
     "id": "dev-summit-2025",
     "title": "Mastering Frontend Performance Optimization",
-    "description": "Discover techniques to optimize frontend performance for modern web applications. This session will cover strategies to improve load times, reduce render blocking resources, and utilize caching effectively, ensuring faster, smoother user experiences.",
-    "date": "2025-04-05",
+    "description": "Effective mentor-mentee relationships in tech require clear foundations: understanding mutual value propositions, setting explicit expectations, and establishing structured time management approaches that respect both parties' constraints. Successful mentorships thrive when challenges are addressed openly through regular feedback loops, with both parties committing to continuous improvement supported by curated learning resources and communities. The most valuable mentor-mentee dynamics balance structured guidance with flexibility, creating space for organic growth while maintaining accountability that transforms the relationship from a one-sided obligation into a mutually beneficial partnership.",
+    "date": "2025-03-06",
     "location": {
-      "city": "San Francisco",
-      "state": "CA",
+      "city": "Atlanta",
+      "state": "GA",
       "country": "USA",
-      "venue": "Moscone Center"
+      "venue": "Georgia World Congress Center"
     },
     "type": "conference",
-    "tags": ["frontend", "performance", "web optimization"],
+    "tags": ["mentorship", "professional development", "career tooling"],
     "links": {
       "conferenceWebsite": "https://2025.dev-summit.com/session/12345",
       "slides": "https://speakerdeck.com/username/frontend-performance",
-      "github": "https://github.com/username/frontend-optimization"
+      // "github": "https://github.com/username/frontend-optimization"
+      "resources": "https://example.com/mentorship-resources"
+
     }
   },
   {
