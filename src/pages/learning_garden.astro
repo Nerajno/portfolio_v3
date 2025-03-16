@@ -1,0 +1,47 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from '@components/container.astro';
+import Sectionhead from '@components/sectionhead.astro';
+import { Image } from "astro:assets";
+import Ava from "@assets/Banner_for_site.png"; // Adjust the path as needed
+---
+
+<Layout title="Learning Garden">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">What is a Digial Garden ?</Fragment>
+    </Sectionhead>
+
+    <div class="max-w-4xl mx-auto mt-16">
+      <div class="md:flex md:items-center gap-16 mb-10">
+        <div class="text-pretty leading-9">
+          <h2 class="text-4xl font-bold mb-4">Hi Again, Nerando Here!</h2>
+          <div class="text-lg text-slate-500">
+            <p class="mb-4">
+              Why I am using one ?
+            </p>
+            <p class="mb-4">
+                and the link to mine
+            </p>
+          </div>
+        </div>
+        <Image
+          src={Ava}
+          alt="Muhammad Syakirurohman"
+          width={300}
+          class="rounded-3xl rotate-3 mx-4 md:mx-0"
+        />
+      </div>
+
+      <div class="mt-12 text-lg text-slate-500">
+        <p class="mb-6">
+          What is a digital garden?
+        </p>
+        <p>
+          Benefits of a digital garden and links in how to create one.
+        </p>
+      </div>
+
+    </div>
+  </Container>
+</Layout>
