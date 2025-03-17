@@ -1,0 +1,54 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from '@components/container.astro';
+import Sectionhead from '@components/sectionhead.astro';
+import { Image } from "astro:assets";
+import Ava from "@assets/images/gardening.png"; // Adjust the path as needed
+---
+
+<Layout title="Digital Garden">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">What is a Digital Garden ?</Fragment>
+      <!-- <Fragment slot='desc'>An over-view of my "why" for using a digital garden, what it is  and links to other relevent tooling. </Fragment> -->
+      <Fragment slot='desc'>Discontent is the first step in the progress of a man or a nation. - Oscar Wilde</Fragment>
+    </Sectionhead>
+
+    <div class="max-w-4xl mx-auto mt-16">
+      <div class="md:flex md:items-center gap-16 mb-10">
+        <div class="text-pretty leading-9">
+          <h2 class="text-4xl font-bold mb-4">Progress is a process.</h2>
+          <div class="text-lg text-slate-500">
+            <p class="mb-4">
+              I have started and stopped over the years a couple times well, ended up with flashcards, notes and github repos with half finished or unexplained ideas.
+              This kinda left a bitter taste in my mouth, as I was not able to track my progress/growth and it comes off as somewhat unprofessional. Let's not even talk about the imposter syndrome that comes with it.
+              Coming across the concept of a digital garden and with a background in agriculture, I was intrigued by the idea of a place to grow ideas, record my thoughts and share them with the world, a digital garden.
+            </p>
+            <p class="mb-4">
+
+              and the link to mines
+            <p class="mb-4">my
+                and the link to mines
+            </p>
+          </div>
+        </div>
+        <Image
+          src={Ava}
+          alt="image of a garden"
+          width={400}
+          class="rounded-3xl  mx-4 md:mx-0"
+        />
+      </div>
+
+      <div class="mt-12 text-lg text-slate-500">
+        <p class="mb-6">
+          What is a digital garden?
+        </p>
+        <p>
+          Benefits of a digital garden and links in how to create one.
+        </p>
+      </div>
+
+    </div>
+  </Container>
+</Layout>
