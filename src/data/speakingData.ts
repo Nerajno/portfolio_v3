@@ -1,5 +1,4 @@
 
-
 interface SpeakingEvent {
   id: string;
   title: string;
@@ -23,6 +22,25 @@ interface SpeakingEvent {
 }
 
 export const speakingData: SpeakingEvent[] = [
+  {
+    "id": "orlando-code-camp-2025",
+    "title": "Skills to Bills: A Users Guide to Demonstrated Competency",
+    "description": "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
+    "date": "2025-04-05",
+    "location": {
+      "city": "Sanford",
+      "state": "FL",
+      "country": "USA",
+      "venue": "Seminole State College"
+    },
+    "type": "conference",
+    "tags": ["career", "business skills", "processes", "open source"],
+    "links": {
+      "conferenceWebsite": "https://www.orlandocodecamp.com/",
+      // "slides": "https://speakerdeck.com/username/react-typescript",
+      // "github": "https://github.com/username/react-ts-guide"
+    }
+  },
   {
     "id": "dev-summit-2025",
     "title": "Mastering Frontend Performance Optimization",
