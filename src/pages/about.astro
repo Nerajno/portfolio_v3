@@ -3,56 +3,30 @@ import Layout from "@layouts/Layout.astro";
 import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
 import { Image } from "astro:assets";
-import Ava from "@assets/hero.png"; // Adjust the path as needed
+import Ava from "@assets/Banner_for_site.png"; // Adjust the path as needed
 ---
 
 <Layout title="About">
   <Container>
     <Sectionhead>
       <Fragment slot="title">About Me</Fragment>
+      <Fragment slot="description">
+        The ReadMe on my experiences, my work my learning and other fun stuff.
+      </Fragment>
     </Sectionhead>
 
     <div class="max-w-4xl mx-auto mt-16">
       <div class="md:flex md:items-center gap-16 mb-10">
         <div class="text-pretty leading-9">
-          <h2 class="text-4xl font-bold mb-4">Hi There 👋, Syakir Here!</h2>
+          <h2 class="text-4xl font-bold mb-4">Hi There , Nerando Here!</h2>
           <div class="text-lg text-slate-500">
             <p class="mb-4">
-              I currently work as  Junior Front-end Engineer based in Atlanta. I love sharing what i know
-              on
-                href="https://devaradise.com"
-                target="_blank"
-                class="text-blue-600 hover:underline"
-                >devaradise.com</a
-              >, and sometime i also share freebies like this. I'm also active on
-                href="https://dev.to/syakirurahman"
-                target="_blank"
-                class="text-blue-600 hover:underline">dev.to</a
-              > and
-                href="https://x.com/syakirurahman"
-                target="_blank"
-                class="text-blue-600 hover:underline">twitter</a
-              >.
-            </p>
-            <p class="mb-4">
-              I made Devolio to help you easily set up your own blog and portfolio
-              website. It's a static site built with Astro and Tailwind CSS, and
-              you can deploy it on platforms like
-                href="https://app.netlify.com/start/deploy?repository=https://github.com/devaradise/devolio"
-                target="_blank"
-                rel="nofollow noopener"
-                class="text-blue-600 hover:underline">Netlify</a
-              >,
-                href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdevaradise%2Fdevolio"
-                target="_blank"
-                rel="nofollow noopener"
-                class="text-blue-600 hover:underline">Vercel</a
-              >, or
-                href="https://pages.cloudflare.com/"
-                target="_blank"
-                rel="nofollow noopener"
-                class="text-blue-600 hover:underline">Cloudflare Pages</a
-              >.
+              I currently work as  Junior Front-end Engineer based in Atlanta. I love what I do and do my best to share what I know.
+              <ul>
+                <li>- Brief description about me technically and the things/skills I am passionately learning, links to learning garden.</li>
+                <li>- Brief description about me personally as a learner</li>
+                <li>- Brief description about me as a tech community facilitator, mentor, and speaker</li>
+              </ul>
             </p>
           </div>
         </div>
@@ -66,30 +40,10 @@ import Ava from "@assets/hero.png"; // Adjust the path as needed
 
       <div class="mt-12 text-lg text-slate-500">
         <p class="mb-6">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo
-          integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu
-          turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-          adipiscing.
-        </p>
-        <p>
-          In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet
-          volutpat. Netus et malesuada fames ac turpis egestas. Eget magna
-          fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit
-          amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis.
-          Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis
-          purus sit amet.
+          - my interests and hobbies
         </p>
       </div>
 
-      <!-- Commented out team members section - uncomment and modify as needed -->
-      <!-- <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
-        {
-          publishedTeamMembers.map((teamMemberEntry) => (
-            // Team member cards code here
-          ))
-        }
-      </div> -->
     </div>
   </Container>
 </Layout>
