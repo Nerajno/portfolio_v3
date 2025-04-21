@@ -38,6 +38,7 @@ function getEventTypeIcon(type: Props['type']) {
 const statusColor = getStatusColor(status);
 const typeColor = getTypeColor(type);
 const formattedDate = formatDate(date);
+const evenNameOrId = typeof id === 'string' ? id.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase()) : '';
 const locationString = [
   location.venue,
   location.city,
@@ -64,9 +65,12 @@ const locationString = [
         ))}
       </div>
 
-      <h3 class="text-xl font-semibold mt-2 text-gray-900">{title}</h3>
+      <h3 class="text-xl font-semibold mt-2 text-gray-900">{title}
+      </h3>
 
       <div class="mt-2 text-gray-600">
+        <span>{evenNameOrId}</span>
+        <span class="mx-2">•</span>
         <time datetime={date}>{formattedDate}</time>
         <span class="mx-2">•</span>
         <span>{locationString}</span>
