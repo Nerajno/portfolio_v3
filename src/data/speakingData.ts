@@ -118,27 +118,27 @@ export const speakingData: SpeakingEvent[] = [
     }
   },
   {
-    id: "connecttech-2024",
-    title: "How to Conference: A User Guide",
-    description: "Tech conferences can feel overwhelming for introverts, but they're essential for career growth and skill development. Learn practical strategies for navigating professional events, from preparing effectively to maximizing networking opportunities while maintaining your energy levels.",
-    date: "2024-10-10",
+    id: "orlando-code-camp-2024",
+    title: "This is Technical Talk - Essential People Skills for Developers",
+    description: "Beyond Code: The Human Skills Essential to Engineering Excellence - This presentation explores seven critical non-technical competencies that distinguish exceptional developers: communication, collaboration, problem-solving, time management, adaptability, attention to detail, and leadership. Drawing from industry experience, we examine how these 'human skills' significantly impact engineering outcomes and provide one immediately actionable technique for improvement in each area. Attendees will gain practical approaches to develop interpersonal capabilities that not only complement technical abilities but serve as force multipliers for career advancement and project success in today's complex development landscape.",
+    date: "2024-02-24",
     location: {
-      city: "Atlanta",
-      state: "GA",
+      city: "Orlando",
+      state: "FL",
       country: "USA",
-      venue: "Georgia World Congress Center"
+      venue: "Seminole State College"
     },
     type: "conference",
-    tags: ["soft skills", "career development", "networking"],
+    tags: ["soft skills", "career development", "networking", "leadership"],
     links: {
-      conferenceWebsite: "https://2024.connect.tech/session/699563",
-      slides: "https://docs.google.com/presentation/d/1iFYwzgsNs2UNUHLQW4aUvhrdU8VHakJ6rsVnMJKVIUo/edit?usp=sharing",
-      github: "https://github.com/username/conference-guide"
+      conferenceWebsite: "https://www.orlandocodecamp.com/",
+      //slides: "https://docs.google.com/presentation/d/1iFYwzgsNs2UNUHLQW4aUvhrdU8VHakJ6rsVnMJKVIUo/edit?usp=sharing",
+      //github: "https://github.com/username/conference-guide"
     }
   },
   {
-    id: "connecttech-2023",
-    title: "How to Conference: A User Guide Other",
+    id: "DevNexus-2024",
+    title: "How to Conference: A User Guide Other || Con 101",
     description: "Tech conferences can feel overwhelming for introverts, but they're essential for career growth and skill development. Learn practical strategies for navigating professional events, from preparing effectively to maximizing networking opportunities while maintaining your energy levels.",
     date: "2023-10-10",
     location: {
