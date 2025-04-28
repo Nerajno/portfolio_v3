@@ -138,7 +138,7 @@ export const speakingData: SpeakingEvent[] = [
   },
   {
     id: "DevNexus-2024",
-    title: "How to Conference: A User Guide Other || Con 101",
+    title: "How to Conference: A User Guide Other || Conf 101",
     description: "Tech conferences can feel overwhelming for introverts, but they're essential for career growth and skill development. Learn practical strategies for navigating professional events, from preparing effectively to maximizing networking opportunities while maintaining your energy levels.",
     date: "2023-10-10",
     location: {
@@ -151,8 +151,8 @@ export const speakingData: SpeakingEvent[] = [
     tags: ["soft skills", "career development", "networking"],
     links: {
       conferenceWebsite: "https://2024.connect.tech/session/699563",
-      slides: "https://speakerdeck.com/username/how-to-conference",
-      github: "https://github.com/username/conference-guide"
+      //slides: "https://speakerdeck.com/username/how-to-conference",
+      //github: "https://github.com/username/conference-guide"
     }
   },
 ];
