@@ -16,12 +16,51 @@ interface SpeakingEvent {
     conferenceWebsite?: string;
     slides?: string;
     github?: string;
+    
   };
   type: 'conference' | 'workshop' | 'meetup' | 'webinar';
   tags?: string[];
 }
 
 export const speakingData: SpeakingEvent[] = [
+  {
+    "id": "200-ok-2025",
+    "title": "Back to Basics: Essential JavaScript Foundations for Modern Framework Development",
+    "description": "In an era where AI and tech influencers often promote jumping directly into framework development, this talk emphasizes the critical importance of mastering JavaScript fundamentals before diving into frameworks like Vue.js. Drawing from real-world experience transitioning into Vue 3 development, we'll explore why solid JavaScript foundations are crucial for effective framework usage. Through practical demonstrations and real-world examples, we'll examine how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example. This session will help developers understand why 'learning to walk before running' in JavaScript is essential for long-term success in framework development.",
+    "date": "2025-06-23",
+    "location": {
+      "city": "Tulsa",
+      "state": "Oklahoma",
+      "country": "USA",
+      "venue": "Atlas School"
+    },
+    "type": "conference",
+    "tags": ["learning","JavaScript","foundamentals","open source"],
+    "links": {
+      "conferenceWebsite": "https://200ok.us/",
+       //"slides": "https://speakerdeck.com/username/react-typescript",
+       //"github": "https://github.com/username/react-ts-guide"
+    }
+  },
+  {
+    "id": "devopsdays-atlanta-2025",
+    "title": "Social Goodness || Civic Hacking - What's in it for me?",
+    "description": "This talk explores how participating in civic hacking can benefit your career while making a positive community impact. Through personal experiences with Marta Hackathons, AT&T C3 Hackathons, Civic Hack Nights, and Atl Thinks competitions, the speaker demonstrates how donating time and talent led to improved development and project management skills, networking opportunities, and even charitable contributions of $40,000. Attendees will learn actionable strategies for leveraging civic hacking to enhance technical abilities, develop essential soft skills, expand professional networks, and strengthen their position in the job market.",
+    "date": "2025-04-29",
+    "location": {
+      "city": "Atlanta",
+      "state": "GA",
+      "country": "USA",
+      "venue": "The Historic Academny of Medicine"
+    },
+    "type": "conference",
+    "tags": ["career","processes","open source","civic hacking", "community"],
+    "links": {
+      "conferenceWebsite": "https://devopsdays.org/events/2025-atlanta/program/nerando-johnson",
+       "slides": "https://docs.google.com/presentation/d/1iNBtkU-Pjo3Mc2eJkg0kJhGBidJQnfQcCXhsge34evM/edit?usp=sharing",
+       "article": "https://docs.google.com/document/d/1T7ARvjankHuevPGI-wAbhIJByBCe2ATLgaYIChLJElA/edit?usp=sharing"
+    }
+  },
   {
     "id": "orlando-code-camp-2025",
     "title": "Skills to Bills: A Users Guide to Demonstrated Competency",
