@@ -3,62 +3,50 @@ import Layout from "@layouts/Layout.astro";
 import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
 import { Image } from "astro:assets";
-import Ava from "@assets/hero.png"; // Adjust the path as needed
+import Ava from "@assets/Banner_for_site.png"; // Adjust the path as needed
+import { funFacts } from "../data/funFacts.js"; // Adjust the path as needed
+
+// Choose a fact based on the current day of the year
+const today = new Date();
+const dayOfYear = Math.floor(
+  (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
+);
+const factOfTheDay = funFacts[dayOfYear % funFacts.length];
 ---
 
 <Layout title="About">
   <Container>
     <Sectionhead>
       <Fragment slot="title">About Me</Fragment>
+      <Fragment slot="desc">
+        A little bit about myself, my journey and what I can do.
+      </Fragment>
     </Sectionhead>
 
     <div class="max-w-4xl mx-auto mt-16">
       <div class="md:flex md:items-center gap-16 mb-10">
         <div class="text-pretty leading-9">
-          <h2 class="text-4xl font-bold mb-4">Hi There 👋, Syakir Here!</h2>
+          <h2 class="text-4xl font-bold mb-4">Hey 👋, I’m Nerando Johnson</h2>
           <div class="text-lg text-slate-500">
             <p class="mb-4">
-              I currently work as  Junior Front-end Engineer based in Atlanta. I love sharing what i know
-              on
-                href="https://devaradise.com"
-                target="_blank"
-                class="text-blue-600 hover:underline"
-                >devaradise.com</a
-              >, and sometime i also share freebies like this. I'm also active on
-                href="https://dev.to/syakirurahman"
-                target="_blank"
-                class="text-blue-600 hover:underline">dev.to</a
-              > and
-                href="https://x.com/syakirurahman"
-                target="_blank"
-                class="text-blue-600 hover:underline">twitter</a
-              >.
+              I’m currently work in the capacity as junior front-end developer in Atlanta. I’m passionate about building thoughtful, impactful tech experiences.
+              I work and learn at the intersection of code, design, creativity, problem solving, and community—crafting clean interfaces, solving real-world problems, and making some contributions to open-source projects.
             </p>
             <p class="mb-4">
-              I made Devolio to help you easily set up your own blog and portfolio
-              website. It's a static site built with Astro and Tailwind CSS, and
-              you can deploy it on platforms like
-                href="https://app.netlify.com/start/deploy?repository=https://github.com/devaradise/devolio"
-                target="_blank"
-                rel="nofollow noopener"
-                class="text-blue-600 hover:underline">Netlify</a
-              >,
-                href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdevaradise%2Fdevolio"
-                target="_blank"
-                rel="nofollow noopener"
-                class="text-blue-600 hover:underline">Vercel</a
-              >, or
-                href="https://pages.cloudflare.com/"
-                target="_blank"
-                rel="nofollow noopener"
-                class="text-blue-600 hover:underline">Cloudflare Pages</a
-              >.
+              My journey into tech wasn’t a straight line. It started with curiosity—breaking things, learning how to fix them, and discovering a love for turning ideas into code.
+              I have walked  the path of hobbist, mentee, freeCodecamp learner, technical consultant, tinkerer, bootcamp student, among many things. That curiosity evolved into a career where I now focus on front-end engineering, collaborative development, and helping others grow.
+            </p>
+            <p class="mb-4">
+              Check out my <a href="https://developingdvlpr.com/portfolio" class="text-blue-600 hover:underline" target="_blank" rel="noopener">portfolio</a> for featured work or MVPs that I have built.
+              You can also find me on <a href="https://github.com/Nerajno" class="text-blue-600 hover:underline" target="_blank" rel="noopener">GitHub</a>,
+              <a href="https://twitter.com/nerajno" class="text-blue-600 hover:underline" target="_blank" rel="noopener">Twitter, yes that what I will always call it</a>, and
+              <a href="https://www.linkedin.com/in/nerando-johnson/" class="text-blue-600 hover:underline" target="_blank" rel="noopener">LinkedIn</a>.
             </p>
           </div>
         </div>
         <Image
           src={Ava}
-          alt="Muhammad Syakirurohman"
+          alt="Nerando Johnson"
           width={300}
           class="rounded-3xl rotate-3 mx-4 md:mx-0"
         />
@@ -66,30 +54,19 @@ import Ava from "@assets/hero.png"; // Adjust the path as needed
 
       <div class="mt-12 text-lg text-slate-500">
         <p class="mb-6">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo
-          integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu
-          turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-          adipiscing.
+          These days, I’m focused on front-end development with frameworks like Vue and React, understanding and learning how build scalable tools, mentoring less experienced developers among other things. I believe great software is as much about people as it is about code as a solution to a problem .
         </p>
         <p>
-          In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet
-          volutpat. Netus et malesuada fames ac turpis egestas. Eget magna
-          fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit
-          amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis.
-          Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis
-          purus sit amet.
+          Outside of software development, I enjoy exploring new ideas, tinkering, and learning. I’m currently all about learning ( getting better at doing it in public), working with purpose, and building things that matter.
         </p>
       </div>
 
-      <!-- Commented out team members section - uncomment and modify as needed -->
-      <!-- <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
-        {
-          publishedTeamMembers.map((teamMemberEntry) => (
-            // Team member cards code here
-          ))
-        }
-      </div> -->
+      <div class="mt-12 bg-slate-50 p-6 rounded-xl shadow-sm border text-slate-700">
+        <h3 class="text-2xl font-semibold mb-4">Fun Fact</h3>
+        <p>
+          {factOfTheDay}
+        </p>
+      </div>
     </div>
   </Container>
 </Layout>
