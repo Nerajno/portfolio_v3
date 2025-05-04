@@ -16,6 +16,7 @@ interface SpeakingEvent {
     conferenceWebsite?: string;
     slides?: string;
     github?: string;
+    
   };
   type: 'conference' | 'workshop' | 'meetup' | 'webinar';
   tags?: string[];
@@ -53,11 +54,11 @@ export const speakingData: SpeakingEvent[] = [
       "venue": "The Historic Academny of Medicine"
     },
     "type": "conference",
-    "tags": ["career","processes","open source"],
+    "tags": ["career","processes","open source","civic hacking", "community"],
     "links": {
       "conferenceWebsite": "https://devopsdays.org/events/2025-atlanta/program/nerando-johnson",
-       //"slides": "https://speakerdeck.com/username/react-typescript",
-       //"github": "https://github.com/username/react-ts-guide"
+       "slides": "https://docs.google.com/presentation/d/1iNBtkU-Pjo3Mc2eJkg0kJhGBidJQnfQcCXhsge34evM/edit?usp=sharing",
+       "article": "https://docs.google.com/document/d/1T7ARvjankHuevPGI-wAbhIJByBCe2ATLgaYIChLJElA/edit?usp=sharing"
     }
   },
   {
