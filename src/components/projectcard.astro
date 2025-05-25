@@ -21,7 +21,7 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<article class="card">
+<article class="card dark:bg-gray-800 dark:text-white">
   <a href={project.image.link} class="image-link">
     <img
       src={project.image.src}
@@ -66,8 +66,14 @@ const { project } = Astro.props;
     transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   }
 
-  .card:hover {
-    box-shadow: 4px 4px 10px #07A0C3;
+  :global(.dark) .card {
+    background-color: #1f2937;
+    color: #fff;
+    box-shadow: 2px 2px 5px rgba(7, 160, 195, 0.5);
+  }
+
+  :global(.dark) .card:hover {
+    box-shadow: 4px 4px 10px rgba(7, 160, 195, 0.6);
   }
 
   .image-link {
@@ -94,6 +100,21 @@ const { project } = Astro.props;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  :global(.dark) .github-link {
+    background-color: #374151;
+    color: #fff;
+  }
+
+  :global(.dark) .website-link {
+    background-color: #374151;
+    color: #fff;
+  }
+
+  :global(.dark) .github-link:hover,
+  :global(.dark) .website-link:hover {
+    background-color: #4b5563;
   }
 
   .github-link {

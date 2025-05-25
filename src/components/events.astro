@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 const { id, title, description, image, date, location, links } = Astro.props;
 ---
 <a href={`/events/${id}`} class="block">
-<div class="card bg-white shadow-md rounded-lg overflow-hidden flex">
+<div class="card bg-white dark:bg-gray-800 shadow-md dark:shadow-gray-700 rounded-lg overflow-hidden flex">
     <Image
         src={image}
         alt={title}

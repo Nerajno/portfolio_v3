@@ -4,23 +4,26 @@
 @tailwind utilities;
 
 :root {
---background-color-light: #f5f5f5;
---text-color-light: #333333;
---navbar-bg-light: #e0e0e0;
---navbar-shadow-light: rgba(0, 0, 0, 0.1);
+  --background-color-light: #f5f5f5;
+  --text-color-light: #333333;
+  --navbar-bg-light: #e0e0e0;
+  --navbar-shadow-light: rgba(0, 0, 0, 0.1);
+  --card-bg-light: #ffffff;
+  --link-color-light: #2563eb;
 }
 
 [data-theme="dark"] {
   --background-color: #121212;
   --text-color: #E0E0E0;
-  /* --navbar-bg: #2d2d2d; */
-  --navbar-bg: #b0b0b0;
-  --navbar-shadow: #888888;
+  --navbar-bg: #2d2d2d;
+  --navbar-shadow: rgba(255, 255, 255, 0.1);
+  --card-bg: #1e1e1e;
+  --link-color: #60a5fa;
 }
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .fixed-footer {

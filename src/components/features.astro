@@ -42,28 +42,25 @@ const features = [
 ---
 
 <div class='mt-16 md:mt-0'>
-  <h2 class='text-4xl lg:text-5xl font-bold lg:tracking-tight'>
+  <h2 class='text-4xl lg:text-5xl font-bold lg:tracking-tight dark:text-white'>
     Current Craft Characteristics
   </h2>
-  <p class='text-lg mt-4 text-slate-600'>
+  <p class='text-lg mt-4 text-slate-600 dark:text-slate-400'>
     Writing code moved from an interest to a passionate hobby to my current
     career/craft. I am currently working in the front-end space as a junior Vue
-    frontend developer. Here are a few characteristics/things I am working on :
   </p>
 </div>
 
-<div class='grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16'>
-  {
-    features.map((item) => (
-      <div class='flex gap-4 items-start'>
-        <div class='mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0'>
-          <Icon class='text-white' name={item.icon} />
-        </div>
-        <div>
-          <h3 class='font-semibold text-lg'>{item.title}</h3>
-          <p class='text-slate-500 mt-2 leading-relaxed'>{item.description}</p>
-        </div>
+<div class='grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-8 md:gap-16'>
+  {features.map((item) => (
+    <div class='flex flex-col gap-4 items-start group'>
+      <div class='mt-1 bg-slate-100 dark:bg-slate-800 rounded-full p-3 w-12 h-12 shrink-0'>
+        <Icon name={item.icon} class='text-slate-500 dark:text-slate-300' />
       </div>
-    ))
-  }
+      <div>
+        <h3 class='font-semibold text-lg dark:text-white'>{item.title}</h3>
+        <p class='text-slate-500 dark:text-slate-400 mt-2 leading-relaxed'>{item.description}</p>
+      </div>
+    </div>
+  ))}
 </div>
