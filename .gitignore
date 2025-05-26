@@ -21,3 +21,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 sendgrid.env
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
