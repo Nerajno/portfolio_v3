@@ -5,7 +5,8 @@ import { Image } from 'astro:assets';
 // Define the props passed to the component
 const { id, title, description, image, date, location, links } = Astro.props;
 ---
-<a href={`/events/${id}`} class="block">
+<a href={`/events/${id}`} target="_blank"
+rel="noopener noreferrer" class="block">
 <div class="card bg-white dark:bg-gray-800 shadow-md dark:shadow-gray-700 rounded-lg overflow-hidden flex">
     <Image
         src={image}
@@ -21,10 +22,12 @@ const { id, title, description, image, date, location, links } = Astro.props;
         <p class="text-gray-500">Location: {location}</p>
         <div class="flex gap-2 mt-2">
             {links.video && (
-                <a href={links.video} target="_blank" class="bg-blue-500 text-white px-4 py-2 rounded-md">Video</a>
+                <a href={links.video} target="_blank"
+            rel="noopener noreferrer" class="bg-blue-500 text-white px-4 py-2 rounded-md">Video</a>
             )}
             {links.article && (
-                <a href={links.article} target="_blank" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md">Article</a>
+                <a href={links.article} target="_blank"
+                rel="noopener noreferrer" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md">Article</a>
             )}
         </div>
     </div>

@@ -22,7 +22,7 @@ const { project } = Astro.props;
 ---
 
 <article class="card dark:bg-gray-800 dark:text-white">
-  <a href={project.image.link} class="image-link">
+  <a href={project.image.link} target="_blank" rel="noopener noreferrer" class="image-link">
     <img
       src={project.image.src}
       alt={project.image.alt}
