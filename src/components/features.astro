@@ -54,13 +54,13 @@ const features = [
 <div class='grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-8 md:gap-16'>
   {features.map((item) => (
     <div class='flex flex-col gap-4 items-start group'>
-      <div class='mt-1 bg-slate-100 dark:bg-slate-800 rounded-full p-3 w-12 h-12 shrink-0'>
-        <Icon name={item.icon} class='text-slate-500 dark:text-slate-300' />
-      </div>
-      <div>
+      <div class='flex items-center gap-3'>
+        <div class='bg-slate-100 dark:bg-slate-800 rounded-full p-3 flex items-center justify-center'>
+          <Icon name={item.icon} class='text-slate-500 dark:text-slate-300 h-[1.5em] w-[1.5em]' />
+        </div>
         <h3 class='font-semibold text-lg dark:text-white'>{item.title}</h3>
-        <p class='text-slate-500 dark:text-slate-400 mt-2 leading-relaxed'>{item.description}</p>
       </div>
+      <p class='text-slate-500 dark:text-slate-400 leading-relaxed'>{item.description}</p>
     </div>
   ))}
 </div>
