@@ -17,23 +17,38 @@ const resolvedImageWithDomain = new URL(
 
 const { title } = Astro.props;
 
-const makeTitle = "Nerando's Portfolio";
+// Use the provided title or fallback to default
+const makeTitle = title || "Nerando's Portfolio";
 ---
 
 <!doctype html>
 <html lang='en' class='light'>
-  <!-- <html lang="en"> -->
   <head>
     <meta charset='UTF-8' />
-    <!-- Google tag (gtag.js) -->
-    <script type="text/partytown" async src='https://www.googletagmanager.com/gtag/js?id=G-Q3KQF674YW'></script>
-    <script "text/partytown">window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+    <!-- GA4 -->
+    <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-Q3KQF674YW"></script>
+    <script>
+      declare global {
+        interface Window {
+          dataLayer: Record<string, any>[];
+          gtag: (...args: any[]) => void;
+        }
       }
-      gtag('js', new Date());
-
-      gtag('config', 'G-Q3KQF674YW');
+      // This is the important part!
+      document.addEventListener('astro:page-load', () => {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function gtag(...args: any[]) {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag('js', new Date());
+        window.gtag('consent', 'default', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: 'denied',
+        });
+        window.gtag('config', 'G-Q3KQF674YW');
+      });
     </script>
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
@@ -41,9 +56,8 @@ const makeTitle = "Nerando's Portfolio";
     <script is:inline>
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-      document.body.classList.toggle('dark', savedTheme === 'dark');
+      document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
-    <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
       description='This is a portfolio website of Nerando. It contains his projects, blogs, and other information about his growth as a technical professional.'
@@ -55,7 +69,7 @@ const makeTitle = "Nerando's Portfolio";
         basic: {
           url: canonicalURL,
           type: 'website',
-          title: `Nerando's Portfolio`,
+          title: makeTitle,
           image: resolvedImageWithDomain,
         },
         image: {
