@@ -2,11 +2,10 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { remarkReadingTime } from './remark-reading-time.mjs';
-import netlify from "@astrojs/netlify/functions";
-import icon from 'astro-icon';
-import partytown from '@astrojs/partytown'
-
+import { remarkReadingTime } from "./remark-reading-time.mjs";
+import netlify from "@astrojs/netlify";
+import icon from "astro-icon";
+import partytown from "@astrojs/partytown";
 
 export default defineConfig({
   site: "https://radiant-sprinkles-d2960e.netlify.app",
@@ -18,45 +17,46 @@ export default defineConfig({
     sitemap(),
     icon({
       include: {
-        bx: ['*'],
-        'simple-icons': ['*'],
-        mdi: ['*'],
+        bx: ["*"],
+        "simple-icons": ["*"],
+        mdi: ["*"],
       },
     }),
     partytown({
-            config: {
-              forward: ["dataLayer.push"],
-            },
-        })
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
   ],
   image: {
     domains: ["picsum.photos"],
     service: { entrypoint: "astro/assets/services/sharp" },
-    remotePatterns: [{
-      protocol: 'https',
-      hostname: '**.amazonaws.com',
-    },
-    {
-      protocol: 'https',
-      hostname: '**.giphy.com',
-    },
-    {
-      protocol: 'https',
-      hostname: '**.unsplash.com',
-    },
-    {
-    protocol: 'https',
-    hostname: '**.github.com',
-  },
-    {
-      protocol: 'https',
-      hostname: '**.dev.to',
-    },
-    {
-      protocol: 'https',
-      hostname: '**.pexels.com',
-    }
-  ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.giphy.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.github.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.dev.to",
+      },
+      {
+        protocol: "https",
+        hostname: "**.pexels.com",
+      },
+    ],
   },
   markdown: {
     remarkPlugins: [remarkReadingTime],
