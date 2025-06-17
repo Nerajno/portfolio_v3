@@ -6,7 +6,7 @@ import Projectcard from "@components/projectcard.astro";
 
 const completed_projects = [
   {
-    name: "Trapper Keeper",
+    name: "PlaceHolder - Trapper Keeper",
     github: "https://github.com/Nerajno/Trapper_Keeper-v1",
     website:"https://trapper-keepr.fly.dev/",
     description: "A Rails SPA app that helps the user create a CRUD-style address book containing their friends.",
@@ -23,7 +23,7 @@ const completed_projects = [
     lastUpdated: "2022-01-01",
   },
   {
-    name: "Burble",
+    name: "PlaceHolder - Burble",
     github: "https://github.com/Nerajno/Burble-V1",
     website:"https://theburble.netlify.app/",
     description: "Responsive Movie app using React, the TMDB API, and Sass.",
@@ -40,7 +40,7 @@ const completed_projects = [
     lastUpdated: "2024-12-28",
   },
   {
-    name: "Terminous",
+    name: "PlaceHolder - Terminous",
     github: "https://github.com/Nerajno/Terminus",
     website:"https://nerajno.github.io/Terminus/",
     description: "A redirect page for all FreeCodeCamp projects that haven't been completed.",
@@ -56,6 +56,9 @@ const completed_projects = [
     lastUpdated: "2024-12-29",
   },
 ];
+
+// Extract all unique tags from projects
+const allTags = [...new Set(completed_projects.flatMap(project => project.tags))].sort();
 ---
 
 <Layout title="Projects">
@@ -67,8 +70,122 @@ const completed_projects = [
       </Fragment>
     </Sectionhead>
 
-    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg mt-12">
-      {completed_projects.map((item) => <Projectcard project={item} />)}
+    <!-- Tag Filter Section -->
+    <div class="max-w-screen-lg mx-auto mt-8 mb-8">
+      <h3 class="text-lg font-semibold mb-4 text-center">Filter by Technology:</h3>
+      <div class="flex flex-wrap justify-center gap-2 mb-4">
+        <!-- Dynamic tag buttons -->
+        {allTags.map((tag) => (
+          <button
+            class="tag-filter-btn px-4 py-2 rounded-xl border-2 border-gray-300 text-slate-500 dark:text-slate-400 hover:bg-gray-100 transition-colors duration-200"
+            data-tag={tag.toLowerCase()}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+
+      <!-- Clear filters button -->
+      <div class="text-center">
+        <button
+          id="clear-filters"
+          class="px-6 py-2 text-slate-500 dark:text-slate-400 rounded-xl hover:bg-gray-300 transition-colors duration-200"
+        >
+          Clear All Filters
+        </button>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg mt-12" id="projects-grid">
+      {completed_projects.map((item) => (
+        <div class="project-item" data-tags={item.tags.map(tag => tag.toLowerCase()).join(',')}>
+          <Projectcard project={item} />
+        </div>
+      ))}
     </div>
   </Container>
 </Layout>
+
+<style>
+  .tag-filter-btn.active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+  }
+
+  .tag-filter-btn:hover.active {
+    background-color: #2563eb;
+  }
+
+  .project-item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .project-item.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.tag-filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    const clearButton = document.getElementById('clear-filters');
+
+    // Set to keep track of selected tags
+    const selectedTags = new Set();
+
+    // Function to update project visibility
+    function updateProjectVisibility() {
+      projectItems.forEach(item => {
+        const projectTags = item.getAttribute('data-tags').split(',');
+
+        // If no filters are selected, show all projects
+        if (selectedTags.size === 0) {
+          item.classList.remove('hidden');
+          return;
+        }
+
+        // Check if project has any of the selected tags
+        const hasSelectedTag = projectTags.some(tag => selectedTags.has(tag));
+
+        if (hasSelectedTag) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    // Add click handlers to filter buttons
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const tag = this.getAttribute('data-tag');
+
+        // Toggle tag selection
+        if (selectedTags.has(tag)) {
+          selectedTags.delete(tag);
+          this.classList.remove('active');
+        } else {
+          selectedTags.add(tag);
+          this.classList.add('active');
+        }
+
+        updateProjectVisibility();
+      });
+    });
+
+    // Add click handler to clear button
+    clearButton.addEventListener('click', function() {
+      selectedTags.clear();
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      updateProjectVisibility();
+    });
+
+    // Initialize - show all projects
+    updateProjectVisibility();
+  });
+</script>
