@@ -8,8 +8,12 @@ import projectsData from '../data/projects.js';
 
 // Combine all projects
 const allProjects = [
-  ...projectsData.showcase_projects,
-  ...projectsData.completed_projects,
+  ...projectsData.showcase_projects.filter(
+    (project) => project.visible !== false
+  ),
+  ...projectsData.completed_projects.filter(
+    (project) => project.visible !== false
+  ),
 ];
 
 // Extract all unique tags from projects
@@ -165,9 +169,9 @@ const allTags = [
       </Sectionhead>
       <div class='grid md:grid-cols-2 gap-10 mt-10'>
         {
-          projectsData.learning_projects.map((project) => (
-            <Learningprojectcard project={project} />
-          ))
+          projectsData.learning_projects
+            .filter((project) => project.visible !== false)
+            .map((project) => <Learningprojectcard project={project} />)
         }
       </div>
     </div>

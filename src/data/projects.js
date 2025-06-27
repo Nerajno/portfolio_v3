@@ -108,6 +108,7 @@ const projects = {
           "/placeholder.svg?height=300&width=600",
         ],
       },
+      visible: true,
     },
   ],
   completed_projects: [
@@ -212,6 +213,7 @@ const projects = {
           "https://images.pexels.com/photos/27776677/pexels-photo-27776677/free-photo-of-uluyayla.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         ],
       },
+      visible: true,
     },
     {
       id: "burble",
@@ -313,6 +315,7 @@ const projects = {
           "https://github.com/Nerajno/Burble-V1/blob/DevBranch/src/assets/Burble_Screenshot.jpeg?raw=true",
         ],
       },
+      visible: true,
     },
     {
       id: "terminus",
@@ -415,6 +418,7 @@ const projects = {
           "https://github.com/Nerajno/Terminus/blob/main/Jan_Screen_Shot.png?raw=true",
         ],
       },
+      visible: true,
     },
   ],
   learning_projects: [
@@ -468,6 +472,7 @@ const projects = {
         improvements: ["Add 5-day forecast", "Support for geolocation"],
         images: ["/images/weather_screenshot.png", "https://youtu.be/demo"],
       },
+      visible: true,
     },
     {
       id: "markdown-notes",
@@ -527,6 +532,7 @@ const projects = {
         ],
         images: ["/images/markdown_notes_screenshot.png"],
       },
+      visible: true,
     },
   ],
 };

@@ -57,7 +57,7 @@ const caseStudy = project.case_study || {};
     }
 
     <!-- Metrics (if available) -->
-    {
+    <!-- {
       project.metrics && (
         <div class='grid grid-cols-3 gap-2 mb-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg'>
           <div class='text-center'>
@@ -82,7 +82,7 @@ const caseStudy = project.case_study || {};
           </div>
         </div>
       )
-    }
+    } -->
 
     <!-- Last Updated -->
     {
@@ -94,13 +94,13 @@ const caseStudy = project.case_study || {};
     }
 
     <!-- Action Buttons -->
-    <div class='flex gap-2 mb-4'>
+    <div class='flex gap-2 mb-2'>
       <a
         href={`/learning-projects/${project.id}`}
         class='flex-1 bg-blue-500 text-white text-center py-2 px-3 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors'>
         View Details
       </a>
-      {
+      <!-- {
         project.caseStudyUrl && (
           <a
             href={project.caseStudyUrl}
@@ -108,7 +108,7 @@ const caseStudy = project.case_study || {};
             Case Study
           </a>
         )
-      }
+      } -->
       {
         project.github && (
           <a
@@ -148,8 +148,17 @@ const caseStudy = project.case_study || {};
       }
     </div>
 
+    <!-- Last Updated -->
+    {
+      project.lastUpdated && (
+        <div class='text-xs text-gray-500 dark:text-gray-400 mb-4'>
+          Last updated: {project.lastUpdated}
+        </div>
+      )
+    }
+
     <!-- Learning-Specific Details -->
-    <div class='border-t border-gray-200 dark:border-gray-700 pt-4 mt-4'>
+    <!-- <div class='border-t border-gray-200 dark:border-gray-700 pt-4 mt-4'>
       {
         caseStudy.images && caseStudy.images.length > 1 && (
           <div class='mb-4 flex flex-wrap gap-4'>
@@ -250,6 +259,6 @@ const caseStudy = project.case_study || {};
           }
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
