@@ -1,3 +1,36 @@
+// Growth status utility function
+const getGrowthStatusConfig = (status) => {
+  const statusConfigs = {
+    in_progress: {
+      color: "bg-blue-500 text-white",
+      icon: "🚀",
+      label: "In Progress",
+    },
+    started: {
+      color: "bg-green-500 text-white",
+      icon: "🌱",
+      label: "Started",
+    },
+    paused: {
+      color: "bg-amber-500 text-white",
+      icon: "⏸️",
+      label: "Paused",
+    },
+    completed: {
+      color: "bg-emerald-600 text-white",
+      icon: "✅",
+      label: "Completed",
+    },
+    refactoring: {
+      color: "bg-purple-500 text-white",
+      icon: "🔄",
+      label: "Refactoring",
+    },
+  };
+
+  return statusConfigs[status] || statusConfigs.started;
+};
+
 const projects = {
   showcase_projects: [
     {
@@ -438,6 +471,7 @@ const projects = {
       demo: "https://weather-demo.vercel.app",
       caseStudyUrl: "/case-study/weather-app",
       lastUpdated: "2024-06-01",
+      growth_status: "completed",
       metrics: {
         users: "50+",
         performance: "< 1s",
@@ -490,6 +524,7 @@ const projects = {
       demo: "https://markdown-notes-demo.vercel.app",
       caseStudyUrl: "/case-study/markdown-notes",
       lastUpdated: "2024-05-20",
+      growth_status: "refactoring",
       metrics: {
         users: "120+",
         performance: "< 0.8s",
@@ -534,7 +569,197 @@ const projects = {
       },
       visible: true,
     },
+    {
+      id: "todo-app",
+      name: "Todo App",
+      title: "Todo App",
+      description:
+        "A simple todo application to practice state management and CRUD operations.",
+      tags: ["React", "State Management", "Local Storage"],
+      image: {
+        src: "/images/todo_screenshot.png",
+        alt: "Todo App Screenshot",
+        link: "https://todo-demo.vercel.app",
+      },
+      github: "https://github.com/username/todo-app",
+      demo: "https://todo-demo.vercel.app",
+      caseStudyUrl: "/case-study/todo-app",
+      lastUpdated: "2024-07-15",
+      growth_status: "in_progress",
+      metrics: {
+        users: "25+",
+        performance: "< 0.5s",
+        uptime: "99.8%",
+      },
+      case_study: {
+        overview:
+          "A todo application built to practice React state management and CRUD operations with local storage persistence.",
+        problem:
+          "Wanted to build a practical application that demonstrates fundamental React concepts and state management patterns.",
+        audience:
+          "Beginner React developers and anyone looking for a simple todo solution.",
+        features: [
+          "Add, edit, and delete todos",
+          "Mark todos as complete",
+          "Filter by status (all, active, completed)",
+          "Local storage persistence",
+          "Responsive design",
+        ],
+        tech_stack: ["React", "JavaScript", "Local Storage", "CSS"],
+        timeline: "1 week",
+        key_changes: [
+          "Added filter functionality after initial MVP",
+          "Implemented local storage for data persistence",
+        ],
+        learnings: [
+          "React state management with useState and useEffect",
+          "Handling form submissions and user interactions",
+          "Local storage API for data persistence",
+        ],
+        results: "Successfully deployed and used for personal task management.",
+        feedback: [
+          {
+            quote: "Clean and functional! Great for learning React basics.",
+            author: "Peer Developer",
+          },
+        ],
+        improvements: [
+          "Add categories and tags",
+          "Implement drag and drop reordering",
+        ],
+        images: ["/images/todo_screenshot.png"],
+      },
+      visible: true,
+    },
+    {
+      id: "calculator",
+      name: "Calculator",
+      title: "Calculator",
+      description:
+        "A basic calculator to practice JavaScript logic and DOM manipulation.",
+      tags: ["JavaScript", "DOM", "CSS Grid"],
+      image: {
+        src: "/images/calculator_screenshot.png",
+        alt: "Calculator Screenshot",
+        link: "https://calculator-demo.vercel.app",
+      },
+      github: "https://github.com/username/calculator",
+      demo: "https://calculator-demo.vercel.app",
+      caseStudyUrl: "/case-study/calculator",
+      lastUpdated: "2024-04-10",
+      growth_status: "started",
+      metrics: {
+        users: "15+",
+        performance: "< 0.3s",
+        uptime: "100%",
+      },
+      case_study: {
+        overview:
+          "A basic calculator application built with vanilla JavaScript to practice DOM manipulation and mathematical operations.",
+        problem:
+          "Needed a project to practice JavaScript fundamentals, event handling, and DOM manipulation in a practical context.",
+        audience:
+          "JavaScript beginners and anyone needing a simple calculator.",
+        features: [
+          "Basic arithmetic operations",
+          "Clear and delete functionality",
+          "Keyboard support",
+          "Responsive design",
+        ],
+        tech_stack: ["JavaScript", "HTML5", "CSS3"],
+        timeline: "3 days",
+        key_changes: [
+          "Added keyboard support for better UX",
+          "Improved error handling for invalid operations",
+        ],
+        learnings: [
+          "DOM event handling and manipulation",
+          "JavaScript mathematical operations and validation",
+          "CSS Grid for layout",
+        ],
+        results: "Completed basic functionality and ready for enhancement.",
+        feedback: [
+          {
+            quote: "Works perfectly for basic calculations!",
+            author: "Friend",
+          },
+        ],
+        improvements: [
+          "Add scientific calculator functions",
+          "Implement calculation history",
+        ],
+        images: ["/images/calculator_screenshot.png"],
+      },
+      visible: true,
+    },
+    {
+      id: "portfolio-v2",
+      name: "Portfolio V2",
+      title: "Portfolio V2",
+      description:
+        "A redesign of my portfolio website with modern design patterns and improved performance.",
+      tags: ["Astro", "TypeScript", "Tailwind CSS"],
+      image: {
+        src: "/images/portfolio_v2_screenshot.png",
+        alt: "Portfolio V2 Screenshot",
+        link: "https://portfolio-v2.vercel.app",
+      },
+      github: "https://github.com/username/portfolio-v2",
+      demo: "https://portfolio-v2.vercel.app",
+      caseStudyUrl: "/case-study/portfolio-v2",
+      lastUpdated: "2024-08-01",
+      growth_status: "paused",
+      metrics: {
+        users: "200+",
+        performance: "< 1s",
+        uptime: "99.9%",
+      },
+      case_study: {
+        overview:
+          "A complete redesign of my portfolio website using modern technologies and design patterns for better performance and user experience.",
+        problem:
+          "My previous portfolio was outdated and didn't reflect current best practices. Needed a modern, fast, and accessible portfolio that showcases my growth as a developer.",
+        audience:
+          "Potential employers, clients, and fellow developers reviewing my work.",
+        features: [
+          "Modern, responsive design",
+          "Fast loading times",
+          "Accessibility compliance",
+          "Dark/light mode toggle",
+          "Project showcase with case studies",
+          "Contact form integration",
+        ],
+        tech_stack: ["Astro", "TypeScript", "Tailwind CSS", "Vercel"],
+        timeline: "3 weeks",
+        key_changes: [
+          "Switched from React to Astro for better performance",
+          "Implemented TypeScript for better code quality",
+          "Added comprehensive accessibility features",
+        ],
+        learnings: [
+          "Astro's component model and performance benefits",
+          "TypeScript integration and type safety",
+          "Web accessibility standards and implementation",
+        ],
+        results:
+          "Significantly improved performance and user experience metrics.",
+        feedback: [
+          {
+            quote: "Much more professional and modern looking!",
+            author: "Hiring Manager",
+          },
+        ],
+        improvements: [
+          "Add blog functionality",
+          "Implement analytics dashboard",
+          "Add internationalization support",
+        ],
+        images: ["/images/portfolio_v2_screenshot.png"],
+      },
+      visible: true,
+    },
   ],
 };
 
+export { getGrowthStatusConfig };
 export default projects;

@@ -1,6 +1,11 @@
 ---
+import { getGrowthStatusConfig } from '../data/projects';
+
 const { project } = Astro.props;
 const caseStudy = project.case_study || {};
+const growthStatus = project.growth_status
+  ? getGrowthStatusConfig(project.growth_status)
+  : null;
 ---
 
 <div
@@ -16,11 +21,14 @@ const caseStudy = project.case_study || {};
         />
       )
     }
+    <!-- Growth Status Badge -->
     {
-      project.status && (
+      growthStatus && (
         <div class='absolute top-3 right-3'>
-          <span class='bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full'>
-            {project.status}
+          <span
+            class={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${growthStatus.color}`}>
+            <span class='text-sm'>{growthStatus.icon}</span>
+            <span>{growthStatus.label}</span>
           </span>
         </div>
       )
