@@ -37,3 +37,33 @@ body {
     box-shadow: 0 -2px 5px var(--navbar-shadow);
 }
 
+
+/* src/styles/global.css */
+
+/* Smooth theme transitions */
+html {
+  transition: background-color 0.2s ease-in-out;
+}
+
+body {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Prevent flash of unstyled content */
+html:not(.light):not(.dark) {
+  visibility: hidden;
+}
+
+html.light,
+html.dark {
+  visibility: visible;
+}
+
+/* Optional: Add custom scrollbar for dark mode */
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
