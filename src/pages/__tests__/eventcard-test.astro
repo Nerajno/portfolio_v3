@@ -1,0 +1,35 @@
+---
+import EventCard from '../../components/eventcard.astro';
+
+const mockEvent = {
+  id: '1',
+  title: 'Test Event',
+  description: 'This is a test event.',
+  date: '2024-01-01',
+  location: {
+    city: 'Test City',
+    state: 'TS',
+    country: 'Testland',
+    venue: 'Test Venue',
+  },
+  links: {
+    conferenceWebsite: 'https://example.com',
+    video: 'https://youtube.com/example',
+    slides: 'https://slides.com/example',
+    article: 'https://blog.com/example',
+    github: 'https://github.com/example',
+  },
+  type: 'conference' as const,
+  tags: ['test', 'astro'],
+  status: 'upcoming' as const,
+};
+---
+
+<html>
+  <head>
+    <title>EventCard Component Test</title>
+  </head>
+  <body>
+    <EventCard {...mockEvent} />
+  </body>
+</html>
