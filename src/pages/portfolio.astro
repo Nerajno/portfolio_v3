@@ -157,8 +157,20 @@ const allTags = [
       }
     </div>
 
+    <!-- Learning Projects Showcase Toggle Button -->
+    <div class='max-w-screen-lg mx-auto mt-20 text-center'>
+      <button
+        id='toggle-learning-showcase'
+        class='px-6 py-2 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-100 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-900/50 transition-colors duration-300 mb-6'>
+        Show Learning Projects Showcase
+      </button>
+    </div>
+
     <!-- Learning Projects Showcase -->
-    <div class='max-w-screen-lg mx-auto mt-20'>
+    <div
+      class='max-w-screen-lg mx-auto mt-4'
+      id='learning-showcase-section'
+      style='display: none;'>
       <Sectionhead>
         <Fragment slot='title'>Learning Projects Showcase</Fragment>
         <Fragment slot='desc'>
@@ -300,5 +312,21 @@ const allTags = [
     }
 
     updateProjectVisibility();
+
+    // Learning Showcase Toggle
+    const toggleButton = document.getElementById('toggle-learning-showcase');
+    const showcaseSection = document.getElementById(
+      'learning-showcase-section'
+    );
+    let isShowcaseVisible = false;
+    if (toggleButton && showcaseSection) {
+      toggleButton.addEventListener('click', function () {
+        isShowcaseVisible = !isShowcaseVisible;
+        showcaseSection.style.display = isShowcaseVisible ? 'block' : 'none';
+        toggleButton.textContent = isShowcaseVisible
+          ? 'Hide Learning Projects Showcase'
+          : 'Show Learning Projects Showcase';
+      });
+    }
   });
 </script>

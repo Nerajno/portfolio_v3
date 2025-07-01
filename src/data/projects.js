@@ -141,7 +141,7 @@ const projects = {
           "/placeholder.svg?height=300&width=600",
         ],
       },
-      visible: true,
+      visible: false,
     },
   ],
   completed_projects: [
