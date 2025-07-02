@@ -6,6 +6,7 @@ import '@fontsource-variable/inter/index.css';
 
 export interface Props {
   title: string;
+  description?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -15,18 +16,44 @@ const resolvedImageWithDomain = new URL(
   Astro.site
 ).toString();
 
-const { title } = Astro.props;
+const { title, description = "Nerando's Portfolio - Full-stack Developer" } =
+  Astro.props;
 
 // Use the provided title or fallback to default
 const makeTitle = title || "Nerando's Portfolio";
 ---
 
 <!doctype html>
-<html lang='en' class='light'>
+<html lang='en'>
   <head>
     <meta charset='UTF-8' />
+    <meta name='description' content={description} />
+    <!-- Prevent flash of unstyled content -->
+    <script is:inline>
+      (function () {
+        function getInitialTheme() {
+          if (typeof localStorage !== 'undefined') {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+              return savedTheme;
+            }
+          }
+          if (
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches
+          ) {
+            return 'dark';
+          }
+          return 'light';
+        }
+        const theme = getInitialTheme();
+        document.documentElement.classList.add(theme);
+      })();
+    </script>
     <!-- GA4 -->
-    <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-DNCBJVR432"></script>
+    <script
+      is:inline
+      src='https://www.googletagmanager.com/gtag/js?id=G-DNCBJVR432'></script>
     <script>
       declare global {
         interface Window {
@@ -53,14 +80,9 @@ const makeTitle = title || "Nerando's Portfolio";
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
-    <script is:inline>
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    </script>
     <SEO
       title={makeTitle}
-      description='This is a portfolio website of Nerando. It contains his projects, blogs, and other information about his growth as a technical professional.'
+      description={description}
       canonical={canonicalURL}
       twitter={{
         creator: 'nerajno',
@@ -78,7 +100,8 @@ const makeTitle = title || "Nerando's Portfolio";
       }}
     />
   </head>
-  <body>
+  <body
+    class='bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-200'>
     <Navbar />
     <slot />
     <Footer />
@@ -108,5 +131,7 @@ const makeTitle = title || "Nerando's Portfolio";
           background-color 0.3s ease;
       }
     </style>
+    <!-- Load theme manager after body -->
+    <script src='/src/scripts/theme.js' type='module'></script>
   </body>
 </html>
