@@ -455,6 +455,7 @@ const projects = {
     },
   ],
   learning_projects: [
+    /*
     {
       id: "weather-app",
       name: "Weather App",
@@ -755,6 +756,85 @@ const projects = {
           "Add internationalization support",
         ],
         images: ["/images/portfolio_v2_screenshot.png"],
+      },
+      visible: true,
+    },
+    */
+
+    {
+      id: "demo",
+      name: "Demo",
+      title: "Demo Project",
+      description: "A demonstration project for learning showcase.",
+      tags: ["Demo", "Learning"],
+      image: {
+        src: "/images/demo_placeholder.png",
+        alt: "Demo Project Screenshot",
+        link: "#",
+      },
+      github: "#",
+      demo: "#",
+      caseStudyUrl: "/case-study/demo",
+      lastUpdated: "2024-08-01",
+      growth_status: "started",
+      metrics: {
+        users: "0",
+        performance: "N/A",
+        uptime: "N/A",
+      },
+      case_study: {
+        overview:
+          "This is a demo project used as a placeholder in the learning projects showcase.",
+        problem: "N/A",
+        audience: "N/A",
+        features: ["Demo feature 1", "Demo feature 2"],
+        tech_stack: ["N/A"],
+        timeline: "N/A",
+        key_changes: ["Initial demo setup"],
+        learnings: ["How to add a demo project"],
+        results: "N/A",
+        feedback: [],
+        improvements: ["Replace with real project"],
+        images: ["/images/demo_placeholder.png"],
+      },
+      visible: true,
+    },
+    {
+      id: "space-holder",
+      name: "Space Holder",
+      title: "Space Holder Project",
+      description:
+        "A placeholder project for future learning showcase entries.",
+      tags: ["Placeholder", "Learning"],
+      image: {
+        src: "/images/spaceholder_placeholder.png",
+        alt: "Space Holder Project Screenshot",
+        link: "#",
+      },
+      github: "#",
+      demo: "#",
+      caseStudyUrl: "/case-study/space-holder",
+      lastUpdated: "2024-08-01",
+      growth_status: "paused",
+      metrics: {
+        users: "0",
+        performance: "N/A",
+        uptime: "N/A",
+      },
+      case_study: {
+        overview:
+          "This is a space holder project for future use in the learning projects showcase.",
+        problem: "N/A",
+        audience: "N/A",
+        features: ["Placeholder feature 1", "Placeholder feature 2"],
+        tech_stack: ["N/A"],
+        timeline: "N/A",
+        key_changes: ["Initial placeholder setup"],
+        learnings: ["How to add a placeholder project"],
+        results: "N/A",
+        feedback: [],
+        improvements: ["Replace with real project"],
+        images: ["/images/spaceholder_placeholder.png"],
       },
       visible: true,
     },
