@@ -16,29 +16,30 @@ interface SpeakingEvent {
     conferenceWebsite?: string;
     slides?: string;
     github?: string;
-    
+
   };
   type: 'conference' | 'workshop' | 'meetup' | 'webinar';
   tags?: string[];
 }
 
 export const speakingData: SpeakingEvent[] = [
+
   {
-    "id": "200-ok-2025",
-    "title": "Back to Basics: Essential JavaScript Foundations for Modern Framework Development",
-    "description": "In an era where AI and tech influencers often promote jumping directly into framework development, this talk emphasizes the critical importance of mastering JavaScript fundamentals before diving into frameworks like Vue.js. Drawing from real-world experience transitioning into Vue 3 development, we'll explore why solid JavaScript foundations are crucial for effective framework usage. Through practical demonstrations and real-world examples, we'll examine how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example. This session will help developers understand why 'learning to walk before running' in JavaScript is essential for long-term success in framework development.",
-    "date": "2025-06-23",
+    "id": "carolina-code-conference-2025",
+    "title": "And It Was Written ~ An Introspective in the Importance of ReadMes.",
+    "description": "You've created the perfect solution, but it's useless without proper documentation. In our open-source-driven world, countless powerful tools sit unused because developers skip the documentation step. This creates a critical gap as software becomes increasingly dependent on open-source components. Learn practical tips, templates, and strategies to transform your documentation from afterthought to essential craft. Drawing from experience as both science educator and full-stack developer, discover why clear documentation isn't just helpful—it's the bridge between brilliant code and actual impact.",
+    "date": "2025-08-15",
     "location": {
-      "city": "Tulsa",
-      "state": "Oklahoma",
+      "city": "Greenville",
+      "state": "South Carolina",
       "country": "USA",
-      "venue": "Atlas School"
+      "venue": "Flywheel"
     },
     "type": "conference",
-    "tags": ["learning","JavaScript","foundamentals","open source"],
+    "tags": ["learning","polyglot","open source"],
     "links": {
-      "conferenceWebsite": "https://200ok.us/",
-       //"slides": "https://speakerdeck.com/username/react-typescript",
+      "conferenceWebsite": "https://blog.carolina.codes/",
+      // "slides": "https://docs.google.com/presentation/d/1X90GRVrInlTx22y8j7fUk1UcMAXiCCFO/edit?usp=sharing&ouid=101977102167064448578&rtpof=true&sd=true",
        //"github": "https://github.com/username/react-ts-guide"
     }
   },
