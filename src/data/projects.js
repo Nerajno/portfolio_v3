@@ -3,27 +3,22 @@ const getGrowthStatusConfig = (status) => {
   const statusConfigs = {
     in_progress: {
       color: "bg-blue-500 text-white",
-      icon: "🚀",
       label: "In Progress",
     },
     started: {
-      color: "bg-green-500 text-white",
-      icon: "🌱",
+      color: "bg-green-600 text-white",
       label: "Started",
     },
     paused: {
       color: "bg-amber-500 text-white",
-      icon: "⏸️",
       label: "Paused",
     },
     completed: {
       color: "bg-emerald-600 text-white",
-      icon: "✅",
       label: "Completed",
     },
     refactoring: {
       color: "bg-purple-500 text-white",
-      icon: "🔄",
       label: "Refactoring",
     },
   };
@@ -768,7 +763,7 @@ const projects = {
       description: "A demonstration project for learning showcase.",
       tags: ["Demo", "Learning"],
       image: {
-        src: "/images/demo_placeholder.png",
+        src: "/other_images/placeholder_1.jpg",
         alt: "Demo Project Screenshot",
         link: "#",
       },
@@ -795,7 +790,7 @@ const projects = {
         results: "N/A",
         feedback: [],
         improvements: ["Replace with real project"],
-        images: ["/images/demo_placeholder.png"],
+        images: ["/other_images/placeholder_1.jpg", "/other_images/other_placeholder_2.jpg"],
       },
       visible: true,
     },
@@ -807,7 +802,8 @@ const projects = {
         "A placeholder project for future learning showcase entries.",
       tags: ["Placeholder", "Learning"],
       image: {
-        src: "/images/spaceholder_placeholder.png",
+        images: ["/other_images/placeholder_1.jpg", "/other_images/other_placeholder_2.jpg"],
+        primary: "/other_images/placeholder_1.jpg",
         alt: "Space Holder Project Screenshot",
         link: "#",
       },
@@ -834,7 +830,7 @@ const projects = {
         results: "N/A",
         feedback: [],
         improvements: ["Replace with real project"],
-        images: ["/images/spaceholder_placeholder.png"],
+        images: ["/other_images/placeholder_1.jpg", "/other_images/other_placeholder_2.jpg"],
       },
       visible: true,
     },
