@@ -37,7 +37,7 @@ const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.grow
             <h1 class="text-4xl font-bold text-gray-900 dark:text-white">{project.title} - Learning Plot</h1>
             {
               growthStatus && (
-                <span class={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border-3 border-black dark:border-white ${growthStatus.color}`}>
+                <span class={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border-2 border-black dark:border-white ${growthStatus.color}`}>
                   <span class="text-lg">{growthStatus.icon}</span>
                   <span>{growthStatus.label}</span>
                 </span>
