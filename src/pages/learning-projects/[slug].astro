@@ -78,9 +78,10 @@ if (notFound) {
             )
           }
           <a
-            href={`/learning-plot/${project.id}`}
+            href='https://garden.developingdvlpr.com/notes'
             class='bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors'
-            >Learning Plot</a
+            target='_blank'
+            rel='noopener noreferrer'>Learning Plot</a
           >
         </div>
       </header>
@@ -100,7 +101,7 @@ if (notFound) {
                   />
                 ) : (
                   <img
-                    src={image || '/placeholder.svg'}
+                    src={image || './assets/other_images/placeholder_1.jpg'}
                     alt={`${project.title} screenshot ${index + 1}`}
                     class='rounded-lg shadow-lg w-full h-auto'
                   />
