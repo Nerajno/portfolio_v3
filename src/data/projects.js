@@ -802,8 +802,8 @@ const projects = {
         "A placeholder project for future learning showcase entries.",
       tags: ["Placeholder", "Learning"],
       image: {
-        images:["/other_images/placeholder_1.jpg", "/other_images/other_placeholder_2.jpg"],
-        src: "/other_images/placeholder_1.jpg",
+        images: ["/other_images/placeholder_1.jpg", "/other_images/other_placeholder_2.jpg"],
+        primary: "/other_images/placeholder_1.jpg",
         alt: "Space Holder Project Screenshot",
         link: "#",
       },
