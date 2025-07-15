@@ -811,7 +811,7 @@ const projects = {
       github: "#",
       demo: "#",
       caseStudyUrl: "/case-study/demo",
-      lastUpdated: "2024-08-01",
+      lastUpdated: "2025-08-01",
       growth_status: "started",
       metrics: {
         users: "0",
