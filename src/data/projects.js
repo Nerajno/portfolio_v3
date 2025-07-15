@@ -790,7 +790,10 @@ const projects = {
         results: "N/A",
         feedback: [],
         improvements: ["Replace with real project"],
-        images: ["/other_images/placeholder_1.jpg", "/other_images/other_placeholder_2.jpg"],
+        images: [
+          "/other_images/placeholder_1.jpg",
+          "/other_images/other_placeholder_2.jpg",
+        ],
       },
       visible: true,
     },
@@ -802,7 +805,10 @@ const projects = {
         "A placeholder project for future learning showcase entries.",
       tags: ["Placeholder", "Learning"],
       image: {
-        images: ["/other_images/placeholder_1.jpg", "/other_images/other_placeholder_2.jpg"],
+        images: [
+          "/other_images/placeholder_1.jpg",
+          "/other_images/other_placeholder_2.jpg",
+        ],
         primary: "/other_images/placeholder_1.jpg",
         alt: "Space Holder Project Screenshot",
         link: "#",
@@ -830,7 +836,10 @@ const projects = {
         results: "N/A",
         feedback: [],
         improvements: ["Replace with real project"],
-        images: ["/other_images/placeholder_1.jpg", "/other_images/other_placeholder_2.jpg"],
+        images: [
+          "/other_images/placeholder_1.jpg",
+          "/other_images/other_placeholder_2.jpg",
+        ],
       },
       visible: true,
     },
