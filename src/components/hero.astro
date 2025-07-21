@@ -1,53 +1,57 @@
 ---
-import { Picture } from "astro:assets";
-import heroImage from "assets/Banner_for_site.png";
-import Link from "@components/ui/link.astro";
-import { Icon } from "astro-icon/components";
+import { Picture } from 'astro:assets';
+import heroImage from 'assets/Banner_for_site.png';
+import Link from '@components/ui/link.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
 <main
-  class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
-  <div class="py-6 md:order-1 hidden md:block">
+  class='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'>
+  <div class='py-6 md:order-1'>
     <Picture
       src={heroImage}
-      alt="Image of Nerando"
+      alt='Image of Nerando'
       widths={[200, 400, 600]}
-      sizes="(max-width: 800px) 100vw, 620px"
-      loading="eager"
-      format="avif"
+      sizes='(max-width: 800px) 100vw, 620px'
+      loading='eager'
+      format='avif'
     />
   </div>
   <div>
     <h1
-      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white">
+      class='text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'>
       Hi, I am Nerando
     </h1>
-    <h2> </h2>
-    <p class="text-medium mt-4 text-black-400 dark:text-gray-300 max-w-xl">
-
-      I am software developer currently working in the front-end in Vue and JavaScript space.
-      Previously worked on the MERN stack with a little PM and DevOps skills thrown in.
-      Outside of tech, I am bookwork with a spatula among other things.
+    <h2></h2>
+    <p class='text-medium mt-4 text-black-400 dark:text-gray-300 max-w-xl'>
+      I am software developer currently working in the front-end in Vue and
+      JavaScript space. Previously worked on the MERN stack with a little PM and
+      DevOps skills thrown in. Outside of tech, I am bookwork with a spatula
+      among other things.
     </p>
-    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+    <div class='mt-6 flex flex-col sm:flex-row gap-3'>
       <Link
-        href="https://garden.developingdvlpr.com/note/crops-growing"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-slate-300 hover:font-bold bg-slate-900 dark:text-slate-700 dark:hover:text-slate-500 dark:bg-slate-200 flex gap-1 items-center justify-center"
-        rel="noopener">
-        <Icon class="text-slate-300 hover:text-slate-600 dark:text-slate-700 dark:hover:text-slate-500 w-5 h-5" name="bx:bxs-cloud-download"/>
+        href='https://garden.developingdvlpr.com/note/crops-growing'
+        target='_blank'
+        rel='noopener noreferrer'
+        class='text-slate-300 hover:font-bold bg-slate-900 dark:text-slate-700 dark:hover:text-slate-500 dark:bg-slate-200 flex gap-1 items-center justify-center'>
+        <Icon
+          class='text-slate-300 hover:text-slate-600 dark:text-slate-700 dark:hover:text-slate-500 w-5 h-5'
+          name='bx:bxs-cloud-download'
+        />
         Currently Learning
       </Link>
       <Link
-        style="outline"
-        rel="noopener"
-        href="https://garden.developingdvlpr.com/note/stuff-building-2025"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex gap-1 items-center justify-center border dark:hover:bg-gray-700 border-slate-500 dark:border-slate-300 dark:text-slate-300 hover:text-slate-600 hover:font-bold dark:bg-gray-600">
-        <Icon class="text-slate-500 dark:text-slate-300 w-4 h-4" name="bx:bxl-github" />
-         Currently Building
+        style='outline'
+        href='https://garden.developingdvlpr.com/note/stuff-building-2025'
+        target='_blank'
+        rel='noopener noreferrer'
+        class='flex gap-1 items-center justify-center border dark:hover:bg-gray-700 border-slate-500 dark:border-slate-300 dark:text-slate-300 hover:text-slate-600 hover:font-bold dark:bg-gray-600'>
+        <Icon
+          class='text-slate-500 dark:text-slate-300 w-4 h-4'
+          name='bx:bxl-github'
+        />
+        Currently Building
       </Link>
     </div>
   </div>
