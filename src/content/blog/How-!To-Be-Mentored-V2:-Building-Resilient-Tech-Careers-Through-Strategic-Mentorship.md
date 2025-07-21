@@ -172,8 +172,7 @@ As **_Bob Proctor_** eloquently stated, "A mentor is someone who sees more talen
 
 * ["5 Things I Learned Mentoring 2,500 Aspiring Developers" ~> _**FreeCodeCamp**_"](https://www.freecodecamp.org/news/5-mentorship-learnings/)
 * ["How to Use the Mentoring Framework to Learn a New Skill" ~> _**FreeCodeCamp**_](https://www.freecodecamp.org/news/the-mentoring-framework/)
-* ["Mentoring Developers: Best Practices From Uber - Interview With Gergely Orosz" (Code Sans)
-](https://alpha.codingsans.com/blog/mentoring-developers)
+* ["Mentoring Developers: Best Practices From Uber - Interview With Gergely Orosz" ~> _**Code Sans**_](https://alpha.codingsans.com/blog/mentoring-developers)
 * "[Atomic Habits" by James Clear](https://en.wikipedia.org/wiki/Atomic_Habits) (for building consistent learning habits)
 * ["Technical Blogging" by Antonio Cangiano (for documenting your journey **_deeply or in a deep dive_**)](https://pragprog.com/titles/actb2/technical-blogging-second-edition/)
 [* Lead Great Engineering Manager One-on-ones ~ Andrew
