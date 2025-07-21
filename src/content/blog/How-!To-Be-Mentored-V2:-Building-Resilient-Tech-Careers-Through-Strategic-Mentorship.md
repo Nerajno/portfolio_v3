@@ -177,7 +177,7 @@ As **_Bob Proctor_** eloquently stated, "A mentor is someone who sees more talen
 * ["Technical Blogging" by Antonio Cangiano (for documenting your journey **_deeply or in a deep dive_**)](https://pragprog.com/titles/actb2/technical-blogging-second-edition/)
 [* Lead Great Engineering Manager One-on-ones ~ Andrew
 Walpole ( for good 1-on-1s )](https://andrewwalpole.com/blog/lead-great-engineering-manager-one-on-ones/)
-[* Coding and ADHD - ADHD Brains ~ Abbey Perini](https://dev.to/abbeyperini/coding-and-adhd-adhd-brains-im1)
+* [Coding and ADHD - ADHD Brains ~ Abbey Perini](https://dev.to/abbeyperini/coding-and-adhd-adhd-brains-im1)
 
 ## Summary
 ![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnZzbTJpeXZubGNiaG5sNnczZThnbWFpcXRidDNvZTdkdGQzb2treCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rSVRXeKPgeM5xfGyCR/giphy.gif)
