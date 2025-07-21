@@ -1,6 +1,6 @@
 ---
 draft: false
-title: "How to become a Frontend Master"
+title: "How !To Be Mentored V2 : Building Resilient Tech Careers Through Strategic Mentorship"
 snippet: "This article explores how to establish effective mentor-mentee relationships in the tech industry, emphasizing that successful mentorship requires intentional structure and clear expectations from both parties. For mentees, success depends on preparing thoroughly, taking initiative, following through consistently, and documenting progress, while mentors should provide appropriate guidance and tools while fostering independence and maintaining accountability. When executed thoughtfully, mentorship accelerates professional growth, prevents common pitfalls like burnout and misaligned expectations, and provides essential career navigation support in the rapidly evolving technology landscape."
 image: {
     src: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8b8te2jannrnh98fg25w.jpg",
