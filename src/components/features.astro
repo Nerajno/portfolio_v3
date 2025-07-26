@@ -5,31 +5,30 @@ const features = [
   {
     title: 'Problem Solver',
     description:
-      'Lets take a look with extensive full-stack development experience across diverse projects and technologies, to see how we can collaborate to solve complex problems. My skills range from building complex web platforms to creating award-winning ad technologies, showcasing adaptability in tackling varied challenges. ',
+      'Lets take a look with extensive full-stack development experience across diverse projects and technologies, to see how we can collaborate to solve problems (even the complicated ones). My skills range from building simple web sites to working on award-winning ad technologies. This showcases adaptability in tackling varied challenges. ',
     icon: 'bx:bxs-briefcase',
   },
   {
     title: 'Tech Community Builder',
     description:
-      'Beyond growing my technical expertise, I have been committed to mentoring and civic engagement demonstrates a holistic approach to problem-solving in both professional and community contexts. I have had a hand in the Atlanta tech community organizer for the last 5+ years.',
+      'Beyond growing my technical expertise, I have been committed to mentoring and civic engagement demonstrates a holistic approach, to problem-solving in both professional and community contexts. I have had a hand in the Atlanta tech community organizer for the last 5+ years.',
     icon: 'bx:bxs-window-alt',
   },
   {
     title: 'Tech Speaker',
     description:
-      'I have been a speaker at tech conferences and meetups. I have been granted the opportunity to share and grow my knowledge and skills on various tech conferences and meetups, eg.Vue Conf 2024, ConnectTech 2023 among other events.',
+      'I have been a speaker at tech conferences and meetups. I have been granted the opportunity to share and grow my knowledge and skills on various tech conferences and meetups, examples of such includes, Vue Conf 2024, ConnectTech 2023 among <a href="/speaking" class="underline hover:text-blue-600 dark:hover:text-blue-400">other events.</a>',
     icon: 'bx:bxs-data',
   },
   {
     title: 'Learner and Facilitator',
     description:
-      'Been a product and a result driven learner, simply put I learn best by building. I have been doing this since I came to this craft (mostly). I have also taken time to become a decent knowledge transfer agent with my known tech skillset.',
+      'I am a product and results-driven learner; simply put, I learn best by building. Since entering this field, I have primarily focused on hands-on, practical learning. I have also made it a priority to become an effective knowledge transfer agent, sharing my technical skillset with others.',
     icon: 'bx:bxs-bot',
   },
   {
     title: 'Tech Consultant',
-    description:
-      'Over the past 5 years, I have worked on various tech projects providing solutions to small and medium sized companies, in a range of roles.',
+    description: 'Over the past 5 years, I have worked on a variety of tech projects, providing solutions to small and medium sized companies, in a range of roles.',
     icon: 'bx:bxs-file-find',
   },
   {
@@ -47,20 +46,29 @@ const features = [
   </h2>
   <p class='text-lg mt-4 text-slate-600 dark:text-slate-400'>
     Writing code moved from an interest to a passionate hobby to my current
-    career/craft. I am currently working in the front-end space as a junior front-end developer focusing on Vue and TypeScript.
+    career/craft. I am currently working in the front-end space as a junior
+    front-end developer focusing on Vue and TypeScript.
   </p>
 </div>
 
 <div class='grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-8 md:gap-16'>
-  {features.map((item) => (
-    <div class='flex flex-col gap-4 items-start group'>
-      <div class='flex items-center gap-3'>
-        <div class='bg-slate-100 dark:bg-slate-800 rounded-full p-3 flex items-center justify-center'>
-          <Icon name={item.icon} class='text-slate-500 dark:text-slate-300 h-[1.5em] w-[1.5em]' />
+  {
+    features.map((item) => (
+      <div class='flex flex-col gap-4 items-start group'>
+        <div class='flex items-center gap-3'>
+          <div class='bg-slate-100 dark:bg-slate-800 rounded-full p-3 flex items-center justify-center'>
+            <Icon
+              name={item.icon}
+              class='text-slate-500 dark:text-slate-300 h-[1.5em] w-[1.5em]'
+            />
+          </div>
+          <h3 class='font-semibold text-lg dark:text-white'>{item.title}</h3>
         </div>
-        <h3 class='font-semibold text-lg dark:text-white'>{item.title}</h3>
+        <p
+          class='text-slate-500 dark:text-slate-400 leading-relaxed'
+          set:html={item.description}
+        />
       </div>
-      <p class='text-slate-500 dark:text-slate-400 leading-relaxed'>{item.description}</p>
-    </div>
-  ))}
+    ))
+  }
 </div>
