@@ -52,7 +52,7 @@ export const speakingData: SpeakingEvent[] = [
       city: "Atlanta",
       state: "GA",
       country: "USA",
-      venue: "The Historic Academny of Medicine",
+      venue: "The Historic Academy of Medicine",
     },
     type: "conference",
     tags: ["career", "processes", "open source", "civic hacking", "community"],
