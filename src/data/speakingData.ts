@@ -17,7 +17,7 @@ interface SpeakingEvent {
     slides?: string;
     github?: string;
   };
-  type: "conference" | "workshop" | "meetup" | "webinar" | "lightening-talk";
+  type: "conference" | "workshop" | "meetup" | "webinar" | "lightning-talk";
   tags?: string[];
 }
 
