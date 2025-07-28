@@ -2,7 +2,7 @@
 import { speakingData } from '../../data/speakingData.js';
 import Layout from '../../layouts/Layout.astro';
 import Container from '../../components/container.astro';
-import { Image } from 'astro:assets';
+// import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   return speakingData.map((event) => ({
@@ -18,7 +18,7 @@ export const prerender = true;
 <Layout title={event.title}>
   <Container>
     <div class='max-w-4xl mx-auto mt-12'>
-      {
+      <!-- {
         event.image ? (
           <Image
             src={event.image}
@@ -32,8 +32,9 @@ export const prerender = true;
             <span class='text-gray-500'>No image available</span>
           </div>
         )
-      }
+      } -->
       <h1 class='text-4xl font-bold mt-8 mb-4'>{event.title}</h1>
+      <h2 class="text-gray-600 font-bold mb-4"> Event : {event.name}</h2>
       <p class='text-gray-600 mb-4'>Date: {event.date}</p>
       <p class='text-gray-600 mb-8'>Location: {event.location}</p>
 
