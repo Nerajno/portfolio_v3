@@ -47,7 +47,7 @@ export const speakingData: SpeakingEvent[] = [
   {
     id: "devopsdays-atlanta-2025",
     title: "Social Goodness || Civic Hacking - What's in it for me?",
-    name: "Demo Name",
+    name: "DevOpsDays Atlanta 2025",
     description:
       "This talk explores how participating in civic hacking can benefit your career while making a positive community impact. Through personal experiences with Marta Hackathons, AT&T C3 Hackathons, Civic Hack Nights, and Atl Thinks competitions, the speaker demonstrates how donating time and talent led to improved development and project management skills, networking opportunities, and even charitable contributions of $40,000. Attendees will learn actionable strategies for leveraging civic hacking to enhance technical abilities, develop essential soft skills, expand professional networks, and strengthen their position in the job market.",
     date: "2025-04-29",
