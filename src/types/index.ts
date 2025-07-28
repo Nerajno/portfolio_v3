@@ -2,6 +2,7 @@ export interface SpeakingEvent {
     id: string;
     title: string;
     description: string;
+    name: string;
     date: string;
     location: {
       city: string;
@@ -16,7 +17,7 @@ export interface SpeakingEvent {
       slides?: string;
       github?: string;
     };
-    type: 'conference' | 'workshop' | 'meetup' | 'webinar';
+    type: 'conference' | 'workshop' | 'meetup' | 'webinar' | 'lightning-talk';
     tags?: string[];
   }
 

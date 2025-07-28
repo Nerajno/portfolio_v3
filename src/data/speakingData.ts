@@ -2,6 +2,7 @@ interface SpeakingEvent {
   id: string;
   title: string;
   description: string;
+  name: string;
   date: string;
   location: {
     city: string;
@@ -16,7 +17,7 @@ interface SpeakingEvent {
     slides?: string;
     github?: string;
   };
-  type: "conference" | "workshop" | "meetup" | "webinar";
+  type: "conference" | "workshop" | "meetup" | "webinar" | "lightning-talk";
   tags?: string[];
 }
 
@@ -25,6 +26,7 @@ export const speakingData: SpeakingEvent[] = [
     id: "carolina-code-conference-2025",
     title:
       "And It Was Written ~ An Introspective in the Importance of ReadMes.",
+    name: "Carolina Codes 2025",
     description:
       "You've created the perfect solution, but it's useless without proper documentation. In our open-source-driven world, countless powerful tools sit unused because developers skip the documentation step. This creates a critical gap as software becomes increasingly dependent on open-source components. Learn practical tips, templates, and strategies to transform your documentation from afterthought to essential craft. Drawing from experience as both science educator and full-stack developer, discover why clear documentation isn't just helpful—it's the bridge between brilliant code and actual impact.",
     date: "2025-08-15",
@@ -45,6 +47,7 @@ export const speakingData: SpeakingEvent[] = [
   {
     id: "devopsdays-atlanta-2025",
     title: "Social Goodness || Civic Hacking - What's in it for me?",
+    name: "DevOpsDays Atlanta 2025",
     description:
       "This talk explores how participating in civic hacking can benefit your career while making a positive community impact. Through personal experiences with Marta Hackathons, AT&T C3 Hackathons, Civic Hack Nights, and Atl Thinks competitions, the speaker demonstrates how donating time and talent led to improved development and project management skills, networking opportunities, and even charitable contributions of $40,000. Attendees will learn actionable strategies for leveraging civic hacking to enhance technical abilities, develop essential soft skills, expand professional networks, and strengthen their position in the job market.",
     date: "2025-04-29",
@@ -61,13 +64,13 @@ export const speakingData: SpeakingEvent[] = [
         "https://devopsdays.org/events/2025-atlanta/program/nerando-johnson",
       slides:
         "https://docs.google.com/presentation/d/1iNBtkU-Pjo3Mc2eJkg0kJhGBidJQnfQcCXhsge34evM/edit?usp=sharing",
-      article:
-        "https://docs.google.com/document/d/1T7ARvjankHuevPGI-wAbhIJByBCe2ATLgaYIChLJElA/edit?usp=sharing",
+      //  "article": "https://docs.google.com/document/d/1T7ARvjankHuevPGI-wAbhIJByBCe2ATLgaYIChLJElA/edit?usp=sharing"
     },
   },
   {
     id: "orlando-code-camp-2025",
-    title: "Skills to Bills: A Users Guide to Demonstrated Competency",
+    title: "Skills to Bills: A User's Guide to Demonstrated Competency",
+    name: "Orlando Code Camp 2025",
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
     date: "2025-04-05",
@@ -78,10 +81,44 @@ export const speakingData: SpeakingEvent[] = [
       venue: "Seminole State College",
     },
     type: "conference",
-    tags: ["career", "business skills", "processes", "open source"],
+    tags: [
+      "career",
+      "business skills",
+      "processes",
+      "open source",
+      "programming",
+    ],
     links: {
       conferenceWebsite: "https://www.orlandocodecamp.com/",
-      // "slides": "https://speakerdeck.com/username/react-typescript",
+      slides:
+        "https://docs.google.com/presentation/d/1mdNezbEijULPhPelJmvDE3AtcvK41SC8jbemL9hPgiI/edit?usp=sharing",
+    },
+  },
+  {
+    id: "orlando-code-camp-2024",
+    title: "This is a Technical Talk : Essential People Skills for Developers",
+    name: "Demo Name",
+    description:
+      "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
+    date: "2025-04-05",
+    location: {
+      city: "Sanford",
+      state: "FL",
+      country: "USA",
+      venue: "Seminole State College",
+    },
+    type: "conference",
+    tags: [
+      "career",
+      "business skills",
+      "processes",
+      "open source",
+      "programming",
+    ],
+    links: {
+      conferenceWebsite: "https://www.orlandocodecamp.com/",
+      slides:
+        "https://docs.google.com/presentation/d/1mdNezbEijULPhPelJmvDE3AtcvK41SC8jbemL9hPgiI/edit?usp=sharing",
       // "github": "https://github.com/username/react-ts-guide"
     },
   },
@@ -105,6 +142,7 @@ export const speakingData: SpeakingEvent[] = [
   //     github: "https://github.com/username/react-ts-guide",
   //   },
   // },
+ 
   {
     id: "connecttech-2024",
     title: "ConnectTech 2024 - How to Conference : A User Guide",
@@ -234,15 +272,15 @@ export const speakingData: SpeakingEvent[] = [
       city: "Atlanta",
       state: "GA",
       country: "USA",
-      venue: "Georgia World Congress Center"
+      venue: "Georgia World Congress Center",
     },
     type: "conference",
     tags: ["soft-skills", "communication", "leadership", "collaboration", "career-development"],
     links: {
-      conferenceWebsite: "https://devnexus.com/",
-      slides: "https://speakerdeck.com/nerajno/technical-people-skills-developers",
-      github: "https://github.com/nerajno/essential-people-skills"
-    }
+      conferenceWebsite: "https://2024.connect.tech/session/699563",
+      //slides: "https://speakerdeck.com/username/how-to-conference",
+      //github: "https://github.com/username/conference-guide",
+    },
   },
   {
     id: "open-source-civic-hacking-2024",
@@ -261,25 +299,6 @@ export const speakingData: SpeakingEvent[] = [
       conferenceWebsite: "https://orlandocodecamp.com/",
       slides: "https://speakerdeck.com/nerajno/open-source-civic-hacking-growth",
       github: "https://github.com/nerajno/open-source-civic-resources"
-    }
-  },
-  {
-    id: "read-the-readme-2023",
-    title: "Read the F*&K!ng ReadMe - How to Interpret A Repo's Instructional Manual",
-    description: "This talk highlights the importance of reading documentation attached to a work repo. Learn how to demystify code using the instructional manual (ReadMe), break down ReadMes to decipher how projects are built, find resources, and discover open-source contribution opportunities through effective documentation reading.",
-    date: "2023-04-05",
-    location: {
-      city: "Atlanta",
-      state: "GA",
-      country: "USA",
-      venue: "Georgia World Congress Center"
-    },
-    type: "conference",
-    tags: ["documentation", "readme", "open-source", "project-understanding", "developer-skills"],
-    links: {
-      conferenceWebsite: "https://devnexus.com/",
-      slides: "https://speakerdeck.com/nerajno/read-the-readme-guide",
-      github: "https://github.com/nerajno/readme-interpretation-guide"
     }
   },
   {
