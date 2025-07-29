@@ -97,10 +97,10 @@ export const speakingData: SpeakingEvent[] = [
   {
     id: "orlando-code-camp-2024",
     title: "This is a Technical Talk : Essential People Skills for Developers",
-    name: "Demo Name",
+    name: "Orlando Code camp 2024",
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
-    date: "2025-04-05",
+    date: "2025-02-05",
     location: {
       city: "Sanford",
       state: "FL",
@@ -119,36 +119,15 @@ export const speakingData: SpeakingEvent[] = [
       conferenceWebsite: "https://www.orlandocodecamp.com/",
       slides:
         "https://docs.google.com/presentation/d/1mdNezbEijULPhPelJmvDE3AtcvK41SC8jbemL9hPgiI/edit?usp=sharing",
-      // "github": "https://github.com/username/react-ts-guide"
     },
   },
-  // {
-  //   id: "reactfest-2025",
-  //   title: "Building Scalable Applications with React and TypeScript",
-  //   description:
-  //     "Join us to learn best practices for building scalable and maintainable applications using React and TypeScript. This talk will focus on type safety, architectural patterns, and tools that enhance development speed and reliability.",
-  //   date: "2025-04-10",
-  //   location: {
-  //     city: "New York",
-  //     state: "NY",
-  //     country: "USA",
-  //     venue: "Jacob K. Javits Convention Center",
-  //   },
-  //   type: "conference",
-  //   tags: ["react", "typescript", "scalability"],
-  //   links: {
-  //     conferenceWebsite: "https://2025.reactfest.com/session/78910",
-  //     slides: "https://speakerdeck.com/username/react-typescript",
-  //     github: "https://github.com/username/react-ts-guide",
-  //   },
-  // },
- 
   {
     id: "connecttech-2024",
     title: "ConnectTech 2024 - How to Conference : A User Guide",
+    name: "ConnectTech 2024",
     description:
       "Tech conferences can feel overwhelming for introverts, but they're essential for career growth and skill development. Our guide shows you how to navigate these events effectively, from packing strategies to finding quiet spaces for recharging. Learn practical strategies for navigating professional events, from preparing effectively to maximizing networking opportunities while maintaining your energy levels.",
-    date: "2024-10-10",
+    date: "2024-10-19",
     location: {
       city: "Atlanta",
       state: "GA",
@@ -165,17 +144,18 @@ export const speakingData: SpeakingEvent[] = [
       "networking",
     ],
     links: {
-      // video: "https://example.com/conference2022/video",
-      // article: "https://example.com/conference2022/article",
+      video: "https://youtu.be/kpL0lGjem1I?si=lBnfUzyWqmrGtZti",
+      article: "https://developingdvlpr.com/blog/so-this-is-your-1st-tech-conference-attendeeedition/",
       conferenceWebsite: "https://2024.connect.tech/session/699563",
-      slides: "https://speakerdeck.com/username/how-to-conference",
-      github: "https://github.com/username/conference-guide",
+      slides: "https://docs.google.com/presentation/d/1tRRaXgrrNVmvxTMSK5UGp88FKgjNkmH2tOc-YO-A8t4/edit?usp=sharing",
+
     },
   },
   {
     id: "connecttech-2023",
     title:
       "ConnectTech 2023 - This is Technical Talk - Essential People Skills for Developers",
+    name: "Connect Tech 2023",
     description:
       "Essential interpersonal skills are just as crucial as technical expertise in software development. This guide explores seven fundamental areas including communication, teamwork, and leadership, providing practical strategies to enhance each skill. Learn how to boost your effectiveness as a developer through actionable tips for better problem-solving, time management, and innovation. Tech conferences can feel overwhelming for introverts, but they're essential for career growth and skill development.",
     date: "2023-10-10",
@@ -199,13 +179,32 @@ export const speakingData: SpeakingEvent[] = [
       "networking",
     ],
     links: {
-      // video: "https://example.com/conference2022/video",
-      // article: "https://example.com/conference2022/article",
-      conferenceWebsite: "https://2024.connect.tech/session/699563",
-      slides: "https://speakerdeck.com/username/how-to-conference",
-      github: "https://github.com/username/conference-guide",
+      // article: "https://docs.google.com/document/d/1XxG_0rrPMQ36jMd38_KEA-2rFxu6fiy4DP_3W1Opd9E/edit?usp=sharing",
+      // conferenceWebsite: "https://2024.connect.tech/session/699563",
+      slides: "https://docs.google.com/presentation/d/1rT8VJxNuwlWOr-z3Vs9O7h8bet37IkvZlK0NedyeBzg/edit?usp=sharing",
+
     },
   },
+    // {
+  //   id: "skills-to-bills-2025",
+  //   title: "Skills to Bills: A Users Guide to Demonstrated Competency",
+  //    name:
+  //   description: "In today's tech environment and job market, one needs to be able to discuss how to build solutions to resolve business problems and articulate the 'why' and 'how' behind one's choices. This session focuses on bridging the gap between technical competence and professional confidence by showcasing how to present your work effectively, share your knowledge, and solidify your standing as a capable developer.",
+  //   date: "2025-03-15",
+  //   location: {
+  //     city: "Charlotte",
+  //     state: "NC",
+  //     country: "USA",
+  //     venue: "Carolina Code Conference"
+  //   },
+  //   type: "conference",
+  //   tags: ["career-development", "professional-growth", "imposter-syndrome", "communication"],
+  //   links: {
+  //     conferenceWebsite: "https://carolina.codes",
+  //     slides: "https://speakerdeck.com/nerajno/skills-to-bills-competency-guide",
+  //     github: "https://github.com/nerajno/skills-to-bills-resources"
+  //   }
+  // },
   // {
   //   id: "skills-to-bills-2025",
   //   title: "Skills to Bills: A Users Guide to Demonstrated Competency",
@@ -225,47 +224,48 @@ export const speakingData: SpeakingEvent[] = [
   //     github: "https://github.com/nerajno/skills-to-bills-resources"
   //   }
   // },
-  {
-    id: "how-to-conference-2025",
-    title: "How to Conference: A User Guide",
-    description: "Are you an introvert who dreads large gatherings? This session explores strategies for introverts to make the most of conferences and user groups without exhausting themselves. Learn what to bring, effective learning methods, and techniques for finding essential breaks to recharge while maximizing your conference experience.",
-    date: "2025-04-23",
-    location: {
-      city: "Atlanta",
-      state: "GA",
-      country: "USA",
-      venue: "Georgia World Congress Center"
-    },
-    type: "conference",
-    tags: ["networking", "introvert-strategies", "conference-tips", "professional-development"],
-    links: {
-      conferenceWebsite: "https://devnexus.com/",
-      slides: "https://speakerdeck.com/nerajno/how-to-conference-guide",
-      github: "https://github.com/nerajno/conference-survival-kit"
-    }
-  },
+  // {
+  //   id: "how-to-conference-2025",
+  //   title: "How to Conference: A User Guide",
+  //   name: "How to Conf 2025",
+  //   description: "Are you an introvert who dreads large gatherings? This session explores strategies for introverts to make the most of conferences and user groups without exhausting themselves. Learn what to bring, effective learning methods, and techniques for finding essential breaks to recharge while maximizing your conference experience.",
+  //   date: "2025-04-23",
+  //   location: {
+  //     city: "Atlanta",
+  //     state: "GA",
+  //     country: "USA",
+  //     venue: "Georgia World Congress Center"
+  //   },
+  //   type: "conference",
+  //   tags: ["networking", "introvert-strategies", "conference-tips", "professional-development"],
+  //   links: {
+  //     conferenceWebsite: "https://devnexus.com/",
+  //     slides: "https://speakerdeck.com/nerajno/how-to-conference-guide",
+  //     github: "https://github.com/nerajno/conference-survival-kit"
+  //   }
+  // },
   {
     id: "engineers-guide-socialization-2024",
     title: "The Engineer's Guide to Socialization: DB Associations as Networking Patterns",
+    name: "Modern Web Meetup",
     description: "This talk reimagines professional networking through the familiar lens of database associations, making relationship-building more approachable for developers. By mapping Rails/db associations to networking scenarios, we'll transform technical knowledge into effective social strategies including belongs_to, has_many through, and has_and_belongs_to_many patterns.",
-    date: "2024-10-17",
+    date: "2024-12-17",
     location: {
       city: "Atlanta",
       state: "GA",
       country: "USA",
       venue: "Georgia Tech Research Institute Conference Center"
     },
-    type: "conference",
+    type: "meetup",
     tags: ["networking", "database-associations", "rails", "social-skills", "professional-development"],
     links: {
-      conferenceWebsite: "https://2024.connect.tech",
-      slides: "https://speakerdeck.com/nerajno/engineers-guide-to-socialization",
-      github: "https://github.com/nerajno/networking-patterns-guide"
+      slides: "https://www.canva.com/design/DAGWCVHbFGs/lLD9CiNNkwHPwsYn20MtzA/view?utm_content=DAGWCVHbFGs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h91978a8905",
     }
   },
   {
     id: "technical-people-skills-2024",
     title: "This is Technical Talk - Essential People Skills for Developers",
+    name: "Demo",
     description: "In the tech industry, we often focus heavily on technical abilities while undervaluing crucial 'soft skills'. This talk delves into nine fundamental people skills essential for thriving in software engineering: communication, collaboration, problem-solving, time management, adaptability, creativity, attention to detail, interpersonal skills, and leadership.",
     date: "2024-04-10",
     location: {
@@ -285,6 +285,7 @@ export const speakingData: SpeakingEvent[] = [
   {
     id: "open-source-civic-hacking-2024",
     title: "Unlocked: Growing Your Skills Through Open Source Development And Civic Hacking",
+    name: "Demo",
     description: "As a developer, there are many ways to grow your career beyond tutorials and books. This talk explores two powerful paths: contributing to open-source projects and civic hacking. Learn the who, what, and how of open source contributions, and discover civic hacking's basic tenets: do what you can, where you can, with what you've got.",
     date: "2024-03-28",
     location: {
@@ -324,6 +325,7 @@ export const speakingData: SpeakingEvent[] = [
   {
     id: "mentorship-guide-2022",
     title: "How !To Be Mentored",
+    name: "Connect Tech 2022",
     description: "How does one get the best out of a mentorship while providing value to both mentee and mentor? This talk provides actionable steps from wins and losses based on experience in a learn-to-code mentorship group, covering value propositions, relationship fundamentals, time management, and dealing with challenges.",
     date: "2022-10-19",
     location: {
@@ -341,8 +343,9 @@ export const speakingData: SpeakingEvent[] = [
     }
   },
   {
-    id: "civic-hacking-benefits-2022",
+    id: "atlanta-developers'-conference-2022",
     title: "Social Goodness || Civic Hacking - What's in it for me?",
+    name: "Atlanta Developers' Conference 2022",
     description: "Giving away time and talent for free - how do you benefit from civic hacking? This talk explores concrete benefits of joining local civic hacking communities, using examples from Marta Hackathons, AT&T C3 Hackathons, and other civic events. Learn how civic hacking helps grow soft skills, technical skills, networking, and job hunting capabilities.",
     date: "2022-09-15",
     location: {
