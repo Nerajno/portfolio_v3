@@ -154,7 +154,7 @@ export const speakingData: SpeakingEvent[] = [
   {
     id: "connecttech-2023",
     title:
-      "ConnectTech 2023 - This is Technical Talk - Essential People Skills for Developers",
+      "ConnectTech 2023 - This is a Technical Talk - Essential People Skills for Developers",
     name: "Connect Tech 2023",
     description:
       "Essential interpersonal skills are just as crucial as technical expertise in software development. This guide explores seven fundamental areas including communication, teamwork, and leadership, providing practical strategies to enhance each skill. Learn how to boost your effectiveness as a developer through actionable tips for better problem-solving, time management, and innovation. Tech conferences can feel overwhelming for introverts, but they're essential for career growth and skill development.",
@@ -262,26 +262,26 @@ export const speakingData: SpeakingEvent[] = [
       slides: "https://www.canva.com/design/DAGWCVHbFGs/lLD9CiNNkwHPwsYn20MtzA/view?utm_content=DAGWCVHbFGs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h91978a8905",
     }
   },
-  {
-    id: "technical-people-skills-2024", // In-Complete
-    title: "This is Technical Talk - Essential People Skills for Developers",
-    name: "Demo",
-    description: "In the tech industry, we often focus heavily on technical abilities while undervaluing crucial 'soft skills'. This talk delves into nine fundamental people skills essential for thriving in software engineering: communication, collaboration, problem-solving, time management, adaptability, creativity, attention to detail, interpersonal skills, and leadership.",
-    date: "2024-04-10",
-    location: {
-      city: "Atlanta",
-      state: "GA",
-      country: "USA",
-      venue: "Georgia World Congress Center",
-    },
-    type: "conference",
-    tags: ["soft-skills", "communication", "leadership", "collaboration", "career-development"],
-    links: {
-      conferenceWebsite: "https://2024.connect.tech/session/699563",
-      //slides: "https://speakerdeck.com/username/how-to-conference",
-      //github: "https://github.com/username/conference-guide",
-    },
-  },
+  // {
+  //   id: "technical-people-skills-2024", // In-Complete
+  //   title: "This is aTechnical Talk - Essential People Skills for Developers",
+  //   name: "Connect Tech 2024",
+  //   description: "In the tech industry, we often focus heavily on technical abilities while undervaluing crucial 'soft skills'. This talk delves into nine fundamental people skills essential for thriving in software engineering: communication, collaboration, problem-solving, time management, adaptability, creativity, attention to detail, interpersonal skills, and leadership.",
+  //   date: "2024-04-10",
+  //   location: {
+  //     city: "Atlanta",
+  //     state: "GA",
+  //     country: "USA",
+  //     venue: "Georgia World Congress Center",
+  //   },
+  //   type: "conference",
+  //   tags: ["soft-skills", "communication", "leadership", "collaboration", "career-development"],
+  //   links: {
+  //     conferenceWebsite: "https://2024.connect.tech/session/699563",
+  //     //slides: "https://speakerdeck.com/username/how-to-conference",
+  //     //github: "https://github.com/username/conference-guide",
+  //   },
+  // },
   {
     id: "open-source-civic-hacking-2024", // Complete && Not-Checked
     title: "Unlocked: Growing Your Skills Through Open Source Development And Civic Hacking",
