@@ -29,7 +29,7 @@ export const speakingData: SpeakingEvent[] = [
     name: "Carolina Codes 2025",
     description:
       "You've created the perfect solution, but it's useless without proper documentation. In our open-source-driven world, countless powerful tools sit unused because developers skip the documentation step. This creates a critical gap as software becomes increasingly dependent on open-source components. Learn practical tips, templates, and strategies to transform your documentation from afterthought to essential craft. Drawing from experience as both science educator and full-stack developer, discover why clear documentation isn't just helpful—it's the bridge between brilliant code and actual impact.",
-    date: "2025-08",
+    date: "2025-08-01",
     location: {
       city: "Greenville",
       state: "South Carolina",
