@@ -9,5 +9,5 @@ const Views = defineTable({
     },
   });
 
-export default defineDb({ tables: { },
+export default defineDb({ tables: { Views },
 });
