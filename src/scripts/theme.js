@@ -1,5 +1,4 @@
 // src/scripts/theme.js
-
 class ThemeManager {
     constructor() {
       this.theme = this.getInitialTheme();

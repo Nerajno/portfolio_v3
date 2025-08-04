@@ -7,27 +7,23 @@ import netlify from "@astrojs/netlify";
 import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
 
+import db from "@astrojs/db";
+
 export default defineConfig({
   site: "https://radiant-sprinkles-d2960e.netlify.app",
   output: "server",
   adapter: netlify(),
-  integrations: [
-    tailwind(),
-    mdx(),
-    sitemap(),
-    icon({
-      include: {
-        bx: ["*"],
-        "simple-icons": ["*"],
-        mdi: ["*"],
-      },
-    }),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
-  ],
+  integrations: [tailwind(), mdx(), sitemap(), icon({
+    include: {
+      bx: ["*"],
+      "simple-icons": ["*"],
+      mdi: ["*"],
+    },
+  }), partytown({
+    config: {
+      forward: ["dataLayer.push"],
+    },
+  }), db()],
   image: {
     domains: ["picsum.photos"],
     service: { entrypoint: "astro/assets/services/sharp" },

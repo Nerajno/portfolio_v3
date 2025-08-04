@@ -5,8 +5,10 @@ import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
 import type { CollectionEntry } from 'astro:content';
 import { Tweet } from 'astro-embed';
+import ViewCounter from '@components/viewcounter.astro';
 
 export const prerender = true;
+
 
 interface Props {
   entry: CollectionEntry<'blog'>;
@@ -26,7 +28,7 @@ const { entry } = Astro.props;
 
 // Add error handling for entry rendering
 let Content;
-let remarkPluginFrontmatter;
+let remarkPluginFrontmatter: { minutesRead?: string } | undefined;
 
 try {
   const rendered = await entry.render();
@@ -36,6 +38,8 @@ try {
   console.error('Error rendering entry:', error);
   return new Response('Error rendering blog post', { status: 500 });
 }
+
+const slug = Astro.params.slug;
 ---
 
 <Layout title={entry.data.title}>
@@ -82,14 +86,18 @@ try {
           }
         </div>
       </div>
-      <br />
-      {
-        remarkPluginFrontmatter?.minutesRead && (
+
+      <div class='flex gap-2 items-center mt-2'>
+        {
+          remarkPluginFrontmatter?.minutesRead && (
           <p class='text-slate-500 dark:text-slate-400'>
             {remarkPluginFrontmatter.minutesRead}
           </p>
         )
       }
+        <span class="text-slate-500 dark:text-slate-400">
+          <ViewCounter slug={slug} />
+        </span>
     </div>
 
     <div
