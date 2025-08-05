@@ -53,30 +53,27 @@ const makeTitle = title || "Nerando's Portfolio";
     <!-- GA4 -->
     <script
       is:inline
-      src='https://www.googletagmanager.com/gtag/js?id=G-DNCBJVR432'></script>
-    <script>
-      declare global {
-        interface Window {
-          dataLayer: Record<string, any>[];
-          gtag: (...args: any[]) => void;
-        }
-      }
-      // This is the important part!
-      document.addEventListener('astro:page-load', () => {
+      type="text/partytown"
+      src='https://www.googletagmanager.com/gtag/js?id=G-Q3KQF674YW'></script>
+
+    <script type="text/partytown">
         window.dataLayer = window.dataLayer || [];
-        window.gtag = function gtag(...args: any[]) {
-          window.dataLayer.push(arguments);
-        };
-        window.gtag('js', new Date());
-        window.gtag('consent', 'default', {
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied',
-          analytics_storage: 'denied',
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        // This is the important part
+        gtag("consent", "default", {
+          ad_storage: "granted",
+          ad_user_data: "granted",
+          ad_personalization: "granted",
+          analytics_storage: "granted",
         });
-        window.gtag('config', 'G-DNCBJVR432');
-      });
+
+        gtag('config', 'G-Q3KQF674YW');
     </script>
+
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' href='/my_favicon.ico' />
     <meta name='generator' content={Astro.generator} />
