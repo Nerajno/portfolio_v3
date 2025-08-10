@@ -63,17 +63,39 @@ const processedPodcasts: ProcessedPodcast[] = podcastData.map((podcast) => {
       <EventList events={processedEvents} />
     </div>
 
-    {
-      processedPodcasts.length > 0 && (
-        <div class='mx-auto max-w-4xl mt-20'>
-          <h2 class='text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100'>
+    {processedPodcasts.length > 0 && (
+      <div class='mx-auto max-w-4xl mt-20'>
+        <button
+          id='podcastToggle'
+          class='flex items-center justify-between w-full text-left group'
+          aria-expanded='false'
+          aria-controls='podcastContent'
+        >
+          <div>
+            <h2 class='text-3xl font-bold mb-2 animate-pulse text-blue-600 dark:text-blue-400 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
+              Podcasts
+            </h2>
+            <p class='text-lg leading-relaxed text-slate-500 dark:text-slate-400'>
+              Podcasts I have done or been a guest on. Click to <span id='toggleText'>view all</span>
+            </p>
+          </div>
+          <svg
+            id='toggleIcon'
+            class='w-6 h-6 text-gray-500 dark:text-gray-400 transform transition-transform duration-200'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/>
+          </svg>
+        </button>
 
-            Podcasts
-          </h2>
-          <p class='text-lg leading-relaxed text-slate-500 dark:text-slate-400'>
-            Podcasts I have done or been a guest on.
-          </p>
-          <div class='space-y-6'>
+        <div
+          id='podcastContent'
+          class='hidden overflow-hidden transition-all duration-300 ease-in-out max-h-[2000px] mt-6'
+        >
+          <div class='space-y-6 pt-4'>
             {processedPodcasts.map((podcast) => (
               <Podcastcard
                 {...podcast}
@@ -83,7 +105,28 @@ const processedPodcasts: ProcessedPodcast[] = podcastData.map((podcast) => {
             ))}
           </div>
         </div>
-      )
-    }
+      </div>
+    )}
   </Container>
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('podcastToggle');
+    const content = document.getElementById('podcastContent');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const toggleText = document.getElementById('toggleText');
+
+    if (toggleButton && content && toggleIcon && toggleText) {
+      toggleButton.addEventListener('click', () => {
+        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+        toggleButton.setAttribute('aria-expanded', String(!isExpanded));
+        content.classList.toggle('hidden');
+        toggleIcon.classList.toggle('rotate-180');
+        toggleText.textContent = isExpanded ? 'view all' : 'hide';
+      });
+    }
+  });
+</script>
+
+
