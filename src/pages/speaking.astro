@@ -3,8 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Container from '../components/container.astro';
 import Sectionhead from '../components/sectionhead.astro';
 import EventList from '../components/eventlist.astro';
-import { speakingData } from '../data/speakingData';
-import type { ProcessedEvent } from '../types';
+import Podcastcard from '../components/podcastcard.astro';
+import { speakingData, podcastData } from '../data/speakingData';
+import type { ProcessedEvent, ProcessedPodcast } from '../types';
 
 // Process and sort events
 const now = new Date();
@@ -14,10 +15,21 @@ const processedEvents: ProcessedEvent[] = speakingData.map((event) => {
   if (isNaN(eventDate.getTime())) {
     throw new Error(`Invalid date for event: ${event.title}`);
   }
-
   return {
     ...event,
     status: eventDate > now ? 'upcoming' : 'past',
+  };
+});
+
+// Process podcasts
+const processedPodcasts: ProcessedPodcast[] = podcastData.map((podcast) => {
+  const podcastDate = new Date(podcast.date);
+  if (isNaN(podcastDate.getTime())) {
+    throw new Error(`Invalid date for podcast: ${podcast.title}`);
+  }
+  return {
+    ...podcast,
+    status: podcastDate > now ? 'upcoming' : 'past',
   };
 });
 ---
@@ -41,13 +53,37 @@ const processedEvents: ProcessedEvent[] = speakingData.map((event) => {
       <p class='text-lg leading-relaxed text-slate-500 dark:text-slate-400'>
         I regularly speak at conferences, meetups and do some workshops at the
         intersection of software development, my developer experience, and
-        creating inclusive tech communities. Here you'll find my upcoming
-        speaking engagements and some of my past events.
+        creating inclusive tech communities. I also have links to podcasts and
+        videos of "podcast~ish" content that I have done. Below you'll find my
+        upcoming speaking engagements, podcasts, and past events.
       </p>
     </div>
 
     <div class='mx-auto max-w-4xl mt-12'>
       <EventList events={processedEvents} />
     </div>
+
+    {
+      processedPodcasts.length > 0 && (
+        <div class='mx-auto max-w-4xl mt-20'>
+          <h2 class='text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100'>
+
+            Podcasts
+          </h2>
+          <p class='text-lg leading-relaxed text-slate-500 dark:text-slate-400'>
+            Podcasts I have done or been a guest on.
+          </p>
+          <div class='space-y-6'>
+            {processedPodcasts.map((podcast) => (
+              <Podcastcard
+                {...podcast}
+                imageUrl={podcast.imageUrl || '/default-image.jpg'}
+                imageAlt={podcast.imageAlt || podcast.title}
+              />
+            ))}
+          </div>
+        </div>
+      )
+    }
   </Container>
 </Layout>

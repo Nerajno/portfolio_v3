@@ -29,7 +29,7 @@ export const speakingData: SpeakingEvent[] = [
     name: "Carolina Codes 2025",
     description:
       "You've created the perfect solution, but it's useless without proper documentation. In our open-source-driven world, countless powerful tools sit unused because developers skip the documentation step. This creates a critical gap as software becomes increasingly dependent on open-source components. Learn practical tips, templates, and strategies to transform your documentation from afterthought to essential craft. Drawing from experience as both science educator and full-stack developer, discover why clear documentation isn't just helpful—it's the bridge between brilliant code and actual impact.",
-    date: "2025-08-01",
+    date: "2025-08-15",
     location: {
       city: "Greenville",
       state: "South Carolina",
@@ -145,10 +145,11 @@ export const speakingData: SpeakingEvent[] = [
     ],
     links: {
       video: "https://youtu.be/kpL0lGjem1I?si=lBnfUzyWqmrGtZti",
-      article: "https://developingdvlpr.com/blog/so-this-is-your-1st-tech-conference-attendeeedition/",
+      article:
+        "https://developingdvlpr.com/blog/so-this-is-your-1st-tech-conference-attendeeedition/",
       conferenceWebsite: "https://2024.connect.tech/session/699563",
-      slides: "https://docs.google.com/presentation/d/1tRRaXgrrNVmvxTMSK5UGp88FKgjNkmH2tOc-YO-A8t4/edit?usp=sharing",
-
+      slides:
+        "https://docs.google.com/presentation/d/1tRRaXgrrNVmvxTMSK5UGp88FKgjNkmH2tOc-YO-A8t4/edit?usp=sharing",
     },
   },
   {
@@ -181,11 +182,11 @@ export const speakingData: SpeakingEvent[] = [
     links: {
       // article: "https://docs.google.com/document/d/1XxG_0rrPMQ36jMd38_KEA-2rFxu6fiy4DP_3W1Opd9E/edit?usp=sharing",
       // conferenceWebsite: "https://2024.connect.tech/session/699563",
-      slides: "https://docs.google.com/presentation/d/1rT8VJxNuwlWOr-z3Vs9O7h8bet37IkvZlK0NedyeBzg/edit?usp=sharing",
-
+      slides:
+        "https://docs.google.com/presentation/d/1rT8VJxNuwlWOr-z3Vs9O7h8bet37IkvZlK0NedyeBzg/edit?usp=sharing",
     },
   },
-    // {
+  // {
   //   id: "skills-to-bills-2025",
   //   title: "Skills to Bills: A Users Guide to Demonstrated Competency",
   //    name:
@@ -246,21 +247,30 @@ export const speakingData: SpeakingEvent[] = [
   // },
   {
     id: "engineers-guide-socialization-2024", // Completed
-    title: "The Engineer's Guide to Socialization: DB Associations as Networking Patterns",
+    title:
+      "The Engineer's Guide to Socialization: DB Associations as Networking Patterns",
     name: "Modern Web Meetup",
-    description: "This talk reimagines professional networking through the familiar lens of database associations, making relationship-building more approachable for developers. By mapping Rails/db associations to networking scenarios, we'll transform technical knowledge into effective social strategies including belongs_to, has_many through, and has_and_belongs_to_many patterns.",
+    description:
+      "This talk reimagines professional networking through the familiar lens of database associations, making relationship-building more approachable for developers. By mapping Rails/db associations to networking scenarios, we'll transform technical knowledge into effective social strategies including belongs_to, has_many through, and has_and_belongs_to_many patterns.",
     date: "2024-12-17",
     location: {
       city: "Alpharetta",
       state: "GA",
       country: "USA",
-      venue: "Improving"
+      venue: "Improving",
     },
     type: "meetup",
-    tags: ["networking", "database-associations", "rails", "social-skills", "professional-development"],
+    tags: [
+      "networking",
+      "database-associations",
+      "rails",
+      "social-skills",
+      "professional-development",
+    ],
     links: {
-      slides: "https://www.canva.com/design/DAGWCVHbFGs/lLD9CiNNkwHPwsYn20MtzA/view?utm_content=DAGWCVHbFGs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h91978a8905",
-    }
+      slides:
+        "https://www.canva.com/design/DAGWCVHbFGs/lLD9CiNNkwHPwsYn20MtzA/view?utm_content=DAGWCVHbFGs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h91978a8905",
+    },
   },
   // {
   //   id: "technical-people-skills-2024", // In-Complete
@@ -284,103 +294,220 @@ export const speakingData: SpeakingEvent[] = [
   // },
   {
     id: "open-source-civic-hacking-2024", // Complete && Not-Checked
-    title: "Unlocked: Growing Your Skills Through Open Source Development And Civic Hacking",
+    title:
+      "Unlocked: Growing Your Skills Through Open Source Development And Civic Hacking",
     name: "Orlando Code Camp 2024",
-    description: "As a developer, there are many ways to grow your career beyond tutorials and books. This talk explores two powerful paths: contributing to open-source projects and civic hacking. Learn the who, what, and how of open source contributions, and discover civic hacking's basic tenets: do what you can, where you can, with what you've got.",
+    description:
+      "As a developer, there are many ways to grow your career beyond tutorials and books. This talk explores two powerful paths: contributing to open-source projects and civic hacking. Learn the who, what, and how of open source contributions, and discover civic hacking's basic tenets: do what you can, where you can, with what you've got.",
     date: "2024-03-28",
     location: {
       city: "Orlando",
       state: "FL",
       country: "USA",
-      venue: "Seminole State College"
+      venue: "Seminole State College",
     },
     type: "conference",
-    tags: ["open-source", "civic-hacking", "community", "skill-development", "career-growth"],
+    tags: [
+      "open-source",
+      "civic-hacking",
+      "community",
+      "skill-development",
+      "career-growth",
+    ],
     links: {
       conferenceWebsite: "https://orlandocodecamp.com/",
-      slides: "https://speakerdeck.com/nerajno/open-source-civic-hacking-growth",
-      github: "https://github.com/nerajno/open-source-civic-resources"
-    }
+      slides:
+        "https://speakerdeck.com/nerajno/open-source-civic-hacking-growth",
+      github: "https://github.com/nerajno/open-source-civic-resources",
+    },
   },
   {
     id: "javascript-foundations-2025",
-    title: "Back to Basics: Essential JavaScript Foundations for Modern Framework Development",
-    description: "In an era where AI and tech influencers promote jumping directly into frameworks, this talk emphasizes mastering JavaScript fundamentals before diving into frameworks like Vue.js. Through practical demonstrations, we'll explore how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example.",
+    title:
+      "Back to Basics: Essential JavaScript Foundations for Modern Framework Development",
+    description:
+      "In an era where AI and tech influencers promote jumping directly into frameworks, this talk emphasizes mastering JavaScript fundamentals before diving into frameworks like Vue.js. Through practical demonstrations, we'll explore how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example.",
     date: "2025-03",
     name: "200OK Developer Conference",
     location: {
       city: "Tulsa",
       state: "Ok",
       country: "USA",
-      venue: "200OK Developer Conference"
+      venue: "200OK Developer Conference",
     },
     type: "conference",
-    tags: ["javascript", "vue", "fundamentals", "framework-development", "best-practices"],
+    tags: [
+      "javascript",
+      "vue",
+      "fundamentals",
+      "framework-development",
+      "best-practices",
+    ],
     links: {
       conferenceWebsite: "https://200ok.us/#speakers",
-      slides: "https://docs.google.com/presentation/d/1X90GRVrInlTx22y8j7fUk1UcMAXiCCFO/edit?usp=sharing&ouid=101977102167064448578&rtpof=true&sd=true",
+      slides:
+        "https://docs.google.com/presentation/d/1X90GRVrInlTx22y8j7fUk1UcMAXiCCFO/edit?usp=sharing&ouid=101977102167064448578&rtpof=true&sd=true",
       github: "https://github.com/nerajno/js-fundamentals-vue",
-      article: "https://dev.to/nerajno/11-javascript-fundamentals-for-vue-developers-42a1",
-    }
+      article:
+        "https://dev.to/nerajno/11-javascript-fundamentals-for-vue-developers-42a1",
+    },
   },
   {
     id: "mentorship-guide-2022", // In-Complete && Not Checked
     title: "How !To Be Mentored",
     name: "Connect Tech 2022",
-    description: "How does one get the best out of a mentorship while providing value to both mentee and mentor? This talk provides actionable steps from wins and losses based on experience in a learn-to-code mentorship group, covering value propositions, relationship fundamentals, time management, and dealing with challenges.",
+    description:
+      "How does one get the best out of a mentorship while providing value to both mentee and mentor? This talk provides actionable steps from wins and losses based on experience in a learn-to-code mentorship group, covering value propositions, relationship fundamentals, time management, and dealing with challenges.",
     date: "2022-10-19",
     location: {
       city: "Atlanta",
       state: "GA",
       country: "USA",
-      venue: "Georgia Tech Research Institute Conference Center"
+      venue: "Georgia Tech Research Institute Conference Center",
     },
     type: "conference",
-    tags: ["mentorship", "career-development", "learning", "relationship-building", "professional-growth"],
+    tags: [
+      "mentorship",
+      "career-development",
+      "learning",
+      "relationship-building",
+      "professional-growth",
+    ],
     links: {
       conferenceWebsite: "https://connect.tech",
       slides: "https://speakerdeck.com/nerajno/how-to-be-mentored",
-      github: "https://github.com/nerajno/mentorship-guide"
-    }
+      github: "https://github.com/nerajno/mentorship-guide",
+    },
   },
   {
     id: "mentorship-guide-2025", // In-Complete && Not Checked
     title: "How !To Be Mentored",
     name: "DevNexus 2025",
-    description: "How does one get the best out of a mentorship while providing value to both mentee and mentor? This talk provides actionable steps from wins and losses based on experience in a learn-to-code mentorship group, covering value propositions, relationship fundamentals, time management, and dealing with challenges.",
+    description:
+      "How does one get the best out of a mentorship while providing value to both mentee and mentor? This talk provides actionable steps from wins and losses based on experience in a learn-to-code mentorship group, covering value propositions, relationship fundamentals, time management, and dealing with challenges.",
     date: "2025-03",
     location: {
       city: "Atlanta",
       state: "GA",
       country: "USA",
-      venue: "Georgia World Congress Center"
+      venue: "Georgia World Congress Center",
     },
     type: "conference",
-    tags: ["mentorship", "career-development", "learning", "relationship-building", "professional-growth"],
+    tags: [
+      "mentorship",
+      "career-development",
+      "learning",
+      "relationship-building",
+      "professional-growth",
+    ],
     links: {
       // conferenceWebsite: "https://connect.tech",
-      slides: "https://docs.google.com/presentation/d/1Iub1WcR4MG4_iedUAfKpTM-VIpSrnDvGGMU0pthWELw/edit?usp=sharing",
+      slides:
+        "https://docs.google.com/presentation/d/1Iub1WcR4MG4_iedUAfKpTM-VIpSrnDvGGMU0pthWELw/edit?usp=sharing",
       // github: "https://github.com/nerajno/mentorship-guide"
-    }
+    },
   },
   {
     id: "atlanta-developers'-conference-2022", // Complete && Checked
     title: "Social Goodness || Civic Hacking - What's in it for me?",
     name: "Atlanta Developers' Conference 2022",
-    description: "Giving away time and talent for free - how do you benefit from civic hacking? This talk explores concrete benefits of joining local civic hacking communities, using examples from Marta Hackathons, AT&T C3 Hackathons, and other civic events. Learn how civic hacking helps grow soft skills, technical skills, networking, and job hunting capabilities.",
+    description:
+      "Giving away time and talent for free - how do you benefit from civic hacking? This talk explores concrete benefits of joining local civic hacking communities, using examples from Marta Hackathons, AT&T C3 Hackathons, and other civic events. Learn how civic hacking helps grow soft skills, technical skills, networking, and job hunting capabilities.",
     date: "2022-09-15",
     location: {
       city: "Atlanta",
       state: "GA",
       country: "USA",
-      venue: "Atlanta Developers' Conference"
+      venue: "Atlanta Developers' Conference",
     },
     type: "conference",
-    tags: ["civic-hacking", "community-service", "skill-development", "networking", "social-impact"],
+    tags: [
+      "civic-hacking",
+      "community-service",
+      "skill-development",
+      "networking",
+      "social-impact",
+    ],
     links: {
       conferenceWebsite: "https://www.atldevcon.com/",
       slides: "https://speakerdeck.com/nerajno/civic-hacking-benefits",
-      github: "https://github.com/nerajno/civic-hacking-resources"
-    }
-  }
+      github: "https://github.com/nerajno/civic-hacking-resources",
+    },
+  },
+];
+
+// Podcast subsection
+export interface Podcast {
+  id: string;
+  title: string;
+  host: string;
+  description: string;
+  date: string;
+  url: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  tags?: string[];
+}
+
+export const podcastData: Podcast[] = [
+  {
+    id: "syntax-2025",
+    title: "Modern JavaScript for Everyone",
+    host: "Syntax Podcast (Wes Bos & Scott Tolinski)",
+    description:
+      "A discussion on the evolution of JavaScript and how modern tooling empowers developers.",
+    date: "2025-07-01",
+    url: "https://syntax.fm/show/1234/modern-javascript-for-everyone",
+    imageUrl: "/images/podcasts/syntax-2025.jpg",
+    imageAlt: "Syntax Podcast logo with Wes Bos and Scott Tolinski",
+    tags: ["javascript", "web development", "tools"],
+  },
+  {
+    id: "changelog-2024",
+    title: "The Future of Open Source",
+    host: "The Changelog (Adam Stacoviak & Jerod Santo)",
+    description:
+      "Exploring where open source is headed with insights from maintainers and contributors.",
+    date: "2024-11-15",
+    url: "https://changelog.com/podcast/512",
+    imageUrl: "/images/podcasts/changelog-2024.jpg",
+    imageAlt: "The Changelog Podcast logo",
+    tags: ["open source", "community", "software"],
+  },
+  {
+    id: "code-newbie-2025",
+    title: "Breaking Into Tech: Real Stories",
+    host: "CodeNewbie (Saron Yitbarek)",
+    description:
+      "Stories and advice from people who made the leap into tech from other careers.",
+    date: "2025-02-10",
+    url: "https://www.codenewbie.org/podcast/breaking-into-tech-real-stories",
+    imageUrl: "/images/podcasts/codenewbie-2025.jpg",
+    imageAlt: "CodeNewbie Podcast logo",
+    tags: ["career", "learning", "tech"],
+  },
+  {
+    id: "shop-talk-2025",
+    title: "CSS in 2025: What’s New?",
+    host: "ShopTalk Show (Chris Coyier & Dave Rupert)",
+    description:
+      "A look at the latest trends and features in CSS for modern web development.",
+    date: "2025-04-22",
+    url: "https://shoptalkshow.com/episodes/512/",
+    imageUrl: "/images/podcasts/shoptalk-2025.jpg",
+    imageAlt: "ShopTalk Show Podcast logo",
+    tags: ["css", "frontend", "web design"],
+  },
+  {
+    id: "frontend-happy-hour-2025",
+    title: "AI and the Frontend Developer",
+    host: "Frontend Happy Hour (Ryan Burgess & panel)",
+    description:
+      "Panelists discuss how AI tools are changing the workflow for frontend engineers.",
+    date: "2025-06-18",
+    url: "https://frontendhappyhour.com/episodes/ai-and-the-frontend-developer/",
+    imageUrl: "/images/podcasts/frontend-happy-hour-2025.jpg",
+    imageAlt: "Frontend Happy Hour Podcast logo",
+    tags: ["ai", "frontend", "workflow"],
+  },
 ];

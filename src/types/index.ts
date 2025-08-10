@@ -24,3 +24,19 @@ export interface SpeakingEvent {
   export interface ProcessedEvent extends SpeakingEvent {
     status: 'upcoming' | 'past';
   }
+
+  export interface Podcast {
+    id: string;
+    title: string;
+    host: string;
+    description: string;
+    date: string;
+    url: string;
+    tags?: string[];
+    imageUrl?: string;
+    imageAlt?: string;
+  }
+
+  export interface ProcessedPodcast extends Podcast {
+    status: 'upcoming' | 'past';
+  }
