@@ -25,6 +25,7 @@
     "astro": "^5.1.7",
     "astro-embed": "^0.9.0",
     "astro-icon": "^1.1.5",
+    "astro-microsoft-clarity-integration": "^1.0.1",
     "astro-navbar": "^2.3.9",
     "astro-seo": "^0.8.4",
     "boxicons": "^2.1.4",
