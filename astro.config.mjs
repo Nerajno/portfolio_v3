@@ -6,6 +6,7 @@ import { remarkReadingTime } from "./remark-reading-time.mjs";
 import netlify from "@astrojs/netlify";
 import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
+import clarityIntegration from 'astro-microsoft-clarity-integration';
 
 export default defineConfig({
   site: "https://radiant-sprinkles-d2960e.netlify.app",
@@ -26,6 +27,14 @@ export default defineConfig({
       config: {
         forward: ["dataLayer.push"],
       },
+    }),
+    clarityIntegration({
+      projectId: 'stp4iad9du',  // Required: Replace with your Clarity project ID
+      enabled: true,                  // Optional: Enable the integration (defaults to true)
+      scriptStage: 'head-inline',     // Optional: Set scriptStage to 'head-inline', 'body-inline'
+      debug: false,                   // Optional: Enable debug (set to true if you want to log script injections)
+      async: true,                    // Optional: Enable async loading
+      defer: true,                    // Optional: Enable defer for script loading
     }),
   ],
   image: {

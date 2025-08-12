@@ -50,12 +50,20 @@ const makeTitle = title || "Nerando's Portfolio";
         document.documentElement.classList.add(theme);
       })();
     </script>
-    <!-- GA4 -->
+    <!-- GA4 || Google Analytics -->
     <script
       is:inline
       type="text/partytown"
       src='https://www.googletagmanager.com/gtag/js?id=G-Q3KQF674YW'></script>
 
+    <!-- Clarity || Microsoft Clarity -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "stp4iad9du");
+  </script>
     <script type="text/partytown">
         window.dataLayer = window.dataLayer || [];
         function gtag() {
