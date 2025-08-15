@@ -88,7 +88,7 @@ For small side projects, a robust README may be enough. But as your project grow
 
 **Wikis** – For deep dives into concepts or architecture. GitHub wikis are perfect for this.
 
-**API documentation** – Auto-generated docs using tools like Sphinx (Python), JSDoc (JavaScript), or mkdocs. Let the tools do the heavy lifting.
+**API documentation** – Auto-generated docs using tools like Sphinx (Python), JSDoc (JavaScript), or MkDocs. Let the tools do the heavy lifting.
 
 **Inline comments** – Self-explanatory code is best, but well-placed comments are invaluable. Future you will appreciate the breadcrumbs.
 
