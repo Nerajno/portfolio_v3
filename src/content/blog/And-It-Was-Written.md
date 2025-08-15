@@ -122,7 +122,7 @@ Even small improvements—like adding installation commands or a usage demo—ca
 
 
 ### Common Documentation Mistakes
-<img src="https://images.pexels.com/photos/3299/list-apple-desk-office.jpg" alt="Common Mistakes" />
+<img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg" alt="Checklist with errors" />
 
 **Outdated instructions** – Always update docs when you change code. Nothing breaks trust faster than instructions that don't work.
 
