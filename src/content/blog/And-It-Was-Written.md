@@ -61,7 +61,7 @@ Creating effective documentation doesn't mean writing a novel—it's about being
 
 ### Essential Elements of a Great README
 
-![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm1tanU3NzZrbGs5bTZqMmZtZ3M2Y2phazVvYzA2ejBmZWJkeG5sbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OVtqvymKkkcTu/giphy.gif)
+![Checklist GIF](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm1tanU3NzZrbGs5bTZqMmZtZ3M2Y2phazVvYzA2ejBmZWJkeG5sbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OVtqvymKkkcTu/giphy.gif)
 
 If you include nothing else, make sure your README covers these essentials:
 
