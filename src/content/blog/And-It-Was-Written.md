@@ -137,7 +137,7 @@ Even small improvements—like adding installation commands or a usage demo—ca
 
 
 ### Things to Consider
-![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWpta3p4a3F4MG1mZWFzZ2h2bTBmdXN6djA2am5yd2Z2YXNyc2s4OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MZQkUm97KTI1gI8sUj/giphy.gif)
+![Things to Consider GIF](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWpta3p4a3F4MG1mZWFzZ2h2bTBmdXN6djA2am5yd2Z2YXNyc2s4OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MZQkUm97KTI1gI8sUj/giphy.gif)
 
 The best documentation is living documentation that grows with your project. Don't treat it as a one-time task—make it part of your development workflow. When you add a feature, update the docs. When you fix a bug that required special setup, document the solution.
 
