@@ -113,7 +113,7 @@ Remember, documentation is not just about explaining what you built—it's about
 
 
 ### Real-World Examples
-![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExangxamgwanZhdTg2enp5cXRseDFwdmZ2YzQwNXE4YnY2Mnh1eDkybiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l2Sq5GffrCyUMEXjW/giphy.gif)
+![Examples GIF](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExangxamgwanZhdTg2enp5cXRseDFwdmZ2YzQwNXE4YnY2Mnh1eDkybiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l2Sq5GffrCyUMEXjW/giphy.gif)
 
 Looking for inspiration? Check out these excellent examples:
 
