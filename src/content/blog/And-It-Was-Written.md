@@ -15,7 +15,9 @@ Whether you're a seasoned developer or someone just starting your coding journey
 
 ### What Exactly Is A README?
 
-<img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Documentation Image" />
+<!-- <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Documentation Image" /> -->
+
+![Documentation GIF](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzU5Z3RkMHh0cXhtNHN4d21hczdwbHE2Mjg3dW4wa3lvb2xvd2RzcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/toz7qXlLyHy9n8KfKO/giphy.gif)
 
 A README is usually the very first file someone encounters when visiting your project repository—often displayed immediately on platforms like GitHub or GitLab. Think of it as the foyer to your work, offering visitors an accessible overview before they dive into the project itself. A typical README should include:
 
@@ -33,7 +35,7 @@ The README acts as the "face" of your project, inviting others in, showing profe
 
 Without proper documentation, your project is like a building without telling people where the front door is. Here's why documentation (and especially READMEs) are critical:
 
-**Collaboration and onboarding** – If you share your code, good docs help others—and future you—quickly understand how things work. There's nothing worse than revisiting your own code six months later and having no idea what you were thinking.
+**Collaboration and onboarding** – If you share your code, good docs help others and future you quickly understand how things work. There's nothing worse than revisiting your own code six months later and having no idea what you were thinking.
 
 **Project adoption & longevity** – People are far more likely to use or contribute to projects that are easy to understand and set up. It's also great if there's a documented track record of how code is released, contributing to its long-term health and viability.
 
@@ -59,7 +61,7 @@ Creating effective documentation doesn't mean writing a novel—it's about being
 
 ### Essential Elements of a Great README
 
-<img src="https://images.pexels.com/photos/3299/list-apple-desk-office.jpg" alt="Checklist" />
+![Checklist GIF](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm1tanU3NzZrbGs5bTZqMmZtZ3M2Y2phazVvYzA2ejBmZWJkeG5sbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OVtqvymKkkcTu/giphy.gif)
 
 If you include nothing else, make sure your README covers these essentials:
 
@@ -111,18 +113,19 @@ Remember, documentation is not just about explaining what you built—it's about
 
 
 ### Real-World Examples
+![Examples GIF](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExangxamgwanZhdTg2enp5cXRseDFwdmZ2YzQwNXE4YnY2Mnh1eDkybiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l2Sq5GffrCyUMEXjW/giphy.gif)
 
 Looking for inspiration? Check out these excellent examples:
 
-**Vue.js's README** clearly explains the purpose, includes code examples, and links to extended documentation. It's clean, professional, and gets you excited to use the framework.
+[**Vue.js's README**](https://vuejs.org/guide/introduction) clearly explains the purpose, includes code examples, and links to extended documentation. It's clean, professional, and gets you excited to use the framework.
 
-**freeCodeCamp's repository** uses badges, visuals, and contribution guidelines that actively invite participation. They make contributing feel welcoming rather than intimidating.
+[**freeCodeCamp's repository**](https://github.com/freeCodeCamp/freeCodeCamp) uses badges, visuals, and contribution guidelines that actively invite participation. They make contributing feel welcoming rather than intimidating.
 
 Even small improvements—like adding installation commands or a usage demo—can dramatically improve your README's impact. You don't need to write a novel; you just need to write clearly.
 
 
 ### Common Documentation Mistakes
-<img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg" alt="Checklist with errors" />
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Q0bXV5amVwbXo3bmlmdGt2MjIzamxhYTAxem9wcjIybWJ0bTUzeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZvHaPOOGxiNeLEmS7Z/giphy.gif)
 
 **Outdated instructions** – Always update docs when you change code. Nothing breaks trust faster than instructions that don't work.
 
@@ -134,6 +137,7 @@ Even small improvements—like adding installation commands or a usage demo—ca
 
 
 ### Things to Consider
+![Things to Consider GIF](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWpta3p4a3F4MG1mZWFzZ2h2bTBmdXN6djA2am5yd2Z2YXNyc2s4OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MZQkUm97KTI1gI8sUj/giphy.gif)
 
 The best documentation is living documentation that grows with your project. Don't treat it as a one-time task—make it part of your development workflow. When you add a feature, update the docs. When you fix a bug that required special setup, document the solution.
 
@@ -166,4 +170,4 @@ For those feeling adventurous and wanting to dive deeper:
 
 ### Disclaimer
 
-***This article is a personal reflection on the importance of documentation, particularly READMEs, in the context of side projects. It is not intended to be a comprehensive guide to documentation, but rather a personal account of my experiences, insights, and recommendations. It is also under constant revision and improvements as seen and needed.***
+***This article is a personal reflection on the importance of documentation, particularly READMEs, in the context of projects ( in our usecase, side projects). It is not intended to be a comprehensive guide to documentation, but rather a personal account of my experiences, insights, and recommendations. It may also be under constant revision and improvements as seen and needed.***
