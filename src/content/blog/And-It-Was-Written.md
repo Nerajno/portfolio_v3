@@ -17,7 +17,7 @@ Whether you're a seasoned developer or someone just starting your coding journey
 
 <!-- <img src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Documentation Image" /> -->
 
-![](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzU5Z3RkMHh0cXhtNHN4d21hczdwbHE2Mjg3dW4wa3lvb2xvd2RzcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/toz7qXlLyHy9n8KfKO/giphy.gif)
+![Documentation GIF](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzU5Z3RkMHh0cXhtNHN4d21hczdwbHE2Mjg3dW4wa3lvb2xvd2RzcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/toz7qXlLyHy9n8KfKO/giphy.gif)
 
 A README is usually the very first file someone encounters when visiting your project repository—often displayed immediately on platforms like GitHub or GitLab. Think of it as the foyer to your work, offering visitors an accessible overview before they dive into the project itself. A typical README should include:
 
