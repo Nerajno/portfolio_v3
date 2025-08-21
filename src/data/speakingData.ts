@@ -40,8 +40,8 @@ export const speakingData: SpeakingEvent[] = [
     tags: ["learning", "polyglot", "open source"],
     links: {
       conferenceWebsite: "https://blog.carolina.codes/",
-      // "slides": "https://docs.google.com/presentation/d/1X90GRVrInlTx22y8j7fUk1UcMAXiCCFO/edit?usp=sharing&ouid=101977102167064448578&rtpof=true&sd=true",
-      //"github": "https://github.com/username/react-ts-guide"
+      slides: "https://docs.google.com/presentation/d/1kApJFrA2JIRtAUpU098jnpQmfmY3vVKz/edit?usp=drive_link&ouid=101977102167064448578&rtpof=true&sd=true",
+      article: "https://developingdvlpr.com/blog/and-it-was-written/"
     },
   },
   {
