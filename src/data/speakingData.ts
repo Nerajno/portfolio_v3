@@ -23,6 +23,27 @@ interface SpeakingEvent {
 
 export const speakingData: SpeakingEvent[] = [
   {
+    id: "magnolia-2025", 
+    title: "Negotiation is the Key... A Little Violence and Ice-Cream ",
+    name: "Magnolia Conf 2025",
+    description:
+      "Every developer has a graveyard of abandoned side projects—brilliant ideas that died in the planning phase or halfway through execution. But what if the secret to successful side projects isn't better time management or more motivation? What if it's learning to negotiate with yourself, your scope, and reality itself?",
+    date: "2025-10-22",
+    location: {
+      city: "Jackson",
+      state: "Mississippi",
+      country: "USA",
+      venue: "Mississippi Museum of Art in Jackson, MS",
+    },
+    type: "conference",
+    tags: ["learning", "polyglot", "open source", "software development"],
+    links: {
+      conferenceWebsite: "https://2025.magnoliaconf.com/",
+      //slides: "https://docs.google.com/presentation/d/1kApJFrA2JIRtAUpU098jnpQmfmY3vVKz/edit?usp=drive_link&ouid=101977102167064448578&rtpof=true&sd=true",
+      //article: "https://developingdvlpr.com/blog/and-it-was-written/"
+    },
+  },
+  {
     id: "carolina-code-conference-2025", // Completed
     title:
       "And It Was Written ~ An Introspective in the Importance of ReadMes.",
