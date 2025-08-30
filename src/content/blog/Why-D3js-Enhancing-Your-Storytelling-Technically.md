@@ -15,7 +15,7 @@ tags: ["d3js", "javascript", "data-visualization", "frontend", "web-development"
 
 ![D3.js Animation](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHdocGZubjBhaG1vaGxobTB6c3Jyejg3aXd2djRjcHVwYzF1aThyOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3PAL5bChWnak0WJ32x/giphy.gif)
 
-*This article explores my journey from hearing about about data to learning traditional data visualization tools ands how I applied them using D3.js. Also this article is written in some-what of a technical style. I publish this article on my [blog](https://developingdvlpr.com/blog) first and then to any other platform such as dev.to or LinkedIn.*
+*This article explores my journey from hearing about data to learning traditional data visualization tools and how I applied them using D3.js. Also this article is written in somewhat of a technical style. I publish this article on my [blog](https://developingdvlpr.com/blog) first and then to any other platform such as dev.to or LinkedIn.*
 
 ## Introduction
 
