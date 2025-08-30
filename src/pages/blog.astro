@@ -104,7 +104,6 @@ const sortedBlogEntries = [...publishedBlogEntries].sort((a, b) => {
         const sortSelect = document.getElementById('sort');
 
         // Store original posts HTML for filtering
-        const originalPosts = blogPosts.innerHTML;
 
         function filterPosts() {
           const searchTerm = searchInput.value.toLowerCase();
