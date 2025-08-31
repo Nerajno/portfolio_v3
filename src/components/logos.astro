@@ -34,17 +34,17 @@ const technologies = [
         {/* Icon with responsive coloring */}
         <Icon
           class={`h-[2em] w-[2em] transition-colors duration-300
-                  ${tech.color} md:text-slate-400 md:dark:text-slate-500
-                  md:group-hover:${tech.color.replace('text-', '')}
+                  text-[${tech.color}] md:text-slate-400 md:dark:text-slate-500
+                  md:group-hover:text-[${tech.color}]
                   group-hover:scale-110`}
           name={tech.name}
         />
 
         {/* Technology name - always visible on mobile, visible on hover for desktop */}
         <span class={`text-sm font-medium transition-all duration-300
-                     ${tech.color} md:text-slate-600 md:dark:text-slate-400
+                     text-[${tech.color}] md:text-slate-600 md:dark:text-slate-400
                      block md:opacity-0 md:group-hover:opacity-100
-                     md:group-hover:${tech.color.replace('text-', '')}
+                     md:group-hover:text-[${tech.color}]
                      text-center`}>
           {tech.label}
         </span>
