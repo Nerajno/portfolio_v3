@@ -6,9 +6,59 @@ import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
 import Layout from '@layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import { AstroSEO } from 'astro-seo-plugin';
+
+// SEO Configuration for Contact Page
+const seoConfig = {
+  title: "Contact Nerando Johnson - Let's Connect & Collaborate",
+  description: "Get in touch with Nerando Johnson, software developer in Atlanta. Available for collaboration, mentoring, technical consulting, or just to chat about tech and development.",
+  canonical: "https://developingdvlpr.com/contact", // Update with your actual domain
+  openGraph: {
+    basic: {
+      title: "Contact Nerando Johnson - Front-End Developer",
+      type: "website",
+      image: "https://developingdvlpr.com/assets/Banner_for_site.png", // Update with your actual domain and image
+      url: "https://developingdvlpr.com/contact"
+    },
+    optional: {
+      description: "Connect with Nerando Johnson for collaboration, mentoring, or technical consulting. Software developer currrently specializing in Vue3 and operating as a junior.",
+      siteName: "Developing Developer",
+      locale: "en_US"
+    }
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@nerajno",
+    creator: "@nerajno",
+    title: "Contact Nerando Johnson - Let's Connect",
+    description: "Get in touch for collaboration, mentoring, or technical consulting. Front-end developer in Atlanta.",
+    image: "https://developingdvlpr.com/assets/Banner_for_site.png" // Update with your actual domain
+  },
+  extend: {
+    meta: [
+      { name: "author", content: "Nerando Johnson" },
+      { name: "keywords", content: "contact developer, front-end developer Atlanta, software developer, Vue3 developer, technical consulting, mentoring, collaboration" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:locale", content: "en_US" },
+      { name: "theme-color", content: "#1e293b" }, // Adjust to match your site's theme
+      { name: "geo.region", content: "US-GA" },
+      { name: "geo.placename", content: "Atlanta" },
+      { name: "contact:email", content: "nerando@developingdvlpr.com" }
+    ]
+  }
+};
 ---
 
 <Layout title='Contact'>
+  
+  <AstroSEO
+  title={seoConfig.title}
+  description={seoConfig.description}
+  canonical={seoConfig.canonical}
+  openGraph={seoConfig.openGraph}
+  twitter={seoConfig.twitter}
+  extend={seoConfig.extend}
+/>
   <Container>
     <Sectionhead>
       <Fragment slot='title'>Contact</Fragment>
