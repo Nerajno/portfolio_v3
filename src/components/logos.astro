@@ -2,50 +2,53 @@
 // @ts-ignore
 import { Icon } from 'astro-icon/components';
 
-// Technology data with names, labels, and official brand colors (hex values)
+// Technology data with names, labels, and colors
+// Optional: darkColor for better appearance in dark mode
 const technologies = [
-{ name: 'simple-icons:vuedotjs', label: 'Vue.js', color: '#4FC08D' },
-  { name: 'simple-icons:react', label: 'React', color: '#61DAFB' },
-  { name: 'simple-icons:javascript', label: 'JavaScript', color: '#F7DF1E' },
-  { name: 'simple-icons:ruby', label: 'Ruby', color: '#CC342D' },
-  { name: 'simple-icons:rubyonrails', label: 'Ruby on Rails', color: '#D30001' },
-  { name: 'simple-icons:vercel', label: 'Vercel', color: '#000000' },
-  { name: 'simple-icons:astro', label: 'Astro', color: '#BC52EE' },
-  { name: 'simple-icons:python', label: 'Python', color: '#3776AB' },
-  { name: 'simple-icons:typescript', label: 'TypeScript', color: '#3178C6' },
-  { name: 'simple-icons:mongodb', label: 'MongoDB', color: '#47A248' },
-  { name: 'simple-icons:confluence', label: 'Confluence', color: '#172B4D' },
-  { name: 'simple-icons:netlify', label: 'Netlify', color: '#00C7B7' },
-  { name: 'simple-icons:git', label: 'Git', color: '#F05032' },
-  { name: 'simple-icons:nodedotjs', label: 'Node.js', color: '#339933' },
-  { name: 'simple-icons:asana', label: 'Asana', color: '#273347' },
-  { name: 'simple-icons:figma', label: 'Figma', color: '#F24E1E' }
+  { name: 'simple-icons:vuedotjs', label: 'Vue.js', color: '#4FC08D', darkColor: '#66D99A' },
+  { name: 'simple-icons:react', label: 'React', color: '#61DAFB', darkColor: '#7EC0EE' },
+  { name: 'simple-icons:javascript', label: 'JavaScript', color: '#F7DF1E', darkColor: '#FFEA00' },
+  { name: 'simple-icons:ruby', label: 'Ruby', color: '#CC342D', darkColor: '#E55044' },
+  { name: 'simple-icons:rubyonrails', label: 'Ruby on Rails', color: '#D30001', darkColor: '#FF4433' },
+  { name: 'simple-icons:vercel', label: 'Vercel', color: '#000000', darkColor: '#FFFFFF' },
+  { name: 'simple-icons:astro', label: 'Astro', color: '#BC52EE', darkColor: '#D077FF' },
+  { name: 'simple-icons:python', label: 'Python', color: '#3776AB', darkColor: '#508AC9' },
+  { name: 'simple-icons:typescript', label: 'TypeScript', color: '#3178C6', darkColor: '#4A90E2' },
+  { name: 'simple-icons:mongodb', label: 'MongoDB', color: '#47A248', darkColor: '#5CA95F' },
+  { name: 'simple-icons:confluence', label: 'Confluence', color: '#172B4D', darkColor: '#B0B8C4' },
+  { name: 'simple-icons:netlify', label: 'Netlify', color: '#00C7B7', darkColor: '#00E0D0' },
+  { name: 'simple-icons:git', label: 'Git', color: '#F05032', darkColor: '#FF6B4A' },
+  { name: 'simple-icons:nodedotjs', label: 'Node.js', color: '#339933', darkColor: '#4CCB4C' },
+  { name: 'simple-icons:asana', label: 'Asana', color: '#273347', darkColor: '#D1D5DB' },
+  { name: 'simple-icons:figma', label: 'Figma', color: '#F24E1E', darkColor: '#FF6B35' }
 ];
 ---
 
-<div class='mt-24'>
-  <h2 class='text-center text-xl font-semibold font-medium dark:text-white text-slate-600'>
-    Some Technologies and Tooling I have had experience with :
+<div class="mt-24 text-center">
+  <h2 class="text-xl font-semibold text-slate-700 dark:text-slate-200">
+    Technologies & Tools I've Worked With
   </h2>
-
-  <div class="flex gap-6 md:gap-10 items-center justify-center mt-10 flex-wrap max-w-4xl mx-auto">
-    {technologies.map((tech) => (
-      <div class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-        <!-- Icon -->
-        <Icon
-          name={tech.name}
-          style={`color: ${tech.color};`}
-          class="h-[2em] w-[2em] transition-colors duration-300 text-slate-400 dark:text-slate-500 group-hover:text-inherit group-hover:scale-110"
-        />
-
-        <!-- Label -->
-        <span
-          style={`color: ${tech.color};`}
-          class="text-sm font-medium transition-all duration-300 text-slate-600 dark:text-slate-400 block md:opacity-0 md:group-hover:opacity-100 md:group-hover:text-inherit text-center"
-        >
-          {tech.label}
-        </span>
-      </div>
-    ))}
+  <div class="flex gap-6 md:gap-8 flex-wrap items-center justify-center mt-10 max-w-4xl mx-auto">
+    {technologies.map((tech) => {
+      const iconStyle = `color: ${tech.color};`;
+      const labelStyle = `color: ${tech.darkColor || tech.color};`;
+      return (
+        <div class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:scale-105 transform">
+          <!-- Icon -->
+          <Icon
+            name={tech.name}
+            style={iconStyle}
+            class="h-[2em] w-[2em] transition-colors duration-300 group-hover:scale-110"
+          />
+          <!-- Label -->
+          <span
+            style={labelStyle}
+            class="text-sm font-medium transition-all duration-300 opacity-0 group-hover:opacity-100 px-2 py-0.5 rounded-md group-hover:bg-white/20 dark:group-hover:bg-black/20 text-center max-w-[80px]"
+          >
+            {tech.label}
+          </span>
+        </div>
+      );
+    })}
   </div>
 </div>
