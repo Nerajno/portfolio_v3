@@ -4,10 +4,87 @@ import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-import Ava from '@assets/images/gardening.png'; // Adjust the path as needed
+import { AstroSEO } from 'astro-seo-plugin';
+import Ava from '@assets/images/gardening.png';
+
+// SEO data for this page
+const pageTitle = "Digital Garden - Growing Ideas and Knowledge";
+const pageDescription = "Discover what a digital garden is and how it helps track progress, grow ideas, and share knowledge. A place where thoughts can be planted, nurtured and shared with the world.";
+const pageUrl = "https://developingdvlpr.com/digital_garden";
+const imageUrl = "https://developingdvlpr.com/images/gardening.png";
 ---
 
 <Layout title='Digital Garden'>
+ <!-- SEO Component in Head -->
+ <AstroSEO
+ title={pageTitle}
+ description={pageDescription}
+ canonical={pageUrl}
+ openGraph={{
+   title: pageTitle,
+   description: pageDescription,
+   image: imageUrl,
+   type: "article",
+   url: pageUrl,
+   siteName: "DevelopingDvlpr"
+ }}
+ twitter={{
+   card: "summary_large_image",
+   site: "@nerajno",
+   creator: "@nerajno",
+   title: pageTitle,
+   description: pageDescription,
+   image: imageUrl
+ }}
+ jsonLd={{
+   "@context": "https://schema.org",
+   "@type": "Article",
+   headline: pageTitle,
+   description: pageDescription,
+   image: imageUrl,
+   author: {
+     "@type": "Person",
+     name: "Nerando Johnson"
+   },
+   publisher: {
+     "@type": "Organization",
+     name: "DevelopingDvlpr"
+   },
+   datePublished: "2025-06-01", // TODO: Come update this when I can automate it with actual publish date
+   dateModified: "2025-09-01"   // See Above
+ }}
+ robots={{
+   index: true,
+   follow: true,
+   noarchive: false,
+   nosnippet: false,
+   maxSnippet: 200,
+ }}
+ additionalLinkTags={[
+   { rel: "canonical", href: pageUrl },
+   { rel: "preconnect", href: "https://fonts.googleapis.com" }
+ ]}
+ additionalMetaTags={[
+   {
+     name: "keywords",
+     content: "digital garden, knowledge management, personal growth, learning, note-taking, ideas, thoughts, agriculture, gardening metaphor"
+   },
+   {
+     name: "author",
+     content: "Nerando Johnson" // Replace with your name
+   },
+   {
+     property: "article:section",
+     content: "Technology"
+   },
+   {
+     property: "article:tag",
+     content: "digital garden, knowledge management, learning"
+   }
+ ]}
+/>
+
+
   <Container>
     <Sectionhead>
       <Fragment slot='title'>What is a Digital Garden ?</Fragment>
