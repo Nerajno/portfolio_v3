@@ -4,8 +4,8 @@ import { Icon } from 'astro-icon/components';
 
 // Technology data with names, labels, and official brand colors (hex values)
 const technologies = [
+{ name: 'simple-icons:vuedotjs', label: 'Vue.js', color: '#4FC08D' },
   { name: 'simple-icons:react', label: 'React', color: '#61DAFB' },
-  { name: 'simple-icons:vuedotjs', label: 'Vue.js', color: '#4FC08D' },
   { name: 'simple-icons:javascript', label: 'JavaScript', color: '#F7DF1E' },
   { name: 'simple-icons:ruby', label: 'Ruby', color: '#CC342D' },
   { name: 'simple-icons:rubyonrails', label: 'Ruby on Rails', color: '#D30001' },
@@ -28,24 +28,21 @@ const technologies = [
     Some Technologies and Tooling I have had experience with :
   </h2>
 
-  <div class='flex gap-6 md:gap-10 items-center justify-center mt-10 flex-wrap max-w-4xl mx-auto'>
+  <div class="flex gap-6 md:gap-10 items-center justify-center mt-10 flex-wrap max-w-4xl mx-auto">
     {technologies.map((tech) => (
-      <div class='group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800'>
-        {/* Icon with responsive coloring */}
+      <div class="group flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+        <!-- Icon -->
         <Icon
-          class={`h-[2em] w-[2em] transition-colors duration-300
-                  text-[${tech.color}] md:text-slate-400 md:dark:text-slate-500
-                  md:group-hover:text-[${tech.color}]
-                  group-hover:scale-110`}
           name={tech.name}
+          style={`color: ${tech.color};`}
+          class="h-[2em] w-[2em] transition-colors duration-300 text-slate-400 dark:text-slate-500 group-hover:text-inherit group-hover:scale-110"
         />
 
-        {/* Technology name - always visible on mobile, visible on hover for desktop */}
-        <span class={`text-sm font-medium transition-all duration-300
-                     text-[${tech.color}] md:text-slate-600 md:dark:text-slate-400
-                     block md:opacity-0 md:group-hover:opacity-100
-                     md:group-hover:text-[${tech.color}]
-                     text-center`}>
+        <!-- Label -->
+        <span
+          style={`color: ${tech.color};`}
+          class="text-sm font-medium transition-all duration-300 text-slate-600 dark:text-slate-400 block md:opacity-0 md:group-hover:opacity-100 md:group-hover:text-inherit text-center"
+        >
           {tech.label}
         </span>
       </div>
