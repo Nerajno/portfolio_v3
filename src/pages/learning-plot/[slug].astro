@@ -1,4 +1,5 @@
 ---
+import { AstroSEO } from 'astro-seo-plugin';
 import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
 import projectsData from '../../data/projects';
@@ -23,6 +24,33 @@ const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.grow
 
 {notFound && <meta http-equiv="refresh" content="0; url=/404" />}
 {!notFound && (
+  <AstroSEO
+    title={`${project.title} - Learning Plot | Nerando Johnson`}
+    description={project.description || `Learning journey and insights from building ${project.title}.`}
+    canonical={`https://developingdvlpr.com/learning-plot/${project.id}`}
+    openGraph={{
+      title: `${project.title} - Learning Plot | Nerando Johnson`,
+      description: project.description || `Learning journey and insights from building ${project.title}.`,
+      url: `https://developingdvlpr.com/learning-plot/${project.id}`,
+      images: [
+        {
+          url: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+          width: 1200,
+          height: 630,
+          alt: `${project.title} cover image`
+        }
+      ]
+    }}
+    twitter={{
+      card: "summary_large_image",
+      title: `${project.title} - Learning Plot | Nerando Johnson`,
+      description: project.description || `Learning journey and insights from building ${project.title}.`,
+      image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg'
+    }}
+    additionalMetaTags={[
+      { name: "keywords", content: `learning plot, ${project.title}, case study, developer, Nerando Johnson` }
+    ]}
+  />
   <Layout title={`${project.title} - Learning Plot`}>
     <Container>
       <main class="max-w-4xl mx-auto py-8">

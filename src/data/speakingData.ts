@@ -19,6 +19,8 @@ interface SpeakingEvent {
   };
   type: "conference" | "workshop" | "meetup" | "webinar" | "lightning-talk";
   tags?: string[];
+  image?: string; // SEO image for event
+  seoDescription?: string; // SEO meta description for event
 }
 
 export const speakingData: SpeakingEvent[] = [
@@ -29,6 +31,8 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "Every developer has a graveyard of abandoned side projects—brilliant ideas that died in the planning phase or halfway through execution. But what if the secret to successful side projects isn't better time management or more motivation? What if it's learning to negotiate with yourself, your scope, and reality itself?",
     date: "2025-10-22",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Magnolia Conf 2025 – Learn how negotiation, scope, and reality shape successful side projects with Nerando Johnson.",
     location: {
       city: "Jackson",
       state: "Mississippi",
@@ -51,6 +55,8 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "You've created the perfect solution, but it's useless without proper documentation. In our open-source-driven world, countless powerful tools sit unused because developers skip the documentation step. This creates a critical gap as software becomes increasingly dependent on open-source components. Learn practical tips, templates, and strategies to transform your documentation from afterthought to essential craft. Drawing from experience as both science educator and full-stack developer, discover why clear documentation isn't just helpful—it's the bridge between brilliant code and actual impact.",
     date: "2025-08-01",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Carolina Codes 2025 – The importance of documentation and ReadMes in open source, with Nerando Johnson.",
     location: {
       city: "Greenville",
       state: "South Carolina",
@@ -72,6 +78,8 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This talk explores how participating in civic hacking can benefit your career while making a positive community impact. Through personal experiences with Marta Hackathons, AT&T C3 Hackathons, Civic Hack Nights, and Atl Thinks competitions, the speaker demonstrates how donating time and talent led to improved development and project management skills, networking opportunities, and even charitable contributions of $40,000. Attendees will learn actionable strategies for leveraging civic hacking to enhance technical abilities, develop essential soft skills, expand professional networks, and strengthen their position in the job market.",
     date: "2025-04",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "DevOpsDays Atlanta 2025 – Civic hacking for career growth and community impact, with Nerando Johnson.",
     location: {
       city: "Atlanta",
       state: "GA",
@@ -95,6 +103,8 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
     date: "2025-04",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Orlando Code Camp 2025 – Demonstrating developer competency and confidence, with Nerando Johnson.",
     location: {
       city: "Sanford",
       state: "FL",
@@ -122,6 +132,8 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
     date: "2025-02",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Orlando Code Camp 2024 – Essential people skills for developers, with Nerando Johnson.",
     location: {
       city: "Sanford",
       state: "FL",
@@ -164,6 +176,8 @@ export const speakingData: SpeakingEvent[] = [
       "career development",
       "networking",
     ],
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "ConnectTech 2024 – How to Conference: A user guide for introverts and professionals, with Nerando Johnson.",
     links: {
       video: "https://youtu.be/kpL0lGjem1I?si=lBnfUzyWqmrGtZti",
       article: "https://developingdvlpr.com/blog/so-this-is-your-1st-tech-conference-attendeeedition/",
@@ -199,6 +213,8 @@ export const speakingData: SpeakingEvent[] = [
       "career development",
       "networking",
     ],
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "ConnectTech 2023 – Essential people skills for developers, teamwork, and leadership, with Nerando Johnson.",
     links: {
       // article: "https://docs.google.com/document/d/1XxG_0rrPMQ36jMd38_KEA-2rFxu6fiy4DP_3W1Opd9E/edit?usp=sharing",
       // conferenceWebsite: "https://2024.connect.tech/session/699563",
@@ -279,6 +295,8 @@ export const speakingData: SpeakingEvent[] = [
     },
     type: "meetup",
     tags: ["networking", "database-associations", "rails", "social-skills", "professional-development"],
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Modern Web Meetup – Networking for developers using database association patterns, with Nerando Johnson.",
     links: {
       slides: "https://www.canva.com/design/DAGWCVHbFGs/lLD9CiNNkwHPwsYn20MtzA/view?utm_content=DAGWCVHbFGs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h91978a8905",
     }
@@ -317,6 +335,8 @@ export const speakingData: SpeakingEvent[] = [
     },
     type: "conference",
     tags: ["open-source", "civic-hacking", "community", "skill-development", "career-growth"],
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Orlando Code Camp 2024 – Growing your skills through open source and civic hacking, with Nerando Johnson.",
     links: {
       conferenceWebsite: "https://orlandocodecamp.com/",
       slides: "https://speakerdeck.com/nerajno/open-source-civic-hacking-growth",
@@ -337,6 +357,8 @@ export const speakingData: SpeakingEvent[] = [
     },
     type: "conference",
     tags: ["javascript", "vue", "fundamentals", "framework-development", "best-practices"],
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "200OK Developer Conference – JavaScript fundamentals for modern frameworks, with Nerando Johnson.",
     links: {
       conferenceWebsite: "https://200ok.us/#speakers",
       slides: "https://docs.google.com/presentation/d/1X90GRVrInlTx22y8j7fUk1UcMAXiCCFO/edit?usp=sharing&ouid=101977102167064448578&rtpof=true&sd=true",
@@ -358,6 +380,8 @@ export const speakingData: SpeakingEvent[] = [
     },
     type: "conference",
     tags: ["mentorship", "career-development", "learning", "relationship-building", "professional-growth"],
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Connect Tech 2022 – How to get the most out of mentorship, with Nerando Johnson.",
     links: {
       conferenceWebsite: "https://connect.tech",
       slides: "https://speakerdeck.com/nerajno/how-to-be-mentored",
@@ -378,6 +402,8 @@ export const speakingData: SpeakingEvent[] = [
     },
     type: "conference",
     tags: ["mentorship", "career-development", "learning", "relationship-building", "professional-growth"],
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "DevNexus 2025 – Actionable steps for successful mentorship, with Nerando Johnson.",
     links: {
       // conferenceWebsite: "https://connect.tech",
       slides: "https://docs.google.com/presentation/d/1Iub1WcR4MG4_iedUAfKpTM-VIpSrnDvGGMU0pthWELw/edit?usp=sharing",
@@ -398,6 +424,8 @@ export const speakingData: SpeakingEvent[] = [
     },
     type: "conference",
     tags: ["civic-hacking", "community-service", "skill-development", "networking", "social-impact"],
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Atlanta Developers' Conference 2022 – Civic hacking for skill and community growth, with Nerando Johnson.",
     links: {
       conferenceWebsite: "https://www.atldevcon.com/",
       slides: "https://speakerdeck.com/nerajno/civic-hacking-benefits",
