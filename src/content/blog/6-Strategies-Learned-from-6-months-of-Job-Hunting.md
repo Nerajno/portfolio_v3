@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "6 Job Hunting Strategies for Developers: Lessons from 6 Months"
+seoDescription: "Six key strategies and lessons learned from six months of job hunting as a developer, including networking, portfolio building, and staying positive."
+author: "Nerando Johnson"
 title: "6 Strategies Learned from 6 months of Job Hunting"
 snippet: "As a developer spent 182 days looking for a new job before receiving an offer as a Fullstack Developer. I learned six important lessons about job hunting, including networking, using LinkedIn, building a portfolio, crafting resumes, practicing code, and creating routines. I recommend that other job seekers should reach out to communities, share their experiences, and stay positive during their search."
 image: { src: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fy63u4rzgtwo40l2yd6u3.jpg", alt: "Sunset in Newton, Georgia" }

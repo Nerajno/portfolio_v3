@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { Picture } from "astro:assets";
+import { SEO } from "astro-seo";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
@@ -15,9 +16,90 @@ const sortedBlogEntries = [...publishedBlogEntries].sort((a, b) => {
   return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
 });
 
+// SEO configuration for the blog page
+const seoConfig = {
+  title: "My MetaData - Blog & Learning Notes",
+  description: "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
+  canonical: new URL("blog", Astro.site).toString(),
+  openGraph: {
+    basic: {
+      title: "My MetaData - Blog & Learning Notes",
+      type: "website",
+      image: "/og-blog.jpg", // Add your blog's Open Graph image
+      url: new URL("blog", Astro.site).toString(),
+    },
+    optional: {
+      description: "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge.",
+      siteName: "My MetaData",
+    },
+    image: {
+      alt: "My MetaData Blog - Learning and Development Resources",
+    },
+  },
+  twitter: {
+    creator: "@nerajno", // Replace with your Twitter handle
+    site: "@nerajno", // Replace with your site's Twitter handle
+    card: "summary_large_image",
+  },
+};
 ---
 
 <Layout title="Blog">
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={{
+      // Additional meta tags
+      meta: [
+        { name: "robots", content: "index, follow" },
+        { name: "author", content: "Nerando Johnson" },
+        { name: "keywords", content: "blog, programming, web development, learning, technology, tutorials" },
+        { property: "article:author", content: "Neran Johnson" },
+        { property: "article:section", content: "Technology" },
+      ],
+      // JSON-LD structured data
+      link: [
+        { rel: "alternate", type: "application/rss+xml", title: "My MetaData Blog RSS", href: "/rss.xml" },
+      ],
+    }}
+  />
+
+  <!-- JSON-LD Structured Data for Blog -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "My MetaData Blog",
+    "description": "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge.",
+    "url": new URL("blog", Astro.site).toString(),
+    "author": {
+      "@type": "Person",
+      "name": "Nerando Johnson",
+      "url": Astro.site?.toString()
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "My MetaData",
+      "url": Astro.site?.toString()
+    },
+    "blogPost": sortedBlogEntries.slice(0, 10).map(post => ({
+      "@type": "BlogPosting",
+      "headline": post.data.title,
+      "description": post.data.description || post.data.excerpt,
+      "url": new URL(`blog/${post.slug}`, Astro.site).toString(),
+      "datePublished": post.data.publishDate.toISOString(),
+      "dateModified": post.data.updatedDate?.toISOString() || post.data.publishDate.toISOString(),
+      "author": {
+        "@type": "Person",
+        "name": "Nerando Johnson"
+      },
+      "image": post.data.image?.src,
+      "articleSection": post.data.category
+    }))
+  })} />
+
   <Container>
     <Sectionhead>
       <Fragment slot="title">My MetaData</Fragment>

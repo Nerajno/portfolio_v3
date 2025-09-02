@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Speaking at Carolina Code Conference 2025: Lessons and Reflections"
+seoDescription: "Personal reflections and key lessons learned from speaking at Carolina Code Conference 2025, including networking and community insights."
+author: "Nerando Johnson"
 title: "My Speaking Experience at Carolina Code Conference 2025"
 snippet: "Reflections on speaking at Carolina Code Conference 2025, the amazing people I met, and valuable lessons learned."
 image: {

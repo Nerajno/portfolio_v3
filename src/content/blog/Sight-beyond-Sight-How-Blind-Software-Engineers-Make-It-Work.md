@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "How Blind Software Engineers Succeed: Sight Beyond Sight"
+seoDescription: "Explore how blind developers use screen readers and adaptive technology to excel in software engineering, with real-world examples and tools."
+author: "Nerando Johnson"
 title: "Sight beyond Sight... How Blind Software Engineers Make It Work"
 snippet: "Blind developers, who make up 1.7% of the programming community, use screen readers and refreshable braille displays to write code and develop software just like sighted developers. Screen readers, which began at IBM in the 1980s, have evolved to allow blind developers to use mainstream development tools like Visual Studio and Eclipse effectively. As demonstrated by developers like Florian Beijers, blind programmers can work with standard computers and regular software tools, only requiring screen reading software like NVDA to make technology accessible."
 image: {

@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "How to Be Mentored: Key Steps for Developers"
+seoDescription: "Explore the essentials of a successful mentorship relationship in tech, including actionable steps for mentees and guidance for mentors."
+author: "Nerando Johnson"
 title: "How !To Be Mentored"
 snippet: "A mentorship relationship involves an experienced mentor guiding a less experienced mentee for personal and professional development. Mentees should focus on five key actions: setting clear goals, being open to learning, taking initiative, communicating effectively, and following through on advice, while mentors should provide guidance, share knowledge, and foster independence. The document concludes with information about Nerando, a full-stack software developer seeking new opportunities, who has experience in team building and various programming technologies including React, Ruby on Rails, and MERN stack."
 image: {

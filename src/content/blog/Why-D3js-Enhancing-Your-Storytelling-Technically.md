@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Why D3.js: Enhancing Your Technical Storytelling"
+seoDescription: "Discover how D3.js empowers developers to create compelling, interactive data visualizations that elevate your storytelling."
+author: "Nerando Johnson"
 title: "Mastering D3.js for Interactive Data Visualization"
 snippet: "Learn how to harness the power of D3.js to create stunning, interactive data visualizations that go beyond the limitations of traditional tools like Excel."
 image: {

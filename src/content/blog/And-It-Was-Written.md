@@ -2,10 +2,13 @@
 draft: false
 title: "And It Was Written: An Introspective on the Importance of READMEs"
 snippet: "A deep dive into why documentation, especially READMEs, can make or break your side projects. Learn the essential elements that transform forgotten repositories into thriving, adoptable projects that showcase your skills and invite collaboration."
+seoTitle: "And It Was Written: Why Great READMEs Matter" 
+seoDescription: "A deep dive into why documentation, especially READMEs, can make or break your side projects. Learn the essential elements that transform forgotten repositories into thriving projects that showcase your skills and invite collaboration."
 image: { src: "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", alt: "Documentation Image" }
 publishDate: "2025-08-15 12:00"
 category: "Documentation, Best Practices, Developer Tips"
 tags: [documentation, readme, opensource, bestpractices, sideprojects]
+author: "Nerando Johnson"
 ---
 
 Have you ever stumbled upon a fascinating repository, only to find yourself completely lost within minutes? No setup instructions, no explanation of what the project actually does, and certainly no guidance on how to get started. You close the tab and move on, and just like that, someone's hard work becomes another forgotten corner of the internet.
