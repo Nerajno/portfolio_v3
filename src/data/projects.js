@@ -801,7 +801,7 @@ const projects = {
       },
       visible: true,
     },
-       {
+    {
       id: "demo",
       name: "Demo 2",
       title: "Demo Project",

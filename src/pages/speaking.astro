@@ -1,10 +1,41 @@
 ---
+import { AstroSEO } from 'astro-seo-plugin';
 import Layout from '../layouts/Layout.astro';
 import Container from '../components/container.astro';
 import Sectionhead from '../components/sectionhead.astro';
 import EventList from '../components/eventlist.astro';
 import { speakingData } from '../data/speakingData';
 import type { ProcessedEvent } from '../types';
+
+const seo = {
+  title: 'Speaking Engagements – Nerando Johnson',
+  description: 'Join me at upcoming events or explore past presentations. Discover my speaking engagements, conference talks, and workshops in tech, open source, and professional development.',
+  canonical: 'https://developingdvlpr.com/speaking',
+  openGraph: {
+    title: 'Speaking Engagements – Nerando Johnson',
+    description: 'Explore upcoming and past talks, workshops, and conferences by Nerando Johnson.',
+    url: 'https://developingdvlpr.com/speaking',
+    type: 'website',
+    images: [
+      {
+        url: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Nerando Johnson Speaking Engagements',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Speaking Engagements – Nerando Johnson',
+    description: 'Explore upcoming and past talks, workshops, and conferences by Nerando Johnson.',
+    image: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+  },
+  keywords: [
+    'Nerando Johnson', 'speaking', 'conference', 'talk', 'workshop', 'keynote', 'events', 'tech', 'public speaking', 'open source', 'career', 'professional development'
+  ],
+};
+
 
 // Process and sort events
 const now = new Date();
@@ -22,6 +53,7 @@ const processedEvents: ProcessedEvent[] = speakingData.map((event) => {
 });
 ---
 
+<AstroSEO {...seo} />
 <Layout title='Speaking Engagements'>
   <Container>
     <Sectionhead>

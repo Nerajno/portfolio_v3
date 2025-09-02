@@ -1,4 +1,5 @@
 ---
+import { AstroSEO } from 'astro-seo-plugin';
 import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
@@ -21,6 +22,34 @@ const allTags = [
   ...new Set(allProjects.flatMap((project) => project.tags)),
 ].sort();
 ---
+
+<AstroSEO
+  title="Portfolio Projects | Nerando Johnson"
+  description="Explore detailed case studies of technical projects, problem-solving processes, and real-world impact by Nerando Johnson."
+  canonical="https://developingdvlpr.com/portfolio"
+  openGraph={{
+    title: "Portfolio Projects | Nerando Johnson",
+    description: "Explore detailed case studies of technical projects, problem-solving processes, and real-world impact by Nerando Johnson.",
+    url: "https://developingdvlpr.com/portfolio",
+    images: [
+      {
+        url: "https://developingdvlpr.com/images/og-portfolio.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Nerando Johnson Portfolio Projects"
+      }
+    ]
+  }}
+  twitter={{
+    card: "summary_large_image",
+    title: "Portfolio Projects | Nerando Johnson",
+    description: "Explore detailed case studies of technical projects by Nerando Johnson.",
+    image: "https://developingdvlpr.com/images/og-portfolio.jpg"
+  }}
+  additionalMetaTags={[
+    { name: "keywords", content: "portfolio, projects, case studies, developer, Nerando Johnson" }
+  ]}
+/>
 
 <Layout title='Projects'>
   <Container>
