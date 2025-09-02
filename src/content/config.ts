@@ -12,10 +12,23 @@ const blogCollection = defineCollection({
       alt: z.string(),
     }),
     publishDate: z.string().transform(str => new Date(str)),
+    updatedDate: z.string().transform(str => new Date(str)).optional(),
     author: z.string().default('@nerajno'),
     category: z.string(),
     tags: z.array(z.string()),
     tweetIds: z.array(z.string()).optional(),
+
+    // SEO-related fields
+    description: z.string().optional(), // Meta description for SEO
+    seoTitle: z.string().optional(), // Custom SEO title (falls back to title if not provided)
+    seoDescription: z.string().optional(), // Custom meta description (falls back to snippet/description)
+    keywords: z.array(z.string()).optional(), // SEO keywords
+    ogImage: z.object({
+      src: z.string(),
+      alt: z.string(),
+    }).optional(), // Custom Open Graph image (falls back to main image)
+    noindex: z.boolean().default(false), // Prevent indexing if true
+    canonical: z.string().url().optional(), // Custom canonical URL if needed
   }),
 });
 
@@ -29,6 +42,17 @@ const teamCollection = defineCollection({
       alt: z.string(),
     }),
     publishDate: z.string().transform(str => new Date(str)),
+
+    // SEO-related fields for team members
+    bio: z.string().optional(), // Bio/description for SEO
+    seoTitle: z.string().optional(), // Custom SEO title
+    seoDescription: z.string().optional(), // Custom meta description
+    socialLinks: z.object({
+      twitter: z.string().optional(),
+      linkedin: z.string().optional(),
+      github: z.string().optional(),
+      website: z.string().optional(),
+    }).optional(),
   }),
 });
 

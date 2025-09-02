@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Writing the Needed ReadMe: Project Documentation Essentials"
+seoDescription: "A guide to crafting effective README files that make your projects approachable, usable, and open to collaboration."
+author: "Nerando Johnson"
 title: "Writing The Needed ReadMe"
 snippet: "A README is like a welcome sign for your code project that explains what it does and how to use it. Good READMEs help other developers quickly understand your work and make your project stand out among many others. For new developers, writing clear READMEs shows professionalism and helps both employers and yourself remember how the project works."
 image: {

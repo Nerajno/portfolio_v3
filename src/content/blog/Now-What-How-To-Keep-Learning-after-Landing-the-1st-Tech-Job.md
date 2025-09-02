@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "How to Keep Learning After Landing Your First Tech Job"
+seoDescription: "Practical strategies for continuous growth after your first tech job: rest, side projects, helping others, and maintaining work-life balance."
+author: "Nerando Johnson"
 title: "Now What : How To Keep Learning after Landing the 1st Tech Job"
 snippet: "Take time to rest after getting your first tech job before starting new learning habits. Keep growing your skills through side projects and helping others learn too. Don't forget to enjoy life outside of work by making time for hobbies and breaks."
 image: {

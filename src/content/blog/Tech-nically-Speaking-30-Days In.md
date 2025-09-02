@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "30 Days In: Essential Lessons for New Tech Roles"
+seoDescription: "Key strategies for success in your first month at a new tech job: onboarding, continuous learning, and work-life balance."
+author: "Nerando Johnson"
 title: "Tech-nically Speaking: 30 Days In"
 snippet: "After a year-long job search, I share the essential tips for transitioning into a new tech role, emphasizing the importance of onboarding, resting, and continuous learning. Key strategies include thoroughly understanding company procedures and tech stacks, advocating for necessary resources, and establishing effective work habits through planning and accountability. This post highlights that success in a new position involves not just technical skills but also personal well-being and adaptability in a team environment."
 image: {

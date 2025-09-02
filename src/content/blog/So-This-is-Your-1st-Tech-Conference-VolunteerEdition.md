@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Volunteering at Your First Tech Conference: Essential Tips"
+seoDescription: "A guide for first-time tech conference volunteers: how to prepare, network, and make the most of your experience while helping others."
+author: "Nerando Johnson"
 title: "So ... This is Your 1st Tech Conference : #VolunteerEdition"
 snippet: "Want to rock your first tech conference as a volunteer? This guide from a coffee-powered developer shows you how to nail the basics - from showing up early to staying hydrated (and properly caffeinated). Just remember to dress comfy, be super helpful, and network like a pro while having fun - because even though you're there to help, you might just end up with some amazing connections and memories."
 image: {

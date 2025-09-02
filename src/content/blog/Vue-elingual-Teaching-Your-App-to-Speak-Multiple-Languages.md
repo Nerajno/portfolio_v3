@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Vue-elingual: Teaching Your App to Speak Multiple Languages"
+seoDescription: "Learn how to implement internationalization in Vue apps, making your software accessible to a global audience."
+author: "Nerando Johnson"
 title: "Vue-elingual: Teaching Your App to Speak Multiple Languages"
 snippet: "This comprehensive guide demonstrates how to implement internationalization (i18n) in Vue 3 applications using vue-i18n, covering everything from basic setup with the composition API to advanced features like dynamic content interpolation and pluralization. The tutorial provides developer-friendly examples that show how to structure translations, create language switchers, and build reusable composables for managing multilingual content in a maintainable way. With practical code samples and best practices, developers can quickly integrate i18n into their Vue 3 projects to make their applications accessible to users worldwide, following the principle that software should be usable in any language."
 image:

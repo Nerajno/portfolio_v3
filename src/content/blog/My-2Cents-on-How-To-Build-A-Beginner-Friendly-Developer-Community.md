@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "How to Build a Beginner-Friendly Developer Community: My #2Cents"
+seoDescription: "Learn practical strategies for building a welcoming and supportive developer community for beginners, based on real experience."
+author: "Nerando Johnson"
 title: "My #2Cents on How To Build A Beginner Friendly Developer Community"
 snippet: "Nerando Johnson's perspective on how to build a beginner friendly developer community.  "
 image: {
