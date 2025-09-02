@@ -151,7 +151,7 @@ const seoConfig = {
       "@id": postUrl
     },
     "url": postUrl,
-    "keywords": keywords?.join(", ") || entry.data.tags.join(", "),
+    "keywords": keywords?.join(", ") || (entry.data.tags ?? []).join(", "),
     "articleSection": entry.data.category,
     "wordCount": remarkPluginFrontmatter?.words || undefined,
     "timeRequired": remarkPluginFrontmatter?.minutesRead || undefined,
