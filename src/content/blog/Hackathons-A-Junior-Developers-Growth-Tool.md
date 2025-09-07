@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Hackathons: The Ultimate Growth Tool for Junior Developers"
+seoDescription: "Discover how hackathons provide invaluable experience, networking, and innovation opportunities for junior developers, accelerating career growth."
+author: "Nerando Johnson"
 title: "Hackathons - A Junior Developer’s Growth Tool"
 snippet: "Hackathons are intensive 24-48 hour events where programmers, designers, and tech enthusiasts collaborate to solve problems and build new products through coding. These events offer multiple benefits for junior developers, including opportunities for innovation, networking with like-minded professionals, and gaining practical experience that enhances their resumes. Participating in hackathons not only facilitates the creation of new concepts through diverse team collaboration but also provides hands-on experience working under time constraints, making them an invaluable growth tool for emerging developers."
 image: {

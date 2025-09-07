@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "How to Build Resilient Tech Careers Through Strategic Mentorship"
+seoDescription: "Learn how intentional structure, clear expectations, and proactive mentee preparation can turn mentorship into a powerful tool for career growth in tech."
+author: "Nerando Johnson"
 title: "How !To Be Mentored V2 : Building Resilient Tech Careers Through Strategic Mentorship"
 snippet: "This article explores how to establish effective mentor-mentee relationships in the tech industry, emphasizing that successful mentorship requires intentional structure and clear expectations from both parties. For mentees, success depends on preparing thoroughly, taking initiative, following through consistently, and documenting progress, while mentors should provide appropriate guidance and tools while fostering independence and maintaining accountability. When executed thoughtfully, mentorship accelerates professional growth, prevents common pitfalls like burnout and misaligned expectations, and provides essential career navigation support in the rapidly evolving technology landscape."
 image: {

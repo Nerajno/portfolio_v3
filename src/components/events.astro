@@ -10,7 +10,7 @@ rel="noopener noreferrer" class="block">
 <div class="card bg-white dark:bg-gray-800 shadow-md dark:shadow-gray-700 rounded-lg overflow-hidden flex">
     <Image
         src={image}
-        alt={title}
+        alt={`Photo from ${title} event${location ? ' in ' + location.city : ''}`}
         width={192}
         height={192}
         class="h-48 w-48 object-cover"

@@ -1,4 +1,5 @@
 ---
+import { AstroSEO } from 'astro-seo-plugin';
 import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
 import projectsData, { getGrowthStatusConfig } from '../../data/projects';
@@ -24,6 +25,34 @@ if (notFound) {
   return Astro.redirect('/404');
 }
 ---
+
+<AstroSEO
+  title={`${project.title} | Learning Project | Nerando Johnson`}
+  description={project.description || `Learning project: ${project.title} by Nerando Johnson.`}
+  canonical={`https://developingdvlpr.com/learning-projects/${project.id}`}
+  openGraph={{
+    title: `${project.title} | Learning Project | Nerando Johnson`,
+    description: project.description || `Learning project: ${project.title} by Nerando Johnson.`,
+    url: `https://developingdvlpr.com/learning-projects/${project.id}`,
+    images: [
+      {
+        url: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+        width: 1200,
+        height: 630,
+        alt: `${project.title} cover image`
+      }
+    ]
+  }}
+  twitter={{
+    card: "summary_large_image",
+    title: `${project.title} | Learning Project | Nerando Johnson`,
+    description: project.description || `Learning project: ${project.title} by Nerando Johnson.`,
+    image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg'
+  }}
+  additionalMetaTags={[
+    { name: "keywords", content: `learning project, ${project.title}, case study, developer, Nerando Johnson` }
+  ]}
+/>
 
 <Layout title={`${project.title} - Learning Project`}>
   <Container>

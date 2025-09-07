@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "11 Essential JavaScript Fundamentals Every Vue Developer Should Know"
+seoDescription: "Discover the core JavaScript concepts that form the foundation of effective Vue development, including ES6+ syntax, array methods, async operations, and more."
+author: "Nerando Johnson"
 title: "11 JavaScript Fundamentals for Vue Developers"
 snippet: "Vue developers should master 11 key JavaScript concepts: ES6+ syntax (arrow functions, template literals, destructuring, spread/rest operators); array methods (map, filter, reduce, find, some/every) for data transformation; Promises and async/await for clean asynchronous operations; object manipulation techniques that underpin Vue's reactivity system; scope and closures used in Vue's component architecture; basic DOM manipulation concepts; JavaScript modules (import/export) for component organization; ternary operators and short-circuit evaluation for efficient conditionals; immutability patterns crucial for state management; the 'this' keyword for understanding component context; and proper error handling strategies for robust applications. These fundamentals form the foundation for effective Vue development, as the framework leverages modern JavaScript to create its reactive, component-based system."
 image: {

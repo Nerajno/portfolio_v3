@@ -5,70 +5,114 @@ const features = [
   {
     title: 'Problem Solver',
     description:
-      'Lets take a look with extensive full-stack development experience across diverse projects and technologies, to see how we can collaborate to solve problems (even the complicated ones). My skills range from building simple web sites to working on award-winning ad technologies. This showcases adaptability in tackling various challenges. ',
+      'Lets take a look with extensive full-stack development experience across diverse projects and technologies, to see how we can collaborate to solve problems (even the complicated ones). My skills range from building simple web sites to working on award-winning ad technologies. This showcases adaptability in tackling various challenges.',
     icon: 'bx:bxs-briefcase',
+    skills: ['Full-stack development', 'Problem solving', 'Adaptability']
   },
   {
     title: 'Tech Community Builder',
     description:
       'Beyond growing my technical expertise, I have been committed to mentoring and civic engagement demonstrates a holistic approach to problem-solving in both professional and community contexts. I have had a hand in the Atlanta tech community, in one way, shape or form, for the last 5+ years.',
     icon: 'bx:bxs-window-alt',
+    skills: ['Mentoring', 'Community leadership', 'Civic engagement']
   },
   {
     title: 'Tech Speaker',
     description:
-      'I have been a speaker at tech conferences and meetups. I have been granted the opportunity to share and grow my knowledge and skills on various tech conferences and meetups, examples of such includes, Vue Conf 2024, ConnectTech 2023 among <a href="/speaking" class="underline hover:text-blue-600 dark:hover:text-blue-400">other events.</a>',
+      'I have been a speaker at tech conferences and meetups. I have been granted the opportunity to share and grow my knowledge and skills on various tech conferences and meetups, examples of such includes, Vue Conf 2024, ConnectTech 2023 among <a href="/speaking" class="underline hover:text-blue-600 dark:hover:text-blue-400" aria-label="View all speaking engagements">other events.</a>',
     icon: 'bx:bxs-data',
+    skills: ['Public speaking', 'Knowledge sharing', 'Vue.js expertise']
   },
   {
     title: 'Learner and Facilitator',
     description:
       'I am a product and results-driven learner; simply put, I learn best by building. Since entering this field, I have primarily focused on hands-on, practical learning. I have also made it a priority to become an effective knowledge transfer agent, sharing my technical skillset with others.',
     icon: 'bx:bxs-bot',
+    skills: ['Continuous learning', 'Teaching', 'Knowledge transfer']
   },
   {
     title: 'Tech Consultant',
     description:
       'Over the past 5 years, I have worked on various tech projects providing solutions to small and medium sized companies, in a range of roles all tooled to solving customer facing problems.',
     icon: 'bx:bxs-file-find',
+    skills: ['Consulting', 'Client solutions', 'Business analysis']
   },
   {
     title: 'Tinker',
     description:
       'Want to figure out the smallest Linux distro that still offers a decent experience? I can help! With sufficient experience in the software development space, I can assist in solving most problems or knowing where to look for help.',
     icon: 'bx:bxs-user',
+    skills: ['Linux systems', 'System optimization', 'Technical troubleshooting']
   },
 ];
 ---
 
-<div class='mt-16 md:mt-0'>
-  <h2 class='text-4xl lg:text-5xl font-bold lg:tracking-tight dark:text-white'>
-    Current Craft Characteristics
-  </h2>
-  <p class='text-lg mt-4 text-slate-600 dark:text-slate-400'>
-    Writing code moved from an interest to a passionate hobby to my current
-    career/craft. I am currently working in the front-end space as a junior front-end developer focusing on Vue and TypeScript. My skills/ toolset include :
-  </p>
-</div>
+<section
+  class='mt-16 md:mt-0'
+  aria-labelledby='features-heading'
+  itemscope
+  itemtype="https://schema.org/Person">
 
-<div class='grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-8 md:gap-16'>
-  {
-    features.map((item) => (
-      <div class='flex flex-col gap-4 items-start group'>
-        <div class='flex items-center gap-3'>
-          <div class='bg-slate-100 dark:bg-slate-800 rounded-full p-3 flex items-center justify-center'>
-            <Icon
-              name={item.icon}
-              class='text-slate-500 dark:text-slate-300 h-[1.5em] w-[1.5em]'
-            />
-          </div>
-          <h3 class='font-semibold text-lg dark:text-white'>{item.title}</h3>
-        </div>
-        <p
-          class='text-slate-500 dark:text-slate-400 leading-relaxed'
-          set:html={item.description}
-        />
-      </div>
-    ))
-  }
-</div>
+  <header class='mb-16'>
+    <h2
+      id='features-heading'
+      class='text-4xl lg:text-5xl font-bold lg:tracking-tight dark:text-white'
+      itemprop='jobTitle'>
+      Current Craft Characteristics
+    </h2>
+    <p
+      class='text-lg mt-4 text-slate-600 dark:text-slate-400'
+      itemprop='description'>
+      Writing code moved from an interest to a passionate hobby to my current
+      career/craft. I am currently working in the front-end space as a
+      <span itemprop='jobTitle'>junior front-end developer</span> focusing on
+      <span itemprop='knowsAbout'>Vue and TypeScript</span>. My skills/ toolset include:
+    </p>
+  </header>
+
+  <div
+    class='grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-8 md:gap-16'
+    role='list'
+    aria-label='Professional skills and characteristics'>
+    {
+      features.map((item, index) => (
+        <article
+          class='flex flex-col gap-4 items-start group'
+          role='listitem'
+          itemscope
+          itemtype="https://schema.org/Skill">
+
+          <header class='flex items-center gap-3'>
+            <div class='bg-slate-100 dark:bg-slate-800 rounded-full p-3 flex items-center justify-center'>
+              <Icon
+                name={item.icon}
+                class='text-slate-500 dark:text-slate-300 h-[1.5em] w-[1.5em]'
+                aria-hidden='true'
+              />
+            </div>
+            <h3
+              class='font-semibold text-lg dark:text-white'
+              itemprop='name'>
+              {item.title}
+            </h3>
+          </header>
+
+          <p
+            class='text-slate-500 dark:text-slate-400 leading-relaxed'
+            set:html={item.description}
+            itemprop='description'
+          />
+
+          <!-- Hidden structured data for skills -->
+          {item.skills.map(skill => (
+            <meta itemprop='skills' content={skill} />
+          ))}
+        </article>
+      ))
+    }
+  </div>
+
+  <!-- Additional structured data -->
+  <meta itemprop='workLocation' content='Atlanta, Georgia' />
+  <meta itemprop='hasOccupation' content='Software Developer' />
+</section>

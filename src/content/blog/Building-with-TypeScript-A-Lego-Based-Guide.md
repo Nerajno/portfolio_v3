@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Building with TypeScript: A Lego-Based Guide for Developers"
+seoDescription: "Explore how TypeScript enhances JavaScript development with Lego analogies, making your code safer, maintainable, and easier to understand."
+author: "Nerando Johnson"
 title: "Building with TypeScript: A Lego-Based Guide"
 snippet: "The article uses Lego analogies to explain how TypeScript enhances JavaScript development: JavaScript is likened to building freely with Legos, while TypeScript adds detailed instructions and quality checks, making code safer and more maintainable."
 image:

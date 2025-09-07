@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Attending Your First Tech Conference: A Practical Guide"
+seoDescription: "Comprehensive tips for first-time tech conference attendees: preparation, networking, and maximizing your experience before, during, and after the event."
+author: "Nerando Johnson"
 title: "So....This is your 1st Tech Conference : #AttendeeEdition"
 snippet: "This article provides comprehensive guidance for first-time tech conference attendees, covering essential aspects from pre-conference preparation (setting clear goals and making plans) to during-conference activities (bringing appropriate gear, taking good notes, and networking) and post-conference follow-up. It emphasizes practical tips like dressing comfortably, staying organized, and using digital networking tools like LinkedIn and Twitter to make meaningful connections."
 image: {
