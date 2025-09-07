@@ -52,14 +52,29 @@ const features = [
   aria-labelledby='features-heading'
   itemscope
   itemtype="https://schema.org/Person">
+  <script type="module">
+    let showContent = false;
+    window.toggleContent = function() {
+      showContent = !showContent;
+      document.getElementById('features-content').style.display = showContent ? 'block' : 'none';
+      document.querySelector('button[aria-controls="features-content"]').setAttribute('aria-expanded', showContent);
+    }
+  </script>
+
+  <div class="flex justify-center">
+    <button
+      class="px-6 py-3 rounded bg-blue-600 text-white font-semibold text-lg hover:bg-blue-700 transition mb-8"
+      onclick="toggleContent()"
+      aria-expanded="false"
+      aria-controls="features-content">
+      Current Craft Characteristics
+    </button>
+  </div>
+
+  <div id="features-content" style="display: none;">
 
   <header class='mb-16'>
-    <h2
-      id='features-heading'
-      class='text-4xl lg:text-5xl font-bold lg:tracking-tight dark:text-white'
-      itemprop='jobTitle'>
-      Current Craft Characteristics
-    </h2>
+    <h2 id='features-heading' class='sr-only'>Current Craft Characteristics</h2>
     <p
       class='text-lg mt-4 text-slate-600 dark:text-slate-400'
       itemprop='description'>
@@ -115,4 +130,5 @@ const features = [
   <!-- Additional structured data -->
   <meta itemprop='workLocation' content='Atlanta, Georgia' />
   <meta itemprop='hasOccupation' content='Software Developer' />
+  </div>
 </section>

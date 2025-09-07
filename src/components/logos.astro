@@ -28,13 +28,29 @@ const technologies = [
   aria-labelledby="technologies-heading"
   itemscope
   itemtype="https://schema.org/Person">
+  <script type="module">
+    let showContent = false;
+    window.toggleTechContent = function() {
+      showContent = !showContent;
+      document.getElementById('logos-content').style.display = showContent ? 'block' : 'none';
+      document.querySelector('button[aria-controls="logos-content"]').setAttribute('aria-expanded', showContent);
+    }
+  </script>
+
+  <div class="flex justify-center">
+    <button
+      class="px-6 py-3 rounded bg-blue-600 text-white font-semibold text-lg hover:bg-blue-700 transition mb-8"
+      onclick="toggleTechContent()"
+      aria-expanded="false"
+      aria-controls="logos-content">
+      Technologies and tools I've worked with
+    </button>
+  </div>
+
+  <div id="logos-content" style="display: none;">
 
   <header>
-    <h2
-      id="technologies-heading"
-      class="text-xl font-semibold text-slate-700 dark:text-slate-200">
-      Technologies & Tools I've Worked With
-    </h2>
+    <h2 id="technologies-heading" class="sr-only">Technologies and tools I've worked with</h2>
     <p class="sr-only">
       A comprehensive list of programming languages, frameworks, tools, and platforms
       that Nerando has experience with as a full-stack developer.
