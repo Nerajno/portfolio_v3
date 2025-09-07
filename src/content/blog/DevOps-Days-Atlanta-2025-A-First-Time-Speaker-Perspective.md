@@ -13,82 +13,124 @@ tags: [astro, tailwindcss, devops, civic-tech, conference]
 
 *This article captures my experience as a first-time speaker at DevOpsDays Atlanta 2025, where I shared insights on civic hacking and community impact. I've included key takeaways from sessions, memorable conversations, and reflections on how the event shaped my perspective on technology and social good. Whether you're a seasoned DevOps professional or new to the community, I hope this account provides value and perhaps inspires your own conference journey.*
 
-## Introduction: Why DevOpsDays Atlanta?
+## Introduction: What is DevOpsDays and Why I Went
 
-DevOpsDays Atlanta 2025 (rebranded “DemingDaysAtlanta” in honor of John Willis) was a convergence of technologists exploring systems thinking, AI in DevOps, and community-driven innovation. For the first time, I attended as both a speaker and participant, gaining new perspectives on technical leadership, collaboration, and civic impact.
+DevOpsDays is a worldwide series of technical conferences covering topics of software development, IT infrastructure operations, and the intersection between them. It's a grassroots event that emphasizes local organizing and community building, typically featuring a mix of presentations, ignite talks, and open spaces for discussion.
+
+I have always been interested in attending since Valerie Regas spoke about it in 2023.  told me about I attended DevOpsDays Atlanta 2025 as both a first-time speaker and participant, eager to learn from the DevOps community, share my own experiences with civic technology, and connect with like-minded professionals who understand the power of technology to drive positive change.
 
 ![Historic Academy of Medicine, Atlanta](https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?&fit=crop&w=430&h=240)
 
-## Arriving as a Newcomer
+## What I Loved About the Format
 
-Walking into the bustling venue, I felt both excitement and curiosity. The central Midtown location was convenient, surrounded by hotels and local amenities. From the lively registration desk to the welcoming badge pickup, fellow attendees shared anticipation for deep learning and networking.
+The conference format was exceptionally well-designed for learning and networking:
+
+### Sessions Well Spaced
+The organizers did an excellent job pacing the day. There was enough time between sessions to process what you'd learned, grab coffee, and have meaningful conversations with other attendees without feeling rushed.
+
+### Ignites (Lightning Talks with a Twist)
+The Ignite format was brilliant—5-minute talks with slides that auto-advance every 15 seconds. This forced speakers to be concise and energetic, creating engaging, rapid-fire presentations that covered a lot of ground quickly.
+
+### Open Spaces
+The Open Spaces sessions reminded me strongly of ThatConf's format. Anyone could propose a topic, and groups would self-organize around discussions that mattered to them. The lack of formal presentations encouraged genuine dialogue and collaborative problem-solving.
+
+### Lunch and Networking
+The venue was perfectly suited for networking. The central layout and ample common areas made it easy to continue conversations from sessions over lunch. The organizers clearly understood that the hallway track is just as valuable as the formal presentations.
 
 *Image Recommendation:* Vibrant shot of busy registration or crowd in the main hall.
 
-## Stellar Speakers and Their Topics
+## Sessions Attended and My Key Takeaways
 
-### Featured Talks
+### Andrew Clay Shafer - "Plan, Do, Study, Act: Life, Learning, Leadership and You"
+Shafer connected Deming's PDSA cycle to personal and professional growth. His insights on treating life as a continuous improvement process resonated deeply—applying systems thinking not just to infrastructure but to our own development as technologists and leaders.
 
-The lineup blended technical depth with cultural transformation—from AI adoption to platform engineering and leadership.[web:12][web:11]
+### Rachel-Lee Nabors - "AI Cram Session"
+This session was intense—my head genuinely hurt afterward, but in the best way possible. Rachel-Lee packed an incredible amount of AI fundamentals into a short time:
+- **AGI (Artificial General Intelligence)** - The theoretical future of AI that matches human cognitive abilities
+- **Perceptrons** - The basic building blocks of neural networks
+- **Tokens** - How AI models break down and process text
+- **Parameters** - The variables that determine how models behave
+- **GPT (Generative Pretrained Transformers)** - The architecture behind modern language models
 
-| Speaker             | Topic                                                                                         |
-|---------------------|-----------------------------------------------------------------------------------------------|
-| John Willis         | Learning from History: The Past as a Compass for Systems Engineers in the Age of AI           |
-| Nathen Harvey       | Unlocking Developer Potential with AI                                                         |
-| Angie Jones         | Modern Mashups: How AI Agents are Reviving the Programmable Web                               |
-| Katie Anderson      | Leading to Learn®: Creating Cultures That Grow People                                         |
-| Andrew C. Shafer    | Plan, Do, Study, Act: Life, Learning, Leadership and You                                      |
-| Chris Stone         | Deploy Without Fear Using Automated Tests                                                     |
-| Kate Holterhoff     | Platform Engineering: Past, Present, and Future                                               |
-| Ruthie Irvin        | Leverage AI so you don't get replaced by it                                                   |
-| Ajuna Kyaruzi       | How to win at Spades... and DevOps                                                           |
+### Nathen Harvey - "DevOps: A Way of Being"
+Harvey presented DevOps not just as a methodology but as a lifestyle and mindset. This philosophical approach to DevOps emphasized culture, collaboration, and continuous learning as core principles that extend beyond the workplace.
+
+### Chris Stone - "Deploy Without Fear Using Automated Tests"
+Stone provided practical strategies for building confidence in deployments through comprehensive automated testing. His emphasis on making deployments boring (in the best way) through predictable, well-tested processes was invaluable.
+
+### Pratik Parikh - "Internal Development Platform - The What, The How and the Why"
+Parikh broke down the components of internal developer platforms, explaining how they can streamline development workflows and improve developer experience. His practical approach to platform engineering was enlightening.
+
+### Justin Reock - "Building 10x Organizations using Modern Productivity Metrics"
+Reock challenged traditional productivity metrics and offered frameworks for measuring what actually matters in software development. His insights on team performance measurement were particularly relevant for technical leadership.
+
+### Ruthie Irvin - "Leverage AI so you don't get replaced by it"
+Irvin provided practical advice on integrating AI tools into daily workflows to enhance rather than replace human capabilities. Her perspective on AI as a collaboration tool was both reassuring and empowering.
 
 *Image Recommendation:* Speaker on-stage/interview photos between sections.
 
-## Cool People Met and Unforgettable Conversations
+## Cool People I Met and What We Discussed
 
-Connecting with John Willis was a highlight; his stories brought Deming’s principles to life.[attached_file:1]
-Debating DevOps career pathways with Katie Anderson and Justin Reock taught me practical organizational strategies.[web:14][web:5]
-Open Space sessions led by Nathen Harvey and Pratik Parikh were highly interactive, encouraging every attendee to pitch and join technical or cultural topics without slides or formality.[web:5]
+The networking at DevOpsDays was exceptional. I had meaningful conversations with:
+
+- **Ajuna Kyaruzi** - Discussed the intersection of DevOps practices and organizational culture
+- **Chris Corriere** - Explored approaches to technical mentorship and community building
+- **Chris Stone** - Continued our conversation about testing strategies and deployment practices
+- **Jason Torres** - Shared experiences with platform engineering implementations
+- **Kate Holterhoff** - Talked about the evolution of platform engineering and its future
+- **Rachel-Lee Nabors** - Dove deeper into AI applications in development workflows
+- **Stacey Grahams** - Discussed diversity and inclusion in tech communities
+- **Calypso** - Explored creative approaches to developer tooling
+- **Angie Jones** - Talked about AI agents and the programmable web
+- **Angela Andrews** - Shared perspectives on technical communication and community engagement
+- **Scooter Phoenix** - Discussed various technical and cultural aspects of DevOps
+- **The Pilot-Developer** - Met a fascinating attendee who was both a commercial pilot and developer. He'd built a custom app to get real-time gate information, demonstrating how technical skills can solve personal pain points in unexpected domains.
 
 *Image Recommendation:* Candid photos of open space discussions and networking moments.
 
-## My Talk: Social Goodness || Civic Hacking – What's in it for me?
+## My Talk: "Social Goodness || Civic Hacking – What's in it for me?"
 
-Delivering my talk opened a new dimension in the event. I shared:
+Delivering my talk was both nerve-wracking and energizing. I shared:
 
 - Stories and lessons from civic hacking—using open data and collaborative coding to improve public services
 - Ways tech professionals can create social benefit and teach others through code sprints, volunteer events, and local mentorship
-- Reflections on community contribution and professional growth gained through civic engagement.
+- Reflections on community contribution and professional growth gained through civic engagement
+
+The audience was engaged and asked thoughtful questions about getting started in civic tech and balancing volunteer work with professional responsibilities.
 
 *Image Recommendation:* Photo presenting to an engaged audience.
 
 ## Technical and Professional Takeaways
 
-DevOpsDays Atlanta refreshed my technical toolkit:
+DevOpsDays Atlanta significantly expanded my understanding of modern DevOps practices:
 
-- Learned best practices for AI in DevOps pipelines and observed practical Ignite talks on platform engineering
-- Joined discussions on the ethical dimensions of AI, collaboration, and continuous improvement—echoing Deming’s and Willis’ “blame the process, not the person” philosophy
-- Experienced the importance of community and openness for career growth and technical advancement
+- **AI Integration**: Learned practical approaches for incorporating AI tools into development workflows without losing human judgment and creativity
+- **Platform Engineering**: Gained insights into building internal developer platforms that actually improve developer experience rather than adding complexity
+- **Testing Culture**: Reinforced the importance of comprehensive automated testing as the foundation of fearless deployments
+- **Metrics That Matter**: Discovered new ways to measure team productivity that focus on outcomes rather than output
+- **Community Building**: Experienced firsthand how well-organized events can foster genuine learning and connection
 
 *Image Recommendation:* Informal gathering, post-session meetup, or closing keynote image.
 
-## Conclusion: From Software to Social Impact
+## Summary: Beyond Code to Community
 
-Attending DevOpsDays Atlanta 2025 as both a speaker and participant transformed my view of technical conferences. I left with actionable DevOps strategies, new friendships, and inspiration to use code for social good.
-If you’re considering a DevOpsDays event—come prepared to learn, share, and grow beyond code.
+Attending DevOpsDays Atlanta 2025 as both a speaker and participant transformed my understanding of technical conferences and the DevOps community. The combination of technical depth, cultural insights, and genuine human connection created an environment where learning felt natural and exciting.
+
+The format—with its well-paced sessions, engaging Ignites, and collaborative Open Spaces—proved that the best technical learning happens in community. Whether you're exploring AI integration, building better deployment practices, or seeking to use technology for social good, DevOpsDays offers a space where all of these conversations can flourish.
+
+If you're considering attending a DevOpsDays event, come prepared to learn not just about tools and processes, but about the people and culture that make great technology possible.
 
 ---
 
 ## Image Placement Recap
 
 - **Venue:** Introduction
-- **Registration/Arrival:** Newcomer section
-- **Speakers:** Speaker section/interspersed
+- **Registration/Arrival:** Format section
+- **Speakers:** Sessions section/interspersed
 - **Networking/Open Spaces:** People met section
 - **Your Talk:** Civic hacking section
 - **Technical Wrap-up:** Takeaways section
 
 ---
 
-**This article blends technical insight, personal storytelling, and actionable advice for fellow developers interested in DevOps, cultural change, and civic engagement.**
+**This article blends technical insight, personal storytelling, and actionable advice for fellow developers interested in DevOps, cultural transformation, and civic engagement.**
