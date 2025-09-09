@@ -9,7 +9,7 @@ import partytown from "@astrojs/partytown";
 import clarityIntegration from 'astro-microsoft-clarity-integration';
 
 export default defineConfig({
-  site: "https://developingdvlpr.com/",
+  site: "https://developingdvlpr.com",
   output: "server",
   adapter: netlify(),
   integrations: [
