@@ -9,13 +9,22 @@ import partytown from "@astrojs/partytown";
 import clarityIntegration from 'astro-microsoft-clarity-integration';
 
 export default defineConfig({
-  site: "https://radiant-sprinkles-d2960e.netlify.app",
+  site: "https://developingdvlpr.com",
   output: "server",
   adapter: netlify(),
   integrations: [
     tailwind(),
     mdx(),
-    sitemap(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'en', 
+        locales: {
+          en: 'en-US', // The `defaultLocale` value must be present as a key in `locales`
+          es: 'es-ES',
+          fr: 'fr-CA',
+        },
+      },
+    }),
     icon({
       include: {
         bx: ["*"],
