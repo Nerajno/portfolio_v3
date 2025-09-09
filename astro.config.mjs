@@ -19,7 +19,7 @@ export default defineConfig({
       i18n: {
         defaultLocale: 'en', 
         locales: {
-          en: 'en-US', // The `defaultLocale` value must present in `locales` keys
+          en: 'en-US', // The `defaultLocale` value must be present as a key in `locales`
           es: 'es-ES',
           fr: 'fr-CA',
         },
