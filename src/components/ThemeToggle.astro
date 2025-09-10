@@ -37,8 +37,7 @@
   </svg>
 </button>
 
-<script>
-  // This script runs after the component is mounted
+<script is:inline>
   function initThemeToggle() {
     const toggleButton = document.getElementById('theme-toggle');
     const sunIcon = document.getElementById('sun-icon');
@@ -56,24 +55,37 @@
       }
     }
 
-    // Initial icon state
-    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    updateIcons(currentTheme);
-
-    // Handle toggle click
-    toggleButton.addEventListener('click', () => {
-      if (window.themeManager) {
-        window.themeManager.toggle();
+    // Get initial theme
+    const getTheme = () => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme');
       }
-    });
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    };
 
-    // Listen for theme changes
-    window.addEventListener('theme-changed', (event) => {
-      updateIcons(event.detail.theme);
+    // Apply theme
+    const applyTheme = (theme) => {
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+      localStorage.setItem('theme', theme);
+      updateIcons(theme);
+    };
+
+    // Initialize
+    const currentTheme = getTheme();
+    applyTheme(currentTheme);
+
+    // Handle toggle
+    toggleButton.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      const newTheme = isDark ? 'light' : 'dark';
+      applyTheme(newTheme);
     });
   }
 
-  // Initialize when DOM is ready
+  // Initialize
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initThemeToggle);
   } else {
