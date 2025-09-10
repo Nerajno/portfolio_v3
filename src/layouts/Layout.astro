@@ -2,6 +2,7 @@
 import { SEO } from 'astro-seo-plugin';
 import Footer from '@components/footer.astro';
 import Navbar from '@components/navbar/navbar.astro';
+import ThemeToggle from '@components/ThemeToggle.astro';
 import '@fontsource-variable/inter/index.css';
 
 export interface Props {
@@ -88,7 +89,7 @@ const makeTitle = title || "Nerando's Portfolio";
 
       gtag('config', 'G-Q3KQF674YW');
     </script>
-    
+
   <!-- Sitemap Info -->
   <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -151,7 +152,6 @@ const makeTitle = title || "Nerando's Portfolio";
         @apply text-blue-500 dark:text-blue-400;
       }
     </style>
-    <!-- Load theme manager after body -->
-    <script src='/src/scripts/theme.js' type='module'></script>
+  <ThemeToggle />
   </body>
 </html>
