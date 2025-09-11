@@ -14,6 +14,7 @@ tags: [speaking, community, polyglot, conference]
 
 ## Prelude
 
+
 ## What is Carolina Code Conference?
 ![Image](https://photos.smugmug.com/2025/C3/Day-2/Stills/i-DgpNZcS/0/KSnVRPMsJLSkGQkpcJqr8s47XP5ffQKvxqf3JtHVw/M/292A0872-M.jpg )
 
