@@ -6,8 +6,8 @@ author: "Nerando Johnson"
 title: "Mastering D3.js for Interactive Data Visualization"
 snippet: "Learn how to harness the power of D3.js to create stunning, interactive data visualizations that go beyond the limitations of traditional tools like Excel."
 image: {
-    src: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?&fit=crop&w=430&h=240",
-    alt: "Data visualization dashboard showing interactive charts and graphs"
+    src: "https://images.pexels.com/photos/414860/pexels-photo-414860.jpeg",
+    alt: "Image of D3.js"
 }
 publishDate: "2025-08-29 12:00"
 category: "Tutorials, Data Visualization, freeCodeCamp"
