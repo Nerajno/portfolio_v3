@@ -3,8 +3,14 @@ draft: false
 title: "Carolina Codes 2025: My First-Time Speaker Experience"
 snippet: "My first-time speaker experience at Carolina Codes 2025, a tech conference that brings together developers, engineers, and technology enthusiasts from across the south east and beyond. I covered the importance of READMEs, favorites, and what I learned from the conference."
 image: {
-    src: "https://photos.smugmug.com/2025/C3/Day-1/Stills/i-vMw7znK/0/L7FTKKxTkgr76w4F9V5SF7tPLfMpQmndgnQvTWNZm/M/IMG_0959-M.jpg",
-    alt: "Carolina Codes 2025"
+    primary: {
+        src: "https://photos.smugmug.com/2025/C3/Day-1/Stills/i-L38zBJr/0/MjD3FV6NN3qsKPQPBDG3SPSNZFNRN2cPRdRFZVwxg/L/IMG_1224-L.jpg",
+        alt: "Carolina Codes 2025"
+    },
+    fallback: {
+        src: "https://photos.smugmug.com/2025/C3/Day-2/Stills/i-DgpNZcS/0/KSnVRPMsJLSkGQkpcJqr8s47XP5ffQKvxqf3JtHVw/M/292A0872-M.jpg",
+        alt: "Audience at Carolina Codes 2025"
+    }
 }
 publishDate: "2025-09-03 12:00"
 category: "Conferences, Speaking, community"
