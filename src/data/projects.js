@@ -17,7 +17,7 @@ const getGrowthStatusConfig = (status) => {
       color: "bg-emerald-600 text-white",
       label: "Completed",
     },
-    completedDemo: {
+    completedDemoSpaceholder: {
       color: "bg-emerald-600 text-white",
       label: "Completed Demo",
     },
