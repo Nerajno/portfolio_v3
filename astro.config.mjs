@@ -17,7 +17,7 @@ export default defineConfig({
     mdx(),
     sitemap({
       i18n: {
-        defaultLocale: 'en', 
+        defaultLocale: 'en',
         locales: {
           en: 'en-US', // The `defaultLocale` value must be present as a key in `locales`
           es: 'es-ES',
@@ -73,6 +73,10 @@ export default defineConfig({
       {
         protocol: "https",
         hostname: "**.pexels.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.smugmug.com",
       },
     ],
   },

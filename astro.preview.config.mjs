@@ -9,7 +9,7 @@ export default defineConfig({
   output: "static",  // Use static output for local preview
   integrations: [tailwind(), mdx(), sitemap()],
   image: {
-    domains: ["picsum.photos"],
+    domains: ["picsum.photos","smugmug.com"],
   },
   markdown: {
     remarkPlugins: [remarkReadingTime],
