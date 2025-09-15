@@ -2,16 +2,9 @@
 draft: false
 title: "Carolina Codes 2025: My First-Time Speaker Experience"
 snippet: "My first-time speaker experience at Carolina Codes 2025, a tech conference that brings together developers, engineers, and technology enthusiasts from across the south east and beyond. I covered the importance of READMEs, favorites, and what I learned from the conference."
-image: {
-    primary: {
-        src: "https://photos.smugmug.com/2025/C3/Day-1/Stills/i-L38zBJr/0/MjD3FV6NN3qsKPQPBDG3SPSNZFNRN2cPRdRFZVwxg/L/IMG_1224-L.jpg",
-        alt: "Carolina Codes 2025"
-    },
-    fallback: {
-        src: "https://photos.smugmug.com/2025/C3/Day-2/Stills/i-DgpNZcS/0/KSnVRPMsJLSkGQkpcJqr8s47XP5ffQKvxqf3JtHVw/M/292A0872-M.jpg",
-        alt: "Audience at Carolina Codes 2025"
-    }
-}
+image:
+  src: "https://photos.smugmug.com/2025/C3/Day-1/Stills/i-L38zBJr/0/MjD3FV6NN3qsKPQPBDG3SPSNZFNRN2cPRdRFZVwxg/L/IMG_1224-L.jpg"
+  alt: "Carolina Codes 2025"
 publishDate: "2025-09-03 12:00"
 category: "Conferences, Speaking, community"
 author: "Nerando Johnson"
@@ -22,7 +15,6 @@ tags: [speaking, community, polyglot, conference]
 
 
 ## What is Carolina Code Conference?
-![Image](https://photos.smugmug.com/2025/C3/Day-2/Stills/i-DgpNZcS/0/KSnVRPMsJLSkGQkpcJqr8s47XP5ffQKvxqf3JtHVw/M/292A0872-M.jpg )
 
 Carolina Code Conference is a tech conference that brings together developers, engineers, and technology enthusiasts from across the south east and beyond. Think of it as a gathering where people who build software and work with technology come together to share what they've learned, built and discover new approaches to solving problems.  The conference covers everything from fundamental programming concepts to cutting-edge AI, with a focus on practical knowledge you can actually use in your work. I personally loved the emphasis on cyber security and the polyglotic  approach to the content delivered. This year's conference was held at the magnificent [Flywheel Coworking building](https://www.flywheelgreenvillesc.com/) in Greenville, SC.
 
