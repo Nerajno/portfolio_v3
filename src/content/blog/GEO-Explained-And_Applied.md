@@ -3,7 +3,7 @@ draft: true
 title: "Generative Engine Optimization (GEO): Explained and Applied"
 snippet: "Master the art of optimizing content for AI-powered search engines and chatbots. Learn how GEO differs from traditional SEO and why it's essential for modern software developers."
 image: {
-    src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?&fit=cropgit s&w=430&h=240",
+    src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?&fit=crop&w=430&h=240",
     alt: "AI and search optimization"
 }
 publishDate: "2025-09-11 12:00"
