@@ -17,7 +17,7 @@ const getGrowthStatusConfig = (status) => {
       color: "bg-emerald-600 text-white",
       label: "Completed",
     },
-    completedDemo: {
+    completedDemoSpaceholder: {
       color: "bg-emerald-600 text-white",
       label: "Completed Demo",
     },
@@ -161,7 +161,7 @@ const projects = {
       website: "https://trapper-keepr.fly.dev/",
       caseStudyUrl: "/case-study/trapper-keeper",
       lastUpdated: "2022-01-01",
-      status: "completedDemo",
+      status: "completedDemoSpaceholder",
       metrics: {
         users: "150+",
         performance: "< 2s",
@@ -263,7 +263,7 @@ const projects = {
       website: "https://theburble.netlify.app/",
       caseStudyUrl: "/case-study/burble",
       lastUpdated: "2024-12-28",
-      status: "completedDemo",
+      status: "completedDemoSpaceholder",
       metrics: {
         users: "300+",
         performance: "< 1.5s",
@@ -366,7 +366,7 @@ const projects = {
       website: "https://nerajno.github.io/Terminus/",
       caseStudyUrl: "/case-study/terminus",
       lastUpdated: "2024-12-29",
-      status: "completedDemo",
+      status: "completedDemoSpaceholder",
       metrics: {
         users: "50+",
         performance: "< 1s",
