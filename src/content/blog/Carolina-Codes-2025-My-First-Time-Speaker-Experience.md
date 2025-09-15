@@ -11,9 +11,6 @@ author: "Nerando Johnson"
 tags: [speaking, community, polyglot, conference]
 ---
 
-## Prelude
-
-
 ## What is Carolina Code Conference?
 
 Carolina Code Conference is a tech conference that brings together developers, engineers, and technology enthusiasts from across the south east and beyond. Think of it as a gathering where people who build software and work with technology come together to share what they've learned, built and discover new approaches to solving problems.  The conference covers everything from fundamental programming concepts to cutting-edge AI, with a focus on practical knowledge you can actually use in your work. I personally loved the emphasis on cyber security and the polyglotic  approach to the content delivered. This year's conference was held at the magnificent [Flywheel Coworking building](https://www.flywheelgreenvillesc.com/) in Greenville, SC.
