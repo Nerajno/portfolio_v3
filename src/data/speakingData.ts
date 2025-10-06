@@ -25,7 +25,29 @@ interface SpeakingEvent {
 
 export const speakingData: SpeakingEvent[] = [
   {
-    id: "magnolia-2025", 
+    "id": "atldevcon-2025",
+    "title": "Back to Basics: Essential JavaScript Foundations for Modern Framework Development",
+    "name": "ATL DevCon 2025",
+    "description": "In an era where AI and tech influencers often promote jumping directly into framework development, this talk emphasizes the critical importance of mastering JavaScript fundamentals before diving into frameworks like Vue.js. Drawing from real-world experience transitioning into Vue 3 development, we'll explore why solid JavaScript foundations are crucial for effective framework usage. Through practical demonstrations and real-world examples, we'll examine how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example. This session will help developers understand why 'learning to walk before running' in JavaScript is essential for long-term success in framework development.",
+    "date": "2025-10-11",
+    "image": "/images/other_images/Speaker_me.jpeg",
+    "seoDescription": "ATL DevCon 2025 – Master JavaScript fundamentals before diving into modern frameworks with Nerando Johnson's back-to-basics approach.",
+    "location": {
+      "city": "Atlanta",
+      "state": "Georgia",
+      "country": "USA",
+      "venue": "Kennesaw State University – Marietta Campus"
+    },
+    "type": "conference",
+    "tags": ["javascript", "vue.js", "fundamentals", "frameworks", "software development"],
+    "links": {
+      "conferenceWebsite": "https://www.atldevcon.com/",
+       //"sessionPage": "https://www.atldevcon.com/sessions",
+      "article": "https://dev.to/nerajno/11-javascript-fundamentals-for-vue-developers-42a1"
+    }
+  },
+  {
+    id: "magnolia-2025",
     title: "Negotiation is the Key... A Little Violence and Ice-Cream ",
     name: "Magnolia Conf 2025",
     description:
@@ -68,7 +90,8 @@ export const speakingData: SpeakingEvent[] = [
     links: {
       conferenceWebsite: "https://blog.carolina.codes/",
       slides: "https://docs.google.com/presentation/d/1kApJFrA2JIRtAUpU098jnpQmfmY3vVKz/edit?usp=drive_link&ouid=101977102167064448578&rtpof=true&sd=true",
-      article: "https://developingdvlpr.com/blog/and-it-was-written/"
+      article: "https://developingdvlpr.com/blog/and-it-was-written/",
+      video: "https://youtu.be/Y6uvmibXZww?si=IHoUv0DOPLDunWkr"
     },
   },
   {
