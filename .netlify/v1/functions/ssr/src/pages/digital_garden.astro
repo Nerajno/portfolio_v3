@@ -1,0 +1,184 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import Sectionhead from '@components/sectionhead.astro';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import { AstroSEO } from 'astro-seo-plugin';
+import Ava from '@assets/images/gardening.png';
+
+// SEO data for this page
+const pageTitle = "Digital Garden - Growing Ideas and Knowledge";
+const pageDescription = "Discover what a digital garden is and how it helps track progress, grow ideas, and share knowledge. A place where thoughts can be planted, nurtured and shared with the world.";
+const pageUrl = "https://developingdvlpr.com/digital_garden";
+const imageUrl = "https://developingdvlpr.com/images/gardening.png";
+---
+
+<Layout title='Digital Garden'>
+ <!-- SEO Component in Head -->
+ <AstroSEO
+ title={pageTitle}
+ description={pageDescription}
+ canonical={pageUrl}
+ openGraph={{
+   title: pageTitle,
+   description: pageDescription,
+   image: imageUrl,
+   type: "article",
+   url: pageUrl,
+   siteName: "DevelopingDvlpr"
+ }}
+ twitter={{
+   card: "summary_large_image",
+   site: "@nerajno",
+   creator: "@nerajno",
+   title: pageTitle,
+   description: pageDescription,
+   image: imageUrl
+ }}
+ jsonLd={{
+   "@context": "https://schema.org",
+   "@type": "Article",
+   headline: pageTitle,
+   description: pageDescription,
+   image: imageUrl,
+   author: {
+     "@type": "Person",
+     name: "Nerando Johnson"
+   },
+   publisher: {
+     "@type": "Organization",
+     name: "DevelopingDvlpr"
+   },
+   datePublished: "2025-06-01", // TODO: Come update this when I can automate it with actual publish date
+   dateModified: "2025-09-01"   // See Above
+ }}
+ robots={{
+   index: true,
+   follow: true,
+   noarchive: false,
+   nosnippet: false,
+   maxSnippet: 200,
+ }}
+ additionalLinkTags={[
+   { rel: "canonical", href: pageUrl },
+   { rel: "preconnect", href: "https://fonts.googleapis.com" }
+ ]}
+ additionalMetaTags={[
+   {
+     name: "keywords",
+     content: "digital garden, knowledge management, personal growth, learning, note-taking, ideas, thoughts, agriculture, gardening metaphor"
+   },
+   {
+     name: "author",
+     content: "Nerando Johnson" // Replace with your name
+   },
+   {
+     property: "article:section",
+     content: "Technology"
+   },
+   {
+     property: "article:tag",
+     content: "digital garden, knowledge management, learning"
+   }
+ ]}
+/>
+
+
+  <Container>
+    <Sectionhead>
+      <Fragment slot='title'>What is a Digital Garden ?</Fragment>
+      <!-- <Fragment slot='desc'>An over-view of my "why" for using a digital garden, what it is  and links to other relevent tooling. </Fragment> -->
+      <Fragment slot='desc'
+        >Discontent is the first step in the progress of a man or a nation. -
+        Oscar Wilde</Fragment
+      >
+    </Sectionhead>
+
+    <div class='max-w-4xl mx-auto mt-16'>
+      <div class='md:flex md:items-center gap-16 mb-10'>
+        <div class='text-pretty leading-9'>
+          <h2 class='text-4xl font-bold mb-4'>Progress is a process.</h2>
+          <div class='text-lg text-slate-500'>
+            <p class='mb-4'>
+              I have started and stopped over the years a couple times well,
+              ended up with flashcards, notes and github repos with half
+              finished or unexplained ideas. This kinda left a bitter taste in
+              my mouth, as I was not able to track my progress/growth and it
+              comes off as somewhat unprofessional. Let's not even talk about
+              the imposter syndrome that comes with it. Coming across the
+              concept of a digital garden and with a background in agriculture,
+              I was intrigued by the idea of a place to grow ideas, record my
+              thoughts and share them with the world, a digital garden.
+            </p>
+            <p class='mb-4'>
+              My digital garden is a place where I can plant, nuture and grow my
+              thoughts, ideas, and notes. It is a place where I can grow my
+              knowledge and share it with the world. It is a place where I can
+              be myself and express myself freely~ish. Here is a link to its
+              current iteration, <a
+                href='https://garden.developingdvlpr.com/'
+                class='animate-pulse text-blue-500 dark:text-blue-400 font-semibold hover:underline'
+                target='_blank'
+                rel='noopener'>
+                my digital garden.</a
+              >
+            </p>
+            <p class='mb-4'>
+              So here are some resources that I have found useful in creating my
+              digital garden:
+            </p>
+            <ul class='list-inside mb-4'>
+              <li>
+                <a
+                  href='https://maggieappleton.com/garden-history'
+                  target='_blank'
+                  rel='noopener'
+                  class='text-blue-500 animate-bounce dark:text-blue-400 font-semibold hover:underline'
+                  >Why it's important to have a digital garden <Icon
+                    class='w-5 h-5'
+                    style='display: inline;'
+                    name='bx:link-external'
+                  />.</a
+                >
+              </li>
+              <li>
+                <a
+                  href='https://joelhooks.com/digital-garden'
+                  target='_blank'
+                  rel='noopener'
+                  class='text-blue-500 dark:text-blue-400 font-semibold hover:underline'
+                  >A good example of a digital garden <Icon
+                    class='w-5 h-5'
+                    style='display: inline;'
+                    name='bx:link-external'
+                  />.</a
+                >
+              </li>
+              <li>
+                <a
+                  href='https://nesslabs.com/digital-garden-setup'
+                  target='_blank'
+                  rel='noopener'
+                  class='text-blue-500 dark:text-blue-400 font-semibold hover:underline'
+                  >Resources for setting up a digital garden <Icon
+                    class='w-5 h-5'
+                    style='display: inline;'
+                    name='bx:link-external'
+                  />.</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Image
+          src={Ava}
+          alt='image of a garden'
+          height={700}
+          width={400}
+          class='rounded-3xl mx-4 md:mx-0'
+        />
+      </div>
+    </div>
+  </Container>
+</Layout>

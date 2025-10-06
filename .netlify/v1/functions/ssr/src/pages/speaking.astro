@@ -1,0 +1,85 @@
+---
+import { AstroSEO } from 'astro-seo-plugin';
+import Layout from '../layouts/Layout.astro';
+import Container from '../components/container.astro';
+import Sectionhead from '../components/sectionhead.astro';
+import EventListWithExpand from '../components/eventlistwithexpand.astro';
+import { speakingData } from '../data/speakingData';
+import type { ProcessedEvent } from '../types';
+
+const seo = {
+  title: 'Speaking Engagements – Nerando Johnson',
+  description: 'Join me at upcoming events or explore past presentations. Discover my speaking engagements, conference talks, and workshops in tech, open source, and professional development.',
+  canonical: 'https://developingdvlpr.com/speaking',
+  openGraph: {
+    title: 'Speaking Engagements – Nerando Johnson',
+    description: 'Explore upcoming and past talks, workshops, and conferences by Nerando Johnson.',
+    url: 'https://developingdvlpr.com/speaking',
+    type: 'website',
+    images: [
+      {
+        url: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Nerando Johnson Speaking Engagements',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Speaking Engagements – Nerando Johnson',
+    description: 'Explore upcoming and past talks, workshops, and conferences by Nerando Johnson.',
+    image: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+  },
+  keywords: [
+    'Nerando Johnson', 'speaking', 'conference', 'talk', 'workshop', 'keynote', 'events', 'tech', 'public speaking', 'open source', 'career', 'professional development'
+  ],
+};
+
+
+// Process and sort events
+const now = new Date();
+
+const processedEvents: ProcessedEvent[] = speakingData.map((event) => {
+  const eventDate = new Date(event.date);
+  if (isNaN(eventDate.getTime())) {
+    throw new Error(`Invalid date for event: ${event.title}`);
+  }
+
+  return {
+    ...event,
+    status: eventDate > now ? 'upcoming' : 'past',
+  };
+});
+---
+
+<AstroSEO {...seo} />
+<Layout title='Speaking Engagements'>
+  <Container>
+    <Sectionhead>
+      <Fragment slot='title'>Speaking Engagements</Fragment>
+      <Fragment slot='desc' class='text-slate-500 dark:text-slate-400'>
+        Join me at upcoming events or explore past presentations.
+      </Fragment>
+    </Sectionhead>
+
+    <img
+      src='/other_images/Speaker_me.jpeg'
+      alt='Photo of the speaker giving a presentation at an event'
+      class='mx-auto w-full max-w-md h-auto mt-16 rounded-lg shadow'
+    />
+
+    <div class='flex flex-col gap-3 mx-auto max-w-4xl mt-16'>
+      <p class='text-lg leading-relaxed text-slate-500 dark:text-slate-400'>
+        I regularly speak at conferences, meetups and do some workshops at the
+        intersection of software development, my developer experience, and
+        creating inclusive tech communities. Here you'll find my upcoming
+        speaking engagements and some of my past events.
+      </p>
+    </div>
+
+    <div class='mx-auto max-w-4xl mt-12'>
+      <EventListWithExpand events={processedEvents} />
+    </div>
+  </Container>
+</Layout>
