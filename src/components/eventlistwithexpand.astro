@@ -1,0 +1,151 @@
+---
+// src/components/EventListWithExpand.astro
+import type { ProcessedEvent } from '../types';
+import EventCard from './eventcard.astro';
+
+interface Props {
+  events: ProcessedEvent[];
+}
+
+const { events } = Astro.props;
+
+const upcomingEvents = events
+  .filter(event => event.status === 'upcoming')
+  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+const pastEvents = events
+  .filter(event => event.status === 'past')
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Get the first 5 past events for initial display
+const initialPastEvents = pastEvents.slice(0, 5);
+const remainingPastEvents = pastEvents.slice(5);
+---
+
+<div class="space-y-16">
+  {upcomingEvents.length > 0 && (
+    <section aria-labelledby="upcoming-events-heading">
+      <h2 id="upcoming-events-heading" class="text-3xl font-bold mb-8 text-gray-900 dark:text-gray-100">
+        Upcoming Events
+      </h2>
+      <div class="space-y-8">
+        {upcomingEvents.map(event => (
+          <EventCard {...event} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {pastEvents.length > 0 && (
+    <section aria-labelledby="past-events-heading">
+      <h2 id="past-events-heading" class="text-3xl font-bold mb-8 text-gray-900 dark:text-gray-100">
+        Past Events
+      </h2>
+
+      <!-- Initial visible past events -->
+      <div class="space-y-8" id="initial-past-events">
+        {initialPastEvents.map(event => (
+          <EventCard {...event} />
+        ))}
+      </div>
+
+      <!-- Hidden remaining past events -->
+      {remainingPastEvents.length > 0 && (
+        <>
+          <div class="space-y-8 hidden" id="remaining-past-events">
+            {remainingPastEvents.map(event => (
+              <EventCard {...event} />
+            ))}
+          </div>
+
+          <!-- Expand/Collapse button -->
+          <div class="mt-8 text-center">
+            <button
+              id="toggle-past-events"
+              class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+              aria-expanded="false"
+              aria-controls="remaining-past-events"
+            >
+              <span class="button-text">View All Past Events</span>
+              <svg
+                class="ml-2 w-5 h-5 transition-transform duration-200 expand-icon"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {/* <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              <span class="remaining-count">{remainingPastEvents.length}</span> more past events
+            </p> */}
+          </div>
+        </>
+      )}
+    </section>
+  )}
+
+  {events.length === 0 && (
+    <p class="text-center text-gray-500 py-12">No events found.</p>
+  )}
+</div>
+
+<style>
+  #remaining-past-events {
+    transition: all 0.3s ease-in-out;
+  }
+
+  #remaining-past-events.show {
+    display: block !important;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .expand-icon.rotated {
+    transform: rotate(180deg);
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('toggle-past-events');
+    const remainingEvents = document.getElementById('remaining-past-events');
+    const buttonText = toggleButton?.querySelector('.button-text');
+    const expandIcon = toggleButton?.querySelector('.expand-icon');
+    const remainingCount = document.querySelector('.remaining-count')?.parentElement;
+
+    if (toggleButton && remainingEvents) {
+      toggleButton.addEventListener('click', () => {
+        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+
+        if (!isExpanded) {
+          // Expand
+          remainingEvents.classList.remove('hidden');
+          remainingEvents.classList.add('show');
+          toggleButton.setAttribute('aria-expanded', 'true');
+          if (buttonText) buttonText.textContent = 'Show Less';
+          if (expandIcon) expandIcon.classList.add('rotated');
+          if (remainingCount) remainingCount.style.display = 'none';
+        } else {
+          // Collapse
+          remainingEvents.classList.add('hidden');
+          remainingEvents.classList.remove('show');
+          toggleButton.setAttribute('aria-expanded', 'false');
+          if (buttonText) buttonText.textContent = 'View All Past Events';
+          if (expandIcon) expandIcon.classList.remove('rotated');
+          if (remainingCount) remainingCount.style.display = 'block';
+        }
+      });
+    }
+  });
+</script>

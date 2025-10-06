@@ -1,19 +1,22 @@
 ---
+// src/pages/speaking.astro
 import { AstroSEO } from 'astro-seo-plugin';
 import Layout from '../layouts/Layout.astro';
 import Container from '../components/container.astro';
 import Sectionhead from '../components/sectionhead.astro';
-import EventList from '../components/eventlist.astro';
+import EventListWithExpand from '../components/eventlistwithexpand.astro';
+import MediaAccordion from '../components/mediaAccordion.astro';
 import { speakingData } from '../data/speakingData';
+import { otherMediaData } from '../data/otherMediaData';
 import type { ProcessedEvent } from '../types';
 
 const seo = {
-  title: 'Speaking Engagements – Nerando Johnson',
-  description: 'Join me at upcoming events or explore past presentations. Discover my speaking engagements, conference talks, and workshops in tech, open source, and professional development.',
+  title: 'Speaking & Media – Nerando Johnson',
+  description: 'Explore my speaking engagements, conference talks, workshops, podcasts, interviews, and other media appearances in tech, open source, and professional development.',
   canonical: 'https://developingdvlpr.com/speaking',
   openGraph: {
-    title: 'Speaking Engagements – Nerando Johnson',
-    description: 'Explore upcoming and past talks, workshops, and conferences by Nerando Johnson.',
+    title: 'Speaking & Media – Nerando Johnson',
+    description: 'Discover upcoming events, past talks, and media appearances by Nerando Johnson.',
     url: 'https://developingdvlpr.com/speaking',
     type: 'website',
     images: [
@@ -21,21 +24,22 @@ const seo = {
         url: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Nerando Johnson Speaking Engagements',
+        alt: 'Nerando Johnson Speaking & Media',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Speaking Engagements – Nerando Johnson',
-    description: 'Explore upcoming and past talks, workshops, and conferences by Nerando Johnson.',
+    title: 'Speaking & Media – Nerando Johnson',
+    description: 'Explore talks, workshops, podcasts, and media appearances by Nerando Johnson.',
     image: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
   },
   keywords: [
-    'Nerando Johnson', 'speaking', 'conference', 'talk', 'workshop', 'keynote', 'events', 'tech', 'public speaking', 'open source', 'career', 'professional development'
+    'Nerando Johnson', 'speaking', 'conference', 'talk', 'workshop', 'keynote',
+    'events', 'tech', 'public speaking', 'open source', 'career', 'professional development',
+    'podcast', 'interview', 'media', 'articles'
   ],
 };
-
 
 // Process and sort events
 const now = new Date();
@@ -51,35 +55,112 @@ const processedEvents: ProcessedEvent[] = speakingData.map((event) => {
     status: eventDate > now ? 'upcoming' : 'past',
   };
 });
+
+// Sort other media by date (newest first)
+const sortedMedia = [...otherMediaData].sort((a, b) =>
+  new Date(b.date).getTime() - new Date(a.date).getTime()
+);
 ---
 
 <AstroSEO {...seo} />
-<Layout title='Speaking Engagements'>
+<Layout title='Speaking & Media'>
   <Container>
     <Sectionhead>
-      <Fragment slot='title'>Speaking Engagements</Fragment>
+      <Fragment slot='title'>Speaking & Media</Fragment>
       <Fragment slot='desc' class='text-slate-500 dark:text-slate-400'>
-        Join me at upcoming events or explore past presentations.
+        Discover my talks, workshops, and media appearances across the tech community.
       </Fragment>
     </Sectionhead>
 
     <img
       src='/other_images/Speaker_me.jpeg'
-      alt='Photo of the speaker giving a presentation at an event'
+      alt='Photo of Nerando Johnson giving a presentation at a tech event'
       class='mx-auto w-full max-w-md h-auto mt-16 rounded-lg shadow'
     />
 
     <div class='flex flex-col gap-3 mx-auto max-w-4xl mt-16'>
       <p class='text-lg leading-relaxed text-slate-500 dark:text-slate-400'>
-        I regularly speak at conferences, meetups and do some workshops at the
-        intersection of software development, my developer experience, and
-        creating inclusive tech communities. Here you'll find my upcoming
-        speaking engagements and some of my past events.
+        I regularly speak at conferences, meetups, and workshops at the
+        intersection of software development, developer experience, and
+        creating inclusive tech communities. I also share insights through
+        podcasts, interviews, and written content. Here you'll find my upcoming
+        speaking engagements, past events, and other media appearances.
       </p>
     </div>
 
-    <div class='mx-auto max-w-4xl mt-12'>
-      <EventList events={processedEvents} />
+    <!-- Speaking Engagements Section -->
+    <div class='mx-auto max-w-4xl mt-16'>
+      <div class="mb-12">
+        <h2 class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Speaking Engagements
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400">
+          Conference talks, workshops, and meetup presentations
+        </p>
+      </div>
+      <EventListWithExpand events={processedEvents} />
+    </div>
+
+    <!-- Other Media Section -->
+    <div class='mx-auto max-w-4xl mt-20'>
+      <div class="border-t border-gray-200 dark:border-slate-700 pt-16">
+        <div class="mb-12">
+          <h2 class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+            Other Media
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            Podcasts, interviews, articles, and recorded content
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          {sortedMedia.length > 0 ? (
+            sortedMedia.map((media, index) => (
+              <MediaAccordion media={media} index={index} />
+            ))
+          ) : (
+            <p class="text-center text-gray-500 py-8">
+              Media content coming soon...
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="mx-auto max-w-4xl mt-20 mb-12">
+      <div class="bg-blue-50/50 dark:bg-slate-800/50 rounded-xl p-8 text-center border border-blue-100 dark:border-slate-700 shadow-sm">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Interested in Having Me Speak?
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto leading-relaxed">
+          I'm available for speaking engagements on topics including JavaScript fundamentals,
+          Vue.js development, open source contribution, civic hacking, and building inclusive
+          developer communities.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a
+            href="/contact"
+            class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Get in Touch
+          </a>
+          <a
+            href="https://linkedin.com/in/nerando-johnson"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 border border-gray-200 dark:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700/50 text-gray-700 dark:text-gray-300 font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            Connect on LinkedIn
+          </a>
+        </div>
+      </div>
     </div>
   </Container>
 </Layout>
