@@ -12,6 +12,9 @@ author: "Nerando Johnson"
 tags: [GEO, AI, optimization, search, chatbots]
 ---
 
+*This article documents my exploration of Generative Engine Optimization (GEO)—from understanding its differences with SEO to implementing structured data for AI discoverability. Written in a technical style for developers, I publish this first on my [blog](https://developingdvlpr.com/blog) before sharing to dev.to and LinkedIn.*
+
+
 GEO (Generative Engine Optimization) is a cutting-edge method for making website content discoverable and referenced by AI-powered engines and chatbots. As digital discovery expands from traditional search engines to conversational AI integrations, GEO ensures content is visible not just in search rankings but also in direct answers delivered by generative models like ChatGPT, Qwen,  Claude Opus, Google Gemini among others.
 
 ## What Is GEO?
