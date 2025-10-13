@@ -7,82 +7,143 @@ import { Icon } from 'astro-icon/components';
 import { AstroSEO } from 'astro-seo-plugin';
 import Ava from '@assets/images/gardening.png';
 
-// SEO data for this page
-const pageTitle = "Digital Garden - Growing Ideas and Knowledge";
-const pageDescription = "Discover what a digital garden is and how it helps track progress, grow ideas, and share knowledge. A place where thoughts can be planted, nurtured and shared with the world.";
-const pageUrl = "https://developingdvlpr.com/digital_garden";
-const imageUrl = "https://developingdvlpr.com/images/gardening.png";
+// Enhanced SEO Configuration with GEO best practices
+const seoConfig = {
+  title: 'Digital Garden - Nerando Johnson | Growing Ideas and Knowledge in Software Development',
+  description:
+    'Explore Nerando Johnson\'s digital garden - a dynamic space for cultivating software development ideas, tracking learning progress, and sharing knowledge. Discover insights on Vue3, JavaScript, front-end development, and the journey of continuous learning.',
+  canonical: 'https://developingdvlpr.com/digital_garden',
+  openGraph: {
+    basic: {
+      title: 'Digital Garden - Growing Ideas and Knowledge | Nerando Johnson',
+      type: 'article',
+      image: 'https://developingdvlpr.com/images/gardening.png',
+      url: 'https://developingdvlpr.com/digital_garden',
+    },
+    optional: {
+      description:
+        'A curated space where software development thoughts are planted, nurtured, and grown. Join Nerando Johnson in exploring the digital garden approach to knowledge management and continuous learning.',
+      siteName: 'Developing Developer',
+      locale: 'en_US',
+    },
+    article: {
+      publishedTime: '2025-06-01T00:00:00Z',
+      modifiedTime: '2025-09-01T00:00:00Z',
+      author: 'Nerando Johnson',
+      section: 'Technology',
+      tag: ['digital garden', 'knowledge management', 'learning', 'software development', 'Vue3', 'personal growth'],
+    },
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@nerajno',
+    creator: '@nerajno',
+    title: 'Digital Garden - Growing Ideas & Knowledge in Software Development',
+    description:
+      'Discover my digital garden approach to learning and knowledge sharing. A place where software development ideas grow organically.',
+    image: 'https://developingdvlpr.com/images/gardening.png',
+  },
+  extend: {
+    meta: [
+      { name: 'author', content: 'Nerando Johnson' },
+      {
+        name: 'keywords',
+        content:
+          'digital garden, knowledge management, personal growth, learning in public, software development, Vue3, JavaScript, front-end development, note-taking, Zettelkasten, second brain, continuous learning, developer blog, Atlanta developer',
+      },
+      { name: 'robots', content: 'index, follow' },
+      { property: 'og:locale', content: 'en_US' },
+      { name: 'theme-color', content: '#1e293b' },
+      { name: 'geo.region', content: 'US-GA' },
+      { name: 'geo.placename', content: 'Atlanta' },
+      // Article-specific meta tags
+      { property: 'article:author', content: 'Nerando Johnson' },
+      { property: 'article:section', content: 'Technology' },
+      { property: 'article:published_time', content: '2025-06-01T00:00:00Z' },
+      { property: 'article:modified_time', content: '2025-09-01T00:00:00Z' },
+    ],
+  },
+};
+
+// Structured data for better GEO (JSON-LD)
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Digital Garden - Growing Ideas and Knowledge',
+  description:
+    'Explore the concept of a digital garden and how it helps track progress, grow ideas, and share knowledge in software development.',
+  image: 'https://developingdvlpr.com/images/gardening.png',
+  datePublished: '2025-06-01T00:00:00Z',
+  dateModified: '2025-09-01T00:00:00Z',
+  author: {
+    '@type': 'Person',
+    '@id': 'https://developingdvlpr.com/#nerando-johnson',
+    name: 'Nerando Johnson',
+    jobTitle: 'Software Developer',
+    url: 'https://developingdvlpr.com',
+    sameAs: [
+      'https://www.linkedin.com/in/nerando-johnson/',
+      'https://twitter.com/nerajno',
+      'https://github.com/Nerajno',
+    ],
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Nerando Johnson',
+    url: 'https://developingdvlpr.com',
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://developingdvlpr.com/digital_garden',
+  },
+  keywords: [
+    'digital garden',
+    'knowledge management',
+    'learning',
+    'software development',
+    'personal growth',
+    'Vue3',
+    'JavaScript',
+    'front-end development',
+    'note-taking',
+    'Atlanta software developer',
+    'Nerando Johnson'
+  ],
+  about: [
+    {
+      '@type': 'Thing',
+      name: 'Digital Garden',
+      description: 'A method of organizing and sharing knowledge that emphasizes growth and exploration over formal publication',
+    },
+    {
+      '@type': 'Thing',
+      name: 'Knowledge Management',
+      description: 'Systems and practices for capturing, developing, sharing, and effectively using knowledge',
+    },
+  ],
+  mentions: [
+    {
+      '@type': 'WebSite',
+      name: 'Nerando Johnson\'s Digital Garden',
+      url: 'https://garden.developingdvlpr.com/',
+    },
+  ],
+};
 ---
 
 <Layout title='Digital Garden'>
- <!-- SEO Component in Head -->
- <AstroSEO
- title={pageTitle}
- description={pageDescription}
- canonical={pageUrl}
- openGraph={{
-   title: pageTitle,
-   description: pageDescription,
-   image: imageUrl,
-   type: "article",
-   url: pageUrl,
-   siteName: "DevelopingDvlpr"
- }}
- twitter={{
-   card: "summary_large_image",
-   site: "@nerajno",
-   creator: "@nerajno",
-   title: pageTitle,
-   description: pageDescription,
-   image: imageUrl
- }}
- jsonLd={{
-   "@context": "https://schema.org",
-   "@type": "Article",
-   headline: pageTitle,
-   description: pageDescription,
-   image: imageUrl,
-   author: {
-     "@type": "Person",
-     name: "Nerando Johnson"
-   },
-   publisher: {
-     "@type": "Organization",
-     name: "DevelopingDvlpr"
-   },
-   datePublished: "2025-06-01", // TODO: Come update this when I can automate it with actual publish date
-   dateModified: "2025-09-01"   // See Above
- }}
- robots={{
-   index: true,
-   follow: true,
-   noarchive: false,
-   nosnippet: false,
-   maxSnippet: 200,
- }}
- additionalLinkTags={[
-   { rel: "canonical", href: pageUrl },
-   { rel: "preconnect", href: "https://fonts.googleapis.com" }
- ]}
- additionalMetaTags={[
-   {
-     name: "keywords",
-     content: "digital garden, knowledge management, personal growth, learning, note-taking, ideas, thoughts, agriculture, gardening metaphor"
-   },
-   {
-     name: "author",
-     content: "Nerando Johnson" // Replace with your name
-   },
-   {
-     property: "article:section",
-     content: "Technology"
-   },
-   {
-     property: "article:tag",
-     content: "digital garden, knowledge management, learning"
-   }
- ]}
-/>
+  <!-- SEO Component in Head -->
+  <AstroSEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={seoConfig.extend}
+  />
+
+  <!-- Structured Data for GEO -->
+  <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
 
 
   <Container>
@@ -120,7 +181,8 @@ const imageUrl = "https://developingdvlpr.com/images/gardening.png";
                 href='https://garden.developingdvlpr.com/'
                 class='animate-pulse text-blue-500 dark:text-blue-400 font-semibold hover:underline'
                 target='_blank'
-                rel='noopener'>
+                rel='noopener noreferrer'
+                aria-label='Visit Nerando Johnson\'s digital garden'>
                 my digital garden.</a
               >
             </p>
@@ -133,39 +195,42 @@ const imageUrl = "https://developingdvlpr.com/images/gardening.png";
                 <a
                   href='https://maggieappleton.com/garden-history'
                   target='_blank'
-                  rel='noopener'
+                  rel='noopener noreferrer'
                   class='text-blue-500 animate-bounce dark:text-blue-400 font-semibold hover:underline'
+                  aria-label='Read about the history and importance of digital gardens by Maggie Appleton'
                   >Why it's important to have a digital garden <Icon
                     class='w-5 h-5'
                     style='display: inline;'
                     name='bx:link-external'
-                  />.</a
+                  /></a
                 >
               </li>
               <li>
                 <a
                   href='https://joelhooks.com/digital-garden'
                   target='_blank'
-                  rel='noopener'
+                  rel='noopener noreferrer'
                   class='text-blue-500 dark:text-blue-400 font-semibold hover:underline'
+                  aria-label='Explore Joel Hooks digital garden example'
                   >A good example of a digital garden <Icon
                     class='w-5 h-5'
                     style='display: inline;'
                     name='bx:link-external'
-                  />.</a
+                  /></a
                 >
               </li>
               <li>
                 <a
                   href='https://nesslabs.com/digital-garden-setup'
                   target='_blank'
-                  rel='noopener'
+                  rel='noopener noreferrer'
                   class='text-blue-500 dark:text-blue-400 font-semibold hover:underline'
+                  aria-label='Learn how to set up your own digital garden from Ness Labs'
                   >Resources for setting up a digital garden <Icon
                     class='w-5 h-5'
                     style='display: inline;'
                     name='bx:link-external'
-                  />.</a
+                  /></a
                 >
               </li>
             </ul>
