@@ -10,35 +10,120 @@ import { speakingData } from '../data/speakingData';
 import { otherMediaData } from '../data/otherMediaData';
 import type { ProcessedEvent } from '../types';
 
-const seo = {
-  title: 'Speaking & Media – Nerando Johnson',
-  description: 'Explore my speaking engagements, conference talks, workshops, podcasts, interviews, and other media appearances in tech, open source, and professional development.',
+// Enhanced SEO with GEO optimization
+const seoConfig = {
+  title: 'Speaking & Media – Nerando Johnson - Tech Speaker & Educator',
+  description: 'Explore Nerando Johnson\'s speaking engagements, conference talks, workshops, podcasts, interviews, and other media appearances in tech, open source, and professional development.',
   canonical: 'https://developingdvlpr.com/speaking',
   openGraph: {
-    title: 'Speaking & Media – Nerando Johnson',
-    description: 'Discover upcoming events, past talks, and media appearances by Nerando Johnson.',
-    url: 'https://developingdvlpr.com/speaking',
-    type: 'website',
-    images: [
-      {
-        url: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
-        width: 1200,
-        height: 630,
-        alt: 'Nerando Johnson Speaking & Media',
-      }
-    ],
+    basic: {
+      title: 'Speaking & Media – Nerando Johnson',
+      type: 'website',
+      image: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+      url: 'https://developingdvlpr.com/speaking',
+    },
+    optional: {
+      description: 'Discover upcoming events, past talks, and media appearances by Nerando Johnson. Conference talks, workshops, podcasts, and interviews about JavaScript, Vue3, open source, and developer communities.',
+      siteName: 'Developing Developer',
+      locale: 'en_US',
+    },
+    image: {
+      url: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+      width: 1200,
+      height: 630,
+      alt: 'Nerando Johnson Speaking & Media',
+    },
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@nerajno',
+    creator: '@nerajno',
     title: 'Speaking & Media – Nerando Johnson',
-    description: 'Explore talks, workshops, podcasts, and media appearances by Nerando Johnson.',
+    description: 'Explore talks, workshops, podcasts, and media appearances by Nerando Johnson covering JavaScript, Vue3, open source, and building inclusive developer communities.',
     image: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
   },
-  keywords: [
-    'Nerando Johnson', 'speaking', 'conference', 'talk', 'workshop', 'keynote',
-    'events', 'tech', 'public speaking', 'open source', 'career', 'professional development',
-    'podcast', 'interview', 'media', 'articles'
-  ],
+  extend: {
+    meta: [
+      { name: 'author', content: 'Nerando Johnson' },
+      { name: 'keywords', content: 'Nerando Johnson, tech speaker, conference talks, workshops, JavaScript, Vue.js, open source, developer communities, podcasts, tech interviews, public speaking, Atlanta speaker' },
+      { name: 'robots', content: 'index, follow' },
+      { property: 'og:locale', content: 'en_US' },
+      { name: 'theme-color', content: '#1e293b' },
+      { name: 'geo.region', content: 'US-GA' },
+      { name: 'geo.placename', content: 'Atlanta' },
+      // GEO-specific meta tags
+      { property: 'profile:first_name', content: 'Nerando' },
+      { property: 'profile:last_name', content: 'Johnson' },
+      { property: 'profile:username', content: 'nerajno' },
+    ],
+  },
+};
+
+// Structured data for better AI understanding (GEO optimization)
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Nerando Johnson',
+    url: 'https://developingdvlpr.com',
+    image: 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+    jobTitle: 'Software Developer & Tech Speaker',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Software Development Industry',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Atlanta',
+      addressRegion: 'GA',
+      addressCountry: 'US',
+    },
+    knowsAbout: [
+      'JavaScript',
+      'Vue.js',
+      'Vue3',
+      'React',
+      'Front-End Development',
+      'Open Source',
+      'Developer Experience',
+      'Technical Speaking',
+      'Developer Communities',
+      'Inclusive Tech',
+    ],
+    sameAs: [
+      'https://github.com/Nerajno',
+      'https://twitter.com/nerajno',
+      'https://www.linkedin.com/in/nerando-johnson/',
+    ],
+    description: 'Software developer and tech speaker based in Atlanta. Speaks at conferences, meetups, and workshops about JavaScript fundamentals, Vue.js development, open source contribution, civic hacking, and building inclusive developer communities.',
+  },
+  about: {
+    '@type': 'ItemList',
+    name: 'Speaking Topics',
+    itemListElement: [
+      {
+        '@type': 'Thing',
+        name: 'JavaScript Fundamentals',
+      },
+      {
+        '@type': 'Thing',
+        name: 'Vue.js Development',
+      },
+      {
+        '@type': 'Thing',
+        name: 'Open Source Contribution',
+      },
+      {
+        '@type': 'Thing',
+        name: 'Civic Hacking',
+      },
+      {
+        '@type': 'Thing',
+        name: 'Inclusive Developer Communities',
+      },
+    ],
+  },
 };
 
 // Process and sort events
@@ -62,8 +147,18 @@ const sortedMedia = [...otherMediaData].sort((a, b) =>
 );
 ---
 
-<AstroSEO {...seo} />
 <Layout title='Speaking & Media'>
+  <AstroSEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={seoConfig.extend}
+  />
+
+  <!-- Structured Data for GEO -->
+  <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
   <Container>
     <Sectionhead>
       <Fragment slot='title'>Speaking & Media</Fragment>
