@@ -1,5 +1,7 @@
 ---
 draft: false
+seoTitle: "Carolina Codes 2025: My First-Time Speaker Experience and Conference Insights"
+seoDescription: "A comprehensive first-time speaker's perspective on Carolina Codes 2025 in Greenville, SC. Learn about keynote talks on AI fundamentals, software development practices, gamification psychology, and valuable networking experiences at this southeast tech conference."
 title: "Carolina Codes 2025: My First-Time Speaker Experience"
 snippet: "My first-time speaker experience at Carolina Codes 2025, a tech conference that brings together developers, engineers, and technology enthusiasts from across the south east and beyond. I covered the importance of READMEs, favorites, and what I learned from the conference."
 image:

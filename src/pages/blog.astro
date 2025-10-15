@@ -52,13 +52,20 @@ const seoConfig = {
     openGraph={seoConfig.openGraph}
     twitter={seoConfig.twitter}
     extend={{
-      // Additional meta tags
+      // Additional meta tags with GEO optimization
       meta: [
         { name: "robots", content: "index, follow" },
         { name: "author", content: "Nerando Johnson" },
         { name: "keywords", content: "blog, programming, web development, learning, technology, tutorials" },
         { property: "article:author", content: "Nerando Johnson" },
         { property: "article:section", content: "Technology" },
+        { property: "og:locale", content: "en_US" },
+        { name: "theme-color", content: "#1e293b" },
+        // Additional meta tags (GEO, OpenGraph profile, etc.)
+        { name: "geo.region", content: "US-GA" },
+        { name: "geo.placename", content: "Atlanta" },
+        { property: "profile:first_name", content: "Nerando" },
+        { property: "profile:last_name", content: "Johnson" },
       ],
       // JSON-LD structured data
       link: [
@@ -67,7 +74,7 @@ const seoConfig = {
     }}
   />
 
-  <!-- JSON-LD Structured Data for Blog -->
+  <!-- JSON-LD Structured Data for Blog with GEO optimization -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -77,7 +84,19 @@ const seoConfig = {
     "author": {
       "@type": "Person",
       "name": "Nerando Johnson",
-      "url": Astro.site?.toString()
+      "url": Astro.site?.toString(),
+      "jobTitle": "Software Developer",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Atlanta",
+        "addressRegion": "GA",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://github.com/Nerajno",
+        "https://twitter.com/nerajno",
+        "https://www.linkedin.com/in/nerando-johnson/"
+      ]
     },
     "publisher": {
       "@type": "Organization",

@@ -31,28 +31,96 @@ if (notFound) {
   description={project.description || `Learning project: ${project.title} by Nerando Johnson.`}
   canonical={`https://developingdvlpr.com/learning-projects/${project.id}`}
   openGraph={{
-    title: `${project.title} | Learning Project | Nerando Johnson`,
-    description: project.description || `Learning project: ${project.title} by Nerando Johnson.`,
-    url: `https://developingdvlpr.com/learning-projects/${project.id}`,
-    images: [
-      {
-        url: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
-        width: 1200,
-        height: 630,
-        alt: `${project.title} cover image`
-      }
-    ]
+    basic: {
+      title: `${project.title} | Learning Project | Nerando Johnson`,
+      type: 'article',
+      image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+      url: `https://developingdvlpr.com/learning-projects/${project.id}`,
+    },
+    optional: {
+      description: project.description || `Learning project: ${project.title} by Nerando Johnson.`,
+      siteName: 'Developing Developer',
+      locale: 'en_US',
+    },
+    article: {
+      author: 'Nerando Johnson',
+      section: 'Technology',
+      tag: project.tags || [],
+    },
   }}
   twitter={{
     card: "summary_large_image",
+    site: "@nerajno",
+    creator: "@nerajno",
     title: `${project.title} | Learning Project | Nerando Johnson`,
     description: project.description || `Learning project: ${project.title} by Nerando Johnson.`,
     image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg'
   }}
-  additionalMetaTags={[
-    { name: "keywords", content: `learning project, ${project.title}, case study, developer, Nerando Johnson` }
-  ]}
+  extend={{
+    meta: [
+      { name: "keywords", content: `learning project, ${project.title}, case study, developer, Nerando Johnson, ${project.tags?.join(', ') || ''}` },
+      { name: "author", content: "Nerando Johnson" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:locale", content: "en_US" },
+      { name: "theme-color", content: "#1e293b" },
+      { name: "geo.region", content: "US-GA" },
+      { name: "geo.placename", content: "Atlanta" },
+      // GEO-specific meta tags
+      { property: "article:author", content: "Nerando Johnson" },
+      { property: "profile:first_name", content: "Nerando" },
+      { property: "profile:last_name", content: "Johnson" },
+      { property: "profile:username", content: "nerajno" },
+    ],
+  }}
 />
+
+<!-- Structured Data for GEO -->
+<script type='application/ld+json' set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  name: project.title,
+  description: project.description || `Learning project: ${project.title}`,
+  image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+  author: {
+    "@type": "Person",
+    name: "Nerando Johnson",
+    url: "https://developingdvlpr.com",
+    jobTitle: "Software Developer",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Atlanta",
+      addressRegion: "GA",
+      addressCountry: "US",
+    },
+    sameAs: [
+      "https://github.com/Nerajno",
+      "https://twitter.com/nerajno",
+      "https://www.linkedin.com/in/nerando-johnson/",
+    ],
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Nerando Johnson",
+    url: "https://developingdvlpr.com",
+  },
+  url: `https://developingdvlpr.com/learning-projects/${project.id}`,
+  educationalLevel: "Beginner to Intermediate",
+  learningResourceType: "Project",
+  keywords: project.tags?.join(', ') || 'software development, learning project',
+  teaches: project.tags || [],
+  about: {
+    "@type": "SoftwareApplication",
+    name: project.title,
+    description: project.description,
+    applicationCategory: "WebApplication",
+    url: project.demo || project.github,
+  },
+  hasPart: caseStudy.features?.map((feature, index) => ({
+    "@type": "LearningResource",
+    position: index + 1,
+    name: feature,
+  })) || [],
+})} />
 
 <Layout title={`${project.title} - Learning Project`}>
   <Container>

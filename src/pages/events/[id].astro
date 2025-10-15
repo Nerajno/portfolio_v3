@@ -2,6 +2,7 @@
 import { speakingData } from '../../data/speakingData.js';
 import Layout from '../../layouts/Layout.astro';
 import Container from '../../components/container.astro';
+import { AstroSEO } from 'astro-seo-plugin';
 // import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
@@ -13,9 +14,98 @@ export async function getStaticPaths() {
 
 const { event } = Astro.props;
 export const prerender = true;
+
+// Enhanced SEO with GEO optimization
+const seoConfig = {
+  title: `${event.title} - Nerando Johnson Speaking Engagement`,
+  description: event.description || `${event.title} at ${event.name}. Speaking engagement by Nerando Johnson on ${event.date} in ${event.location}.`,
+  canonical: `https://developingdvlpr.com/events/${event.id}`,
+  openGraph: {
+    basic: {
+      title: `${event.title} - Nerando Johnson`,
+      type: 'article',
+      image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+      url: `https://developingdvlpr.com/events/${event.id}`,
+    },
+    optional: {
+      description: event.description || `${event.title} at ${event.name}. Speaking engagement by Nerando Johnson.`,
+      siteName: 'Developing Developer',
+      locale: 'en_US',
+    },
+    article: {
+      publishedTime: event.date,
+      author: 'Nerando Johnson',
+    },
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@nerajno',
+    creator: '@nerajno',
+    title: `${event.title} - Nerando Johnson`,
+    description: event.description || `${event.title} at ${event.name}`,
+    image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+  },
+  extend: {
+    meta: [
+      { name: 'author', content: 'Nerando Johnson' },
+      { name: 'keywords', content: `${event.title}, Nerando Johnson, speaking, tech conference, ${event.name}, ${event.location}` },
+      { name: 'robots', content: 'index, follow' },
+      { property: 'og:locale', content: 'en_US' },
+      { name: 'theme-color', content: '#1e293b' },
+      { name: 'geo.region', content: 'US-GA' },
+      { name: 'geo.placename', content: 'Atlanta' },
+      // OpenGraph article and profile meta tags
+      { property: 'article:author', content: 'Nerando Johnson' },
+      { property: 'profile:first_name', content: 'Nerando' },
+      { property: 'profile:last_name', content: 'Johnson' },
+    ],
+  },
+};
+
+// Structured data for Event (GEO optimization)
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: event.title,
+  description: event.description || `${event.title} at ${event.name}`,
+  startDate: event.date,
+  location: {
+    '@type': 'Place',
+    name: event.location,
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: event.name,
+  },
+  performer: {
+    '@type': 'Person',
+    name: 'Nerando Johnson',
+    url: 'https://developingdvlpr.com',
+    jobTitle: 'Software Developer & Tech Speaker',
+    sameAs: [
+      'https://github.com/Nerajno',
+      'https://twitter.com/nerajno',
+      'https://www.linkedin.com/in/nerando-johnson/',
+    ],
+  },
+  image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+  url: `https://developingdvlpr.com/events/${event.id}`,
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+};
 ---
 
 <Layout title={event.title}>
+  <AstroSEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={seoConfig.extend}
+  />
+
+  <!-- Structured Data for GEO -->
+  <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
   <Container>
     <div class='max-w-4xl mx-auto mt-12'>
       <!-- {

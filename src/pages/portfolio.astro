@@ -21,35 +21,115 @@ const allProjects = [
 const allTags = [
   ...new Set(allProjects.flatMap((project) => project.tags)),
 ].sort();
+
+// Enhanced SEO Configuration with GEO optimization
+const seoConfig = {
+  title: "Portfolio Projects | Nerando Johnson - Software Developer Case Studies",
+  description: "Explore detailed case studies of technical projects, problem-solving processes, and real-world impact by Nerando Johnson. Vue3, React, and JavaScript development projects.",
+  canonical: "https://developingdvlpr.com/portfolio",
+  openGraph: {
+    basic: {
+      title: "Portfolio Projects | Nerando Johnson",
+      type: "website",
+      image: "https://developingdvlpr.com/images/og-portfolio.jpg",
+      url: "https://developingdvlpr.com/portfolio",
+    },
+    optional: {
+      description: "Explore detailed case studies of technical projects, problem-solving processes, and real-world impact. Vue3, React, JavaScript development.",
+      siteName: "Developing Developer",
+      locale: "en_US",
+    },
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@nerajno",
+    creator: "@nerajno",
+    title: "Portfolio Projects | Nerando Johnson",
+    description: "Explore detailed case studies of technical projects by Nerando Johnson. Vue3, React, and JavaScript development.",
+    image: "https://developingdvlpr.com/images/og-portfolio.jpg"
+  },
+  extend: {
+    meta: [
+      { name: "keywords", content: "portfolio, projects, case studies, developer, Nerando Johnson, Vue3, React, JavaScript, front-end development, software development" },
+      { name: "author", content: "Nerando Johnson" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:locale", content: "en_US" },
+      { name: "theme-color", content: "#1e293b" },
+      { name: "geo.region", content: "US-GA" },
+      { name: "geo.placename", content: "Atlanta" },
+      // GEO-specific meta tags
+      { property: "profile:first_name", content: "Nerando" },
+      { property: "profile:last_name", content: "Johnson" },
+      { property: "profile:username", content: "nerajno" },
+    ],
+  },
+};
+
+// Structured data for GEO optimization
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Portfolio Projects - Nerando Johnson",
+  description: "A collection of software development projects with detailed case studies showcasing problem-solving, technical decisions, and measurable outcomes.",
+  url: "https://developingdvlpr.com/portfolio",
+  author: {
+    "@type": "Person",
+    name: "Nerando Johnson",
+    url: "https://developingdvlpr.com",
+    jobTitle: "Software Developer",
+    email: "nerando@developingdvlpr.com",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Atlanta",
+      addressRegion: "GA",
+      addressCountry: "US",
+    },
+    knowsAbout: [
+      "Vue3",
+      "React",
+      "JavaScript",
+      "Front-End Development",
+      "Software Architecture",
+      "Web Development",
+    ],
+    sameAs: [
+      "https://github.com/Nerajno",
+      "https://twitter.com/nerajno",
+      "https://www.linkedin.com/in/nerando-johnson/",
+    ],
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: allProjects.slice(0, 10).map((project, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "CreativeWork",
+        name: project.title,
+        description: project.description,
+        url: `https://developingdvlpr.com/case-study/${project.id}`,
+        author: {
+          "@type": "Person",
+          name: "Nerando Johnson",
+        },
+      },
+    })),
+  },
+};
 ---
 
 <AstroSEO
-  title="Portfolio Projects | Nerando Johnson"
-  description="Explore detailed case studies of technical projects, problem-solving processes, and real-world impact by Nerando Johnson."
-  canonical="https://developingdvlpr.com/portfolio"
-  openGraph={{
-    title: "Portfolio Projects | Nerando Johnson",
-    description: "Explore detailed case studies of technical projects, problem-solving processes, and real-world impact by Nerando Johnson.",
-    url: "https://developingdvlpr.com/portfolio",
-    images: [
-      {
-        url: "https://developingdvlpr.com/images/og-portfolio.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Nerando Johnson Portfolio Projects"
-      }
-    ]
-  }}
-  twitter={{
-    card: "summary_large_image",
-    title: "Portfolio Projects | Nerando Johnson",
-    description: "Explore detailed case studies of technical projects by Nerando Johnson.",
-    image: "https://developingdvlpr.com/images/og-portfolio.jpg"
-  }}
-  additionalMetaTags={[
-    { name: "keywords", content: "portfolio, projects, case studies, developer, Nerando Johnson" }
-  ]}
+  title={seoConfig.title}
+  description={seoConfig.description}
+  canonical={seoConfig.canonical}
+  openGraph={seoConfig.openGraph}
+  twitter={seoConfig.twitter}
+  extend={seoConfig.extend}
 />
+
+<!-- Structured Data for GEO -->
+<script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
+
 
 <Layout title='Projects'>
   <Container>

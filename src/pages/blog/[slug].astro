@@ -116,6 +116,13 @@ const seoConfig = {
             entry.data.updatedDate?.toISOString() ||
             entry.data.publishDate.toISOString(),
         },
+        // Additional meta tags
+        { property: 'og:locale', content: 'en_US' },
+        { name: 'theme-color', content: '#1e293b' },
+        { name: 'geo.region', content: 'US-GA' },
+        { name: 'geo.placename', content: 'Atlanta' },
+        { property: 'profile:first_name', content: 'Nerando' },
+        { property: 'profile:last_name', content: 'Johnson' },
         // Reading time meta tag
         ...(remarkPluginFrontmatter?.minutesRead
           ? [
@@ -157,7 +164,19 @@ const seoConfig = {
       author: {
         '@type': 'Person',
         name: entry.data.author,
-        url: `${Astro.site}about`, // Update with your about page URL
+        url: `${Astro.site}about`,
+        jobTitle: 'Software Developer',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Atlanta',
+          addressRegion: 'GA',
+          addressCountry: 'US',
+        },
+        sameAs: [
+          'https://github.com/Nerajno',
+          'https://twitter.com/nerajno',
+          'https://www.linkedin.com/in/nerando-johnson/',
+        ],
       },
       publisher: {
         '@type': 'Organization',

@@ -2,6 +2,7 @@
 import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
 import projectsData from '../../data/projects';
+import { AstroSEO } from 'astro-seo-plugin';
 
 export const prerender = true;
 
@@ -28,9 +29,114 @@ if (!project || !project.case_study) {
 }
 
 const caseStudy = project.case_study;
+
+// Enhanced SEO with GEO optimization
+const seoConfig = {
+  title: `${project.title} - Case Study | Nerando Johnson`,
+  description: caseStudy.overview || `Detailed case study of ${project.title}. Explore the problem-solving process, technical decisions, architecture, and real-world impact.`,
+  canonical: `https://developingdvlpr.com/case-study/${project.id}`,
+  openGraph: {
+    basic: {
+      title: `${project.title} - Case Study | Nerando Johnson`,
+      type: 'article',
+      image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+      url: `https://developingdvlpr.com/case-study/${project.id}`,
+    },
+    optional: {
+      description: caseStudy.overview || `Case study: ${project.title}. Problem-solving, technical architecture, and measurable outcomes.`,
+      siteName: 'Developing Developer',
+      locale: 'en_US',
+    },
+    article: {
+      author: 'Nerando Johnson',
+      section: 'Technology',
+      tag: project.tags || [],
+    },
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@nerajno',
+    creator: '@nerajno',
+    title: `${project.title} - Case Study`,
+    description: caseStudy.overview || `Case study: ${project.title}`,
+    image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+  },
+  extend: {
+    meta: [
+      { name: 'author', content: 'Nerando Johnson' },
+      { name: 'keywords', content: `${project.title}, case study, ${project.tags?.join(', ') || 'software development'}, Nerando Johnson, portfolio` },
+      { name: 'robots', content: 'index, follow' },
+      { property: 'og:locale', content: 'en_US' },
+      { name: 'theme-color', content: '#1e293b' },
+      { name: 'geo.region', content: 'US-GA' },
+      { name: 'geo.placename', content: 'Atlanta' },
+      // GEO-specific meta tags
+      { property: 'article:author', content: 'Nerando Johnson' },
+      { property: 'profile:first_name', content: 'Nerando' },
+      { property: 'profile:last_name', content: 'Johnson' },
+      { property: 'profile:username', content: 'nerajno' },
+    ],
+  },
+};
+
+// Structured data for GEO optimization
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: `${project.title} - Case Study`,
+  description: caseStudy.overview || `Case study of ${project.title}`,
+  image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+  author: {
+    '@type': 'Person',
+    name: 'Nerando Johnson',
+    url: 'https://developingdvlpr.com',
+    jobTitle: 'Software Developer',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Atlanta',
+      addressRegion: 'GA',
+      addressCountry: 'US',
+    },
+    sameAs: [
+      'https://github.com/Nerajno',
+      'https://twitter.com/nerajno',
+      'https://www.linkedin.com/in/nerando-johnson/',
+    ],
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Nerando Johnson',
+    url: 'https://developingdvlpr.com',
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `https://developingdvlpr.com/case-study/${project.id}`,
+  },
+  url: `https://developingdvlpr.com/case-study/${project.id}`,
+  keywords: project.tags?.join(', ') || 'software development',
+  about: {
+    '@type': 'SoftwareApplication',
+    name: project.title,
+    description: project.description || project.subtitle,
+    applicationCategory: 'WebApplication',
+    url: project.website || project.github,
+  },
+  proficiencyLevel: caseStudy.tech_stack ? 'Intermediate to Advanced' : undefined,
+};
 ---
 
 <Layout title={`${project.title} - Case Study`}>
+  <AstroSEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={seoConfig.extend}
+  />
+
+  <!-- Structured Data for GEO -->
+  <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
   <Container>
     <main class='max-w-4xl mx-auto py-8'>
       <!-- Header -->

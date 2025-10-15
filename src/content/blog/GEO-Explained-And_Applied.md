@@ -1,5 +1,7 @@
 ---
 draft: false
+seoTitle: "Generative Engine Optimization (GEO) Explained: AI-Powered Search Strategy for Developers"
+seoDescription: "Master GEO (Generative Engine Optimization) to make your content discoverable by AI chatbots like ChatGPT, Claude, and Gemini. Learn the key differences between GEO and traditional SEO, plus implementation strategies for modern search visibility."
 title: "Generative Engine Optimization (GEO): Explained"
 snippet: "Master the art of optimizing content for AI-powered search engines and chatbots. Learn how GEO differs from traditional SEO and why it's essential for modern software developers."
 image: {
