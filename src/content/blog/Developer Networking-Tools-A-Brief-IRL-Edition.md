@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Developer Networking Tools: Unconventional Ways to Build Your Network"
+seoDescription: "Explore three unconventional tools for developer networking: tech-branded clothing, volunteering, and community engagement. Learn how these strategies can boost your career."
+author: "Nerando Johnson"
 title: "Developer Networking Tools : A Brief IRL Edition"
 snippet: "Developers can build their professional network using three unconventional tools: wearing tech-branded clothing, volunteering at events, and staying active in developer communities. These methods create natural opportunities to meet other developers and industry professionals without the awkwardness of traditional networking. The connections you make through these activities can lead to new job opportunities, mentorship, and professional growth."
 image: {

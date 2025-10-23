@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "Lessons from Senior Developers: Key Takeaways for Growth"
+seoDescription: "Insights from interviews with senior developers on specialization, cloud computing, project practice, and staying motivated in your coding journey."
+author: "Nerando Johnson"
 title: "My Takeaways From Sit-Downs with Senior Devs"
 snippet: "The author interviewed two experienced developers, Esterling Accime and Niya Panamdanam. Esterling highlighted the value of specializing in a tech stack, understanding cloud computing, and practicing regularly through projects and teaching. Niya emphasized gaining experience with production code through freelancing and civic hacking, consistently building projects, and staying motivated by remembering one's purpose in coding."
 image: {

@@ -1,7 +1,8 @@
 ---
-import { SEO } from 'astro-seo';
+import { SEO } from 'astro-seo-plugin';
 import Footer from '@components/footer.astro';
 import Navbar from '@components/navbar/navbar.astro';
+import ThemeToggle from '@components/ThemeToggle.astro';
 import '@fontsource-variable/inter/index.css';
 
 export interface Props {
@@ -50,33 +51,49 @@ const makeTitle = title || "Nerando's Portfolio";
         document.documentElement.classList.add(theme);
       })();
     </script>
-    <!-- GA4 -->
+    <!-- GA4 || Google Analytics -->
     <script
       is:inline
-      src='https://www.googletagmanager.com/gtag/js?id=G-DNCBJVR432'></script>
-    <script>
-      declare global {
-        interface Window {
-          dataLayer: Record<string, any>[];
-          gtag: (...args: any[]) => void;
-        }
-      }
-      // This is the important part!
-      document.addEventListener('astro:page-load', () => {
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function gtag(...args: any[]) {
-          window.dataLayer.push(arguments);
-        };
-        window.gtag('js', new Date());
-        window.gtag('consent', 'default', {
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied',
-          analytics_storage: 'denied',
-        });
-        window.gtag('config', 'G-DNCBJVR432');
-      });
+      type='text/partytown'
+      src='https://www.googletagmanager.com/gtag/js?id=G-Q3KQF674YW'></script>
+
+    <!-- Clarity || Microsoft Clarity -->
+    <script type='text/javascript'>
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', 'stp4iad9du');
     </script>
+    <script type='text/partytown'>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      // This is the important part
+      gtag('consent', 'default', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted',
+      });
+
+      gtag('config', 'G-Q3KQF674YW');
+    </script>
+
+  <!-- Sitemap Info -->
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' href='/my_favicon.ico' />
     <meta name='generator' content={Astro.generator} />
@@ -135,7 +152,5 @@ const makeTitle = title || "Nerando's Portfolio";
         @apply text-blue-500 dark:text-blue-400;
       }
     </style>
-    <!-- Load theme manager after body -->
-    <script src='/src/scripts/theme.js' type='module'></script>
   </body>
 </html>

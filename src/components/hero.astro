@@ -6,53 +6,72 @@ import { Icon } from 'astro-icon/components';
 ---
 
 <main
-  class='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'>
+  class='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'
+  role='main'
+  aria-labelledby='hero-heading'>
+
   <div class='py-6 md:order-1'>
     <Picture
       src={heroImage}
-      alt='Image of Nerando'
+      alt='Professional headshot of Nerando, a software developer specializing in Vue.js and JavaScript front-end development'
       widths={[200, 400, 600]}
       sizes='(max-width: 800px) 100vw, 620px'
       loading='eager'
       format='avif'
     />
   </div>
-  <div>
+
+  <div itemscope itemtype="https://schema.org/Person">
     <h1
-      class='text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'>
+      id='hero-heading'
+      class='text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'
+      itemprop='name'>
       Hi, I am Nerando
     </h1>
-    <h2></h2>
-    <p class='text-medium mt-4 text-black-400 dark:text-gray-300 max-w-xl'>
-      I am a software developer currently working in the front-end in Vue and
-      JavaScript space. Previously worked on the MERN stack with a little PM and
-      DevOps skills thrown in. Outside of tech, I am bookworm with a spatula
+
+    <h2 class='sr-only'>Software Developer & Frontend Specialist</h2>
+
+    <p class='text-medium mt-4 text-black-400 dark:text-gray-300 max-w-xl' itemprop='description'>
+      I am a <span itemprop='jobTitle'>software developer</span> currently working in the front-end in
+      <span itemprop='knowsAbout'>Vue and JavaScript</span> space. Previously worked on the
+      <span itemprop='knowsAbout'>MERN stack</span> with a little
+      <span itemprop='knowsAbout'>PM and DevOps</span> skills thrown in. Outside of tech, I am a bookworm with a spatula
       among other things.
     </p>
+
     <div class='mt-6 flex flex-col sm:flex-row gap-3'>
       <Link
         href='https://garden.developingdvlpr.com/note/crops-growing'
         target='_blank'
         rel='noopener noreferrer'
-        class='text-slate-300 hover:font-bold bg-slate-900 dark:text-slate-700 dark:hover:text-slate-500 dark:bg-slate-200 flex gap-1 items-center justify-center'>
+        class='text-slate-300 hover:font-bold bg-slate-900 dark:text-slate-700 dark:hover:text-slate-500 dark:bg-slate-200 flex gap-1 items-center justify-center'
+        aria-label='View what Nerando is currently learning in his digital garden'>
         <Icon
           class='text-slate-300 hover:text-slate-600 dark:text-slate-700 dark:hover:text-slate-500 w-5 h-5'
           name='bx:bxs-cloud-download'
+          aria-hidden='true'
         />
         Currently Learning
       </Link>
+
       <Link
         style='outline'
         href='https://garden.developingdvlpr.com/note/stuff-building-2025'
         target='_blank'
         rel='noopener noreferrer'
-        class='flex gap-1 items-center justify-center border dark:hover:bg-gray-700 border-slate-500 dark:border-slate-300 dark:text-slate-300 hover:text-slate-600 hover:font-bold dark:bg-gray-600'>
+        class='flex gap-1 items-center justify-center border dark:hover:bg-gray-700 border-slate-500 dark:border-slate-300 dark:text-slate-300 hover:text-slate-600 hover:font-bold dark:bg-gray-600'
+        aria-label='View what Nerando is currently building in 2025'>
         <Icon
           class='text-slate-500 dark:text-slate-300 w-4 h-4'
           name='bx:bxl-github'
+          aria-hidden='true'
         />
         Currently Building
       </Link>
     </div>
+
+    <!-- Hidden structured data for better SEO -->
+    <meta itemprop='url' content='https://developingdvlpr.com' />
+    <meta itemprop='sameAs' content='https://garden.developingdvlpr.com' />
   </div>
 </main>

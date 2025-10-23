@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "11 Lessons Learned in 11 Months: Growth Reflections for Developers"
+seoDescription: "A reflection on 11 valuable lessons learned during a year in a new tech role, from embracing discomfort to mastering TypeScript and self-care."
+author: "Nerando Johnson"
 title: "11 in 11: Concepts Learnt or Relearnt from Zero Day"
 snippet: "A reflection on valuable lessons learned during 11 months in a new tech role, covering everything from embracing \"comfortable discomfort\" to mastering TypeScript enums, container queries, and the importance of self-care in tech."
 image: {

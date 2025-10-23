@@ -6,21 +6,170 @@ import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
 import Layout from '@layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import { AstroSEO } from 'astro-seo-plugin';
+
+// Enhanced SEO Configuration with GEO optimization
+const seoConfig = {
+  title: "Contact Nerando Johnson - Let's Connect & Collaborate",
+  description:
+    'Get in touch with Nerando Johnson, software developer in Atlanta. Available for collaboration, mentoring, technical consulting, or just to chat about tech and development.',
+  canonical: 'https://developingdvlpr.com/contact',
+  openGraph: {
+    basic: {
+      title: 'Contact Nerando Johnson - Software Developer',
+      type: 'website',
+      image: 'https://developingdvlpr.com/assets/Banner_for_site.png',
+      url: 'https://developingdvlpr.com/contact',
+    },
+    optional: {
+      description:
+        'Connect with Nerando Johnson for collaboration, mentoring, or technical consulting. Software developer currently specializing in Vue3 and operating as a junior.',
+      siteName: 'Developing Developer',
+      locale: 'en_US',
+    },
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@nerajno',
+    creator: '@nerajno',
+    title: "Contact Nerando Johnson - Let's Connect",
+    description:
+      'Get in touch for collaboration, mentoring, or technical consulting. Front-end developer in Atlanta.',
+    image: 'https://developingdvlpr.com/assets/Banner_for_site.png',
+  },
+  extend: {
+    meta: [
+      { name: 'author', content: 'Nerando Johnson' },
+      {
+        name: 'keywords',
+        content:
+          'contact developer, front-end developer Atlanta, software developer, Vue3 developer, technical consulting, mentoring, collaboration',
+      },
+      { name: 'robots', content: 'index, follow' },
+      { property: 'og:locale', content: 'en_US' },
+      { name: 'theme-color', content: '#1e293b' },
+      { name: 'geo.region', content: 'US-GA' },
+      { name: 'geo.placename', content: 'Atlanta' },
+      { name: 'contact:email', content: 'nerando@developingdvlpr.com' },
+      // GEO-specific meta tags
+      { property: 'og:type', content: 'profile' },
+      { property: 'profile:first_name', content: 'Nerando' },
+      { property: 'profile:last_name', content: 'Johnson' },
+      { property: 'profile:username', content: 'nerajno' },
+    ],
+  },
+};
+
+// Structured data for ContactPage (GEO optimization)
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Nerando Johnson',
+    url: 'https://developingdvlpr.com',
+    email: 'nerando@developingdvlpr.com',
+    jobTitle: 'Software Developer',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Atlanta',
+      addressRegion: 'GA',
+      addressCountry: 'US',
+    },
+    sameAs: [
+      'https://www.linkedin.com/in/nerando-johnson/',
+      'https://twitter.com/nerajno',
+      'https://github.com/Nerajno',
+      'https://calendly.com/nerandojohnsontech/consults',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'Professional',
+      email: 'nerando@developingdvlpr.com',
+      availableLanguage: 'English',
+    },
+  },
+  about: {
+    '@type': 'Service',
+    serviceType: 'Software Development',
+    provider: {
+      '@type': 'Person',
+      name: 'Nerando Johnson',
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Atlanta',
+      containedInPlace: {
+        '@type': 'State',
+        name: 'Georgia',
+      },
+    },
+    offers: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Technical Consulting',
+          description: 'Front-end development consulting specializing in Vue3 and React',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Developer Mentoring',
+          description: 'One-on-one mentorship for junior developers',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Collaboration',
+          description: 'Software development collaboration and project work',
+        },
+      },
+    ],
+  },
+};
 ---
 
 <Layout title='Contact'>
+  <AstroSEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={seoConfig.extend}
+  />
+
+  <!-- Structured Data for GEO -->
+  <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
+
   <Container>
     <Sectionhead>
       <Fragment slot='title'>Contact</Fragment>
-      <Fragment slot='desc'>You be able to teach me something, need to ask something, tell me something or I may be to help.</Fragment>
+      <Fragment slot='desc'
+        >You might have something to teach me, need to ask something, want to tell me something, or I may be able to help.</Fragment
+      >
     </Sectionhead>
 
-    <div class='grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16 '>
+    <div class='grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16'>
       <div>
-        <h2 class='font-medium text-2xl text-slate-500 dark:text-slate-400'>Lets Talk</h2>
-        <p class='text-lg leading-relaxed text-slate-500 mt-3 text-slate-500 dark:text-slate-400'>
-          If this form is too much, you can always email me at <a href='mailto:nerando@developingdvlpr.com' class='text-gray-600 hover:text-gray-900 dark:text-blue-300 dark:hover:text-blue-300' >nerando@developingdvlpr.com</a>.
-          These socials work too <span role="img" aria-label="pointing down">👇🏽</span>:
+        <h2 class='font-medium text-2xl text-slate-500 dark:text-slate-400'>
+          Lets Talk
+        </h2>
+        <p
+          class='text-lg leading-relaxed text-slate-500 mt-3 text-slate-500 dark:text-slate-400'>
+          If this form is too much, you can always <strong>email me at</strong> <a
+            href='mailto:nerando@developingdvlpr.com'
+            class='text-gray-600 hover:text-gray-900 dark:text-blue-300 dark:hover:text-blue-300'
+            itemprop='email'
+            >nerando@developingdvlpr.com</a
+          >. These socials work too <span role='img' aria-label='pointing down'
+            >👇🏽</span
+          >:
         </p>
         <div class='mt-5'>
           <ul class='flex space-x-4'>
@@ -28,8 +177,9 @@ import { Icon } from 'astro-icon/components';
               <a
                 href='https://www.linkedin.com/in/nerando-johnson/'
                 target='_blank'
-                rel='noopener noreferrer'
-                class='text-gray-600 hover:text-gray-900 dark:text-blue-300 dark:hover:text-blue-300'>
+                rel='noopener noreferrer me'
+                class='text-gray-600 hover:text-gray-900 dark:text-blue-300 dark:hover:text-blue-300'
+                aria-label='Connect with Nerando Johnson on LinkedIn'>
                 <Icon class='w-6 h-6' name='mdi:linkedin' />
                 <span class='sr-only'>LinkedIn</span>
               </a>
@@ -39,7 +189,8 @@ import { Icon } from 'astro-icon/components';
                 href='https://calendly.com/nerandojohnsontech/consults'
                 target='_blank'
                 rel='noopener noreferrer'
-                class='text-gray-600 hover:text-gray-900 dark:text-blue-300 dark:hover:text-blue-300'>
+                class='text-gray-600 hover:text-gray-900 dark:text-blue-300 dark:hover:text-blue-300'
+                aria-label='Schedule a consultation with Nerando Johnson on Calendly'>
                 <Icon class='w-6 h-6' name='mdi:calendar' />
                 <span class='sr-only'>Calendly</span>
               </a>
@@ -48,8 +199,9 @@ import { Icon } from 'astro-icon/components';
               <a
                 href='https://twitter.com/nerajno'
                 target='_blank'
-                rel='noopener noreferrer'
-                class='text-gray-600 hover:text-gray-900 dark:text-blue-300 dark:hover:text-blue-300'>
+                rel='noopener noreferrer me'
+                class='text-gray-600 hover:text-gray-900 dark:text-blue-300 dark:hover:text-blue-300'
+                aria-label='Follow Nerando Johnson on Twitter'>
                 <Icon class='w-6 h-6' name='mdi:twitter' />
                 <span class='sr-only'>Twitter</span>
               </a>
