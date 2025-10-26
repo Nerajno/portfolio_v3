@@ -14,33 +14,46 @@ let viewCount = 0;
 
 // Skip database interactions in development mode if desired
 const isDevelopment = import.meta.env.MODE === 'development';
+const isPrerendering = import.meta.env.SSR === false || !Astro.request?.headers;
 
 if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
-  if (increment) {
-    // Get user agent for bot detection
-    const userAgent = Astro.request.headers.get('user-agent') || '';
+  if (increment && !isPrerendering) {
+    // Only increment on actual requests, not during prerendering
+    try {
+      // Get user agent for bot detection
+      const userAgent = Astro.request.headers.get('user-agent') || '';
 
-    // Get client IP for rate limiting (with fallback)
-    const clientIP =
-      Astro.request.headers.get('x-forwarded-for')?.split(',')[0] ||
-      Astro.request.headers.get('x-real-ip') ||
-      Astro.clientAddress ||
-      'unknown';
+      // Get client IP for rate limiting (with fallback)
+      const clientIP =
+        Astro.request.headers.get('x-forwarded-for')?.split(',')[0] ||
+        Astro.request.headers.get('x-real-ip') ||
+        Astro.clientAddress ||
+        'unknown';
 
-    // Hash the IP for privacy
-    const clientIdentifier = hashIdentifier(clientIP);
+      // Hash the IP for privacy
+      const clientIdentifier = hashIdentifier(clientIP);
 
-    // Increment and get the new count (bot detection & rate limiting happens inside)
-    const newCount = await incrementViewCount(slug, userAgent, clientIdentifier);
-    viewCount = newCount || 0;
+      // Increment and get the new count (bot detection & rate limiting happens inside)
+      const newCount = await incrementViewCount(slug, userAgent, clientIdentifier);
+      viewCount = newCount || 0;
+    } catch (error) {
+      console.error('Error incrementing view count:', error);
+      // Fall back to just getting the count
+      viewCount = await getViewCount(slug);
+    }
   } else {
-    // Just get the current count
+    // Just get the current count (works during prerendering)
     viewCount = await getViewCount(slug);
   }
 }
 ---
 
-<span class={`view-counter ${className}`} data-slug={slug}>
+<span
+  class={`view-counter ${className}`}
+  data-slug={slug}
+  data-increment={increment ? 'true' : 'false'}
+  data-initial-count={viewCount}
+>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -62,6 +75,37 @@ if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
       : `${viewCount.toLocaleString()} ${viewCount === 1 ? 'view' : 'views'}`}
   </span>
 </span>
+
+{/* Client-side script to handle increment on prerendered pages */}
+{increment && isPrerendering && (
+  <script is:inline>
+    // This runs in the browser to increment views for prerendered pages
+    (function() {
+      const viewCounter = document.currentScript?.previousElementSibling;
+      if (!viewCounter) return;
+
+      const slug = viewCounter.getAttribute('data-slug');
+      const shouldIncrement = viewCounter.getAttribute('data-increment') === 'true';
+
+      if (shouldIncrement && slug) {
+        // Use the API endpoint to increment (works client-side)
+        fetch(`/api/views/${slug}`, { method: 'POST' })
+          .then(res => res.json())
+          .then(data => {
+            if (data.count) {
+              const countEl = viewCounter.querySelector('.view-count-number');
+              if (countEl) {
+                const formatted = data.count.toLocaleString();
+                const label = data.count === 1 ? 'view' : 'views';
+                countEl.textContent = `${formatted} ${label}`;
+              }
+            }
+          })
+          .catch(err => console.error('Failed to increment view:', err));
+      }
+    })();
+  </script>
+)}
 
 <style>
   .view-counter {
