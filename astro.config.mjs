@@ -8,6 +8,8 @@ import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
 import clarityIntegration from 'astro-microsoft-clarity-integration';
 
+import db from "@astrojs/db";
+
 export default defineConfig({
   site: "https://developingdvlpr.com",
   output: "server",
