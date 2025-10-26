@@ -5,6 +5,10 @@ import { SEO } from "astro-seo";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
+import { getAllViewCounts } from "../lib/supabase";
+
+export const prerender = true;
+export const revalidate = 60; // Revalidate every 60 seconds
 
 // Filter blog entries with 'draft: false' & date before current date
 const publishedBlogEntries = await getCollection("blog", ({ data }) => {
@@ -15,6 +19,14 @@ const publishedBlogEntries = await getCollection("blog", ({ data }) => {
 const sortedBlogEntries = [...publishedBlogEntries].sort((a, b) => {
   return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
 });
+
+// Fetch all view counts in a single query for performance
+const isDevelopment = import.meta.env.MODE === 'development';
+let allViewCounts: Record<string, number> = {};
+
+if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
+  allViewCounts = await getAllViewCounts();
+}
 
 // SEO configuration for the blog page
 const seoConfig = {
@@ -166,6 +178,27 @@ const seoConfig = {
                         datetime={blogPostEntry.data.publishDate.toISOString()}>
                         {blogPostEntry.data.publishDate.toDateString()}
                       </time>
+                      <span class="text-gray-400">•</span>
+                      <span class="text-gray-400 inline-flex items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="inline-block mr-1"
+                        >
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        {isDevelopment && import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
+                          ? '-- views'
+                          : `${(allViewCounts[blogPostEntry.slug] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.slug] === 1 ? 'view' : 'views'}`}
+                      </span>
                     </div>
                     <div class="flex gap-2 mt-3">
                       <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">

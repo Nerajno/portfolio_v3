@@ -9,6 +9,7 @@ import { Tweet } from 'astro-embed';
 import ViewCounter from '@components/viewcounter.astro';
 
 export const prerender = true;
+export const revalidate = 60; // Revalidate every 60 seconds
 
 
 interface Props {
@@ -260,7 +261,7 @@ const seoConfig = {
         )
       }
         <span class="text-slate-500 dark:text-slate-400">
-          <ViewCounter slug={slug} />
+          <ViewCounter slug={entry.slug} increment={true} />
         </span>
     </div>
 

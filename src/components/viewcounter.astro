@@ -1,18 +1,73 @@
 ---
-import { db, Views, sql } from 'astro:db';
-const { slug } = Astro.props;
-let item;
-try {
-  const result = await db
-    .insert(Views)
-    .values({ slug, count: 1 })
-    .onConflictDoUpdate({ target: Views.slug, set: { count: sql`count + 1` } })
-    .returning({ slug: Views.slug, count: Views.count });
-  item = result[0];
-} catch (error) {
-  console.error(error);
-  item = { slug, count: 1 };
+// src/components/ViewCounter.astro
+export interface Props {
+  slug: string;
+  increment?: boolean;
+  className?: string;
+}
+
+const { slug, increment = false, className = "" } = Astro.props;
+
+import { incrementViewCount, getViewCount, hashIdentifier } from '../lib/supabase';
+
+let viewCount = 0;
+
+// Skip database interactions in development mode if desired
+const isDevelopment = import.meta.env.MODE === 'development';
+
+if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
+  if (increment) {
+    // Get user agent for bot detection
+    const userAgent = Astro.request.headers.get('user-agent') || '';
+
+    // Get client IP for rate limiting (with fallback)
+    const clientIP =
+      Astro.request.headers.get('x-forwarded-for')?.split(',')[0] ||
+      Astro.request.headers.get('x-real-ip') ||
+      Astro.clientAddress ||
+      'unknown';
+
+    // Hash the IP for privacy
+    const clientIdentifier = hashIdentifier(clientIP);
+
+    // Increment and get the new count (bot detection & rate limiting happens inside)
+    const newCount = await incrementViewCount(slug, userAgent, clientIdentifier);
+    viewCount = newCount || 0;
+  } else {
+    // Just get the current count
+    viewCount = await getViewCount(slug);
+  }
 }
 ---
 
-<div><p>Views: {item.count} {item.count === 1 ? '🧐' : '🤓'}</p></div>
+<span class={`view-counter ${className}`} data-slug={slug}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="inline-block mr-1"
+  >
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span class="view-count-number">
+    {isDevelopment && import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
+      ? '-- views (dev mode)'
+      : `${viewCount.toLocaleString()} ${viewCount === 1 ? 'view' : 'views'}`}
+  </span>
+</span>
+
+<style>
+  .view-counter {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b7280);
+  }
+</style>
