@@ -73,7 +73,7 @@ CREATE OR REPLACE FUNCTION get_all_view_counts()
 RETURNS TABLE(slug TEXT, count BIGINT)
 LANGUAGE sql
 STABLE
-SECURITY DEFINER
+SECURITY INVOKER  -- Safer for read-only functions
 SET search_path = public
 AS $$
   SELECT slug, view_count FROM views ORDER BY slug;
@@ -124,12 +124,16 @@ CREATE POLICY "Prevent public delete"
 -- -----------------------------------------------------------------------------
 -- Automatically update the updated_at timestamp on any update
 CREATE OR REPLACE FUNCTION update_updated_at_column()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public  -- Prevents schema injection attacks
+AS $$
 BEGIN
   NEW.updated_at = NOW();
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$;
 
 CREATE TRIGGER update_views_updated_at
   BEFORE UPDATE ON views
@@ -140,7 +144,10 @@ CREATE TRIGGER update_views_updated_at
 -- 8. OPTIONAL: CREATE VIEW FOR ANALYTICS
 -- -----------------------------------------------------------------------------
 -- Create a view for easy analytics queries
-CREATE OR REPLACE VIEW view_analytics AS
+-- Using SECURITY INVOKER to avoid security warnings
+CREATE OR REPLACE VIEW view_analytics
+WITH (security_invoker = true)
+AS
 SELECT
   slug,
   view_count,
@@ -151,7 +158,7 @@ SELECT
 FROM views
 ORDER BY view_count DESC;
 
-COMMENT ON VIEW view_analytics IS 'Analytics view showing view counts with calculated metrics';
+COMMENT ON VIEW view_analytics IS 'Analytics view showing view counts with calculated metrics (SECURITY INVOKER)';
 
 -- -----------------------------------------------------------------------------
 -- 9. GRANT PERMISSIONS
@@ -159,6 +166,7 @@ COMMENT ON VIEW view_analytics IS 'Analytics view showing view counts with calcu
 -- Grant necessary permissions to anon and authenticated users
 GRANT USAGE ON SCHEMA public TO anon, authenticated;
 GRANT SELECT ON views TO anon, authenticated;
+GRANT SELECT ON view_analytics TO anon, authenticated;
 GRANT EXECUTE ON FUNCTION update_views TO anon, authenticated;
 GRANT EXECUTE ON FUNCTION get_all_view_counts TO anon, authenticated;
 
