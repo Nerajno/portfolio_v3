@@ -198,7 +198,7 @@ const seoConfig = {
                         {blogPostEntry.data.publishDate.toDateString()}
                       </time>
                       <span class="text-gray-400">•</span>
-                      <span class="text-gray-400 inline-flex items-center">
+                      <span class="text-gray-400 inline-flex items-center view-counter-display" data-slug={blogPostEntry.slug}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -214,9 +214,11 @@ const seoConfig = {
                           <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                           <circle cx="12" cy="12" r="3"></circle>
                         </svg>
-                        {isDevelopment && import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
-                          ? '-- views'
-                          : `${(allViewCounts[blogPostEntry.slug] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.slug] === 1 ? 'view' : 'views'}`}
+                        <span class="view-count-text">
+                          {isDevelopment && import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
+                            ? '-- views'
+                            : `${(allViewCounts[blogPostEntry.slug] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.slug] === 1 ? 'view' : 'views'}`}
+                        </span>
                       </span>
                     </div>
                     <div class="flex gap-2 mt-3">
@@ -236,6 +238,34 @@ const seoConfig = {
         const blogPosts = document.getElementById('blog-posts');
         const searchInput = document.getElementById('search');
         const sortSelect = document.getElementById('sort');
+
+        // Update view counts client-side
+        async function updateViewCounts() {
+          const viewCounters = document.querySelectorAll('.view-counter-display');
+
+          for (const counter of viewCounters) {
+            const slug = counter.getAttribute('data-slug');
+            const textEl = counter.querySelector('.view-count-text');
+
+            if (slug && textEl) {
+              try {
+                const response = await fetch(`/api/views/${slug}`);
+                const data = await response.json();
+
+                if (data.count !== undefined) {
+                  const formatted = data.count.toLocaleString();
+                  const label = data.count === 1 ? 'view' : 'views';
+                  textEl.textContent = `${formatted} ${label}`;
+                }
+              } catch (err) {
+                console.error(`Failed to fetch view count for ${slug}:`, err);
+              }
+            }
+          }
+        }
+
+        // Update view counts when page loads
+        updateViewCounts();
 
         // Store original posts HTML for filtering
 
