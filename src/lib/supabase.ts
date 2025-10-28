@@ -51,9 +51,18 @@ export function isRateLimited(slug: string, identifier: string): boolean {
     return true;
   }
 
-  // Update cache with current timestamp
-  viewCache.set(cacheKey, now);
+  // Don't update cache here - will be updated after successful increment
   return false;
+}
+
+/**
+ * Updates the rate limit cache after a successful view increment
+ * @param slug - The blog post slug
+ * @param identifier - Unique identifier (IP, user ID, etc.)
+ */
+export function updateRateLimitCache(slug: string, identifier: string): void {
+  const cacheKey = `${slug}:${identifier}`;
+  viewCache.set(cacheKey, Date.now());
 }
 
 /**
@@ -157,8 +166,13 @@ export async function incrementViewCount(
       return null;
     }
 
-    // The function returns an array with the count
-    return data?.[0]?.count || null;
+    // Update rate limit cache only after successful increment
+    if (clientIdentifier && data) {
+      updateRateLimitCache(slug, clientIdentifier);
+    }
+
+    // RPC function returns the count directly (not in an array)
+    return typeof data === 'number' ? data : data?.count || null;
   } catch (error) {
     console.error('Error in incrementViewCount:', error);
     return null;

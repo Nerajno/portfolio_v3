@@ -14,11 +14,14 @@ let viewCount = 0;
 
 // Skip database interactions in development mode if desired
 const isDevelopment = import.meta.env.MODE === 'development';
-const isPrerendering = import.meta.env.SSR === false || !Astro.request?.headers;
+// More reliable prerendering detection
+const isPrerendering = !Astro.request || typeof Astro.clientAddress === 'undefined';
 
 if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
-  if (increment && !isPrerendering) {
-    // Only increment on actual requests, not during prerendering
+  // During prerendering/static build, only fetch the count
+  // Client-side script will handle the increment
+  if (!isPrerendering && increment) {
+    // Only increment on actual server requests (not during build)
     try {
       // Get user agent for bot detection
       const userAgent = Astro.request.headers.get('user-agent') || '';
@@ -42,7 +45,7 @@ if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
       viewCount = await getViewCount(slug);
     }
   } else {
-    // Just get the current count (works during prerendering)
+    // Just get the current count (during prerendering or when increment=false)
     viewCount = await getViewCount(slug);
   }
 }
