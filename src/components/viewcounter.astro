@@ -27,11 +27,17 @@ if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
       const userAgent = Astro.request.headers.get('user-agent') || '';
 
       // Get client IP for rate limiting (with fallback)
-      const clientIP =
-        Astro.request.headers.get('x-forwarded-for')?.split(',')[0] ||
-        Astro.request.headers.get('x-real-ip') ||
-        Astro.clientAddress ||
-        'unknown';
+      let clientIP = 'unknown';
+      try {
+        clientIP =
+          Astro.request.headers.get('x-forwarded-for')?.split(',')[0] ||
+          Astro.request.headers.get('x-real-ip') ||
+          Astro.clientAddress ||
+          'unknown';
+      } catch {
+        // clientAddress not available during prerendering
+        clientIP = 'unknown';
+      }
 
       // Hash the IP for privacy
       const clientIdentifier = hashIdentifier(clientIP);
