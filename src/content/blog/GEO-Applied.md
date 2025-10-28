@@ -46,7 +46,7 @@ Here's a practical implementation showing how to structure an Astro component wi
 // geo-astro-component.astro
 const pageTitle = "Applying GEO in Astro Components";
 const author = "Nerando Johnson";
-const datePublished = "2024-10-27";
+const datePublished = "2025-10-27";
 const description = "Learn how to implement Generative Engine Optimization in Astro components using semantic HTML and structured data.";
 ---
 
