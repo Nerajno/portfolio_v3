@@ -19,7 +19,7 @@ Carolina Code Conference is a tech conference that brings together developers, e
 
 ## My First-Time Speaker Journey
 ![Image](https://photos.smugmug.com/2025/C3/Day-1/Stills/i-GbKD7Mk/0/NjDngwzLjksKKwZznQNCXxCFsnW6PDQsKtmGkbR64/M/292A0682-M.jpg)
-Stepping onto the Carolina Codes stage as a first-time speaker was both exhilarating and nerve-wracking as I was outside of comfort zone of Atlanta The welcoming atmosphere and supportive community made the experience far more comfortable than I had anticipated, also, lock picking . The organizers and sponsors did an exceptional job of creating an environment where both seasoned speakers and newcomers could share their expertise and passion for technology.
+Stepping onto the Carolina Codes stage as a first-time speaker was both exhilarating and nerve-wracking as I was outside of my comfort zone of Atlanta. The welcoming atmosphere and supportive community made the experience far more comfortable than I had anticipated. The organizers and sponsors did an exceptional job of creating an environment where both seasoned speakers and newcomers could share their expertise and passion for technology.
 
 _Edit:_ I missed this, my talk was on [_the Importance of READMEs_](https://developingdvlpr.com/blog/and-it-was-written/)
 
@@ -33,9 +33,9 @@ The venue provided excellent facilities that enhanced the overall conference exp
 **Keynote: "Putting the FUN back in Fundamentals: Data Structures, Algorithms, and More!"**
 
 Kelly's keynote was both entertaining and insightful, covering several important points:
-- **Self-hosted AI for sustainability**: He explained why running your own AI models (instead of relying on cloud services like ChatGPT) is better for the environment even though it may be a little  slower. Think of it like learning to and growing your own vegetables instead of buying them shipped from far away - it uses less energy overall and creates the user a new skillset
+- **Self-hosted AI for sustainability**: He explained why running your own AI models (instead of relying on cloud services like ChatGPT) is better for the environment even though it may be a little slower. Think of it like learning to and growing your own vegetables instead of buying them shipped from far away - it uses less energy overall and creates the user a new skillset
 - **The basics still matter**: Despite all the exciting new AI tools, technology is still built on fundamental concepts like algorithms (step-by-step problem-solving methods) and data structures (organized ways to store information). These basics have become way more important, not less, as technology advances.
-- **Learning can be fun**: His programming jokes about hash tables and breakfast foods showed that technical topics don't have to be boring or intimidating 👀😂😂😂😂.
+- **Learning can be fun**: His programming jokes about hash tables and breakfast foods showed that technical topics don't have to be boring or intimidating.
 
 ### [Ethan Foulkes](https://www.linkedin.com/in/ethanfoulkes/) - CEO of Magic Button Lab
 **"10 Words for Building Software Successfully"**
@@ -52,7 +52,7 @@ Ethan delivered powerful insights about software development in a concise format
 ![Image](https://photos.smugmug.com/2025/C3/Day-2/Stills/i-Z64CVwq/0/NJwJrBSV5ZdNM8vtfSZZfSbBhLL5ZW2QPPpzCkgLC/M/292A1553-M.jpg)
 Diana connected psychology research with practical app development in fascinating ways:
 - **Gaming psychology improves apps**: The techniques that make video games engaging (like achievement systems, progress bars, and reward cycles) can make regular apps more enjoyable and easier to use when applied thoughtfully.
-- **Understanding what motivates people**: Different people are motivated by different things - some want to compete, others want to learn, some want gain knowledge to help others. Apps work better when they tap into these natural motivations rather than just trying to get people addicted.
+- **Understanding what motivates people**: Different people are motivated by different things - some want to compete, others want to learn, some want to gain knowledge to help others. Apps work better when they tap into these natural motivations rather than just trying to get people addicted.
 - **Gaming evolved, didn't disappear**: Older adults didn't stop playing games - they just started playing different types of games (like Wordle, crosswords, or mobile puzzles). This opens up opportunities for developers who understand these preferences.
 
 ### [Duncan Michel](https://www.linkedin.com/in/duncanmichel/) - Senior Detection Engineer
@@ -75,7 +75,7 @@ Sarah revealed how much math is hidden in everyday programming:
 **"Beyond Play: Modding Games for Real-World Tech Skills"**
 ![Image](https://photos.smugmug.com/2025/C3/Day-1/Stills/i-pzqWQXq/0/L35wwRJFzLPm6nr824rbZ2phx5TWFVHcVZLPBGkhK/M/292A0499-M.jpg)
 Doug's journey from casual gamer to professional developer was truly inspiring:
-- **Game modding can become a real career**: Modding games (creating custom content or modifications) isn't just a hobby - He walked it leading to substantial income and professional opportunities. Think of it like learning to build custom cars in your garage, then becoming a professional car restorer.
+- **Game modding can become a real career**: Modding games (creating custom content or modifications) isn't just a hobby - He showed how it can lead to substantial income and professional opportunities. Think of it like learning to build custom cars in your garage, then becoming a professional car restorer.
 - **The modder mindset transfers to professional work**: The curiosity and problem-solving approach needed for modding - figuring out how systems work, breaking them down, and rebuilding them - is exactly what software professionals do.
 - **Skills that work across industries**: The technical abilities you develop through modding (coding, debugging, systems thinking, creativity) apply to many software fields beyond gaming, including software development, cybersecurity, data analysis and AI.
 
@@ -93,7 +93,7 @@ The networking opportunities at Carolina Codes were incredibly valuable, leading
 
 [**Barry Jones** (Organizer)](https://www.linkedin.com/in/brightball/) - shared insights from his work at [Brightball](https://www.brightball.com/articles/story-points-are-pointless-measure-queues) about why traditional project estimation methods (story points) often fail, and why tracking workflow bottlenecks is more effective. This perspective challenged how I think about project planning.
 
-[**Redvers Davies**](https://www.linkedin.com/in/redvers-davies-7029042/) - Our conversation proved an important point: even advanced AI can confidently give wrong answers when explaining niche programming languages (in this case, Pony lang). He also recommended "Ginger's Revenge," which sounds intriguing. A good reminder that AI has limitations and that personal recommendations from experienced developers are still invaluable.
+[**Redvers Davies**](https://www.linkedin.com/in/redvers-davies-7029042/) - Our conversation proved an important point: even advanced AI can confidently give wrong answers when explaining niche programming languages (in this case, Pony lang). He also recommended "Ginger's Revenge," which sounds intriguing. A good reminder that AI has limitations and that personal recommendations from experienced developers are still invaluable. Thanks, Red.
 
 [**James Lowden**](https://www.linkedin.com/in/thejkl/) - We started a fascinating discussion about the history of Bell Labs and its influence on modern computing, but unfortunately ran out of time. I'm planning to follow up because the historical context of innovation is so important for understanding where technology is heading.
 
@@ -121,11 +121,11 @@ Carolina Codes 2025 reinforced several important themes that will influence my a
 
 2. **Look for connections across different fields**: The most interesting talks connected seemingly unrelated areas - gaming psychology with app design, environmental sustainability with AI architecture, and mathematical thinking with everyday programming. Innovation often happens at these intersections.
 
-3. **Community learning never stops**: The networking conversations were as educational as the formal presentations. Conferences like this serve as catalysts for ongoing professional relationships and continuous learning that extends far beyond the event itself. It points to fact also that you need to either an organizer, participant, speaker and attendee at these events.
+3. **Community learning never stops**: The networking conversations were as educational as the formal presentations. Conferences like this serve as catalysts for ongoing professional relationships and continuous learning that extends far beyond the event itself. It points to the fact also that you need to be either an organizer, participant, speaker and attendee at these events.
 
 4. **Focus on practical application**: Every speaker emphasized hands-on experience and real-world problem-solving over theoretical knowledge. The most valuable learning happens when you're actually building, debugging, swearing and solving real problems.
 
-5. **Technology decisions affect people**: From system design to AI algorithms, code/tech has been shaping our thinking to gamification influencing behavior, this conference highlighted and emphasized  that every technical choice we make has human consequences. As technologists, we have a responsibility to consider these impacts thoughtfully.
+5. **Technology decisions affect people**: From system design shaping our thinking to AI algorithms and gamification influencing behavior, this conference highlighted and emphasized that every technical choice we make has human consequences. As technologists, we have a responsibility to consider these impacts thoughtfully.
 
 ![](https://photos.smugmug.com/2025/C3/Day-2/Stills/i-k7zfWpW/0/LTGrqqS656CNpSC7x6JJgLGZcJbr25FsCHLVZnJMz/M/IMG_1578-M.jpg)
 Carolina Codes 2025 successfully combined technical depth with community building in a way that left me both more knowledgeable and more connected to the broader technology community. As a first-time speaker, I came away energized about continuing to share knowledge while learning from the remarkable group of people working to make technology more useful, applicable, accessible, and human-centered.

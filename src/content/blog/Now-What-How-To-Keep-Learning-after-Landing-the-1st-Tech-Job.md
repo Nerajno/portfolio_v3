@@ -15,7 +15,7 @@ tags: [ softwareengineering, developer]
 ---
 
 If you are not like me or a couple of people I know, you have managed to keep create a good strategy that maintains healthy learning habits. In a sentence, I screwed up on this career development aspect after my first job. I made the mistake of getting the job and not understanding that this was also my career *(MISTAKES WERE MADE 🥹)*, I had a limited long-term outlook,
-*(again, mistakes were made *. Upon some reflection and good discussions, here are some gained takeaways on how to continue learning after getting the job.
+*(again, mistakes were made)*. Upon some reflection and good discussions, here are some gained takeaways on how to continue learning after getting the job.
 
 
 ![recuperate giphy](https://media.giphy.com/media/XvsmeQMa4D4eno0zxS/giphy.gif)
@@ -31,7 +31,7 @@ Can we all agree that rest is an intricate part of productivity? Job hunting is 
 ### Reset
 After week one or three of onboarding, you should have a good sense of your new workspace's pace. It's time to start acquiring new skills; start by making or keeping notes on what has been learnt during the day and what questions you may have. Review these notes to use as talking points in your [one-on-ones](https://hypercontext.com/one-on-one-meeting-guide), your work mentor checking or queries to do some research on. Two examples of good note-taking methods are the [Cornel note-taking method](https://www2.naz.edu/files/3014/2368/0875/Cornell_Note_Taking_Method_Updated.pdf) and the [outline method](https://able.ac/blog/outline-note-taking-method/).
 
-It is imperative that you seek to understand how technical problem-solving is handled and who and/or what are the resources to get you unstuck [writer's plug: watch this video I did on problem-solving](https://youtu.be/YssP_qMAq0A). A common suggestion is to keep a gist or google document containing non-proprietary tips, configs and tooling that is used and helps to make your workflow easier.
+It is imperative that you seek to understand how technical problem-solving is handled and who and/or what are the resources to get you unstuck [writer's plug: watch this video I did on problem-solving](https://youtu.be/YssP_qMAq0A). A common suggestion is to keep a gist or Google document containing non-proprietary tips, configs and tooling that is used and helps to make your workflow easier.
 
 
 ![retool giphy](https://media.giphy.com/media/xT0xekLZmeC54FCTJu/giphy-downsized-large.gif)
@@ -40,7 +40,6 @@ It is imperative that you seek to understand how technical problem-solving is ha
 ### Retool
 This is a new team or, in some rare cases, a new project. You need to look into the tech stack, decompose it and figure out what you are competent at, suck at, and what you know well. Some teams and companies have a process to bring the new hires up to speed, some have a person that handles this process and others have a list with resources or courses to complete.
 The point of the resource/person is to meet you where you are technically and bring you up to speed with your new team. Take time to familiarize yourself with the new tools of your trade and ask a lot of questions. Stop worrying, it's gonna take time for you to get used to everything.
-GIF
 
 ![retain giphy](https://media.giphy.com/media/RCosO7fIzFLELkdh1G/giphy-downsized-large.gif)
 

@@ -19,13 +19,13 @@ imageImport: |
 
 ## A Guide to the Importance of Writing Good ReadMe's
 
-So here you are, you have good written code and uploaded it to whatever open source repository you use  Github, Gitlab, Bitbucket or even your own hosted repository. You are sure your code works, you have tested it, retested... even tested it on Becky's machine and refactored it on your machine and sure it works. So the question to the person who looks at you repo is ...... HOW THE HELL DOES IT WORK ?????
+So here you are, you have well-written code and uploaded it to whatever open source repository you use: Github, Gitlab, Bitbucket or even your own hosted repository. You are sure your code works, you have tested it, retested... even tested it on Becky's machine and refactored it on your machine and sure it works. So the question to the person who looks at you repo is ...... HOW THE HELL DOES IT WORK ?????
 
 ![](https://thepracticaldev.s3.amazonaws.com/i/awzimx9okklsklgt2ert.jpg)
 
 ### Why care about the README ?
 
-As developers, we release tonnes of projects on open-source repositories. A good ReadMe allows you and your project the ability to standout among the sea of developers, it should be well crafted as your project. In brief, a ReadMe is like the face of your code. It is the first file a new user should read when encountering your project repo , and it should be written as a very brief and giving very basic introduction to your code. In other words ‘ A good README is for others to understand what our code includes, and why it's noteworthy. A README file is also essential to retrieve a project - on GitHub but also in browsers.
+As developers, we release tonnes of projects on open-source repositories. A good ReadMe allows you and your project the ability to standout among the sea of developers, it should be well crafted as your project. In brief, a ReadMe is like the face of your code. It is the first file a new user should read when encountering your project repo, and it should be written as a very brief and giving very basic introduction to your code. In other words, 'A good README is for others to understand what our code includes, and why it's noteworthy. A README file is also essential to retrieve a project - on GitHub but also in browsers.
 
 
  ![](https://thepracticaldev.s3.amazonaws.com/i/rcr2xokn7x1f6ktszlsz.jpg)
@@ -33,14 +33,14 @@ As developers, we release tonnes of projects on open-source repositories. A good
 ### Another insight for Junior Devs
 
 OK, now let's check why we should care for our README files since the first project! Even if the code is just for you, possibly you will come back to it after a while. A good README enables you to relaunch a project - without wasting your time on recalling: What was it all about?
-          For a budding programmer, GitHub is a calling card. The pinned projects on GitHub are most often in our portfolio or are our portfolio. When we're at a career stage without a considerable commercial experience or nice-looking non-profit projects, a presentation of our achievements in a form of repositories is one of the best way to get visible to the recruiters and potential employers.
-        A preparation of several demonstration projects we want to show off during the interview works the best. If we are just learning and we drop our training projects there, let's pay attention to their good description. Even a non-technical recruiter will be able to recognize the technologies we touched, and check if it goes in line with a candidate's profile he's/she's looking for.
+          For a budding programmer, GitHub is a calling card. The pinned projects on GitHub are most often in our portfolio or are our portfolio. When we're at a career stage without considerable commercial experience or nice-looking non-profit projects, a presentation of our achievements in a form of repositories is one of the best way to get visible to the recruiters and potential employers.
+        A preparation of several demonstration projects we want to show off during the interview works the best. If we are just learning and we drop our training projects there, let's pay attention to providing good descriptions for them. Even a non-technical recruiter will be able to recognize the technologies we touched, and check if it goes in line with a candidate's profile he's/she's looking for.
 
 ![](https://thepracticaldev.s3.amazonaws.com/i/pmn28az12lj6hs51h0fr.jpg)
 
-### Lets take A Closer Look
+### Let's take A Closer Look
 
-So lets examine how a good ReadMe makes all the difference in if you would use an open-source project. Look at this [repo's](https://tinyurl.com/Helln0p3) ReadMe, how does it work, what does it look like…… nada, zilch, no details. Thus, therefore I am way less likely to use this repo or even learn from it.
+So let's examine how a good ReadMe makes all the difference in if you would use an open-source project. Look at this [repo's](https://tinyurl.com/Helln0p3) ReadMe, how does it work, what does it look like... nada, zilch, no details. Thus, therefore I am way less likely to use this repo or even learn from it.
 
 This repo’s [ReadMe](https://github.com/Nerajno/Weather-App) on the other hand give the perspective user a better idea of how the code works, what is it all about and how they can use it .
 

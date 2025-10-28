@@ -10,13 +10,13 @@ image: {
     alt: "Karate kid learning basics"
 }
 publishDate: "2025-01-02 12:00"
-category: "JavaScript, Foundamentals"
+category: "JavaScript, Fundamentals"
 tags: [vue, javascript, frontend, career]
 ---
 
 ## Start at the Basics
 
-With the advent of AI and some tech-ed influencers, there seem to be alot of skipping of the essentials before using a framework in Javascript land. Understanding core JavaScript concepts is crucial, its like learning to walk before running. When I got this new job and had to get decent at understanding Vue, I took time to review these JavaScript to have an effective approach to Vue 3 development, I understand and can use [React](https://youtu.be/1RlyA0AXM1w?si=Ei2lhWCuKOZLuk2Q) ... but it NOT my favorite framework, this is another discussion. Here's why these fundamentals matter :
+With the advent of AI and some tech-ed influencers, there seem to be a lot of skipping of the essentials before using a framework in Javascript land. Understanding core JavaScript concepts is crucial, it's like learning to walk before running. When I got this new job and had to get decent at understanding Vue, I took time to review these JavaScript to have an effective approach to Vue 3 development, I understand and can use [React](https://youtu.be/1RlyA0AXM1w?si=Ei2lhWCuKOZLuk2Q) ... but it's NOT my favorite framework, this is another discussion. Here's why these fundamentals matter:
 
 ## Variables and Data Types
 
@@ -180,9 +180,9 @@ const userName = computed(() => user.value?.profile?.name ?? 'Guest')
 </script>
 ```
 
-##  Event Handling
+## Event Handling
 
-- **Why it matters**:Critical for component communication.
+- **Why it matters**: Critical for component communication.
 - Required for DOM event management.
 - Essential for custom event implementations.
 
@@ -201,9 +201,9 @@ function handleClick() {
 </script>
 ```
 
-##  Error Handling
+## Error Handling
 
-- **Why it matters**:Important for component error boundaries.
+- **Why it matters**: Important for component error boundaries.
 - Critical for API calls and async operations.
 - Essential for maintaining app stability.
 
@@ -265,7 +265,7 @@ async function getWeather(city) {
     weatherInfo.innerHTML = `
       <h2>${data.name}</h2>
       <p>Temperature: ${data.main.temp}°C</p>
-      <p>Description: ${data.weather.description}</p>
+      <p>Description: ${data.weather[0].description}</p>
     `;
   } catch (error) {
     // Error handling
