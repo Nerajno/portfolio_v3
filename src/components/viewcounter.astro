@@ -14,8 +14,8 @@ let viewCount = 0;
 
 // Skip database interactions in development mode if desired
 const isDevelopment = import.meta.env.MODE === 'development';
-// More reliable prerendering detection
-const isPrerendering = !Astro.request || typeof Astro.clientAddress === 'undefined';
+// Detect prerendering - avoid accessing Astro.clientAddress during build
+const isPrerendering = import.meta.env.SSR && !Astro.request?.headers?.get('user-agent');
 
 if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
   // During prerendering/static build, only fetch the count
