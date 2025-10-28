@@ -36,7 +36,7 @@ The README acts as the "face" of your project, inviting others in, showing profe
 
 <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg" alt="Code Documentation" />
 
-Without proper documentation, your project is like a building without telling people where the front door is. Here's why documentation (and especially READMEs) are critical:
+Without proper documentation, your project is like a building without signs showing where the front door is. Here's why documentation (and especially READMEs) are critical:
 
 **Collaboration and onboarding** – If you share your code, good docs help others and future you quickly understand how things work. There's nothing worse than revisiting your own code six months later and having no idea what you were thinking.
 

@@ -28,13 +28,13 @@ tags: [developer, freeCodeCamp, learning, community]
 
    Now let's talk about a physical meeting place. Make the place that you choose to meet up accessible. This meanings 5–15 walking minutes away from public transportation and accessible for those who have disabilities. This can be tricky because not all businesses or hosting spaces will want a bunch of people hogging seats for hours and not buying anything. So look for a place that has different options like; co-working space, a library, a school, a breakfast spot or a tech resource center. And don't just show up with your bright ideas either. Make sure you speak to the owner of the establishment before hand and reserve a spot. Think how you can create a lasting relationship with this person and how your meetup benefits them.
 
-You will need to do a few things to make sure that your community continue to grow and encourage beginners to join in. Select a time each week or every two weeks that works for most of the members as this repetition helps them to be more accountable to themselves and each othe. People have jobs and other troublesome things that will require their time and focus elsewhere, so be as accommodating as possible.
+You will need to do a few things to make sure that your community continues to grow and encourage beginners to join in. Select a time each week or every two weeks that works for most of the members as this repetition helps them to be more accountable to themselves and each other. People have jobs and other troublesome things that will require their time and focus elsewhere, so be as accommodating as possible.
 
 ![Alt Text](https://thepracticaldev.s3.amazonaws.com/i/5yagn20xcdkblp5fw2mw.jpg)
 ## Comfortable Space
 
 Depending on the space having a source of energy can go a long way. We've all had that one laptop that just needs to remain plugged in for it to work. So be considerate of those beginners that don't have the latest and greatest tech. Having power-strips available can help to make staying on task easier. You will also need bathrooms ( preferably clean ones), snacks/food and liquid energy or as I like to call it, coffee. A good pot of coffee can work wonders for pushing through a series of complicated algorithms. And let's be honest, who doesn't like free food.
-Have space! A place that is big enough for growth but also has the ability to foster conversations and discussions about code or even small talk is important. You want to have enough space that for those of us that are introverts, so that we don't feel suffocated by the amount of people in the room. A few different seating options can help to make the space feel more like comfortable. If someone is a regular, encourage them to bring things that will make them more relaxed.
+Have space! A place that is big enough for growth but also has the ability to foster conversations and discussions about code or even small talk is important. You want to have enough space for those of us that are introverts, so that we don't feel suffocated by the amount of people in the room. A few different seating options can help to make the space feel more comfortable. If someone is a regular, encourage them to bring things that will make them more relaxed.
 
 
 ![Alt Text](https://thepracticaldev.s3.amazonaws.com/i/2gwnx8cvht1w7zt5rs60.jpg)
@@ -47,7 +47,7 @@ This space should be a place where asking questions is encouraged and while some
 ![Alt Text](https://thepracticaldev.s3.amazonaws.com/i/vg1e41rebhh3xbueg25u.jpg)
 ## Exercise/Patience
 
-As a senior developer/ mentor you level of patience may have to be a bit higher than most. People will test you and your boundaries, they will push you and see just how far you can go before you snap. You will have to exercise a large amount of empathy (and compassion?). Take time to listen to their concerns and be understanding of the fact that you might have once been in their shoes. Encourage them to step out of their comfort zone, because that is where the majority of personal growth will happen.
+As a senior developer/ mentor you level of patience may have to be a bit higher than most. People will test you and your boundaries, they will push you and see just how far you can go before you snap. You will have to exercise a large amount of empathy (and compassion). Take time to listen to their concerns and be understanding of the fact that you might have once been in their shoes. Encourage them to step out of their comfort zone, because that is where the majority of personal growth will happen.
 
 ![Alt Text](https://thepracticaldev.s3.amazonaws.com/i/14ih0qmulxoxt23vs7jh.jpg)
 ## The Hustle

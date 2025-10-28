@@ -23,7 +23,7 @@ tags: [typescript, javascript, learning, programming]
 
 ### _Definitions of Concepts_
 
-_A variable scope_ refers to the context in which variables are accessible and can be used within a program. There are two main types of scope: **local scope** and **global scope**. A variable declared outside of any function is in the global scope, meaning it can be accessed and modified anywhere in the code. On the other hand, variables declared inside a function are in local scope and are only accessible within that function. JavaScript uses the `var`, `let`, and `const` keywords to declare variables, each affecting scope differently. Variables declared with `let` and `const` are block-scoped, this means that they are only accessible within the nearest enclosing block `{}`. In contrast, `var` is function-scoped, making it available throughout the entire function where it is declared. A clear understanding of variable scope helps prevent issues like variable name conflicts and unintended side effects in JavaScript programs.
+A variable scope refers to the context in which variables are accessible and can be used within a program. There are two main types of scope: **local scope** and **global scope**. A variable declared outside of any function is in the global scope, meaning it can be accessed and modified anywhere in the code. On the other hand, variables declared inside a function are in local scope and are only accessible within that function. JavaScript uses the `var`, `let`, and `const` keywords to declare variables, each affecting scope differently. Variables declared with `let` and `const` are block-scoped, this means that they are only accessible within the nearest enclosing block `{}`. In contrast, `var` is function-scoped, making it available throughout the entire function where it is declared. A clear understanding of variable scope helps prevent issues like variable name conflicts and unintended side effects in JavaScript programs.
 
 Hoisting is a behavior where variable and function declarations are moved to the top of their containing scope before the code is executed _(the compilation phase)_. This means that variables and functions can be used before they are declared. Function declarations are fully hoisted, allowing them to be called even before their definition in the code. However, variable declarations using `var` are hoisted without their initial values, so accessing them before the assignment will result in `undefined`. Variables declared with `let` and `const` are also hoisted but are not initialized, leading to a `ReferenceError` if accessed before declaration. Understanding hoisting helps developers avoid common pitfalls by properly structuring variable and function declarations.
 
@@ -156,7 +156,7 @@ function createComponent<T extends ComponentProps>(
 
 ![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjU5MzlzaTVzOWZmbnV0aGZsZWl5ZGNzMmxubmFyeWxlOWQwN2R1YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/has1WKhoorwLS/giphy.gif)
 
-###  _Definitions of Concepts_
+### _Definitions of Concepts_
 
 Objects in JavaScript are fundamental data structures that serve as containers for related data and functionality. They consist of key-value pairs, where each key (property) maps to a value that can be any valid JavaScript type including functions (methods). Objects can be created in several ways:
 - Object literals: `const obj = {}`
@@ -169,7 +169,7 @@ The prototype system is JavaScript's built-in inheritance mechanism. Each object
 - Managing memory efficiency
 - Building object hierarchies
 
-###  _The Lego Analogy_
+### _The Lego Analogy_
 
 Think of objects and prototypes like this:
 - Objects are like specialized Lego kits with their own unique pieces and instructions.
@@ -178,7 +178,7 @@ Think of objects and prototypes like this:
 - Properties are like the specific pieces in each kit.
 - Methods are like the special building techniques included with each kit.
 
-###  _JavaScript Implementation_
+### _JavaScript Implementation_
 
 ```javascript
 // Creating a basic Lego kit template
@@ -208,7 +208,7 @@ console.log(advancedKit.inventory());  // Inherited method with local property
 console.log(advancedKit.useSpecialFeatures());  // Own method
 ```
 
-###  _TypeScript Evolution_
+### _TypeScript Evolution_
 
 ```typescript
 // Define the structure of our kits
@@ -289,21 +289,21 @@ class Button implements InteractiveComponent {
 
 ![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYW5hbmZoYmoxY2g2amd1N3Uzb3c4NnlpY3MyOTh1azI3cWFtYjBpdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HWjY5CvpaRDyyJKu2e/giphy.gif)
 
-###  _Definitions of Concepts_
+### _Definitions of Concepts_
 
 #### _Asynchronous Functions and Programming_
 
 Async functions are a special type of function in JavaScript that provide an elegant way to handle asynchronous operations. When declared with the async keyword, these functions automatically return a promise and enable the use of the await keyword within their body. The await operator pauses the execution of the function until a promise is either resolved or rejected, allowing asynchronous code to be written in a more synchronous, readable style. This syntax effectively reduces callback complexity and eliminates the need for nested promise chains. For example, in async function fetchData() { const response = await fetch(url); }, the function waits for the fetch operation to complete before continuing execution, making the code behave more predictably while ensuring the main thread remains unblocked. This pattern is particularly useful when dealing with multiple asynchronous operations that depend on each other, as it allows developers to write code that clearly expresses the sequence of operations without sacrificing performance.
 
-####  _Promises_
+#### _Promises_
 
 A promise represents a value that may be available now, in the future, or never. It is an object with three possible states: pending, fulfilled, or rejected. It is used for handling asynchronous operations. Promises have methods like `.then()`, `.catch()`, and `.finally()` for chaining actions based on the outcome. This makes them a powerful alternative to nested callbacks, improving code readability and error handling.
 
-###  _The Lego Analogy_
+### _The Lego Analogy_
 - Async functions are like team members working on different parts.
 - Promises are like agreements to deliver completed sections.
 
-###  _JavaScript Implementation_
+### _JavaScript Implementation_
 
 ```javascript
 async function buildProject() {
