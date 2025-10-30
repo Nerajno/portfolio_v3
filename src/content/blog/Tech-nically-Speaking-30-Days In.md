@@ -12,6 +12,61 @@ image: {
 publishDate: "2023-12-29 12:00"
 category: "Reflections, Process"
 tags: [onboarding, tooling, softskills]
+keywords: [tech onboarding tips, first 30 days new tech job, software developer onboarding, tech career transition guide, new developer best practices, work-life balance tech, continuous learning software development, tech stack learning, developer productivity tips, 30/60/90 plan tech, tech job transition, developer self-advocacy, tech career restart, onboarding procedures tech industry, developer accountability systems]
+
+# GEO-Enhanced Fields
+schema: {
+  type: "TechArticle",
+  about: "Transitioning into a new tech role and succeeding in the first 30 days",
+  genre: "Career Guide",
+  educationalLevel: "Beginner to Intermediate",
+  teaches: ["Onboarding Strategies", "Work-Life Balance", "Continuous Learning", "Developer Productivity"],
+  audience: {
+    type: "ProfessionalAudience",
+    audienceType: "Software Developers, Tech Professionals"
+  }
+}
+
+entities: {
+  primary: ["Tech Onboarding", "Developer Career Transition", "New Tech Role"],
+  secondary: ["30/60/90 Plan", "Pomodoro Method", "Brag Document", "Work-Life Balance"],
+  tools: ["TypeScript", "Vue", "VSCode"],
+  concepts: ["Continuous Learning", "Self-Advocacy", "Developer Productivity", "Rest and Recovery", "Accountability Systems"]
+}
+
+contentStructure: {
+  type: "Personal Experience & Career Guide",
+  difficulty: "Beginner-Friendly",
+  timeToComplete: "10-12 minutes read",
+  prerequisites: ["Starting a new tech role or preparing for career transition"],
+  outcomes: ["Effective onboarding strategy", "Improved work-life balance", "Continuous learning plan", "Productivity systems"]
+}
+
+semanticContext: {
+  topic: "Career development and onboarding strategies for tech professionals",
+  subtopics: ["Technical Onboarding", "Personal Wellness", "Professional Development", "Team Integration"],
+  relatedConcepts: ["Career Transition", "Developer Growth", "Workplace Adaptation", "Learning Systems"],
+  practicalApplication: true
+}
+
+citationMetadata: {
+  citableAs: "Johnson, N. (2023, updated 2025). Tech-nically Speaking: 30 Days In",
+  lastReviewed: "2025-10-30",
+  version: "1.1",
+  originalPublisher: "dev.to, republished on Nerando Johnson's Blog"
+}
+
+aiOptimization: {
+  summaryPrompt: "This article provides practical guidance for software developers transitioning into new tech roles, covering onboarding strategies, work-life balance, productivity systems, and continuous learning",
+  keyTakeaways: [
+    "Successful onboarding involves understanding both people/procedures and technical stack",
+    "Rest and recovery are critical for sustained productivity and focus",
+    "Structured accountability systems (30/60/90 plans, Pomodoro, brag documents) enhance success",
+    "Continuous learning and self-advocacy are essential for career growth"
+  ],
+  technicalDepth: "medium",
+  codeExamples: false
+}
 ---
 
 So the offer letter has been signed and the job search is finally over (mine took 365 days ~ update coming). So the question to be answered is what or what does one do next? The answer ... a lot of unlearning and re-learning. So let's cover a few tips that were instrumental in helping me to become the best version of myself for this new chapter of my tech career. To make it easier, we will break these tips down into the following: onboarding (people and tech), resting( its importance), relearning how to work and deliberate learning.

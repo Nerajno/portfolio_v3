@@ -1,7 +1,7 @@
 ---
 draft: false
-seoTitle: "6 Job Hunting Strategies for Developers: Lessons from 6 Months"
-seoDescription: "Six key strategies and lessons learned from six months of job hunting as a developer, including networking, portfolio building, and staying positive."
+seoTitle: "6 Job Hunting Strategies for Developers: Lessons from 6 Months | Nerando Johnson"
+seoDescription: "Six key strategies and lessons learned from six months of job hunting as a developer, including networking, portfolio building, and staying positive through 182 days of searching."
 author: "Nerando Johnson"
 title: "6 Strategies Learned from 6 months of Job Hunting"
 snippet: "As a developer spent 182 days looking for a new job before receiving an offer as a Fullstack Developer. I learned six important lessons about job hunting, including networking, using LinkedIn, building a portfolio, crafting resumes, practicing code, and creating routines. I recommend that other job seekers should reach out to communities, share their experiences, and stay positive during their search."
@@ -9,7 +9,64 @@ image: { src: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cov
 publishDate: "2021-09-26 12:00"
 category: "Interviewing, Jobhunting, JavaScript"
 tags: [jobhunting, interview, networking, javascript]
+keywords: [developer job search, job hunting strategies, networking for developers, LinkedIn for developers, developer portfolio, tech job search, career transition, developer resume, coding interview preparation, developer career advice]
 tweetIds: ["1438175151829442569"]
+
+# GEO-Enhanced Fields
+schema: {
+  type: "Article",
+  about: "Job hunting strategies and lessons for software developers",
+  genre: "Career Advice",
+  educationalLevel: "Beginner to Intermediate",
+  teaches: ["Networking Strategies", "LinkedIn Optimization", "Portfolio Building", "Resume Creation", "Interview Preparation", "Routine Building"],
+  audience: {
+    type: "ProfessionalAudience",
+    audienceType: "Job Seeking Developers"
+  }
+}
+
+entities: {
+  primary: ["Job Hunting", "Developer Career", "Software Engineering Career"],
+  secondary: ["Networking", "LinkedIn", "Portfolio", "Resume", "Interview Preparation"],
+  tools: ["LinkedIn", "Twitter", "Dev.to", "Virtual Coffee", "FreeCodeCamp", "CodeNewbies"],
+  concepts: ["Career Development", "Professional Networking", "Personal Branding", "Job Search Strategy"]
+}
+
+contentStructure: {
+  type: "Experience-Based Guide",
+  difficulty: "Beginner-Friendly",
+  timeToComplete: "10-12 minutes read",
+  prerequisites: ["Active job search", "Basic understanding of developer roles"],
+  outcomes: ["Develop effective job search strategies", "Build professional network", "Create compelling portfolio and resume", "Establish productive routines"]
+}
+
+semanticContext: {
+  topic: "Career development and job search strategies for software developers",
+  subtopics: ["Professional Networking", "Personal Branding", "Portfolio Development", "Interview Preparation", "Mental Health"],
+  relatedConcepts: ["Career Transition", "Community Building", "Self-Advocacy", "Resilience"],
+  practicalApplication: true
+}
+
+citationMetadata: {
+  citableAs: "Johnson, N. (2021). 6 Strategies Learned from 6 months of Job Hunting",
+  lastReviewed: "2025-10-30",
+  version: "1.1",
+  originalPublisher: "Nerando Johnson's Blog"
+}
+
+aiOptimization: {
+  summaryPrompt: "This article shares six practical job hunting strategies learned from 182 days of searching for a software development role",
+  keyTakeaways: [
+    "Networking in developer communities is essential for job search success",
+    "Active LinkedIn presence with weekly posts increases visibility to recruiters",
+    "Portfolio with 3-4 well-documented projects demonstrates practical skills",
+    "Tailored resumes for each role highlight relevant experience",
+    "Consistent practice and routines maintain focus during job search",
+    "Community support and self-advocacy are crucial for success"
+  ],
+  technicalDepth: "low",
+  codeExamples: false
+}
 ---
 
 After months of applying, interviewing, building, practising, connecting with others in the industry and being ghosted, I got an email that would change my previous situation, #opentowork to currently at _**XYZ**_. The email started with the line I spent months waiting to hear. _“We are pleased to offer you the position of Fullstack Developer.”_  I think I stared at it for a few minutes and double-checked the header to make sure it wasn’t an ill-mannered prank.

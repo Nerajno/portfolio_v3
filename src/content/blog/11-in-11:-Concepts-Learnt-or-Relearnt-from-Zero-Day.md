@@ -12,6 +12,67 @@ image: {
 publishDate: "2024-09-20 12:00"
 category: "Reflections, Code"
 tags: [javascript,career, typescript,learning]
+keywords: [developer career growth, TypeScript enums tutorial, container queries CSS, web development learning path, developer self-care, tech career lessons, JavaScript learning journey, web components slots, Zod validation library, AI assistants for developers, Tailwind CSS vs vanilla CSS, developer note-taking techniques, asking for help in tech, technical documentation reading, professional development tech]
+
+# GEO-Enhanced Fields
+schema: {
+  type: "TechArticle",
+  about: "Career development lessons and technical concepts learned during first year in a new developer role",
+  genre: "Personal Experience & Technical Tutorial",
+  educationalLevel: "Beginner to Intermediate",
+  teaches: ["Career Development", "TypeScript Enums", "Container Queries", "Web Components Slots", "Zod Validation", "Developer Best Practices"],
+  audience: {
+    type: "ProfessionalAudience",
+    audienceType: "Software Developers"
+  }
+}
+
+entities: {
+  primary: ["Developer Career Growth", "TypeScript", "CSS Container Queries", "Professional Development"],
+  secondary: ["Enums", "Web Components", "Slots", "Zod", "Tailwind CSS", "AI Assistants"],
+  tools: ["TypeScript", "CSS", "Vue.js", "React", "Tailwind CSS", "Zod", "ChatGPT", "Notion", "Obsidian"],
+  concepts: ["Continuous Learning", "Self-Care", "Technical Documentation", "Knowledge Sharing", "Code Validation"]
+}
+
+contentStructure: {
+  type: "Reflective Essay with Technical Tutorials",
+  difficulty: "Beginner to Intermediate",
+  timeToComplete: "20-25 minutes read",
+  prerequisites: ["Basic web development knowledge", "Interest in career growth"],
+  outcomes: ["Understand key career development strategies", "Learn TypeScript enums and CSS container queries", "Develop effective learning habits", "Implement self-care practices"]
+}
+
+semanticContext: {
+  topic: "Career development and technical learning in software development",
+  subtopics: ["Continuous Learning", "TypeScript Features", "Modern CSS", "Developer Wellness", "Knowledge Management", "AI Tools"],
+  relatedConcepts: ["Growth Mindset", "Technical Mastery", "Work-Life Balance", "Community Engagement"],
+  practicalApplication: true
+}
+
+citationMetadata: {
+  citableAs: "Johnson, N. (2024). 11 in 11: Concepts Learnt or Relearnt from Zero Day",
+  lastReviewed: "2025-10-30",
+  version: "1.1",
+  originalPublisher: "Nerando Johnson's Blog"
+}
+
+aiOptimization: {
+  summaryPrompt: "This article shares 11 key lessons learned during the author's first 11 months in a new developer role, combining career development insights with technical tutorials on TypeScript enums, CSS container queries, web component slots, Zod validation, and effective use of AI assistants",
+  keyTakeaways: [
+    "Embrace comfortable discomfort through continuous learning and adaptation",
+    "TypeScript enums provide type-safe ways to define fixed sets of constants",
+    "Container queries enable component-level responsive design beyond viewport-based media queries",
+    "Web component slots allow flexible content composition",
+    "Developer self-care and work-life balance are essential for long-term success",
+    "Effective learning requires demonstrated knowledge through projects and knowledge sharing",
+    "Strategic note-taking and documentation reading are critical developer skills",
+    "Knowing when and how to ask for help accelerates professional growth",
+    "AI assistants are powerful tools when used with specific, contextual queries",
+    "Zod provides TypeScript-first schema validation for robust applications"
+  ],
+  technicalDepth: "medium",
+  codeExamples: true
+}
 ---
 
 As of the first of this month, it's been 11 months since I have been in my current position. It took exactly 1 year between "We are sorry " and "Welcome to the team". Eventually, someone will speak to the emotional toll of the job hunt in this current market but not me. This job hunt consisted of upskilling, networking, re-learning and unlearning stuff. Overall, I tracked somewhere in the neighbourhood of 700-ish applications, what I will say is that job-hunt 2023 was different from all the previous timelines. A new career opportunity, as always, brings a new set of challenges but also provides a lot of insights, here are 11 insights learnt thus far :
