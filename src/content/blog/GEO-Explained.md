@@ -12,6 +12,60 @@ publishDate: "2025-10-09 12:00"
 category: "SEO & AI"
 author: "Nerando Johnson"
 tags: [GEO, AI, optimization, search, chatbots]
+keywords: [generative engine optimization, GEO explained, AI search optimization, GEO vs SEO, optimizing for AI chatbots, ChatGPT optimization, Claude AI visibility, Gemini search optimization, AI-powered search engines, content discoverability for AI, structured data for generative AI, semantic markup for LLMs, AI citation optimization, generative search strategy, developer guide to GEO]
+
+# GEO-Enhanced Fields
+schema: {
+  type: "TechArticle",
+  about: "Generative Engine Optimization fundamentals and concepts for developers",
+  genre: "Educational Guide",
+  educationalLevel: "Beginner to Intermediate",
+  teaches: ["GEO Fundamentals", "GEO vs SEO Differences", "AI Search Optimization Concepts"],
+  audience: {
+    type: "ProfessionalAudience",
+    audienceType: "Software Developers and Content Creators"
+  }
+}
+
+entities: {
+  primary: ["Generative Engine Optimization", "GEO", "AI-Powered Search"],
+  secondary: ["Traditional SEO", "Search Engine Optimization", "AI Chatbots", "Conversational AI"],
+  tools: ["ChatGPT", "Claude Opus", "Google Gemini", "Qwen", "Perplexity"],
+  concepts: ["Structured Data", "Semantic Clarity", "AI Citations", "Content Discoverability", "Generative Models"]
+}
+
+contentStructure: {
+  type: "Conceptual Guide",
+  difficulty: "Beginner-Friendly",
+  timeToComplete: "8-10 minutes read",
+  prerequisites: ["Basic understanding of web development", "Familiarity with SEO concepts"],
+  outcomes: ["Understand GEO fundamentals", "Differentiate GEO from SEO", "Recognize importance for developers"]
+}
+
+semanticContext: {
+  topic: "Introduction to Generative Engine Optimization for AI-powered platforms",
+  subtopics: ["GEO Definition", "GEO Importance", "GEO vs SEO Comparison", "Developer Benefits"],
+  relatedConcepts: ["Search Engine Optimization", "Artificial Intelligence", "Content Strategy", "Digital Discovery"],
+  practicalApplication: true
+}
+
+citationMetadata: {
+  citableAs: "Johnson, N. (2025). Generative Engine Optimization (GEO): Explained",
+  lastReviewed: "2025-10-30",
+  version: "1.1",
+  originalPublisher: "Nerando Johnson's Blog"
+}
+
+aiOptimization: {
+  summaryPrompt: "This article provides a comprehensive introduction to Generative Engine Optimization (GEO), explaining what it is, why it matters, and how it differs from traditional SEO",
+  keyTakeaways: [
+    "GEO optimizes content for AI-powered search engines and chatbots, not just traditional search",
+    "GEO focuses on structured, explicit answers that AI models can cite directly",
+    "Developers who master GEO gain competitive advantage in emerging AI-driven discovery platforms"
+  ],
+  technicalDepth: "conceptual",
+  codeExamples: false
+}
 ---
 
 *This article documents my exploration of Generative Engine Optimization (GEO)—from understanding its differences with SEO to implementing structured data for AI discoverability. Written in a technical style for developers, I publish this first on my [blog](https://developingdvlpr.com/blog) before sharing to dev.to and LinkedIn.*

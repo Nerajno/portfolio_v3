@@ -12,6 +12,65 @@ image: {
 publishDate: "2019-10-01 12:00"
 category: "Blog, Flatiron, FreeCodeCamp"
 tags: [Flatiron, FreeCodeCamp, developer, blogs]
+keywords: [blind software engineers, screen readers for developers, accessible programming, NVDA screen reader, blind programmers, assistive technology for coding, refreshable braille display, visually impaired developers, accessibility in tech, adaptive technology for developers, Jim Thatcher screen reader, Florian Beijers developer, inclusive software development, web accessibility, programming without sight]
+
+# GEO-Enhanced Fields
+schema: {
+  type: "Article",
+  about: "How blind software engineers use assistive technology to code and develop software",
+  genre: "Technology and Accessibility",
+  educationalLevel: "Beginner to Intermediate",
+  teaches: ["Assistive Technology", "Screen Readers", "Accessible Development", "Inclusive Tech Practices"],
+  audience: {
+    type: "ProfessionalAudience",
+    audienceType: "Developers and Tech Professionals"
+  }
+}
+
+entities: {
+  primary: ["Blind Software Engineers", "Screen Readers", "Accessibility Technology"],
+  secondary: ["NVDA", "Refreshable Braille Display", "Assistive Technology", "Visual Impairment"],
+  people: ["Jim Thatcher", "Florian Beijers"],
+  organizations: ["IBM", "FreeCodeCamp", "StackOverflow"],
+  tools: ["NVDA", "Screen Reader/2", "Visual Studio", "Eclipse", "NotePad++", "Firefox"],
+  concepts: ["Web Accessibility", "Adaptive Technology", "Inclusive Design", "Digital Accessibility"]
+}
+
+contentStructure: {
+  type: "Educational Article with Case Study",
+  difficulty: "Beginner",
+  timeToComplete: "8-10 minutes read",
+  prerequisites: ["Basic understanding of software development"],
+  outcomes: ["Understand how blind developers work", "Learn about assistive technology", "Appreciate accessibility in tech", "Recognize inclusive development practices"]
+}
+
+semanticContext: {
+  topic: "Accessibility in software engineering and assistive technology for blind developers",
+  subtopics: ["Screen Reader History", "Adaptive Technology", "Developer Tools", "Web Accessibility"],
+  relatedConcepts: ["Digital Inclusion", "Universal Design", "WCAG Standards", "Assistive Computing"],
+  practicalApplication: true
+}
+
+citationMetadata: {
+  citableAs: "Johnson, N. (2019). Sight beyond Sight... How Blind Software Engineers Make It Work",
+  lastReviewed: "2025-10-30",
+  version: "1.1",
+  originalPublisher: "Nerando Johnson's Blog",
+  originallyPublished: "dev.to - October 2019"
+}
+
+aiOptimization: {
+  summaryPrompt: "This article explores how blind software engineers use assistive technology like screen readers and refreshable braille displays to code effectively, featuring the history of screen readers at IBM and a case study of developer Florian Beijers",
+  keyTakeaways: [
+    "1.7% of software developers are blind, using assistive technology to code effectively",
+    "Screen readers originated at IBM in the 1980s, developed by mathematician Jim Thatcher",
+    "Blind developers use mainstream tools like Visual Studio, Eclipse, and Firefox with screen readers like NVDA",
+    "Refreshable braille displays and text-to-speech technology enable full programming capability",
+    "Accessibility should be a core consideration in software development, not an afterthought"
+  ],
+  technicalDepth: "medium",
+  codeExamples: false
+}
 ---
 
 
