@@ -10,18 +10,77 @@ image: {
 }
 publishDate: "2025-10-27 12:00"
 category: "SEO & Applied Practice"
-//author: "Nerando Johnson"
-tags: [generative engine optimization, GEO implementation, AI search optimization]
+author: "Nerando Johnson"
+tags: [generative engine optimization, GEO implementation, AI search]
 keywords: [GEO implementation guide, generative engine optimization techniques, AI search visibility, structured data markup, schema.org implementation, semantic HTML optimization, content optimization for AI, LLM-friendly content, ChatGPT optimization, Perplexity SEO, AI-powered search, JSON-LD implementation, entity optimization, knowledge graph optimization]
+
+# GEO-Enhanced Fields
+schema: {
+  type: "TechArticle",
+  about: "Generative Engine Optimization implementation for developers",
+  genre: "Technical Tutorial",
+  educationalLevel: "Intermediate to Advanced",
+  teaches: ["Structured Data Implementation", "Semantic HTML", "AI Content Optimization"],
+  audience: {
+    type: "ProfessionalAudience",
+    audienceType: "Developers"
+  }
+}
+
+entities: {
+  primary: ["Generative Engine Optimization", "GEO", "AI Search Optimization"],
+  secondary: ["Astro Framework", "Schema.org", "JSON-LD", "Semantic HTML"],
+  tools: ["ChatGPT", "Claude", "Perplexity", "Gemini"],
+  concepts: ["Structured Data", "Knowledge Graphs", "Entity Optimization"]
+}
+
+contentStructure: {
+  type: "How-To Guide",
+  difficulty: "Intermediate",
+  timeToComplete: "15-20 minutes read",
+  prerequisites: ["Basic HTML/CSS", "Familiarity with web development"],
+  outcomes: ["Implement GEO strategies", "Improve AI search visibility", "Structure content for LLMs"]
+}
+
+semanticContext: {
+  topic: "Search Engine Optimization for AI-powered search engines",
+  subtopics: ["Technical SEO", "Content Strategy", "Structured Data"],
+  relatedConcepts: ["Traditional SEO", "Information Retrieval", "Natural Language Processing"],
+  practicalApplication: true
+}
+
+citationMetadata: {
+  citableAs: "Johnson, N. (2025). Generative Engine Optimization (GEO): Applied [Astro Implementation]",
+  lastReviewed: "2025-10-27",
+  version: "1.0",
+  originalPublisher: "Nerando Johnson's Blog"
+}
+
+aiOptimization: {
+  summaryPrompt: "This article provides a comprehensive, developer-focused guide to implementing Generative Engine Optimization (GEO) techniques",
+  keyTakeaways: [
+    "GEO differs from traditional SEO by optimizing for AI understanding",
+    "Structured data and semantic markup improve AI content comprehension",
+    "Practical implementation examples using Astro framework"
+  ],
+  technicalDepth: "high",
+  codeExamples: true
+}
 ---
 
 *This article provides a practical guide and documents my exploration to implementing Generative Engine Optimization (GEO) in my projects, thus by extension, your work. It's part two of a series that explores modern search optimization techniques for developers, here is [part one](https://developingdvlpr.com/blog/geo-explained). This is written in a technical style for developers, I publish this first on my [blog](https://developingdvlpr.com/blog) before sharing to dev.to and LinkedIn.*
 
 
 ## Introduction
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNG83dmV1NGV6dTE4dm1vbXZjMnA3NDhpMG9hZzk0bGRkOGl0YTF0MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kMM3vtBEgSsLu/giphy.gif)
+
 Implementing Generative Engine Optimization (GEO) means structuring your content so AI engines like ChatGPT, Claude, and Google Gemini can easily parse, understand, and cite your work. While the first article in this series explained what GEO is and why it matters, this guide shows you how to apply GEO principles in real projects using Astro components. GEO implementation focuses on three core pillars: semantic HTML structure, explicit content formatting, and structured data markup. When combined, these techniques make your content both human-readable and machine-parseable, maximizing visibility across traditional search engines and AI-powered platforms.
 
+
+![]()
 ## GEO Principles in Astro Components
+![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGVoeDBhazJqa3d4azN0ZXVyeGRuaDRuNHJnYXh3c3A3NzZhdmU0aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hVazFLob1BnLpuWoXx/giphy.gif)
+
 Generative Engine Optimization for Astro involves ensuring your site's content is both human-readable (good UX) and machine-readable (good parsing for AI and search engines). The essential GEO strategies you can implement in Astro include:
 
 - **Semantic HTML Structure:** Use proper HTML5 semantic elements including `<article>`, `<section>`, `<header>`, `<footer>`, and `<main>` tags. These elements provide clear content hierarchy that AI models can interpret.
@@ -31,6 +90,8 @@ Generative Engine Optimization for Astro involves ensuring your site's content i
 - **Self-Contained Statements:** Write concise, complete statements that generative models can easily extract and cite without requiring additional context.
 
 ## Example Astro Article Structure
+
+![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG5kcXNkY3Z1cTJzdXN2bXUxa3E3bmdncXR2eWN0bHlicXB0OTExdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1lCx5gsFRg8tMg0eK/giphy.gif)
 
 Here's a practical implementation showing how to structure an Astro component with GEO principles:
 
@@ -163,6 +224,7 @@ const description = "Learn how to implement Generative Engine Optimization in As
 ```
 
 ## Key Implementation Steps and Best Practices
+![alt text](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTY3OGl1N3RxeWdhaGw0Z3llZThoZmdlNWk0aXo1ajFlejlvbms0OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dQpUkK59l5Imxsh8jN/giphy.gif)
 
 - **Structure Components with Semantic Tags**
 Every Astro component should use appropriate HTML5 semantic elements. Replace generic `<div>` containers with meaningful tags like `<article>`, `<section>`, `<nav>`, and `<aside>` to provide clear content hierarchy.
@@ -179,7 +241,10 @@ Every heading should clearly indicate the content that follows. Avoid generic he
 - **Optimize for Question-Answer Format**
 Include dedicated FAQ sections or structure content to directly answer common questions. This format aligns perfectly with how users query AI systems and how those systems present information.
 
+
+
 ## Advanced GEO Techniques
+![alt text](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExemdiM3VrZ3dibDZqMW8wNzEzOTFkNWExcDcxN2RuZHN5d2QyMG0xbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KAoz9yqcy5cpQ3CykS/giphy.gif)
 - **Entity Optimization** :
 reference specific entities (people, places, organizations, concepts) consistently throughout your content. Link to authoritative sources and use schema markup to define relationships between entities.
 
@@ -193,18 +258,17 @@ create rich internal link structures that help AI understand topic relationships
 accessible content is inherently more parseable by AI. Follow WCAG guidelines for semantic markup, ARIA labels, and clear content structure.
 
 ## Measuring GEO Success
+![](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWJoMzVzMmN4dWFtcWRxa29oczZ3YzMycm9zNXUweDA4dWttdDZ5NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dAbYDcASdfNd62erv3/giphy.gif)
+
 Unlike traditional SEO metrics (rankings, traffic, conversions), GEO success is measured through:
-
 - **AI Citation Frequency:** Monitor how often your content appears in AI-generated responses. Test by querying AI platforms with relevant questions in your domain.
-
 - **Source Attribution:** Check whether AI systems correctly attribute information to your site when citing your content.
-
 - **Conversational Reach:** Track engagement from users who found your content through AI recommendations or citations.
-
 - **Structured Data Validation:** Use Google's Rich Results Test and Schema Markup Validator to ensure your structured data is correctly implemented.
 
-## Conclusion
 
+## Conclusion
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMm91OGVybnlqeXR0N2l1c3dkNzYxenB5emZqd3QycGtzb3I3MGQ4cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cMNkMjWJ4mB3LvB5DR/giphy.gif)
 Implementing GEO in Astro components requires a shift in how developers think about content structure. By combining semantic HTML, explicit content formatting, and comprehensive structured data, you create websites that serve both human visitors and AI platforms effectively. Start with the basics: ensure every page uses semantic tags, add appropriate JSON-LD schema, and structure content to answer questions directly. As you refine your approach, incorporate advanced techniques like entity optimization and sophisticated information architecture. The web is evolving toward conversational, AI-mediated discovery. Developers who master GEO implementation now position their content—and their skills—at the forefront of this transformation.
 
 ## Resources for Further Learning
