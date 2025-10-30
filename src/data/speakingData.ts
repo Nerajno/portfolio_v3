@@ -62,10 +62,10 @@ export const speakingData: SpeakingEvent[] = [
       venue: "Mississippi Museum of Art in Jackson, MS",
     },
     type: "conference",
-    tags: ["learning", "polyglot", "open source", "software development"],
+    tags: ["learning", "polyglot", "open source", "software development", "side projects"],
     links: {
       conferenceWebsite: "https://2025.magnoliaconf.com/",
-      //slides: "https://docs.google.com/presentation/d/1kApJFrA2JIRtAUpU098jnpQmfmY3vVKz/edit?usp=drive_link&ouid=101977102167064448578&rtpof=true&sd=true",
+      slides: "https://docs.google.com/presentation/d/1pWsdL-b0k11AXjYuGE_4LzKoELHXHFBLHk6gF308pp0/edit?usp=sharing",
       //article: "https://developingdvlpr.com/blog/and-it-was-written/"
     },
   },
