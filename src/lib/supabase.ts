@@ -11,15 +11,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // =============================================================================
-// RATE LIMITING
+// RATE LIMITING - In-memory cache to prevent spam from same device
 // =============================================================================
-// In-memory cache to prevent spam from the same user viewing the same post
-// Key format: "slug:identifier" (e.g., "my-post:192.168.1.1")
 const viewCache = new Map<string, number>();
 const RATE_LIMIT_DURATION = 60000; // 1 minute in milliseconds
 
 /**
- * Cleans up old entries from the view cache (older than rate limit duration)
+ * Cleans up old entries from the view cache
  */
 function cleanupCache() {
   const now = Date.now();
@@ -38,7 +36,7 @@ if (typeof setInterval !== 'undefined') {
 /**
  * Checks if a view should be rate limited
  * @param slug - The blog post slug
- * @param identifier - Unique identifier (IP, user ID, etc.)
+ * @param identifier - Unique identifier (device ID)
  * @returns true if should be rate limited, false if allowed
  */
 export function isRateLimited(slug: string, identifier: string): boolean {
@@ -47,18 +45,15 @@ export function isRateLimited(slug: string, identifier: string): boolean {
   const now = Date.now();
 
   if (lastView && now - lastView < RATE_LIMIT_DURATION) {
-    // Still within rate limit window
-    return true;
+    return true; // Still within rate limit window
   }
-
-  // Don't update cache here - will be updated after successful increment
   return false;
 }
 
 /**
  * Updates the rate limit cache after a successful view increment
  * @param slug - The blog post slug
- * @param identifier - Unique identifier (IP, user ID, etc.)
+ * @param identifier - Unique identifier (device ID)
  */
 export function updateRateLimitCache(slug: string, identifier: string): void {
   const cacheKey = `${slug}:${identifier}`;
@@ -71,7 +66,6 @@ export function updateRateLimitCache(slug: string, identifier: string): void {
  * @returns A hashed identifier
  */
 export function hashIdentifier(ip: string): string {
-  // Simple hash function for privacy (consider using crypto.subtle in production)
   let hash = 0;
   for (let i = 0; i < ip.length; i++) {
     const char = ip.charCodeAt(i);
@@ -81,17 +75,13 @@ export function hashIdentifier(ip: string): string {
   return Math.abs(hash).toString(36);
 }
 
-// Type definitions for your views table
-export interface ViewsTable {
-  id?: number;
-  slug: string;
-  view_count: number;
-  created_at?: string;
-  updated_at?: string;
-}
+// =============================================================================
+// BOT DETECTION - Bots can access content but won't be counted as views
+// =============================================================================
 
 /**
  * Checks if a user agent string belongs to a bot/crawler
+ * Bots are ALLOWED to access content, just not counted as views
  * @param userAgent - The user agent string from the request
  * @returns true if it's a bot, false otherwise
  */
@@ -120,8 +110,8 @@ export function isBot(userAgent: string): boolean {
     'outbrain',
     'pinterest',
     'slackbot',
-    'vkShare',
-    'W3C_Validator',
+    'vkshare',
+    'w3c_validator',
     'headless',
     'phantom',
     'selenium',
@@ -133,33 +123,50 @@ export function isBot(userAgent: string): boolean {
   return botPatterns.some(pattern => ua.includes(pattern));
 }
 
+// =============================================================================
+// VIEW TRACKING FUNCTIONS
+// =============================================================================
+
 /**
- * Increments the view count for a blog post
+ * Increments the view count for a blog post (only for non-bots)
+ * Bots can access the content but won't increment the counter
  * @param slug - The blog post slug
- * @param userAgent - Optional user agent string to check for bots
- * @param clientIdentifier - Optional client identifier (IP hash) for rate limiting
- * @returns The new view count, or null if failed
+ * @param userAgent - User agent string to check for bots
+ * @param clientIdentifier - Client identifier (device ID) for rate limiting
+ * @returns The current view count, or null if failed
  */
 export async function incrementViewCount(
   slug: string,
   userAgent?: string,
   clientIdentifier?: string
 ): Promise<number | null> {
-  // Skip incrementing if this is a bot
+  // IMPORTANT: Bots are allowed to access content, we just don't count them
   if (userAgent && isBot(userAgent)) {
-    console.log(`Bot detected for slug: ${slug}, skipping increment`);
-    return getViewCount(slug);
+    console.log(`Bot detected for slug: ${slug}, allowing access but not counting view`);
+    return getViewCount(slug); // Return current count without incrementing
   }
 
-  // Check rate limiting if identifier provided
+  // Check rate limiting for non-bot users
   if (clientIdentifier && isRateLimited(slug, clientIdentifier)) {
     console.log(`Rate limited for slug: ${slug}, identifier: ${clientIdentifier}`);
-    return getViewCount(slug);
+    return getViewCount(slug); // Return current count without incrementing
   }
+
   try {
-    const { data, error } = await supabase.rpc('update_views', {
-      input_slug: slug
-    });
+    // Insert unique view record (upsert prevents duplicates)
+    const { error } = await supabase
+      .from('post_views')
+      .upsert(
+        {
+          post_slug: slug,
+          device_id: clientIdentifier || 'unknown',
+          viewed_at: new Date().toISOString()
+        },
+        {
+          onConflict: 'post_slug,device_id',
+          ignoreDuplicates: true // Don't increment if already exists
+        }
+      );
 
     if (error) {
       console.error('Error incrementing view count:', error);
@@ -167,58 +174,66 @@ export async function incrementViewCount(
     }
 
     // Update rate limit cache only after successful increment
-    if (clientIdentifier && data) {
+    if (clientIdentifier) {
       updateRateLimitCache(slug, clientIdentifier);
     }
 
-    // RPC function returns the count directly (not in an array)
-    return typeof data === 'number' ? data : data?.count || null;
+    // Get updated count
+    return getViewCount(slug);
   } catch (error) {
     console.error('Error in incrementViewCount:', error);
     return null;
   }
 }
 
+/**
+ * Gets the current view count for a blog post
+ * @param slug - The blog post slug
+ * @returns The view count
+ */
 export async function getViewCount(slug: string): Promise<number> {
   try {
     const { data, error } = await supabase
-      .from('views')
-      .select('view_count')
-      .eq('slug', slug)
-      .single();
+      .rpc('get_unique_view_count', { slug });
 
     if (error) {
-      // If no record exists, return 0
-      if (error.code === 'PGRST116') {
-        return 0;
-      }
       console.error('Error fetching view count:', error);
       return 0;
     }
 
-    return data?.view_count || 0;
+    return data || 0;
   } catch (error) {
     console.error('Error in getViewCount:', error);
     return 0;
   }
 }
 
+/**
+ * Gets view counts for all blog posts
+ * @returns Object with slug as key and view count as value
+ */
 export async function getAllViewCounts(): Promise<Record<string, number>> {
   try {
-    const { data, error } = await supabase
-      .from('views')
-      .select('slug, view_count');
+    // Get all unique slugs
+    const { data: slugData, error: slugError } = await supabase
+      .from('post_views')
+      .select('post_slug')
+      .order('post_slug');
 
-    if (error) {
-      console.error('Error fetching all view counts:', error);
+    if (slugError) {
+      console.error('Error fetching slugs:', slugError);
       return {};
     }
 
-    // Convert array to object for easier access
+    // Get unique slugs
+    const uniqueSlugs = [...new Set(slugData.map(item => item.post_slug))];
     const viewCounts: Record<string, number> = {};
-    data?.forEach(item => {
-      viewCounts[item.slug] = item.view_count;
-    });
+
+    // Get count for each slug
+    for (const slug of uniqueSlugs) {
+      const count = await getViewCount(slug);
+      viewCounts[slug] = count;
+    }
 
     return viewCounts;
   } catch (error) {

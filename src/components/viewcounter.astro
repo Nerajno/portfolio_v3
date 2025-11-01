@@ -1,68 +1,15 @@
 ---
-// src/components/ViewCounter.astro
 export interface Props {
   slug: string;
-  increment?: boolean;
   className?: string;
 }
 
-const { slug, increment = false, className = "" } = Astro.props;
-
-import { incrementViewCount, getViewCount, hashIdentifier } from '../lib/supabase';
-
-let viewCount = 0;
-
-// Skip database interactions in development mode if desired
-const isDevelopment = import.meta.env.MODE === 'development';
-// Detect prerendering - avoid accessing Astro.clientAddress during build
-const isPrerendering = import.meta.env.SSR && !Astro.request?.headers?.get('user-agent');
-
-if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
-  // During prerendering/static build, only fetch the count
-  // Client-side script will handle the increment
-  if (!isPrerendering && increment) {
-    // Only increment on actual server requests (not during build)
-    try {
-      // Get user agent for bot detection
-      const userAgent = Astro.request.headers.get('user-agent') || '';
-
-      // Get client IP for rate limiting (with fallback)
-      let clientIP = 'unknown';
-      try {
-        clientIP =
-          Astro.request.headers.get('x-forwarded-for')?.split(',')[0] ||
-          Astro.request.headers.get('x-real-ip') ||
-          Astro.clientAddress ||
-          'unknown';
-      } catch {
-        // clientAddress not available during prerendering
-        clientIP = 'unknown';
-      }
-
-      // Hash the IP for privacy
-      const clientIdentifier = hashIdentifier(clientIP);
-
-      // Increment and get the new count (bot detection & rate limiting happens inside)
-      const newCount = await incrementViewCount(slug, userAgent, clientIdentifier);
-      viewCount = newCount || 0;
-    } catch (error) {
-      console.error('Error incrementing view count:', error);
-      // Fall back to just getting the count
-      viewCount = await getViewCount(slug);
-    }
-  } else {
-    // Just get the current count (during prerendering or when increment=false)
-    viewCount = await getViewCount(slug);
-  }
-}
+const { slug, className = "" } = Astro.props;
 ---
 
 <span
   class={`view-counter ${className}`}
-  data-slug={slug}
-  data-increment={increment ? 'true' : 'false'}
-  data-initial-count={viewCount}
->
+  data-slug={slug}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -73,54 +20,52 @@ if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    class="inline-block mr-1"
-  >
+    class="inline-block mr-1">
     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
     <circle cx="12" cy="12" r="3"></circle>
   </svg>
-  <span class="view-count-number">
-    {isDevelopment && import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
-      ? '-- views (dev mode)'
-      : `${viewCount.toLocaleString()} ${viewCount === 1 ? 'view' : 'views'}`}
-  </span>
+  <span class="view-count-number">Loading...</span>
 </span>
 
-{/* Client-side script to handle increment on prerendered pages */}
-{increment && isPrerendering && (
-  <script is:inline>
-    // This runs in the browser to increment views for prerendered pages
-    (function() {
-      const viewCounter = document.currentScript?.previousElementSibling;
-      if (!viewCounter) return;
+<script>
+  import { trackUniqueView, getViewCount } from '../utils/viewTracker';
 
-      const slug = viewCounter.getAttribute('data-slug');
-      const shouldIncrement = viewCounter.getAttribute('data-increment') === 'true';
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', async () => {
+    const viewCounters = document.querySelectorAll('.view-counter');
 
-      if (shouldIncrement && slug) {
-        // Use the API endpoint to increment (works client-side)
-        fetch(`/api/views/${slug}`, { method: 'POST' })
-          .then(res => res.json())
-          .then(data => {
-            if (data.count) {
-              const countEl = viewCounter.querySelector('.view-count-number');
-              if (countEl) {
-                const formatted = data.count.toLocaleString();
-                const label = data.count === 1 ? 'view' : 'views';
-                countEl.textContent = `${formatted} ${label}`;
-              }
-            }
-          })
-          .catch(err => console.error('Failed to increment view:', err));
+    for (const counter of viewCounters) {
+      const slug = counter.getAttribute('data-slug');
+      const countEl = counter.querySelector('.view-count-number');
+
+      if (!slug || !countEl) continue;
+
+      try {
+        // Track the view (bots won't be counted)
+        await trackUniqueView(slug);
+
+        // Get and display the count
+        const count = await getViewCount(slug);
+        const formatted = count.toLocaleString();
+        const label = count === 1 ? 'view' : 'views';
+        countEl.textContent = `${formatted} ${label}`;
+      } catch (error) {
+        console.error('Error with view counter:', error);
+        countEl.textContent = 'Views unavailable';
       }
-    })();
-  </script>
-)}
+    }
+  });
+</script>
 
 <style>
   .view-counter {
     display: inline-flex;
     align-items: center;
     font-size: 0.875rem;
-    color: var(--text-muted, #6b7280);
+    color: #6b7280;
+  }
+
+  .dark .view-counter {
+    color: #9ca3af;
   }
 </style>
