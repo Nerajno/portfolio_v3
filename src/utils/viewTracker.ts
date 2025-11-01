@@ -11,9 +11,23 @@ import FingerprintJS from '@fingerprintjs/fingerprintjs';
 export async function trackUniqueView(postSlug: string): Promise<boolean> {
   try {
     // Step 1: Check localStorage first (quick check to avoid unnecessary API calls)
-    const viewedPosts = JSON.parse(
-      localStorage.getItem('viewedPosts') || '{}'
-    );
+    let viewedPosts: Record<string, boolean> = {};
+    try {
+      const raw = localStorage.getItem('viewedPosts');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (
+          typeof parsed === 'object' &&
+          parsed !== null &&
+          !Array.isArray(parsed)
+        ) {
+          viewedPosts = parsed;
+        }
+      }
+    } catch (e) {
+      // If parsing fails, default to empty object
+      viewedPosts = {};
+    }
 
     if (viewedPosts[postSlug]) {
       console.log('Post already viewed (localStorage)');
