@@ -12,7 +12,7 @@ This portfolio website is built to showcase my work as a front-end developer spe
 
 ### Key Features
 
-- **📝 Content-Rich Blogging System** - MDX-powered blog with reading time estimates and GEO optimization
+- **📝 Content-Rich Blogging System** - MDX-powered blog with reading time estimates and SEO optimization
 - **🎨 Portfolio Showcase** - Dynamic project portfolio with case studies and detailed project information
 - **🎤 Speaking Engagements** - Dedicated section for talks, presentations, and community involvement
 - **📧 Contact Integration** - Multiple email service providers (Nodemailer, SendGrid, Web3Forms)
