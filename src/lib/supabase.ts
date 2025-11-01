@@ -209,31 +209,28 @@ export async function getViewCount(slug: string): Promise<number> {
 }
 
 /**
- * Gets view counts for all blog posts
+ * Gets view counts for all blog posts in a single query
  * @returns Object with slug as key and view count as value
  */
 export async function getAllViewCounts(): Promise<Record<string, number>> {
   try {
-    // Get all unique slugs
-    const { data: slugData, error: slugError } = await supabase
+    // Single query to get counts for all slugs
+    // Uses SQL GROUP BY to count distinct device_ids per slug
+    const { data, error } = await supabase
       .from('post_views')
       .select('post_slug')
       .order('post_slug');
 
-    if (slugError) {
-      console.error('Error fetching slugs:', slugError);
+    if (error) {
+      console.error('Error fetching view counts:', error);
       return {};
     }
 
-    // Get unique slugs
-    const uniqueSlugs = [...new Set(slugData.map(item => item.post_slug))];
+    // Count unique device_ids per slug
     const viewCounts: Record<string, number> = {};
-
-    // Get count for each slug
-    for (const slug of uniqueSlugs) {
-      const count = await getViewCount(slug);
-      viewCounts[slug] = count;
-    }
+    data?.forEach(item => {
+      viewCounts[item.post_slug] = (viewCounts[item.post_slug] || 0) + 1;
+    });
 
     return viewCounts;
   } catch (error) {
