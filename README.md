@@ -325,7 +325,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [Jerome Hardaway](https://www.linkedin.com/in/jeromehardaway/) and Ryan Furrer](https://www.linkedin.com/in/ryanfurrer/)
+- [Jerome Hardaway](https://www.linkedin.com/in/jeromehardaway/) and [Ryan Furrer](https://www.linkedin.com/in/ryanfurrer/)
 - Built with [Astro](https://astro.build)
 - Styled with [Tailwind CSS](https://tailwindcss.com)
 - Initial template inspiration from [Astroship](https://astroship.web3templates.com/) by [Web3Templates](https://web3templates.com)
