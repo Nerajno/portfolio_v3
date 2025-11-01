@@ -1,134 +1,344 @@
-## Current Status
+# Nerando Johnson - Portfolio & Developer Website
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e2cb8d28-2711-421d-b71d-044bbb28ddda/deploy-status)](https://app.netlify.com/sites/radiant-sprinkles-d2960e/deploys)
 
-# Astroship - Astro SAAS Starter Website Template
+A modern, SEO-optimized portfolio website built with Astro, showcasing projects, blog posts, speaking engagements, and professional experience. This site serves as both a personal brand hub and a technical demonstration of modern web development practices.
 
-Astroship is a free starter astro website template for saas, startups, marketing websites, landing pages & blogs. Built with Astro & TailwindCSS.
+**Live Site:** [https://developingdvlpr.com](https://developingdvlpr.com)
 
-This Free Template is sponsored by [Web3Templates](https://web3templates.com)
+## 🎯 Project Overview
 
-## Live Demo
+This portfolio website is built to showcase my work as a front-end developer specializing in Vue3, TypeScript, and modern JavaScript frameworks. The site emphasizes performance, accessibility, and SEO optimization while providing a clean, professional user experience.
 
-**[https://astroship.web3templates.com/](https://astroship.web3templates.com/)**
+### Key Features
 
-**[Download Astroship Template](https://web3templates.com/templates/astroship-starter-website-template-for-astro)**
+- **📝 Content-Rich Blogging System** - MDX-powered blog with reading time estimates and SEO optimization
+- **🎨 Portfolio Showcase** - Dynamic project portfolio with case studies and detailed project information
+- **🎤 Speaking Engagements** - Dedicated section for talks, presentations, and community involvement
+- **📧 Contact Integration** - Multiple email service providers (Nodemailer, SendGrid, Web3Forms)
+- **📊 Analytics & Tracking** - Microsoft Clarity integration with Partytown for performance
+- **🌐 SEO & GEO Optimized** - Comprehensive meta tags, structured data, and AI-optimized content
+- **🎨 Modern UI/UX** - TailwindCSS with dark mode support and responsive design
+- **⚡ Performance Focused** - Server-side rendering with Astro and optimized asset delivery
+- **📈 View Tracking** - Supabase-powered blog post view counter
 
-ref="https://web3templates.com/templates/astroship-pro-astro-saas-website-template">
-<img width="160" alt="Upgrade to Pro" src="https://user-images.githubusercontent.com/1884712/199181300-37c2128e-d033-4145-a906-16fa5263a53b.png">
-</a>
+## 🛠️ Tech Stack
 
-## Deploy this template
+### Core Framework
+- **[Astro](https://astro.build)** v5.1.7 - Static site generator with SSR capabilities
+- **[Tailwind CSS](https://tailwindcss.com)** v4.1.10 - Utility-first CSS framework
+- **[MDX](https://mdxjs.com)** v4.0.6 - Markdown with JSX for rich blog content
 
-You can instantly clone this to your GitHub and deploy the site by clicking the below buttons to deploy to your chosen providers!
+### Integrations & Services
+- **Netlify** - Hosting and deployment platform
+- **Supabase** - Backend database for view tracking and analytics
+- **Microsoft Clarity** - User behavior analytics
+- **Web3Forms** - Form handling service
+- **SendGrid** / **Nodemailer** - Email service options
 
-Click here to deploy on Vercel:
+### UI Components & Icons
+- **Astro Icon** - Icon system with Iconify support
+- **Simple Icons** - Brand icon collection
+- **Boxicons** - General purpose icon library
+- **Font Awesome** - Additional icon options
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsurjithctly%2Fastroship&project-name=astroship&repository-name=astroship&demo-title=Astroship%20-%20Astro%20Starter%20Template&demo-description=Astroship%20is%20a%20starter%20template%20for%20startups%2C%20marketing%20websites%20%26%20landing%20pages.%20Built%20with%20Astro%2C%20TailwindCSS&demo-url=https%3A%2F%2Fastroship.web3templates.com%2F&demo-image=https%3A%2F%2Fuser-images.githubusercontent.com%2F1884712%2F200831799-10ef2456-a02e-4068-b580-4b5326f0b33b.png)
+### SEO & Analytics
+- **astro-seo-plugin** - Comprehensive SEO configuration
+- **@astrojs/sitemap** - Automatic sitemap generation
+- **Partytown** - Third-party script optimization
+- **Reading Time** - Blog post reading time calculation
 
-Click here to deploy on Netlify:
+## 📁 Project Structure
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/surjithctly/astroship)
-
-## Preview
-
-![image](https://user-images.githubusercontent.com/1884712/200831799-10ef2456-a02e-4068-b580-4b5326f0b33b.png)
-
-### Pagespeed Score
-
-[![pagespeed](https://user-images.githubusercontent.com/1884712/210250214-7aa98167-7993-4b90-8138-326b8fa0c223.png)](https://pagespeed.web.dev/report?url=https%3A%2F%2Fastroship.web3templates.com%2F)
-
-
-## Installation
-
-If you are reading this on github, you can click on the "Use this template" button above to create a new repository from astroship to your account. Then you can do a `git clone` to clone it to your local system.
-
-Alternatively, you can clone the project directly from this repo to your local system.
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/surjithctly/astroship.git myProjectName
-# or
-git clone https://github.com/surjithctly/astroship.git .
+```
+/
+├── public/                      # Static assets
+│   ├── favicon.ico
+│   └── images/
+├── src/
+│   ├── assets/                  # Image assets processed by Astro
+│   ├── components/              # Reusable Astro components
+│   │   ├── container.astro
+│   │   ├── sectionhead.astro
+│   │   └── ...
+│   ├── content/                 # Content collections
+│   │   ├── blog/               # MDX blog posts
+│   │   └── config.ts           # Content collection schemas
+│   ├── data/                    # Static data files
+│   │   └── funFacts.js
+│   ├── layouts/                 # Page layouts
+│   │   └── Layout.astro
+│   ├── lib/                     # Utility libraries
+│   ├── pages/                   # File-based routing
+│   │   ├── index.astro         # Homepage
+│   │   ├── about.astro         # About page
+│   │   ├── blog.astro          # Blog listing
+│   │   ├── portfolio.astro     # Portfolio showcase
+│   │   ├── speaking.astro      # Speaking engagements
+│   │   ├── contact.astro       # Contact form
+│   │   ├── digital_garden.astro
+│   │   ├── api/                # API endpoints
+│   │   └── blog/[...slug].astro # Dynamic blog posts
+│   ├── styles/                  # Global styles
+│   ├── types/                   # TypeScript type definitions
+│   └── utils/                   # Utility functions
+├── db/                          # Astro DB configuration (if used)
+├── astro.config.mjs             # Astro configuration
+├── tailwind.config.cjs          # Tailwind configuration
+├── tsconfig.json                # TypeScript configuration
+├── package.json
+└── README.md
 ```
 
-The `.` will clone it to the current directory so make sure you are inside your project folder first.
+## 🚀 Getting Started
 
-### 2. Install Dependencies
+### Prerequisites
 
-```bash
-npm install
-# or
-yarn install
-# or (recommended)
-pnpm install
-```
+- **Node.js** 18.x or higher
+- **npm** or **pnpm** (recommended)
+- **Git**
 
-### 3. Start development Server
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Nerajno/astro_portfolio_v3.git
+   cd astro_portfolio_v3
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   pnpm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edit `.env` and configure the following:
+   ```env
+   # Email Configuration
+   EMAIL_HOST="mail.privateemail.com"
+   EMAIL="your-email@example.com"
+   EMAIL_PASS="your-email-password"
+   EMAIL_PORT=993
+
+   # Web3Forms API Key
+   WEB3FORMS_API_KEY="your-web3forms-api-key"
+
+   # Supabase Configuration
+   SUPABASE_URL="https://your-project.supabase.co"
+   SUPABASE_ANON_KEY="your-supabase-anon-key"
+   ```
+
+4. **Set up Supabase (Optional - for blog view tracking)**
+   See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for detailed instructions.
+
+### Development
+
+Start the development server:
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or (recommended)
 pnpm dev
 ```
 
-### Preview & Build
+The site will be available at `http://localhost:4321`
+
+### Build & Preview
+
+Build for production:
 
 ```bash
-npm run preview
 npm run build
 # or
-yarn preview
-yarn build
-# or (recommended)
-pnpm preview
 pnpm build
 ```
 
-We recommend using [pnpm](https://pnpm.io/) to save disk space on your computer.
-
-### Other Commands
+Preview the production build locally:
 
 ```bash
-pnpm astro ...
-pnpm astro add
-pnpm astro --help
+npm run preview
+# or
+pnpm preview
 ```
 
-## Project Structure
+## 📝 Content Management
 
-Inside of your Astro project, you'll see the following folders and files:
+### Adding Blog Posts
 
+Create new MDX files in `src/content/blog/`:
+
+```mdx
+---
+draft: false
+title: "Your Post Title"
+snippet: "A brief description of your post"
+image: {
+  src: "/images/your-image.jpg",
+  alt: "Image description"
+}
+publishDate: "2025-01-31"
+category: "Technology"
+author: "Nerando Johnson"
+tags: [javascript, web-development]
+---
+
+Your content here...
 ```
-/
-├── public/
-│   └── ...
-├── src/
-│   ├── components/
-│   │   └── ...
-│   ├── layouts/
-│   │   └── ...
-│   └── pages/
-│       └── ...
-└── package.json
+
+### Updating Portfolio Projects
+
+Edit portfolio data in the relevant page components or data files in `src/data/`.
+
+### Managing Speaking Engagements
+
+Update speaking events in `src/pages/speaking.astro` or associated data files.
+
+## 🎨 Customization
+
+### Styling
+
+- **Global Styles:** `src/styles/`
+- **Tailwind Config:** `tailwind.config.cjs`
+- **Component Styles:** Inline in `.astro` files using Tailwind classes
+
+### SEO Configuration
+
+Each page includes comprehensive SEO setup with:
+- Meta tags (title, description, keywords)
+- Open Graph tags for social sharing
+- Twitter Card metadata
+- Structured data (Schema.org JSON-LD)
+- Canonical URLs
+
+Example from `about.astro`:
+```javascript
+const seoConfig = {
+  title: 'About Nerando Johnson - Software Developer',
+  description: '...',
+  canonical: 'https://developingdvlpr.com/about',
+  // ... more configuration
+};
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Analytics
 
-Any static assets, like images, can be placed in the `public/` directory.
+Microsoft Clarity is configured in `astro.config.mjs`. Update the project ID:
 
-## TailwindCSS
+```javascript
+clarityIntegration({
+  projectId: 'your-clarity-project-id',
+  enabled: true,
+})
+```
 
-TailwindCSS is already configured in this repo, so you can start using it without any installation.
+## 🌐 Deployment
 
-## Credits
+### Netlify Deployment
 
-[Hero Illustration](https://www.figma.com/community/file/1108400791662599811) by [Streamline](https://www.streamlinehq.com/)
+This project is optimized for Netlify deployment:
 
-## 👀 Want to learn more?
+1. **Connect your repository** to Netlify
+2. **Configure build settings:**
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+3. **Add environment variables** in Netlify dashboard
+4. **Deploy!**
 
-Feel free to check out [Astro Docs](https://docs.astro.build) or jump into our [Discord Chat](https://web3templates.com/discord).
+See [DEPLOY.md](./DEPLOY.md) for detailed deployment instructions.
 
-[![Built with Astro](https://astro.badg.es/v1/built-with-astro.svg)](https://astro.build)
+### Environment Variables in Production
+
+Ensure all environment variables from `.env.example` are configured in your hosting platform:
+- Email service credentials
+- Supabase configuration
+- API keys (Web3Forms, SendGrid, etc.)
+
+## 📊 Features & Integrations
+
+### Email Services
+
+The contact form supports multiple email providers:
+- **Nodemailer** (default) - Custom SMTP configuration
+- **SendGrid** - Cloud email service
+- **Web3Forms** - Simple form backend
+
+Configure in `.env` based on your preference.
+
+### View Tracking
+
+Blog posts include view counting powered by Supabase. Views are tracked automatically when visitors read posts.
+
+To enable:
+1. Set up Supabase (see [SUPABASE_SETUP.md](./SUPABASE_SETUP.md))
+2. Configure environment variables
+3. Run the schema SQL scripts
+
+### Reading Time
+
+Automatic reading time calculation for blog posts using `remark-reading-time.mjs` plugin.
+
+## 🔧 Development Tools
+
+- **ESLint** - Code linting with Astro plugin
+- **Prettier** - Code formatting (`.prettierrc`)
+- **TypeScript** - Type checking (`tsconfig.json`)
+
+Run linting:
+```bash
+npm run astro check
+```
+
+## 📚 Documentation
+
+Additional documentation files:
+- [DEPLOY.md](./DEPLOY.md) - Deployment guide
+- [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) - Supabase configuration
+
+
+## 🤝 Contributing
+
+This is a personal portfolio project, but suggestions and bug reports are welcome!
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Nerando Johnson**
+- Website: [https://developingdvlpr.com](https://developingdvlpr.com)
+- GitHub: [@Nerajno](https://github.com/Nerajno)
+- Twitter: [@nerajno](https://twitter.com/nerajno)
+- LinkedIn: [Nerando Johnson](https://www.linkedin.com/in/nerando-johnson/)
+
+## 🙏 Acknowledgments
+
+- [Jerome Hardaway](https://www.linkedin.com/in/jeromehardaway/) and [Ryan Furrer](https://www.linkedin.com/in/ryanfurrer/)
+- Built with [Astro](https://astro.build)
+- Styled with [Tailwind CSS](https://tailwindcss.com)
+- Initial template inspiration from [Astroship](https://astroship.web3templates.com/) by [Web3Templates](https://web3templates.com)
+- Hosted on [Netlify](https://www.netlify.com)
+- Icons from [Iconify](https://iconify.design/), [Boxicons](https://boxicons.com/), and [Font Awesome](https://fontawesome.com/)
+
+## 📞 Support
+
+For questions or support, please:
+- Open an issue in this repository
+- Contact via the [website contact form](https://developingdvlpr.com/contact)
+- Reach out on [Twitter](https://twitter.com/nerajno)
+
+---
+
+**Built with ❤️ using Astro, TailwindCSS, and modern web technologies**
