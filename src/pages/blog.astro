@@ -1,17 +1,17 @@
 ---
-import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
-import { SEO } from "astro-seo";
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
-import { getAllViewCounts } from "../lib/supabase";
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import Sectionhead from '@components/sectionhead.astro';
+import { getAllViewCounts } from '../lib/supabase';
 
 export const prerender = true;
 export const revalidate = 60; // Revalidate every 60 seconds
 
 // Filter blog entries with 'draft: false' & date before current date
-const publishedBlogEntries = await getCollection("blog", ({ data }) => {
+const publishedBlogEntries = await getCollection('blog', ({ data }) => {
   return !data.draft && data.publishDate < new Date();
 });
 
@@ -30,33 +30,35 @@ if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
 
 // SEO configuration for the blog page
 const seoConfig = {
-  title: "My MetaData - Blog & Learning Notes",
-  description: "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
-  canonical: new URL("blog", Astro.site).toString(),
+  title: 'My MetaData - Blog & Learning Notes',
+  description:
+    "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
+  canonical: new URL('blog', Astro.site).toString(),
   openGraph: {
     basic: {
-      title: "My MetaData - Blog & Learning Notes",
-      type: "website",
-      image: "/og-blog.jpg", // Add your blog's Open Graph image
-      url: new URL("blog", Astro.site).toString(),
+      title: 'My MetaData - Blog & Learning Notes',
+      type: 'website',
+      image: '/og-blog.jpg', // Add your blog's Open Graph image
+      url: new URL('blog', Astro.site).toString(),
     },
     optional: {
-      description: "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge.",
-      siteName: "My MetaData",
+      description:
+        "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge.",
+      siteName: 'My MetaData',
     },
     image: {
-      alt: "My MetaData Blog - Learning and Development Resources",
+      alt: 'My MetaData Blog - Learning and Development Resources',
     },
   },
   twitter: {
-    creator: "@nerajno", // Replace with your Twitter handle
-    site: "@nerajno", // Replace with your site's Twitter handle
-    card: "summary_large_image",
+    creator: '@nerajno', // Replace with your Twitter handle
+    site: '@nerajno', // Replace with your site's Twitter handle
+    card: 'summary_large_image',
   },
 };
 ---
 
-<Layout title="Blog">
+<Layout title='Blog'>
   <SEO
     title={seoConfig.title}
     description={seoConfig.description}
@@ -66,165 +68,191 @@ const seoConfig = {
     extend={{
       // Additional meta tags with GEO optimization
       meta: [
-        { name: "robots", content: "index, follow" },
-        { name: "author", content: "Nerando Johnson" },
-        { name: "keywords", content: "blog, programming, web development, learning, technology, tutorials" },
-        { property: "article:author", content: "Nerando Johnson" },
-        { property: "article:section", content: "Technology" },
-        { property: "og:locale", content: "en_US" },
-        { name: "theme-color", content: "#1e293b" },
+        { name: 'robots', content: 'index, follow' },
+        { name: 'author', content: 'Nerando Johnson' },
+        {
+          name: 'keywords',
+          content:
+            'blog, programming, web development, learning, technology, tutorials',
+        },
+        { property: 'article:author', content: 'Nerando Johnson' },
+        { property: 'article:section', content: 'Technology' },
+        { property: 'og:locale', content: 'en_US' },
+        { name: 'theme-color', content: '#1e293b' },
         // Additional meta tags (GEO, OpenGraph profile, etc.)
-        { name: "geo.region", content: "US-GA" },
-        { name: "geo.placename", content: "Atlanta" },
-        { property: "profile:first_name", content: "Nerando" },
-        { property: "profile:last_name", content: "Johnson" },
+        { name: 'geo.region', content: 'US-GA' },
+        { name: 'geo.placename', content: 'Atlanta' },
+        { property: 'profile:first_name', content: 'Nerando' },
+        { property: 'profile:last_name', content: 'Johnson' },
       ],
       // JSON-LD structured data
       link: [
-        { rel: "alternate", type: "application/rss+xml", title: "My MetaData Blog RSS", href: "/rss.xml" },
+        {
+          rel: 'alternate',
+          type: 'application/rss+xml',
+          title: 'My MetaData Blog RSS',
+          href: '/rss.xml',
+        },
       ],
     }}
   />
 
   <!-- JSON-LD Structured Data for Blog with GEO optimization -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "My MetaData Blog",
-    "description": "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge.",
-    "url": new URL("blog", Astro.site).toString(),
-    "author": {
-      "@type": "Person",
-      "name": "Nerando Johnson",
-      "url": Astro.site?.toString(),
-      "jobTitle": "Software Developer",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Atlanta",
-        "addressRegion": "GA",
-        "addressCountry": "US"
+  <script
+    type='application/ld+json'
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'My MetaData Blog',
+      description:
+        "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge.",
+      url: new URL('blog', Astro.site).toString(),
+      author: {
+        '@type': 'Person',
+        name: 'Nerando Johnson',
+        url: Astro.site?.toString(),
+        jobTitle: 'Software Developer',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Atlanta',
+          addressRegion: 'GA',
+          addressCountry: 'US',
+        },
+        sameAs: [
+          'https://github.com/Nerajno',
+          'https://twitter.com/nerajno',
+          'https://www.linkedin.com/in/nerando-johnson/',
+        ],
       },
-      "sameAs": [
-        "https://github.com/Nerajno",
-        "https://twitter.com/nerajno",
-        "https://www.linkedin.com/in/nerando-johnson/"
-      ]
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "My MetaData",
-      "url": Astro.site?.toString()
-    },
-    "blogPost": sortedBlogEntries.slice(0, 10).map(post => ({
-      "@type": "BlogPosting",
-      "headline": post.data.title,
-      "description": post.data.description || post.data.excerpt,
-      "url": new URL(`blog/${post.slug}`, Astro.site).toString(),
-      "datePublished": post.data.publishDate.toISOString(),
-      "dateModified": post.data.updatedDate?.toISOString() || post.data.publishDate.toISOString(),
-      "author": {
-        "@type": "Person",
-        "name": "Nerando Johnson"
+      publisher: {
+        '@type': 'Organization',
+        name: 'My MetaData',
+        url: Astro.site?.toString(),
       },
-      "image": post.data.image?.src,
-      "articleSection": post.data.category
-    }))
-  })} />
+      blogPost: sortedBlogEntries.slice(0, 10).map((post) => ({
+        '@type': 'BlogPosting',
+        headline: post.data.title,
+        description: post.data.description || post.data.excerpt,
+        url: new URL(`blog/${post.slug}`, Astro.site).toString(),
+        datePublished: post.data.publishDate.toISOString(),
+        dateModified:
+          post.data.updatedDate?.toISOString() ||
+          post.data.publishDate.toISOString(),
+        author: {
+          '@type': 'Person',
+          name: 'Nerando Johnson',
+        },
+        image: post.data.image?.src,
+        articleSection: post.data.category,
+      })),
+    })}
+  />
 
   <Container>
     <Sectionhead>
-      <Fragment slot="title">My MetaData</Fragment>
-      <Fragment slot="desc">
-        Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge.
+      <Fragment slot='title'>My MetaData</Fragment>
+      <Fragment slot='desc'>
+        Notes and blog posts from things I've learned and articles I've written
+        that helped me level up my skills and knowledge.
       </Fragment>
     </Sectionhead>
-    <main class="mt-16">
+    <main class='mt-16'>
       {/* Filter Controls */}
-      <div class="max-w-4xl mx-auto mb-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
-        <div class="space-y-4">
-          <div class="grid grid-cols-1 gap-4">
+      <div
+        class='max-w-6xl mx-auto mb-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow'>
+        <div class='space-y-4'>
+          <div class='grid grid-cols-1 gap-4'>
             <div>
-              <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Search by Title</label>
+              <label
+                for='search'
+                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+                >Search by Title</label
+              >
               <input
-                type="text"
-                id="search"
-                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                placeholder="Search posts..."
+                type='text'
+                id='search'
+                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'
+                placeholder='Search posts...'
               />
             </div>
             <div>
-              <label for="sort" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Sort by Date</label>
-              <select
-                id="sort"
-                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+              <label
+                for='sort'
+                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+                >Sort by Date</label
               >
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="title-asc">Title (A-Z)</option>
-                <option value="title-desc">Title (Z-A)</option>
+              <select
+                id='sort'
+                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
+                <option value='newest'>Newest First</option>
+                <option value='oldest'>Oldest First</option>
+                <option value='title-asc'>Title (A-Z)</option>
+                <option value='title-desc'>Title (Z-A)</option>
               </select>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="blog-posts" class="grid gap-16 max-w-4xl mx-auto">
-        {sortedBlogEntries.map((blogPostEntry, index) => (
-            <li class="blog-post-item" style="list-style: none;">
-              <a href={`/blog/${blogPostEntry.slug}`} >
-                <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+      <div id='blog-posts' class='grid gap-16 max-w-6xl mx-auto'>
+        {
+          sortedBlogEntries.map((blogPostEntry, index) => (
+            <li class='blog-post-item' style='list-style: none;'>
+              <a href={`/blog/${blogPostEntry.slug}`}>
+                <div class='grid md:grid-cols-2 gap-5 md:gap-10 items-center'>
                   <Picture
                     src={blogPostEntry.data.image.src}
                     alt={blogPostEntry.data.image.alt}
-                    sizes="(max-width: 800px) 100vw, 800px"
+                    sizes='(max-width: 800px) 100vw, 800px'
                     width={800}
                     height={600}
-                    format="webp"
+                    format='webp'
                     quality={80}
-                    loading={index <= 2 ? "eager" : "lazy"}
-                    decoding={index <= 2 ? "sync" : "async"}
-                    class="w-full rounded-md object-cover object-center bg-white"
+                    loading={index <= 2 ? 'eager' : 'lazy'}
+                    decoding={index <= 2 ? 'sync' : 'async'}
+                    class='w-full rounded-md object-cover object-center bg-white'
                   />
                   <div>
-
-                    <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 ">
+                    <h2 class='text-3xl font-semibold leading-snug tracking-tight mt-1 '>
                       {blogPostEntry.data.title}
                     </h2>
 
-                    <div class="flex gap-2 mt-3">
+                    <div class='flex gap-2 mt-3'>
                       <time
-                        class="text-gray-400"
+                        class='text-gray-400'
                         datetime={blogPostEntry.data.publishDate.toISOString()}>
                         {blogPostEntry.data.publishDate.toDateString()}
                       </time>
-                      <span class="text-gray-400">•</span>
-                      <span class="text-gray-400 inline-flex items-center view-counter-display" data-slug={blogPostEntry.slug}>
+                      <span class='text-gray-400'>•</span>
+                      <span
+                        class='text-gray-400 inline-flex items-center view-counter-display'
+                        data-slug={blogPostEntry.slug}>
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="inline-block mr-1"
-                        >
-                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                          <circle cx="12" cy="12" r="3"></circle>
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='16'
+                          height='16'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          stroke='currentColor'
+                          stroke-width='2'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          class='inline-block mr-1'>
+                          <path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z' />
+                          <circle cx='12' cy='12' r='3' />
                         </svg>
-                        <span class="view-count-text">
-                          {isDevelopment && import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
+                        <span class='view-count-text'>
+                          {isDevelopment &&
+                          import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
                             ? '-- views'
                             : `${(allViewCounts[blogPostEntry.slug] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.slug] === 1 ? 'view' : 'views'}`}
                         </span>
                       </span>
                     </div>
-                    <div class="flex gap-2 mt-3">
-                      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
-                      {blogPostEntry.data.category}
-                    </span>
+                    <div class='flex gap-2 mt-3'>
+                      <span class='text-blue-400 uppercase tracking-wider text-sm font-medium'>
+                        {blogPostEntry.data.category}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -241,7 +269,9 @@ const seoConfig = {
 
         // Update view counts client-side
         async function updateViewCounts() {
-          const viewCounters = document.querySelectorAll('.view-counter-display');
+          const viewCounters = document.querySelectorAll(
+            '.view-counter-display'
+          );
 
           for (const counter of viewCounters) {
             const slug = counter.getAttribute('data-slug');
@@ -270,21 +300,23 @@ const seoConfig = {
         // Store original posts HTML for filtering
 
         function filterPosts() {
-          const searchTerm = searchInput.value.toLowerCase();
-          const sortBy = sortSelect.value;
+          const searchTerm = searchInput.value.toLowerCase() || "" ;
+          const sortBy = sortSelect.value || "newest";
 
           // Get all post elements
-          const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
+          const posts = Array.from(
+            document.querySelectorAll('#blog-posts > li')
+          );
 
           // Filter and sort posts
-          let filteredPosts = posts.filter(post => {
+          let filteredPosts = posts.filter((post) => {
             const titleEl = post.querySelector('h2');
             const title = titleEl?.textContent?.toLowerCase() || '';
             return title.includes(searchTerm);
           });
 
           // Sort posts based on selected option
-          switch(sortBy) {
+          switch (sortBy) {
             case 'oldest':
               filteredPosts.sort((a, b) => {
                 const timeA = a.querySelector('time')?.dateTime;
@@ -295,15 +327,19 @@ const seoConfig = {
               break;
             case 'title-asc':
               filteredPosts.sort((a, b) => {
-                const titleA = a.querySelector('h2')?.textContent?.toLowerCase() || '';
-                const titleB = b.querySelector('h2')?.textContent?.toLowerCase() || '';
+                const titleA =
+                  a.querySelector('h2')?.textContent?.toLowerCase() || '';
+                const titleB =
+                  b.querySelector('h2')?.textContent?.toLowerCase() || '';
                 return titleA.localeCompare(titleB);
               });
               break;
             case 'title-desc':
               filteredPosts.sort((a, b) => {
-                const titleA = a.querySelector('h2')?.textContent?.toLowerCase() || '';
-                const titleB = b.querySelector('h2')?.textContent?.toLowerCase() || '';
+                const titleA =
+                  a.querySelector('h2')?.textContent?.toLowerCase() || '';
+                const titleB =
+                  b.querySelector('h2')?.textContent?.toLowerCase() || '';
                 return titleB.localeCompare(titleA);
               });
               break;
@@ -317,8 +353,14 @@ const seoConfig = {
           }
 
           // Clear and re-add sorted posts
+
+          if (!blogPosts) {
+            console.error("Blog posts container not found");
+            return;
+          }
+
           blogPosts.innerHTML = '';
-          filteredPosts.forEach(post => blogPosts.appendChild(post));
+          filteredPosts.forEach((post) => blogPosts.appendChild(post));
         }
 
         // Add event listeners
