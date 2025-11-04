@@ -91,7 +91,7 @@ keywords:
   - software development workflow
   - personal project management
 publishDate: "2025-11-01 12:00"
-category: "Productivity"
+category: "Productivity, Side Projects"
 author: "Nerando Johnson"
 tags: [productivity, side-projects, project-management, developer-workflow, motivation]
 
