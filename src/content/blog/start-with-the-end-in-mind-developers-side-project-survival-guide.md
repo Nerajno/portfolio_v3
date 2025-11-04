@@ -122,6 +122,8 @@ geo: {
 
 Welcome, if you have found yourself here, you or a loved one is most like a technologist with too much unfinished side projects. Every developer knows this feeling intimately—that electric moment when a brilliant idea strikes, flooding your mind with possibilities for the perfect app, the clever tool, or the game-changing library that will finally showcase your skills. You create a new repository with enthusiasm, maybe even design a logo, and write some initial code with the fervor of a thousand suns burning in your chest. Six months later, it joins the graveyard of 47 other folders labeled "ProjectIdea_v1" through "ProjectIdea_v47" on your desktop, each one a monument to good intentions and poor execution. If this sounds painfully familiar, you're not alone—research shows the average developer maintains 3.7 unfinished side projects at any given time, with completion rates hovering at a dismal 15-20%. The truth that took me years to accept is harsh but liberating: the problem isn't your lack of time, motivation, or even skill—it's that you've never learned to negotiate with yourself about what "done" actually means.
 
+*** THIS IS ME ALSO SPEAKING TO MYSELF, the state of my ![current side project](https://learnt.developingdvlpr.com/) <=. It will change as time goes on. ***
+
 
 ### Starting with the End: Why Definition Matters More Than Motivation
 
