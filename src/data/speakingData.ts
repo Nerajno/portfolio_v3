@@ -66,7 +66,7 @@ export const speakingData: SpeakingEvent[] = [
     links: {
       conferenceWebsite: "https://2025.magnoliaconf.com/",
       slides: "https://docs.google.com/presentation/d/1pWsdL-b0k11AXjYuGE_4LzKoELHXHFBLHk6gF308pp0/edit?usp=sharing",
-      //article: "https://developingdvlpr.com/blog/and-it-was-written/"
+      article: "https://developingdvlpr.com/blog/start-with-the-end-in-mind-developers-side-project-survival-guide/"
     },
   },
   {
