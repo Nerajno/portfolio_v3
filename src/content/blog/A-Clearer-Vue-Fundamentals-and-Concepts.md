@@ -72,7 +72,7 @@ image: {
     alt: "Vue 3 fundamentals tutorial covering core concepts and the Options API"
 }
 
-publishDate: "2025-01-15 06:00"
+publishDate: "2025-11-30 06:00"
 category: "Web Development, JavaScript"
 author: "Nerando Johnson"
 tags: [Vue.js, JavaScript, Tutorial, Options API, Fundamentals, Web Development, Frontend Development]
