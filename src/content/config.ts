@@ -11,8 +11,8 @@ const blogCollection = defineCollection({
       src: z.string(),
       alt: z.string(),
     }),
-    publishDate: z.string().transform(str => new Date(str)),
-    updatedDate: z.string().transform(str => new Date(str)).optional(),
+    publishDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     author: z.string().default('@nerajno'),
     category: z.string(),
     tags: z.array(z.string()),
@@ -41,7 +41,7 @@ const teamCollection = defineCollection({
       src: z.string(),
       alt: z.string(),
     }),
-    publishDate: z.string().transform(str => new Date(str)),
+    publishDate: z.coerce.date(),
 
     // SEO-related fields for team members
     bio: z.string().optional(), // Bio/description for SEO
