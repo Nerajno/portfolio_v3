@@ -71,7 +71,7 @@ image: {
     alt: "Descriptive alt text for accessibility and SEO"
 }
 
-publishDate: "YYYY-MM-DD HH:MM"
+publishDate: "2025-01-01 00:00"
 category: "Primary Category, Secondary Category"
 author: "Nerando Johnson"
 tags: [tag1, tag2, tag3, tag4, tag5]
