@@ -2,7 +2,7 @@
 # ============================================================================
 # DRAFT STATUS
 # ============================================================================
-draft: false  # Set to true to hide from production
+draft: true  # Set to true to hide from production
 
 # ============================================================================
 # SEO OPTIMIZATION (Traditional Search Engines: Google, Bing, etc.)
