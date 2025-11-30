@@ -145,17 +145,17 @@ const structuredData = {
     <!-- Why Case Studies Matter Section -->
     <div class='max-w-screen-lg mx-auto mt-8 mb-12'>
       <div
-        class='bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border border-blue-100 dark:border-gray-600'>
+        class='bg-gradient-to-r from-brand-silver to-brand-cyan/10 dark:from-dark-bg-secondary dark:to-dark-brand-cyan/10 rounded-xl p-6 border border-brand-silver dark:border-dark-brand-silver'>
         <h3
-          class='text-xl font-semibold mb-4 text-center text-gray-900 dark:text-white'>
+          class='font-heading text-xl font-semibold mb-4 text-center text-brand-primary dark:text-dark-text-primary'>
           Beyond Just Code: An Evidence and Impact Approach
         </h3>
         <div class='grid md:grid-cols-3 gap-6'>
           <div class='text-center'>
             <div
-              class='w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mx-auto mb-3'>
+              class='w-12 h-12 bg-brand-cyan/20 dark:bg-dark-brand-cyan/20 rounded-lg flex items-center justify-center mx-auto mb-3'>
               <svg
-                class='w-6 h-6 text-blue-600 dark:text-blue-400'
+                class='w-6 h-6 text-brand-cyan dark:text-dark-brand-cyan'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'>
@@ -167,18 +167,18 @@ const structuredData = {
                 ></path>
               </svg>
             </div>
-            <h4 class='font-semibold text-gray-900 dark:text-white mb-2'>
+            <h4 class='font-semibold text-brand-primary dark:text-dark-text-primary mb-2'>
               Problem-Solving Process
             </h4>
-            <p class='text-gray-600 dark:text-gray-300 text-sm'>
+            <p class='text-gray-600 dark:text-dark-text-secondary text-sm'>
               How I approach complex challenges and make technical decisions.
             </p>
           </div>
           <div class='text-center'>
             <div
-              class='w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mx-auto mb-3'>
+              class='w-12 h-12 bg-brand-leaf/20 dark:bg-dark-brand-leaf/20 rounded-lg flex items-center justify-center mx-auto mb-3'>
               <svg
-                class='w-6 h-6 text-green-600 dark:text-green-400'
+                class='w-6 h-6 text-brand-leaf dark:text-dark-brand-leaf'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'>
@@ -190,18 +190,18 @@ const structuredData = {
                 ></path>
               </svg>
             </div>
-            <h4 class='font-semibold text-gray-900 dark:text-white mb-2'>
+            <h4 class='font-semibold text-brand-primary dark:text-dark-text-primary mb-2'>
               Measurable Impact
             </h4>
-            <p class='text-gray-600 dark:text-gray-300 text-sm'>
+            <p class='text-gray-600 dark:text-dark-text-secondary text-sm'>
               Real metrics and outcomes that demonstrate value delivered.
             </p>
           </div>
           <div class='text-center'>
             <div
-              class='w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mx-auto mb-3'>
+              class='w-12 h-12 bg-brand-coral/20 dark:bg-dark-brand-coral/20 rounded-lg flex items-center justify-center mx-auto mb-3'>
               <svg
-                class='w-6 h-6 text-purple-600 dark:text-purple-400'
+                class='w-6 h-6 text-brand-coral dark:text-dark-brand-coral'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'>
@@ -212,10 +212,10 @@ const structuredData = {
                   d='M13 10V3L4 14h7v7l9-11h-7z'></path>
               </svg>
             </div>
-            <h4 class='font-semibold text-gray-900 dark:text-white mb-2'>
+            <h4 class='font-semibold text-brand-primary dark:text-dark-text-primary mb-2'>
               Technical Depth
             </h4>
-            <p class='text-gray-600 dark:text-gray-300 text-sm'>
+            <p class='text-gray-600 dark:text-dark-text-secondary text-sm'>
               Architecture decisions, trade-offs, and lessons learned
             </p>
           </div>
@@ -225,7 +225,7 @@ const structuredData = {
 
     <!-- Tag Filter Section -->
     <div class='max-w-screen-lg mx-auto mt-8 mb-8'>
-      <h3 class='text-lg font-semibold mb-4 text-center'>
+      <h3 class='font-heading text-lg font-semibold mb-4 text-center text-brand-primary dark:text-dark-text-primary'>
         Filter by Technology:
       </h3>
       <div class='flex flex-wrap justify-center gap-2 mb-4'>
@@ -233,7 +233,7 @@ const structuredData = {
         {
           allTags.map((tag) => (
             <button
-              class='tag-filter-btn px-4 py-2 rounded-xl border-2 border-gray-300 text-slate-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200'
+              class='tag-filter-btn px-4 py-2 rounded-xl border-2 border-brand-silver dark:border-dark-brand-silver text-brand-primary dark:text-dark-text-secondary hover:bg-brand-silver dark:hover:bg-dark-bg-tertiary transition-colors duration-200'
               data-tag={tag.toLowerCase()}>
               {tag}
             </button>
@@ -245,7 +245,7 @@ const structuredData = {
       <div class='text-center'>
         <button
           id='clear-filters'
-          class='px-6 py-2 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-100 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-900/50 transition-colors duration-300'>
+          class='px-6 py-2 border border-brand-cyan dark:border-dark-brand-cyan text-brand-cyan dark:text-dark-brand-cyan rounded-xl hover:bg-brand-cyan/10 dark:hover:bg-dark-brand-cyan/10 transition-colors duration-300'>
           Clear All Filters
         </button>
       </div>
@@ -270,7 +270,7 @@ const structuredData = {
     <div class='max-w-screen-lg mx-auto mt-10 text-center'>
       <button
         id='toggle-learning-showcase'
-        class='px-6 py-2 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-100 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-900/50 transition-colors duration-300 mb-6'>
+        class='px-6 py-2 border border-brand-cyan dark:border-dark-brand-cyan text-brand-cyan dark:text-dark-brand-cyan rounded-xl hover:bg-brand-cyan/10 dark:hover:bg-dark-brand-cyan/10 transition-colors duration-300 mb-6'>
         Show Learning Projects
       </button>
     </div>
@@ -300,11 +300,11 @@ const structuredData = {
     <!-- Call to Action -->
     <div class='max-w-screen-lg mx-auto mt-10 text-center'>
       <div
-        class='bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm border border-gray-200 dark:border-gray-700'>
-        <h3 class='text-2xl font-bold text-gray-900 dark:text-white mb-4'>
+        class='bg-white dark:bg-dark-bg-secondary rounded-xl p-8 shadow-sm border border-brand-silver dark:border-dark-brand-silver'>
+        <h3 class='font-heading text-2xl font-bold text-brand-primary dark:text-dark-text-primary mb-4'>
           Want to See More?
         </h3>
-        <p class='text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto'>
+        <p class='text-gray-600 dark:text-dark-text-secondary mb-6 max-w-2xl mx-auto'>
           Each project represents the process of problem-solving, technical
           decision-making, and iterative improvement ( This applies to learning projects and Learnt). The case studies dive deep
           into the "why" and "how" behind each solution.
@@ -312,18 +312,18 @@ const structuredData = {
         <div class='flex justify-center gap-4'>
           <a
             href='/contact'
-            class='bg-blue-600 dark:bg-blue-800 text-white dark:text-slate-300 px-6 py-3 rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-900 transition-color'>
+            class='bg-brand-coral dark:bg-dark-brand-coral text-white px-6 py-3 rounded-lg font-medium hover:bg-brand-coral/80 dark:hover:bg-dark-brand-coral/80 transition-colors'>
             Let's Discuss My Work
           </a>
           <a
             href='/about'
-            class='border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors'>
+            class='border border-brand-silver dark:border-dark-brand-silver text-brand-primary dark:text-dark-text-primary px-6 py-3 rounded-lg font-medium hover:bg-brand-silver dark:hover:bg-dark-bg-tertiary transition-colors'>
             Learn About My Process
           </a>
-          <a href="https://learnt.developingdvlpr.com/" 
-            class="bg-blue-600 dark:bg-blue-800 text-white dark:text-slate-300 px-6 py-3 rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-900 transition-colors"
-            rel="noopener noreferrer" 
-            target="_blank" 
+          <a href="https://learnt.developingdvlpr.com/"
+            class="bg-brand-cyan dark:bg-dark-brand-cyan text-white dark:text-dark-bg-primary px-6 py-3 rounded-lg font-medium hover:bg-brand-cyan/80 dark:hover:bg-dark-brand-cyan/80 transition-colors"
+            rel="noopener noreferrer"
+            target="_blank"
             aria-label="Visit Learnt website (opens in new tab)"
             title="Visit Learnt">
             Learnt ~ My Learning Project Collection
@@ -336,13 +336,23 @@ const structuredData = {
 
 <style>
   .tag-filter-btn.active {
-    background-color: #3b82f6;
+    background-color: #4BE3DF;
     color: white;
-    border-color: #3b82f6;
+    border-color: #4BE3DF;
   }
 
   .tag-filter-btn:hover.active {
-    background-color: #2563eb;
+    background-color: #5FEDE9;
+  }
+
+  :global(.dark) .tag-filter-btn.active {
+    background-color: #5FEDE9;
+    color: #0A0E1A;
+    border-color: #5FEDE9;
+  }
+
+  :global(.dark) .tag-filter-btn:hover.active {
+    background-color: #4BE3DF;
   }
 
   .project-item {
@@ -418,12 +428,12 @@ const structuredData = {
 
         // Temporarily change to green
         clearButton.className =
-          'px-6 py-2 border border-transparent bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors duration-300';
+          'px-6 py-2 border border-transparent bg-brand-leaf text-white rounded-xl hover:bg-brand-leaf/80 transition-colors duration-300';
 
-        // Revert back to the default blue outline style
+        // Revert back to the default cyan outline style
         setTimeout(() => {
           clearButton.className =
-            'px-6 py-2 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-100 dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-900/50 transition-colors duration-300';
+            'px-6 py-2 border border-brand-cyan dark:border-dark-brand-cyan text-brand-cyan dark:text-dark-brand-cyan rounded-xl hover:bg-brand-cyan/10 dark:hover:bg-dark-brand-cyan/10 transition-colors duration-300';
         }, 600);
       });
     }

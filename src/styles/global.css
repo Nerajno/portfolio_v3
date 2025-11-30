@@ -1,7 +1,22 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Import blog styles */
+@import './blog.css';
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply antialiased font-body
+           bg-white dark:bg-dark-bg-primary
+           text-brand-primary dark:text-dark-text-primary
+           transition-colors;
+  }
+}
 
 :root {
   --background-color-light: #f5f5f5;

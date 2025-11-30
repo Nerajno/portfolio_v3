@@ -1,0 +1,120 @@
+/* Blog Typography & Components */
+
+@layer components {
+  /* Tag Variants */
+  .tag {
+    @apply px-3 py-1 rounded-md text-blog-xs font-semibold transition-all;
+  }
+
+  .tag-default {
+    @apply bg-brand-silver text-brand-primary
+           hover:bg-brand-cyan hover:text-white
+           dark:bg-dark-brand-silver dark:text-dark-text-primary
+           dark:hover:bg-dark-brand-cyan;
+  }
+
+  .tag-vue,
+  .tag-vuejs,
+  .tag-vue3 {
+    @apply bg-brand-leaf text-white
+           dark:bg-dark-brand-leaf dark:text-dark-bg-primary;
+  }
+
+  .tag-typescript,
+  .tag-javascript {
+    @apply bg-brand-cyan text-white
+           dark:bg-dark-brand-cyan dark:text-dark-bg-primary;
+  }
+
+  .tag-featured,
+  .tag-tutorial {
+    @apply bg-brand-coral text-white
+           dark:bg-dark-brand-coral dark:text-dark-bg-primary;
+  }
+}
+
+@layer utilities {
+  /* Blog Content Prose Styles */
+  .prose-blog {
+    @apply text-blog-base leading-blog-normal
+           text-brand-primary dark:text-dark-text-primary;
+  }
+
+  .prose-blog h2 {
+    @apply font-heading text-blog-2xl font-bold
+           text-brand-primary dark:text-dark-text-primary
+           mt-blog-xl mb-blog-md scroll-mt-8;
+  }
+
+  .prose-blog h3 {
+    @apply font-heading text-blog-xl font-semibold
+           text-brand-primary dark:text-dark-text-primary
+           mt-blog-lg mb-blog-md scroll-mt-8;
+  }
+
+  .prose-blog h4 {
+    @apply font-heading text-blog-lg font-semibold
+           text-brand-primary dark:text-dark-text-primary
+           mt-blog-lg mb-blog-sm;
+  }
+
+  .prose-blog p {
+    @apply mb-blog-lg max-w-[65ch];
+  }
+
+  .prose-blog a {
+    @apply text-brand-cyan dark:text-dark-brand-cyan
+           underline decoration-brand-cyan/30 dark:decoration-dark-brand-cyan/30
+           underline-offset-4
+           hover:decoration-brand-cyan/80 dark:hover:decoration-dark-brand-cyan/80
+           transition-colors;
+  }
+
+  .prose-blog strong {
+    @apply font-semibold text-brand-primary dark:text-dark-text-primary;
+  }
+
+  .prose-blog ul,
+  .prose-blog ol {
+    @apply mb-blog-lg pl-blog-lg;
+  }
+
+  .prose-blog li {
+    @apply mb-blog-sm leading-blog-normal;
+  }
+
+  .prose-blog li::marker {
+    @apply text-brand-cyan dark:text-dark-brand-cyan;
+  }
+
+  .prose-blog code {
+    @apply font-mono bg-gray-100 dark:bg-dark-bg-code
+           text-brand-coral dark:text-dark-brand-coral
+           px-2 py-0.5 rounded text-[0.9em]
+           border border-gray-200 dark:border-dark-brand-silver;
+  }
+
+  .prose-blog pre {
+    @apply bg-gray-50 dark:bg-dark-bg-code
+           border border-brand-silver dark:border-dark-brand-silver
+           rounded-lg p-blog-lg overflow-x-auto mb-blog-lg;
+  }
+
+  .prose-blog pre code {
+    @apply bg-transparent border-0
+           text-brand-primary dark:text-dark-text-primary p-0;
+  }
+
+  .prose-blog blockquote {
+    @apply border-l-4 border-brand-cyan dark:border-dark-brand-cyan
+           pl-blog-lg my-blog-xl italic
+           text-gray-600 dark:text-dark-text-secondary
+           bg-gray-50 dark:bg-dark-bg-secondary
+           p-blog-lg rounded;
+  }
+
+  .prose-blog img {
+    @apply max-w-full h-auto rounded-lg my-blog-lg
+           shadow-md border border-gray-100 dark:border-dark-brand-silver;
+  }
+}

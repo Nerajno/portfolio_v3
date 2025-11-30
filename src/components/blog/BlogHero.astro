@@ -1,0 +1,63 @@
+---
+// src/components/blog/BlogHero.astro
+interface Props {
+  frontmatter: {
+    title: string;
+    publishDate: string;
+    tags: string[];
+    snippet?: string;
+  };
+  readingTime?: string;
+  slug?: string;
+}
+
+const { frontmatter, readingTime, slug } = Astro.props;
+
+import ViewCounter from '@components/viewcounter.astro';
+
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<div class="post-hero mb-blog-xl">
+  <h1 class="font-heading text-blog-3xl md:text-blog-4xl font-extrabold leading-blog-tight text-brand-primary dark:text-dark-text-primary mb-blog-md">
+    {frontmatter.title}
+  </h1>
+
+  <div class="flex flex-wrap gap-blog-md items-center text-blog-sm text-gray-600 dark:text-dark-text-muted mb-blog-lg">
+    <span class="flex items-center gap-2">
+      📅 {formatDate(frontmatter.publishDate)}
+    </span>
+
+    {readingTime && (
+      <span class="flex items-center gap-2">
+        ⏱️ {readingTime}
+      </span>
+    )}
+
+    {slug && (
+      <span class="flex items-center gap-2">
+        <ViewCounter slug={slug} />
+      </span>
+    )}
+
+    <div class="flex gap-2 flex-wrap">
+      {frontmatter.tags.map((tag: string) => (
+        <span class={`tag tag-${tag.toLowerCase()}`}>
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  {frontmatter.snippet && (
+    <p class="text-blog-lg italic text-gray-600 dark:text-dark-text-secondary p-blog-lg bg-gray-50 dark:bg-dark-bg-secondary border-l-4 border-brand-cyan dark:border-dark-brand-cyan rounded-lg">
+      {frontmatter.snippet}
+    </p>
+  )}
+</div>

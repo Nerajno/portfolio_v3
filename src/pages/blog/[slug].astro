@@ -7,6 +7,9 @@ import Container from '@components/container.astro';
 import type { CollectionEntry } from 'astro:content';
 import { Tweet } from 'astro-embed';
 import ViewCounter from '@components/viewcounter.astro';
+import BlogHero from '@components/blog/BlogHero.astro';
+import BlogContent from '@components/blog/BlogContent.astro';
+import BlogFooter from '@components/blog/BlogFooter.astro';
 
 export const prerender = true;
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -215,8 +218,8 @@ const seoConfig = {
     })}
   />
 
-  <Container>
-    <div class='mx-auto max-w-4xl mt-14'>
+  <article class="blog-post">
+    <div class="mx-auto max-w-blog-header px-5 py-blog-xl">
       {
         entry.data.image && (
           <Image
@@ -224,112 +227,39 @@ const seoConfig = {
             alt={entry.data.image.alt}
             width={800}
             height={600}
-            class='w-full object-cover rounded-lg mb-6'
+            class='w-full object-cover rounded-lg mb-blog-xl shadow-lg border border-gray-100 dark:border-dark-brand-silver'
           />
         )
       }
 
-      <span class='text-blue-400 uppercase tracking-wider text-sm font-medium'>
-        {entry.data.category}
-      </span>
-      <h1
-        class='text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight'>
-        {entry.data.title}
-      </h1>
-      <div class='flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap'>
-        <span class='text-slate-500 dark:text-slate-400'>
-          {entry.data.author}
-        </span>
-        <span class='text-slate-500 dark:text-slate-400'>•</span>
-        <time
-          class='text-slate-500 dark:text-slate-400'
-          datetime={entry.data.publishDate.toISOString()}>
-          {entry.data.publishDate.toDateString()}
-        </time>
-        {
-          entry.data.updatedDate && (
-            <>
-              <span class='text-slate-500 dark:text-slate-400 hidden md:block'>
-                •
-              </span>
-              <span class='text-slate-500 dark:text-slate-400 text-sm'>
-                Updated: {entry.data.updatedDate.toDateString()}
-              </span>
-            </>
-          )
-        }
-        <span class='text-slate-500 dark:text-slate-400 hidden md:block'>•</span
-        >
-        <div class='w-full md:w-auto flex flex-wrap gap-3'>
-          {
-            entry.data.tags.map((tag) => (
-              <span class='text-sm text-slate-500 dark:text-slate-400'>
-                #{tag}
-              </span>
-            ))
-          }
-        </div>
-      </div>
+      <BlogHero
+        frontmatter={{
+          title: entry.data.title,
+          publishDate: entry.data.publishDate.toISOString(),
+          tags: entry.data.tags,
+          snippet: entry.data.snippet
+        }}
+        readingTime={remarkPluginFrontmatter?.minutesRead}
+        slug={entry.slug}
+      />
 
-      <div class='flex gap-2 items-center mt-2'>
-        {
-          remarkPluginFrontmatter?.minutesRead && (
-          <p class='text-slate-500 dark:text-slate-400'>
-            {remarkPluginFrontmatter.minutesRead}
-          </p>
-        )
-      }
-        <span class="text-slate-500 dark:text-slate-400">
-          <ViewCounter slug={entry.slug} increment={true} />
-        </span>
-    </div>
+      <BlogContent>
+        {Content && <Content />}
+        <!-- For embedding tweets -->
+        {entry.data.tweetIds?.map((id: any) => <Tweet id={id} />)}
+      </BlogContent>
 
-    <div
-      class='mx-auto prose prose-lg mt-6 max-w-4xl text-slate-500 dark:text-slate-400 prose-headings:text-slate-500 prose-headings:dark:text-slate-400 prose-p:text-slate-500 prose-p:dark:text-slate-400 prose-strong:text-slate-500 prose-strong:dark:text-slate-400 prose-em:text-slate-500 prose-em:dark:text-slate-400 prose-a:text-blue-600 prose-a:dark:text-blue-400 prose-code:text-slate-500 prose-code:dark:text-slate-400 prose-img:mx-auto'>
-      {Content && <Content />}
-      <!-- For embedding tweets -->
-      {entry.data.tweetIds?.map((id) => <Tweet id={id} />)}
-    </div>
+      <BlogFooter author={entry.data.author} />
 
-    <!-- Article navigation and sharing -->
-    <div
-      class='mx-auto max-w-4xl mt-12 pt-8 border-t border-slate-200 dark:border-slate-700'>
-      <div class='flex flex-col sm:flex-row gap-4 justify-between items-center'>
+      <!-- Back to blog link -->
+      <div class="text-center mt-blog-xl">
         <a
           href='/blog'
-          class='text-slate-500 dark:text-slate-300 hover:font-bold dark:bg-gray-600 px-5 py-3 rounded-md dark:hover:bg-gray-700 transition border border-slate-500 dark:border-slate-300'
-          >← Back to Blogs</a
+          class='inline-block bg-brand-silver dark:bg-dark-bg-tertiary text-brand-primary dark:text-dark-text-primary px-6 py-3 rounded-lg font-semibold hover:bg-brand-cyan hover:text-white dark:hover:bg-dark-brand-cyan transition-all'
         >
-
-        <!-- Social sharing buttons -->
-        <div class='flex gap-3'>
-          <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(entry.data.title)}&url=${encodeURIComponent(postUrl)}`}
-            target='_blank'
-            rel='noopener noreferrer'
-            class='text-slate-500 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition'
-            aria-label='Share on Twitter'>
-            <svg class='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
-              <path
-                d='M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z'
-              ></path>
-            </svg>
-          </a>
-
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`}
-            target='_blank'
-            rel='noopener noreferrer'
-            class='text-slate-500 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition'
-            aria-label='Share on LinkedIn'>
-            <svg class='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
-              <path
-                d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'
-              ></path>
-            </svg>
-          </a>
-        </div>
+          ← Back to Blog
+        </a>
       </div>
     </div>
-  </Container>
+  </article>
 </Layout>

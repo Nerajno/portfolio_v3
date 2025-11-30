@@ -1,0 +1,103 @@
+---
+// src/components/blog/BlogFooter.astro
+interface Props {
+  author: string;
+}
+
+const { author } = Astro.props;
+const currentUrl = Astro.url.href;
+---
+
+<footer class="post-footer mt-blog-2xl pt-blog-xl border-t-2 border-brand-silver dark:border-dark-brand-silver">
+  <!-- Author Bio -->
+  <div class="author-bio flex flex-col md:flex-row gap-blog-lg items-center md:items-start p-blog-lg bg-gray-50 dark:bg-dark-bg-secondary rounded-lg border border-brand-silver dark:border-dark-brand-silver mb-blog-xl">
+    <img
+      src="/images/avatar.jpg"
+      alt={author}
+      class="w-20 h-20 rounded-full object-cover border-3 border-brand-cyan dark:border-dark-brand-cyan"
+    />
+    <div class="author-info text-center md:text-left">
+      <h3 class="font-heading text-blog-xl mb-2 text-brand-primary dark:text-dark-text-primary font-bold">
+        About {author}
+      </h3>
+      <p class="text-gray-600 dark:text-dark-text-secondary leading-relaxed">
+        Junior frontend developer specializing in Vue.js and TypeScript, speaking at conferences and building in public. Follow the journey at developingdvlpr.com!
+      </p>
+    </div>
+  </div>
+
+  <!-- Social Share -->
+  <div class="text-center">
+    <h3 class="text-brand-primary dark:text-dark-text-primary mb-blog-md font-heading text-blog-lg font-bold">
+      Share this article
+    </h3>
+    <div class="flex gap-blog-sm justify-center flex-wrap">
+      <button
+        class="share-button bg-brand-coral dark:bg-dark-brand-coral text-white px-blog-md py-blog-sm rounded-lg font-semibold text-blog-sm hover:bg-brand-coral/80 dark:hover:bg-dark-brand-coral/80 transition-all hover:-translate-y-0.5 shadow-md"
+        data-share="twitter"
+      >
+        Share on Twitter
+      </button>
+      <button
+        class="share-button bg-brand-cyan dark:bg-dark-brand-cyan text-white dark:text-dark-bg-primary px-blog-md py-blog-sm rounded-lg font-semibold text-blog-sm hover:bg-brand-cyan/80 dark:hover:bg-dark-brand-cyan/80 transition-all hover:-translate-y-0.5 shadow-md"
+        data-share="linkedin"
+      >
+        Share on LinkedIn
+      </button>
+      <button
+        class="share-button bg-brand-primary dark:bg-dark-bg-tertiary text-white dark:text-dark-text-primary px-blog-md py-blog-sm rounded-lg font-semibold text-blog-sm hover:bg-brand-primary/80 dark:hover:bg-dark-bg-tertiary/80 transition-all"
+        data-share="copy"
+      >
+        Copy Link
+      </button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function shareOnTwitter(url: string, title: string) {
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
+      '_blank',
+      'width=550,height=420'
+    );
+  }
+
+  function shareOnLinkedIn(url: string) {
+    window.open(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+      '_blank',
+      'width=550,height=420'
+    );
+  }
+
+  async function copyLink(url: string) {
+    try {
+      await navigator.clipboard.writeText(url);
+      alert('Link copied to clipboard!');
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  }
+
+  document.querySelectorAll('.share-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const shareType = target.dataset.share;
+      const url = window.location.href;
+      const title = document.querySelector('h1')?.textContent || '';
+
+      switch (shareType) {
+        case 'twitter':
+          shareOnTwitter(url, title);
+          break;
+        case 'linkedin':
+          shareOnLinkedIn(url);
+          break;
+        case 'copy':
+          copyLink(url);
+          break;
+      }
+    });
+  });
+</script>

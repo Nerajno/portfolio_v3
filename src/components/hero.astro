@@ -1,8 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
 import heroImage from 'assets/Banner_for_site.png';
-import Link from '@components/ui/link.astro';
-import { Icon } from 'astro-icon/components';
 ---
 
 <main
@@ -24,50 +22,30 @@ import { Icon } from 'astro-icon/components';
   <div itemscope itemtype="https://schema.org/Person">
     <h1
       id='hero-heading'
-      class='text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'
+      class='font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-brand-primary dark:text-dark-text-primary mb-6'
       itemprop='name'>
-      Hi, I am Nerando
+      Frontend Developer & <span class="text-brand-cyan dark:text-dark-brand-cyan">Vue.js Specialist</span>
     </h1>
 
     <h2 class='sr-only'>Software Developer & Frontend Specialist</h2>
 
-    <p class='text-medium mt-4 text-black-400 dark:text-gray-300 max-w-xl' itemprop='description'>
-      I am a <span itemprop='jobTitle'>software developer</span> currently working in the front-end in
-      <span itemprop='knowsAbout'>Vue and JavaScript</span> space. Previously worked on the
-      <span itemprop='knowsAbout'>MERN stack</span> with a little
-      <span itemprop='knowsAbout'>PM and DevOps</span> skills thrown in. Outside of tech, I am a bookworm with a spatula
-      among other things.
+    <p class='text-xl md:text-2xl text-gray-600 dark:text-dark-text-secondary mb-8 leading-relaxed max-w-2xl' itemprop='description'>
+      Building modern web applications with <span itemprop='knowsAbout' class="font-semibold text-brand-primary dark:text-dark-text-primary">Vue3</span>, <span itemprop='knowsAbout' class="font-semibold text-brand-primary dark:text-dark-text-primary">TypeScript</span>, and a focus on performance, accessibility, and developer experience.
     </p>
 
-    <div class='mt-6 flex flex-col sm:flex-row gap-3'>
-      <Link
-        href='https://garden.developingdvlpr.com/note/crops-growing'
-        target='_blank'
-        rel='noopener noreferrer'
-        class='text-slate-300 hover:font-bold bg-slate-900 dark:text-slate-700 dark:hover:text-slate-500 dark:bg-slate-200 flex gap-1 items-center justify-center'
-        aria-label='View what Nerando is currently learning in his digital garden'>
-        <Icon
-          class='text-slate-300 hover:text-slate-600 dark:text-slate-700 dark:hover:text-slate-500 w-5 h-5'
-          name='bx:bxs-cloud-download'
-          aria-hidden='true'
-        />
-        Currently Learning
-      </Link>
-
-      <Link
-        style='outline'
-        href='https://garden.developingdvlpr.com/note/stuff-building-2025'
-        target='_blank'
-        rel='noopener noreferrer'
-        class='flex gap-1 items-center justify-center border dark:hover:bg-gray-700 border-slate-500 dark:border-slate-300 dark:text-slate-300 hover:text-slate-600 hover:font-bold dark:bg-gray-600'
-        aria-label='View what Nerando is currently building in 2025'>
-        <Icon
-          class='text-slate-500 dark:text-slate-300 w-4 h-4'
-          name='bx:bxl-github'
-          aria-hidden='true'
-        />
-        Currently Building
-      </Link>
+    <div class='flex flex-wrap gap-4'>
+      <a
+        href='/blog'
+        class='inline-block bg-brand-coral dark:bg-dark-brand-coral text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-coral/80 dark:hover:bg-dark-brand-coral/80 transition-all hover:-translate-y-0.5 shadow-lg'
+      >
+        Read the Blog
+      </a>
+      <a
+        href='/portfolio'
+        class='inline-block bg-transparent border-2 border-brand-primary dark:border-dark-text-primary text-brand-primary dark:text-dark-text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-primary hover:text-white dark:hover:bg-dark-text-primary dark:hover:text-dark-bg-primary transition-all'
+      >
+        View Projects
+      </a>
     </div>
 
     <!-- Hidden structured data for better SEO -->
