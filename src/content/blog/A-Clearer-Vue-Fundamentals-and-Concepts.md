@@ -73,9 +73,9 @@ image: {
 }
 
 publishDate: "2025-11-30 06:00"
-category: "Web Development, JavaScript"
+category: "Web Development, JavaScript, Vue3"
 author: "Nerando Johnson"
-tags: [Vue.js, JavaScript, Tutorial, Options API, Fundamentals, Web Development, Frontend Development]
+tags: [Vue.js, JavaScript, Tutorial, Options API, Fundamentals, Frontend Development]
 
 # ============================================================================
 # KEYWORDS (For SEO and internal search)
@@ -242,19 +242,17 @@ aiOptimization: {
 }
 ---
 
-# A Clearer Vue: Fundamentals & Core Concepts
-
 *Part of the Vue Mastery Beginner Track Series - Covering Intro to Vue 3*
 
-> **A note from the author:** This is Part 1 of a two-part series covering Vue Mastery's beginner track. In this article, we'll master Vue fundamentals using the Options API. In Part 2, we'll level up to the Composition API and build a complete Single-Page Application. As I continue learning, I may refine sections. Feedback is always welcome—find me [@nerajno](https://twitter.com/nerajno).
+> **A note from the author:** This is Part 1 of a nine-part series covering Vue Mastery's beginner track. In this article, we'll to cover  Vue fundamentals using the Options API. As I continue learning, I may refine sections and add more content. Feedback is always welcome—find me [@nerajno](https://twitter.com/nerajno) or [here](https://developingdvlpr.com/contact).
 
 Have you ever started learning Vue, understood the basics, but felt unsure how everything actually works together?
 
-You've read about `data`, `methods`, and `computed` properties. But when do you use each? How do they interact? And what's this whole "reactive" thing really about?
+You've read about `data`, `methods`, and `computed` properties. But when do you use each and how do they interact? And what's this whole "reactive" thing really about?
 
 If that sounds familiar, this article is for you.
 
-Instead of throwing isolated concepts at you, we'll build understanding progressively—each concept building on the last. By the end of this article, you'll have a solid foundation in Vue fundamentals and be ready to build real applications.
+Instead of throwing isolated concepts at you, the aim of this article is to build understanding progressively (brick by brick ... so to speak) — each concept building on the last. By the end of this article, you should have either have a greater grasp of the concepts or  have a solid foundation in Vue fundamentals and be ready to build real applications.
 
 Let's start with clarity.
 
@@ -262,20 +260,17 @@ Let's start with clarity.
 
 To get the most out of this article, you should have:
 
-- **Basic JavaScript knowledge** - Understanding of variables, functions, arrays, and objects
-- **Familiarity with HTML/CSS** - You don't need to be an expert, but you should be comfortable with basic markup and styling
-- **A code editor** - VS Code, Sublime, or whatever you prefer
-- **A browser** - Chrome or Firefox (with Vue DevTools extension recommended)
+- **Basic JavaScript knowledge** - Understanding of variables, functions, arrays, objects, and basic DOM manipulation  .... see this [article](https://developingdvlpr.com/blog/11-javascript-fundamentals-for-vue-developers/) for a quick refresher.
+- **Familiarity with HTML/CSS** - You don't need to be an expert, but you should be comfortable with basic markup and styling.
+- **A code editor** - VS Code, Sublime, or whatever you prefer.
+- **A browser** - Chrome or Firefox (with Vue DevTools extension recommended).
 
 Don't have all of these? That's okay. Start where you are. The best way to learn is by doing, even if you stumble a bit.
-
-**Time commitment:** Plan for 90-120 minutes to work through this article and try the examples. Take breaks. Let concepts sink in.
+**Time commitment:** Plan for 90-120 minutes to work through this article and try the examples. Take breaks. Let concepts sink in and make notes of any questions or unclear parts.
 
 ## Understanding Vue: Why Developers Gravitate Toward It
 
-Vue is built on one key idea:
-
-**A clear separation between state and the UI that renders it.**
+Vue is built on one key idea: **A clear separation between state and the UI that renders it.**
 
 You describe what you want the UI to look like, and Vue handles keeping it updated as your data changes. This means:
 
@@ -283,9 +278,7 @@ You describe what you want the UI to look like, and Vue handles keeping it updat
 - Less complex code
 - A more intuitive mental model
 
-At its core, Vue is about creating clear, reactive relationships between your data and the screen. Instead of manually updating the DOM every time something changes (like with vanilla JavaScript), Vue does the heavy lifting for you.
-
-Think about it this way: In vanilla JavaScript, if you want to update text on a page, you'd write:
+At its core, Vue is about creating clear, reactive relationships between your data and the screen. Instead of manually updating the DOM every time something changes (like with vanilla JavaScript), Vue does the heavy lifting for you. Think about it this way: In vanilla JavaScript, if you want to update text on a page, you'd write:
 
 ```javascript
 // Vanilla JavaScript - manual DOM manipulation
@@ -305,7 +298,6 @@ Vue flips this around. You declare what the UI should look like based on your da
 ```
 
 When `message` changes, Vue automatically updates the DOM. You focus on your data; Vue handles the DOM.
-
 To see this in action, we'll start small.
 
 ## Your First Vue App: The "Aha" Moment
@@ -340,21 +332,19 @@ Let's start with the simplest possible Vue application using a CDN (no build too
 </html>
 ```
 
-**Create this file and open it in your browser.** Seriously, do it now. The "aha" moment hits when you see it working.
+**Create this file and open it in your browser.** Seriously, do it now. The "aha" moment hits when you see it working, here is an example of what it should look like: [other place]
 
-What just happened?
+What happened in this example ?
+1. **`createApp({})`** - Created a new Vue application instance.
+2. **`data()`** - Defined reactive data that Vue tracks.
+3. **`{{ message }}`** - Template syntax that displays the data.
+4. **`@click`** - Event listener that modifies the data.
+5. **`.mount('#app')`** - Told Vue where to render.
 
-1. **`createApp({})`** - Created a new Vue application instance
-2. **`data()`** - Defined reactive data that Vue tracks
-3. **`{{ message }}`** - Template syntax that displays the data
-4. **`@click`** - Event listener that modifies the data
-5. **`.mount('#app')`** - Told Vue where to render
+When you click the button, and the UI updates automatically. You didn't write `document.querySelector` or manually update the DOM. Vue handled it. **This is the heart of Vue's reactivity.**
 
-Click the button, and the UI updates automatically. You didn't write `document.querySelector` or manually update the DOM. Vue handled it.
-
-**This is the heart of Vue's reactivity.**
-
-> **Real Talk:** When I first saw this, I thought "This is magic!" But it's not—it's just Vue's reactive system tracking your data and efficiently updating only the parts of the DOM that changed. Once you internalize this, everything else makes sense.
+> **Real Talk:** When I first saw this, I thought "This is magic!" as I was coming from React land. But it's not—it's just Vue's reactive system tracking  data and efficiently updating only the parts of the DOM that changed. Once you  wrap your mind areound this
+concept, everything else makes sense.
 
 ## The Options API: Vue's Foundation
 
