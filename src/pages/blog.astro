@@ -8,7 +8,7 @@ import Sectionhead from '@components/sectionhead.astro';
 import { getAllViewCounts } from '../lib/supabase';
 
 export const prerender = true;
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 60;
 
 // Filter blog entries with 'draft: false' & date before current date
 const publishedBlogEntries = await getCollection('blog', ({ data }) => {
@@ -38,7 +38,7 @@ const seoConfig = {
     basic: {
       title: 'My MetaData - Blog & Learning Notes',
       type: 'website',
-      image: '/og-blog.jpg', // Add your blog's Open Graph image
+      image: '/og-blog.jpg',
       url: new URL('blog', Astro.site).toString(),
     },
     optional: {
@@ -51,9 +51,9 @@ const seoConfig = {
     },
   },
   twitter: {
-    creator: '@nerajno', // Replace with your Twitter handle
-    site: '@nerajno', // Replace with your site's Twitter handle
-    card: 'summary_large_image',
+    creator: '@nerajno',
+    site: '@nerajno',
+    card: 'summary_large_image' as const,
   },
 };
 ---
@@ -66,7 +66,6 @@ const seoConfig = {
     openGraph={seoConfig.openGraph}
     twitter={seoConfig.twitter}
     extend={{
-      // Additional meta tags with GEO optimization
       meta: [
         { name: 'robots', content: 'index, follow' },
         { name: 'author', content: 'Nerando Johnson' },
@@ -79,13 +78,11 @@ const seoConfig = {
         { property: 'article:section', content: 'Technology' },
         { property: 'og:locale', content: 'en_US' },
         { name: 'theme-color', content: '#1e293b' },
-        // Additional meta tags (GEO, OpenGraph profile, etc.)
         { name: 'geo.region', content: 'US-GA' },
         { name: 'geo.placename', content: 'Atlanta' },
         { property: 'profile:first_name', content: 'Nerando' },
         { property: 'profile:last_name', content: 'Johnson' },
       ],
-      // JSON-LD structured data
       link: [
         {
           rel: 'alternate',
@@ -132,7 +129,7 @@ const seoConfig = {
       blogPost: sortedBlogEntries.slice(0, 10).map((post) => ({
         '@type': 'BlogPosting',
         headline: post.data.title,
-        description: post.data.description || post.data.excerpt,
+        description: post.data.snippet || post.data.title,
         url: new URL(`blog/${post.slug}`, Astro.site).toString(),
         datePublished: post.data.publishDate.toISOString(),
         dateModified:
@@ -153,90 +150,121 @@ const seoConfig = {
       <Fragment slot='title'>My MetaData</Fragment>
       <Fragment slot='desc'>
         Notes and blog posts created from things I've learned. All these articles
-        I've written that helped me level up my skills and knowledge. Discover
-        insights on web development, programming, and technology.
+        I've written that helped me level up my skills and knowledge.
       </Fragment>
     </Sectionhead>
+
     <main class='mt-16'>
-      {/* Filter Controls */}
-      <div
-        class='max-w-6xl mx-auto mb-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow'>
-        <div class='space-y-4'>
-          <div>
-            <label
-              for='search'
-              class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
-              >Search Posts</label
-            >
-            <input
-              type='text'
-              id='search'
-              class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'
-              placeholder='Search by title or tags...'
-            />
-          </div>
-          <div>
-            <label
-              for='sort'
-              class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
-              >Sort by Date</label
-            >
-            <select
-              id='sort'
-              class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
-              <option value='newest'>Newest First</option>
-              <option value='oldest'>Oldest First</option>
-              <option value='title-asc'>Title (A-Z)</option>
-              <option value='title-desc'>Title (Z-A)</option>
-            </select>
+      {/* Enhanced Filter Controls */}
+      <div class='max-w-5xl mx-auto mb-16'>
+        <div class='bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700'>
+          <div class='grid md:grid-cols-2 gap-4'>
+            <div>
+              <label
+                for='search'
+                class='block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2'
+              >
+                Search Posts
+              </label>
+              <input
+                type='text'
+                id='search'
+                class='w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:text-white transition-all'
+                placeholder='Search by title or tags...'
+              />
+            </div>
+            <div>
+              <label
+                for='sort'
+                class='block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2'
+              >
+                Sort By
+              </label>
+              <select
+                id='sort'
+                class='w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:text-white transition-all'
+              >
+                <option value='newest'>Newest First</option>
+                <option value='oldest'>Oldest First</option>
+                <option value='title-asc'>Title (A-Z)</option>
+                <option value='title-desc'>Title (Z-A)</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
 
-      <div id='blog-posts' class='grid gap-16 max-w-6xl mx-auto'>
+      {/* Blog Posts Grid */}
+      <div id='blog-posts' class='grid gap-12 max-w-5xl mx-auto'>
         {
           sortedBlogEntries.map((blogPostEntry, index) => (
-            <li class='blog-post-item' style='list-style: none;'>
-              <a href={`/blog/${blogPostEntry.slug}`}>
-                <div class='grid md:grid-cols-2 gap-5 md:gap-10 items-center'>
-                  <Picture
-                    src={blogPostEntry.data.image.src}
-                    alt={blogPostEntry.data.image.alt}
-                    sizes='(max-width: 800px) 100vw, 800px'
-                    width={800}
-                    height={600}
-                    format='webp'
-                    quality={80}
-                    loading={index <= 2 ? 'eager' : 'lazy'}
-                    decoding={index <= 2 ? 'sync' : 'async'}
-                    class='w-full rounded-md object-cover object-center bg-white'
-                  />
-                  <div>
-                    <h2 class='text-3xl font-semibold leading-snug tracking-tight mt-1 '>
+            <article class='blog-post-item group' style='list-style: none;'>
+              <a
+                href={`/blog/${blogPostEntry.slug}`}
+                class='block transition-all duration-300'
+              >
+                <div class='grid md:grid-cols-[280px_1fr] gap-8 items-start'>
+                  {/* Image */}
+                  <div class='relative overflow-hidden rounded-xl'>
+                    <Picture
+                      src={blogPostEntry.data.image.src}
+                      alt={blogPostEntry.data.image.alt}
+                      sizes='(max-width: 768px) 100vw, 280px'
+                      width={280}
+                      height={187}
+                      format='webp'
+                      quality={85}
+                      loading={index <= 2 ? 'eager' : 'lazy'}
+                      decoding={index <= 2 ? 'sync' : 'async'}
+                      class='w-full aspect-[3/2] object-cover transition-transform duration-500 group-hover:scale-105'
+                    />
+                    <div class='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+                  </div>
+
+                  {/* Content */}
+                  <div class='flex flex-col'>
+                    {/* Category Badge */}
+                    <span class='inline-block text-blue-500 dark:text-blue-400 uppercase tracking-wider text-xs font-bold mb-3'>
+                      {blogPostEntry.data.category}
+                    </span>
+
+                    {/* Title */}
+                    <h2 class='text-2xl md:text-3xl font-bold leading-tight mb-3 text-slate-900 dark:text-slate-50 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200'>
                       {blogPostEntry.data.title}
                     </h2>
 
-                    <div class='flex gap-2 mt-3'>
-                      <time
-                        class='text-gray-400'
-                        datetime={blogPostEntry.data.publishDate.toISOString()}>
-                        {blogPostEntry.data.publishDate.toDateString()}
+                    {/* Snippet */}
+                    {blogPostEntry.data.snippet && (
+                      <p class='text-slate-600 dark:text-slate-400 mb-4 leading-relaxed line-clamp-2 text-base'>
+                        {blogPostEntry.data.snippet}
+                      </p>
+                    )}
+
+                    {/* Metadata */}
+                    <div class='flex gap-3 text-sm text-slate-500 dark:text-slate-400 items-center mb-4'>
+                      <time datetime={blogPostEntry.data.publishDate.toISOString()}>
+                        {new Date(blogPostEntry.data.publishDate).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
                       </time>
-                      <span class='text-gray-400'>•</span>
+                      <span>•</span>
                       <span
-                        class='text-gray-400 inline-flex items-center view-counter-display'
-                        data-slug={blogPostEntry.slug}>
+                        class='inline-flex items-center gap-1.5 view-counter-display'
+                        data-slug={blogPostEntry.slug}
+                      >
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
-                          width='16'
-                          height='16'
+                          width='14'
+                          height='14'
                           viewBox='0 0 24 24'
                           fill='none'
                           stroke='currentColor'
                           stroke-width='2'
                           stroke-linecap='round'
                           stroke-linejoin='round'
-                          class='inline-block mr-1'>
+                        >
                           <path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z' />
                           <circle cx='12' cy='12' r='3' />
                         </svg>
@@ -248,37 +276,68 @@ const seoConfig = {
                         </span>
                       </span>
                     </div>
-                    <div class='flex gap-2 mt-3'>
-                      <span class='text-blue-400 uppercase tracking-wider text-sm font-medium'>
-                        {blogPostEntry.data.category}
-                      </span>
-                    </div>
-                    {blogPostEntry.data.tags && blogPostEntry.data.tags.length > 0 && (
-                      <div class='flex gap-2 mt-3 flex-wrap' data-tags={blogPostEntry.data.tags.join(',')}>
-                        {blogPostEntry.data.tags.map((tag: string) => (
-                          <span class='bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs'>
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+
+                    {/* Tags */}
+                    {blogPostEntry.data.tags &&
+                      blogPostEntry.data.tags.length > 0 && (
+                        <div
+                          class='flex gap-2 flex-wrap'
+                          data-tags={blogPostEntry.data.tags.join(',')}
+                        >
+                          {blogPostEntry.data.tags.slice(0, 4).map((tag: string) => (
+                            <span class='text-xs px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors'>
+                              {tag}
+                            </span>
+                          ))}
+                          {blogPostEntry.data.tags.length > 4 && (
+                            <span class='text-xs px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium'>
+                              +{blogPostEntry.data.tags.length - 4}
+                            </span>
+                          )}
+                        </div>
+                      )}
                   </div>
                 </div>
               </a>
-            </li>
+            </article>
           ))
         }
       </div>
 
+      {/* No Results Message */}
+      <div
+        id='no-results'
+        class='hidden text-center py-12 max-w-5xl mx-auto'
+      >
+        <div class='text-slate-400 dark:text-slate-500'>
+          <svg
+            class='w-16 h-16 mx-auto mb-4 opacity-50'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+            />
+          </svg>
+          <p class='text-xl font-semibold mb-2'>No posts found</p>
+          <p class='text-sm'>Try adjusting your search or filters</p>
+        </div>
+      </div>
+
       <script>
         const blogPosts = document.getElementById('blog-posts');
-        const searchInput = document.getElementById('search');
-        const sortSelect = document.getElementById('sort');
+        const searchInput = document.getElementById('search') as HTMLInputElement;
+        const sortSelect = document.getElementById('sort') as HTMLSelectElement;
+        const noResults = document.getElementById('no-results');
 
         // Debounce function
-        function debounce(func, wait) {
-          let timeout;
-          return function executedFunction(...args) {
+        function debounce(func: Function, wait: number) {
+          let timeout: ReturnType<typeof setTimeout>;
+          return function executedFunction(...args: any[]) {
             const later = () => {
               clearTimeout(timeout);
               func(...args);
@@ -290,9 +349,7 @@ const seoConfig = {
 
         // Update view counts client-side
         async function updateViewCounts() {
-          const viewCounters = document.querySelectorAll(
-            '.view-counter-display'
-          );
+          const viewCounters = document.querySelectorAll('.view-counter-display');
 
           for (const counter of viewCounters) {
             const slug = counter.getAttribute('data-slug');
@@ -320,12 +377,12 @@ const seoConfig = {
 
         // Filter posts function
         function filterPosts() {
-          const searchTerm = searchInput.value.toLowerCase().trim();
-          const sortBy = sortSelect.value || "newest";
+          const searchTerm = searchInput?.value?.toLowerCase().trim() || '';
+          const sortBy = sortSelect?.value || 'newest';
 
           // Get all post elements
           const posts = Array.from(
-            document.querySelectorAll('#blog-posts > li')
+            document.querySelectorAll('#blog-posts > article')
           );
 
           // Filter posts by title or tags
@@ -334,19 +391,26 @@ const seoConfig = {
 
             const titleEl = post.querySelector('h2');
             const title = titleEl?.textContent?.toLowerCase() || '';
+            const snippetEl = post.querySelector('p');
+            const snippet = snippetEl?.textContent?.toLowerCase() || '';
             const tagsContainer = post.querySelector('[data-tags]');
-            const tags = tagsContainer?.getAttribute('data-tags')?.toLowerCase() || '';
+            const tags =
+              tagsContainer?.getAttribute('data-tags')?.toLowerCase() || '';
 
-            // Search in both title and tags
-            return title.includes(searchTerm) || tags.includes(searchTerm);
+            // Search in title, snippet, and tags
+            return (
+              title.includes(searchTerm) ||
+              snippet.includes(searchTerm) ||
+              tags.includes(searchTerm)
+            );
           });
 
           // Sort posts based on selected option
           switch (sortBy) {
             case 'oldest':
               filteredPosts.sort((a, b) => {
-                const timeA = a.querySelector('time')?.dateTime;
-                const timeB = b.querySelector('time')?.dateTime;
+                const timeA = a.querySelector('time')?.getAttribute('datetime');
+                const timeB = b.querySelector('time')?.getAttribute('datetime');
                 if (!timeA || !timeB) return 0;
                 return new Date(timeA).valueOf() - new Date(timeB).valueOf();
               });
@@ -371,11 +435,20 @@ const seoConfig = {
               break;
             default: // 'newest' (default)
               filteredPosts.sort((a, b) => {
-                const timeA = a.querySelector('time')?.dateTime;
-                const timeB = b.querySelector('time')?.dateTime;
+                const timeA = a.querySelector('time')?.getAttribute('datetime');
+                const timeB = b.querySelector('time')?.getAttribute('datetime');
                 if (!timeA || !timeB) return 0;
                 return new Date(timeB).valueOf() - new Date(timeA).valueOf();
               });
+          }
+
+          // Show/hide no results message
+          if (filteredPosts.length === 0) {
+            noResults?.classList.remove('hidden');
+            blogPosts?.classList.add('hidden');
+          } else {
+            noResults?.classList.add('hidden');
+            blogPosts?.classList.remove('hidden');
           }
 
           // Clear and re-add sorted posts
@@ -392,9 +465,58 @@ const seoConfig = {
         const debouncedFilterPosts = debounce(filterPosts, 300);
 
         // Add event listeners
-        searchInput.addEventListener('input', debouncedFilterPosts);
-        sortSelect.addEventListener('change', filterPosts);
+        searchInput?.addEventListener('input', debouncedFilterPosts);
+        sortSelect?.addEventListener('change', filterPosts);
       </script>
     </main>
   </Container>
 </Layout>
+
+<style>
+  /* Smooth transitions for all interactive elements */
+  .blog-post-item {
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Add subtle animation on scroll */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .blog-post-item {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+  }
+
+  /* Stagger animation for multiple posts */
+  .blog-post-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .blog-post-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .blog-post-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .blog-post-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .blog-post-item:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+
+  /* Utility for line clamping */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

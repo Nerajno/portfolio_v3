@@ -2,49 +2,247 @@
 import Container from "@components/container.astro";
 import { getFormattedDate } from "@utils/all";
 import Layout from "./Layout.astro";
+import ReadingProgress from "@components/ReadingProgress.astro";
 
 const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title}>
+  <!-- Reading Progress Bar - Add right after Layout opens -->
+  <ReadingProgress />
+
   <Container>
-    <div class="mx-auto max-w-[735px] mt-14">
-      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+    <article class="mx-auto max-w-[80vw] mt-14 px-2">
+      {/* Category badge */}
+      <span class="text-blue-400 uppercase tracking-wider text-xs font-semibold">
         {frontmatter.category}
       </span>
-      <h1
-        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
+
+      {/* Hero title with generous spacing */}
+      <h1 class="text-5xl md:text-6xl font-bold mt-4 mb-6 leading-[1.1] tracking-tight">
         {frontmatter.title}
       </h1>
-      <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
-        <span class="text-gray-400">
-          {frontmatter.author}
-        </span>
-        <span class="text-gray-400">•</span>
-        <time class="text-gray-400" datetime={frontmatter.publishDate}>
+
+      {/* Metadata */}
+      <div class="flex gap-3 mb-12 items-center flex-wrap text-base text-slate-500 dark:text-slate-400">
+        <span>{frontmatter.author}</span>
+        <span>•</span>
+        <time datetime={frontmatter.publishDate}>
           {getFormattedDate(frontmatter.publishDate)}
         </time>
-        <span class="text-gray-400 hidden md:block">•</span>
-        <div class="w-full md:w-auto flex flex-wrap gap-3">
-          {
-            frontmatter.tags.map((tag) => (
-              <span class="text-sm text-gray-500">#{tag}</span>
-            ))
-          }
+        <span class="hidden md:inline">•</span>
+        <div class="w-full md:w-auto flex flex-wrap gap-2">
+          {frontmatter.tags.map((tag) => (
+            <span class="text-sm">#{tag}</span>
+          ))}
         </div>
       </div>
-    </div>
 
-    <div class="mx-auto prose prose-lg mt-6">
-      <slot />
-    </div>
-    <div class="text-center mt-8">
-      <a
-        href="/blog"
-        target="_blank" rel="noopener noreferrer"
-        class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
-        >← Back to Blogs</a
-      >
-    </div>
+      {/* Content with enhanced prose */}
+      <div class="prose-custom">
+        <slot />
+      </div>
+
+      {/* Back button */}
+      <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+
+          href="/blog"
+          class="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors group font-medium">
+          <svg
+            class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Blog
+        </a>
+      </div>
+    </article>
   </Container>
 </Layout>
+
+<style>
+  /* Josh Comeau-inspired prose styles */
+  .prose-custom {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+  }
+
+  .prose-custom > * + * {
+    margin-top: 1.75rem;
+  }
+
+  .prose-custom h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+    scroll-margin-top: 5rem;
+  }
+
+  .prose-custom h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+    scroll-margin-top: 5rem;
+  }
+
+  .prose-custom h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+  }
+
+  .prose-custom p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+
+  .prose-custom a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+    transition: border-color 0.2s ease;
+    font-weight: 500;
+  }
+
+  .prose-custom a:hover {
+    border-bottom-color: var(--color-accent-primary);
+  }
+
+  .prose-custom code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    color: #E06C75;
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+
+  .prose-custom pre {
+    background-color: #1E293B;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .prose-custom pre code {
+    background: transparent;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #ABB2BF;
+  }
+
+  .prose-custom img {
+    border-radius: 0.75rem;
+    margin: 3rem 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  :root.dark .prose-custom img {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .prose-custom ul,
+  .prose-custom ol {
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .prose-custom li {
+    margin: 0.5rem 0;
+    line-height: 1.8;
+  }
+
+  .prose-custom li::marker {
+    color: var(--color-accent-primary);
+    font-weight: 600;
+  }
+
+  .prose-custom blockquote {
+    border-left: 4px solid var(--color-accent-primary);
+    padding-left: 1.5rem;
+    font-style: italic;
+    margin: 2rem 0;
+    color: var(--color-text-secondary);
+    font-size: 1.1em;
+  }
+
+  .prose-custom hr {
+    border: none;
+    border-top: 1px solid var(--color-border-light);
+    margin: 3rem 0;
+  }
+
+  .prose-custom table {
+    width: 100%;
+    margin: 2rem 0;
+    border-collapse: collapse;
+  }
+
+  .prose-custom th {
+    background-color: var(--color-bg-secondary);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border-medium);
+  }
+
+  .prose-custom td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  /* Inline code in headings */
+  .prose-custom h2 code,
+  .prose-custom h3 code,
+  .prose-custom h4 code {
+    font-size: 0.9em;
+  }
+
+  /* Link styling in different contexts */
+  .prose-custom li a {
+    font-weight: 500;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .prose-custom {
+      font-size: 1rem;
+    }
+
+    .prose-custom h2 {
+      font-size: 1.75rem;
+      margin-top: 2rem;
+    }
+
+    .prose-custom h3 {
+      font-size: 1.375rem;
+    }
+
+    .prose-custom pre {
+      padding: 1rem;
+      margin: 1.5rem -1rem;
+      border-radius: 0;
+    }
+
+    .prose-custom img {
+      margin: 2rem -1rem;
+      border-radius: 0;
+    }
+  }
+</style>
