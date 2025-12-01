@@ -32,7 +32,7 @@ if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
 const seoConfig = {
   title: 'My MetaData - Blog & Learning Notes',
   description:
-    "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
+    "Notes and blog posts created from things I've learned. All these articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
   canonical: new URL('blog', Astro.site).toString(),
   openGraph: {
     basic: {
@@ -43,7 +43,7 @@ const seoConfig = {
     },
     optional: {
       description:
-        "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge.",
+        "Notes and blog posts created from things I've learned. All these articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
       siteName: 'My MetaData',
     },
     image: {
@@ -105,7 +105,7 @@ const seoConfig = {
       '@type': 'Blog',
       name: 'My MetaData Blog',
       description:
-        "Notes and blog posts from things I've learned and articles I've written that helped me level up my skills and knowledge.",
+        "Notes and blog posts created from things I've learned. All these articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
       url: new URL('blog', Astro.site).toString(),
       author: {
         '@type': 'Person',
@@ -152,8 +152,9 @@ const seoConfig = {
     <Sectionhead>
       <Fragment slot='title'>My MetaData</Fragment>
       <Fragment slot='desc'>
-        Notes and blog posts from things I've learned and articles I've written
-        that helped me level up my skills and knowledge.
+        Notes and blog posts created from things I've learned. All these articles
+        I've written that helped me level up my skills and knowledge. Discover
+        insights on web development, programming, and technology.
       </Fragment>
     </Sectionhead>
     <main class='mt-16'>
@@ -161,35 +162,33 @@ const seoConfig = {
       <div
         class='max-w-6xl mx-auto mb-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow'>
         <div class='space-y-4'>
-          <div class='grid grid-cols-1 gap-4'>
-            <div>
-              <label
-                for='search'
-                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
-                >Search by Title</label
-              >
-              <input
-                type='text'
-                id='search'
-                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'
-                placeholder='Search posts...'
-              />
-            </div>
-            <div>
-              <label
-                for='sort'
-                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
-                >Sort by Date</label
-              >
-              <select
-                id='sort'
-                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
-                <option value='newest'>Newest First</option>
-                <option value='oldest'>Oldest First</option>
-                <option value='title-asc'>Title (A-Z)</option>
-                <option value='title-desc'>Title (Z-A)</option>
-              </select>
-            </div>
+          <div>
+            <label
+              for='search'
+              class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+              >Search Posts</label
+            >
+            <input
+              type='text'
+              id='search'
+              class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'
+              placeholder='Search by title or tags...'
+            />
+          </div>
+          <div>
+            <label
+              for='sort'
+              class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+              >Sort by Date</label
+            >
+            <select
+              id='sort'
+              class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
+              <option value='newest'>Newest First</option>
+              <option value='oldest'>Oldest First</option>
+              <option value='title-asc'>Title (A-Z)</option>
+              <option value='title-desc'>Title (Z-A)</option>
+            </select>
           </div>
         </div>
       </div>
@@ -254,6 +253,15 @@ const seoConfig = {
                         {blogPostEntry.data.category}
                       </span>
                     </div>
+                    {blogPostEntry.data.tags && blogPostEntry.data.tags.length > 0 && (
+                      <div class='flex gap-2 mt-3 flex-wrap' data-tags={blogPostEntry.data.tags.join(',')}>
+                        {blogPostEntry.data.tags.map((tag: string) => (
+                          <span class='bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs'>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </a>
@@ -266,6 +274,19 @@ const seoConfig = {
         const blogPosts = document.getElementById('blog-posts');
         const searchInput = document.getElementById('search');
         const sortSelect = document.getElementById('sort');
+
+        // Debounce function
+        function debounce(func, wait) {
+          let timeout;
+          return function executedFunction(...args) {
+            const later = () => {
+              clearTimeout(timeout);
+              func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+          };
+        }
 
         // Update view counts client-side
         async function updateViewCounts() {
@@ -297,10 +318,9 @@ const seoConfig = {
         // Update view counts when page loads
         updateViewCounts();
 
-        // Store original posts HTML for filtering
-
+        // Filter posts function
         function filterPosts() {
-          const searchTerm = searchInput.value.toLowerCase() || "" ;
+          const searchTerm = searchInput.value.toLowerCase().trim();
           const sortBy = sortSelect.value || "newest";
 
           // Get all post elements
@@ -308,11 +328,17 @@ const seoConfig = {
             document.querySelectorAll('#blog-posts > li')
           );
 
-          // Filter and sort posts
+          // Filter posts by title or tags
           let filteredPosts = posts.filter((post) => {
+            if (!searchTerm) return true;
+
             const titleEl = post.querySelector('h2');
             const title = titleEl?.textContent?.toLowerCase() || '';
-            return title.includes(searchTerm);
+            const tagsContainer = post.querySelector('[data-tags]');
+            const tags = tagsContainer?.getAttribute('data-tags')?.toLowerCase() || '';
+
+            // Search in both title and tags
+            return title.includes(searchTerm) || tags.includes(searchTerm);
           });
 
           // Sort posts based on selected option
@@ -353,7 +379,6 @@ const seoConfig = {
           }
 
           // Clear and re-add sorted posts
-
           if (!blogPosts) {
             console.error('Blog posts container not found');
             return;
@@ -363,8 +388,11 @@ const seoConfig = {
           filteredPosts.forEach((post) => blogPosts.appendChild(post));
         }
 
+        // Create debounced version of filterPosts (300ms delay)
+        const debouncedFilterPosts = debounce(filterPosts, 300);
+
         // Add event listeners
-        searchInput.addEventListener('input', filterPosts);
+        searchInput.addEventListener('input', debouncedFilterPosts);
         sortSelect.addEventListener('change', filterPosts);
       </script>
     </main>
