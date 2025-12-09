@@ -8,7 +8,7 @@ draft: false
 # SEO OPTIMIZATION (Traditional Search Engines: Google, Bing, etc.)
 # ============================================================================
 seoTitle: "Vue 3 Fundamentals Tutorial: Master the Options API | Nerando Johnson"
-seoDescription: "Master Vue 3 fundamentals with the Options API. Learn reactivity, components, directives, computed properties, and more with practical examples and live demos."
+seoDescription: "Master Vue 3 fundamentals with the Options API. Learn reactivity, components, directives, computed properties, watchers, lifecycle hooks, and more with practical examples and live demos."
 
 # ============================================================================
 # OPEN GRAPH / SOCIAL MEDIA
@@ -66,7 +66,7 @@ structuredData:
 # BASIC CONTENT FIELDS
 # ============================================================================
 title: "A Clearer Vue: Fundamentals & Core Concepts"
-snippet: "Master Vue 3 fundamentals through clear explanations and practical examples. Learn the Options API, reactivity, components, and essential concepts that form the foundation of modern Vue development."
+snippet: "Master Vue 3 fundamentals through clear explanations and practical examples. Learn the Options API, reactivity, components, watchers, lifecycle hooks, and essential concepts that form the foundation of modern Vue development."
 image: {
     src: "https://developingdvlpr.com/vue-fundamentals-cover.jpg",
     alt: "Vue 3 fundamentals tutorial covering core concepts and the Options API"
@@ -75,7 +75,7 @@ image: {
 publishDate: "2025-11-30 06:00"
 category: "Web Development, JavaScript, Vue3"
 author: "Nerando Johnson"
-tags: [Vue.js, JavaScript, Tutorial, Options API, Fundamentals, Frontend Development]
+tags: [Vue.js, JavaScript, Tutorial, Options API, Fundamentals, Frontend Development, Watchers, Lifecycle Hooks]
 
 # ============================================================================
 # KEYWORDS (For SEO and internal search)
@@ -93,6 +93,8 @@ keywords: [
   "Vue event handling",
   "computed properties Vue",
   "Vue methods",
+  "Vue watchers",
+  "Vue lifecycle hooks",
   "Vue data binding",
   "Vue directives",
   "Vue template syntax",
@@ -128,6 +130,8 @@ geo:
       - "How do I bind data in Vue templates?"
       - "What are Vue lifecycle hooks?"
       - "How do props and events work in Vue?"
+      - "What are Vue watchers?"
+      - "How do I use slots in Vue?"
 
     audience:
       primary: "Complete beginners to Vue.js with basic JavaScript knowledge"
@@ -138,6 +142,7 @@ geo:
         - "Difficulty understanding Vue's template syntax and directives"
         - "Not knowing how to properly structure Vue components"
         - "Struggling with component communication patterns"
+        - "Uncertainty about lifecycle hooks and when to use them"
       goals:
         - "Understand Vue's core reactive system"
         - "Master the Options API structure"
@@ -146,9 +151,11 @@ geo:
         - "Be ready to progress to building real applications"
 
     keyTakeaways:
-      - "Vue's reactivity system automatically tracks and updates the UI when data changes"
-      - "The Options API provides clear organization with data, methods, computed, and lifecycle sections"
+      - "Vue's reactivity system uses JavaScript Proxies to automatically track and update the UI when data changes"
+      - "The Options API provides clear organization with data, methods, computed, watchers, and lifecycle sections"
       - "Computed properties are cached and better for derived values than methods"
+      - "Watchers enable side effects and async operations when data changes"
+      - "Lifecycle hooks let you run code at specific moments in a component's lifetime"
       - "Vue directives like v-if, v-for, and v-model make templates dynamic and interactive"
       - "Component communication uses props for parent-to-child and events for child-to-parent data flow"
 
@@ -157,8 +164,10 @@ geo:
         answer: "Yes! The Options API is the best way to understand Vue fundamentals. Once you grasp these concepts, the Composition API (covered in Part 2) will make much more sense."
       - question: "What's the difference between methods and computed properties?"
         answer: "Methods run every time they're called, while computed properties are cached and only recalculate when their dependencies change. Use computed for values derived from reactive data."
+      - question: "When should I use watchers vs computed properties?"
+        answer: "Use computed properties for synchronous calculations based on reactive data. Use watchers for asynchronous operations, side effects, or when you need access to both old and new values."
       - question: "How long does it take to complete this tutorial?"
-        answer: "Plan for 90-120 minutes to read through the article and try the interactive examples. Take breaks and practice with the code samples."
+        answer: "Plan for 2-3 hours to read through the article and try the interactive examples. Take breaks and practice with the code samples."
       - question: "Can I build real apps with just the Options API?"
         answer: "Absolutely! Many production Vue apps use the Options API. However, for modern projects, you'll want to learn the Composition API (Part 2) as well."
 
@@ -170,16 +179,18 @@ geo:
       - "Declarative Rendering"
       - "Two-way Data Binding"
       - "Template Directives"
+      - "Lifecycle Hooks"
+      - "Watchers"
       - "Vue Mastery Intro Course"
       - "Frontend Development"
 
-    expertise: "Written by junior developer learning Vue through Vue Mastery's Intro to Vue 3 course, explaining concepts in beginner-friendly terms"
+    expertise: "Written by junior developer learning Vue through Vue Mastery's Intro to Vue 3 course, explaining concepts in beginner-friendly terms with intermediate-level insights"
     evidenceBased: true
     actionable: true
     includesExamples: true
     includesTemplates: false
     includesChallenges: true
-    depth: "Foundational comprehensive guide"
+    depth: "Foundational comprehensive guide with production-ready patterns"
     personalExperience: "Part 1 of my Vue Mastery learning journey, covering the Intro to Vue 3 course fundamentals"
     credibility: "Active learner documenting the fundamental concepts that clicked while learning Vue from scratch"
 
@@ -191,7 +202,7 @@ schema: {
   about: "Vue 3 fundamentals tutorial covering Options API and core concepts",
   genre: "Technical Tutorial",
   educationalLevel: "Beginner",
-  teaches: ["Vue 3 Fundamentals", "Options API", "Reactive Data", "Vue Directives", "Component Basics", "Template Syntax"],
+  teaches: ["Vue 3 Fundamentals", "Options API", "Reactive Data", "Vue Directives", "Component Basics", "Template Syntax", "Lifecycle Hooks", "Watchers"],
   audience: {
     type: "ProfessionalAudience",
     audienceType: "Beginner JavaScript developers learning Vue.js"
@@ -200,78 +211,152 @@ schema: {
 
 entities: {
   primary: ["Vue.js", "Options API", "JavaScript", "Reactivity"],
-  secondary: ["Components", "Directives", "Data Binding", "Computed Properties"],
+  secondary: ["Components", "Directives", "Data Binding", "Computed Properties", "Watchers", "Lifecycle Hooks"],
   people: ["Nerando Johnson"],
   organizations: ["Vue Mastery"],
-  concepts: ["Reactive Programming", "Declarative Rendering", "Component Architecture", "Template Syntax", "Event Handling"]
+  concepts: ["Reactive Programming", "Declarative Rendering", "Component Architecture", "Template Syntax", "Event Handling", "Component Lifecycle"]
 }
 
 contentStructure: {
   type: "Tutorial",
   difficulty: "Beginner",
-  timeToComplete: "90-120 minutes read and practice",
+  timeToComplete: "2-3 hours read and practice",
   prerequisites: ["Basic JavaScript", "HTML/CSS fundamentals", "Browser (Chrome/Firefox)"],
-  outcomes: ["Understand Vue reactivity", "Master Options API structure", "Use all core Vue directives", "Build basic components", "Handle user events and forms"]
+  outcomes: ["Understand Vue reactivity", "Master Options API structure", "Use all core Vue directives", "Build basic components", "Handle user events and forms", "Use lifecycle hooks effectively", "Implement watchers for async operations"]
 }
 
 semanticContext: {
-  topic: "Vue 3 fundamentals covering reactivity, Options API, directives, and core concepts for beginners",
-  subtopics: ["Options API", "Reactive data", "Methods", "Computed properties", "Directives (v-if, v-for, v-model)", "Event handling", "Component props and events", "Template syntax"],
-  relatedConcepts: ["Reactive programming", "Declarative rendering", "Component-based architecture", "Virtual DOM", "Two-way data binding"],
+  topic: "Vue 3 fundamentals covering reactivity, Options API, directives, lifecycle hooks, watchers, and core concepts for beginners",
+  subtopics: ["Options API", "Reactive data", "Methods", "Computed properties", "Watchers", "Lifecycle hooks", "Directives (v-if, v-for, v-model)", "Event handling", "Component props and events", "Template syntax", "Slots"],
+  relatedConcepts: ["Reactive programming", "Declarative rendering", "Component-based architecture", "Virtual DOM", "Two-way data binding", "Component lifecycle"],
   practicalApplication: true
 }
 
 citationMetadata: {
   citableAs: "Johnson, N. (2025). A Clearer Vue: Fundamentals & Core Concepts",
   lastReviewed: "2025-01-15",
-  version: "1.0",
+  version: "2.0",
   originalPublisher: "Nerando Johnson's Blog"
 }
 
 aiOptimization: {
-  summaryPrompt: "Vue 3 fundamentals tutorial teaching core concepts and the Options API through practical examples and clear explanations for beginners",
+  summaryPrompt: "Vue 3 fundamentals tutorial teaching core concepts and the Options API through practical examples and clear explanations for beginners with intermediate-level insights",
   keyTakeaways: [
-    "Vue 3's reactivity system automatically tracks data and updates the UI efficiently",
-    "Options API provides clear structure with data(), methods, computed, and lifecycle hooks",
+    "Vue 3's reactivity system uses JavaScript Proxies to automatically track data and update the UI efficiently",
+    "Options API provides clear structure with data(), methods, computed, watchers, and lifecycle hooks",
     "Computed properties are cached and ideal for derived values based on reactive data",
+    "Watchers enable asynchronous operations and side effects when data changes",
+    "Lifecycle hooks provide control at key moments in a component's lifetime",
     "Vue directives like v-if, v-for, and v-model make templates dynamic and interactive",
     "Component communication follows props down, events up pattern for predictable data flow"
   ],
-  technicalDepth: "beginner-friendly with depth",
+  technicalDepth: "beginner-friendly with intermediate insights",
   codeExamples: true
 }
 ---
 
-*Part of the Vue Mastery Beginner Track Series - Covering Intro to Vue 3*
+*Part 1 of the Vue Mastery Beginner Track Series - Covering Intro to Vue 3*
 
-> **A note from the author:** This is Part 1 of a nine-part series covering Vue Mastery's beginner track. In this article, we'll to cover  Vue fundamentals using the Options API. As I continue learning, I may refine sections and add more content. Feedback is always welcome—find me [@nerajno](https://twitter.com/nerajno) or [here](https://developingdvlpr.com/contact).
+> **A note from the author:** This is Part 1 of a nine-part series covering Vue Mastery's beginner track. In this article, I'll cover Vue fundamentals using the Options API as it better covers the fundamentals of Vue3, which is the focus of this series. As I continue learning, I may refine sections and add more content. Feedback is always welcome—find me [@nerajno](https://twitter.com/nerajno) or [here](https://developingdvlpr.com/contact).
 
-Have you ever started learning Vue, understood the basics, but felt unsure how everything actually works together?
+Have you ever started learning Vue, understood the basics, but felt unsure how everything actually works together? You've read about `data`, `methods`, and `computed` properties. But when do you use each and how do they interact? And what's this whole "reactive" thing really about?
 
-You've read about `data`, `methods`, and `computed` properties. But when do you use each and how do they interact? And what's this whole "reactive" thing really about?
-
-If that sounds familiar, this article is for you.
-
-Instead of throwing isolated concepts at you, the aim of this article is to build understanding progressively (brick by brick ... so to speak) — each concept building on the last. By the end of this article, you should have either have a greater grasp of the concepts or  have a solid foundation in Vue fundamentals and be ready to build real applications.
+If that sounds familiar, this article is for you. Instead of throwing isolated concepts at you, the aim of this article is to build understanding progressively (brick by brick... so to speak) — each concept building on the last. By the end of this article, you should either have a greater grasp of the concepts or have a solid foundation in Vue fundamentals and be ready to build real applications.
 
 Let's start with clarity.
 
-## Before You Start
+## Before You Start: Prerequisites & Setup
 
-To get the most out of this article, you should have:
+To get the most out of this article, you should have a basic understanding of:
 
-- **Basic JavaScript knowledge** - Understanding of variables, functions, arrays, objects, and basic DOM manipulation  .... see this [article](https://developingdvlpr.com/blog/11-javascript-fundamentals-for-vue-developers/) for a quick refresher.
-- **Familiarity with HTML/CSS** - You don't need to be an expert, but you should be comfortable with basic markup and styling.
-- **A code editor** - VS Code, Sublime, or whatever you prefer.
-- **A browser** - Chrome or Firefox (with Vue DevTools extension recommended).
+### Essential Knowledge
 
-Don't have all of these? That's okay. Start where you are. The best way to learn is by doing, even if you stumble a bit.
-**Time commitment:** Plan for 90-120 minutes to work through this article and try the examples. Take breaks. Let concepts sink in and make notes of any questions or unclear parts.
+**JavaScript Fundamentals (Required):**
+- Variables (`let`, `const`) and data types
+- Functions (including arrow functions)
+- Objects and arrays
+- Array methods: `map()`, `filter()`, `reduce()`, `find()`
+- Destructuring: `const { name } = user`
+- Spread operator: `...items`
+- Template literals: `` `Hello ${name}` ``
+- Async/await basics
+
+**Not sure about these?** Read my [11 JavaScript Fundamentals for Vue Developers](https://developingdvlpr.com/blog/11-javascript-fundamentals-for-vue-developers/) for a quick refresher.
+
+**HTML/CSS (Required):**
+- Semantic HTML elements
+- Basic CSS selectors and properties
+- Understanding of the DOM structure
+
+**Nice to Have (But Not Required):**
+- ES6+ features
+- HTTP/REST API basics
+- Command line comfort
+- Git fundamentals
+
+### Development Environment Setup
+
+**Option 1: Browser (Beginner-Friendly)**
+- ✅ No setup required
+- ✅ Great for learning
+- ❌ Not for real projects
+
+```html
+<!-- Just add this to any HTML file -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+```
+
+**Option 2: Vue Playground (Recommended for Learning)**
+- ✅ Online editor: [play.vuejs.org](https://play.vuejs.org/)
+- ✅ Save and share examples
+- ✅ Syntax highlighting
+
+**Option 3: Local Development (For Real Projects)**
+```bash
+# Create new Vue project (covered in Part 2)
+npm create vue@latest
+```
+
+### Recommended Tools
+
+**Code Editor:**
+- **VS Code** (recommended) with extensions:
+  - Volar (Vue Language Features)
+  - Vue VSCode Snippets
+
+**Browser:**
+- Chrome or Firefox
+- **Vue DevTools extension** (essential for debugging)
+  - [Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/)
+  - [Firefox](https://addons.mozilla.org/firefox/addon/vue-js-devtools/)
+
+### How to Use This Tutorial
+
+**For Complete Beginners:**
+1. Read section by section (don't skip ahead)
+2. Type out every code example (don't copy-paste)
+3. Experiment—break things and fix them
+4. Complete practice challenges before moving on
+5. Expected time: 3-4 hours total
+
+**For Developers from Other Frameworks:**
+1. Skim familiar concepts (data binding, events)
+2. Focus on Vue-specific patterns (reactivity, directives)
+3. Pay attention to "Intermediate insight" callouts
+4. Expected time: 90-120 minutes
+
+**Learning Path:**
+```
+Part 1 (This Article)    Part 2              Part 3
+Options API         →    Composition API  →  Real Projects
+Fundamentals            Modern Patterns      Production Apps
+```
+
+**Time commitment:** Plan for 2-3 hours if you're going to work through this article and try the examples. It's about 25-30 minutes reading if that's all you're going to do. My advice either way: take breaks, let concepts sink in, and make notes of any questions or unclear parts.
 
 ## Understanding Vue: Why Developers Gravitate Toward It
 
 Vue is built on one key idea: **A clear separation between state and the UI that renders it.**
-
 You describe what you want the UI to look like, and Vue handles keeping it updated as your data changes. This means:
 
 - Fewer manual DOM operations
@@ -281,12 +366,12 @@ You describe what you want the UI to look like, and Vue handles keeping it updat
 At its core, Vue is about creating clear, reactive relationships between your data and the screen. Instead of manually updating the DOM every time something changes (like with vanilla JavaScript), Vue does the heavy lifting for you. Think about it this way: In vanilla JavaScript, if you want to update text on a page, you'd write:
 
 ```javascript
-// Vanilla JavaScript - manual DOM manipulation
+// Regular vanilla JavaScript - manual DOM manipulation
 const element = document.getElementById('message')
 element.textContent = 'Hello World'
 ```
 
-Every time your data changes, you have to manually find the element and update it. For a small app, that's manageable. For a real application? It becomes a nightmare of `querySelector` calls and state tracking.
+Every time your data changes, you have to manually find the element and update it. For a small app, that's manageable. For an app in production, it becomes a nightmare of `querySelector` calls and state tracking.
 
 Vue flips this around. You declare what the UI should look like based on your data, and Vue handles the updates:
 
@@ -298,6 +383,7 @@ Vue flips this around. You declare what the UI should look like based on your da
 ```
 
 When `message` changes, Vue automatically updates the DOM. You focus on your data; Vue handles the DOM.
+
 To see this in action, we'll start small.
 
 ## Your First Vue App: The "Aha" Moment
@@ -332,23 +418,79 @@ Let's start with the simplest possible Vue application using a CDN (no build too
 </html>
 ```
 
-**Create this file and open it in your browser.** Seriously, do it now. The "aha" moment hits when you see it working, here is an example of what it should look like: [other place]
+**Create this file and open it in your browser.** Seriously, do it now. The "aha" moment hits when you see it working.
 
-What happened in this example ?
+What happened in this example?
 1. **`createApp({})`** - Created a new Vue application instance.
 2. **`data()`** - Defined reactive data that Vue tracks.
 3. **`{{ message }}`** - Template syntax that displays the data.
 4. **`@click`** - Event listener that modifies the data.
 5. **`.mount('#app')`** - Told Vue where to render.
 
-When you click the button, and the UI updates automatically. You didn't write `document.querySelector` or manually update the DOM. Vue handled it. **This is the heart of Vue's reactivity.**
+When you click the button, the UI updates automatically. You didn't write `document.querySelector` or manually update the DOM. Vue handled it. **This is the heart of Vue's reactivity.**
 
-> **Real Talk:** When I first saw this, I thought "This is magic!" as I was coming from React land. But it's not—it's just Vue's reactive system tracking  data and efficiently updating only the parts of the DOM that changed. Once you  wrap your mind areound this
-concept, everything else makes sense.
+> **Real Talk:** When I first saw this, I thought "This is magic!" as I was coming from React land. But it's not—it's just Vue's reactive system tracking data and efficiently updating only the parts of the DOM that changed. Once you wrap your mind around this concept, everything else makes sense.
+
+## Understanding Vue's Reactivity System
+
+Vue's reactivity is built on JavaScript's **Proxy API** (in Vue 3). Here's what actually happens:
+
+When you define data in your component:
+```javascript
+data() {
+  return {
+    count: 0
+  }
+}
+```
+
+Vue wraps this object in a Proxy that intercepts property access and modifications:
+
+```javascript
+// Simplified conceptual example
+const reactive = new Proxy(data, {
+  get(target, key) {
+    // Vue tracks: "this property is being read"
+    track(target, key)
+    return target[key]
+  },
+  set(target, key, value) {
+    target[key] = value
+    // Vue triggers: "this property changed, update UI"
+    trigger(target, key)
+    return true
+  }
+})
+```
+
+**Why this matters:**
+- **For beginners:** You don't manually update the DOM; Vue does it automatically
+- **For intermediate devs:** Understanding this helps debug reactivity issues (why some changes don't trigger updates)
+
+**Real-world gotcha:**
+```javascript
+// ❌ This won't be reactive in Vue 3 if added after creation
+const user = { name: 'John' }
+user.email = 'john@example.com' // Added after object creation
+
+// ✅ Better approach
+data() {
+  return {
+    user: {
+      name: 'John',
+      email: '' // Declare upfront
+    }
+  }
+}
+```
+
+**Beginner tip:** Just remember that Vue tracks your data automatically. When data changes, the UI updates.
+
+**Intermediate insight:** Vue 3's Proxy-based reactivity is more powerful than Vue 2's `Object.defineProperty` approach. It can detect property additions and array index changes, but it's still best practice to declare all properties upfront for clarity.
 
 ## The Options API: Vue's Foundation
 
-Vue 3 offers two ways to write components: the Options API and the Composition API. We're starting with the Options API because it provides the clearest mental model for understanding how Vue works.
+Vue 3 offers two ways to write components: the Options API and the Composition API. We're starting with the Options API because it provides the clearest mental model for understanding how Vue works. Please note that the Composition API is a more modern and flexible approach to building Vue applications, but it's not the focus of this article—the fundamentals are.
 
 The Options API organizes your component using well-defined **options**:
 
@@ -358,7 +500,14 @@ export default {
   data() {
     return {
       count: 0,
-      name: 'Nerando'
+      name: 'James'
+    }
+  },
+
+  // Computed properties (derived values)
+  computed: {
+    doubleCount() {
+      return this.count * 2
     }
   },
 
@@ -372,10 +521,10 @@ export default {
     }
   },
 
-  // Computed properties (derived values)
-  computed: {
-    doubleCount() {
-      return this.count * 2
+  // Watchers (react to data changes)
+  watch: {
+    count(newValue, oldValue) {
+      console.log(`Count changed from ${oldValue} to ${newValue}`)
     }
   },
 
@@ -405,8 +554,8 @@ export default {
 
       // Objects
       user: {
-        name: 'Nerando',
-        email: 'n@example.com'
+        name: 'James',
+        email: 'j@example.com'
       },
 
       // Arrays
@@ -422,9 +571,43 @@ export default {
 
 **Important rules:**
 
-1. **`data` must be a function** - It returns a fresh object for each component instance
-2. **Everything in the returned object becomes reactive** - Vue tracks changes automatically
+1. **`data` must be a function** - It returns a fresh object for each component instance.
+2. **Everything in the returned object becomes reactive** - Vue tracks changes automatically.
 3. **Access via `this` in methods** - Use `this.count`, `this.message`, etc.
+
+### Why Data Must Be a Function
+
+When you use the same component multiple times, each needs its own data. If `data` were an object, all instances would share the same object:
+
+```javascript
+// ❌ DON'T DO THIS (object, not function)
+export default {
+  data: {
+    count: 0  // Shared across ALL instances!
+  }
+}
+
+// ✅ CORRECT (function returns new object)
+export default {
+  data() {
+    return {
+      count: 0  // Each instance gets its own data
+    }
+  }
+}
+```
+
+**Why this matters:**
+
+```html
+<!-- If data were an object, both buttons would increment the SAME counter! -->
+<counter-button></counter-button>
+<counter-button></counter-button>
+```
+
+**For beginners:** Think of `data()` as a factory that creates fresh data for each component.
+
+**For intermediate devs:** This is JavaScript closure mechanics—each function call creates a new scope.
 
 **Live example - Counter:**
 
@@ -486,14 +669,22 @@ export default {
 
     // Working with arrays
     addTodo() {
-      if (this.newTodo.trim()) {
-        this.todos.push({
-          id: Date.now(),
-          text: this.newTodo,
-          done: false
-        })
-        this.newTodo = '' // Clear input
+      // Input validation
+      if (!this.newTodo?.trim()) {
+        return
       }
+
+      // Better ID generation
+      const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+
+      this.todos.push({
+        id,
+        text: this.newTodo.trim(),
+        done: false,
+        createdAt: new Date().toISOString()
+      })
+
+      this.newTodo = '' // Clear input
     },
 
     // Methods can call other methods
@@ -568,14 +759,19 @@ export default {
 
       methods: {
         addTodo() {
-          if (this.newTodo.trim()) {
-            this.todos.push({
-              id: Date.now(),
-              text: this.newTodo,
-              done: false
-            })
-            this.newTodo = ''
+          if (!this.newTodo?.trim()) {
+            return
           }
+
+          const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+
+          this.todos.push({
+            id,
+            text: this.newTodo.trim(),
+            done: false
+          })
+
+          this.newTodo = ''
         },
 
         toggleTodo(todo) {
@@ -633,22 +829,105 @@ export default {
 }
 ```
 
-**Why use computed over methods?**
+### Computed vs Methods: The Complete Picture
 
 ```javascript
-// ❌ Method - runs every time
-methods: {
-  fullName() {
-    return `${this.firstName} ${this.lastName}`
+export default {
+  data() {
+    return {
+      firstName: 'Nerando',
+      lastName: 'Johnson'
+    }
+  },
+
+  computed: {
+    // ✅ Cached - only recalculates if firstName or lastName changes
+    fullNameComputed() {
+      console.log('Computed calculated')
+      return `${this.firstName} ${this.lastName}`
+    }
+  },
+
+  methods: {
+    // ❌ Runs every time - even if firstName/lastName didn't change
+    fullNameMethod() {
+      console.log('Method called')
+      return `${this.firstName} ${this.lastName}`
+    }
+  }
+}
+```
+
+**In template:**
+```html
+<!-- Computed: Logs once, then cached -->
+<p>{{ fullNameComputed }}</p>
+<p>{{ fullNameComputed }}</p>
+<p>{{ fullNameComputed }}</p>
+
+<!-- Method: Logs three times -->
+<p>{{ fullNameMethod() }}</p>
+<p>{{ fullNameMethod() }}</p>
+<p>{{ fullNameMethod() }}</p>
+```
+
+### Performance Impact
+
+```javascript
+computed: {
+  // ✅ Expensive calculation runs only when items change
+  expensiveOperation() {
+    return this.items
+      .filter(item => item.active)
+      .map(item => {
+        // Complex calculations...
+        return processItem(item)
+      })
+      .reduce((sum, item) => sum + item.value, 0)
   }
 }
 
-// ✅ Computed - cached, only recalculates when dependencies change
-computed: {
-  fullName() {
-    return `${this.firstName} ${this.lastName}`
+methods: {
+  // ❌ This runs on EVERY re-render
+  expensiveOperation() {
+    return this.items.filter(...).map(...).reduce(...)
   }
 }
+```
+
+### When Caching is NOT Desired
+
+```javascript
+methods: {
+  // ✅ Methods are correct here - we WANT it to run each time
+  getCurrentTime() {
+    return new Date().toLocaleTimeString()
+  },
+
+  generateRandomNumber() {
+    return Math.random()
+  }
+}
+```
+
+### Decision Tree
+
+```
+Does it return the same value for the same inputs?
+├─ YES → Use computed (it can be cached)
+└─ NO → Use method (caching would give wrong results)
+
+Does it depend on reactive data?
+├─ YES → Probably computed
+└─ NO → Method
+
+Do you need to pass arguments?
+├─ YES → Must use method
+└─ NO → Computed is fine
+
+Does it perform side effects (API calls, timers, etc.)?
+├─ YES → Use method or watcher
+└─ NO → Computed is fine
 ```
 
 **Use computed when:**
@@ -659,7 +938,7 @@ computed: {
 **Use methods when:**
 - You need to pass parameters
 - The function performs an action (not just calculation)
-- You need it to run every time (no caching)
+- You need it to run every time (caching isn't desired)
 
 **Live example - Shopping cart:**
 
@@ -717,7 +996,380 @@ computed: {
 </html>
 ```
 
-Notice how `totalItems` and `totalCost` automatically update as you change quantities. That's the power of computed properties.
+Notice how `totalItems` and `totalCost` automatically update as you change quantities. That's the power and impact of computed properties—they automatically track dependencies and update only when needed, making your UI efficient and reactive.
+
+**Beginner rule of thumb:** If you're calculating something based on your data, use computed.
+
+**Intermediate insight:** Computed properties are getter-only by default, but you can define setters too:
+
+```javascript
+computed: {
+  fullName: {
+    // Getter
+    get() {
+      return `${this.firstName} ${this.lastName}`
+    },
+    // Setter
+    set(value) {
+      const parts = value.split(' ')
+      this.firstName = parts[0]
+      this.lastName = parts[1]
+    }
+  }
+}
+
+// Now you can:
+this.fullName = 'John Doe'  // Sets firstName and lastName
+```
+
+## Watchers: Reacting to Data Changes
+
+While computed properties are great for derived values, **watchers** let you perform side effects when data changes.
+
+### Basic Watcher
+
+```javascript
+export default {
+  data() {
+    return {
+      question: '',
+      answer: 'Ask a question!'
+    }
+  },
+
+  watch: {
+    // Whenever 'question' changes, this runs
+    question(newValue, oldValue) {
+      if (newValue.includes('?')) {
+        this.getAnswer()
+      }
+    }
+  },
+
+  methods: {
+    async getAnswer() {
+      this.answer = 'Thinking...'
+      // API call or other async operation
+      const response = await fetch('/api/answer')
+      this.answer = await response.text()
+    }
+  }
+}
+```
+
+### When to Use What?
+
+| Use Case | Use This |
+|----------|----------|
+| Calculate derived value | **Computed** |
+| Perform async operation | **Watcher** |
+| Access old and new value | **Watcher** |
+| Update multiple properties | **Watcher** |
+| Trigger side effects | **Watcher** |
+
+### Deep Watching (Objects/Arrays)
+
+```javascript
+watch: {
+  // Watch nested properties
+  user: {
+    handler(newUser, oldUser) {
+      console.log('User changed:', newUser)
+      this.saveToAPI(newUser)
+    },
+    deep: true  // Watch all nested properties
+  },
+
+  // Watch specific nested property
+  'user.email'(newEmail) {
+    this.validateEmail(newEmail)
+  }
+}
+```
+
+### Immediate Execution
+
+```javascript
+watch: {
+  searchQuery: {
+    handler(query) {
+      this.performSearch(query)
+    },
+    immediate: true  // Run immediately on component creation
+  }
+}
+```
+
+**Live Example - Search with Debouncing:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>Search Users</h2>
+    <input
+      v-model="searchQuery"
+      placeholder="Type to search..."
+    >
+    <p>{{ searchStatus }}</p>
+    <ul>
+      <li v-for="user in results" :key="user.id">
+        {{ user.name }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          searchQuery: '',
+          results: [],
+          searchStatus: 'Type to search',
+          debounceTimer: null
+        }
+      },
+
+      watch: {
+        searchQuery(newQuery) {
+          // Clear previous timer
+          clearTimeout(this.debounceTimer)
+
+          if (!newQuery.trim()) {
+            this.results = []
+            this.searchStatus = 'Type to search'
+            return
+          }
+
+          this.searchStatus = 'Searching...'
+
+          // Debounce: wait 300ms after typing stops
+          this.debounceTimer = setTimeout(() => {
+            this.performSearch(newQuery)
+          }, 300)
+        }
+      },
+
+      methods: {
+        async performSearch(query) {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 500))
+
+          // Mock results
+          this.results = [
+            { id: 1, name: `Result for "${query}" - User 1` },
+            { id: 2, name: `Result for "${query}" - User 2` }
+          ]
+          this.searchStatus = `Found ${this.results.length} results`
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
+```
+
+**Beginner tip:** Start with computed properties. Use watchers when you need to do something async or complex.
+
+**Intermediate insight:** Watchers are perfect for debouncing, API calls, and localStorage syncing. They're also great for performing multiple updates or side effects in response to a single data change.
+
+## Lifecycle Hooks: Component Lifecycle Events
+
+Every Vue component goes through a lifecycle: creation, mounting, updating, and destruction. Lifecycle hooks let you run code at specific moments.
+
+### The Component Lifecycle
+
+```
+Creation → Mounting → Updating → Unmounting
+   ↓          ↓          ↓           ↓
+created   mounted   updated    unmounted
+```
+
+### Essential Lifecycle Hooks
+
+```javascript
+export default {
+  data() {
+    return {
+      posts: [],
+      loading: true
+    }
+  },
+
+  // 1. CREATED - Component instance created, data is reactive
+  created() {
+    console.log('Component created, data is available')
+    console.log('Count:', this.count)  // ✅ Data accessible
+    // ❌ DOM not available yet
+  },
+
+  // 2. MOUNTED - Component added to DOM
+  async mounted() {
+    console.log('Component mounted to DOM')
+    // ✅ Perfect for API calls, DOM manipulation, timers
+    this.loading = true
+
+    try {
+      const response = await fetch('/api/posts')
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      this.posts = await response.json()
+    } catch (error) {
+      console.error('Failed to fetch posts:', error)
+      this.error = 'Could not load posts. Please try again.'
+    } finally {
+      this.loading = false
+    }
+  },
+
+  // 3. UPDATED - Reactive data changed and DOM re-rendered
+  updated() {
+    console.log('Component updated')
+    // ⚠️ Be careful: avoid infinite loops
+  },
+
+  // 4. UNMOUNTED - Component removed from DOM
+  unmounted() {
+    console.log('Component unmounted')
+    // ✅ Clean up: clear timers, remove listeners
+    clearInterval(this.timer)
+    window.removeEventListener('resize', this.handleResize)
+  }
+}
+```
+
+### Common Use Cases
+
+| Hook | Use For |
+|------|---------|
+| **created** | Initialize data, setup non-DOM logic |
+| **mounted** | API calls, DOM manipulation, third-party libraries |
+| **updated** | React to DOM changes (use sparingly) |
+| **unmounted** | Cleanup: timers, listeners, subscriptions |
+
+### Complete Lifecycle Example
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <button @click="showComponent = !showComponent">
+      {{ showComponent ? 'Hide' : 'Show' }} Component
+    </button>
+
+    <user-profile v-if="showComponent"></user-profile>
+  </div>
+
+  <script>
+    const { createApp } = Vue
+
+    const UserProfile = {
+      data() {
+        return {
+          user: null,
+          loading: true,
+          seconds: 0,
+          timer: null
+        }
+      },
+
+      created() {
+        console.log('✅ Component created')
+        console.log('Data available:', this.loading)
+      },
+
+      async mounted() {
+        console.log('✅ Component mounted to DOM')
+
+        // Fetch user data
+        this.loading = true
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        this.user = {
+          name: 'Nerando Johnson',
+          role: 'Developer'
+        }
+        this.loading = false
+
+        // Start timer
+        this.timer = setInterval(() => {
+          this.seconds++
+        }, 1000)
+      },
+
+      updated() {
+        console.log('✅ Component updated')
+      },
+
+      unmounted() {
+        console.log('✅ Component unmounted - cleaning up')
+        clearInterval(this.timer)
+      },
+
+      template: `
+        <div style="border: 2px solid #42b983; padding: 20px; margin: 20px 0;">
+          <h3>User Profile</h3>
+          <p v-if="loading">Loading...</p>
+          <div v-else>
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Role:</strong> {{ user.role }}</p>
+            <p><strong>Time mounted:</strong> {{ seconds }}s</p>
+          </div>
+        </div>
+      `
+    }
+
+    createApp({
+      components: { UserProfile },
+      data() {
+        return {
+          showComponent: true
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
+```
+
+**Beginner tip:** Most of the time, you'll only use `mounted` (for setup) and `unmounted` (for cleanup).
+
+**Intermediate insight:** Avoid overusing the `updated` hook—it can cause performance issues. Use watchers for specific data changes instead.
+
+### Lifecycle Hook Order
+
+When a component mounts:
+```
+1. setup() [Composition API - covered in Part 2]
+2. beforeCreate()
+3. created() ← Data is reactive
+4. beforeMount()
+5. mounted() ← DOM is available
+```
+
+When data changes:
+```
+1. beforeUpdate()
+2. updated() ← DOM updated
+```
+
+When component is removed:
+```
+1. beforeUnmount()
+2. unmounted() ← Cleanup time
+```
 
 ## Template Syntax: Bringing Data to Life
 
@@ -890,14 +1542,59 @@ Vue provides directives to conditionally render elements:
 </div>
 ```
 
-**v-if vs v-show:**
+### v-if vs v-show: Deep Dive
 
-| Feature | v-if | v-show |
-|---------|------|--------|
-| DOM manipulation | Adds/removes elements | Toggles CSS display |
-| Initial render cost | Lower (if false) | Higher (always rendered) |
-| Toggle cost | Higher (DOM operations) | Lower (just CSS) |
-| Use when | Condition rarely changes | Frequent toggling |
+#### How They Work
+
+**v-if:**
+```html
+<!-- Element literally added/removed from DOM -->
+<div v-if="show">Content</div>
+
+<!-- When show=true: -->
+<div>Content</div>
+
+<!-- When show=false: -->
+<!-- Nothing in DOM! -->
+```
+
+**v-show:**
+```html
+<!-- Element always in DOM, display toggled -->
+<div v-show="show">Content</div>
+
+<!-- When show=true: -->
+<div style="">Content</div>
+
+<!-- When show=false: -->
+<div style="display: none;">Content</div>
+```
+
+#### Performance Characteristics
+
+**v-if:**
+- Higher toggle cost (DOM operations expensive)
+- Lower initial render cost (if false, not rendered)
+- Lazy evaluation (doesn't render until true)
+- **Destroys and recreates components** (lifecycle hooks run)
+
+**v-show:**
+- Lower toggle cost (just CSS change)
+- Higher initial render cost (always rendered)
+- Element always exists in DOM
+- **Component stays alive** (mounted once)
+
+#### Decision Matrix
+
+| Scenario | Use |
+|----------|-----|
+| Tabs that rarely change | v-if |
+| Modals/dropdowns (frequent toggling) | v-show |
+| Expensive components | v-show (if frequently toggled) |
+| Conditional rendering based on permissions | v-if |
+| Animation on/off toggle | v-show |
+| Content that might never be shown | v-if |
+| Tooltip/popover | v-show |
 
 **Live example - Conditional content:**
 
@@ -951,6 +1648,10 @@ Vue provides directives to conditionally render elements:
 </html>
 ```
 
+**Beginner tip:** Use v-show for things that toggle often (dropdowns, modals). Use v-if for everything else.
+
+**Intermediate insight:** If component setup is expensive but toggling is frequent, v-show is much faster despite rendering initially. Also, avoid using v-if and v-for on the same element—use a computed property to filter first.
+
 ## List Rendering: Displaying Arrays
 
 The `v-for` directive renders lists of items:
@@ -993,7 +1694,7 @@ The `v-for` directive renders lists of items:
 </div>
 ```
 
-Why? Vue uses keys to track which items changed. Using index as key causes bugs when items are added/removed/reordered.
+**Why?** Vue uses keys to track which items changed. Using index as key causes bugs when items are added/removed/reordered.
 
 > **Stumbling Block:** Forgetting the `:key` attribute is one of the most common Vue mistakes. Your app might work, but you'll see warnings in the console and potentially weird bugs when the list changes.
 
@@ -1017,6 +1718,37 @@ Why? Vue uses keys to track which items changed. Using index as key causes bugs 
 <!-- Numbers 1-10 -->
 <span v-for="n in 10" :key="n">{{ n }} </span>
 ```
+
+### Advanced: v-for with v-if
+
+```html
+<!-- ❌ WRONG: v-if and v-for on same element -->
+<li
+  v-for="user in users"
+  v-if="user.active"
+  :key="user.id"
+>
+  {{ user.name }}
+</li>
+
+<!-- ✅ CORRECT: Use computed property -->
+<li
+  v-for="user in activeUsers"
+  :key="user.id"
+>
+  {{ user.name }}
+</li>
+```
+
+```javascript
+computed: {
+  activeUsers() {
+    return this.users.filter(user => user.active)
+  }
+}
+```
+
+**Why?** v-for has higher priority than v-if, so v-if runs on each iteration—inefficient!
 
 **Live example - Product list:**
 
@@ -1465,6 +2197,161 @@ Vue uses `@` (shorthand for `v-on:`) to listen for events:
 </html>
 ```
 
+## Template Refs: Accessing DOM Elements
+
+Sometimes you need direct access to DOM elements or child components. Vue provides `ref` for this.
+
+### Basic Ref Usage
+
+```javascript
+export default {
+  mounted() {
+    // Access the input element
+    this.$refs.input.focus()
+  },
+
+  template: `
+    <input ref="input" type="text">
+  `
+}
+```
+
+### Refs on Components
+
+```javascript
+const ChildComponent = {
+  data() {
+    return { count: 0 }
+  },
+  methods: {
+    increment() {
+      this.count++
+    }
+  },
+  template: `<div>Count: {{ count }}</div>`
+}
+
+export default {
+  components: { ChildComponent },
+
+  mounted() {
+    // Call child component method
+    this.$refs.child.increment()
+    // Access child component data
+    console.log(this.$refs.child.count)
+  },
+
+  template: `
+    <child-component ref="child"></child-component>
+  `
+}
+```
+
+### Refs in v-for
+
+```html
+<div
+  v-for="item in items"
+  :key="item.id"
+  :ref="setItemRef"
+>
+  {{ item.name }}
+</div>
+```
+
+```javascript
+data() {
+  return {
+    items: [...],
+    itemRefs: []
+  }
+},
+methods: {
+  setItemRef(el) {
+    if (el) {
+      this.itemRefs.push(el)
+    }
+  }
+}
+```
+
+**Live Example:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>Template Refs Demo</h2>
+
+    <input ref="nameInput" v-model="name" placeholder="Your name">
+    <button @click="focusInput">Focus Input</button>
+
+    <hr>
+
+    <video
+      ref="videoPlayer"
+      width="320"
+      height="240"
+      controls
+      src="https://www.w3schools.com/html/mov_bbb.mp4"
+    ></video>
+    <br>
+    <button @click="playVideo">Play</button>
+    <button @click="pauseVideo">Pause</button>
+  </div>
+
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          name: ''
+        }
+      },
+
+      mounted() {
+        // Auto-focus on mount
+        this.$refs.nameInput.focus()
+      },
+
+      methods: {
+        focusInput() {
+          this.$refs.nameInput.focus()
+        },
+        playVideo() {
+          this.$refs.videoPlayer.play()
+        },
+        pauseVideo() {
+          this.$refs.videoPlayer.pause()
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
+```
+
+**When to use refs:**
+- Integrating third-party libraries (charts, maps)
+- Focusing inputs
+- Measuring element dimensions
+- Triggering animations
+- Managing media elements (video/audio)
+
+**Important warnings:**
+- Don't overuse refs—Vue's declarative approach is usually better
+- Refs are populated **after** component is mounted
+- Avoid accessing refs in `created()` hook (they don't exist yet)
+
+**Beginner tip:** Only use refs when you truly need direct DOM access. Most of the time, data binding is better.
+
+**Intermediate insight:** In Vue 3 Composition API (Part 2), refs work differently using the `ref()` function.
+
 ## Components: Building Blocks of Vue Apps
 
 Components are reusable Vue instances with their own template, logic, and style.
@@ -1576,6 +2463,179 @@ const app = createApp({
   `
 })
 ```
+
+### Slots: Flexible Component Content
+
+Slots allow you to pass template content to child components, making them more reusable.
+
+#### Basic Slot
+
+```javascript
+// Card component
+const Card = {
+  template: `
+    <div class="card">
+      <slot></slot>  <!-- Content goes here -->
+    </div>
+  `
+}
+
+// Usage
+template: `
+  <card>
+    <h3>Card Title</h3>
+    <p>Card content can be anything!</p>
+  </card>
+`
+```
+
+#### Named Slots
+
+```javascript
+const Layout = {
+  template: `
+    <div class="layout">
+      <header>
+        <slot name="header"></slot>
+      </header>
+      <main>
+        <slot></slot>  <!-- Default slot -->
+      </main>
+      <footer>
+        <slot name="footer"></slot>
+      </footer>
+    </div>
+  `
+}
+
+// Usage
+template: `
+  <layout>
+    <template v-slot:header>
+      <h1>Page Title</h1>
+    </template>
+
+    <p>Main content</p>
+
+    <template v-slot:footer>
+      <p>Footer content</p>
+    </template>
+  </layout>
+`
+```
+
+#### Scoped Slots (Advanced)
+
+```javascript
+const List = {
+  props: ['items'],
+  template: `
+    <ul>
+      <li v-for="item in items" :key="item.id">
+        <slot :item="item"></slot>
+      </li>
+    </ul>
+  `
+}
+
+// Usage - parent controls rendering
+template: `
+  <list :items="users">
+    <template v-slot="{ item }">
+      <strong>{{ item.name }}</strong> - {{ item.email }}
+    </template>
+  </list>
+`
+```
+
+**Live Example - Slots:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    .card {
+      border: 2px solid #42b983;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 10px 0;
+    }
+    .card-header {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .card-footer {
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+      margin-top: 10px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>Slot Examples</h2>
+
+    <!-- Basic slot -->
+    <card>
+      <h3>Simple Card</h3>
+      <p>This content is passed via the default slot</p>
+    </card>
+
+    <!-- Named slots -->
+    <card>
+      <template v-slot:header>
+        <h3>Card with Header & Footer</h3>
+      </template>
+
+      <p>Main content area</p>
+
+      <template v-slot:footer>
+        <button>Action Button</button>
+      </template>
+    </card>
+  </div>
+
+  <script>
+    const { createApp } = Vue
+
+    const Card = {
+      template: `
+        <div class="card">
+          <div v-if="$slots.header" class="card-header">
+            <slot name="header"></slot>
+          </div>
+
+          <div class="card-body">
+            <slot></slot>
+          </div>
+
+          <div v-if="$slots.footer" class="card-footer">
+            <slot name="footer"></slot>
+          </div>
+        </div>
+      `
+    }
+
+    createApp({
+      components: { Card }
+    }).mount('#app')
+  </script>
+</body>
+</html>
+```
+
+**When to use slots:**
+- Building UI libraries (cards, modals, layouts)
+- Creating flexible, reusable components
+- When props aren't enough (complex template content)
+
+**Beginner tip:** Start with the default slot. Named slots are for when you need multiple content areas.
+
+**Intermediate insight:** Scoped slots are powerful for creating renderless components that separate logic from presentation.
 
 **Live example - Product display component:**
 
@@ -1694,21 +2754,225 @@ const app = createApp({
 </html>
 ```
 
+## Common Gotchas & How to Avoid Them
+
+### 1. Mutating Props Directly
+
+```javascript
+// ❌ WRONG: Never modify props
+props: ['count'],
+methods: {
+  increment() {
+    this.count++  // ERROR! Props are read-only
+  }
+}
+
+// ✅ CORRECT: Emit event to parent
+props: ['count'],
+methods: {
+  increment() {
+    this.$emit('update:count', this.count + 1)
+  }
+}
+
+// ✅ OR: Use local data
+props: ['initialCount'],
+data() {
+  return {
+    localCount: this.initialCount
+  }
+},
+methods: {
+  increment() {
+    this.localCount++
+  }
+}
+```
+
+### 2. Forgetting :key in v-for
+
+```html
+<!-- ❌ WRONG: No key or index as key -->
+<div v-for="(item, index) in items">{{ item }}</div>
+<div v-for="item in items" :key="index">{{ item }}</div>
+
+<!-- ✅ CORRECT: Unique, stable key -->
+<div v-for="item in items" :key="item.id">{{ item }}</div>
+```
+
+**Why it matters:** Without proper keys, Vue can't track items correctly when the list changes, leading to:
+- UI not updating correctly
+- Component state getting mixed up
+- Performance issues
+
+### 3. Reactivity Lost on Array/Object Manipulation
+
+```javascript
+// ❌ WRONG: These don't trigger reactivity
+this.items[0] = newItem  // Direct index assignment
+this.user.newProperty = 'value'  // Adding property after creation
+
+// ✅ CORRECT: Reactive alternatives
+// Array: use splice
+this.items.splice(0, 1, newItem)
+// Or reassign entire array
+this.items = [...this.items.slice(0, 0), newItem, ...this.items.slice(1)]
+
+// Object: declare upfront or use reassignment
+data() {
+  return {
+    user: {
+      name: '',
+      newProperty: ''  // Declare upfront
+    }
+  }
+}
+// Or reassign entire object
+this.user = { ...this.user, newProperty: 'value' }
+```
+
+**Vue 3 note:** Object reactivity is better than Vue 2, but these patterns still apply for consistency.
+
+### 4. Async Data in Computed Properties
+
+```javascript
+// ❌ WRONG: Computed can't be async
+computed: {
+  async userData() {
+    return await fetch('/api/user')  // Won't work!
+  }
+}
+
+// ✅ CORRECT: Use watcher or mounted hook
+data() {
+  return {
+    userData: null
+  }
+},
+async mounted() {
+  this.userData = await fetch('/api/user').then(r => r.json())
+}
+
+// ✅ OR: Use watcher for reactive updates
+watch: {
+  userId: {
+    immediate: true,
+    async handler(id) {
+      this.userData = await fetch(`/api/user/${id}`).then(r => r.json())
+    }
+  }
+}
+```
+
+### 5. Incorrect Event Handling
+
+```html
+<!-- ❌ WRONG: Calling method in template -->
+<button @click="handleClick()">Click</button>  <!-- () unnecessary -->
+<input @input="value = $event">  <!-- Missing .target -->
+
+<!-- ✅ CORRECT -->
+<button @click="handleClick">Click</button>
+<button @click="handleClick($event)">With event</button>
+<input @input="value = $event.target.value">
+<!-- OR use v-model -->
+<input v-model="value">
+```
+
+### 6. Not Cleaning Up in unmounted()
+
+```javascript
+// ❌ WRONG: Memory leak!
+mounted() {
+  this.interval = setInterval(() => {
+    this.count++
+  }, 1000)
+}
+// Component destroyed but interval keeps running!
+
+// ✅ CORRECT: Clean up
+mounted() {
+  this.interval = setInterval(() => {
+    this.count++
+  }, 1000)
+},
+unmounted() {
+  clearInterval(this.interval)  // Clean up!
+}
+```
+
+### 7. Misunderstanding `this` Context
+
+```javascript
+// ❌ WRONG: Lost context with regular function
+methods: {
+  fetchData() {
+    setTimeout(function() {
+      this.data = 'loaded'  // `this` is undefined!
+    }, 1000)
+  }
+}
+
+// ✅ CORRECT: Use arrow function
+methods: {
+  fetchData() {
+    setTimeout(() => {
+      this.data = 'loaded'  // Arrow function preserves `this`
+    }, 1000)
+  }
+}
+```
+
+### 8. Overusing Watchers
+
+```javascript
+// ❌ WRONG: Watcher for simple calculation
+data() {
+  return {
+    firstName: '',
+    lastName: '',
+    fullName: ''
+  }
+},
+watch: {
+  firstName(val) {
+    this.fullName = val + ' ' + this.lastName
+  },
+  lastName(val) {
+    this.fullName = this.firstName + ' ' + val
+  }
+}
+
+// ✅ CORRECT: Use computed
+computed: {
+  fullName() {
+    return `${this.firstName} ${this.lastName}`
+  }
+}
+```
+
+**Beginner summary:** These gotchas catch everyone at first. Reference this section when debugging!
+
+**Intermediate reminder:** Set up ESLint with Vue plugin to catch many of these automatically.
+
 ## What You've Learned
 
 Congratulations! You now have a solid foundation in Vue fundamentals:
 
-✅ **Vue's core concept** - Reactive data binding
-✅ **Options API structure** - data, methods, computed, lifecycle
+✅ **Vue's core concept** - Reactive data binding with Proxy-based reactivity
+✅ **Options API structure** - data, methods, computed, watchers, lifecycle
 ✅ **Template syntax** - Interpolation and directives
 ✅ **Attribute binding** - Dynamic HTML attributes
 ✅ **Class & style binding** - Dynamic styling
-✅ **Conditional rendering** - v-if, v-else, v-show
+✅ **Conditional rendering** - v-if, v-else, v-show with performance considerations
 ✅ **List rendering** - v-for with :key
 ✅ **Event handling** - User interactions and modifiers
 ✅ **Form handling** - v-model and two-way binding
-✅ **Components** - Props and custom events
-✅ **Computed properties** - Efficient derived state
+✅ **Components** - Props, custom events, and slots
+✅ **Computed properties** - Efficient derived state with caching
+✅ **Watchers** - Asynchronous operations and side effects
+✅ **Lifecycle hooks** - Component lifecycle management
+✅ **Template refs** - Direct DOM access when needed
 
 **You're now ready for Part 2**, where we'll:
 - Learn the Composition API (modern Vue)
@@ -1723,18 +2987,111 @@ Congratulations! You now have a solid foundation in Vue fundamentals:
 To solidify these concepts, try building:
 
 1. **Calculator** - Practice methods and computed properties
-2. **Todo List** - Practice v-for, events, and conditional rendering
+2. **Todo List with Persistence** - Practice v-for, events, watchers, and localStorage
 3. **Form Survey** - Practice v-model with different input types
 4. **Product Filter** - Practice computed properties for filtering/sorting
-5. **Tab Component** - Practice components, props, and events
+5. **Tab Component** - Practice components, props, events, and slots
 
 **Challenge:** Build a simple blog post list with:
 - Display posts with title, author, date
 - Filter by author
 - Search by title
 - "Read More" button that shows/hides content
+- Like counter with localStorage persistence
+- Lifecycle hooks to fetch data
 
 Don't rush to Part 2. These fundamentals are crucial. The stronger your foundation, the easier the Composition API will be.
+
+## Vue 3 Quick Reference Card
+
+### Options API Structure
+```javascript
+export default {
+  name: 'ComponentName',          // Optional, for debugging
+  props: {...},                   // Component inputs
+  data() { return {...} },        // Reactive state
+  computed: {...},                // Cached derived values
+  watch: {...},                   // React to data changes
+  methods: {...},                 // Functions
+
+  // Lifecycle hooks
+  created() {},                   // Component created
+  mounted() {},                   // Component mounted to DOM
+  updated() {},                   // After reactive data changes
+  unmounted() {},                 // Component removed
+
+  components: {...},              // Child components
+  emits: [],                      // Declare emitted events
+}
+```
+
+### Template Directives
+| Directive | Purpose | Example |
+|-----------|---------|---------|
+| `{{ }}` | Text interpolation | `{{ message }}` |
+| `v-bind:` / `:` | Bind attribute | `:src="imageUrl"` |
+| `v-on:` / `@` | Event listener | `@click="handler"` |
+| `v-model` | Two-way binding | `v-model="text"` |
+| `v-if` | Conditional render | `v-if="show"` |
+| `v-else-if` | Else if condition | `v-else-if="other"` |
+| `v-else` | Else condition | `v-else` |
+| `v-show` | Toggle display | `v-show="visible"` |
+| `v-for` | List rendering | `v-for="item in items"` |
+| `ref` | Template ref | `ref="element"` |
+
+### Event Modifiers
+```html
+@click.stop          <!-- Stop propagation -->
+@submit.prevent      <!-- Prevent default -->
+@keyup.enter         <!-- Enter key -->
+@click.once          <!-- Fire once -->
+@click.ctrl          <!-- With Ctrl key -->
+```
+
+### v-model Modifiers
+```html
+v-model.lazy         <!-- Sync on change instead of input -->
+v-model.number       <!-- Typecast to number -->
+v-model.trim         <!-- Trim whitespace -->
+```
+
+### Component Communication
+```javascript
+// Parent → Child (Props)
+<child-component :message="parentData"></child-component>
+
+// Child → Parent (Events)
+this.$emit('event-name', payload)
+<child-component @event-name="handler"></child-component>
+
+// Template refs
+this.$refs.refName
+```
+
+### Common Patterns
+```javascript
+// Computed property
+computed: {
+  fullName() {
+    return `${this.first} ${this.last}`
+  }
+}
+
+// Watcher
+watch: {
+  searchQuery(newVal, oldVal) {
+    this.performSearch(newVal)
+  }
+}
+
+// Lifecycle
+async mounted() {
+  this.data = await fetchData()
+}
+unmounted() {
+  clearInterval(this.timer)
+}
+```
 
 ## Next Steps
 
@@ -1774,7 +3131,5 @@ In Part 2, you'll learn:
 
 ---
 
-
-**Reading Time:** ~20 minutes
-**Practice Time:** 90-120 minutes
-
+**Reading Time:** ~25-30 minutes
+**Practice Time:** 2-3 hours
