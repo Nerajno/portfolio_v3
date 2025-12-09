@@ -7,6 +7,7 @@ import Container from '@components/container.astro';
 import type { CollectionEntry } from 'astro:content';
 import { Tweet } from 'astro-embed';
 import ViewCounter from '@components/viewcounter.astro';
+import ReadingProgressBar from '@components/ReadingProgressBar.astro';
 
 export const prerender = true;
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -95,6 +96,7 @@ const seoConfig = {
 ---
 
 <Layout title={entry.data.title}>
+  <ReadingProgressBar />
   <SEO
     title={seoConfig.title}
     description={seoConfig.description}
