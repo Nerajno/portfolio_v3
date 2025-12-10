@@ -24,6 +24,28 @@ interface SpeakingEvent {
 }
 
 export const speakingData: SpeakingEvent[] = [
+    {
+    "id": "atldevcon-2025",
+    "title": "Title: How Do I Build a Lightning Talk?",
+    "name": "AJUG November Meetup 2025",
+    "description": "The how and why of creating effective lightning talks for technical audiences.",
+    "date": "2025-10-18",
+    "image": "/images/other_images/Speaker_me.jpeg",
+    "seoDescription": "Walk before you run: Essential tips for crafting compelling lightning talks for technical audiences at AJUG November meetup.",
+    "location": {
+      "city": "Sandy Springs",
+      "state": "Georgia",
+      "country": "USA",
+      "venue": "Roam - Dunwoody"
+    },
+    "type": "meetup",
+    "tags": ["career"," communication" ,"software development"],
+    "links": {
+      "conferenceWebsite": "https://www.meetup.com/atlantajug/events/311862222/?eventOrigin=your_events",
+       //"sessionPage": "https://www.atldevcon.com/sessions",
+      //"article": "https://dev.to/nerajno/11-javascript-fundamentals-for-vue-developers-42a1"
+    }
+  },
   {
     "id": "atldevcon-2025",
     "title": "Back to Basics: Essential JavaScript Foundations for Modern Framework Development",
