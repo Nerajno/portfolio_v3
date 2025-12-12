@@ -25,11 +25,11 @@ interface SpeakingEvent {
 
 export const speakingData: SpeakingEvent[] = [
     {
-    "id": "atldevcon-2025",
+    "id": "ajug-2025-lightning-talk",
     "title": "Title: How Do I Build a Lightning Talk?",
     "name": "AJUG November Meetup 2025",
     "description": "The how and why of creating effective lightning talks for technical audiences.",
-    "date": "2025-10-18",
+    "date": "2025-11-18",
     "image": "/images/other_images/Speaker_me.jpeg",
     "seoDescription": "Walk before you run: Essential tips for crafting compelling lightning talks for technical audiences at AJUG November meetup.",
     "location": {
