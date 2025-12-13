@@ -23,17 +23,12 @@ module.exports = {
     "text-[#273347]",   // Asana
     "text-[#F24E1E]",   // Figma
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
         sans: ["Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
       },
-    },
-  },
-  plugins: [require("@tailwindcss/typography")],
-  darkMode: 'class',
-  theme: {
-    extend: {
       colors: {
         // Custom color palette
         primary: {
@@ -91,6 +86,7 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  plugins: [require("@tailwindcss/typography")]
 };
 
