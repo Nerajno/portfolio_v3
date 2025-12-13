@@ -48,7 +48,9 @@ const makeTitle = title || "Nerando's Portfolio";
           return 'light';
         }
         const theme = getInitialTheme();
-        document.documentElement.classList.add(theme);
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
       })();
     </script>
     <!-- GA4 || Google Analytics -->
