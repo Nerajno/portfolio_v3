@@ -98,7 +98,7 @@ image: {
 
 publishDate: "2025-11-16 12:00"
 category: "Productivity, Side Projects"
-author: "Nerando Johnson"
+
 tags: [productivity, side-projects, project-management, developer-workflow, motivation]
 
 # ============================================================================
