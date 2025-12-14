@@ -4,7 +4,7 @@ export interface Props {
   className?: string;
 }
 
-const { slug, className = "" } = Astro.props;
+const { slug, className ="" } = Astro.props;
 ---
 
 <span
@@ -61,11 +61,11 @@ const { slug, className = "" } = Astro.props;
   .view-counter {
     display: inline-flex;
     align-items: center;
-    font-size: 0.875rem;
-    color: #6b7280;
+    font-size: 1rem;
+    /* color: #6b7280; */
   }
 
-  .dark .view-counter {
+  /* .dark .view-counter {
     color: #9ca3af;
-  }
+  } */
 </style>
