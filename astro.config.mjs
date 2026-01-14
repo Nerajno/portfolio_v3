@@ -40,7 +40,7 @@ export default defineConfig({
       },
     }),
     clarityIntegration({
-      projectId: 'stp4iad9du',  // Required: Replace with your Clarity project ID
+      projectId: 's7v3rqipza',  // Required: Replace with your Clarity project ID
       enabled: true,                  // Optional: Enable the integration (defaults to true)
       scriptStage: 'head-inline',     // Optional: Set scriptStage to 'head-inline', 'body-inline'
       debug: false,                   // Optional: Enable debug (set to true if you want to log script injections)
