@@ -7,6 +7,7 @@ import netlify from "@astrojs/netlify";
 import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
 import clarityIntegration from 'astro-microsoft-clarity-integration';
+import react from "@astrojs/react";
 
 import db from "@astrojs/db";
 
@@ -15,6 +16,7 @@ export default defineConfig({
   output: "server",
   adapter: netlify(),
   integrations: [
+    react(),
     tailwind(),
     mdx(),
     sitemap({
