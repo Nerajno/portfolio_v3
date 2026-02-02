@@ -7,6 +7,7 @@ import Sectionhead from '@components/sectionhead.astro';
 import Layout from '@layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import { AstroSEO } from 'astro-seo-plugin';
+import CalBooking from '@components/CalBooking.tsx';
 
 // Enhanced SEO Configuration with GEO optimization
 const seoConfig = {
@@ -145,7 +146,7 @@ const structuredData = {
   />
 
   <!-- Structured Data for GEO -->
-  <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
+  <script is:inline type='application/ld+json' set:html={JSON.stringify(structuredData)} />
 
   <Container>
     <Sectionhead>
@@ -211,6 +212,19 @@ const structuredData = {
       </div>
       <div>
         <Contactform />
+      </div>
+    </div>
+
+    <!-- Coffee Chat Booking Section -->
+    <div class='mx-auto max-w-4xl mt-20'>
+      <h2 class='font-medium text-3xl text-slate-800 dark:text-slate-200 text-center mb-3'>
+        Schedule a Coffee Chat
+      </h2>
+      <p class='text-lg text-center text-slate-500 dark:text-slate-400 mb-8'>
+        Book a 30-minute session to discuss opportunities, get advice, or just chat about tech.
+      </p>
+      <div class='bg-white dark:bg-slate-800 rounded-lg shadow-lg p-2' style='min-height: 600px;'>
+        <CalBooking client:load />
       </div>
     </div>
   </Container>
