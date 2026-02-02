@@ -14,7 +14,7 @@ export default function CalBooking() {
       namespace="30min"
       calLink="nerando-johnson-asleqm/30min"
       style={{ width: "100%", height: "100%", overflow: "scroll" }}
-      config={{ layout: "month_view", useSlotsViewOnSmallScreen: "true" }}
+      config={{ layout: "month_view", useSlotsViewOnSmallScreen: true }}
     />
   );
 }
