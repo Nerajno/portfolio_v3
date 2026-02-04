@@ -1,10 +1,8 @@
 // src/utils/viewTracker.ts
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 /**
  * Tracks a unique view for a blog post
- * Uses localStorage for quick checks and fingerprinting for accuracy
- * Bots are allowed but not counted
+ * Uses localStorage for quick checks and server-side bot detection
  * @param postSlug - The blog post slug
  * @returns true if view was tracked, false if already viewed or error
  */
@@ -34,19 +32,10 @@ export async function trackUniqueView(postSlug: string): Promise<boolean> {
       return false; // Already counted
     }
 
-    // Step 2: Generate device fingerprint for unique identification
-    const fp = await FingerprintJS.load();
-    const result = await fp.get();
-    const deviceId = result.visitorId;
-
-    // Step 3: Send to API to track the view
-    const response = await fetch('/api/track-view', {
+    // Step 2: Send to API to track the view (server handles bot detection and rate limiting)
+    const response = await fetch(`/api/views/${postSlug}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        slug: postSlug,
-        deviceId: deviceId
-      })
+      headers: { 'Content-Type': 'application/json' }
     });
 
     if (!response.ok) {
@@ -55,7 +44,7 @@ export async function trackUniqueView(postSlug: string): Promise<boolean> {
       return false;
     }
 
-    // Step 4: Mark as viewed in localStorage to prevent duplicate API calls
+    // Step 3: Mark as viewed in localStorage to prevent duplicate API calls
     viewedPosts[postSlug] = true;
     localStorage.setItem('viewedPosts', JSON.stringify(viewedPosts));
 
@@ -74,7 +63,7 @@ export async function trackUniqueView(postSlug: string): Promise<boolean> {
  */
 export async function getViewCount(postSlug: string): Promise<number> {
   try {
-    const response = await fetch(`/api/get-view-count?slug=${encodeURIComponent(postSlug)}`);
+    const response = await fetch(`/api/views/${postSlug}`);
 
     if (!response.ok) {
       console.error('Failed to get view count');
