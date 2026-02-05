@@ -521,9 +521,7 @@ const seoConfig = {
         // Initialize pagination on page load
         function initializePagination() {
           const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
-          if (posts.length > postsPerPage) {
-            paginatePosts(posts);
-          }
+          paginatePosts(posts);
         }
 
         // Run initialization
