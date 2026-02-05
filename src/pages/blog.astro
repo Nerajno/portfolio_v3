@@ -270,10 +270,37 @@ const seoConfig = {
         }
       </div>
 
+      {/* Pagination Controls */}
+      <div
+        id='pagination-controls'
+        class='max-w-6xl mx-auto mt-12 flex items-center justify-center gap-4'
+        style='display: none;'>
+        <button
+          id='prev-page'
+          class='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors'
+          disabled>
+          Previous
+        </button>
+        <span id='page-info' class='text-gray-700 dark:text-gray-300 font-medium'
+          >Page 1 of 1</span
+        >
+        <button
+          id='next-page'
+          class='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors'>
+          Next
+        </button>
+      </div>
+
       <script>
         const blogPosts = document.getElementById('blog-posts');
         const searchInput = document.getElementById('search');
         const sortSelect = document.getElementById('sort');
+
+        // Pagination state
+        let currentPage = 1;
+        const postsPerPage = 7;
+        let lastSearchTerm = '';
+        let lastSortBy = 'newest';
 
         // Debounce function
         function debounce(func, wait) {
@@ -317,6 +344,70 @@ const seoConfig = {
 
         // Update view counts when page loads
         updateViewCounts();
+
+        // Pagination function
+        function paginatePosts(posts) {
+          const totalPages = Math.ceil(posts.length / postsPerPage);
+          const start = (currentPage - 1) * postsPerPage;
+          const end = start + postsPerPage;
+
+          // Show only posts for current page
+          posts.forEach((post, idx) => {
+            post.style.display = (idx >= start && idx < end) ? 'block' : 'none';
+          });
+
+          // Update pagination controls
+          updatePaginationControls(totalPages);
+        }
+
+        // Update pagination controls
+        function updatePaginationControls(totalPages) {
+          const paginationContainer = document.getElementById('pagination-controls');
+          if (!paginationContainer) return;
+
+          // Show/hide pagination based on total pages
+          if (totalPages <= 1) {
+            paginationContainer.style.display = 'none';
+            return;
+          }
+
+          paginationContainer.style.display = 'flex';
+
+          // Update page info
+          const pageInfo = document.getElementById('page-info');
+          if (pageInfo) {
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+          }
+
+          // Update button states
+          const prevBtn = document.getElementById('prev-page');
+          const nextBtn = document.getElementById('next-page');
+
+          if (prevBtn) {
+            prevBtn.disabled = currentPage === 1;
+          }
+
+          if (nextBtn) {
+            nextBtn.disabled = currentPage === totalPages;
+          }
+        }
+
+        // Navigate to specific page
+        function goToPage(page) {
+          const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
+          const totalPages = Math.ceil(posts.length / postsPerPage);
+
+          if (page < 1 || page > totalPages) return;
+
+          currentPage = page;
+
+          // Re-apply filters and pagination
+          filterPosts();
+
+          // Scroll to top of blog posts
+          const blogPostsTop = blogPosts?.offsetTop || 0;
+          window.scrollTo({ top: blogPostsTop - 100, behavior: 'smooth' });
+        }
 
         // Filter posts function
         function filterPosts() {
@@ -386,6 +477,16 @@ const seoConfig = {
 
           blogPosts.innerHTML = '';
           filteredPosts.forEach((post) => blogPosts.appendChild(post));
+
+          // Only reset to page 1 if search term or sort order changed
+          if (searchTerm !== lastSearchTerm || sortBy !== lastSortBy) {
+            currentPage = 1;
+            lastSearchTerm = searchTerm;
+            lastSortBy = sortBy;
+          }
+
+          // Apply pagination to filtered results
+          paginatePosts(filteredPosts);
         }
 
         // Create debounced version of filterPosts (300ms delay)
@@ -394,6 +495,39 @@ const seoConfig = {
         // Add event listeners
         searchInput.addEventListener('input', debouncedFilterPosts);
         sortSelect.addEventListener('change', filterPosts);
+
+        // Pagination button event listeners
+        const prevBtn = document.getElementById('prev-page');
+        const nextBtn = document.getElementById('next-page');
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+              goToPage(currentPage - 1);
+            }
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
+            const totalPages = Math.ceil(posts.length / postsPerPage);
+            if (currentPage < totalPages) {
+              goToPage(currentPage + 1);
+            }
+          });
+        }
+
+        // Initialize pagination on page load
+        function initializePagination() {
+          const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
+          if (posts.length > postsPerPage) {
+            paginatePosts(posts);
+          }
+        }
+
+        // Run initialization
+        initializePagination();
       </script>
     </main>
   </Container>
