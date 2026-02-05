@@ -46,6 +46,7 @@ const { slug, className ="" } = Astro.props;
 
         // Get and display the count
         const count = await getViewCount(slug);
+        console.log('Count:', typeof count, count);
         const formatted = count.toLocaleString();
         const label = count === 1 ? 'view' : 'views';
         countEl.textContent = `${formatted} ${label}`;
@@ -62,10 +63,6 @@ const { slug, className ="" } = Astro.props;
     display: inline-flex;
     align-items: center;
     font-size: 1rem;
-    /* color: #6b7280; */
   }
 
-  /* .dark .view-counter {
-    color: #9ca3af;
-  } */
 </style>
