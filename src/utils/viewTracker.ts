@@ -71,7 +71,7 @@ export async function getViewCount(postSlug: string): Promise<number> {
     }
 
     const data = await response.json();
-    return data.count || 0;
+    return data.count;
   } catch (error) {
     console.error('Error getting view count:', error);
     return 0;
