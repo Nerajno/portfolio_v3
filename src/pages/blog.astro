@@ -298,8 +298,6 @@ const seoConfig = {
         // Pagination state
         let currentPage = 1;
         const postsPerPage = 7;
-        let lastSearchTerm = '';
-        let lastSortBy = 'newest';
 
         // Debounce function
         function debounce(func, wait) {
@@ -393,17 +391,16 @@ const seoConfig = {
 
         // Navigate to specific page
         function goToPage(page) {
+          // Get all posts currently in the DOM (already filtered by filterPosts if applicable)
           const allPosts = Array.from(document.querySelectorAll('#blog-posts > li'));
-          // Use only posts that are currently visible as the "already-filtered" set
-          const filteredPosts = allPosts.filter((post) => post.style.display !== 'none');
-          const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+          const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
           if (page < 1 || page > totalPages) return;
 
           currentPage = page;
 
-          // Apply pagination to the already-filtered posts without re-running filters
-          paginatePosts(filteredPosts);
+          // Apply pagination to all posts in DOM
+          paginatePosts(allPosts);
 
           // Scroll to top of blog posts
           const blogPostsTop = blogPosts?.offsetTop || 0;
@@ -479,12 +476,8 @@ const seoConfig = {
           blogPosts.innerHTML = '';
           filteredPosts.forEach((post) => blogPosts.appendChild(post));
 
-          // Only reset to page 1 if search term or sort order changed
-          if (searchTerm !== lastSearchTerm || sortBy !== lastSortBy) {
-            currentPage = 1;
-            lastSearchTerm = searchTerm;
-            lastSortBy = sortBy;
-          }
+          // Reset to page 1 when filtering/sorting changes
+          currentPage = 1;
 
           // Apply pagination to filtered results
           paginatePosts(filteredPosts);
