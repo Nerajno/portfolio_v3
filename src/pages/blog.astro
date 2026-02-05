@@ -394,15 +394,17 @@ const seoConfig = {
 
         // Navigate to specific page
         function goToPage(page) {
-          const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
-          const totalPages = Math.ceil(posts.length / postsPerPage);
+          const allPosts = Array.from(document.querySelectorAll('#blog-posts > li'));
+          // Use only posts that are currently visible as the "already-filtered" set
+          const filteredPosts = allPosts.filter((post) => post.style.display !== 'none');
+          const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
           if (page < 1 || page > totalPages) return;
 
           currentPage = page;
 
-          // Re-apply filters and pagination
-          filterPosts();
+          // Apply pagination to the already-filtered posts without re-running filters
+          paginatePosts(filteredPosts);
 
           // Scroll to top of blog posts
           const blogPostsTop = blogPosts?.offsetTop || 0;
