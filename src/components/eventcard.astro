@@ -15,6 +15,7 @@ const {
   status,
   type,
   tags,
+  duration,
 } = Astro.props;
 
 function getStatusColor(status: 'upcoming' | 'past') {
@@ -99,6 +100,12 @@ const locationString = [
         <time datetime={date}>{formattedDate}</time>
         <span class='mx-2'>•</span>
         <span>{locationString}</span>
+        {duration && (
+          <>
+            <span class='mx-2'>•</span>
+            <span>{duration}</span>
+          </>
+        )}
       </div>
 
       <p class='mt-3 text-gray-700 dark:text-slate-300'>{description}</p>
@@ -126,7 +133,11 @@ const locationString = [
                         ? 'Read Article'
                         : key === 'github'
                           ? 'View Code'
-                          : key.charAt(0).toUpperCase() + key.slice(1)}{' '}
+                          : key === 'sessionize'
+                            ? 'Sessionize Profile'
+                            : key === 'sessionPage'
+                              ? 'Session Details'
+                              : key.charAt(0).toUpperCase() + key.slice(1)}{' '}
                 →
               </a>
             )

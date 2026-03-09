@@ -16,14 +16,83 @@ interface SpeakingEvent {
     conferenceWebsite?: string;
     slides?: string;
     github?: string;
+    sessionize?: string;
+    sessionPage?: string; // Direct link to the specific session page
   };
   type: "conference" | "workshop" | "meetup" | "webinar" | "lightning-talk";
   tags?: string[];
   image?: string; // SEO image for event
   seoDescription?: string; // SEO meta description for event
+  duration?: string; // e.g., "45 min", "60 min", "Lightning talk (10 min)"
 }
 
 export const speakingData: SpeakingEvent[] = [
+  {
+    id: "nebraska-code-2026",
+    title: "Skills to Bills: A Users Guide to Demonstrated Competency",
+    name: "Nebraska.Code() 2026",
+    description: "Knowing your craft is only half the battle — being able to prove it is what moves your career forward. This talk walks through the four pillars of demonstrated competence: sharing your experience, building proof of work, amplifying it publicly, and silencing the imposter syndrome that holds you back. You'll leave with a repeatable framework for confidently presenting your skills in any room.",
+    date: "2026-07-22",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Nebraska.Code() 2026 – Upcoming conference talk by Nerando Johnson in Lincoln, Nebraska.",
+    location: {
+      city: "Lincoln",
+      state: "Nebraska",
+      country: "USA",
+      venue: "Cornhusker Marriott Hotel"
+    },
+    type: "conference",
+    tags: ["upcoming", "career", "professional-development", "competency", "imposter-syndrome"],
+    duration: "60 min",
+    links: {
+      conferenceWebsite: "https://nebraskacode.amegala.com",
+      sessionize: "https://sessionize.com/Nerajno"
+    }
+  },
+  {
+    id: "devnexus-2026",
+    title: "The Engineer's Guide to Socialization",
+    name: "DevNexus 2026",
+    description: "Professional networking through the familiar lens of database associations, making relationship-building more approachable for developers. This talk reimagines networking patterns using technical concepts developers already know, transforming database association knowledge into effective social strategies.",
+    date: "2026-03-04",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "DevNexus 2026 – Atlanta's home conference for developers. Upcoming conference talk by Nerando Johnson.",
+    location: {
+      city: "Atlanta",
+      state: "GA",
+      country: "USA",
+      venue: "Georgia World Congress Center"
+    },
+    type: "conference",
+    tags: ["upcoming", "networking", "soft-skills", "professional-development", "database-associations"],
+    duration: "45 min",
+    links: {
+      conferenceWebsite: "https://devnexus.com",
+      sessionize: "https://sessionize.com/Nerajno"
+    }
+  },
+  {
+    id: "orlando-code-camp-2026",
+    title: "This is a Technical Talk - Essential People Skills for Developers",
+    name: "Orlando Code Camp 2026",
+    description: "This will be the third consecutive year presenting at Orlando Code Camp (2024, 2025, 2026). In an industry that overvalues technical ability and undervalues everything else, essential people skills are the hidden multiplier on your career. This talk covers nine fundamentals — from communication and collaboration to leadership and adaptability — with practical, real-world examples and one actionable step per skill you can apply immediately.",
+    date: "2026-04-11",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription: "Orlando Code Camp 2026 – Third consecutive year speaking at OCC. Upcoming conference talk by Nerando Johnson in Sanford, Florida.",
+    location: {
+      city: "Sanford",
+      state: "FL",
+      country: "USA",
+      venue: "Seminole State College"
+    },
+    type: "conference",
+    tags: ["upcoming", "people-skills", "communication", "leadership", "soft-skills", "career-development"],
+    duration: "60 min",
+    links: {
+      conferenceWebsite: "https://orlandocodecamp.com",
+      sessionize: "https://sessionize.com/Nerajno"
+    }
+  },
     {
     "id": "ajug-2025-lightning-talk",
     "title": "Title: How Do I Build a Lightning Talk?",
