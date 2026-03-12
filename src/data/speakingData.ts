@@ -42,7 +42,7 @@ export const speakingData: SpeakingEvent[] = [
       venue: "Cornhusker Marriott Hotel"
     },
     type: "conference",
-    tags: ["upcoming", "career", "professional-development", "competency", "imposter-syndrome"],
+    tags: ["career", "professional-development", "competency", "imposter-syndrome"],
     duration: "60 min",
     links: {
       conferenceWebsite: "https://nebraskacode.amegala.com",
@@ -64,11 +64,13 @@ export const speakingData: SpeakingEvent[] = [
       venue: "Georgia World Congress Center"
     },
     type: "conference",
-    tags: ["upcoming", "networking", "soft-skills", "professional-development", "database-associations"],
+    tags: ["networking", "soft-skills", "professional-development", "database-associations"],
     duration: "45 min",
     links: {
       conferenceWebsite: "https://devnexus.com",
-      sessionize: "https://sessionize.com/Nerajno"
+      sessionize: "https://sessionize.com/Nerajno",
+      slides: "https://www.canva.com/design/DAHCkfyP4-w/Vwx44bTy275b8a56CynNzg/edit?utm_content=DAHCkfyP4-w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+      article: "https://developingdvlpr.com/blog/scheming-is-always-good-developers-guide-to-networking/"
     }
   },
   {
@@ -413,6 +415,7 @@ export const speakingData: SpeakingEvent[] = [
     seoDescription: "Modern Web Meetup – Networking for developers using database association patterns, with Nerando Johnson.",
     links: {
       slides: "https://www.canva.com/design/DAGWCVHbFGs/lLD9CiNNkwHPwsYn20MtzA/view?utm_content=DAGWCVHbFGs&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h91978a8905",
+      article: "https://developingdvlpr.com/blog/scheming-is-always-good-developers-guide-to-networking/"
     }
   },
   // {

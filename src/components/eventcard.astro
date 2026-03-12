@@ -117,7 +117,7 @@ const locationString = [
       <div class='mt-4 flex flex-wrap gap-3'>
         {Object.entries(links).map(
           ([key, url]) =>
-            url && (
+            url && key !== 'sessionize' && (
               <a
                 href={url}
                 class='inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'
@@ -133,11 +133,9 @@ const locationString = [
                         ? 'Read Article'
                         : key === 'github'
                           ? 'View Code'
-                          : key === 'sessionize'
-                            ? 'Sessionize Profile'
-                            : key === 'sessionPage'
-                              ? 'Session Details'
-                              : key.charAt(0).toUpperCase() + key.slice(1)}{' '}
+                          : key === 'sessionPage'
+                            ? 'Session Details'
+                            : key.charAt(0).toUpperCase() + key.slice(1)}{' '}
                 →
               </a>
             )
