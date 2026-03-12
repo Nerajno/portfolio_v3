@@ -5,7 +5,10 @@ seoDescription: "Learn how to build a stronger developer network by mapping rela
 author: "Nerando Johnson"
 title: "Scheming Is Always Good: A Developer's Guide to Networking"
 snippet: "Most developers know how to define relationships in code — belongs_to, has_many, has_many :through. But few realize those same patterns map directly onto the career networks they're trying to build. This article reframes professional networking as system design: every person in your network is a record, every relationship has a type, and the foreign key tells you who carries the responsibility. A practical, schema-driven guide to building intentional developer connections."
-image: "https://images.pexels.com/photos/167259/pexels-photo-167259.jpeg"
+image: {
+  src: "https://images.pexels.com/photos/167259/pexels-photo-167259.jpeg",
+  alt: "Professional networking diagram with connected nodes and database schema visualization"
+}
 publishDate: "2026-03-09 00:00"
 category: "Career Development, Networking, Community"
 tags: [networking, career, community, softskills, developer-growth]
@@ -68,7 +71,7 @@ aiOptimization: {
 ---
 
 
-![Developer raising hand at a tech conference](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXJjamkybGpybWFiN2htb2JldG84bDU4OTBzczduMWMybHFpNWF6dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TvVck7lO4LDJS/giphy.gif)
+![Man measuring window with broken tape measure](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXJjamkybGpybWFiN2htb2JldG84bDU4OTBzczduMWMybHFpNWF6dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TvVck7lO4LDJS/giphy.gif)
 
 ## Introduction
 I gave a talk at DevNexus 2026 and opened it with a question: *"Raise your hand if you've ever said 'I'm bad at networking."*
@@ -83,7 +86,7 @@ We still need connections. That hasn't changed. What changed is that we now have
 
 ## Why Socialization Still Matters
 
-![Two developers laughing and talking at a tech meetup](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmszdDJ4eDkzcjFyNjZwazg3NWp2Yzl6cnFnejlyM3l6bGlmYnc5YyZlcD12MV9pbnRlbmFsX2dpZl9ieV9pZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c5eqVJN7oNLTq/giphy.gif)
+![Two developers laughing and talking at a tech meetup](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2hsd215aW12NzZkdjQ0NmUzaHl5cW43cXIzbXdncG40OTM3azBkMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/12RqokiekV5hGE/giphy.gif)
 
 Before we get into the schema, let's establish *why* any of this matters. Because if your reaction to "you need to network more" is the eye roll — I get it. The "word" has baggage. It conjures images of awkward conversations, LinkedIn messages that feel like cold call scripts and the "Hi" that gets ignored.
 
@@ -202,24 +205,22 @@ The thing that most people miss: good mentorship is *structured*. It isn't just 
 
 ### What It Actually Means
 
-![Speaker presenting at a tech conference to a packed room](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTN2NTI0bW5sMzllZzZjdDNmdnczc3JpMm56eHpicHludmc4aW1jMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H1YMguVrVeI0Xz5c8v/giphy.gif)
+![Into the spiderverse meme](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNncxeGdscnN2YW8yYjR3ZTV3NjFyYXV1ajgwdHAyemo1dzMwdHBnaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y1L0dHsQrUpkv8Org7/giphy.gif)
 
 In a `has_many`, you are the hub. A lot of foreign keys on *other* tables all point back to you at once.
 
 This is the multiplier move in career networking:
-
 * Speaking at or organizing a meetup.
 * Giving a conference talk.
 * Leading or contributing to an open source project.
 * Teaching a course or creating technical content.
 * Running a workshop or community event.
 
-One Atlanta freeCodeCamp meetup event: potentially 15-30 developers in your `has_many`. One DevNexus talk: a room full of engineers who now know your name, your perspective, and what you care about. One Vue Mastery course module: students across multiple continents with a FK pointing back to your content.
+One Atlanta freeCodeCamp meetup event: potentially 15-30 developers in your `has_many`. One DevNexus talk: a room full of engineers who now know your name, your perspective, and what you care about. One workshop given: students across multiple continents with a FK pointing back to your content.
 
 ### The Pros and the Real Talk
 
 The upside: **broader reach, improved perspective, leadership skills that money can't directly buy**. The collection grows fast once you get going.
-
 The honest challenge: **the collection only grows if you keep showing up.** There are no passive `has_many` relationships. The meetup that runs once and disappears doesn't build a network — it creates orphaned records. The talk you give but never follow up on is a missed join/connection. Consistency is the entire mechanism.
 
 The other honest challenge: you have to earn the right to someone's FK. People choose which speakers, organizers, and creators to follow. The quality of the thing you're putting into the world determines the quality of the collection.
@@ -254,7 +255,7 @@ The join model is the handshake. And it has *fields*: how you met, what you have
 
 From my own network:
 
-* **Co-organizer role at Connect.Tech** → new conference speakers and sponsors I would never have cold-messaged.
+* **Volunteer role at Connect.Tech** → new conference speakers and sponsors I would never have cold-messaged.
 * **Former colleagues at previous companies** → referrals and job leads that came without a job board.
 * **Vue Mastery content** → students and developers worldwide who reached out because they saw the work.
 * **A conference talk** → hiring managers and senior peers who came up afterward and became real relationships.
@@ -275,7 +276,7 @@ The honest challenge: **this requires relationship maintenance on the front end*
 
 ### What It Actually Means
 
-![Developer participating actively in a community Slack channel on laptop](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnZzbTJpeXZubGNiaG5sNnczZThnbWFpcXRidDNvZTdkdGQzb2treCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rSVRXeKPgeM5xfGyCR/giphy.gif)
+![Community discussion in person](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2t1Z3M1NDR4cG5vZzBmcXlmMTlpcDUxMXR5cWFxbzNwcnE0ZzhsbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VgrHrFMZGdQ61afsNl/giphy.gif)
 
 This is the community layer. Both sides are members of something together. Neither needs to track *why* or *how* — just that they're in the same room, physical or digital.
 
