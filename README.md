@@ -21,6 +21,7 @@ This portfolio website is built to showcase my work as a front-end developer spe
 - **🎨 Modern UI/UX** - TailwindCSS with dark mode support and responsive design
 - **⚡ Performance Focused** - Server-side rendering with Astro and optimized asset delivery
 - **📈 View Tracking** - Supabase-powered blog post view counter
+- **🧪 Comprehensive Testing** - 138+ tests with Vitest and Playwright for quality assurance
 
 ## 🛠️ Tech Stack
 
@@ -48,6 +49,14 @@ This portfolio website is built to showcase my work as a front-end developer spe
 - **Partytown** - Third-party script optimization
 - **Reading Time** - Blog post reading time calculation
 
+### Testing & Quality Assurance
+- **Vitest** v4.0.18 - Fast unit testing framework
+- **Playwright** v1.58.2 - End-to-end browser testing
+- **Testing Library** - Component testing utilities
+- **@testing-library/jest-dom** - Custom Jest matchers
+- **@vitest/coverage-v8** - Code coverage reporting
+- **Happy DOM** - Lightweight DOM implementation for testing
+
 ## 📁 Project Structure
 
 ```
@@ -60,12 +69,15 @@ This portfolio website is built to showcase my work as a front-end developer spe
 │   ├── components/              # Reusable Astro components
 │   │   ├── container.astro
 │   │   ├── sectionhead.astro
+│   │   ├── ThemeToggle.astro
+│   │   ├── footer.astro
 │   │   └── ...
 │   ├── content/                 # Content collections
 │   │   ├── blog/               # MDX blog posts
 │   │   └── config.ts           # Content collection schemas
 │   ├── data/                    # Static data files
-│   │   └── funFacts.js
+│   │   ├── funFacts.js
+│   │   └── speakingData.ts
 │   ├── layouts/                 # Page layouts
 │   │   └── Layout.astro
 │   ├── lib/                     # Utility libraries
@@ -82,10 +94,21 @@ This portfolio website is built to showcase my work as a front-end developer spe
 │   ├── styles/                  # Global styles
 │   ├── types/                   # TypeScript type definitions
 │   └── utils/                   # Utility functions
+├── tests/                       # Unit & component tests
+│   ├── components/             # Component tests
+│   ├── unit/                   # Unit tests
+│   ├── setup.js                # Test setup & configuration
+│   └── example.spec.ts
+├── e2e/                         # End-to-end tests
+│   ├── specs/                  # E2E test specs
+│   ├── fixtures/               # Test fixtures
+│   └── helpers/                # Test helper functions
 ├── db/                          # Astro DB configuration (if used)
 ├── astro.config.mjs             # Astro configuration
 ├── tailwind.config.cjs          # Tailwind configuration
 ├── tsconfig.json                # TypeScript configuration
+├── vitest.config.ts             # Vitest test configuration
+├── playwright.config.ts         # Playwright E2E test configuration
 ├── package.json
 └── README.md
 ```
@@ -293,6 +316,59 @@ Run linting:
 ```bash
 npm run astro check
 ```
+
+## 🧪 Testing
+
+This project includes comprehensive testing coverage using Vitest and Playwright.
+
+### Test Suite
+
+- **Component Tests** - Unit tests for Astro components using Vitest
+- **Unit Tests** - Utility and function testing
+- **E2E Tests** - End-to-end browser testing with Playwright
+
+### Running Tests
+
+**Run all unit & component tests:**
+```bash
+npm run test        # Watch mode
+npm run test:run    # Run once
+npm run test:ui     # UI mode
+```
+
+**Run E2E tests:**
+```bash
+npm run test:e2e           # Run all E2E tests
+npm run test:e2e:ui        # Playwright UI mode
+npm run test:e2e:report    # View test report
+```
+
+**Run all tests:**
+```bash
+npm run test:all    # Runs unit, component, and E2E tests
+```
+
+**Generate coverage report:**
+```bash
+npm run test:coverage
+```
+
+### Test Coverage
+
+- **138 Component Tests** across 9 component files
+- **E2E Tests** covering:
+  - Homepage navigation and content
+  - Blog functionality
+  - Contact form validation
+  - Speaking page features
+  - Theme toggle functionality
+  - Responsive design across devices
+
+### Test Configuration
+
+- **Vitest** - `vitest.config.ts` - Fast unit testing with native ESM support
+- **Playwright** - `playwright.config.ts` - Cross-browser E2E testing
+- **Test Setup** - `tests/setup.js` - Shared test configuration and helpers
 
 ## 📚 Documentation
 
