@@ -98,13 +98,13 @@ But socialization in society and, by extension, tech — real, intentional socia
 * **Collaboration** that makes your work better than what you'd ship alone
 * **Growth** that compounds — because every person who knows what you can do is a potential amplifier
 
-As they say, "links run the world". I've seen this in my own career. This topic started with a conversation with my manager on how to present a "soft skill" as a technical topic.  My ability to put myself into different tech spaces has yielded speaking, learning and earning opportunities. People who have seen me speak, helped or connected them to resources remembered me, and made calls  that has grown my career. None of those things came from a cfp or resume submission into a void.
+As they say, "links run the world". I've seen this in my own career. This topic started with a conversation with my manager about how to present a "soft skill" as a technical topic. My ability to put myself into different tech spaces has yielded speaking, learning, and earning opportunities. People who have seen me speak, whom I've helped or connected to resources, remembered me and made calls that have grown my career. None of those things came from a cfp or resume submission into a void.
 
 **[@LawrenceDCodes](https://www.linkedin.com/in/lawrencelockhart/)** said something at a conference that I've been carrying around ever since:
 
 > *"You are your own developer advocate."*
 
-That's the whole thing. The network you build is the marketing department you can't afford to pay for. Every person who knows your name, your work, and what you stand for is doing advocacy for you when you're not in the room. That's not cliche,  that's infrastructure.
+That's the whole thing. The network you build is the marketing department you can't afford to pay for. Every person who knows your name, your work, and what you stand for is doing advocacy for you when you're not in the room. That's not cliche, that's infrastructure.
 
 > **📣 Before you keep reading:** Write down 3 people you'd want in your corner right now — a mentor, a peer, a community anchor. We'll figure out what "type" they are by the end of this post.
 
