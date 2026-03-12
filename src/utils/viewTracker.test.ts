@@ -72,13 +72,9 @@ describe('viewTracker', () => {
       const result = await trackUniqueView('test-post-slug');
 
       expect(result).toBe(true);
-      expect(fetchMock).toHaveBeenCalledWith('/api/track-view', {
+      expect(fetchMock).toHaveBeenCalledWith('/api/views/test-post-slug', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          slug: 'test-post-slug',
-          deviceId: 'test-device-id-123',
-        }),
+        headers: { 'Content-Type': 'application/json' }
       });
 
       const stored = JSON.parse(localStorageMock['viewedPosts']);
@@ -205,9 +201,7 @@ describe('viewTracker', () => {
       const count = await getViewCount('test-post-slug');
 
       expect(count).toBe(42);
-      expect(fetchMock).toHaveBeenCalledWith(
-        '/api/get-view-count?slug=test-post-slug'
-      );
+      expect(fetchMock).toHaveBeenCalledWith('/api/views/test-post-slug');
     });
 
     it('should return 0 if count is missing in response', async () => {
@@ -262,7 +256,7 @@ describe('viewTracker', () => {
       await getViewCount('post-with-special-chars-&-symbols');
 
       expect(fetchMock).toHaveBeenCalledWith(
-        '/api/get-view-count?slug=post-with-special-chars-%26-symbols'
+        '/api/views/post-with-special-chars-&-symbols'
       );
     });
   });
