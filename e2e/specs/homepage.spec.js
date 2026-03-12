@@ -139,7 +139,7 @@ test.describe('Homepage', () => {
 
     // Check h2s exist
     const h2Count = await page.locator('h2').count();
-    expect(h2Count).toBeGreaterThanOrEqual(0);
+    expect(h2Count).toBeGreaterThan(0);
   });
 
   test('should have working links that open in new tabs', async ({ page }) => {
