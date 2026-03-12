@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { experimental_AstroContainer as AstroContainer } from 'astro/container'
 import Footer from '../../src/components/footer.astro'
 
