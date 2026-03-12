@@ -157,7 +157,7 @@ In career terms, this is your deep, intentional, one-on-one network:
 
 The upside of this relationship type is focus. `belongs_to` connections are where real trust gets built. A 20-minute conversation where someone asks *"what are you actually trying to do next?"* and actually listens — that's worth a hundred LinkedIn connections.
 
-The honest challenge: it doesn't scale, its not supposed to. You can only `belongs_to` so many people meaningfully. Every one of these relationships costs time and attention, and the foreign key is on your table — meaning *you're* the one who lets it get stale if you stop showing up.
+The honest challenge: it doesn't scale; it's not supposed to. You can only `belongs_to` so many people meaningfully. Every one of these relationships costs time and attention, and the foreign key is on your table — meaning *you're* the one who lets it get stale if you stop showing up.
 
 Most developers underinvest here because asking for a 1:1 feels awkward. It shouldn't. The ask is almost always welcomed — people are flattered, not annoyed. The uncomfortable truth is that the awkwardness is in our "mostly" heads, not in the actual dynamics of the relationship.
 
