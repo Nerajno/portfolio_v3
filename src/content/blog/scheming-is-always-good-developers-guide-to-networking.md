@@ -263,7 +263,7 @@ In every one of these, there's a *through model* — a shared experience, a mutu
 
 ### The Pros and the Real Talk
 
-The upside: **faster network growth with built-in trust**. A relationship that starts with a warm introduction starts from a position of credibility. You don't have to spend the first three conversations establishing that you're worth talking to.
+The upside: **faster network growth with built-in trust**. A relationship that starts with a warm or friendly introduction starts from a position of credibility. You don't have to spend the first three conversations establishing that you're worth talking to.
 
 The honest challenge: **this requires relationship maintenance on the front end**. The join models don't build themselves. You have to invest in the `has_many` and `belongs_to` relationships *first* — the ones that will eventually become your through models. Chaos, as the talk notes, if your relationship skills are static.
 
@@ -281,10 +281,10 @@ This is the community layer. Both sides are members of something together. Neith
 
 `habtm` is what happens when:
 
-* You're an active, helpful presence in a developer Discord server
-* You contribute to or maintain open source projects
-* You're a known face at recurring events — your local meetup, a conference you keep showing up to, an online community you participate in regularly
-* You're on the Twitter/X dev community timeline actually engaging, not just broadcasting
+* You're an active, helpful presence in a developer Discord server.
+* You contribute to or maintain open source projects.
+* You're a known face at recurring events — your local meetup, a conference you keep showing up to, an online community you participate in regularly.
+* You're on the Twitter/X/Bluesky dev community timeline actually engaging, not just broadcasting.
 
 What makes this different from `has_many`: **you don't own the relationship**. Both sides are equal members. Neither has the FK. It's mutual. You're not the hub — you're a node in a larger mesh.
 
@@ -292,7 +292,7 @@ What makes this different from `has_many`: **you don't own the relationship**. B
 
 The upside: **diverse perspectives, collaborative opportunities, and the kind of visibility that happens through genuine participation**. The habtm layer is where you build your reputation at scale. It's slow, but it compounds.
 
-The honest challenge: **you can't be in 40 communities**. The habtm pattern, applied carelessly, is how developers end up scattered across a dozen Slack workspaces and Discord servers, occasionally lurking, never actually present. That's not community engagement — that's social media hoarding.
+The honest challenge: **you can't be in 40 communities**. The `habtm` pattern, applied carelessly, is how developers end up scattered across a dozen Slack workspaces and Discord servers, occasionally lurking, never actually present. That's not community engagement — that's social media hoarding.
 
 Pick 3–5 communities and actually show up in them. The tech reality check from the talk: some communities thrive in person. Others are digital-only. Both are valid. What matters is consistency and genuine contribution — not passive membership.
 
@@ -308,7 +308,7 @@ Knowing the patterns is one thing. Putting them into practice is another. Here's
 
 ### Network Online and Offline
 
-Don't silo yourself. The developers who build the strongest networks move between both modes. Conferences are where you create the initial record — the shared experience that becomes the join model later. Online communities are where you maintain the collection between events.
+Don't silo yourself. The developers who build the strongest networks move between both modes. Conferences/meetups are where you create the initial record — the shared experience that becomes the join model later. Online communities are where you maintain the collection between events.
 
 The [Developer Networking Tools: A Brief IRL Edition](/blog/developer-networking-tools-a-brief-irl-edition) post goes deep on the unconventional offline tools — but the short version is that your conference shirts, your known presence at recurring events, and your genuine follow-through are doing more work than any LinkedIn profile optimization.
 
@@ -317,9 +317,9 @@ The [Developer Networking Tools: A Brief IRL Edition](/blog/developer-networking
 The database metaphor holds here too: don't rely on your memory to maintain relationships. Log conversations. Keep a note when someone mentions a project they're working on. Reference it next time you talk to them. The developers who follow up — who remember the thing you mentioned three months ago and circle back with something useful — are rare, and they are never forgotten.
 
 Some options that work:
-* **Notion or Obsidian** for a lightweight personal CRM
-* **A brag document** that also tracks meaningful connections and conversations (borrowed from the mentorship playbook)
-* **Calendar reminders** to check in with key `belongs_to` relationships on a regular cadence
+* **Notion or Obsidian** for a lightweight personal CRM.
+* **A brag document** that also tracks meaningful connections and conversations (borrowed from the mentorship playbook).
+* **Calendar reminders/Coffee chats** to check in with key `belongs_to` relationships on a regular cadence.
 
 ### Build Incrementally
 
@@ -351,14 +351,14 @@ The ORM metaphor one last time: even good databases need maintenance. Orphaned r
 
 ![Developer reading and taking notes at desk](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXJjamkybGpybWFiN2htb2JldG84bDU4OTBzczduMWMybHFpNWF6dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TvVck7lO4LDJS/giphy.gif)
 
-* [**"Developer Networking Tools: A Brief IRL Edition"** → *developingdvlpr.com*](/blog/developer-networking-tools-a-brief-irl-edition) — the original unconventional tools post that seeded this talk
-* [**"So...This Is Your 1st Tech Conference: #AttendeeEdition"** → *developingdvlpr.com*](/blog/so-this-is-your-1st-tech-conference-attendeeedition) — practical guide to maximizing your `has_many` at conferences
-* [**"How !To Be Mentored V2"** → *developingdvlpr.com*](/blog/how-to-be-mentored-v2-building-resilient-tech-careers-through-strategic-mentorship) — the deep dive on `has_one` done right
-* [**"My Takeaways From Sit-Downs with Senior Devs"** → *developingdvlpr.com*](/blog/my-takeaways-from-sit-downs-with-senior-devs) — what `belongs_to` relationships actually teach you
-* [**ADPList**](https://adplist.org) — free mentorship platform, great for finding your `has_one`
-* [**MentorCruise**](https://mentorcruise.com) — paid mentorship from senior engineers and engineering managers
-* [**"Active Record Associations"** → *guides.rubyonrails.org*](https://guides.rubyonrails.org/association_basics.html) — the docs that started the whole metaphor
-* [**"Atomic Habits"** by James Clear](https://en.wikipedia.org/wiki/Atomic_Habits) — because consistent, incremental showing up is the entire mechanism
+* [**"Developer Networking Tools: A Brief IRL Edition"** → *developingdvlpr.com*](/blog/developer-networking-tools-a-brief-irl-edition) — the original unconventional tools post that seeded this talk.
+* [**"So...This Is Your 1st Tech Conference: #AttendeeEdition"** → *developingdvlpr.com*](/blog/so-this-is-your-1st-tech-conference-attendeeedition) — practical guide to maximizing your `has_many` at conferences.
+* [**"How !To Be Mentored V2"** → *developingdvlpr.com*](/blog/how-to-be-mentored-v2-building-resilient-tech-careers-through-strategic-mentorship) — the deep dive on `has_one` done right.
+* [**"My Takeaways From Sit-Downs with Senior Devs"** → *developingdvlpr.com*](/blog/my-takeaways-from-sit-downs-with-senior-devs) — what `belongs_to` relationships actually teach you.
+* [**ADPList**](https://adplist.org) — free mentorship platform, great for finding your `has_one`.
+* [**MentorCruise**](https://mentorcruise.com) — paid mentorship from senior engineers and engineering managers.
+* [**"Active Record Associations"** → *guides.rubyonrails.org*](https://guides.rubyonrails.org/association_basics.html) — the docs that started the whole metaphor.
+* [**"Atomic Habits"** by James Clear](https://en.wikipedia.org/wiki/Atomic_Habits) — because consistent, incremental showing up is the entire mechanism.
 
 ---
 
@@ -382,4 +382,4 @@ Build the network that advocates for you when you're not in the room.
 >
 > Find me **@nerajno** on Twitter/X, Bluesky, and LinkedIn — my DMs are open. The slides from the DevNexus 2026 talk are linked below if you want to dig into the ORM cross-reference (Rails, TypeORM, Sequelize, Prisma, JPA all mapped to the same networking metaphors).
 >
-> And if you're in Atlanta — come through to an **[Atlanta freeCodeCamp meetup](https://www.meetup.com/free-code-camp-atlanta/)**. That's my `has_many` right there, and there's always room for one more record in the collection.
+> And if you're in Atlanta — come through to an **[Atlanta meetup](https://www.meetup.com/find/?location=us--ga--Atlanta&source=EVENTS&categoryId=546)**. That's my `has_many` right there, and there's always room for one more record in the collection.
