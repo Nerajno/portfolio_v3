@@ -1,11 +1,5 @@
-import { expect, afterEach } from 'vitest'
-import { cleanup } from '@testing-library/dom'
+import { expect } from 'vitest'
 import '@testing-library/jest-dom/vitest'
-
-// Cleanup after each test
-afterEach(() => {
-  cleanup()
-})
 
 // Add custom matchers if needed
 expect.extend({
