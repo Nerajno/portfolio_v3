@@ -90,7 +90,7 @@ We still need connections. That hasn't changed. What changed is that we now have
 
 Before we get into the schema, let's establish *why* any of this matters. Because if your reaction to "you need to network more" is the eye roll — I get it. The "word" has baggage. It conjures images of awkward conversations, LinkedIn messages that feel like cold call scripts and the "Hi" that gets ignored.
 
-But socialization in the society and by extension,tech — real, intentional socialization — unlocks things that no amount of solo grinding will:
+But socialization in society and, by extension, tech — real, intentional socialization — unlocks things that no amount of solo grinding will:
 
 * **Relationships** that make you better at your job and keep you sane while doing it
 * **Resources and opportunities** that aren't posted anywhere publicly, because they travel through trust networks first
