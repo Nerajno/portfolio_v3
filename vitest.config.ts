@@ -1,30 +1,9 @@
 import { defineConfig } from 'vitest/config';
 import { getViteConfig } from 'astro/config';
 
-export default defineConfig(
-  getViteConfig({
-    test: {
-      globals: true,
-      environment: 'happy-dom',
-      setupFiles: ['./tests/setup.ts'],
-      include: [
-        'src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-        'tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-      ],
-      exclude: ['node_modules', 'dist', '.astro', 'tests/**/*.spec.ts', 'e2e/**'],
-      coverage: {
-        provider: 'v8',
-        reporter: ['text', 'json', 'html'],
-        exclude: [
-          'node_modules/',
-          'tests/',
-          '**/*.d.ts',
-          '**/*.config.*',
-          '**/mockData',
-          '.astro',
-          'dist',
-        ],
-      },
-    },
-  })
-);
+import config from './vitest.config.js';
+
+// Re-export the JS Vitest configuration to avoid divergence between
+// vitest.config.ts and vitest.config.js. The JS file is the single
+// source of truth for Vitest configuration.
+export default config;
