@@ -7,8 +7,11 @@ export default defineConfig(
       globals: true,
       environment: 'happy-dom',
       setupFiles: ['./tests/setup.ts'],
-      include: ['**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-      exclude: ['node_modules', 'dist', '.astro', 'tests/**/*.spec.ts'],
+      include: [
+        'src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+        'tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+      ],
+      exclude: ['node_modules', 'dist', '.astro', 'tests/**/*.spec.ts', 'e2e/**'],
       coverage: {
         provider: 'v8',
         reporter: ['text', 'json', 'html'],
