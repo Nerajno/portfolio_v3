@@ -114,7 +114,7 @@ That's the whole thing. The network you build is the marketing department you ca
 
 ![Scheming bartender from the Simpsons](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjV1aGtnbTFpY2VsaW5zanByd2w3cTF3ZWw0b3hqdjMxbHF0cGc1aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6Mb4F2Ct2Ro53Yvm/giphy.gif)
 
-Here's the mental model that will makes all of this click:
+Here's the mental model that will make all of this click:
 
 **Every person in your network is a record. Every relationship has a type.**
 
