@@ -74,7 +74,7 @@ aiOptimization: {
 ![Man measuring window with broken tape measure](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXJjamkybGpybWFiN2htb2JldG84bDU4OTBzczduMWMybHFpNWF6dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TvVck7lO4LDJS/giphy.gif)
 
 ## Introduction
-I gave a talk at DevNexus 2026 and opened it with a question: *"Raise your hand if you've ever said 'I'm bad at networking."*
+I gave a talk at DevNexus 2026 and opened it with a question: *"Raise your hand if you've ever said 'I'm bad at networking.'"*
  Most hands went up. Including, if I'm being honest, mine — not too long ago.
 Here's the thing though. The pandemic changed most or all of our behaviours. It rewired how we interact, pulled us out of hallways and happy hours and conference lobbies, and left a lot of us with professional relationships that were more brittle than we realized. Remote work was a gift in a lot of ways. But it quietly hollowed out some of the casual, compounding conversations that used to build careers without us even noticing.
 
