@@ -163,7 +163,7 @@ Most developers underinvest here because asking for a 1:1 feels awkward. It shou
 
 ### How to Build It
 
-* Send the message. Not "we should connect sometime" — send an actual ask with a specific day and a specific topic, remember you need one win.
+* Send the message. Not "we should connect sometime" — send an actual ask with a specific day and a specific topic. Remember: you need one win.
 * Come prepared. Research before you meet. Know what you want from the conversation and what you can offer in return.
 * Follow up. The relationship doesn't end when the call does. A quick "hey, I tried what you suggested and here's what happened" goes further than most people realize.
 
