@@ -15,7 +15,6 @@ import {
   WhatsAppShareButton,
   BlueskyShareButton
 } from 'astro-social-share';
-import tinyurl from 'tinyurl';
 
 export const prerender = true;
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -59,14 +58,9 @@ const ogImage = entry.data.ogImage?.src || entry.data.image.src;
 const ogImageAlt = entry.data.ogImage?.alt || entry.data.image.alt;
 const keywords = entry.data.keywords || entry.data.tags;
 
-// Shorten URL for social sharing
-let shortUrl = postUrl;
-try {
-  shortUrl = await tinyurl.shorten(postUrl);
-} catch (error) {
-  console.error('Error shortening URL:', error);
-  // Fall back to original URL if shortening fails
-}
+// Use the canonical post URL directly for social sharing to avoid
+// external network calls during prerender/ISR.
+const shortUrl = postUrl;
 
 const seoConfig = {
   title: seoTitle,
