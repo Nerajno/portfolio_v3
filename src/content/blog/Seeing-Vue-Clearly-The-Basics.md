@@ -9,7 +9,7 @@ image: {
     src: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?&fit=crop&w=430&h=240",
     alt: "Frontend developer coding on laptop with multiple screens"
 }
-publishDate: "2024-03-18 00:00"
+publishDate: "2026-03-18 00:00"
 category: "Vue, JavaScript, Tutorials"
 tags: [vue, vue3, javascript, frontend, tutorial, composition-api, web-development]
 keywords: [Vue 3 tutorial, Vue basics, Vue vs React, Composition API, Vue 3 fundamentals, progressive framework, declarative rendering, reactivity, Vue beginner guide, learn Vue 3]

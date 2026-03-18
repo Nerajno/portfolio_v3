@@ -75,7 +75,7 @@ aiOptimization: {
 
 ## Variable Scope and Hoisting: The Building Rooms
 
-![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWl0bHVwbHZsMjJnZzFhcDRnNWJrOHdlenppNWp6bXhyZjlteXo3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vCCLGNgLiPjnMQ0miX/giphy.gif)
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWl0bHVwbHZsMjJnZzFhcDRnNWJrOHdlenppNWp6bXhyZjlteXo3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vCCLGNgLiPjnMQ0miX/giphy.gif" alt="Variable scope animation" />
 
 ### _Definitions of Concepts_
 
@@ -139,7 +139,7 @@ const config: AppConfig = {
 
 ## Functions and Closures: The Building Instructions
 
-![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnV5eGYxdHA4NzIxODB4b3BwcWl1YXc5ajM3Ymhlem15dmdlaWwzMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l4EpghCkJhgz4LFio/giphy.gif)
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnV5eGYxdHA4NzIxODB4b3BwcWl1YXc5ajM3Ymhlem15dmdlaWwzMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l4EpghCkJhgz4LFio/giphy.gif" alt="Functions and closures animation" />
 
 ### _Definitions of Concepts_
 
@@ -210,7 +210,7 @@ function createComponent<T extends ComponentProps>(
 
 ## Objects and Prototypes: The Building Techniques
 
-![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjU5MzlzaTVzOWZmbnV0aGZsZWl5ZGNzMmxubmFyeWxlOWQwN2R1YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/has1WKhoorwLS/giphy.gif)
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjU5MzlzaTVzOWZmbnV0aGZsZWl5ZGNzMmxubmFyeWxlOWQwN2R1YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/has1WKhoorwLS/giphy.gif" alt="Lego building animation" />
 
 ### _Definitions of Concepts_
 
@@ -343,7 +343,7 @@ class Button implements InteractiveComponent {
 
 ## Asynchronous Programming: The Building Team
 
-![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYW5hbmZoYmoxY2g2amd1N3Uzb3c4NnlpY3MyOTh1azI3cWFtYjBpdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HWjY5CvpaRDyyJKu2e/giphy.gif)
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYW5hbmZoYmoxY2g2amd1N3Uzb3c4NnlpY3MyOTh1azI3cWFtYjBpdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HWjY5CvpaRDyyJKu2e/giphy.gif" alt="Asynchronous programming animation" />
 
 ### _Definitions of Concepts_
 
@@ -421,7 +421,7 @@ async function fetchUserData(id: string): Promise<UserData> {
 
 ## Modern Features: The Advanced Building Techniques
 
-![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGc0ZzkwNHViNGZzdTJnZjN1aDY4MmRjZGc0M3p3NjI2cXZtNWQ4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d3yxg15kJppJilnW/giphy.gif)
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGc0ZzkwNHViNGZzdTJnZjN1aDY4MmRjZGc0M3p3NjI2cXZtNWQ4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d3yxg15kJppJilnW/giphy.gif" alt="Modern JavaScript features animation" />
 
 ### _Definitions of Concepts_
 
@@ -498,7 +498,7 @@ function Button({ text, onClick, ...props }: ButtonProps) {
 
 ## Summary
 
-![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2l5aXFzNDhxNXpkaDV4YjRvb2Jkc2s1bjFscHBmYnczMzFra2pobSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/j5rIZnN3n3i19hxx8T/giphy.gif)
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2l5aXFzNDhxNXpkaDV4YjRvb2Jkc2s1bjFscHBmYnczMzFra2pobSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/j5rIZnN3n3i19hxx8T/giphy.gif" alt="TypeScript summary animation" />
 
 The transition from JavaScript to TypeScript is like upgrading your Lego building process:
 
@@ -525,4 +525,4 @@ Remember: TypeScript builds upon your JavaScript knowledge, adding safety and cl
 - W3Schools. (n.d.). *JavaScript scope*. W3Schools. Retrieved January 12, 2025, from [https://www.w3schools.com/js/js_scope.asp](https://www.w3schools.com/js/js_scope.asp)
 - Mozilla. (n.d.). *Variables — JavaScript*. MDN Web Docs. Retrieved January 14, 2025, from [https://developer.mozilla.org/en-US/docs/Learn-web-development/Core/Scripting/Variables](https://developer.mozilla.org/en-US/docs/Learn-web-development/Core/Scripting/Variables)
 
-![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3JyYTJkYXF5YndhODFkNWJqZ2Nvd3V5bHMwczJhbGhrM2VqamVzbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8UF0EXzsc0Ckg/giphy.gif)
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3JyYTJkYXF5YndhODFkNWJqZ2Nvd3V5bHMwczJhbGhrM2VqamVzbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8UF0EXzsc0Ckg/giphy.gif" alt="Happy coding animation" />
