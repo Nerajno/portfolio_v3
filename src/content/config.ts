@@ -29,6 +29,12 @@ const blogCollection = defineCollection({
     }).optional(), // Custom Open Graph image (falls back to main image)
     noindex: z.boolean().default(false), // Prevent indexing if true
     canonical: z.string().url().optional(), // Custom canonical URL if needed
+
+    // Series-related fields
+    series: z.object({
+      name: z.string(), // e.g., "Vue 3 Fundamentals"
+      order: z.number(), // Position in series (1, 2, 3, etc.)
+    }).optional(), // Optional - only for posts that are part of a series
   }),
 });
 
