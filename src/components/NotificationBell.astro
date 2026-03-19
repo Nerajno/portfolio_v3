@@ -2,17 +2,32 @@
 import { getCollection } from 'astro:content';
 
 // Get the most recent content publish/update date
-const blogPosts = await getCollection('blog', ({ data }) => !data.draft);
+const now = new Date();
+const blogPosts = await getCollection('blog', ({ data }) => {
+  if (data.draft) return false;
+  const publishDate = data.publishDate;
+  return publishDate && publishDate < now;
+});
 const mostRecentBlogDate = blogPosts.reduce((latest, post) => {
-  const postDate = post.data.updatedDate || post.data.publishDate;
-  return postDate > latest ? postDate : latest;
+  const publishDate = post.data.publishDate;
+  const updatedDate =
+    post.data.updatedDate && post.data.updatedDate < now
+      ? post.data.updatedDate
+      : null;
+  const postDate = updatedDate || publishDate;
+  return postDate && postDate > latest ? postDate : latest;
 }, new Date(0));
 
 // Calculate count of new items within 6 days
 const SIX_DAYS_MS = 6 * 24 * 60 * 60 * 1000;
-const now = new Date();
 const recentItems = blogPosts.filter(post => {
-  const postDate = post.data.updatedDate || post.data.publishDate;
+  const publishDate = post.data.publishDate;
+  const updatedDate =
+    post.data.updatedDate && post.data.updatedDate < now
+      ? post.data.updatedDate
+      : null;
+  const postDate = updatedDate || publishDate;
+  if (!postDate) return false;
   const age = now.getTime() - postDate.getTime();
   return age < SIX_DAYS_MS;
 });
