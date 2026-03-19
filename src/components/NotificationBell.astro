@@ -230,6 +230,12 @@ const mostRecentDateISO = mostRecentBlogDate.toISOString();
       }, 500); // Match animation duration
     }
 
+    if (bell.dataset.initialized === 'true') {
+      return;
+    }
+
+    bell.dataset.initialized = 'true';
+
     bell.addEventListener('click', handleDismiss);
     bell.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
