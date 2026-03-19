@@ -1,3 +1,6 @@
+NPM_VERSION=9.8.1
+# NODE_VERSION = "20"
+
 [build]
   command = "astro build"
   publish = "dist"
@@ -16,4 +19,4 @@
   port = 3000
   targetPort = 3000
 
-NODE_VERSION = "20"
+
