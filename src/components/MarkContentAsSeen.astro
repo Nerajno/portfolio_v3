@@ -1,0 +1,23 @@
+---
+// Component to mark content as seen when user visits a blog post page
+// This updates the localStorage timestamp to dismiss the notification bell glow
+---
+
+<script>
+  const STORAGE_KEY = 'portfolio_last_seen_notification';
+
+  function markContentAsSeen() {
+    // Update the last seen timestamp to now
+    localStorage.setItem(STORAGE_KEY, new Date().toISOString());
+  }
+
+  // Mark as seen when page loads
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', markContentAsSeen);
+  } else {
+    markContentAsSeen();
+  }
+
+  // Also mark as seen on Astro page transitions
+  document.addEventListener('astro:page-load', markContentAsSeen);
+</script>
