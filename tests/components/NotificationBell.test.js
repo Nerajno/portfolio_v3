@@ -1,32 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-
-// Date comparison logic extracted for testing
-const SIX_DAYS_MS = 6 * 24 * 60 * 60 * 1000;
-const FORTY_EIGHT_HOURS_MS = 48 * 60 * 60 * 1000;
-
-/**
- * Determine if notification glow should be shown
- * @param {Date} mostRecentDate - Most recent content publish date
- * @param {string|null} lastSeenStr - ISO string of last seen timestamp from localStorage
- * @param {Date} now - Current date/time
- * @returns {boolean} - Whether to show the glow
- */
-function shouldShowNotificationGlow(mostRecentDate, lastSeenStr, now = new Date()) {
-  const timeSinceMostRecent = now.getTime() - mostRecentDate.getTime();
-  const isFirstTimeVisitor = !lastSeenStr;
-
-  if (isFirstTimeVisitor) {
-    // First-time visitor: show glow only if content is less than 48 hours old
-    return timeSinceMostRecent < FORTY_EIGHT_HOURS_MS;
-  } else {
-    // Returning visitor: show glow if content is within 6 days AND newer than last seen
-    const lastSeenDate = new Date(lastSeenStr);
-    const isWithinSixDays = timeSinceMostRecent < SIX_DAYS_MS;
-    const isNewerThanLastSeen = mostRecentDate > lastSeenDate;
-
-    return isWithinSixDays && isNewerThanLastSeen;
-  }
-}
+import { shouldShowNotificationGlow } from '../../src/components/NotificationBell.astro';
 
 describe('NotificationBell - Date Logic', () => {
   let mockNow;
