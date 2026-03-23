@@ -11,7 +11,7 @@ image: {
 }
 publishDate: "2026-03-18 00:00"
 category: "Vue, JavaScript, Tutorials"
-tags: [vue, vue3, javascript, frontend, tutorial, composition-api, web-development]
+tags: [vue3, javascript, frontend, tutorial, composition-api]
 keywords: [Vue 3 tutorial, Vue basics, Vue vs React, Composition API, Vue 3 fundamentals, progressive framework, declarative rendering, reactivity, Vue beginner guide, learn Vue 3]
 series:
   name: "Vue 3 Fundamentals"
