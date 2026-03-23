@@ -93,7 +93,7 @@ Staying current in software development requires one to embrace a state of "comf
 
 
 ## 2: Enums
-![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHgyZmZ3eXY0N2lyc3IwM2Z3cXZ1bjgwbjRoZW9tMGFoNzdnYXA1OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Te1T74De6RGNvBRe1x/giphy.gif)
+<img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHgyZmZ3eXY0N2lyc3IwM2Z3cXZ1bjgwbjRoZW9tMGFoNzdnYXA1OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Te1T74De6RGNvBRe1x/giphy.gif" alt="Enums illustration" width="480" />
 
 Enums (short for enumerations) are a way to define a set of named constants. They're instrumental in TypeScript for creating more expressive and type-safe code. In my head, they have the same features as objects. Here is another way of explaining them, _"
 imagine you have a box of coloured pencils. You know that in this box, you can only have certain colours - let's say red, blue, green, and yellow. You can't suddenly have a purple pencil appear in the box.

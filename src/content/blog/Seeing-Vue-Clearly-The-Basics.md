@@ -6,7 +6,7 @@ author: "Nerando Johnson"
 title: "Seeing Vue Clearly: The Basics - Introduction to Vue 3"
 snippet: "A no-fluff introduction to building modern UIs with Vue 3. Learn what makes Vue progressive, how it compares to other frameworks, and why the Composition API matters for new developers starting their frontend journey."
 image: {
-    src: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?&fit=crop&w=430&h=240",
+    src: "https://img.appmaster.io/p/E7BlMiM6t5s/rs:fit:640:0/q:70/f:webp/plain/019b86d6-bd35-7e11-8dbc-335896b200fc/blog/019be269-5bb9-7d61-9924-5b2061cdfc55/019be2695b.webp",
     alt: "Frontend developer coding on laptop with multiple screens"
 }
 publishDate: "2026-03-18 00:00"
@@ -77,7 +77,7 @@ aiOptimization: {
 ---
 
 
-**What Is Vue 3? (And Why It Might Be the Framework You've Been Looking For)**
+## What Is Vue 3? (And Why It Might Be the Framework You've Been Looking For)
 
 *Part 1 of the Vue 3 Fundamentals series — a no-fluff introduction to building modern UIs with Vue 3, from my understanding as a "junior-ish" frontend developer.*
 
@@ -89,9 +89,9 @@ React, Angular, Svelte, Vue — they all promised to make building UIs easier, b
 
 Vue 3 eventually clicked for me. And in this series, I want to show you why it might click for you too. Throughout the series, when I say Vue, I mean Vue 3 specifically — not Vue 2 or Vue 2.x.
 
----
 
-**So What Actually Is Vue?**
+## So What Actually Is Vue?
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjljNzQ0NmM5MnZ2MXdxNDdrM3htY3NqY3B6YTRubDNkdng4ZGZvbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5wFkqt6A8R4qAqGIFQ/giphy.gif" alt="Explain this to me" width="960" />
 
 Vue (pronounced like the English word *view*) is a progressive, incrementally adoptable JavaScript framework for building user interfaces. That's the official one-liner, but let's unpack what it actually means.
 
@@ -135,9 +135,11 @@ Two things are happening in that example that are fundamental to how Vue works:
 
 **Reactivity** means Vue watches your data. When it changes, Vue automatically updates the parts of the UI that depend on it. You change `count`, the number in the button updates. Done.
 
----
 
-**Why "Progressive" Is Vue's Superpower**
+
+## Why "Progressive" Is Vue's Superpower
+
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGlxdTcxbjBqMWNkdjVxNXM4ZXdnaThkcGYxM3JuZHptNTZuNHJtNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Tdp2QlrGJVsz1TRY1h/giphy.gif" alt="Progressive" width="960" />
 
 Vue describes itself as "The Progressive Framework" because it's designed to be incrementally adoptable — you can sprinkle it into an existing page or scale it up to a full application. This isn't just marketing copy; it's one of the most practical things about it.
 
@@ -150,9 +152,10 @@ Most frameworks want to own your entire project. Vue doesn't. You can start smal
 
 This matters for beginners because it means you don't have to understand the entire ecosystem before you write your first line. The framework meets you where you are. Start with a script tag. Graduate to a full project setup when it makes sense. Nothing you learn in the simpler version is wasted.
 
----
 
-**How Does Vue Compare to the Others?**
+
+## How Does Vue Compare to the Others?
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGRiMWFlZ28zcG9odzV1amo3ZWdkc2hwdG92aWs5d3N4MmN4eDVpbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y3BXCGpcpHDTq/giphy.gif" alt="Compare" width="960" />
 
 You've probably heard people debate React vs Vue like it's a sports rivalry. Here's a more useful framing:
 
@@ -164,9 +167,9 @@ You've probably heard people debate React vs Vue like it's a sports rivalry. Her
 
 None of those comparisons are meant to talk you out of learning other frameworks. But if you want something that's readable from day one, feels like the web you already know, and scales with you as you grow — Vue is worth your time.
 
----
 
-**What Makes Vue 3 Different From Vue 2**
+## What Makes Vue 3 Different From Vue 2
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHp3YWdmM3NyZnUzMGlzNTVlYWk5ZjZzZzFyYzN3Y2tscWV1MXZwMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UI7EYk96rzq24/giphy.gif" alt="Vue 3 vs Vue 2" width="960" />
 
 If you've searched "learn Vue" before and landed on older tutorials, you've probably seen Vue 2 code without knowing it. The two versions look similar on the surface but are meaningfully different under the hood.
 
@@ -179,9 +182,10 @@ Vue 3 was a major rewrite of the core, released as the next major version after 
 
 Vue 2 has reached end-of-life and is no longer actively maintained, so it's not recommended for new projects. The ecosystem has fully moved on. If you're starting fresh, you should start with Vue 3 — and now is actually the right time to learn it. The tooling has matured, the documentation is excellent, and there are no more "should I learn 2 or 3?" debates to slow you down.
 
----
 
-**The Two Flavors: Options API and Composition API**
+
+## The Two Flavors: Options API and Composition API
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDBqY3JnYW14NTN3MzUxenJtbXMwamp5YzhpeTA4NDNqazhkNjg3ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/x0Rvy4dNosCUo/giphy.gif" alt="Options API vs Composition API" width="960" />
 
 One thing that trips up new learners is that Vue has two ways to write component logic. You'll see both in the wild, so let's demystify them now.
 
@@ -227,9 +231,10 @@ Here, `ref` makes `message` reactive, and everything you declare in `<script set
 
 Throughout this series, we'll primarily use the Composition API — specifically with `<script setup>`, which keeps the syntax clean. Don't worry if that doesn't make sense yet. It should by Article 3.
 
----
 
-**What You'll Need to Follow Along**
+
+## What You'll Need to Follow Along
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHZtaGoydGQ3dng5dGd3M2RrcmxwbXd2cTJ6NGlkYWJ0NDFjNnI1bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jjw7Y3ZWNauyc/giphy.gif" alt="What You'll Need" width="960" />
 
 Before we dive into code in the next article, make sure you're comfortable with:
 
@@ -243,12 +248,13 @@ And if you've been sitting on "I'll start when I know enough" — that moment do
 
 Progress over perfection. Let's go build something.
 
----
 
-**What's Next**
+
+## What's Next
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGFtbngwajMzeGVkdGtlbTFvam93dnR3a3ZyMTE5NWJwNDdvZTBhZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wR4bJk4jF5Tl6/giphy.gif" alt="What's Next" width="960" />
 
 In Article 2, we're going from theory to code. We'll scaffold a real Vue 3 project, walk through what each file does, and write your first reactive component from scratch.
 
 *This is Part 1 of the Vue 3 Fundamentals series. Sources: [Vue.js Official Docs](https://vuejs.org), [Vue.js GitHub](https://github.com/vuejs/core), [Vue School](https://vueschool.io), [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Frameworks_libraries/Vue_getting_started), and [W3Schools](https://www.w3schools.com/).*
 
----
+
