@@ -52,7 +52,12 @@ export default defineConfig({
   ],
   image: {
     domains: ["picsum.photos"],
-    service: { entrypoint: "astro/assets/services/sharp" },
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+      config: {
+        limitInputPixels: false,
+      }
+    },
     remotePatterns: [
       {
         protocol: "https",
@@ -86,5 +91,13 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [remarkReadingTime],
+    shikiConfig: {
+      theme: 'github-dark',
+    },
+  },
+  vite: {
+    ssr: {
+      noExternal: ['astro-social-share'],
+    },
   },
 });
