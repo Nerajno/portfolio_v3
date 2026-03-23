@@ -55,8 +55,8 @@ semanticContext: {
 }
 
 citationMetadata: {
-  citableAs: "Johnson, N. (2025). Seeing Vue Clearly: The Basics - Introduction to Vue 3",
-  lastReviewed: "2025-03-18",
+  citableAs: "Johnson, N. (2026). Seeing Vue Clearly: The Basics - Introduction to Vue 3",
+  lastReviewed: "2026-03-18",
   version: "1.0",
   originalPublisher: "Nerando Johnson's Blog"
 }
@@ -64,7 +64,7 @@ citationMetadata: {
 aiOptimization: {
   summaryPrompt: "This article introduces Vue 3 as a progressive JavaScript framework for beginners, explaining its core concepts (declarative rendering and reactivity), comparing it to React and Angular, and outlining the differences between Vue 2 and Vue 3, including the Composition API and script setup syntax.",
   keyTakeaways: [
-    "Vue 3 is a progressive framework that extends HTML, CSS, and JavaScript without replacing them",
+    "Vue 3 is a progressive, incrementally adoptable framework that extends HTML, CSS, and JavaScript without replacing them",
     "Vue's two core concepts are declarative rendering and reactivity - you describe what you want, Vue handles the updates",
     "Vue can start as a simple script tag or scale to full SPAs with SSR, making it beginner-friendly",
     "Vue 3 introduced the Composition API, better TypeScript support, and improved performance over Vue 2",
@@ -79,21 +79,21 @@ aiOptimization: {
 
 **What Is Vue 3? (And Why It Might Be the Framework You've Been Looking For)**
 
-*Part 1 of the Vue 3 Fundamentals series — a no-fluff introduction to building modern UIs with Vue.*
+*Part 1 of the Vue 3 Fundamentals series — a no-fluff introduction to building modern UIs with Vue 3, from my understanding as a "junior-ish" frontend developer.*
 
 ---
 
-Let me be honest with you: the first time someone told me to "just pick a framework," I froze.
+Let me be honest with you: the first time someone told me to "just pick a framework," I froze and chose the default… React (which I later realized was probably the wrong choice for me).
 
 React, Angular, Svelte, Vue — they all promised to make building UIs easier, but the learning curves looked steep from where I was standing. What nobody told me was that choosing the right starting point matters. If you pick something that clicks with the way you already think, everything becomes easier.
 
-Vue 3 clicked for me. And in this series, I want to show you why it might click for you too.
+Vue 3 eventually clicked for me. And in this series, I want to show you why it might click for you too. Throughout the series, when I say Vue, I mean Vue 3 specifically — not Vue 2 or Vue 2.x.
 
 ---
 
 **So What Actually Is Vue?**
 
-Vue (pronounced like the English word *view*) is a JavaScript framework for building user interfaces. That's the official one-liner, but let's unpack what it actually means.
+Vue (pronounced like the English word *view*) is a progressive, incrementally adoptable JavaScript framework for building user interfaces. That's the official one-liner, but let's unpack what it actually means.
 
 You already know HTML. You know it structures a page. You know CSS makes it look good. And you know JavaScript makes things happen. Vue sits on top of all three of those — it doesn't replace them, it extends them.
 
@@ -112,6 +112,7 @@ import { createApp, ref } from 'vue'
 
 createApp({
   setup() {
+    // setup is the entry point for using the Composition API in this component
     return {
       count: ref(0)
     }
@@ -123,9 +124,9 @@ That's it. A button that tracks how many times it's been clicked, with the UI up
 
 Let's slow down and look at what's actually happening in that JavaScript:
 
-- `createApp` is Vue's entry point. It takes your component configuration and creates a Vue application instance.
+- `createApp` is Vue's entry point. It takes your **root** component (an object that describes your component's logic) and creates a Vue application instance.
 - `ref(0)` creates a reactive value — in this case, a counter starting at zero. The `ref` wrapper is what tells Vue to watch this value and react when it changes.
-- `setup()` is where you define everything your component needs — data, functions, computed values — and return what the template should have access to.
+- `setup()` is where you define everything your component needs — data, functions, computed values — and return what the template should have access to. It's also the entry point for using the Composition API in that component.
 - `.mount('#app')` connects your Vue application to the `<div id="app">` in your HTML. Everything inside that div is now under Vue's control.
 
 Two things are happening in that example that are fundamental to how Vue works:
@@ -138,13 +139,13 @@ Two things are happening in that example that are fundamental to how Vue works:
 
 **Why "Progressive" Is Vue's Superpower**
 
-Vue describes itself as "The Progressive Framework," and this isn't marketing copy — it's genuinely one of the most practical things about it.
+Vue describes itself as "The Progressive Framework" because it's designed to be incrementally adoptable — you can sprinkle it into an existing page or scale it up to a full application. This isn't just marketing copy; it's one of the most practical things about it.
 
 Most frameworks want to own your entire project. Vue doesn't. You can start small:
 
 - **Drop a script tag into an existing HTML page** and add interactivity without touching your build setup. This is genuinely useful if you're working on an existing site — a WordPress theme, a marketing page, anything — and just need a dynamic dropdown or a form with live validation. No Vite, no CLI, no config files.
 - **Build a full Single-Page Application** with routing, state management, and TypeScript when you're ready to scale. This is the setup most tutorials show you, and it's where Vue really shines for building app-like experiences.
-- **Use SSR (Server-Side Rendering)** with Nuxt.js when you need better SEO, faster initial page loads, or both. SSR means the HTML is generated on the server before it reaches the browser, which helps search engines index your content and users see something faster.
+- **Use SSR (Server-Side Rendering)** with Nuxt, the main meta‑framework in the Vue ecosystem, when you need better SEO, faster initial page loads, or both. SSR means the HTML is generated on the server before it reaches the browser, which helps search engines index your content and users see something faster.
 - **Target desktop or mobile** with the right ecosystem tools like Tauri or Capacitor when your product needs to go beyond the browser.
 
 This matters for beginners because it means you don't have to understand the entire ecosystem before you write your first line. The framework meets you where you are. Start with a script tag. Graduate to a full project setup when it makes sense. Nothing you learn in the simpler version is wasted.
@@ -159,7 +160,7 @@ You've probably heard people debate React vs Vue like it's a sports rivalry. Her
 
 **Angular** is an opinionated, batteries-included framework maintained by Google. It has strong TypeScript integration and works great for large enterprise teams with defined conventions. It also has a steeper learning curve than Vue or React — Angular tends to suit teams where consistency and structure matter more than speed-to-first-feature.
 
-**Vue 3** sits in a happy middle. It's a full framework with an official router (Vue Router) and state management library (Pinia), but it doesn't force you into them. It uses template syntax that feels like enhanced HTML, which makes it genuinely approachable for developers who aren't yet deep into JavaScript. If you're building something like a commercial platform, a dashboard, or a content-driven application and you want to move fast without fighting your tools, Vue tends to be the right call.
+**Vue 3** sits in a happy middle. It's a full framework with an official router (Vue Router) and state management library (Pinia), plus single‑file components that let you put template, logic, and styles together in one file. It uses template syntax that feels like enhanced HTML, which makes it genuinely approachable for developers who aren't yet deep into JavaScript. If you're building something like a commercial platform, a dashboard, or a content-driven application and you want to move fast without fighting your tools, Vue tends to be a very strong call.
 
 None of those comparisons are meant to talk you out of learning other frameworks. But if you want something that's readable from day one, feels like the web you already know, and scales with you as you grow — Vue is worth your time.
 
@@ -169,14 +170,14 @@ None of those comparisons are meant to talk you out of learning other frameworks
 
 If you've searched "learn Vue" before and landed on older tutorials, you've probably seen Vue 2 code without knowing it. The two versions look similar on the surface but are meaningfully different under the hood.
 
-Vue 3 was a full rewrite, released in 2020. The headline changes that matter for you as a learner:
+Vue 3 was a major rewrite of the core, released as the next major version after Vue 2. The headline changes that matter for you as a learner:
 
 - **The Composition API** is a new way to organize component logic that ships natively in Vue 3. It's more flexible than Vue 2's Options API and scales better as your components grow more complex. (More on this in a moment.)
-- **Better TypeScript support** — Vue 3 was rewritten with TypeScript from the ground up, which means the type inference actually works well without a lot of manual configuration.
-- **Performance improvements** — Vue 3's virtual DOM was rewritten to be faster, and the bundle size is smaller than Vue 2.
-- **`<script setup>`** is a syntax sugar introduced in Vue 3 that removes a lot of boilerplate from the Composition API. It's now the recommended way to write Vue components.
+- **Better TypeScript support** — Vue 3's core is written in TypeScript, which means the type inference actually works well without a lot of manual configuration.
+- **Performance improvements** — Vue 3's virtual DOM and compiler were rewritten to be faster and more efficient, and the bundle size is smaller than Vue 2 in many cases.
+- **`<script setup>`** is syntax sugar introduced for single‑file components in Vue 3 that removes a lot of boilerplate from the Composition API. It's now the recommended way to write Vue components when using the Composition API.
 
-Vue 2 reached end-of-life at the end of 2023, which means no more security patches or updates. The ecosystem has fully moved on. If you're starting fresh, you're starting with Vue 3 — and that's actually the right time to learn it. The tooling is mature, the documentation is excellent, and there are no more "should I learn 2 or 3?" debates to slow you down.
+Vue 2 has reached end-of-life and is no longer actively maintained, so it's not recommended for new projects. The ecosystem has fully moved on. If you're starting fresh, you should start with Vue 3 — and now is actually the right time to learn it. The tooling has matured, the documentation is excellent, and there are no more "should I learn 2 or 3?" debates to slow you down.
 
 ---
 
@@ -201,22 +202,30 @@ export default {
 }
 ```
 
-It's structured, easy to scan, and great for beginners or smaller components.
+It's structured, easy to scan, and great for beginners or smaller components. The important part: the Options API is still fully supported in Vue 3 and is not deprecated; it remains a solid choice for many low-to-medium-complexity components.
 
-**Composition API** is the modern approach introduced in Vue 3. Instead of organizing by option type, you organize by feature — all the logic for one concern lives together:
+**Composition API** is the modern approach introduced in Vue 3. Instead of organizing by option type, you organize by feature — all the logic for one concern lives together. The recommended way to use it in single‑file components is with `<script setup>`:
 
-```js
+```vue
+<script setup>
 import { ref } from 'vue'
 
 const message = ref('Hello, Vue!')
 function greet() {
   alert(message.value)
 }
+</script>
+
+<template>
+  <button @click="greet">
+    {{ message }}
+  </button>
+</template>
 ```
 
-The Composition API is more flexible and scales better in larger applications. It's also the approach you'll see recommended for new Vue 3 projects.
+Here, `ref` makes `message` reactive, and everything you declare in `<script setup>` is directly usable in the template without an explicit `return`. The Composition API is more flexible and scales better in larger applications, and it's the approach you'll see recommended for most new Vue 3 projects.
 
-Throughout this series, we'll primarily use the Composition API — specifically with `<script setup>`, which keeps the syntax clean. Don't worry if that doesn't make sense yet. It will by Article 3.
+Throughout this series, we'll primarily use the Composition API — specifically with `<script setup>`, which keeps the syntax clean. Don't worry if that doesn't make sense yet. It should by Article 3.
 
 ---
 
@@ -228,11 +237,11 @@ Before we dive into code in the next article, make sure you're comfortable with:
 - **Basic CSS** — applying styles, understanding selectors
 - **Basic JavaScript** — variables, functions, arrays, and objects
 
-Here's the real talk on that list: "comfortable" doesn't mean "expert." It means you can read a code example and follow what's happening, even if you couldn't write it from memory. You don't need to know what a closure is. You don't need to understand the event loop. But if you're hitting unknown words in every paragraph of a JavaScript tutorial, spend a week there first and come back. You'll move faster, not slower.
+Here's the real talk on that list: "comfortable" doesn't mean "expert." It means you can read a code example and follow what's happening, even if you couldn't write it from memory. You don't need to know what a closure is. You don't need to understand the event loop. But if you're hitting unknown words in every paragraph of a JavaScript tutorial, spend a bit more time there first and come back. You'll move faster, not slower.
 
-And if you've been sitting on "I'll start when I know enough" — that moment doesn't come on its own. At some point you have to write something that half-works, figure out why, and build from there. That's not a beginner problem. That's just how this works.
+And if you've been sitting on "I'll start when I know enough" — that moment doesn't come on its own. At some point you have to write something that half-works, figure out why, and build from there. That's not a beginner problem — it happens to all of us. That's just how this works.
 
-Progress over perfection. Let's build something.
+Progress over perfection. Let's go build something.
 
 ---
 
@@ -240,6 +249,6 @@ Progress over perfection. Let's build something.
 
 In Article 2, we're going from theory to code. We'll scaffold a real Vue 3 project, walk through what each file does, and write your first reactive component from scratch.
 
-*This is Part 1 of the Vue 3 Fundamentals series. Sources: Vue.js Official Docs, Vue School and https://www.w3schools.com/.*
+*This is Part 1 of the Vue 3 Fundamentals series. Sources: [Vue.js Official Docs](https://vuejs.org), [Vue.js GitHub](https://github.com/vuejs/core), [Vue School](https://vueschool.io), [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Frameworks_libraries/Vue_getting_started), and [W3Schools](https://www.w3schools.com/).*
 
 ---
