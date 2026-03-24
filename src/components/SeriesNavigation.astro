@@ -1,41 +1,15 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { getCollection } from 'astro:content';
 
 interface Props {
-  currentPost: CollectionEntry<'blog'>;
+  seriesName: string;
+  currentPart: number;
+  totalParts: number;
+  previousPost: CollectionEntry<'blog'> | null;
+  nextPost: CollectionEntry<'blog'> | null;
 }
 
-const { currentPost } = Astro.props;
-const series = currentPost.data.series;
-
-// If no series, don't render anything
-if (!series) {
-  return null;
-}
-
-// Get all posts in this series
-const allBlogPosts = await getCollection('blog', ({ data }) => {
-  return !data.draft && data.publishDate < new Date() && data.series?.name === series.name;
-});
-
-// Sort by series order
-const seriesPosts = allBlogPosts.sort((a, b) => {
-  return (a.data.series?.order || 0) - (b.data.series?.order || 0);
-});
-
-// Find previous and next posts
-const currentIndex = seriesPosts.findIndex((post) => post.slug === currentPost.slug);
-
-// If the current post isn't in the filtered/sorted series list, don't render navigation
-if (currentIndex === -1) {
-  return null;
-}
-const previousPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
-const nextPost = currentIndex < seriesPosts.length - 1 ? seriesPosts[currentIndex + 1] : null;
-
-const totalParts = seriesPosts.length;
-const currentPart = series.order;
+const { seriesName, currentPart, totalParts, previousPost, nextPost } = Astro.props;
 ---
 
 <div class='series-navigation-wrapper my-8'>
@@ -63,10 +37,10 @@ const currentPart = series.order;
           Part {currentPart} of {totalParts}
         </p>
         <h3 class='text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1'>
-          {series.name}
+          {seriesName}
         </h3>
         <p class='text-slate-600 dark:text-slate-300 mt-2'>
-          This article is part of the <strong>{series.name}</strong> series.
+          This article is part of the <strong>{seriesName}</strong> series.
         </p>
       </div>
     </div>
@@ -150,7 +124,7 @@ const currentPart = series.order;
   <!-- View All Articles in Series -->
   <div class='mt-4'>
     <a
-      href={`/series/${encodeURIComponent(series.name.toLowerCase().replace(/\s+/g, '-'))}`}
+      href={`/series/${encodeURIComponent(seriesName.toLowerCase().replace(/\s+/g, '-'))}`}
       class='inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium'>
       <svg
         xmlns='http://www.w3.org/2000/svg'

@@ -65,6 +65,31 @@ const keywords = entry.data.keywords || entry.data.tags;
 // external network calls during prerender/ISR.
 const shortUrl = postUrl;
 
+// Compute series navigation once — passed as props to both SeriesNavigation instances
+let seriesNavProps: {
+  seriesName: string;
+  currentPart: number;
+  totalParts: number;
+  previousPost: typeof entry | null;
+  nextPost: typeof entry | null;
+} | null = null;
+
+if (entry.data.series) {
+  const seriesName = entry.data.series.name;
+  const allSeriesPosts = (await getCollection('blog', ({ data }) =>
+    !data.draft && data.series?.name === seriesName
+  )).sort((a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0));
+
+  const currentIndex = allSeriesPosts.findIndex((p) => p.slug === entry.slug);
+  seriesNavProps = {
+    seriesName,
+    currentPart: entry.data.series.order,
+    totalParts: allSeriesPosts.length,
+    previousPost: currentIndex > 0 ? allSeriesPosts[currentIndex - 1] : null,
+    nextPost: currentIndex < allSeriesPosts.length - 1 ? allSeriesPosts[currentIndex + 1] : null,
+  };
+}
+
 const seoConfig = {
   title: seoTitle,
   description: seoDescription,
@@ -302,7 +327,7 @@ const seoConfig = {
     </div>
 
     <!-- Series Navigation (if part of a series) -->
-    {entry.data.series && <SeriesNavigation currentPost={entry} />}
+    {seriesNavProps && <SeriesNavigation {...seriesNavProps} />}
 
     <div
       class='mx-auto prose prose-lg mt-6 max-w-4xl text-slate-500 dark:text-slate-400 prose-headings:text-slate-500 prose-headings:dark:text-slate-400 prose-p:text-slate-500 prose-p:dark:text-slate-400 prose-strong:text-slate-500 prose-strong:dark:text-slate-400 prose-em:text-slate-500 prose-em:dark:text-slate-400 prose-a:text-blue-600 prose-a:dark:text-blue-400 prose-code:text-slate-500 prose-code:dark:text-slate-400 prose-img:mx-auto'>
@@ -312,7 +337,7 @@ const seoConfig = {
     </div>
 
     <!-- Series Navigation at bottom (if part of a series) -->
-    {entry.data.series && <SeriesNavigation currentPost={entry} />}
+    {seriesNavProps && <SeriesNavigation {...seriesNavProps} />}
 
     <!-- Article navigation and sharing -->
     <div
