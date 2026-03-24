@@ -50,11 +50,6 @@ blogEntriesWithReadingTime.forEach((post) => {
   }
 });
 
-// Sort each series by order
-seriesMap.forEach((posts) => {
-  posts.sort((a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0));
-});
-
 // Get unique series names
 const allSeries = Array.from(seriesMap.keys());
 
