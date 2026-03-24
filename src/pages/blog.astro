@@ -38,6 +38,21 @@ const blogEntriesWithReadingTime = await Promise.all(
   })
 );
 
+// Group posts by series for quick lookups
+const seriesMap = new Map<string, typeof blogEntriesWithReadingTime>();
+blogEntriesWithReadingTime.forEach((post) => {
+  if (post.data.series?.name) {
+    const seriesName = post.data.series.name;
+    if (!seriesMap.has(seriesName)) {
+      seriesMap.set(seriesName, []);
+    }
+    seriesMap.get(seriesName)!.push(post);
+  }
+});
+
+// Get unique series names
+const allSeries = Array.from(seriesMap.keys());
+
 // SEO configuration for the blog page
 const seoConfig = {
   title: 'My MetaData - Blog & Learning Notes',
@@ -142,7 +157,7 @@ const seoConfig = {
       blogPost: blogEntriesWithReadingTime.slice(0, 10).map((post) => ({
         '@type': 'BlogPosting',
         headline: post.data.title,
-        description: post.data.description || post.data.excerpt,
+        description: post.data.description || post.data.snippet,
         url: new URL(`blog/${post.slug}`, Astro.site).toString(),
         datePublished: post.data.publishDate.toISOString(),
         dateModified:
@@ -185,20 +200,39 @@ const seoConfig = {
               placeholder='Search by title or tags...'
             />
           </div>
-          <div>
-            <label
-              for='sort'
-              class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
-              >Sort by Date</label
-            >
-            <select
-              id='sort'
-              class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
-              <option value='newest'>Newest First</option>
-              <option value='oldest'>Oldest First</option>
-              <option value='title-asc'>Title (A-Z)</option>
-              <option value='title-desc'>Title (Z-A)</option>
-            </select>
+          <div class='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <div>
+              <label
+                for='series-filter'
+                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+                >Filter by Series</label
+              >
+              <select
+                id='series-filter'
+                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
+                <option value=''>All Posts</option>
+                {
+                  allSeries.map((series) => (
+                    <option value={series}>{series}</option>
+                  ))
+                }
+              </select>
+            </div>
+            <div>
+              <label
+                for='sort'
+                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+                >Sort by Date</label
+              >
+              <select
+                id='sort'
+                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
+                <option value='newest'>Newest First</option>
+                <option value='oldest'>Oldest First</option>
+                <option value='title-asc'>Title (A-Z)</option>
+                <option value='title-desc'>Title (Z-A)</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -206,7 +240,10 @@ const seoConfig = {
       <div id='blog-posts' class='grid gap-16 max-w-6xl mx-auto'>
         {
           blogEntriesWithReadingTime.map((blogPostEntry, index) => (
-            <li class='blog-post-item' style='list-style: none;'>
+            <li
+              class='blog-post-item'
+              style='list-style: none;'
+              data-series={blogPostEntry.data.series?.name || ''}>
               <a href={`/blog/${blogPostEntry.slug}`}>
                 <div class='grid md:grid-cols-2 gap-5 md:gap-10 items-center'>
                   <Picture
@@ -222,6 +259,16 @@ const seoConfig = {
                     class='w-full rounded-md object-cover object-center bg-white'
                   />
                   <div>
+                    {blogPostEntry.data.series && (
+                      <div class='mb-2'>
+                        <span class='inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-semibold'>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                          </svg>
+                          {blogPostEntry.data.series.name} - Part {blogPostEntry.data.series.order}
+                        </span>
+                      </div>
+                    )}
                     <h2 class='text-3xl font-semibold leading-snug tracking-tight mt-1 '>
                       {blogPostEntry.data.title}
                     </h2>
@@ -322,6 +369,7 @@ const seoConfig = {
         const blogPosts = document.getElementById('blog-posts');
         const searchInput = document.getElementById('search');
         const sortSelect = document.getElementById('sort');
+        const seriesFilter = document.getElementById('series-filter');
 
         // Pagination state
         let currentPage = 1;
@@ -439,14 +487,22 @@ const seoConfig = {
         function filterPosts() {
           const searchTerm = searchInput.value.toLowerCase().trim();
           const sortBy = sortSelect.value || "newest";
+          const selectedSeries = seriesFilter?.value || '';
 
           // Get all post elements
           const posts = Array.from(
             document.querySelectorAll('#blog-posts > li')
           );
 
-          // Filter posts by title or tags
+          // Filter posts by title, tags, and series
           let filteredPosts = posts.filter((post) => {
+            // Filter by series if selected
+            if (selectedSeries) {
+              const postSeries = post.getAttribute('data-series') || '';
+              if (postSeries !== selectedSeries) return false;
+            }
+
+            // Filter by search term
             if (!searchTerm) return true;
 
             const titleEl = post.querySelector('h2');
@@ -517,6 +573,9 @@ const seoConfig = {
         // Add event listeners
         searchInput.addEventListener('input', debouncedFilterPosts);
         sortSelect.addEventListener('change', filterPosts);
+        if (seriesFilter) {
+          seriesFilter.addEventListener('change', filterPosts);
+        }
 
         // Pagination button event listeners
         const prevBtn = document.getElementById('prev-page');

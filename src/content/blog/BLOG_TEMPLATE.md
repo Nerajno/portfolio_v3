@@ -77,6 +77,21 @@ author: "Nerando Johnson"
 tags: [tag1, tag2, tag3, tag4, tag5]
 
 # ============================================================================
+# SERIES FIELDS (Optional - for multi-part blog series)
+# ============================================================================
+# Uncomment these fields if this post is part of a series
+# series:
+#   name: "Series Name"  # e.g., "Vue 3 Fundamentals"
+#   order: 1  # Position in the series (1, 2, 3, etc.)
+#
+# Features when series is enabled:
+# - Automatic prev/next navigation
+# - Progress indicator
+# - Series landing page
+# - Filtering on blog listing page
+# - Series badge on blog cards
+
+# ============================================================================
 # KEYWORDS (For SEO and internal search)
 # ============================================================================
 keywords: [

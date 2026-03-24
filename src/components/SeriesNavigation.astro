@@ -1,0 +1,144 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  seriesName: string;
+  currentPart: number;
+  totalParts: number;
+  previousPost: CollectionEntry<'blog'> | null;
+  nextPost: CollectionEntry<'blog'> | null;
+}
+
+const { seriesName, currentPart, totalParts, previousPost, nextPost } = Astro.props;
+---
+
+<div class='series-navigation-wrapper my-8'>
+  <!-- Series Header -->
+  <div
+    class='bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700 rounded-lg p-6 border border-blue-200 dark:border-slate-600'>
+    <div class='flex items-start gap-4'>
+      <div class='flex-shrink-0'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          class='h-8 w-8 text-blue-600 dark:text-blue-400'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke='currentColor'>
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            stroke-width='2'
+            d='M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+          ></path>
+        </svg>
+      </div>
+      <div class='flex-grow'>
+        <p class='text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide'>
+          Part {currentPart} of {totalParts}
+        </p>
+        <h3 class='text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1'>
+          {seriesName}
+        </h3>
+        <p class='text-slate-600 dark:text-slate-300 mt-2'>
+          This article is part of the <strong>{seriesName}</strong> series.
+        </p>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class='mt-4'>
+      <div class='flex justify-between text-sm text-slate-600 dark:text-slate-400 mb-2'>
+        <span>Progress</span>
+        <span>{Math.round((currentPart / totalParts) * 100)}% Complete</span>
+      </div>
+      <div class='w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2.5'>
+        <div
+          class='bg-blue-600 dark:bg-blue-500 h-2.5 rounded-full transition-all duration-300'
+          style={`width: ${(currentPart / totalParts) * 100}%`}>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Previous/Next Navigation -->
+  <div class='grid grid-cols-1 md:grid-cols-2 gap-4 mt-6'>
+    {
+      previousPost ? (
+        <a
+          href={`/blog/${previousPost.slug}`}
+          class='group flex items-center gap-3 p-4 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition-all'>
+          <div class='flex-shrink-0'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              class='h-6 w-6 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'>
+              <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 19l-7-7 7-7' />
+            </svg>
+          </div>
+          <div class='flex-grow min-w-0'>
+            <p class='text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide'>
+              Previous
+            </p>
+            <p class='text-sm font-semibold text-slate-700 dark:text-slate-200 truncate group-hover:text-blue-600 dark:group-hover:text-blue-400'>
+              {previousPost.data.title}
+            </p>
+          </div>
+        </a>
+      ) : (
+        <div />
+      )
+    }
+
+    {
+      nextPost ? (
+        <a
+          href={`/blog/${nextPost.slug}`}
+          class='group flex items-center gap-3 p-4 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition-all md:justify-self-end'>
+          <div class='flex-grow min-w-0 text-right'>
+            <p class='text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide'>
+              Next
+            </p>
+            <p class='text-sm font-semibold text-slate-700 dark:text-slate-200 truncate group-hover:text-blue-600 dark:group-hover:text-blue-400'>
+              {nextPost.data.title}
+            </p>
+          </div>
+          <div class='flex-shrink-0'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              class='h-6 w-6 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'>
+              <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7' />
+            </svg>
+          </div>
+        </a>
+      ) : (
+        <div />
+      )
+    }
+  </div>
+
+  <!-- View All Articles in Series -->
+  <div class='mt-4'>
+    <a
+      href={`/series/${encodeURIComponent(seriesName.toLowerCase().replace(/\s+/g, '-'))}`}
+      class='inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium'>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        class='h-4 w-4'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke='currentColor'>
+        <path
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          stroke-width='2'
+          d='M4 6h16M4 10h16M4 14h16M4 18h16'></path>
+      </svg>
+      View all articles in this series
+    </a>
+  </div>
+</div>
