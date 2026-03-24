@@ -16,7 +16,7 @@ if (!series) {
 
 // Get all posts in this series
 const allBlogPosts = await getCollection('blog', ({ data }) => {
-  return !data.draft && data.series?.name === series.name;
+  return !data.draft && data.publishDate < new Date() && data.series?.name === series.name;
 });
 
 // Sort by series order
