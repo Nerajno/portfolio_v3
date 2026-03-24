@@ -81,13 +81,19 @@ if (entry.data.series) {
   )).sort((a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0));
 
   const currentIndex = allSeriesPosts.findIndex((p) => p.slug === entry.slug);
-  seriesNavProps = {
-    seriesName,
-    currentPart: entry.data.series.order,
-    totalParts: allSeriesPosts.length,
-    previousPost: currentIndex > 0 ? allSeriesPosts[currentIndex - 1] : null,
-    nextPost: currentIndex < allSeriesPosts.length - 1 ? allSeriesPosts[currentIndex + 1] : null,
-  };
+
+  if (currentIndex !== -1) {
+    seriesNavProps = {
+      seriesName,
+      currentPart: entry.data.series.order,
+      totalParts: allSeriesPosts.length,
+      previousPost: currentIndex > 0 ? allSeriesPosts[currentIndex - 1] : null,
+      nextPost:
+        currentIndex < allSeriesPosts.length - 1
+          ? allSeriesPosts[currentIndex + 1]
+          : null,
+    };
+  }
 }
 
 const seoConfig = {
