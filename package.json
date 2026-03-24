@@ -49,8 +49,10 @@
     "npm-check": "^6.0.1",
     "pinia": "^2.3.0",
     "reading-time": "^1.5.0",
+    "rehype-pretty-code": "^0.14.3",
     "reload": "^3.3.0",
     "sharp": "^0.33.5",
+    "shiki": "^4.0.2",
     "simple-icons-astro": "^14.3.0",
     "tinyurl": "^1.1.7"
   },

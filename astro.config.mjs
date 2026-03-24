@@ -8,6 +8,7 @@ import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
 import clarityIntegration from 'astro-microsoft-clarity-integration';
 import react from "@astrojs/react";
+import rehypePrettyCode from "rehype-pretty-code";
 
 import db from "@astrojs/db";
 
@@ -18,7 +19,21 @@ export default defineConfig({
   integrations: [
     react(),
     tailwind(),
-    mdx(),
+    mdx({
+      syntaxHighlight: false,
+      rehypePlugins: [
+        [
+          rehypePrettyCode,
+          {
+            theme: {
+              dark: "github-dark",
+              light: "github-light",
+            },
+            keepBackground: true,
+          },
+        ],
+      ],
+    }),
     sitemap({
       i18n: {
         defaultLocale: 'en',
@@ -91,9 +106,19 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [remarkReadingTime],
-    shikiConfig: {
-      theme: 'github-dark',
-    },
+    syntaxHighlight: false,
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: {
+            dark: "github-dark",
+            light: "github-light",
+          },
+          keepBackground: true,
+        },
+      ],
+    ],
   },
   vite: {
     ssr: {
