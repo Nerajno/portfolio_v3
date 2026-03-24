@@ -77,7 +77,9 @@ let seriesNavProps: {
 if (entry.data.series) {
   const seriesName = entry.data.series.name;
   const allSeriesPosts = (await getCollection('blog', ({ data }) =>
-    !data.draft && data.series?.name === seriesName
+    !data.draft &&
+    data.publishDate < new Date() &&
+    data.series?.name === seriesName
   )).sort((a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0));
 
   const currentIndex = allSeriesPosts.findIndex((p) => p.slug === entry.slug);
