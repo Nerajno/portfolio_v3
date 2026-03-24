@@ -26,6 +26,11 @@ const seriesPosts = allBlogPosts.sort((a, b) => {
 
 // Find previous and next posts
 const currentIndex = seriesPosts.findIndex((post) => post.slug === currentPost.slug);
+
+// If the current post isn't in the filtered/sorted series list, don't render navigation
+if (currentIndex === -1) {
+  return null;
+}
 const previousPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
 const nextPost = currentIndex < seriesPosts.length - 1 ? seriesPosts[currentIndex + 1] : null;
 
