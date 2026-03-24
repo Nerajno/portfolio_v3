@@ -10,7 +10,8 @@ export const prerender = true;
 
 export async function getStaticPaths() {
   const allBlogPosts = await getCollection('blog', ({ data }) => {
-    return !data.draft && data.series;
+    const now = new Date();
+    return !data.draft && data.series && data.publishDate && data.publishDate < now;
   });
 
   // Group posts by series
