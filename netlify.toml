@@ -1,9 +1,10 @@
-NPM_VERSION=9.8.1
-# NODE_VERSION = "20"
-
 [build]
   command = "astro build"
   publish = "dist"
+
+[build.environment]
+  NPM_VERSION = "9.8.1"
+  # NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
