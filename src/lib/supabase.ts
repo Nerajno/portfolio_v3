@@ -214,22 +214,17 @@ export async function getViewCount(slug: string): Promise<number> {
  */
 export async function getAllViewCounts(): Promise<Record<string, number>> {
   try {
-    // Single query to get counts for all slugs
-    // Uses SQL GROUP BY to count distinct device_ids per slug
     const { data, error } = await supabase
-      .from('post_views')
-      .select('post_slug')
-      .order('post_slug');
+      .rpc('get_all_view_counts');
 
     if (error) {
       console.error('Error fetching view counts:', error);
       return {};
     }
 
-    // Count unique device_ids per slug
     const viewCounts: Record<string, number> = {};
-    data?.forEach(item => {
-      viewCounts[item.post_slug] = (viewCounts[item.post_slug] || 0) + 1;
+    data?.forEach((item: { slug: string; count: number }) => {
+      viewCounts[item.slug] = item.count;
     });
 
     return viewCounts;
