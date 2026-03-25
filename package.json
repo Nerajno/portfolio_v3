@@ -82,6 +82,7 @@
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.60.0",
-    "@esbuild/linux-x64": "0.25.5"
+    "@esbuild/linux-x64": "0.25.5",
+    "@libsql/linux-x64-gnu": "0.5.17"
   }
 }
