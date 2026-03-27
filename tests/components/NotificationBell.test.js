@@ -210,7 +210,7 @@ describe('filterPostsByDismissal – popover list filtering', () => {
     expect(filterPostsByDismissal(posts, null)).toHaveLength(3);
   });
 
-  // Fix #5 — corrected description: input is empty string, not null
+  // Ensure empty string is treated like no dismissal (same as null/first-time visitor)
   it('returns all posts when lastDismissedStr is empty string (treated as falsy)', () => {
     expect(filterPostsByDismissal(posts, '')).toHaveLength(3);
   });
