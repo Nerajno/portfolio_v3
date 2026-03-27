@@ -238,7 +238,7 @@ describe('filterPostsByDismissal – popover list filtering', () => {
     expect(filterPostsByDismissal(posts, null)).toHaveLength(3);
   });
 
-  it('returns all posts when lastDismissedStr is null (empty string treated as falsy)', () => {
+  it('returns all posts when lastDismissedStr is empty string (treated as falsy)', () => {
     expect(filterPostsByDismissal(posts, '')).toHaveLength(3);
   });
 
