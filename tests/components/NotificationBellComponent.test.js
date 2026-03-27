@@ -131,7 +131,7 @@ describe('NotificationBell – glow reactivation after new publish', () => {
   });
 });
 
-describe('NotificationBell – badge/list count consistency (fix #1)', () => {
+describe('NotificationBell – badge/list count consistency', () => {
   // Verifies filterPostsByDismissal produces a consistent count for badge + list.
   const mockNow = new Date('2025-03-15T12:00:00Z');
 
