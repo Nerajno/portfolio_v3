@@ -17,7 +17,7 @@ const recentPosts = blogPosts
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 
 const mostRecentDate = recentPosts.length > 0 ? recentPosts[0].data.publishDate : null;
-const newItemCount = recentPosts.length;
+const newItemCount   = recentPosts.length;
 const mostRecentDateISO = mostRecentDate ? mostRecentDate.toISOString() : '';
 
 const recentPostsJSON = JSON.stringify(
@@ -39,10 +39,6 @@ const recentPostsJSON = JSON.stringify(
     class="sr-only"
   ></div>
 
-  <!--
-    Bell starts hidden; JS always removes hidden and sets the correct
-    state (active or up-to-date) — fixes bug #5.
-  -->
   <button
     id="notification-bell"
     type="button"
@@ -54,7 +50,7 @@ const recentPostsJSON = JSON.stringify(
     data-recent-posts={recentPostsJSON}
     data-active="false"
   >
-    <!-- Bell SVG — aria-hidden + focusable=false so button carries semantics -->
+    <!-- Bell SVG — aria-hidden + focusable=false; button carries all semantics -->
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5 pointer-events-none"
@@ -72,14 +68,14 @@ const recentPostsJSON = JSON.stringify(
       />
     </svg>
 
-    <!-- Count Badge — number only; aria-hidden, count announced via live region -->
+    <!-- Count Badge — number only; aria-hidden, announced via live region -->
     <span
       id="count-badge"
       class="hidden absolute top-0.5 right-0.5 min-w-[16px] h-[16px] flex items-center justify-center text-[9px] font-bold text-white bg-red-600 rounded-full px-1 border border-white dark:border-gray-800 pointer-events-none"
       aria-hidden="true"
     ></span>
 
-    <!-- Tooltip — role=tooltip + aria-describedby (SC 1.4.13, not title attr) -->
+    <!-- Tooltip — role=tooltip + aria-describedby (SC 1.4.13; not title attr) -->
     <span
       id="bell-tooltip"
       role="tooltip"
@@ -111,13 +107,11 @@ const recentPostsJSON = JSON.stringify(
 </div>
 
 <style>
-  /* ---- Citrus glow animation ---- */
   @keyframes bell-glow {
     0%, 100% { filter: drop-shadow(0 0 0px var(--color-citrus-400, #F5C518)); }
     50%       { filter: drop-shadow(0 0 8px var(--color-citrus-400, #F5C518)); }
   }
 
-  /* ---- Dismiss shake animation ---- */
   @keyframes bell-shake {
     0%, 100% { transform: rotate(0deg); }
     15%       { transform: rotate(12deg); }
@@ -127,7 +121,6 @@ const recentPostsJSON = JSON.stringify(
     75%       { transform: rotate(4deg); }
   }
 
-  /* Active: citrus colour */
   .bell-btn[data-active="true"] {
     color: var(--color-citrus-400, #F5C518);
   }
@@ -149,20 +142,18 @@ const recentPostsJSON = JSON.stringify(
     }
   }
 
-  /* Tooltip: show on hover or keyboard focus */
   .bell-btn:hover .bell-tooltip,
   .bell-btn:focus-visible .bell-tooltip {
     opacity: 1;
     visibility: visible;
   }
 
-  /* Fix #1 — SC 1.4.13: allow Escape to suppress tooltip without moving focus */
+  /* SC 1.4.13 — Escape suppresses tooltip without moving focus */
   .bell-btn.tooltip-suppressed .bell-tooltip {
     opacity: 0 !important;
     visibility: hidden !important;
   }
 
-  /* sr-only */
   .sr-only {
     position: absolute;
     width: 1px;
@@ -177,41 +168,22 @@ const recentPostsJSON = JSON.stringify(
 </style>
 
 <script>
-  // Fix #2 — plain JavaScript only; no TypeScript syntax in browser script blocks.
+  import {
+    escapeHtml,
+    formatRelativeDate,
+    filterPostsByDismissal,
+    SIX_DAYS_MS,
+    FORTY_EIGHT_HOURS_MS,
+  } from '../utils/notificationBellHelpers.js';
 
   var STORAGE_KEY_LAST_DISMISSED = 'portfolio_last_dismissed';
-  var SIX_DAYS_MS         = 6 * 24 * 60 * 60 * 1000;
-  var FORTY_EIGHT_HOURS_MS = 48 * 60 * 60 * 1000;
 
-  // Fix #3 — module-level AbortController so document listeners are torn down
-  // on every re-init (Astro page-load cycles) instead of accumulating.
+  // Module-level AbortController — torn down and replaced on every re-init so
+  // ALL listeners (document + bell + post links) are cleaned up between
+  // astro:page-load cycles (fixes duplicate-listener accumulation).
   var _docController = null;
 
-  // Fix #7 — escape untrusted content before inserting via innerHTML.
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  function formatRelativeDate(dateStr) {
-    var days = Math.floor((Date.now() - new Date(dateStr).getTime()) / 86400000);
-    if (days === 0) return 'today';
-    if (days === 1) return 'yesterday';
-    return days + ' days ago';
-  }
-
-  // Fix #6 — filter the popover list to posts newer than last dismiss.
-  function filterPostsByDismissal(posts, lastDismissedStr) {
-    if (!lastDismissedStr) return posts;
-    var cutoff = new Date(lastDismissedStr);
-    return posts.filter(function(p) { return new Date(p.pubDate) > cutoff; });
-  }
-
   function initNotificationBell() {
-    // Fix #3 — abort previous document-level listeners before adding new ones.
     if (_docController) _docController.abort();
     _docController = new AbortController();
     var signal = _docController.signal;
@@ -228,26 +200,25 @@ const recentPostsJSON = JSON.stringify(
 
     // ── Data from server ────────────────────────────────────────────────────
     var mostRecentDateStr = bell.dataset.mostRecentDate || '';
-    var newItemCount      = parseInt(bell.dataset.newItemCount || '0', 10);
     var recentPosts       = JSON.parse(bell.dataset.recentPosts || '[]');
+    var now               = new Date();
 
-    var now = new Date();
-
-    // Fix #5 — bell is always visible; newItemCount drives state, not visibility.
+    // Bell is always visible; state drives UX, not visibility.
     bell.classList.remove('hidden');
 
-    // ── Glow logic ──────────────────────────────────────────────────────────
-    // Fix #4 — removed unused portfolio_first_seen write.
+    // ── Glow + visible count ────────────────────────────────────────────────
     var lastDismissedStr = localStorage.getItem(STORAGE_KEY_LAST_DISMISSED);
-    var shouldGlow = false;
 
-    if (mostRecentDateStr && newItemCount > 0) {
+    // Fix: count badge and live-region use visible (undismissed) posts only.
+    var visiblePosts  = filterPostsByDismissal(recentPosts, lastDismissedStr);
+    var visibleCount  = visiblePosts.length;
+
+    var shouldGlow = false;
+    if (mostRecentDateStr && visibleCount > 0) {
       var mostRecentDate      = new Date(mostRecentDateStr);
       var timeSinceMostRecent = now.getTime() - mostRecentDate.getTime();
-
       if (timeSinceMostRecent < SIX_DAYS_MS) {
         if (!lastDismissedStr) {
-          // First-time visitor: glow only if content < 48 h old
           shouldGlow = timeSinceMostRecent < FORTY_EIGHT_HOURS_MS;
         } else {
           shouldGlow = mostRecentDate > new Date(lastDismissedStr);
@@ -255,9 +226,7 @@ const recentPostsJSON = JSON.stringify(
       }
     }
 
-    // ── Build popover list (filtered by dismissal — Fix #6) ─────────────────
-    var visiblePosts = filterPostsByDismissal(recentPosts, lastDismissedStr);
-
+    // ── Build popover list ──────────────────────────────────────────────────
     if (popoverList && popoverEmpty) {
       if (visiblePosts.length > 0) {
         popoverList.innerHTML = visiblePosts.map(function(p) {
@@ -268,7 +237,9 @@ const recentPostsJSON = JSON.stringify(
             ' hover:bg-gray-100 dark:hover:bg-gray-700' +
             ' focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">' +
             '<span class="font-medium">' + escapeHtml(p.title) + '</span>' +
-            '<span class="text-xs text-gray-500 dark:text-gray-400">' + formatRelativeDate(p.pubDate) + '</span>' +
+            '<span class="text-xs text-gray-500 dark:text-gray-400">' +
+              formatRelativeDate(p.pubDate) +
+            '</span>' +
             '</a>' +
             '</li>';
         }).join('');
@@ -279,7 +250,7 @@ const recentPostsJSON = JSON.stringify(
       }
     }
 
-    // ── UI helpers ──────────────────────────────────────────────────────────
+    // ── UI update ───────────────────────────────────────────────────────────
     function updateUI(active) {
       bell.dataset.active = active ? 'true' : 'false';
       bell.setAttribute('aria-label',
@@ -287,21 +258,21 @@ const recentPostsJSON = JSON.stringify(
       tooltip.textContent =
         active ? 'New content available!' : "You're up to date";
 
-      if (active && newItemCount > 0) {
-        badge.textContent = String(newItemCount);
+      if (active && visibleCount > 0) {
+        badge.textContent = String(visibleCount);
         badge.classList.remove('hidden');
       } else {
         badge.classList.add('hidden');
       }
 
       liveRegion.textContent = active
-        ? newItemCount + ' new post' + (newItemCount === 1 ? '' : 's') + ' available'
+        ? visibleCount + ' new post' + (visibleCount === 1 ? '' : 's') + ' available'
         : "You're up to date";
     }
 
     updateUI(shouldGlow);
 
-    // ── Popover state ───────────────────────────────────────────────────────
+    // ── Popover ─────────────────────────────────────────────────────────────
     var popoverOpen = false;
 
     function openPopover() {
@@ -326,7 +297,8 @@ const recentPostsJSON = JSON.stringify(
       }, 310);
     }
 
-    // ── Bell click ──────────────────────────────────────────────────────────
+    // ── All listeners scoped to signal (fixes accumulation on re-init) ──────
+
     bell.addEventListener('click', function() {
       if (popoverOpen) {
         closePopover();
@@ -334,9 +306,9 @@ const recentPostsJSON = JSON.stringify(
       } else {
         openPopover();
       }
-    });
+    }, { signal: signal });
 
-    // ── Bell keydown — Fix #1: Escape suppresses tooltip (SC 1.4.13) ────────
+    // SC 1.4.13 — Escape on bell suppresses tooltip without moving focus
     bell.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         if (popoverOpen) {
@@ -344,17 +316,19 @@ const recentPostsJSON = JSON.stringify(
           closePopover();
           if (bell.dataset.active === 'true') dismiss();
         } else {
-          // Suppress tooltip without moving focus
           bell.classList.add('tooltip-suppressed');
         }
       }
-    });
+    }, { signal: signal });
 
-    // Reset tooltip suppression when focus or pointer leaves the bell
-    bell.addEventListener('blur',       function() { bell.classList.remove('tooltip-suppressed'); });
-    bell.addEventListener('mouseenter', function() { bell.classList.remove('tooltip-suppressed'); });
+    bell.addEventListener('blur', function() {
+      bell.classList.remove('tooltip-suppressed');
+    }, { signal: signal });
 
-    // ── Document keydown — Fix #3: registered with AbortController signal ───
+    bell.addEventListener('mouseenter', function() {
+      bell.classList.remove('tooltip-suppressed');
+    }, { signal: signal });
+
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && popoverOpen) {
         e.preventDefault();
@@ -363,7 +337,6 @@ const recentPostsJSON = JSON.stringify(
       }
     }, { signal: signal });
 
-    // ── Outside click — Fix #3: AbortController signal ──────────────────────
     document.addEventListener('click', function(e) {
       if (!popoverOpen) return;
       if (!popover.contains(e.target) && !bell.contains(e.target)) {
@@ -372,13 +345,12 @@ const recentPostsJSON = JSON.stringify(
       }
     }, { signal: signal });
 
-    // ── Post link clicks → dismiss on read ──────────────────────────────────
     popover.querySelectorAll('.bell-post-link').forEach(function(link) {
       link.addEventListener('click', function() {
         localStorage.setItem(STORAGE_KEY_LAST_DISMISSED, new Date().toISOString());
         updateUI(false);
         closePopover(false);
-      });
+      }, { signal: signal });
     });
   }
 

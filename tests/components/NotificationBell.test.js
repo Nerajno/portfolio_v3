@@ -1,40 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-
-// ─── Pure helpers (mirrors the implementations in NotificationBell.astro) ────
-
-const SIX_DAYS_MS        = 6 * 24 * 60 * 60 * 1000;
-const FORTY_EIGHT_HOURS_MS = 48 * 60 * 60 * 1000;
-
-function shouldShowNotificationGlow(mostRecentDate, lastDismissedStr, now = new Date()) {
-  const timeSinceMostRecent = now.getTime() - mostRecentDate.getTime();
-  if (!lastDismissedStr) {
-    return timeSinceMostRecent < FORTY_EIGHT_HOURS_MS;
-  }
-  const isWithinSixDays    = timeSinceMostRecent < SIX_DAYS_MS;
-  const isNewerThanDismiss = mostRecentDate > new Date(lastDismissedStr);
-  return isWithinSixDays && isNewerThanDismiss;
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-function formatRelativeDate(dateStr, now = new Date()) {
-  const days = Math.floor((now.getTime() - new Date(dateStr).getTime()) / 86400000);
-  if (days === 0) return 'today';
-  if (days === 1) return 'yesterday';
-  return days + ' days ago';
-}
-
-function filterPostsByDismissal(posts, lastDismissedStr) {
-  if (!lastDismissedStr) return posts;
-  const cutoff = new Date(lastDismissedStr);
-  return posts.filter(p => new Date(p.pubDate) > cutoff);
-}
+import {
+  SIX_DAYS_MS,
+  FORTY_EIGHT_HOURS_MS,
+  escapeHtml,
+  formatRelativeDate,
+  filterPostsByDismissal,
+  shouldShowNotificationGlow,
+} from '../../src/utils/notificationBellHelpers.js';
 
 // ─── Date Logic ──────────────────────────────────────────────────────────────
 
@@ -165,7 +137,7 @@ describe('NotificationBell – Time Constants', () => {
   });
 });
 
-// ─── escapeHtml (Fix #7) ─────────────────────────────────────────────────────
+// ─── escapeHtml ───────────────────────────────────────────────────────────────
 
 describe('escapeHtml – XSS prevention', () => {
   it('escapes ampersands', () => {
@@ -203,16 +175,16 @@ describe('formatRelativeDate', () => {
   const mockNow = new Date('2025-03-15T12:00:00Z');
 
   it('returns "today" for a date within the last 24 hours', () => {
-    const d = new Date(mockNow.getTime() - 2 * 60 * 60 * 1000); // 2 h ago
+    const d = new Date(mockNow.getTime() - 2 * 60 * 60 * 1000);
     expect(formatRelativeDate(d.toISOString(), mockNow)).toBe('today');
   });
 
   it('returns "yesterday" for a date 1 day ago', () => {
-    const d = new Date(mockNow.getTime() - 30 * 60 * 60 * 1000); // 30 h ago
+    const d = new Date(mockNow.getTime() - 30 * 60 * 60 * 1000);
     expect(formatRelativeDate(d.toISOString(), mockNow)).toBe('yesterday');
   });
 
-  it('returns "N days ago" for older dates', () => {
+  it('returns "3 days ago" for a 3-day-old post', () => {
     const d = new Date(mockNow.getTime() - 3 * 24 * 60 * 60 * 1000);
     expect(formatRelativeDate(d.toISOString(), mockNow)).toBe('3 days ago');
   });
@@ -223,39 +195,40 @@ describe('formatRelativeDate', () => {
   });
 });
 
-// ─── filterPostsByDismissal (Fix #6) ─────────────────────────────────────────
+// ─── filterPostsByDismissal ───────────────────────────────────────────────────
 
 describe('filterPostsByDismissal – popover list filtering', () => {
   const mockNow = new Date('2025-03-15T12:00:00Z');
 
   const posts = [
-    { title: 'Post A', slug: 'post-a', pubDate: new Date(mockNow.getTime() - 1 * 60 * 60 * 1000).toISOString() },  // 1 h ago
-    { title: 'Post B', slug: 'post-b', pubDate: new Date(mockNow.getTime() - 2 * 24 * 60 * 60 * 1000).toISOString() }, // 2 d ago
-    { title: 'Post C', slug: 'post-c', pubDate: new Date(mockNow.getTime() - 5 * 24 * 60 * 60 * 1000).toISOString() }, // 5 d ago
+    { title: 'Post A', slug: 'post-a', pubDate: new Date(mockNow.getTime() - 1 * 60 * 60 * 1000).toISOString() },
+    { title: 'Post B', slug: 'post-b', pubDate: new Date(mockNow.getTime() - 2 * 24 * 60 * 60 * 1000).toISOString() },
+    { title: 'Post C', slug: 'post-c', pubDate: new Date(mockNow.getTime() - 5 * 24 * 60 * 60 * 1000).toISOString() },
   ];
 
   it('returns all posts when lastDismissedStr is null (first-time visitor)', () => {
     expect(filterPostsByDismissal(posts, null)).toHaveLength(3);
   });
 
+  // Fix #5 — corrected description: input is empty string, not null
   it('returns all posts when lastDismissedStr is empty string (treated as falsy)', () => {
     expect(filterPostsByDismissal(posts, '')).toHaveLength(3);
   });
 
   it('returns only posts newer than the dismiss timestamp', () => {
-    const dismissed = new Date(mockNow.getTime() - 3 * 24 * 60 * 60 * 1000).toISOString(); // 3 d ago
+    const dismissed = new Date(mockNow.getTime() - 3 * 24 * 60 * 60 * 1000).toISOString();
     const result = filterPostsByDismissal(posts, dismissed);
     expect(result).toHaveLength(2);
     expect(result.map(p => p.slug)).toEqual(['post-a', 'post-b']);
   });
 
   it('returns empty array when all posts are older than the dismiss timestamp', () => {
-    const dismissed = new Date(mockNow.getTime() - 30 * 60 * 1000).toISOString(); // 30 min ago
+    const dismissed = new Date(mockNow.getTime() - 30 * 60 * 1000).toISOString();
     expect(filterPostsByDismissal(posts, dismissed)).toHaveLength(0);
   });
 
   it('returns all posts when dismiss timestamp is older than all posts', () => {
-    const dismissed = new Date(mockNow.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString(); // 7 d ago
+    const dismissed = new Date(mockNow.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
     expect(filterPostsByDismissal(posts, dismissed)).toHaveLength(3);
   });
 });
