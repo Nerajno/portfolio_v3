@@ -41,8 +41,16 @@ export function formatRelativeDate(dateStr, now = new Date()) {
  */
 export function filterPostsByDismissal(posts, lastDismissedStr) {
   if (!lastDismissedStr) return posts;
+
   const cutoff = new Date(lastDismissedStr);
-  return posts.filter(p => new Date(p.pubDate) > cutoff);
+  const cutoffTime = cutoff.getTime();
+
+  // Treat malformed or invalid dates as "no dismissal" to avoid hiding all posts.
+  if (Number.isNaN(cutoffTime)) {
+    return posts;
+  }
+
+  return posts.filter(p => new Date(p.pubDate).getTime() > cutoffTime);
 }
 
 /**
