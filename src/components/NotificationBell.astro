@@ -1,59 +1,65 @@
 ---
 import { getCollection } from 'astro:content';
 
-// Get the most recent content publish/update date
 const now = new Date();
+const SIX_DAYS_MS = 6 * 24 * 60 * 60 * 1000;
+
 const blogPosts = await getCollection('blog', ({ data }) => {
   if (data.draft) return false;
-  const publishDate = data.publishDate;
-  return publishDate && publishDate < now;
+  return data.publishDate && data.publishDate < now;
 });
-const mostRecentBlogDate = blogPosts.reduce((latest, post) => {
-  const publishDate = post.data.publishDate;
-  const updatedDate =
-    post.data.updatedDate && post.data.updatedDate < now
-      ? post.data.updatedDate
-      : null;
-  const postDate = updatedDate || publishDate;
-  return postDate && postDate > latest ? postDate : latest;
-}, new Date(0));
 
-// Calculate count of new items within 6 days
-const SIX_DAYS_MS = 6 * 24 * 60 * 60 * 1000;
-const recentItems = blogPosts.filter(post => {
-  const publishDate = post.data.publishDate;
-  const updatedDate =
-    post.data.updatedDate && post.data.updatedDate < now
-      ? post.data.updatedDate
-      : null;
-  const postDate = updatedDate || publishDate;
-  if (!postDate) return false;
-  const age = now.getTime() - postDate.getTime();
-  return age < SIX_DAYS_MS;
-});
-const newItemCount = recentItems.length;
+const recentPosts = blogPosts
+  .filter(post => {
+    const age = now.getTime() - post.data.publishDate.getTime();
+    return age < SIX_DAYS_MS;
+  })
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 
-// Convert to ISO string for client-side comparison
-const mostRecentDateISO = mostRecentBlogDate.toISOString();
+const mostRecentDate = recentPosts.length > 0 ? recentPosts[0].data.publishDate : null;
+const newItemCount = recentPosts.length;
+const mostRecentDateISO = mostRecentDate ? mostRecentDate.toISOString() : '';
+
+const recentPostsJSON = JSON.stringify(
+  recentPosts.map(p => ({
+    title: p.data.title,
+    slug: p.slug,
+    pubDate: p.data.publishDate.toISOString(),
+  }))
+);
 ---
 
 <div class="relative">
+  <!-- ARIA Live Region -->
+  <div
+    id="bell-live-region"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    class="sr-only"
+  ></div>
+
   <button
     id="notification-bell"
     type="button"
-    class="hidden relative p-0.5 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus:outline-none focus:ring-1 focus:ring-blue-500 rounded group"
+    class="bell-btn hidden relative inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-full text-gray-400 dark:text-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
     aria-label="Notifications, up to date"
+    aria-describedby="bell-tooltip"
     data-most-recent-date={mostRecentDateISO}
     data-new-item-count={newItemCount}
+    data-recent-posts={recentPostsJSON}
+    data-active="false"
   >
-    <!-- Bell Icon (Heroicons bell) - Smaller size -->
+    <!-- Bell SVG -->
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-4 w-4"
+      class="h-5 w-5 pointer-events-none"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
       stroke-width="2.5"
+      aria-hidden="true"
+      focusable="false"
     >
       <path
         stroke-linecap="round"
@@ -62,196 +68,288 @@ const mostRecentDateISO = mostRecentBlogDate.toISOString();
       />
     </svg>
 
-    <!-- Notification Dot (hidden by default, shown when there's new content) -->
+    <!-- Count Badge (aria-hidden — count announced via live region) -->
     <span
-      id="notification-dot"
-      class="hidden absolute -top-0.5 -right-0.5 h-2 w-2 bg-red-500 rounded-full"
+      id="count-badge"
+      class="hidden absolute top-0.5 right-0.5 min-w-[16px] h-[16px] flex items-center justify-center text-[9px] font-bold text-white bg-red-600 rounded-full px-1 border border-white dark:border-gray-800 pointer-events-none"
       aria-hidden="true"
-    >
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-    </span>
+    ></span>
 
-    <!-- Tooltip -->
+    <!-- Tooltip (SC 1.4.13 compliant — not title attribute) -->
     <span
-      id="notification-tooltip"
-      class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-white bg-gray-900 dark:bg-gray-700 rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap pointer-events-none z-50"
+      id="bell-tooltip"
       role="tooltip"
-    >
-      You're up to date
-    </span>
+      class="bell-tooltip absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-white bg-gray-900 dark:bg-gray-700 rounded shadow-lg opacity-0 invisible transition-all duration-200 whitespace-nowrap pointer-events-none z-50"
+    >You're up to date</span>
   </button>
 
-  <!-- Count Badge (shows when there are new items) -->
-  <span
-    id="count-badge"
-    class="hidden absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] flex items-center justify-center text-[10px] font-bold text-white bg-red-600 rounded-full px-1 border-2 border-white dark:border-gray-800"
-    aria-label={`${newItemCount} new items`}
+  <!-- Popover -->
+  <div
+    id="bell-popover"
+    role="dialog"
+    aria-labelledby="bell-popover-heading"
+    aria-modal="false"
+    class="hidden absolute right-0 top-full mt-2 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50"
   >
-    {newItemCount}
-  </span>
+    <div class="p-3">
+      <h2
+        id="bell-popover-heading"
+        class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2"
+        tabindex="-1"
+      >New Posts</h2>
+      <ul id="bell-popover-list" class="space-y-1"></ul>
+      <p
+        id="bell-popover-empty"
+        class="hidden text-sm text-gray-500 dark:text-gray-400 text-center py-2"
+      >You're up to date</p>
+    </div>
+  </div>
 </div>
 
 <style>
-  /* Shake animation for dismiss */
-  @keyframes shake {
-    0%, 100% { transform: rotate(0deg); }
-    10%, 30%, 50%, 70%, 90% { transform: rotate(-10deg); }
-    20%, 40%, 60%, 80% { transform: rotate(10deg); }
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .shake {
-      animation: shake 0.5s ease-in-out;
-    }
-  }
-
-  /* Reduced motion: just fade */
-  @media (prefers-reduced-motion: reduce) {
-    .shake {
-      animation: none;
-    }
-  }
-
-  /* Glow effect - pulsing animation on the notification dot */
-  @keyframes glow-pulse {
+  /* ---- Citrus glow animation ---- */
+  @keyframes bell-glow {
     0%, 100% {
-      opacity: 1;
-      transform: scale(1);
+      filter: drop-shadow(0 0 0px var(--color-citrus-400, #F5C518));
     }
     50% {
-      opacity: 0.6;
-      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px var(--color-citrus-400, #F5C518));
     }
   }
 
+  /* ---- Dismiss shake animation ---- */
+  @keyframes bell-shake {
+    0%, 100% { transform: rotate(0deg); }
+    15%       { transform: rotate(12deg); }
+    30%       { transform: rotate(-10deg); }
+    45%       { transform: rotate(8deg); }
+    60%       { transform: rotate(-6deg); }
+    75%       { transform: rotate(4deg); }
+  }
+
+  /* Active state: citrus colour */
+  .bell-btn[data-active="true"] {
+    color: var(--color-citrus-400, #F5C518);
+  }
+
   @media (prefers-reduced-motion: no-preference) {
-    #notification-dot:not(.hidden) {
-      animation: glow-pulse 2s ease-in-out infinite;
+    .bell-btn[data-active="true"] {
+      animation: bell-glow 2s ease-in-out infinite;
     }
+    .bell-btn.dismissing {
+      animation: bell-shake 300ms ease-in-out;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bell-btn[data-active="true"] {
+      animation: none;
+      filter: drop-shadow(0 0 4px var(--color-citrus-400, #F5C518));
+    }
+    .bell-btn.dismissing {
+      animation: none;
+      opacity: 0.5;
+      transition: opacity 200ms ease;
+    }
+  }
+
+  /* Tooltip: show on hover or keyboard focus */
+  .bell-btn:hover .bell-tooltip,
+  .bell-btn:focus-visible .bell-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* sr-only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 </style>
 
 <script>
-  const STORAGE_KEY = 'portfolio_last_seen_notification';
-  const SIX_DAYS_MS = 6 * 24 * 60 * 60 * 1000;
+  const STORAGE_KEY_FIRST_SEEN   = 'portfolio_first_seen';
+  const STORAGE_KEY_LAST_DISMISSED = 'portfolio_last_dismissed';
+  const SIX_DAYS_MS        = 6 * 24 * 60 * 60 * 1000;
   const FORTY_EIGHT_HOURS_MS = 48 * 60 * 60 * 1000;
 
+  function formatRelativeDate(dateStr: string): string {
+    const date = new Date(dateStr);
+    const diffMs = Date.now() - date.getTime();
+    const days = Math.floor(diffMs / (24 * 60 * 60 * 1000));
+    if (days === 0) return 'today';
+    if (days === 1) return 'yesterday';
+    return `${days} days ago`;
+  }
+
   function initNotificationBell() {
-    const bell = document.getElementById('notification-bell');
-    const dot = document.getElementById('notification-dot');
-    const tooltip = document.getElementById('notification-tooltip');
-    const countBadge = document.getElementById('count-badge');
+    const bell        = document.getElementById('notification-bell') as HTMLButtonElement | null;
+    const badge       = document.getElementById('count-badge');
+    const tooltip     = document.getElementById('bell-tooltip');
+    const popover     = document.getElementById('bell-popover');
+    const liveRegion  = document.getElementById('bell-live-region');
+    const popoverList = document.getElementById('bell-popover-list');
+    const popoverEmpty = document.getElementById('bell-popover-empty');
 
-    if (!bell || !dot || !tooltip || !countBadge) return;
-
-    const mostRecentDateStr = bell.getAttribute('data-most-recent-date');
-    const newItemCountStr = bell.getAttribute('data-new-item-count');
-    if (!mostRecentDateStr) return;
-
-    const newItemCount = parseInt(newItemCountStr || '0', 10);
-    const mostRecentDate = new Date(mostRecentDateStr);
-    const now = new Date();
-    const timeSinceMostRecent = now.getTime() - mostRecentDate.getTime();
-
-    // Check if content is within 6 days (bell visibility)
-    const isWithinSixDays = timeSinceMostRecent < SIX_DAYS_MS;
-
-    // If content is older than 6 days, hide the entire bell and badge
-    if (!isWithinSixDays) {
-      bell.classList.add('hidden');
-      countBadge.classList.add('hidden');
-      return;
-    }
-
-    // Show the bell since content is within 6 days
-    bell.classList.remove('hidden');
-
-    // Check localStorage for last seen timestamp
-    const lastSeenStr = localStorage.getItem(STORAGE_KEY);
-    const isFirstTimeVisitor = !lastSeenStr;
-
-    let shouldShowGlow = false;
-
-    if (isFirstTimeVisitor) {
-      // First-time visitor: show glow only if content is less than 48 hours old
-      shouldShowGlow = timeSinceMostRecent < FORTY_EIGHT_HOURS_MS;
-    } else {
-      // Returning visitor: show glow if content is within 6 days AND newer than last seen
-      const lastSeenDate = new Date(lastSeenStr);
-      const isNewerThanLastSeen = mostRecentDate > lastSeenDate;
-      shouldShowGlow = isWithinSixDays && isNewerThanLastSeen;
-    }
-
-    // Update UI based on whether to show glow
-    if (shouldShowGlow) {
-      dot.classList.remove('hidden');
-      bell.classList.remove('text-gray-400', 'dark:text-gray-600');
-      bell.classList.add('text-blue-600', 'dark:text-blue-400');
-      bell.setAttribute('aria-label', 'New content available');
-
-      // Update tooltip and show count badge
-      tooltip.textContent = 'New content available!';
-      if (newItemCount > 0) {
-        countBadge.textContent = newItemCount.toString();
-        countBadge.classList.remove('hidden');
-      }
-    } else {
-      dot.classList.add('hidden');
-      bell.classList.remove('text-blue-600', 'dark:text-blue-400');
-      bell.classList.add('text-gray-400', 'dark:text-gray-600');
-      bell.setAttribute('aria-label', 'Notifications, up to date');
-
-      // Update tooltip and hide count badge
-      tooltip.textContent = "You're up to date";
-      countBadge.classList.add('hidden');
-    }
-
-    // Handle dismiss on click
-    function handleDismiss() {
-      if (!bell || !dot || !tooltip || !countBadge) return; // Null guard
-
-      // Play shake animation
-      bell.classList.add('shake');
-
-      // Store current timestamp as last seen
-      localStorage.setItem(STORAGE_KEY, new Date().toISOString());
-
-      // Hide the dot, fade bell color, update tooltip, and hide badge after animation
-      setTimeout(() => {
-        if (!bell || !dot || !tooltip || !countBadge) return; // Null guard
-        dot.classList.add('hidden');
-        bell.classList.remove('text-blue-600', 'dark:text-blue-400');
-        bell.classList.add('text-gray-400', 'dark:text-gray-600');
-        bell.setAttribute('aria-label', 'Notifications, up to date');
-        tooltip.textContent = "You're up to date";
-        countBadge.classList.add('hidden');
-        bell.classList.remove('shake');
-      }, 500); // Match animation duration
-    }
-
-    if (bell.dataset.initialized === 'true') {
-      return;
-    }
-
+    if (!bell || !badge || !tooltip || !popover || !liveRegion) return;
+    if (bell.dataset.initialized === 'true') return;
     bell.dataset.initialized = 'true';
 
-    bell.addEventListener('click', handleDismiss);
-    bell.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleDismiss();
+    // ── Data from server ──────────────────────────────────────────────────
+    const mostRecentDateStr = bell.dataset.mostRecentDate ?? '';
+    const newItemCount      = parseInt(bell.dataset.newItemCount ?? '0', 10);
+    const recentPosts: Array<{ title: string; slug: string; pubDate: string }> =
+      JSON.parse(bell.dataset.recentPosts ?? '[]');
+
+    const now = new Date();
+
+    // Write first_seen on first ever visit
+    if (!localStorage.getItem(STORAGE_KEY_FIRST_SEEN)) {
+      localStorage.setItem(STORAGE_KEY_FIRST_SEEN, now.toISOString());
+    }
+
+    // Nothing recent → keep bell hidden
+    if (!mostRecentDateStr || newItemCount === 0) return;
+
+    const mostRecentDate      = new Date(mostRecentDateStr);
+    const timeSinceMostRecent = now.getTime() - mostRecentDate.getTime();
+
+    if (timeSinceMostRecent >= SIX_DAYS_MS) return;
+
+    bell.classList.remove('hidden');
+
+    // ── Glow logic ────────────────────────────────────────────────────────
+    const lastDismissedStr = localStorage.getItem(STORAGE_KEY_LAST_DISMISSED);
+    let shouldGlow: boolean;
+
+    if (!lastDismissedStr) {
+      // First-time visitor: glow only if content < 48 h old
+      shouldGlow = timeSinceMostRecent < FORTY_EIGHT_HOURS_MS;
+    } else {
+      shouldGlow = mostRecentDate > new Date(lastDismissedStr);
+    }
+
+    // ── Build popover list ────────────────────────────────────────────────
+    if (popoverList && popoverEmpty) {
+      if (recentPosts.length > 0) {
+        popoverList.innerHTML = recentPosts.map(p => `
+          <li>
+            <a
+              href="/blog/${p.slug}"
+              class="bell-post-link flex flex-col px-2 py-1.5 rounded text-sm
+                     text-gray-800 dark:text-gray-200
+                     hover:bg-gray-100 dark:hover:bg-gray-700
+                     focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            >
+              <span class="font-medium">${p.title}</span>
+              <span class="text-xs text-gray-500 dark:text-gray-400">${formatRelativeDate(p.pubDate)}</span>
+            </a>
+          </li>
+        `).join('');
+        popoverEmpty.classList.add('hidden');
+      } else {
+        popoverList.innerHTML = '';
+        popoverEmpty.classList.remove('hidden');
       }
+    }
+
+    // ── UI helpers ────────────────────────────────────────────────────────
+    function updateUI(active: boolean) {
+      bell!.dataset.active = active ? 'true' : 'false';
+      bell!.setAttribute('aria-label',
+        active ? 'New content available' : 'Notifications, up to date');
+      tooltip!.textContent =
+        active ? 'New content available!' : "You're up to date";
+
+      if (active && newItemCount > 0) {
+        badge!.textContent = String(newItemCount);
+        badge!.classList.remove('hidden');
+      } else {
+        badge!.classList.add('hidden');
+      }
+
+      liveRegion!.textContent = active
+        ? `${newItemCount} new post${newItemCount === 1 ? '' : 's'} available`
+        : "You're up to date";
+    }
+
+    updateUI(shouldGlow);
+
+    // ── Popover state ─────────────────────────────────────────────────────
+    let popoverOpen = false;
+
+    function openPopover() {
+      popoverOpen = true;
+      popover!.classList.remove('hidden');
+      const firstFocusable = popover!.querySelector<HTMLElement>('a, [tabindex="-1"]');
+      firstFocusable?.focus();
+    }
+
+    function closePopover(returnFocus = true) {
+      popoverOpen = false;
+      popover!.classList.add('hidden');
+      if (returnFocus) bell!.focus();
+    }
+
+    function dismiss() {
+      bell!.classList.add('dismissing');
+      localStorage.setItem(STORAGE_KEY_LAST_DISMISSED, new Date().toISOString());
+      setTimeout(() => {
+        bell!.classList.remove('dismissing');
+        updateUI(false);
+      }, 310);
+    }
+
+    // ── Bell click ────────────────────────────────────────────────────────
+    bell.addEventListener('click', () => {
+      if (popoverOpen) {
+        closePopover();
+        if (bell!.dataset.active === 'true') dismiss();
+      } else {
+        openPopover();
+      }
+    });
+
+    // ── Keyboard ──────────────────────────────────────────────────────────
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && popoverOpen) {
+        e.preventDefault();
+        closePopover();
+        if (bell!.dataset.active === 'true') dismiss();
+      }
+    });
+
+    // ── Outside click ─────────────────────────────────────────────────────
+    document.addEventListener('click', (e: MouseEvent) => {
+      if (!popoverOpen) return;
+      if (!popover!.contains(e.target as Node) && !bell!.contains(e.target as Node)) {
+        closePopover();
+        if (bell!.dataset.active === 'true') dismiss();
+      }
+    });
+
+    // ── Post link clicks → dismiss on read ───────────────────────────────
+    popover.querySelectorAll<HTMLElement>('.bell-post-link').forEach(link => {
+      link.addEventListener('click', () => {
+        localStorage.setItem(STORAGE_KEY_LAST_DISMISSED, new Date().toISOString());
+        updateUI(false);
+        closePopover(false);
+      });
     });
   }
 
-  // Initialize on page load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initNotificationBell);
   } else {
     initNotificationBell();
   }
 
-  // Re-initialize on navigation (for SPA-like behavior)
   document.addEventListener('astro:page-load', initNotificationBell);
 </script>
