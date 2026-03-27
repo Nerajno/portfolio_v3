@@ -65,7 +65,12 @@ export function shouldShowNotificationGlow(mostRecentDate, lastDismissedStr, now
   if (!lastDismissedStr) {
     return timeSinceMostRecent < FORTY_EIGHT_HOURS_MS;
   }
+  const lastDismissed = new Date(lastDismissedStr);
+  if (Number.isNaN(lastDismissed.getTime())) {
+    // Malformed stored timestamp: treat as first-time visitor.
+    return timeSinceMostRecent < FORTY_EIGHT_HOURS_MS;
+  }
   const isWithinSixDays    = timeSinceMostRecent < SIX_DAYS_MS;
-  const isNewerThanDismiss = mostRecentDate > new Date(lastDismissedStr);
+  const isNewerThanDismiss = mostRecentDate > lastDismissed;
   return isWithinSixDays && isNewerThanDismiss;
 }
