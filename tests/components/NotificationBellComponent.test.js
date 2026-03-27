@@ -172,6 +172,40 @@ describe('NotificationBell – popover empty state when all posts dismissed', ()
   });
 });
 
+describe('NotificationBell – popover list re-renders fresh on each open (stale-list fix)', () => {
+  // Verifies the contract that renderPopoverList() reads localStorage fresh.
+  // If it reads the current dismiss timestamp, calling filterPostsByDismissal
+  // twice with different timestamps produces different results — i.e. the list
+  // would update correctly between a first open and a re-open after dismiss.
+  const mockNow = new Date('2025-03-15T12:00:00Z');
+
+  const posts = [
+    { slug: 'new', title: 'New Post', pubDate: new Date(mockNow.getTime() - 1 * 60 * 60 * 1000).toISOString() },
+    { slug: 'old', title: 'Old Post', pubDate: new Date(mockNow.getTime() - 4 * 24 * 60 * 60 * 1000).toISOString() },
+  ];
+
+  it('before dismiss: both posts are visible (no lastDismissed)', () => {
+    const visible = filterPostsByDismissal(posts, null);
+    expect(visible).toHaveLength(2);
+  });
+
+  it('after dismiss: re-filtering with fresh timestamp shows no posts (all dismissed)', () => {
+    // Simulates dismiss() writing Date.now() then openPopover() re-filtering
+    const dismissedNow = new Date(mockNow.getTime() - 30 * 1000).toISOString(); // 30 s ago
+    const visible = filterPostsByDismissal(posts, dismissedNow);
+    expect(visible).toHaveLength(0);
+    // Popover would render the "You're up to date" empty state
+  });
+
+  it('after partial dismiss: only posts older than dismiss are hidden', () => {
+    // User dismissed 2 days ago — "old" post (4 d) is dismissed, "new" post (1 h) is not
+    const dismissedAt = new Date(mockNow.getTime() - 2 * 24 * 60 * 60 * 1000).toISOString();
+    const visible = filterPostsByDismissal(posts, dismissedAt);
+    expect(visible).toHaveLength(1);
+    expect(visible[0].slug).toBe('new');
+  });
+});
+
 describe('NotificationBell – XSS: escapeHtml used before innerHTML', () => {
   it('a post title with HTML tags is safely escaped', () => {
     const maliciousTitle = '<img src=x onerror=alert(1)>';

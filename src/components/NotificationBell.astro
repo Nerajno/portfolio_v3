@@ -226,27 +226,45 @@ const recentPostsJSON = JSON.stringify(
       }
     }
 
-    // ── Build popover list ──────────────────────────────────────────────────
-    if (popoverList && popoverEmpty) {
-      if (visiblePosts.length > 0) {
-        popoverList.innerHTML = visiblePosts.map(function(p) {
-          return '<li>' +
-            '<a href="/blog/' + escapeHtml(p.slug) + '"' +
-            ' class="bell-post-link flex flex-col px-2 py-1.5 rounded text-sm' +
-            ' text-gray-800 dark:text-gray-200' +
-            ' hover:bg-gray-100 dark:hover:bg-gray-700' +
-            ' focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">' +
-            '<span class="font-medium">' + escapeHtml(p.title) + '</span>' +
-            '<span class="text-xs text-gray-500 dark:text-gray-400">' +
-              formatRelativeDate(p.pubDate) +
-            '</span>' +
-            '</a>' +
-            '</li>';
-        }).join('');
-        popoverEmpty.classList.add('hidden');
-      } else {
-        popoverList.innerHTML = '';
-        popoverEmpty.classList.remove('hidden');
+    // ── Render popover list (called fresh on every open) ────────────────────
+    // Reads localStorage each time so dismissal in the same session is
+    // immediately reflected — visiblePosts computed once at init is stale
+    // after dismiss() updates portfolio_last_dismissed.
+    function renderPopoverList() {
+      var currentDismissed = localStorage.getItem(STORAGE_KEY_LAST_DISMISSED);
+      var currentVisible   = filterPostsByDismissal(recentPosts, currentDismissed);
+      // Keep visibleCount in sync so updateUI badge stays accurate
+      visibleCount = currentVisible.length;
+
+      if (popoverList && popoverEmpty) {
+        if (currentVisible.length > 0) {
+          popoverList.innerHTML = currentVisible.map(function(p) {
+            return '<li>' +
+              '<a href="/blog/' + escapeHtml(p.slug) + '"' +
+              ' class="bell-post-link flex flex-col px-2 py-1.5 rounded text-sm' +
+              ' text-gray-800 dark:text-gray-200' +
+              ' hover:bg-gray-100 dark:hover:bg-gray-700' +
+              ' focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">' +
+              '<span class="font-medium">' + escapeHtml(p.title) + '</span>' +
+              '<span class="text-xs text-gray-500 dark:text-gray-400">' +
+                formatRelativeDate(p.pubDate) +
+              '</span>' +
+              '</a>' +
+              '</li>';
+          }).join('');
+          // Re-attach post-link listeners; innerHTML rebuild clears old ones
+          popover.querySelectorAll('.bell-post-link').forEach(function(link) {
+            link.addEventListener('click', function() {
+              localStorage.setItem(STORAGE_KEY_LAST_DISMISSED, new Date().toISOString());
+              updateUI(false);
+              closePopover(false);
+            }, { signal: signal });
+          });
+          popoverEmpty.classList.add('hidden');
+        } else {
+          popoverList.innerHTML = '';
+          popoverEmpty.classList.remove('hidden');
+        }
       }
     }
 
@@ -276,6 +294,7 @@ const recentPostsJSON = JSON.stringify(
     var popoverOpen = false;
 
     function openPopover() {
+      renderPopoverList(); // always fresh — reflects latest localStorage state
       popoverOpen = true;
       popover.classList.remove('hidden');
       var firstFocusable = popover.querySelector('a, [tabindex="-1"]');
@@ -345,13 +364,6 @@ const recentPostsJSON = JSON.stringify(
       }
     }, { signal: signal });
 
-    popover.querySelectorAll('.bell-post-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        localStorage.setItem(STORAGE_KEY_LAST_DISMISSED, new Date().toISOString());
-        updateUI(false);
-        closePopover(false);
-      }, { signal: signal });
-    });
   }
 
   if (document.readyState === 'loading') {
