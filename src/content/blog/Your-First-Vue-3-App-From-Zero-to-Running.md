@@ -83,16 +83,16 @@ aiOptimization: {
 
 ---
 
-The best way to learn a framework isn't to read about it. It's to run something.
+The best way to learn a framework isn't to read about it. It's to build something with it.
 
 In this article, we're spinning up a real Vue 3 project — not a CDN snippet, not a playground — an actual scaffolded project with a file structure, a dev server, and hot module reloading. By the end of this, you'll have something running in your browser and a mental model for how Vue 3 projects are organized.
 
-Let's go.
+Here we go :
 
 
 
 ## Prerequisites
-
+<img src="https://media1.giphy.com/media/Jjw7Y3ZWNauyc/giphy.gif" alt="What you'll need before we start" width="960" />
 
 You'll need:
 - **Node.js** (v18 or higher recommended) — [nodejs.org](https://nodejs.org)
@@ -102,9 +102,8 @@ You'll need:
 That's it. No global installs required ahead of time.
 
 
-
 ## Scaffolding With `create-vue`
-
+<img src="https://media0.giphy.com/media/ZVik7pIoJFDjy/giphy.gif" alt="Let's get to work — scaffolding the project" width="960" />
 
 Vue's official scaffolding tool is called `create-vue`. It uses Vite under the hood, which means your dev server starts fast and your builds are quick.
 
@@ -128,7 +127,7 @@ You'll be walked through a short setup wizard. For a beginner project, here's wh
 ✔ Add Prettier? Yes
 ```
 
-Skip the extras for now. We'll introduce them when the time is right. Right now, we want a clean, minimal project.
+Lets skip the extras for now. We'll introduce them when the time is right. Right now, we want a clean, minimal project.
 
 Once it's done:
 
@@ -143,7 +142,7 @@ Visit `http://localhost:5173` and you should see the default Vue 3 welcome page.
 
 
 ## What's In the Box
-
+<img src="https://media3.giphy.com/media/26uf2YTgF5upXUTm0/giphy.gif" alt="Opening up the project structure" width="960" />
 
 Let's open the project and understand what you're looking at:
 
@@ -165,7 +164,7 @@ The most important files for right now are `main.js`, `App.vue`, and `index.html
 
 
 ## How Vue Boots Up
-
+<img src="https://media0.giphy.com/media/xT0xeuOy2Fcl9vDGiA/giphy.gif" alt="Vue booting up and mounting to the DOM" width="960" />
 
 Open `index.html`. You'll see something like this near the bottom:
 
@@ -194,8 +193,8 @@ That's it. Vue takes over that div and everything inside it.
 
 
 
-## Your First Real Component
-
+## Your First Real Component ~ Viola
+<img src="https://media0.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Writing your first Vue component" width="960" />
 
 Now open `src/App.vue`. Delete everything in it and let's write something from scratch.
 
@@ -240,7 +239,7 @@ That's Vue doing its thing.
 
 
 ## Breaking Down That Component
-
+<img src="https://media0.giphy.com/media/OK27wINdQS5YQ/giphy.gif" alt="Breaking down how the Vue SFC works" width="960" />
 
 A Vue Single-File Component (SFC) has three sections, and you can see all three in what we just wrote:
 
@@ -255,16 +254,14 @@ This is the structure you'll use for every Vue component you write.
 
 
 ## The Dev Experience
+<img src="https://media0.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" alt="The fast Vite dev experience" width="960" />
 
-
-One thing worth mentioning: Vite's dev server is fast. Changes you save appear in the browser almost instantly through Hot Module Replacement (HMR). The browser doesn't fully reload — it surgically updates just the component you changed.
-
-This makes the feedback loop tight. You write, you see, you iterate. That loop is your best learning tool.
+One thing worth mentioning: Vite's dev server is fast. Changes you save appear in the browser almost instantly through Hot Module Replacement (HMR). The browser doesn't fully reload — it surgically updates just the component you changed. This makes the feedback loop tight. You write, you see, you iterate. That loop is your best learning tool.
 
 
 
 ## Your Turn
-
+<img src="https://media2.giphy.com/media/KFgOHKFsGE2CJy3mMG/giphy.gif" alt="Your turn to try it out" width="960" />
 
 Before moving to Article 3, try this:
 
@@ -277,14 +274,11 @@ If it works — and it should — you just built reactivity by instinct. That's 
 
 
 ## What's Next
+<img src="https://media0.giphy.com/media/wR4bJk4jF5Tl6/giphy.gif" alt="What's coming next in the series" width="960" />
 
 In **Article 3**, we go deeper into reactivity — the engine that makes everything in Vue feel alive. We'll cover `ref` vs `reactive`, computed properties, and the watch API.
 
 You're already writing Vue. Now let's understand *why* it works.
 
 
-
 *This is Part 2 of the Vue 3 Fundamentals series. Sources: [Vue.js Official Docs](https://vuejs.org/guide/quick-start), [Vue School](https://vueschool.io/articles).*
-
-
-
