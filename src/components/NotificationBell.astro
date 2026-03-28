@@ -42,7 +42,7 @@ const recentPostsJSON = JSON.stringify(
   <button
     id="notification-bell"
     type="button"
-    class="bell-btn hidden relative inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-full text-gray-400 dark:text-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
+    class="bell-btn hidden relative inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-full text-gray-600 dark:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
     aria-label="Notifications, up to date"
     aria-describedby="bell-tooltip"
     data-most-recent-date={mostRecentDateISO}
@@ -92,11 +92,11 @@ const recentPostsJSON = JSON.stringify(
     class="hidden absolute right-0 top-full mt-2 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50"
   >
     <div class="p-3">
-      <h2
+      <h3
         id="bell-popover-heading"
         class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2"
         tabindex="-1"
-      >New Posts</h2>
+      >New Posts</h3>
       <ul id="bell-popover-list" class="space-y-1"></ul>
       <p
         id="bell-popover-empty"
@@ -203,26 +203,29 @@ const recentPostsJSON = JSON.stringify(
     var recentPosts       = JSON.parse(bell.dataset.recentPosts || '[]');
     var now               = new Date();
 
-    // Bell is always visible; state drives UX, not visibility.
+    // Bell is only shown when there is content within the 6-day window.
+    // If no recent posts exist, stay hidden and bail out.
+    if (!mostRecentDateStr || recentPosts.length === 0) return;
+
+    var mostRecentDate      = new Date(mostRecentDateStr);
+    var timeSinceMostRecent = now.getTime() - mostRecentDate.getTime();
+
+    if (timeSinceMostRecent >= SIX_DAYS_MS) return;
+
     bell.classList.remove('hidden');
 
     // ── Glow + visible count ────────────────────────────────────────────────
     var lastDismissedStr = localStorage.getItem(STORAGE_KEY_LAST_DISMISSED);
 
-    // Fix: count badge and live-region use visible (undismissed) posts only.
     var visiblePosts  = filterPostsByDismissal(recentPosts, lastDismissedStr);
     var visibleCount  = visiblePosts.length;
 
     var shouldGlow = false;
-    if (mostRecentDateStr && visibleCount > 0) {
-      var mostRecentDate      = new Date(mostRecentDateStr);
-      var timeSinceMostRecent = now.getTime() - mostRecentDate.getTime();
-      if (timeSinceMostRecent < SIX_DAYS_MS) {
-        if (!lastDismissedStr) {
-          shouldGlow = timeSinceMostRecent < FORTY_EIGHT_HOURS_MS;
-        } else {
-          shouldGlow = mostRecentDate > new Date(lastDismissedStr);
-        }
+    if (visibleCount > 0) {
+      if (!lastDismissedStr) {
+        shouldGlow = timeSinceMostRecent < FORTY_EIGHT_HOURS_MS;
+      } else {
+        shouldGlow = mostRecentDate > new Date(lastDismissedStr);
       }
     }
 
