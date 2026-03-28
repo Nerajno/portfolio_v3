@@ -24,17 +24,17 @@ const makeTitle = title || "Nerando's Portfolio";
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang='en' class='light'>
   <head>
     <meta charset='UTF-8' />
     <meta name='description' content={description} />
-    <!-- Prevent flash of unstyled content -->
+    <!-- Prevent flash of unstyled content — runs before paint -->
     <script is:inline>
       (function () {
         function getInitialTheme() {
           if (typeof localStorage !== 'undefined') {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
+            if (savedTheme === 'dark' || savedTheme === 'light') {
               return savedTheme;
             }
           }
@@ -47,9 +47,9 @@ const makeTitle = title || "Nerando's Portfolio";
           return 'light';
         }
         const theme = getInitialTheme();
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        }
+        const html = document.documentElement;
+        html.classList.remove('light', 'dark');
+        html.classList.add(theme);
       })();
     </script>
     <!-- GA4 || Google Analytics -->
@@ -118,39 +118,18 @@ const makeTitle = title || "Nerando's Portfolio";
       }}
     />
   </head>
-  <body
-    class='bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-200'>
+  <body class='transition-colors duration-200'>
     <Navbar />
     <slot />
     <Footer />
     <style is:global>
-      /* Improve Page speed */
-      /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
-      img {
-        content-visibility: auto;
+      body a:not([class]) {
+        color: var(--color-primary);
+        text-decoration-color: transparent;
+        transition: color 0.15s ease;
       }
-
-      /* Dark mode styles */
-      :root {
-        --color-text: #333333;
-        --color-bg: #f5f5f5;
-      }
-
-      :root.dark {
-        --color-text: #ffffff;
-        --color-bg: #1a1a1a;
-      }
-
-      body {
-        color: var(--color-text);
-        background-color: var(--color-bg);
-        transition:
-          color 0.3s ease,
-          background-color 0.3s ease;
-      }
-
-      body a {
-        @apply text-blue-500 dark:text-blue-400;
+      body a:not([class]):hover {
+        color: var(--color-primary-h);
       }
     </style>
   </body>

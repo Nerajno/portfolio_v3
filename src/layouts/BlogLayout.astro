@@ -7,9 +7,12 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title}>
+  <!-- Reading progress bar -->
+  <div class="progress-bar" id="progress-bar"></div>
+
   <Container>
     <div class="mx-auto max-w-[735px] mt-14">
-      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+      <span class="tag tag-primary uppercase tracking-wider text-sm font-medium">
         {frontmatter.category}
       </span>
       <h1
@@ -17,34 +20,47 @@ const { frontmatter } = Astro.props;
         {frontmatter.title}
       </h1>
       <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
-        <span class="text-gray-400">
+        <span style="color: var(--text-muted)">
           {frontmatter.author}
         </span>
-        <span class="text-gray-400">•</span>
-        <time class="text-gray-400" datetime={frontmatter.publishDate}>
+        <span style="color: var(--text-muted)">•</span>
+        <time style="color: var(--text-muted)" datetime={frontmatter.publishDate}>
           {getFormattedDate(frontmatter.publishDate)}
         </time>
-        <span class="text-gray-400 hidden md:block">•</span>
+        <span style="color: var(--text-muted)" class="hidden md:block">•</span>
         <div class="w-full md:w-auto flex flex-wrap gap-3">
           {
             frontmatter.tags.map((tag) => (
-              <span class="text-sm text-gray-500">#{tag}</span>
+              <span class="tag tag-primary">#{tag}</span>
             ))
           }
         </div>
       </div>
     </div>
 
-    <div class="mx-auto prose prose-lg mt-6">
+    <div class="mx-auto prose prose-lg mt-6 dark:prose-invert">
       <slot />
     </div>
     <div class="text-center mt-8">
       <a
         href="/blog"
         target="_blank" rel="noopener noreferrer"
-        class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
+        class="card inline-block px-5 py-3 rounded-md transition hover:shadow-md"
+        style="color: var(--text-secondary)"
         >← Back to Blogs</a
       >
     </div>
   </Container>
 </Layout>
+
+<script>
+  const bar = document.getElementById('progress-bar');
+  if (bar) {
+    window.addEventListener('scroll', () => {
+      const pct =
+        (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+        100;
+      bar.style.width = `${Math.min(pct, 100)}%`;
+    });
+  }
+</script>
