@@ -6,8 +6,8 @@ author: "Nerando Johnson"
 title: "Seeing Vue Clearly: The Basics - Introduction to Vue 3"
 snippet: "A no-fluff introduction to building modern UIs with Vue 3. Learn what makes Vue progressive, how it compares to other frameworks, and why the Composition API matters for new developers starting their frontend journey."
 image: {
-    src: "https://img.appmaster.io/p/E7BlMiM6t5s/rs:fit:640:0/q:70/f:webp/plain/019b86d6-bd35-7e11-8dbc-335896b200fc/blog/019be269-5bb9-7d61-9924-5b2061cdfc55/019be2695b.webp",
-    alt: "Frontend developer coding on laptop with multiple screens"
+    src: "/images/blog_covers/Vue3 Image.png",
+    alt: "Vue.js logo on a light blue background with geometric shapes"
 }
 publishDate: "2026-03-18 00:00"
 category: "Vue, JavaScript, Tutorials"

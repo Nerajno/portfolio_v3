@@ -3,13 +3,14 @@ import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
+import { remarkGifPassthrough } from "./remark-gif-passthrough.mjs";
 import netlify from "@astrojs/netlify";
 import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
 import clarityIntegration from 'astro-microsoft-clarity-integration';
 import react from "@astrojs/react";
+import rehypePrettyCode from "rehype-pretty-code";
 
-import db from "@astrojs/db";
 
 export default defineConfig({
   site: "https://developingdvlpr.com",
@@ -18,17 +19,22 @@ export default defineConfig({
   integrations: [
     react(),
     tailwind(),
-    mdx(),
-    sitemap({
-      i18n: {
-        defaultLocale: 'en',
-        locales: {
-          en: 'en-US', // The `defaultLocale` value must be present as a key in `locales`
-          es: 'es-ES',
-          fr: 'fr-CA',
-        },
-      },
+    mdx({
+      syntaxHighlight: false,
+      rehypePlugins: [
+        [
+          rehypePrettyCode,
+          {
+            theme: {
+              dark: "github-dark",
+              light: "github-light",
+            },
+            keepBackground: true,
+          },
+        ],
+      ],
     }),
+    sitemap(),
     icon({
       include: {
         bx: ["*"],
@@ -42,7 +48,7 @@ export default defineConfig({
       },
     }),
     clarityIntegration({
-      projectId: 's7v3rqipza',  // Required: Replace with your Clarity project ID
+      projectId: import.meta.env.PUBLIC_CLARITY_ID,
       enabled: true,                  // Optional: Enable the integration (defaults to true)
       scriptStage: 'head-inline',     // Optional: Set scriptStage to 'head-inline', 'body-inline'
       debug: false,                   // Optional: Enable debug (set to true if you want to log script injections)
@@ -90,10 +96,20 @@ export default defineConfig({
     ],
   },
   markdown: {
-    remarkPlugins: [remarkReadingTime],
-    shikiConfig: {
-      theme: 'github-dark',
-    },
+    remarkPlugins: [remarkReadingTime, remarkGifPassthrough],
+    syntaxHighlight: false,
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: {
+            dark: "github-dark",
+            light: "github-light",
+          },
+          keepBackground: true,
+        },
+      ],
+    ],
   },
   vite: {
     ssr: {
