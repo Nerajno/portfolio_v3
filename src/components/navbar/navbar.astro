@@ -3,6 +3,7 @@ import Container from "@components/container.astro";
 import Link from "@components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const menuitems = [
   {
@@ -83,6 +84,7 @@ const menuitems = [
           }
         </ul>
       </MenuItems>
+      <ThemeToggle />
     </Astronav>
   </header>
 </Container>

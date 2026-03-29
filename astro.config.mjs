@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import { remarkReadingTime } from './remark-reading-time.mjs';
 // import vercel from "@astrojs/vercel/serverless";
 import netlify from "@astrojs/netlify";
+import icon from "astro-icon";
 
 // Conditionally import the Vercel adapter
 // let vercelAdapter;
@@ -18,7 +19,7 @@ export default defineConfig({
   output:  "server",
   // adapter: process.env.NODE_ENV === 'production' ? vercelAdapter() : undefined,
   adapter: netlify(),
-  integrations: [tailwind(), mdx(), sitemap()],
+  integrations: [tailwind(), mdx(), sitemap(), icon()],
   image: {
     domains: ["picsum.photos"],
   },

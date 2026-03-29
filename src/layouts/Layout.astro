@@ -25,6 +25,21 @@ const makeTitle = "Nerando's Portfolio";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <!-- Anti-FOUC: apply .dark before first paint -->
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var isDark = stored === "dark" || (!stored && prefersDark);
+        if (isDark) {
+          document.documentElement.classList.add("dark");
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
     <link rel="icon" type="image/x-icon" href="/my_favicon.ico" />
     <meta name="generator" content={Astro.generator} />
 
