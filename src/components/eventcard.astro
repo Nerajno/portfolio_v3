@@ -1,6 +1,7 @@
 ---
 import { formatDate } from '../utils/dates';
 import type { ProcessedEvent } from '../types';
+import { Icon } from 'astro-icon/components';
 
 type Props = ProcessedEvent;
 
@@ -29,29 +30,20 @@ function getTypeColor(
   const colors = {
     conference:      'tag tag-primary',
     workshop:        'tag tag-accent',
-    meetup:          'tag tag-accent',
-    webinar:         'tag tag-primary',
+    meetup:          'tag tag-neutral',
+    webinar:         'tag tag-info',
     'lightning-talk':'tag tag-accent',
   };
   return colors[type];
 }
 
-function getEventTypeIcon(type: Props['type']) {
-  switch (type) {
-    case 'conference':
-      return '🎤';
-    case 'workshop':
-      return '💻';
-    case 'meetup':
-      return '👥';
-    case 'webinar':
-      return '🎥';
-    case 'lightning-talk':
-      return '⚡';
-    default:
-      return '📅';
-  }
-}
+const eventTypeIcon: Record<string, string> = {
+  conference:      'bx:microphone',
+  workshop:        'bx:laptop',
+  meetup:          'bx:group',
+  webinar:         'bx:video',
+  'lightning-talk':'bx:bxs-bolt',
+};
 
 const statusColor = getStatusColor(status);
 const typeColor = getTypeColor(type);
@@ -70,7 +62,7 @@ const locationString = [
   <div class='flex items-start justify-between gap-4'>
     <div class='flex-1'>
       <div class='flex items-center gap-2 flex-wrap'>
-        <span class='text-xl' aria-hidden='true'>{getEventTypeIcon(type)}</span>
+        <Icon name={eventTypeIcon[type] ?? 'bx:calendar'} class='w-5 h-5' aria-hidden='true' />
         <span class={typeColor}>{type}</span>
         <span class={statusColor}>{status === 'upcoming' ? 'Upcoming' : 'Past'}</span>
         {

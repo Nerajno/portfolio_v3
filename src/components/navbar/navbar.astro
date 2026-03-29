@@ -70,9 +70,7 @@ const menuitems = [
                   <li class='relative'>
                     <a
                       href={item.path}
-                      class='flex lg:px-3 py-2 items-center hover:font-bold hover:underline transition-colors'
-                      style='color: var(--text-secondary)'
-                      onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--text-secondary)'">
+                      class='nav-link flex lg:px-3 py-2 items-center hover:font-bold hover:underline transition-colors'>
                       <span> {item.title}</span>
                       {item.badge && (
                         <span class='ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase rounded-full' style='background:var(--color-accent);color:var(--text-on-primary)'>
@@ -97,3 +95,13 @@ const menuitems = [
     </Astronav>
   </header>
 </Container>
+
+<style>
+  .nav-link {
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+</style>

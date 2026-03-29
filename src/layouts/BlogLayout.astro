@@ -2,13 +2,13 @@
 import Container from "@components/container.astro";
 import { getFormattedDate } from "@utils/all";
 import Layout from "./Layout.astro";
+import ReadingProgressBar from "@components/ReadingProgressBar.astro";
 
 const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title}>
-  <!-- Reading progress bar -->
-  <div class="progress-bar" id="progress-bar"></div>
+  <ReadingProgressBar />
 
   <Container>
     <div class="mx-auto max-w-[735px] mt-14">
@@ -52,15 +52,3 @@ const { frontmatter } = Astro.props;
     </div>
   </Container>
 </Layout>
-
-<script>
-  const bar = document.getElementById('progress-bar');
-  if (bar) {
-    window.addEventListener('scroll', () => {
-      const pct =
-        (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
-        100;
-      bar.style.width = `${Math.min(pct, 100)}%`;
-    });
-  }
-</script>

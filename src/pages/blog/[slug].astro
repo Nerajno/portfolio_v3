@@ -338,7 +338,7 @@ const seoConfig = {
     {seriesNavProps && <SeriesNavigation {...seriesNavProps} />}
 
     <div
-      class='mx-auto prose prose-lg mt-6 max-w-4xl text-slate-500 dark:text-slate-400 prose-headings:text-slate-500 prose-headings:dark:text-slate-400 prose-p:text-slate-500 prose-p:dark:text-slate-400 prose-strong:text-slate-500 prose-strong:dark:text-slate-400 prose-em:text-slate-500 prose-em:dark:text-slate-400 prose-a:text-blue-600 prose-a:dark:text-blue-400 prose-code:text-slate-500 prose-code:dark:text-slate-400 prose-img:mx-auto'>
+      class='mx-auto prose prose-lg mt-6 max-w-4xl dark:prose-invert prose-a:text-emerald-600 dark:prose-a:text-emerald-400 prose-headings:text-stone-800 dark:prose-headings:text-stone-100 prose-img:mx-auto'>
       {Content && <Content />}
       <!-- For embedding tweets -->
       {entry.data.tweetIds?.map((id) => <Tweet id={id} />)}

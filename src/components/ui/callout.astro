@@ -1,0 +1,36 @@
+---
+/**
+ * Callout — contextual highlight block
+ * Uses the .callout design tokens from global.css (Emerald system)
+ *
+ * Usage:
+ *   <Callout type="tip" title="Pro tip">Your message here.</Callout>
+ *   <Callout type="warning">Watch out for this.</Callout>
+ *   <Callout type="danger" title="Heads up">This is destructive.</Callout>
+ */
+
+interface Props {
+  type?: 'tip' | 'warning' | 'danger';
+  title?: string;
+}
+
+const { type = 'tip', title } = Astro.props;
+
+const icons = {
+  tip:     'bx:bulb',
+  warning: 'bx:error',
+  danger:  'bx:error-circle',
+};
+
+import { Icon } from 'astro-icon/components';
+---
+
+<div class={`callout callout-${type}`} role="note">
+  <div class="flex gap-3 items-start">
+    <Icon name={icons[type]} class="w-5 h-5 mt-0.5 shrink-0" aria-hidden="true" />
+    <div>
+      {title && <p class="font-semibold mb-1">{title}</p>}
+      <div class="leading-relaxed"><slot /></div>
+    </div>
+  </div>
+</div>

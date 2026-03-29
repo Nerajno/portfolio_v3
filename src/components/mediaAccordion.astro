@@ -2,6 +2,7 @@
 // src/components/MediaAccordion.astro
 import type { MediaItem } from '../data/otherMediaData';
 import { formatDate } from '../utils/dates';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   media: MediaItem;
@@ -10,32 +11,27 @@ interface Props {
 
 const { media, index } = Astro.props;
 
-function getTypeIcon(type: MediaItem['type']) {
-  switch (type) {
-    case 'podcast': return '🎙️';
-    case 'interview': return '🎤';
-    case 'video': return '📹';
-    case 'workshop-recording': return '🎥';
-    case 'panel-discussion': return '👥';
-    default: return '📱';
-  }
-}
+const mediaTypeIcon: Record<string, string> = {
+  'podcast':            'bx:podcast',
+  'interview':          'bx:microphone',
+  'video':              'bx:video',
+  'workshop-recording': 'bx:video',
+  'panel-discussion':   'bx:group',
+};
 
-function getTypeColor(type: MediaItem['type']) {
-  const colors = {
-    'podcast': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
-    'interview': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
-    'video': 'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-300',
-    'workshop-recording': 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300',
-    'panel-discussion': 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300'
-  };
-  return colors[type] || 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300';
-}
+const mediaTypeTag: Record<string, string> = {
+  'podcast':            'tag tag-accent',
+  'interview':          'tag tag-info',
+  'video':              'tag tag-neutral',
+  'workshop-recording': 'tag tag-accent',
+  'panel-discussion':   'tag tag-primary',
+};
 ---
 
-<div class="accordion-item border border-gray-200 dark:border-slate-700 rounded-lg mb-4 overflow-hidden transition-shadow hover:shadow-md">
+<div class="card mb-4 overflow-hidden">
   <button
-    class="accordion-header w-full px-6 py-4 text-left bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
+    class="accordion-header w-full px-6 py-4 text-left focus-ring transition-colors duration-200 cursor-pointer"
+    style="background-color: var(--bg-card)"
     aria-expanded="false"
     aria-controls={`accordion-content-${index}`}
     data-accordion-button
@@ -43,32 +39,35 @@ function getTypeColor(type: MediaItem['type']) {
     <div class="flex items-center justify-between">
       <div class="flex-1">
         <div class="flex items-center gap-3 flex-wrap mb-2">
-          <span class="text-xl" aria-hidden="true">{getTypeIcon(media.type)}</span>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-slate-100 flex items-center gap-2 group">
+          <Icon name={mediaTypeIcon[media.type] ?? 'bx:file'} class="w-5 h-5" aria-hidden="true" style="color: var(--color-primary)" />
+          <h3 class="text-lg font-semibold flex items-center gap-2 group" style="color: var(--text-primary)">
             {media.title}
             {media.links.primary && (
-              <a 
+              <a
                 href={media.links.primary}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-400 hover:text-blue-500 dark:text-gray-500 dark:hover:text-blue-400 transition-colors"
+                class="link"
                 aria-label={`Open ${media.title} in new tab`}
                 title="Open in new tab"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
+                <Icon name="bx:link-external" class="h-4 w-4" aria-hidden="true" />
               </a>
             )}
           </h3>
         </div>
-        <div class="flex items-center gap-4 text-sm text-gray-600 dark:text-slate-400">
-          <span class={`px-2 py-1 text-xs rounded-full ${getTypeColor(media.type)}`}>
+        <div class="flex items-center gap-3 flex-wrap text-sm" style="color: var(--text-muted)">
+          <span class={mediaTypeTag[media.type] ?? 'tag tag-neutral'}>
             {media.type.replace('-', ' ')}
           </span>
           {media.platform && <span>{media.platform}</span>}
           <span>{formatDate(media.date)}</span>
-          {media.duration && <span>⏱️ {media.duration}</span>}
+          {media.duration && (
+            <span class="flex items-center gap-1">
+              <Icon name="bx:time" class="w-3.5 h-3.5" aria-hidden="true" />
+              {media.duration}
+            </span>
+          )}
         </div>
       </div>
       <svg
@@ -87,70 +86,50 @@ function getTypeColor(type: MediaItem['type']) {
     class="accordion-content hidden"
     aria-labelledby={`accordion-header-${index}`}
   >
-    <div class="px-6 py-4 bg-gray-50/50 dark:bg-slate-800/50 border-t border-gray-200 dark:border-slate-700">
-      <p class="text-gray-700 dark:text-slate-300 mb-4 leading-relaxed">
+    <div class="px-6 py-4 border-t" style="background-color: var(--bg-secondary); border-color: var(--border-primary)">
+      <p class="mb-4 leading-relaxed" style="color: var(--text-secondary)">
         {media.description}
       </p>
 
       {media.host && (
-        <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">
-          <strong>Host:</strong> {media.host}
+        <p class="text-sm mb-2" style="color: var(--text-muted)">
+          <strong style="color: var(--text-primary)">Host:</strong> {media.host}
         </p>
       )}
 
       {media.publication && (
-        <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">
-          <strong>Published in:</strong> {media.publication}
+        <p class="text-sm mb-2" style="color: var(--text-muted)">
+          <strong style="color: var(--text-primary)">Published in:</strong> {media.publication}
         </p>
       )}
 
       {media.tags && media.tags.length > 0 && (
         <div class="flex flex-wrap gap-2 mb-4">
           {media.tags.map(tag => (
-            <span class="text-xs px-2.5 py-1 bg-gray-100 dark:bg-slate-700/50 text-gray-700 dark:text-slate-300 rounded-full border border-gray-200 dark:border-slate-600">
-              #{tag}
-            </span>
+            <span class="tag tag-primary">#{tag}</span>
           ))}
         </div>
       )}
 
       <div class="flex flex-wrap gap-3 mt-4">
         {media.links.primary && (
-          <a
-            href={media.links.primary}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-700 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
+          <a href={media.links.primary} target="_blank" rel="noopener noreferrer"
+             class="btn-primary text-sm px-4 py-2 rounded-md">
+            <Icon name="bx:link-external" class="h-4 w-4" aria-hidden="true" />
             View {media.type}
           </a>
         )}
         {media.links.secondary && (
-          <a
-            href={media.links.secondary}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-600 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
+          <a href={media.links.secondary} target="_blank" rel="noopener noreferrer"
+             class="btn-secondary text-sm px-4 py-2 rounded-md">
+            <Icon name="bx:link-external" class="h-4 w-4" aria-hidden="true" />
             Additional Link
           </a>
         )}
         {media.links.transcript && (
-          <a
-            href={media.links.transcript}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-600 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
+          <a href={media.links.transcript} target="_blank" rel="noopener noreferrer"
+             class="btn-secondary text-sm px-4 py-2 rounded-md">
+            <Icon name="bx:file" class="h-4 w-4" aria-hidden="true" />
             View Transcript
           </a>
         )}
