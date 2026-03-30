@@ -7,10 +7,9 @@ import { remarkGifPassthrough } from "./remark-gif-passthrough.mjs";
 import netlify from "@astrojs/netlify";
 import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
-import clarityIntegration from 'astro-microsoft-clarity-integration';
+import clarityIntegration from "astro-microsoft-clarity-integration";
 import react from "@astrojs/react";
 import rehypePrettyCode from "rehype-pretty-code";
-
 
 export default defineConfig({
   // Sets Astro.site — used for canonical URLs, OG image absolute URLs, RSS href
@@ -46,6 +45,7 @@ export default defineConfig({
         "simple-icons": ["*"],
         mdi: ["*"],
       },
+      iconLoader: "astro-icon/loader",
     }),
     partytown({
       config: {
@@ -55,7 +55,7 @@ export default defineConfig({
     clarityIntegration({
       projectId: import.meta.env.PUBLIC_CLARITY_ID,
       enabled: true,
-      scriptStage: 'head-inline',
+      scriptStage: "head-inline",
       debug: false,
       async: true,
       defer: true,
@@ -67,7 +67,7 @@ export default defineConfig({
       entrypoint: "astro/assets/services/sharp",
       config: {
         limitInputPixels: false,
-      }
+      },
     },
     remotePatterns: [
       {
@@ -119,7 +119,7 @@ export default defineConfig({
   },
   vite: {
     ssr: {
-      noExternal: ['astro-social-share'],
+      noExternal: ["astro-social-share"],
     },
   },
 });

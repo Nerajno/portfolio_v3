@@ -1,115 +1,112 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
+import ThemeToggle from './ThemeToggle.astro';
 
 const navLinks = [
-  { href: "/",          label: "Home"       },
-  { href: "/blog",      label: "Blog"       },
-  { href: "/portfolio", label: "Portfolio"  },
-  { href: "/speaking",  label: "Speaking"   },
-  { href: "/about",     label: "About"      },
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/speaking', label: 'Speaking' },
+  { href: '/about', label: 'About' },
   {
-    href: "https://nerajnodigitalgarden.netlify.app",
-    label: "Junior~ish",
+    href: 'https://nerajnodigitalgarden.netlify.app',
+    label: 'Junior~ish',
     badge: true,
-    target: "_blank",
-    rel: "noopener",
+    target: '_blank',
+    rel: 'noopener',
   },
+  { href: '/contact', label: 'Contact' },
 ];
 
 const currentPath = Astro.url.pathname;
 
 function isActive(href: string) {
-  if (href.startsWith("http")) return false;
-  if (href === "/") return currentPath === "/";
+  if (href.startsWith('http')) return false;
+  if (href === '/') return currentPath === '/';
   return currentPath.startsWith(href);
 }
 ---
 
-<header class="navbar sticky top-0 z-50 w-full">
+<header class='navbar sticky top-0 z-50 w-full'>
   <nav
-    class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6"
-    aria-label="Main navigation"
-  >
+    class='mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6'
+    aria-label='Main navigation'>
     <!-- Logo -->
     <a
-      href="/"
-      class="focus-ring font-bold text-lg text-[var(--color-primary)] hover:text-[var(--color-primary-h)] transition-colors"
-      aria-label="Nerando Johnson — home"
-    >
-      NJ<span class="text-[var(--color-accent)]">.</span>
+      href='/'
+      class='focus-ring font-bold text-lg text-[var(--color-primary)] hover:text-[var(--color-primary-h)] transition-colors'
+      aria-label='Nerando Johnson — home'>
+      NJ<span class='text-[var(--color-accent)]'>.</span>
     </a>
 
     <!-- Desktop links -->
-    <ul class="hidden items-center gap-1 md:flex" role="list">
-      {navLinks.map(({ href, label, badge, target, rel }) => (
-        <li>
-          <a
-            href={href}
-            target={target}
-            rel={rel}
-            class:list={[
-              "focus-ring rounded-md px-3 py-1.5 text-sm font-medium transition-colors inline-flex items-center",
-              isActive(href)
-                ? "bg-[var(--color-primary-s)] text-[var(--color-primary)]"
-                : "text-[var(--text-secondary)] hover:bg-[var(--color-primary-s)] hover:text-[var(--color-primary)]",
-            ]}
-            aria-current={isActive(href) ? "page" : undefined}
-          >
-            {label}
-            {badge && (
-              <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-[var(--color-primary)] rounded-full">
-                New
-              </span>
-            )}
-          </a>
-        </li>
-      ))}
+    <ul class='hidden items-center gap-1 md:flex ml-auto' role='list'>
+      {
+        navLinks.map(({ href, label, badge, target, rel }) => (
+          <li>
+            <a
+              href={href}
+              target={target}
+              rel={rel}
+              class:list={[
+                'focus-ring rounded-md px-3 py-1.5 text-sm font-medium transition-colors inline-flex items-center',
+                isActive(href)
+                  ? 'bg-[var(--color-primary-s)] text-[var(--color-primary)]'
+                  : 'text-[var(--text-secondary)] hover:bg-[var(--color-primary-s)] hover:text-[var(--color-primary)]',
+              ]}
+              aria-current={isActive(href) ? 'page' : undefined}>
+              {label}
+              {badge && (
+                <span class='ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-[var(--color-primary)] rounded-full'>
+                  New
+                </span>
+              )}
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <!-- Right side: theme toggle + mobile menu trigger -->
-    <div class="flex items-center gap-2">
+    <div class='flex items-center gap-2 ml-4'>
       <ThemeToggle />
 
       <button
-        id="mobile-menu-btn"
-        class="focus-ring rounded-md p-2 text-[var(--text-secondary)] hover:bg-[var(--color-primary-s)] transition-colors md:hidden"
-        aria-label="Toggle mobile menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
+        id='mobile-menu-btn'
+        class='focus-ring rounded-md p-2 text-[var(--text-secondary)] hover:bg-[var(--color-primary-s)] transition-colors md:hidden'
+        aria-label='Toggle mobile menu'
+        aria-expanded='false'
+        aria-controls='mobile-menu'>
         <svg
-          id="icon-menu"
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <line x1="3" y1="6"  x2="21" y2="6"  />
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="18" x2="21" y2="18" />
+          id='icon-menu'
+          xmlns='http://www.w3.org/2000/svg'
+          width='20'
+          height='20'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          aria-hidden='true'>
+          <line x1='3' y1='6' x2='21' y2='6'></line>
+          <line x1='3' y1='12' x2='21' y2='12'></line>
+          <line x1='3' y1='18' x2='21' y2='18'></line>
         </svg>
         <svg
-          id="icon-close"
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-          class="hidden"
-        >
-          <line x1="18" y1="6"  x2="6"  y2="18" />
-          <line x1="6"  y1="6"  x2="18" y2="18" />
+          id='icon-close'
+          xmlns='http://www.w3.org/2000/svg'
+          width='20'
+          height='20'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          aria-hidden='true'
+          class='hidden'>
+          <line x1='18' y1='6' x2='6' y2='18'></line>
+          <line x1='6' y1='6' x2='18' y2='18'></line>
         </svg>
       </button>
     </div>
@@ -117,56 +114,56 @@ function isActive(href: string) {
 
   <!-- Mobile menu -->
   <div
-    id="mobile-menu"
-    class="hidden border-t border-[var(--navbar-border)] md:hidden"
-  >
-    <ul class="flex flex-col gap-1 px-4 py-3" role="list">
-      {navLinks.map(({ href, label, badge, target, rel }) => (
-        <li>
-          <a
-            href={href}
-            target={target}
-            rel={rel}
-            class:list={[
-              "focus-ring block rounded-md px-3 py-2 text-sm font-medium transition-colors inline-flex items-center",
-              isActive(href)
-                ? "bg-[var(--color-primary-s)] text-[var(--color-primary)]"
-                : "text-[var(--text-secondary)] hover:bg-[var(--color-primary-s)] hover:text-[var(--color-primary)]",
-            ]}
-            aria-current={isActive(href) ? "page" : undefined}
-          >
-            {label}
-            {badge && (
-              <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-[var(--color-primary)] rounded-full">
-                New
-              </span>
-            )}
-          </a>
-        </li>
-      ))}
+    id='mobile-menu'
+    class='hidden border-t border-[var(--navbar-border)] md:hidden'>
+    <ul class='flex flex-col gap-1 px-4 py-3' role='list'>
+      {
+        navLinks.map(({ href, label, badge, target, rel }) => (
+          <li>
+            <a
+              href={href}
+              target={target}
+              rel={rel}
+              class:list={[
+                'focus-ring block rounded-md px-3 py-2 text-sm font-medium transition-colors inline-flex items-center',
+                isActive(href)
+                  ? 'bg-[var(--color-primary-s)] text-[var(--color-primary)]'
+                  : 'text-[var(--text-secondary)] hover:bg-[var(--color-primary-s)] hover:text-[var(--color-primary)]',
+              ]}
+              aria-current={isActive(href) ? 'page' : undefined}>
+              {label}
+              {badge && (
+                <span class='ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-[var(--color-primary)] rounded-full'>
+                  New
+                </span>
+              )}
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </header>
 
 <script>
-  const btn       = document.getElementById("mobile-menu-btn");
-  const menu      = document.getElementById("mobile-menu");
-  const iconMenu  = document.getElementById("icon-menu");
-  const iconClose = document.getElementById("icon-close");
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconMenu = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
 
-  btn?.addEventListener("click", () => {
-    const isOpen = !menu?.classList.contains("hidden");
-    menu?.classList.toggle("hidden");
-    btn.setAttribute("aria-expanded", String(!isOpen));
-    iconMenu?.classList.toggle("hidden");
-    iconClose?.classList.toggle("hidden");
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    iconMenu?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
   });
 
   // Close mobile menu on route change (View Transitions)
-  document.addEventListener("astro:page-load", () => {
-    menu?.classList.add("hidden");
-    btn?.setAttribute("aria-expanded", "false");
-    iconMenu?.classList.remove("hidden");
-    iconClose?.classList.add("hidden");
+  document.addEventListener('astro:page-load', () => {
+    menu?.classList.add('hidden');
+    btn?.setAttribute('aria-expanded', 'false');
+    iconMenu?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
   });
 </script>
