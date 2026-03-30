@@ -1,79 +1,112 @@
 ---
-import { SEO } from "astro-seo";
 import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
-import "@fontsource-variable/inter/index.css";
+import "../styles/global.css";
+import themeInitSrc from "../scripts/theme-init.js?raw";
 
-export interface Props {
+interface Props {
   title: string;
+  description?: string;
+  image?: string;
+  showProgressBar?: boolean;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const {
+  title,
+  description = "Frontend engineer, conference speaker, community builder. Building in public at developingdvlpr.com.",
+  image = "/Banner_for_site.png",
+  showProgressBar = false,
+} = Astro.props;
 
-const resolvedImageWithDomain = new URL(
-  "/Banner_for_site.png",
-  Astro.site
-).toString();
-
-const { title } = Astro.props;
-
-const makeTitle = "Nerando's Portfolio";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!-- Anti-FOUC: apply .dark before first paint -->
-    <script is:inline>
-      (function () {
-        var stored = localStorage.getItem("theme");
-        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        var isDark = stored === "dark" || (!stored && prefersDark);
-        if (isDark) {
-          document.documentElement.classList.add("dark");
-          document.documentElement.setAttribute("data-theme", "dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-          document.documentElement.setAttribute("data-theme", "light");
-        }
-      })();
-    </script>
-    <link rel="icon" type="image/x-icon" href="/my_favicon.ico" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- ─── FOUC PREVENTION — must be first script, must be inline ─── -->
+    <script is:inline set:html={themeInitSrc} />
+
+    <!-- ─── SEO & Meta ─────────────────────────────────────────────── -->
+    <title>{title} · Nerando Johnson</title>
+    <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
-    <SEO
-      title={makeTitle}
-      description="Astroship is a starter website template for Astro built with TailwindCSS."
-      canonical={canonicalURL}
-      twitter={{
-        creator: "nerajno",
-      }}
-      openGraph={{
-        basic: {
-          url: canonicalURL,
-          type: "website",
-          title: `Nerando's Portfolio`,
-          image: resolvedImageWithDomain,
-        },
-        image: {
-          alt: "Nerando's Portfolio ~ Meme Image",
-        },
-      }}
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:site"        content="@Nerajno" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImage} />
+
+    <!-- ─── Fonts ─────────────────────────────────────────────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
     />
+
+    <!-- ─── Favicon ────────────────────────────────────────────────── -->
+    <link rel="icon" type="image/x-icon" href="/my_favicon.ico" />
+
+    <!-- ─── RSS & Sitemap ──────────────────────────────────────────── -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Nerando Johnson"
+      href="/rss.xml"
+    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
+
   <body>
+    <!-- Reading Progress Bar (blog post pages only) -->
+    {showProgressBar && (
+      <div class="progress-bar" role="progressbar" aria-hidden="true" style="width: 0%" />
+    )}
+
     <Navbar />
     <slot />
     <Footer />
+
     <style is:global>
-      /* Improve Page speed */
-      /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
-      img {
-        content-visibility: auto;
-      }
+      img { content-visibility: auto; }
     </style>
+
+    <!-- Progress Bar Scroll Listener -->
+    {showProgressBar && (
+      <script is:inline>
+        (function () {
+          var bar = document.querySelector(".progress-bar");
+          if (!bar) return;
+          var rafPending = false;
+          function updateProgress() {
+            var scrollable = document.body.scrollHeight - window.innerHeight;
+            if (scrollable <= 0) { bar.style.width = "100%"; return; }
+            var pct = (window.scrollY / scrollable) * 100;
+            bar.style.width = Math.min(pct, 100) + "%";
+            rafPending = false;
+          }
+          window.addEventListener("scroll", function () {
+            if (!rafPending) { rafPending = true; requestAnimationFrame(updateProgress); }
+          }, { passive: true });
+          updateProgress();
+        })();
+      </script>
+    )}
   </body>
 </html>

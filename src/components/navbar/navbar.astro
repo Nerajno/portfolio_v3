@@ -1,90 +1,172 @@
 ---
-import Container from "@components/container.astro";
-import Link from "@components/ui/link.astro";
-import Dropdown from "./dropdown.astro";
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import ThemeToggle from "./ThemeToggle.astro";
 
-const menuitems = [
+const navLinks = [
+  { href: "/",          label: "Home"       },
+  { href: "/blog",      label: "Blog"       },
+  { href: "/portfolio", label: "Portfolio"  },
+  { href: "/speaking",  label: "Speaking"   },
+  { href: "/about",     label: "About"      },
   {
-    title: "Home",
-    path: "/",
-  },
-    {
-    title: "Blog",
-    path: "/blog",
-  },
-  {
-    title: "Portfolio",
-    path: "/portfolio",
-  },
-    {
-    title: "Speaking",
-    path: "/speaking",
-  },
-  {
-    title: "About",
-    path: "/about",
-  },
-  {
-    title: "Junior~ish",
+    href: "https://nerajnodigitalgarden.netlify.app",
+    label: "Junior~ish",
     badge: true,
-    path: "https://nerajnodigitalgarden.netlify.app",
     target: "_blank",
     rel: "noopener",
   },
-  //   {
-  //   title: "Contact", <!-- TODO -->
-  //   path: "/contact", Fix Send Grid config issues
-  // },
 ];
 
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href.startsWith("http")) return false;
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
+}
 ---
 
-<Container>
-  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
-    <Astronav>
-      <div class="flex w-full lg:w-auto items-center justify-between">
-        <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">NJ</span>
-        </a>
-        <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-gray-800" />
-        </div>
-      </div>
-      <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
-        <ul class="flex flex-col lg:flex-row lg:gap-3">
-          {
-            menuitems.map((item, index) => (
-              <>
-                {item.children && (
-                  <Dropdown
-                    title={item.title}
-                    children={item.children}
-                    lastItem={index === menuitems.length - 1}
-                  />
-                )}
+<header class="navbar sticky top-0 z-50 w-full">
+  <nav
+    class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6"
+    aria-label="Main navigation"
+  >
+    <!-- Logo -->
+    <a
+      href="/"
+      class="focus-ring font-bold text-lg text-[var(--color-primary)] hover:text-[var(--color-primary-h)] transition-colors"
+      aria-label="Nerando Johnson — home"
+    >
+      NJ<span class="text-[var(--color-accent)]">.</span>
+    </a>
 
-                {!item.children && (
-                  <li>
-                    <a
-                      href={item.path}
-                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
-                      <span> {item.title}</span>
-                      {item.badge && (
-                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
-                          New
-                        </span>
-                      )}
-                    </a>
-                  </li>
-                )}
-              </>
-            ))
-          }
-        </ul>
-      </MenuItems>
+    <!-- Desktop links -->
+    <ul class="hidden items-center gap-1 md:flex" role="list">
+      {navLinks.map(({ href, label, badge, target, rel }) => (
+        <li>
+          <a
+            href={href}
+            target={target}
+            rel={rel}
+            class:list={[
+              "focus-ring rounded-md px-3 py-1.5 text-sm font-medium transition-colors inline-flex items-center",
+              isActive(href)
+                ? "bg-[var(--color-primary-s)] text-[var(--color-primary)]"
+                : "text-[var(--text-secondary)] hover:bg-[var(--color-primary-s)] hover:text-[var(--color-primary)]",
+            ]}
+            aria-current={isActive(href) ? "page" : undefined}
+          >
+            {label}
+            {badge && (
+              <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-[var(--color-primary)] rounded-full">
+                New
+              </span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Right side: theme toggle + mobile menu trigger -->
+    <div class="flex items-center gap-2">
       <ThemeToggle />
-    </Astronav>
-  </header>
-</Container>
+
+      <button
+        id="mobile-menu-btn"
+        class="focus-ring rounded-md p-2 text-[var(--text-secondary)] hover:bg-[var(--color-primary-s)] transition-colors md:hidden"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg
+          id="icon-menu"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="3" y1="6"  x2="21" y2="6"  />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+        <svg
+          id="icon-close"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          class="hidden"
+        >
+          <line x1="18" y1="6"  x2="6"  y2="18" />
+          <line x1="6"  y1="6"  x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-[var(--navbar-border)] md:hidden"
+  >
+    <ul class="flex flex-col gap-1 px-4 py-3" role="list">
+      {navLinks.map(({ href, label, badge, target, rel }) => (
+        <li>
+          <a
+            href={href}
+            target={target}
+            rel={rel}
+            class:list={[
+              "focus-ring block rounded-md px-3 py-2 text-sm font-medium transition-colors inline-flex items-center",
+              isActive(href)
+                ? "bg-[var(--color-primary-s)] text-[var(--color-primary)]"
+                : "text-[var(--text-secondary)] hover:bg-[var(--color-primary-s)] hover:text-[var(--color-primary)]",
+            ]}
+            aria-current={isActive(href) ? "page" : undefined}
+          >
+            {label}
+            {badge && (
+              <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-[var(--color-primary)] rounded-full">
+                New
+              </span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn       = document.getElementById("mobile-menu-btn");
+  const menu      = document.getElementById("mobile-menu");
+  const iconMenu  = document.getElementById("icon-menu");
+  const iconClose = document.getElementById("icon-close");
+
+  btn?.addEventListener("click", () => {
+    const isOpen = !menu?.classList.contains("hidden");
+    menu?.classList.toggle("hidden");
+    btn.setAttribute("aria-expanded", String(!isOpen));
+    iconMenu?.classList.toggle("hidden");
+    iconClose?.classList.toggle("hidden");
+  });
+
+  // Close mobile menu on route change (View Transitions)
+  document.addEventListener("astro:page-load", () => {
+    menu?.classList.add("hidden");
+    btn?.setAttribute("aria-expanded", "false");
+    iconMenu?.classList.remove("hidden");
+    iconClose?.classList.add("hidden");
+  });
+</script>

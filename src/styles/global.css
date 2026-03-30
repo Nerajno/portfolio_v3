@@ -278,6 +278,25 @@ html.light, html.dark        { visibility: visible; }
 }
 
 /* ────────────────────────────────────────────────────────────
+   KEYFRAMES — defined here as a backstop so Tailwind purge
+   cannot remove them when used in dynamic/JS-driven classes
+   ──────────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ────────────────────────────────────────────────────────────
    UTILITIES
    ──────────────────────────────────────────────────────────── */
 @layer utilities {
@@ -299,6 +318,19 @@ html.light, html.dark        { visibility: visible; }
     background-size: 200% 100%;
     animation: shimmer 1.8s ease-in-out infinite;
   }
+}
+
+/* ────────────────────────────────────────────────────────────
+   SHIKI — reclaim code block background from inline styles
+   Shiki injects background-color as an inline style on <pre>;
+   !important is required to override it with our CSS vars.
+   ──────────────────────────────────────────────────────────── */
+.astro-code {
+  background-color: var(--bg-code) !important;
+  border-radius: var(--radius-md);
+}
+html.dark .astro-code {
+  background-color: var(--bg-code) !important;
 }
 
 /* ────────────────────────────────────────────────────────────

@@ -1,9 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
+import BlogLayout from "@layouts/BlogLayout.astro";
 import type { CollectionEntry } from 'astro:content';
-// import Gist from 'astro-embed/components/Gist.astro';
 import { Tweet } from 'astro-embed';
 
 export const prerender = true;
@@ -12,7 +10,6 @@ interface Props {
   entry: CollectionEntry<'blog'>;
 }
 
-// Generate a new path for every collection entry
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
   return blogEntries.map((entry) => ({
@@ -21,10 +18,8 @@ export async function getStaticPaths() {
   }));
 }
 
-// Get the entry directly from the prop on render
 const { entry } = Astro.props;
 
-// Add error handling for entry rendering
 let Content;
 let remarkPluginFrontmatter;
 
@@ -38,55 +33,18 @@ try {
 }
 ---
 
-<Layout title={entry.data.title}>
-  <Container>
-    <div class="mx-auto max-w-3xl mt-14">
-      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
-        {entry.data.category}
-      </span>
-      <h1
-        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
-        {entry.data.title}
-      </h1>
-      <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
-        <span class="text-gray-400">
-          {entry.data.author}
-        </span>
-        <span class="text-gray-400">•</span>
-        <time
-          class="text-gray-400"
-          datetime={entry.data.publishDate.toISOString()}>
-          {entry.data.publishDate.toDateString()}
-        </time>
-        <span class="text-gray-400 hidden md:block">•</span>
-        <div class="w-full md:w-auto flex flex-wrap gap-3">
-          {
-            entry.data.tags.map((tag) => (
-              <span class="text-sm text-gray-500">#{tag}</span>
-            ))
-          }
-        </div>
-      </div>
-      <br />
-      {remarkPluginFrontmatter?.minutesRead && (
-        <p>{remarkPluginFrontmatter.minutesRead}</p>
-      )}
-    </div>
-
-    <div class="mx-auto prose prose-lg mt-6 max-w-3xl">
-      {Content && <Content />}
-      <!-- For embedding tweets -->
-      {entry.data.tweetIds?.map(id => (
-        <Tweet id={id} />
-    ))}
-    </div>
-    <div class="text-center mt-8">
-      <a
-        href="/blog"
-        class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
-        >← Back to Blog</a
-      >
-    </div>
-  </Container>
-</Layout>
-
+<BlogLayout
+  title={entry.data.title}
+  description={entry.data.snippet}
+  publishDate={entry.data.publishDate}
+  heroImage={entry.data.image?.src}
+  tags={entry.data.tags}
+  category={entry.data.category}
+  author={entry.data.author}
+  minutesRead={remarkPluginFrontmatter?.minutesRead}
+>
+  {Content && <Content />}
+  {entry.data.tweetIds?.map((id) => (
+    <Tweet id={id} />
+  ))}
+</BlogLayout>
