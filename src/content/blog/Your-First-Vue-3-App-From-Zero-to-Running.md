@@ -92,7 +92,7 @@ Here we go :
 
 
 ## Prerequisites
-<img src="https://media1.giphy.com/media/Jjw7Y3ZWNauyc/giphy.gif" alt="What you'll need before we start" width="960" />
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2FqcHQza3VmMWJtNWt3azNmNTdxNDkzeHQya2YzNGd5cTZtZm04ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1oGXIfkeF4P4w3zPxk/giphy.gif" alt="What you'll need before we start" width="960" />
 
 You'll need:
 - **Node.js** (v18 or higher recommended) — [nodejs.org](https://nodejs.org)
@@ -103,7 +103,7 @@ That's it. No global installs required ahead of time.
 
 
 ## Scaffolding With `create-vue`
-<img src="https://media0.giphy.com/media/ZVik7pIoJFDjy/giphy.gif" alt="Let's get to work — scaffolding the project" width="960" />
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzU4MnFnajU1Z296dWptNnpkdjZtaTJ6ZHcxYWF1cG96Y3dmMGQzayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/oDyDSmr7StLCBKucHM/giphy.gif" alt="Let's get to work — scaffolding the project" width="960" />
 
 Vue's official scaffolding tool is called `create-vue`. It uses Vite under the hood, which means your dev server starts fast and your builds are quick.
 
@@ -142,7 +142,7 @@ Visit `http://localhost:5173` and you should see the default Vue 3 welcome page.
 
 
 ## What's In the Box
-<img src="https://media3.giphy.com/media/26uf2YTgF5upXUTm0/giphy.gif" alt="Opening up the project structure" width="960" />
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnVxYnlwYjRhZWI1aTdncHJoZmFob3VqcXpzcmkyZmNud2FwMWZtcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ge91zAgmwUqLMqiH2c/giphy.gif" alt="Opening up the project structure" width="960" />
 
 Let's open the project and understand what you're looking at:
 
@@ -261,7 +261,7 @@ One thing worth mentioning: Vite's dev server is fast. Changes you save appear i
 
 
 ## Your Turn
-<img src="https://media2.giphy.com/media/KFgOHKFsGE2CJy3mMG/giphy.gif" alt="Your turn to try it out" width="960" />
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbG1hNWV0YW9qZ25lMnQzNGxpdGY4bDltOXF3a21seXJkMmMzNnVwMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/65ATdpi3clAdjomZ39/giphy.gif" alt="Your turn to try it out" width="960" />
 
 Before moving to Article 3, try this:
 
