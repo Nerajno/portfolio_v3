@@ -1,19 +1,79 @@
 ---
 draft: false
+seoTitle: "11 Lessons Learned in 11 Months: Growth Reflections for Developers"
+seoDescription: "A reflection on 11 valuable lessons learned during a year in a new tech role, from embracing discomfort to mastering TypeScript and self-care."
+author: "Nerando Johnson"
 title: "11 in 11: Concepts Learnt or Relearnt from Zero Day"
 snippet: "A reflection on valuable lessons learned during 11 months in a new tech role, covering everything from embracing \"comfortable discomfort\" to mastering TypeScript enums, container queries, and the importance of self-care in tech."
 image: {
-    src: "https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fhhcitqui0sr45io11cs9.jpg",
+    src: "https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hhcitqui0sr45io11cs9.jpg",
     alt: "A day in a garden"
 }
 publishDate: "2024-09-20 12:00"
 category: "Reflections, Code"
-author: "Me"
 tags: [javascript,career, typescript,learning]
+keywords: [developer career growth, TypeScript enums tutorial, container queries CSS, web development learning path, developer self-care, tech career lessons, JavaScript learning journey, web components slots, Zod validation library, AI assistants for developers, Tailwind CSS vs vanilla CSS, developer note-taking techniques, asking for help in tech, technical documentation reading, professional development tech]
+
+# GEO-Enhanced Fields
+schema: {
+  type: "TechArticle",
+  about: "Career development lessons and technical concepts learned during first year in a new developer role",
+  genre: "Personal Experience & Technical Tutorial",
+  educationalLevel: "Beginner to Intermediate",
+  teaches: ["Career Development", "TypeScript Enums", "Container Queries", "Web Components Slots", "Zod Validation", "Developer Best Practices"],
+  audience: {
+    type: "ProfessionalAudience",
+    audienceType: "Software Developers"
+  }
+}
+
+entities: {
+  primary: ["Developer Career Growth", "TypeScript", "CSS Container Queries", "Professional Development"],
+  secondary: ["Enums", "Web Components", "Slots", "Zod", "Tailwind CSS", "AI Assistants"],
+  tools: ["TypeScript", "CSS", "Vue.js", "React", "Tailwind CSS", "Zod", "ChatGPT", "Notion", "Obsidian"],
+  concepts: ["Continuous Learning", "Self-Care", "Technical Documentation", "Knowledge Sharing", "Code Validation"]
+}
+
+contentStructure: {
+  type: "Reflective Essay with Technical Tutorials",
+  difficulty: "Beginner to Intermediate",
+  timeToComplete: "20-25 minutes read",
+  prerequisites: ["Basic web development knowledge", "Interest in career growth"],
+  outcomes: ["Understand key career development strategies", "Learn TypeScript enums and CSS container queries", "Develop effective learning habits", "Implement self-care practices"]
+}
+
+semanticContext: {
+  topic: "Career development and technical learning in software development",
+  subtopics: ["Continuous Learning", "TypeScript Features", "Modern CSS", "Developer Wellness", "Knowledge Management", "AI Tools"],
+  relatedConcepts: ["Growth Mindset", "Technical Mastery", "Work-Life Balance", "Community Engagement"],
+  practicalApplication: true
+}
+
+citationMetadata: {
+  citableAs: "Johnson, N. (2024). 11 in 11: Concepts Learnt or Relearnt from Zero Day",
+  lastReviewed: "2025-10-30",
+  version: "1.1",
+  originalPublisher: "Nerando Johnson's Blog"
+}
+
+aiOptimization: {
+  summaryPrompt: "This article shares 11 key lessons learned during the author's first 11 months in a new developer role, combining career development insights with technical tutorials on TypeScript enums, CSS container queries, web component slots, Zod validation, and effective use of AI assistants",
+  keyTakeaways: [
+    "Embrace comfortable discomfort through continuous learning and adaptation",
+    "TypeScript enums provide type-safe ways to define fixed sets of constants",
+    "Container queries enable component-level responsive design beyond viewport-based media queries",
+    "Web component slots allow flexible content composition",
+    "Developer self-care and work-life balance are essential for long-term success",
+    "Effective learning requires demonstrated knowledge through projects and knowledge sharing",
+    "Strategic note-taking and documentation reading are critical developer skills",
+    "Knowing when and how to ask for help accelerates professional growth",
+    "AI assistants are powerful tools when used with specific, contextual queries",
+    "Zod provides TypeScript-first schema validation for robust applications"
+  ],
+  technicalDepth: "medium",
+  codeExamples: true
+}
 ---
-
-
-![Cover Image of a garden](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hhcitqui0sr45io11cs9.jpg)
 
 As of the first of this month, it's been 11 months since I have been in my current position. It took exactly 1 year between "We are sorry " and "Welcome to the team". Eventually, someone will speak to the emotional toll of the job hunt in this current market but not me. This job hunt consisted of upskilling, networking, re-learning and unlearning stuff. Overall, I tracked somewhere in the neighbourhood of 700-ish applications, what I will say is that job-hunt 2023 was different from all the previous timelines. A new career opportunity, as always, brings a new set of challenges but also provides a lot of insights, here are 11 insights learnt thus far :
 
@@ -32,10 +92,10 @@ Staying current in software development requires one to embrace a state of "comf
 
 
 
-## 2:Enums
-![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHgyZmZ3eXY0N2lyc3IwM2Z3cXZ1bjgwbjRoZW9tMGFoNzdnYXA1OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Te1T74De6RGNvBRe1x/giphy.gif)
+## 2: Enums
+<img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHgyZmZ3eXY0N2lyc3IwM2Z3cXZ1bjgwbjRoZW9tMGFoNzdnYXA1OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Te1T74De6RGNvBRe1x/giphy.gif" alt="Enums illustration" width="480" />
 
-Enums (short for enumerations) are a way to define a set of named constants. They're instrumental in TypeScript for creating more expressive and type-safe code. In my head, they have the same features as objects.  Here is another way of explaining them, _"
+Enums (short for enumerations) are a way to define a set of named constants. They're instrumental in TypeScript for creating more expressive and type-safe code. In my head, they have the same features as objects. Here is another way of explaining them, _"
 imagine you have a box of coloured pencils. You know that in this box, you can only have certain colours - let's say red, blue, green, and yellow. You can't suddenly have a purple pencil appear in the box.
 An enum (short for enumeration) in programming is like that box of coloured pencils._ It's a special way to create a group of named values that don't change. Just like you know exactly what colours are in your pencil box, an enum lets programmers define a set of named values that they know will always be the same. My takeaways include :
 

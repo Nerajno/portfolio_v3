@@ -21,20 +21,19 @@ const sizes = {
 };
 
 const styles = {
-  outline: "border-2 border-black hover:bg-black text-black hover:text-white",
-  primary:
-    "bg-black text-white hover:bg-slate-900  border-2 border-transparent",
+  outline: "border-2 border-black hover:bg-black text-black hover:text-white dark:border-white dark:hover:bg-white dark:text-white dark:hover:text-black",
+  primary: "bg-black text-white hover:bg-slate-900 border-2 border-transparent dark:bg-white dark:text-black dark:hover:bg-slate-200",
+  inverted: "bg-white text-black hover:bg-slate-100 border-2 border-transparent dark:bg-black dark:text-white dark:hover:bg-slate-800",
 };
 ---
 
 <button
   {...rest}
   class:list={[
-    "rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200",
+    "rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 dark:ring-gray-700 dark:ring-offset-gray-900",
     block && "w-full",
     sizes[size],
     styles[style],
     className,
   ]}
-  ><slot />
-</button>
+><slot /></button>

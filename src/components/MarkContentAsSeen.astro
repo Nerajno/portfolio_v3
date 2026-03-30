@@ -1,0 +1,20 @@
+---
+// Marks a blog post as seen when the user visits it.
+// Sets portfolio_last_dismissed to dismiss the notification bell glow.
+---
+
+<script>
+  const STORAGE_KEY_LAST_DISMISSED = 'portfolio_last_dismissed';
+
+  function markAsSeen() {
+    localStorage.setItem(STORAGE_KEY_LAST_DISMISSED, new Date().toISOString());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', markAsSeen);
+  } else {
+    markAsSeen();
+  }
+
+  document.addEventListener('astro:page-load', markAsSeen);
+</script>

@@ -52,6 +52,23 @@ const ogImage = new URL(image, Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={ogImage} />
 
+    <!-- ─── Analytics ──────────────────────────────────────────────── -->
+    <!-- GA4 -->
+    <script
+      is:inline
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q3KQF674YW"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('consent', 'default', {
+        ad_storage: 'granted', ad_user_data: 'granted',
+        ad_personalization: 'granted', analytics_storage: 'granted',
+      });
+      gtag('config', 'G-Q3KQF674YW');
+    </script>
+
     <!-- ─── Fonts ─────────────────────────────────────────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -72,6 +89,7 @@ const ogImage = new URL(image, Astro.site);
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
+
 
   <body>
     <!-- Reading Progress Bar (blog post pages only) -->

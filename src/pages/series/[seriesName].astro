@@ -1,0 +1,290 @@
+---
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import Sectionhead from '@components/sectionhead.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const allBlogPosts = await getCollection('blog', ({ data }) => {
+    const now = new Date();
+    return !data.draft && data.series && data.publishDate && data.publishDate < now;
+  });
+
+  // Group posts by series
+  const seriesMap = new Map<string, typeof allBlogPosts>();
+  allBlogPosts.forEach((post) => {
+    if (post.data.series?.name) {
+      const seriesName = post.data.series.name;
+      if (!seriesMap.has(seriesName)) {
+        seriesMap.set(seriesName, []);
+      }
+      seriesMap.get(seriesName)!.push(post);
+    }
+  });
+
+  // Create paths for each series
+  return Array.from(seriesMap.entries()).map(([seriesName, posts]) => {
+    // Sort posts by series order
+    const sortedPosts = posts.sort(
+      (a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0)
+    );
+
+    return {
+      params: { seriesName: seriesName.toLowerCase().replace(/\s+/g, '-') },
+      props: { seriesName, posts: sortedPosts },
+    };
+  });
+}
+
+const { seriesName, posts } = Astro.props;
+
+// Get reading time for each post
+const postsWithReadingTime = await Promise.all(
+  posts.map(async (post: any) => {
+    const { remarkPluginFrontmatter } = await post.render();
+    return {
+      ...post,
+      minutesRead: remarkPluginFrontmatter?.minutesRead || '1 min read',
+    };
+  })
+);
+
+// SEO configuration
+const seoConfig = {
+  title: `${seriesName} - Blog Series | My MetaData`,
+  description: `Explore the complete ${seriesName} blog series. A comprehensive collection of ${posts.length} articles covering everything you need to know.`,
+  canonical: new URL(
+    `series/${seriesName.toLowerCase().replace(/\s+/g, '-')}`,
+    Astro.site
+  ).toString(),
+};
+---
+
+<Layout title={`${seriesName} Series`}>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={{
+      basic: {
+        title: seoConfig.title,
+        type: 'website',
+        image: posts[0]?.data.image?.src || '/og-blog.jpg',
+        url: seoConfig.canonical,
+      },
+      optional: {
+        description: seoConfig.description,
+        siteName: 'My MetaData',
+      },
+    }}
+    twitter={{
+      creator: '@nerajno',
+      site: '@nerajno',
+      card: 'summary_large_image',
+    }}
+  />
+
+  <Container>
+    <Sectionhead>
+      <Fragment slot='title'>
+        <div class='flex items-center gap-3 flex-wrap justify-center'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            class='h-10 w-10 text-blue-600 dark:text-blue-400'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'>
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+            ></path>
+          </svg>
+          <span>{seriesName}</span>
+        </div>
+      </Fragment>
+      <Fragment slot='desc'>
+        A comprehensive {posts.length}-part series. Follow along from start to
+        finish or jump to specific topics.
+      </Fragment>
+    </Sectionhead>
+
+    <main class='mt-16'>
+      <!-- Series Overview Card -->
+      <div
+        class='max-w-4xl mx-auto mb-12 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700 rounded-xl p-8 border border-blue-200 dark:border-slate-600'>
+        <h2 class='text-2xl font-bold mb-4 text-slate-800 dark:text-slate-100'>
+          About This Series
+        </h2>
+        <div class='space-y-4 text-slate-600 dark:text-slate-300'>
+          <div class='flex items-center gap-4'>
+            <div class='flex items-center gap-2'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                class='h-5 w-5 text-blue-600 dark:text-blue-400'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'>
+                <path
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                  stroke-width='2'
+                  d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+                ></path>
+              </svg>
+              <span class='font-semibold'>{posts.length} articles</span>
+            </div>
+            <div class='flex items-center gap-2'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                class='h-5 w-5 text-blue-600 dark:text-blue-400'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'>
+                <path
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                  stroke-width='2'
+                  d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'></path>
+              </svg>
+              <span
+                >{
+                  postsWithReadingTime.reduce(
+                    (acc, post) =>
+                      acc +
+                      parseInt(
+                        post.minutesRead?.match(/\d+/)?.[0] || '0',
+                        10
+                      ),
+                    0
+                  )
+                } min total read</span
+              >
+            </div>
+          </div>
+          <p class='text-sm'>
+            Published bi-weekly • Follow along to build your expertise step by
+            step
+          </p>
+        </div>
+      </div>
+
+      <!-- Series Articles List -->
+      <div class='max-w-4xl mx-auto space-y-6'>
+        {
+          postsWithReadingTime.map((post, index) => {
+            const isCompleted = index < postsWithReadingTime.length - 1; // All but last are "completed"
+            return (
+              <a
+                href={`/blog/${post.slug}`}
+                class='block group hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl p-6 border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all'>
+                <div class='flex gap-6'>
+                  {/* Number badge */}
+                  <div class='flex-shrink-0'>
+                    <div class='relative'>
+                      <div
+                        class={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
+                          isCompleted
+                            ? 'bg-blue-600 dark:bg-blue-500 text-white'
+                            : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
+                        }`}>
+                        {post.data.series?.order}
+                      </div>
+                      {index < postsWithReadingTime.length - 1 && (
+                        <div class='absolute top-12 left-1/2 -translate-x-1/2 w-0.5 h-12 bg-slate-300 dark:bg-slate-600' />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div class='flex-grow min-w-0'>
+                    <div class='flex items-start gap-4 mb-2'>
+                      <div class='flex-grow'>
+                        <h3 class='text-xl font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-2'>
+                          {post.data.title}
+                        </h3>
+                        <p class='text-sm text-slate-600 dark:text-slate-400 line-clamp-2'>
+                          {post.data.snippet}
+                        </p>
+                      </div>
+                      {post.data.image && (
+                        <Picture
+                          src={post.data.image.src}
+                          alt={post.data.image.alt}
+                          width={120}
+                          height={80}
+                          class='rounded-lg object-cover flex-shrink-0 hidden md:block'
+                        />
+                      )}
+                    </div>
+
+                    <div class='flex flex-wrap gap-3 items-center text-xs text-slate-500 dark:text-slate-400 mt-3'>
+                      <time datetime={post.data.publishDate.toISOString()}>
+                        {post.data.publishDate.toDateString()}
+                      </time>
+                      <span>•</span>
+                      <span class='inline-flex items-center gap-1'>
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          class='h-4 w-4'
+                          fill='none'
+                          viewBox='0 0 24 24'
+                          stroke='currentColor'>
+                          <path
+                            stroke-linecap='round'
+                            stroke-linejoin='round'
+                            stroke-width='2'
+                            d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+                          />
+                        </svg>
+                        {post.minutesRead}
+                      </span>
+                      {post.data.tags && post.data.tags.length > 0 && (
+                        <>
+                          <span>•</span>
+                          <div class='flex gap-2'>
+                            {post.data.tags.slice(0, 3).map((tag: string) => (
+                              <span class='bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded'>
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+
+      <!-- Back to Blog -->
+      <div class='max-w-4xl mx-auto mt-12 text-center'>
+        <a
+          href='/blog'
+          class='inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-medium'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            class='h-5 w-5'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'>
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M10 19l-7-7m0 0l7-7m-7 7h18'></path>
+          </svg>
+          Back to All Blog Posts
+        </a>
+      </div>
+    </main>
+  </Container>
+</Layout>

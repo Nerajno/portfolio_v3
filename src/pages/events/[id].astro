@@ -2,48 +2,164 @@
 import { speakingData } from '../../data/speakingData.js';
 import Layout from '../../layouts/Layout.astro';
 import Container from '../../components/container.astro';
-import { Image } from 'astro:assets';
+import { AstroSEO } from 'astro-seo-plugin';
+// import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
-  return speakingData.map(event => ({
+  return speakingData.map((event) => ({
     params: { id: event.id },
     props: { event },
   }));
 }
 
 const { event } = Astro.props;
+export const prerender = true;
+
+// Enhanced SEO with GEO optimization
+const seoConfig = {
+  title: `${event.title} - Nerando Johnson Speaking Engagement`,
+  description: event.description || `${event.title} at ${event.name}. Speaking engagement by Nerando Johnson on ${event.date} in ${event.location}.`,
+  canonical: `https://developingdvlpr.com/events/${event.id}`,
+  openGraph: {
+    basic: {
+      title: `${event.title} - Nerando Johnson`,
+      type: 'article',
+      image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+      url: `https://developingdvlpr.com/events/${event.id}`,
+    },
+    optional: {
+      description: event.description || `${event.title} at ${event.name}. Speaking engagement by Nerando Johnson.`,
+      siteName: 'Developing Developer',
+      locale: 'en_US',
+    },
+    article: {
+      publishedTime: event.date,
+      author: 'Nerando Johnson',
+    },
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@nerajno',
+    creator: '@nerajno',
+    title: `${event.title} - Nerando Johnson`,
+    description: event.description || `${event.title} at ${event.name}`,
+    image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+  },
+  extend: {
+    meta: [
+      { name: 'author', content: 'Nerando Johnson' },
+      { name: 'keywords', content: `${event.title}, Nerando Johnson, speaking, tech conference, ${event.name}, ${event.location}` },
+      { name: 'robots', content: 'index, follow' },
+      { property: 'og:locale', content: 'en_US' },
+      { name: 'theme-color', content: '#1e293b' },
+      { name: 'geo.region', content: 'US-GA' },
+      { name: 'geo.placename', content: 'Atlanta' },
+      // OpenGraph article and profile meta tags
+      { property: 'article:author', content: 'Nerando Johnson' },
+      { property: 'profile:first_name', content: 'Nerando' },
+      { property: 'profile:last_name', content: 'Johnson' },
+    ],
+  },
+};
+
+// Structured data for Event (GEO optimization)
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: event.title,
+  description: event.description || `${event.title} at ${event.name}`,
+  startDate: event.date,
+  location: {
+    '@type': 'Place',
+    name: event.location,
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: event.name,
+  },
+  performer: {
+    '@type': 'Person',
+    name: 'Nerando Johnson',
+    url: 'https://developingdvlpr.com',
+    jobTitle: 'Software Developer & Tech Speaker',
+    sameAs: [
+      'https://github.com/Nerajno',
+      'https://twitter.com/nerajno',
+      'https://www.linkedin.com/in/nerando-johnson/',
+    ],
+  },
+  image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+  url: `https://developingdvlpr.com/events/${event.id}`,
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+};
 ---
 
 <Layout title={event.title}>
+  <AstroSEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={seoConfig.extend}
+  />
+
+  <!-- Structured Data for GEO -->
+  <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
   <Container>
-    <div class="max-w-4xl mx-auto mt-12">
-      <Image
-        src={event.image}
-        alt={event.title}
-        width={800}
-        height={400}
-        class="w-full h-64 object-cover rounded-lg shadow-md"
-      />
-      <h1 class="text-4xl font-bold mt-8 mb-4">{event.title}</h1>
-      <p class="text-gray-600 mb-4">Date: {event.date}</p>
-      <p class="text-gray-600 mb-8">Location: {event.location}</p>
+    <div class='max-w-4xl mx-auto mt-12'>
+      <!-- {
+        event.image ? (
+          <Image
+            src={event.image}
+            alt={event.title}
+            width={800}
+            height={400}
+            class='w-full h-64 object-cover rounded-lg shadow-md'
+          />
+        ) : (
+          <div class='w-full h-64 bg-gray-200 rounded-lg shadow-md flex items-center justify-center'>
+            <span class='text-gray-500'>No image available</span>
+          </div>
+        )
+      } -->
+      <h1 class='text-4xl font-bold mt-8 mb-4'>{event.title}</h1>
+      <h2 class="text-gray-600 font-bold mb-4"> Event : {event.name}</h2>
+      <p class='text-gray-600 mb-4'>Date: {event.date}</p>
+      <p class='text-gray-600 mb-8'>Location: {event.location}</p>
 
-      <h2 class="text-2xl font-semibold mb-4">Event Description</h2>
-      <p class="text-gray-700 mb-8">{event.description}</p>
+      <h2 class='text-2xl font-semibold mb-4'>Event Description</h2>
+      <p class='text-gray-700 mb-8'>{event.description}</p>
 
-      <h2 class="text-2xl font-semibold mb-4">Additional Resources</h2>
-      <div class="flex gap-4 mb-12">
-        {event.links.video && (
-          <a href={event.links.video} target="_blank" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">Watch Video</a>
-        )}
-        {event.links.article && (
-          <a href={event.links.article} target="_blank" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-300 transition-colors duration-300">Read Article</a>
-        )}
+      <h2 class='text-2xl font-semibold mb-4'>Additional Resources</h2>
+      <div class='flex gap-4 mb-12'>
+        {
+          event.links.video && (
+            <a
+              href={event.links.video}
+              target='_blank'
+              class='bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300'>
+              Watch Video
+            </a>
+          )
+        }
+        {
+          event.links.article && (
+            <a
+              href={event.links.article}
+              target='_blank'
+              class='bg-gray-200 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-300 transition-colors duration-300'>
+              Read Article
+            </a>
+          )
+        }
       </div>
 
       <!-- Back link -->
-      <div class="border-t pt-8">
-        <a href="/speaking" class="text-blue-500 hover:text-blue-700 transition-colors duration-300">
+      <div class='border-t pt-8'>
+        <a
+          href='/speaking'
+          class='text-blue-500 hover:text-blue-700 transition-colors duration-300'>
           ← Back to Speaking Engagements
         </a>
       </div>

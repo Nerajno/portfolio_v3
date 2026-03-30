@@ -1,5 +1,8 @@
 ---
 draft: false
+seoTitle: "30 Days In: Essential Lessons for New Tech Roles"
+seoDescription: "Key strategies for success in your first month at a new tech job: onboarding, continuous learning, and work-life balance."
+author: "Nerando Johnson"
 title: "Tech-nically Speaking: 30 Days In"
 snippet: "After a year-long job search, I share the essential tips for transitioning into a new tech role, emphasizing the importance of onboarding, resting, and continuous learning. Key strategies include thoroughly understanding company procedures and tech stacks, advocating for necessary resources, and establishing effective work habits through planning and accountability. This post highlights that success in a new position involves not just technical skills but also personal well-being and adaptability in a team environment."
 image: {
@@ -9,9 +12,62 @@ image: {
 publishDate: "2023-12-29 12:00"
 category: "Reflections, Process"
 tags: [onboarding, tooling, softskills]
----
+keywords: [tech onboarding tips, first 30 days new tech job, software developer onboarding, tech career transition guide, new developer best practices, work-life balance tech, continuous learning software development, tech stack learning, developer productivity tips, 30/60/90 plan tech, tech job transition, developer self-advocacy, tech career restart, onboarding procedures tech industry, developer accountability systems]
 
-![](https://media.giphy.com/media/27ui0ttUYgtZ29byfY/giphy.gif)
+# GEO-Enhanced Fields
+schema: {
+  type: "TechArticle",
+  about: "Transitioning into a new tech role and succeeding in the first 30 days",
+  genre: "Career Guide",
+  educationalLevel: "Beginner to Intermediate",
+  teaches: ["Onboarding Strategies", "Work-Life Balance", "Continuous Learning", "Developer Productivity"],
+  audience: {
+    type: "ProfessionalAudience",
+    audienceType: "Software Developers, Tech Professionals"
+  }
+}
+
+entities: {
+  primary: ["Tech Onboarding", "Developer Career Transition", "New Tech Role"],
+  secondary: ["30/60/90 Plan", "Pomodoro Method", "Brag Document", "Work-Life Balance"],
+  tools: ["TypeScript", "Vue", "VSCode"],
+  concepts: ["Continuous Learning", "Self-Advocacy", "Developer Productivity", "Rest and Recovery", "Accountability Systems"]
+}
+
+contentStructure: {
+  type: "Personal Experience & Career Guide",
+  difficulty: "Beginner-Friendly",
+  timeToComplete: "10-12 minutes read",
+  prerequisites: ["Starting a new tech role or preparing for career transition"],
+  outcomes: ["Effective onboarding strategy", "Improved work-life balance", "Continuous learning plan", "Productivity systems"]
+}
+
+semanticContext: {
+  topic: "Career development and onboarding strategies for tech professionals",
+  subtopics: ["Technical Onboarding", "Personal Wellness", "Professional Development", "Team Integration"],
+  relatedConcepts: ["Career Transition", "Developer Growth", "Workplace Adaptation", "Learning Systems"],
+  practicalApplication: true
+}
+
+citationMetadata: {
+  citableAs: "Johnson, N. (2023, updated 2025). Tech-nically Speaking: 30 Days In",
+  lastReviewed: "2025-10-30",
+  version: "1.1",
+  originalPublisher: "dev.to, republished on Nerando Johnson's Blog"
+}
+
+aiOptimization: {
+  summaryPrompt: "This article provides practical guidance for software developers transitioning into new tech roles, covering onboarding strategies, work-life balance, productivity systems, and continuous learning",
+  keyTakeaways: [
+    "Successful onboarding involves understanding both people/procedures and technical stack",
+    "Rest and recovery are critical for sustained productivity and focus",
+    "Structured accountability systems (30/60/90 plans, Pomodoro, brag documents) enhance success",
+    "Continuous learning and self-advocacy are essential for career growth"
+  ],
+  technicalDepth: "medium",
+  codeExamples: false
+}
+---
 
 So the offer letter has been signed and the job search is finally over (mine took 365 days ~ update coming). So the question to be answered is what or what does one do next? The answer ... a lot of unlearning and re-learning. So let's cover a few tips that were instrumental in helping me to become the best version of myself for this new chapter of my tech career. To make it easier, we will break these tips down into the following: onboarding (people and tech), resting( its importance), relearning how to work and deliberate learning.
 
@@ -19,13 +75,13 @@ So the offer letter has been signed and the job search is finally over (mine too
 
 ![](https://media.giphy.com/media/4xWGyVKoXqg2eVCiq9/giphy.gif)
 
-Depending on the company's size, orientation or in tech speak, onboarding looks different. I took time to research my team and company and I came up with questions and queries, I got them answered as it helped me to be of better help on the team. Get the company handbook, team/department procedures and learn who are your go-to persons/subject matter experts(SMEs), get all the paperwork that comes with the position.  Take time to read everything given to you, in detail asking for revisions if needed and permitted ( please note that this should also be the case during salary negotiation). I should point out to those of us who contribute to open-source, have a side-hustle or a side project, that you need to get it in writing so that you can continue being you. Take time to get the expectations, goals and other necessities documented (in writing ) and jointly agreed upon. So again the takeaways are to ask questions, make notes and get it all in writing.
+Depending on the company's size, orientation or in tech speak, onboarding looks different. I took time to research my team and company and I came up with questions and queries, I got them answered as it helped me to be of better help on the team. Get the company handbook, team/department procedures and learn who your go-to persons/subject matter experts(SMEs) are, get all the paperwork that comes with the position. Take time to read everything given to you, in detail, asking for revisions if needed and permitted (please note that this should also be the case during salary negotiation). I should point out to those of us who contribute to open-source, have a side-hustle or a side project, that you need to get it in writing so that you can continue being you. Take time to get the expectations, goals and other necessities documented (in writing) and jointly agreed upon. So again the takeaways are to ask questions, make notes and get it all in writing.
 
 ## Onboarding ~ Tech and TechStack
 
 ![](https://media1.tenor.com/m/gfpuxIwUd8UAAAAC/the-doctor-leo-fitz.gif)
 
-From the company, you should have a list of all the equipment that you should receive from your employer. If you need more stuff ( cables, connectors, chargers or stationery ), ask for it citing why you need it. Remember a closed mouth is never fed and we self-advocate here. We would all hope that we work from home but we don't, so get the setup completed and test everything in both locations. The same thing can be said for software installations, get/create the list and double-check with your immediate supervisor if needed and get yourself up to speed. Double-check all the configuration settings and ensure that it works efficiently. If all of the above is done properly,  one should have a production-level environment in a day to a week( this is for large corporations).
+You should receive from the company a list of all the equipment that you should receive from your employer. If you need more stuff (cables, connectors, chargers or stationery), ask for it citing why you need it. Remember a closed mouth is never fed and we self-advocate here. We would all hope that we work from home but we don't, so get the setup completed and test everything in both locations. The same thing can be said for software installations, get/create the list and double-check with your immediate supervisor if needed and get yourself up to speed. Double-check all the configuration settings and ensure that it works efficiently. If all of the above is done properly, one should have a production-level environment in a day to a week (this is for large corporations).
 
 ![](https://media.giphy.com/media/26wkP6n7c8fQJbhVS/giphy.gif)
 
@@ -36,8 +92,7 @@ The fun should now begin with you being introduced to the
 
 ![](https://media.giphy.com/media/KD8Ldwzx90X9hi9QHW/giphy.gif)
 
-One can't focus if one is hungry (unless you are on a fast ... that takes some discipline), likewise one can't be the best problem-solving version of themself without sufficient rest. I could go deeper into why this is necessary but
- [reading this](https://dev.to/damcosset/want-to-be-a-better-developer-take-care-of-your-sleep-1def)  and [watch this](https://youtu.be/5MuIMqhT8DM?si=tlXhQe-nUf9yFGiN) will do a better job than I can. Being back to a standard set of hours to get tasks done takes practice and some amount of strategy. My strategy was to completely plug out and sleep till I was thoroughly rested, I also took time to deliberately reset my circadian. All of that ensured that I was able to operate effectively during business hours. I also took time to learn to how meditate as it helped me to learn how to slow my brain down thus enabling me to deepen my focus.
+One can't focus if one is hungry (unless you are on a fast... that takes some discipline), likewise one can't be the best problem-solving version of themself without sufficient rest. I could go deeper into why this is necessary but [reading this](https://dev.to/damcosset/want-to-be-a-better-developer-take-care-of-your-sleep-1def) and [watch this](https://youtu.be/5MuIMqhT8DM?si=tlXhQe-nUf9yFGiN) will do a better job than I can. Being back to a standard set of hours to get tasks done takes practice and some amount of strategy. My strategy was to completely plug out and sleep till I was thoroughly rested, I also took time to deliberately reset my circadian. All of that ensured that I was able to operate effectively during business hours. I also took time to learn to how meditate as it helped me to learn how to slow my brain down thus enabling me to deepen my focus.
 So the takeaways are to learn how to rest, reset your circadian rhythm and learn how to meditate if necessary. Here are [some more food for thought.](https://www.ted.com/search?q=sleep)
 
 ## Relearn How To Work Full-Time and Accountability
@@ -56,7 +111,7 @@ If it took you over 30 days to get a new job, there may be some amount of "re-le
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/us7niy4u06nj0xkyo65b.jpeg)
 
-"Relearning, unlearning and upskilling"... in this profession, these are words we live. So in this new role that we have, take time to figure out what to learn to move from competency to mastery in this new position on its respective tech stack. Since we should all be migrating to [TypeScript](https://youtu.be/U6s2pdxebSo?si=paDyMlsmBX9Dhror) and I now work in [Vue](https://youtu.be/OrxmtDw4pVI?si=5vuEX8xFMrx71l6G), plus I like to know why a tool was created, I took time to watch the origin stories of both. Next, it's either the tutorial &or building small projects phase, simply put ... build sh!t that applies the knowledge you are learning. Learning to leave your ego at the door or the mindset of "I should know this" and ask for help or get to the point of "getting comfortable feeling uncomfortable", thus one should know [how to ask for help on a team.](https://youtu.be/YssP_qMAq0A?si=T5rMGoHk6_8bZ2kD). Another thing is to not abandon your side projects, space them out if you need to but do not abandon them. There is something to be said about having a basic version running version of your side project. Another thing is that as you learn, document and make time to teach.
+"Relearning, unlearning and upskilling"... in this profession, these are words we live. So in this new role that we have, take time to figure out what to learn to move from competency to mastery in this new position on its respective tech stack. Since we should all be migrating to [TypeScript](https://youtu.be/U6s2pdxebSo?si=paDyMlsmBX9Dhror) and I now work in [Vue](https://youtu.be/OrxmtDw4pVI?si=5vuEX8xFMrx71l6G), plus I like to know why a tool was created, I took time to watch the origin stories of both. Next, it's either the tutorial and/or building small projects phase, simply put ... build sh!t that applies the knowledge you are learning. Learning to leave your ego at the door or the mindset of "I should know this" and ask for help or get to the point of "getting comfortable feeling uncomfortable", thus one should know [how to ask for help on a team.](https://youtu.be/YssP_qMAq0A?si=T5rMGoHk6_8bZ2kD). Another thing is to not abandon your side projects, space them out if you need to but do not abandon them. There is something to be said about having a basic version running version of your side project. Another thing is that as you learn, document and make time to teach.
 
 ## Wrapping It Up
 

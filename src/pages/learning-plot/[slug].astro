@@ -1,0 +1,281 @@
+---
+import { AstroSEO } from 'astro-seo-plugin';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import projectsData from '../../data/projects';
+import { getGrowthStatusConfig } from '../../data/projects';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return projectsData.completed_projects
+    .filter(project => project.visible !== false)
+    .map((project) => ({
+      params: { slug: project.id },
+      props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+const caseStudy = project?.case_study;
+const notFound = !project || !caseStudy;
+const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.growth_status) : null;
+---
+
+{notFound && <meta http-equiv="refresh" content="0; url=/404" />}
+{!notFound && (
+  <AstroSEO
+    title={`${project.title} - Learning Plot | Nerando Johnson`}
+    description={project.description || `Learning journey and insights from building ${project.title}.`}
+    canonical={`https://developingdvlpr.com/learning-plot/${project.id}`}
+    openGraph={{
+      basic: {
+        title: `${project.title} - Learning Plot | Nerando Johnson`,
+        type: 'article',
+        image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+        url: `https://developingdvlpr.com/learning-plot/${project.id}`,
+      },
+      optional: {
+        description: project.description || `Learning journey and insights from building ${project.title}.`,
+        siteName: 'Developing Developer',
+        locale: 'en_US',
+      },
+      article: {
+        author: 'Nerando Johnson',
+        section: 'Technology',
+        tag: project.tags || [],
+      },
+    }}
+    twitter={{
+      card: "summary_large_image",
+      site: "@nerajno",
+      creator: "@nerajno",
+      title: `${project.title} - Learning Plot | Nerando Johnson`,
+      description: project.description || `Learning journey and insights from building ${project.title}.`,
+      image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg'
+    }}
+    extend={{
+      meta: [
+        { name: "keywords", content: `learning plot, ${project.title}, case study, developer, Nerando Johnson, learning journey` },
+        { name: "author", content: "Nerando Johnson" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:locale", content: "en_US" },
+        { name: "theme-color", content: "#1e293b" },
+        { name: "geo.region", content: "US-GA" },
+        { name: "geo.placename", content: "Atlanta" },
+        // GEO-specific meta tags
+        { property: "article:author", content: "Nerando Johnson" },
+        { property: "profile:first_name", content: "Nerando" },
+        { property: "profile:last_name", content: "Johnson" },
+        { property: "profile:username", content: "nerajno" },
+      ],
+    }}
+  />
+
+  <!-- Structured Data for GEO -->
+  <script type='application/ld+json' set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: `${project.title} - Learning Plot`,
+    description: project.description || `Learning journey from building ${project.title}`,
+    image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+    author: {
+      "@type": "Person",
+      name: "Nerando Johnson",
+      url: "https://developingdvlpr.com",
+      jobTitle: "Software Developer",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Atlanta",
+        addressRegion: "GA",
+        addressCountry: "US",
+      },
+      sameAs: [
+        "https://github.com/Nerajno",
+        "https://twitter.com/nerajno",
+        "https://www.linkedin.com/in/nerando-johnson/",
+      ],
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Nerando Johnson",
+      url: "https://developingdvlpr.com",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://developingdvlpr.com/learning-plot/${project.id}`,
+    },
+    url: `https://developingdvlpr.com/learning-plot/${project.id}`,
+    keywords: `learning, ${project.tags?.join(', ') || 'software development'}, project reflection`,
+    educationalLevel: "Intermediate",
+    learningResourceType: "Case Study",
+    about: {
+      "@type": "Thing",
+      name: project.title,
+      description: project.description,
+    },
+  })} />
+  <Layout title={`${project.title} - Learning Plot`}>
+    <Container>
+      <main class="max-w-4xl mx-auto py-8">
+        <!-- Header -->
+        <header class="mb-12">
+          <div class="flex items-center gap-4 mb-6">
+            <a href="/portfolio" class="text-blue-600 hover:text-blue-800 font-medium">← Back to Portfolio</a>
+            <span class="text-gray-400">|</span>
+            <a href={`/learning-projects/${project.id}`} class="text-blue-600 hover:text-blue-800 font-medium">← Back to Project Details</a>
+          </div>
+          <div class="flex items-center gap-4 mb-4">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white">{project.title} - Learning Plot</h1>
+            {
+              growthStatus && (
+                <span class={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border-2 border-black dark:border-white ${growthStatus.color}`}>
+                  <span class="text-lg">{growthStatus.icon}</span>
+                  <span>{growthStatus.label}</span>
+                </span>
+              )
+            }
+          </div>
+          <p class="text-xl text-gray-600 dark:text-gray-300 mb-6">My learning journey and insights from building this project</p>
+        </header>
+
+        <!-- Learning Journey Timeline -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Learning Journey</h2>
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+            <div class="space-y-6">
+              <!-- Timeline -->
+              <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Project Timeline</h3>
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                  <span class="text-blue-800 dark:text-blue-200 font-medium">{caseStudy.timeline}</span>
+                </div>
+              </div>
+
+              <!-- Key Changes -->
+              <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Key Changes & Iterations</h3>
+                <div class="space-y-3">
+                  {caseStudy.key_changes && caseStudy.key_changes.map((change, index) => (
+                    <div class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                      <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                        {index + 1}
+                      </div>
+                      <p class="text-gray-700 dark:text-gray-300">{change}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- What I Learned -->
+              <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Key Learnings</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {caseStudy.learnings && caseStudy.learnings.map((learning, index) => (
+                    <div class="p-4 bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 rounded-r-lg">
+                      <div class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        <p class="text-gray-700 dark:text-gray-300">{learning}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Results & Impact -->
+              <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Results & Impact</h3>
+                <div class="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                  <p class="text-gray-700 dark:text-gray-300">{caseStudy.results}</p>
+                </div>
+              </div>
+
+              <!-- Feedback Received -->
+              <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Feedback & Validation</h3>
+                <div class="space-y-3">
+                  {caseStudy.feedback && caseStudy.feedback.map((fb, index) => (
+                    <div class="p-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 rounded-r-lg">
+                      <blockquote class="text-gray-700 dark:text-gray-300 italic mb-2">"{fb.quote}"</blockquote>
+                      <cite class="text-sm text-gray-600 dark:text-gray-400">— {fb.author}</cite>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Future Improvements -->
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Future Learning Goals</h3>
+                <div class="space-y-2">
+                  {caseStudy.improvements && caseStudy.improvements.map((improvement, index) => (
+                    <div class="flex items-start gap-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                      <div class="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                        →
+                      </div>
+                      <p class="text-gray-700 dark:text-gray-300">{improvement}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technical Insights -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Technical Insights</h2>
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Tech Stack Used</h3>
+                <div class="flex flex-wrap gap-2">
+                  {Array.isArray(caseStudy.tech_stack)
+                    ? caseStudy.tech_stack.map((tech) => (
+                        <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">{tech}</span>
+                      ))
+                    : Object.entries(caseStudy.tech_stack).map(([section, stack]) => (
+                        <div class="w-full">
+                          <span class="font-semibold text-gray-700 dark:text-gray-300">{section}:</span>
+                          <div class="flex flex-wrap gap-2 mt-1">
+                            {stack.map((tech) => (
+                              <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium">{tech}</span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Project Metrics</h3>
+                <div class="space-y-2">
+                  {project.metrics && Object.entries(project.metrics).map(([key, value]) => (
+                    <div class="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-700 rounded">
+                      <span class="text-gray-600 dark:text-gray-400 capitalize">{key}:</span>
+                      <span class="font-semibold text-gray-900 dark:text-white">{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="text-center">
+          <div class="flex justify-center gap-4">
+            <a href={`/learning-projects/${project.id}`} class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+              View Full Project Details
+            </a>
+            {project.demo && (
+              <a href={project.demo} target="_blank" rel="noopener noreferrer" class="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                Try the Demo
+              </a>
+            )}
+          </div>
+        </section>
+      </main>
+    </Container>
+  </Layout>
+)}

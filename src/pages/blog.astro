@@ -1,71 +1,611 @@
 ---
-import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import Sectionhead from '@components/sectionhead.astro';
+import { getAllViewCounts } from '../lib/supabase';
+export const prerender = true;
+export const revalidate = 60; // Revalidate every 60 seconds
 
 // Filter blog entries with 'draft: false' & date before current date
-const publishedBlogEntries = await getCollection("blog", ({ data }) => {
+const publishedBlogEntries = await getCollection('blog', ({ data }) => {
   return !data.draft && data.publishDate < new Date();
 });
 
 // Sort content entries by publication date
-publishedBlogEntries.sort(function (a, b) {
+const sortedBlogEntries = [...publishedBlogEntries].sort((a, b) => {
   return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
 });
+
+// Fetch all view counts in a single query for performance
+const isDevelopment = import.meta.env.MODE === 'development';
+let allViewCounts: Record<string, number> = {};
+
+if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
+  allViewCounts = await getAllViewCounts();
+}
+
+// Get reading time for each blog post
+const blogEntriesWithReadingTime = await Promise.all(
+  sortedBlogEntries.map(async (entry) => {
+    const { remarkPluginFrontmatter } = await entry.render();
+    return {
+      ...entry,
+      minutesRead: remarkPluginFrontmatter?.minutesRead || '1 min read',
+    };
+  })
+);
+
+// Group posts by series for quick lookups
+const seriesMap = new Map<string, typeof blogEntriesWithReadingTime>();
+blogEntriesWithReadingTime.forEach((post) => {
+  if (post.data.series?.name) {
+    const seriesName = post.data.series.name;
+    if (!seriesMap.has(seriesName)) {
+      seriesMap.set(seriesName, []);
+    }
+    seriesMap.get(seriesName)!.push(post);
+  }
+});
+
+// Get unique series names
+const allSeries = Array.from(seriesMap.keys());
+
+// SEO configuration for the blog page
+const seoConfig = {
+  title: 'My MetaData - Blog & Learning Notes',
+  description:
+    "Notes and blog posts created from things I've learned. All these articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
+  canonical: new URL('blog', Astro.site).toString(),
+  openGraph: {
+    basic: {
+      title: 'My MetaData - Blog & Learning Notes',
+      type: 'website',
+      image: '/og-blog.jpg', // Add your blog's Open Graph image
+      url: new URL('blog', Astro.site).toString(),
+    },
+    optional: {
+      description:
+        "Notes and blog posts created from things I've learned. All these articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
+      siteName: 'My MetaData',
+    },
+    image: {
+      alt: 'My MetaData Blog - Learning and Development Resources',
+    },
+  },
+  twitter: {
+    creator: '@nerajno', // Replace with your Twitter handle
+    site: '@nerajno', // Replace with your site's Twitter handle
+    card: 'summary_large_image',
+  },
+};
 ---
 
-<Layout title="Blog">
+<Layout title='Blog'>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={{
+      // Additional meta tags with GEO optimization
+      meta: [
+        { name: 'robots', content: 'index, follow' },
+        { name: 'author', content: 'Nerando Johnson' },
+        {
+          name: 'keywords',
+          content:
+            'blog, programming, web development, learning, technology, tutorials',
+        },
+        { property: 'article:author', content: 'Nerando Johnson' },
+        { property: 'article:section', content: 'Technology' },
+        { property: 'og:locale', content: 'en_US' },
+        { name: 'theme-color', content: '#1e293b' },
+        // Additional meta tags (GEO, OpenGraph profile, etc.)
+        { name: 'geo.region', content: 'US-GA' },
+        { name: 'geo.placename', content: 'Atlanta' },
+        { property: 'profile:first_name', content: 'Nerando' },
+        { property: 'profile:last_name', content: 'Johnson' },
+      ],
+      // JSON-LD structured data
+      link: [
+        {
+          rel: 'alternate',
+          type: 'application/rss+xml',
+          title: 'My MetaData Blog RSS',
+          href: '/rss.xml',
+        },
+      ],
+    }}
+  />
+
+  <!-- JSON-LD Structured Data for Blog with GEO optimization -->
+  <script
+    type='application/ld+json'
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'My MetaData Blog',
+      description:
+        "Notes and blog posts created from things I've learned. All these articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
+      url: new URL('blog', Astro.site).toString(),
+      author: {
+        '@type': 'Person',
+        name: 'Nerando Johnson',
+        url: Astro.site?.toString(),
+        jobTitle: 'Software Developer',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Atlanta',
+          addressRegion: 'GA',
+          addressCountry: 'US',
+        },
+        sameAs: [
+          'https://github.com/Nerajno',
+          'https://twitter.com/nerajno',
+          'https://www.linkedin.com/in/nerando-johnson/',
+        ],
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'My MetaData',
+        url: Astro.site?.toString(),
+      },
+      blogPost: blogEntriesWithReadingTime.slice(0, 10).map((post) => ({
+        '@type': 'BlogPosting',
+        headline: post.data.title,
+        description: post.data.description || post.data.snippet,
+        url: new URL(`blog/${post.slug}`, Astro.site).toString(),
+        datePublished: post.data.publishDate.toISOString(),
+        dateModified:
+          post.data.updatedDate?.toISOString() ||
+          post.data.publishDate.toISOString(),
+        author: {
+          '@type': 'Person',
+          name: 'Nerando Johnson',
+        },
+        image: post.data.image?.src,
+        articleSection: post.data.category,
+      })),
+    })}
+  />
+
   <Container>
     <Sectionhead>
-      <Fragment slot="title">My Blog</Fragment>
-      <Fragment slot="desc">
-        I am working on getting better as a developer and a learner.
+      <Fragment slot='title'>My MetaData</Fragment>
+      <Fragment slot='desc'>
+        Notes and blog posts created from things I've learned. All these articles
+        I've written that helped me level up my skills and knowledge. Discover
+        insights on web development, programming, and technology.
       </Fragment>
     </Sectionhead>
-    <main class="mt-16">
-      <ul class="grid gap-16 max-w-4xl mx-auto">
+    <main class='mt-16'>
+      {/* Filter Controls */}
+      <div
+        class='max-w-6xl mx-auto mb-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow'>
+        <div class='space-y-4'>
+          <div>
+            <label
+              for='search'
+              class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+              >Search Posts</label
+            >
+            <input
+              type='text'
+              id='search'
+              class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'
+              placeholder='Search by title or tags...'
+            />
+          </div>
+          <div class='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <div>
+              <label
+                for='series-filter'
+                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+                >Filter by Series</label
+              >
+              <select
+                id='series-filter'
+                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
+                <option value=''>All Posts</option>
+                {
+                  allSeries.map((series) => (
+                    <option value={series}>{series}</option>
+                  ))
+                }
+              </select>
+            </div>
+            <div>
+              <label
+                for='sort'
+                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+                >Sort by Date</label
+              >
+              <select
+                id='sort'
+                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
+                <option value='newest'>Newest First</option>
+                <option value='oldest'>Oldest First</option>
+                <option value='title-asc'>Title (A-Z)</option>
+                <option value='title-desc'>Title (Z-A)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id='blog-posts' class='grid gap-16 max-w-6xl mx-auto'>
         {
-          publishedBlogEntries.map((blogPostEntry, index) => (
-            <li>
+          blogEntriesWithReadingTime.map((blogPostEntry, index) => (
+            <li
+              class='blog-post-item'
+              style='list-style: none;'
+              data-series={blogPostEntry.data.series?.name || ''}>
               <a href={`/blog/${blogPostEntry.slug}`}>
-                <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+                <div class='grid md:grid-cols-2 gap-5 md:gap-10 items-center'>
                   <Picture
                     src={blogPostEntry.data.image.src}
                     alt={blogPostEntry.data.image.alt}
-                    sizes="(max-width: 800px) 100vw, 800px"
+                    sizes='(max-width: 800px) 100vw, 800px'
                     width={800}
                     height={600}
-                    loading={index <= 2 ? "eager" : "lazy"}
-                    decoding={index <= 2 ? "sync" : "async"}
-                    class="w-full rounded-md object-cover object-center bg-white"
+                    format='webp'
+                    quality={80}
+                    loading={index <= 2 ? 'eager' : 'lazy'}
+                    decoding={index <= 2 ? 'sync' : 'async'}
+                    class='w-full rounded-md object-cover object-center bg-white'
                   />
                   <div>
-
-                    <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 ">
+                    {blogPostEntry.data.series && (
+                      <div class='mb-2'>
+                        <span class='inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-semibold'>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                          </svg>
+                          {blogPostEntry.data.series.name} - Part {blogPostEntry.data.series.order}
+                        </span>
+                      </div>
+                    )}
+                    <h2 class='text-3xl font-semibold leading-snug tracking-tight mt-1 '>
                       {blogPostEntry.data.title}
                     </h2>
 
-                    <div class="flex gap-2 mt-3">
+                    <div class='flex gap-2 mt-3'>
                       <time
-                        class="text-gray-400"
+                        class='text-gray-400'
                         datetime={blogPostEntry.data.publishDate.toISOString()}>
                         {blogPostEntry.data.publishDate.toDateString()}
                       </time>
+                      <span class='text-gray-400'>•</span>
+                      <span
+                        class='text-gray-400 inline-flex items-center view-counter-display'
+                        data-slug={blogPostEntry.slug}>
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='16'
+                          height='16'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          stroke='currentColor'
+                          stroke-width='2'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          class='inline-block mr-1'>
+                          <path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z' />
+                          <circle cx='12' cy='12' r='3' />
+                        </svg>
+                        <span class='view-count-text'>
+                          {isDevelopment &&
+                          import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
+                            ? '-- views'
+                            : `${(allViewCounts[blogPostEntry.slug] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.slug] === 1 ? 'view' : 'views'}`}
+                        </span>
+                      </span>
+                      <span class='text-gray-400'>•</span>
+                      <span class='text-gray-400 inline-flex items-center'>
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='16'
+                          height='16'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          stroke='currentColor'
+                          stroke-width='2'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          class='inline-block mr-1'>
+                          <circle cx='12' cy='12' r='10' />
+                          <polyline points='12 6 12 12 16 14' />
+                        </svg>
+                        {blogPostEntry.minutesRead}
+                      </span>
                     </div>
-                    <div class="flex gap-2 mt-3">
-                      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
-                      {blogPostEntry.data.category}
-                    </span>
+                    <div class='flex gap-2 mt-3'>
+                      <span class='text-blue-400 uppercase tracking-wider text-sm font-medium'>
+                        {blogPostEntry.data.category}
+                      </span>
                     </div>
+                    {blogPostEntry.data.tags && blogPostEntry.data.tags.length > 0 && (
+                      <div class='flex gap-2 mt-3 flex-wrap' data-tags={blogPostEntry.data.tags.join(',')}>
+                        {blogPostEntry.data.tags.map((tag: string) => (
+                          <span class='bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs'>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </a>
             </li>
           ))
         }
-      </ul>
+      </div>
+
+      {/* Pagination Controls */}
+      <div
+        id='pagination-controls'
+        class='max-w-6xl mx-auto mt-12 flex items-center justify-center gap-4 hidden'>
+        <button
+          id='prev-page'
+          class='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors'
+          disabled>
+          Previous
+        </button>
+        <span id='page-info' class='text-gray-700 dark:text-gray-300 font-medium'
+          >Page 1 of 1</span
+        >
+        <button
+          id='next-page'
+          class='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors'>
+          Next
+        </button>
+      </div>
+
+      <script>
+        const blogPosts = document.getElementById('blog-posts');
+        const searchInput = document.getElementById('search');
+        const sortSelect = document.getElementById('sort');
+        const seriesFilter = document.getElementById('series-filter');
+
+        // Pagination state
+        let currentPage = 1;
+        const postsPerPage = 7;
+
+        // Debounce function
+        function debounce(func, wait) {
+          let timeout;
+          return function executedFunction(...args) {
+            const later = () => {
+              clearTimeout(timeout);
+              func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+          };
+        }
+
+        // Update view counts client-side
+        async function updateViewCounts() {
+          const viewCounters = document.querySelectorAll(
+            '.view-counter-display'
+          );
+
+          for (const counter of viewCounters) {
+            const slug = counter.getAttribute('data-slug');
+            const textEl = counter.querySelector('.view-count-text');
+
+            if (slug && textEl) {
+              try {
+                const response = await fetch(`/api/views/${slug}`);
+                const data = await response.json();
+
+                if (data.count !== undefined) {
+                  const formatted = data.count.toLocaleString();
+                  const label = data.count === 1 ? 'view' : 'views';
+                  textEl.textContent = `${formatted} ${label}`;
+                }
+              } catch (err) {
+                console.error(`Failed to fetch view count for ${slug}:`, err);
+              }
+            }
+          }
+        }
+
+        // Update view counts when page loads
+        updateViewCounts();
+
+        // Pagination function
+        function paginatePosts(posts) {
+          const totalPages = Math.ceil(posts.length / postsPerPage);
+          const start = (currentPage - 1) * postsPerPage;
+          const end = start + postsPerPage;
+
+          // Show only posts for current page
+          posts.forEach((post, idx) => {
+            post.style.display = (idx >= start && idx < end) ? 'block' : 'none';
+          });
+
+          // Update pagination controls
+          updatePaginationControls(totalPages);
+        }
+
+        // Update pagination controls
+        function updatePaginationControls(totalPages) {
+          const paginationContainer = document.getElementById('pagination-controls');
+          if (!paginationContainer) return;
+
+          // Show/hide pagination based on total pages
+          if (totalPages <= 1) {
+            paginationContainer.style.display = 'none';
+            return;
+          }
+
+          paginationContainer.style.display = 'flex';
+
+          // Update page info
+          const pageInfo = document.getElementById('page-info');
+          if (pageInfo) {
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+          }
+
+          // Update button states
+          const prevBtn = document.getElementById('prev-page');
+          const nextBtn = document.getElementById('next-page');
+
+          if (prevBtn) {
+            prevBtn.disabled = currentPage === 1;
+          }
+
+          if (nextBtn) {
+            nextBtn.disabled = currentPage === totalPages;
+          }
+        }
+
+        // Navigate to specific page
+        function goToPage(page) {
+          // Get all posts currently in the DOM (already filtered by filterPosts if applicable)
+          const allPosts = Array.from(document.querySelectorAll('#blog-posts > li'));
+          const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+          if (page < 1 || page > totalPages) return;
+
+          currentPage = page;
+
+          // Apply pagination to all posts in DOM
+          paginatePosts(allPosts);
+
+          // Scroll to top of blog posts
+          const blogPostsTop = blogPosts?.offsetTop || 0;
+          window.scrollTo({ top: blogPostsTop - 100, behavior: 'smooth' });
+        }
+
+        // Filter posts function
+        function filterPosts() {
+          const searchTerm = searchInput.value.toLowerCase().trim();
+          const sortBy = sortSelect.value || "newest";
+          const selectedSeries = seriesFilter?.value || '';
+
+          // Get all post elements
+          const posts = Array.from(
+            document.querySelectorAll('#blog-posts > li')
+          );
+
+          // Filter posts by title, tags, and series
+          let filteredPosts = posts.filter((post) => {
+            // Filter by series if selected
+            if (selectedSeries) {
+              const postSeries = post.getAttribute('data-series') || '';
+              if (postSeries !== selectedSeries) return false;
+            }
+
+            // Filter by search term
+            if (!searchTerm) return true;
+
+            const titleEl = post.querySelector('h2');
+            const title = titleEl?.textContent?.toLowerCase() || '';
+            const tagsContainer = post.querySelector('[data-tags]');
+            const tags = tagsContainer?.getAttribute('data-tags')?.toLowerCase() || '';
+
+            // Search in both title and tags
+            return title.includes(searchTerm) || tags.includes(searchTerm);
+          });
+
+          // Sort posts based on selected option
+          switch (sortBy) {
+            case 'oldest':
+              filteredPosts.sort((a, b) => {
+                const timeA = a.querySelector('time')?.dateTime;
+                const timeB = b.querySelector('time')?.dateTime;
+                if (!timeA || !timeB) return 0;
+                return new Date(timeA).valueOf() - new Date(timeB).valueOf();
+              });
+              break;
+            case 'title-asc':
+              filteredPosts.sort((a, b) => {
+                const titleA =
+                  a.querySelector('h2')?.textContent?.toLowerCase() || '';
+                const titleB =
+                  b.querySelector('h2')?.textContent?.toLowerCase() || '';
+                return titleA.localeCompare(titleB);
+              });
+              break;
+            case 'title-desc':
+              filteredPosts.sort((a, b) => {
+                const titleA =
+                  a.querySelector('h2')?.textContent?.toLowerCase() || '';
+                const titleB =
+                  b.querySelector('h2')?.textContent?.toLowerCase() || '';
+                return titleB.localeCompare(titleA);
+              });
+              break;
+            default: // 'newest' (default)
+              filteredPosts.sort((a, b) => {
+                const timeA = a.querySelector('time')?.dateTime;
+                const timeB = b.querySelector('time')?.dateTime;
+                if (!timeA || !timeB) return 0;
+                return new Date(timeB).valueOf() - new Date(timeA).valueOf();
+              });
+          }
+
+          // Clear and re-add sorted posts
+          if (!blogPosts) {
+            console.error('Blog posts container not found');
+            return;
+          }
+
+          blogPosts.innerHTML = '';
+          filteredPosts.forEach((post) => blogPosts.appendChild(post));
+
+          // Reset to page 1 when filtering/sorting changes
+          currentPage = 1;
+
+          // Apply pagination to filtered results
+          paginatePosts(filteredPosts);
+        }
+
+        // Create debounced version of filterPosts (300ms delay)
+        const debouncedFilterPosts = debounce(filterPosts, 300);
+
+        // Add event listeners
+        searchInput.addEventListener('input', debouncedFilterPosts);
+        sortSelect.addEventListener('change', filterPosts);
+        if (seriesFilter) {
+          seriesFilter.addEventListener('change', filterPosts);
+        }
+
+        // Pagination button event listeners
+        const prevBtn = document.getElementById('prev-page');
+        const nextBtn = document.getElementById('next-page');
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', () => {
+            goToPage(currentPage - 1);
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
+            const totalPages = Math.ceil(posts.length / postsPerPage);
+            if (currentPage < totalPages) {
+              goToPage(currentPage + 1);
+            }
+          });
+        }
+
+        // Initialize pagination on page load
+        function initializePagination() {
+          const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
+          paginatePosts(posts);
+        }
+
+        // Run initialization
+        initializePagination();
+      </script>
     </main>
   </Container>
 </Layout>

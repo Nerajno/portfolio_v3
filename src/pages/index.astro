@@ -1,17 +1,159 @@
 ---
 import Container from "@components/container.astro";
-import Cta from "@components/cta.astro";
 import Features from "@components/features.astro";
 import Hero from "@components/hero.astro";
 import Logos from "@components/logos.astro";
 import Layout from "@layouts/Layout.astro";
+import { AstroSEO } from 'astro-seo-plugin';
+// Enhanced SEO Configuration with GEO best practices
+const seoConfig = {
+  title: 'Nerando Johnson - Software Developer | Vue3 Specialist | Tech Community Organizer in Atlanta',
+  description:
+    'Welcome to Nerando Johnson\'s portfolio. Atlanta-based software developer specializing in Vue3, JavaScript, and front-end development. Explore my digital garden, projects, technical insights, and community contributions. Available for consulting, mentoring, and collaboration.',
+  canonical: 'https://developingdvlpr.com',
+  openGraph: {
+    basic: {
+      title: 'Nerando Johnson - Software Developer & Vue3 Specialist in Atlanta',
+      type: 'website',
+      image: 'https://developingdvlpr.com/assets/Banner_for_site.png',
+      url: 'https://developingdvlpr.com',
+    },
+    optional: {
+      description:
+        'Portfolio of Nerando Johnson, a junior software developer in Atlanta specializing in Vue3 and modern JavaScript. Discover projects, technical writings, digital garden, and professional services.',
+      siteName: 'Developing Developer',
+      locale: 'en_US',
+    },
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@nerajno',
+    creator: '@nerajno',
+    title: 'Nerando Johnson - Software Developer | Vue3 Specialist',
+    description:
+      'Atlanta-based developer specializing in Vue3 & JavaScript. Tech community organizer, mentor, and consultant. Explore my portfolio and digital garden.',
+    image: 'https://developingdvlpr.com/assets/Banner_for_site.png',
+  },
+  extend: {
+    meta: [
+      { name: 'author', content: 'Nerando Johnson' },
+      {
+        name: 'keywords',
+        content:
+          'Nerando Johnson, software developer Atlanta, Vue3 developer, JavaScript developer, front-end developer, web development, digital garden, tech community organizer, developer mentor, Atlanta tech community, software consultant, Vue3 specialist, React developer, modern JavaScript, portfolio',
+      },
+      { name: 'robots', content: 'index, follow' },
+      { property: 'og:locale', content: 'en_US' },
+      { name: 'theme-color', content: '#1e293b' },
+      { name: 'geo.region', content: 'US-GA' },
+      { name: 'geo.placename', content: 'Atlanta' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      // GEO-specific meta tags
+      { name: 'classification', content: 'Business' },
+      { name: 'category', content: 'Software Development' },
+      { name: 'coverage', content: 'Worldwide' },
+      { name: 'distribution', content: 'Global' },
+      { name: 'rating', content: 'General' },
+    ],
+  },
+};
+
+// Structured data for better GEO (JSON-LD)
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://developingdvlpr.com/#nerando-johnson',
+  name: 'Nerando Johnson',
+  givenName: 'Nerando',
+  familyName: 'Johnson',
+  alternateName: 'nerajno',
+  url: 'https://developingdvlpr.com',
+  image: 'https://developingdvlpr.com/assets/Banner_for_site.png',
+  jobTitle: 'Software Developer',
+  description:
+    'Software developer specializing in Vue3 and front-end development, tech community organizer, mentor, and consultant based in Atlanta, Georgia.',
+  email: 'nerando@developingdvlpr.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Atlanta',
+    addressRegion: 'GA',
+    addressCountry: 'US',
+  },
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'General Assembly',
+  },
+  knowsAbout: [
+    'Vue3',
+    'JavaScript',
+    'Front-end Development',
+    'Web Development',
+    'React',
+    'TypeScript',
+    'Astro',
+    'Software Architecture',
+    'Mentoring',
+    'Community Organization',
+  ],
+  sameAs: [
+    'https://www.linkedin.com/in/nerando-johnson/',
+    'https://twitter.com/nerajno',
+    'https://github.com/Nerajno',
+    'https://calendly.com/nerandojohnsontech/consults',
+    'https://garden.developingdvlpr.com/',
+  ],
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://developingdvlpr.com',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Professional',
+    email: 'nerando@developingdvlpr.com',
+    availableLanguage: ['English'],
+    url: 'https://developingdvlpr.com/contact',
+  },
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'Software Developer',
+    occupationLocation: {
+      '@type': 'City',
+      name: 'Atlanta',
+    },
+    skills: 'Vue3, JavaScript, React, TypeScript, Front-end Development, Web Development',
+  },
+  owns: {
+    '@type': 'WebSite',
+    name: 'Developing Developer',
+    url: 'https://developingdvlpr.com',
+    description: 'Portfolio and digital garden showcasing software development projects, insights, and resources',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://developingdvlpr.com/search?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  },
+};
 ---
 
-<Layout title="">
+
+<Layout title={seoConfig.title}>
+  <!-- SEO Component for Homepage -->
+  <AstroSEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={seoConfig.extend}
+  />
+
+  <!-- Structured Data for GEO -->
+  <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
+
   <Container>
     <Hero />
     <Features />
     <Logos />
-    <!-- <Cta /> -->
   </Container>
 </Layout>

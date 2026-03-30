@@ -1,0 +1,67 @@
+---
+export interface Props {
+  slug: string;
+  className?: string;
+}
+
+const { slug, className ="" } = Astro.props;
+---
+
+<span
+  class={`view-counter ${className}`}
+  data-slug={slug}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="inline-block mr-1">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span class="view-count-number">Loading...</span>
+</span>
+
+<script>
+  import { trackUniqueView, getViewCount } from '../utils/viewTracker';
+
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', async () => {
+    const viewCounters = document.querySelectorAll('.view-counter');
+
+    for (const counter of viewCounters) {
+      const slug = counter.getAttribute('data-slug');
+      const countEl = counter.querySelector('.view-count-number');
+
+      if (!slug || !countEl) continue;
+
+      try {
+        // Track the view (bots won't be counted)
+        await trackUniqueView(slug);
+
+        // Get and display the count
+        const count = await getViewCount(slug);
+        const formatted = count.toLocaleString();
+        const label = count === 1 ? 'view' : 'views';
+        countEl.textContent = `${formatted} ${label}`;
+      } catch (error) {
+        console.error('Error with view counter:', error);
+        countEl.textContent = 'Views unavailable';
+      }
+    }
+  });
+</script>
+
+<style>
+  .view-counter {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+</style>
