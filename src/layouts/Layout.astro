@@ -1,157 +1,133 @@
 ---
-import { SEO } from 'astro-seo-plugin';
-import Footer from '@components/footer.astro';
-import Navbar from '@components/navbar/navbar.astro';
-import '@fontsource-variable/inter/index.css';
+import Footer from "@components/footer.astro";
+import Navbar from "@components/navbar/navbar.astro";
+import "../styles/global.css";
+import themeInitSrc from "../scripts/theme-init.js?raw";
 
-export interface Props {
+interface Props {
   title: string;
   description?: string;
+  image?: string;
+  showProgressBar?: boolean;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const {
+  title,
+  description = "Frontend engineer, conference speaker, community builder. Building in public at developingdvlpr.com.",
+  image = "/Banner_for_site.png",
+  showProgressBar = false,
+} = Astro.props;
 
-const resolvedImageWithDomain = new URL(
-  '/Banner_for_site.png',
-  Astro.site
-).toString();
-
-const { title, description = "Nerando's Portfolio - Full-stack Developer" } =
-  Astro.props;
-
-// Use the provided title or fallback to default
-const makeTitle = title || "Nerando's Portfolio";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta name='description' content={description} />
-    <!-- Prevent flash of unstyled content -->
-    <script is:inline>
-      (function () {
-        function getInitialTheme() {
-          if (typeof localStorage !== 'undefined') {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-              return savedTheme;
-            }
-          }
-          if (
-            window.matchMedia &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches
-          ) {
-            return 'dark';
-          }
-          return 'light';
-        }
-        const theme = getInitialTheme();
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        }
-      })();
-    </script>
-    <!-- GA4 || Google Analytics -->
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- ─── FOUC PREVENTION — must be first script, must be inline ─── -->
+    <script is:inline set:html={themeInitSrc} />
+
+    <!-- ─── SEO & Meta ─────────────────────────────────────────────── -->
+    <title>{title} · Nerando Johnson</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:site"        content="@Nerajno" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImage} />
+
+    <!-- ─── Analytics ──────────────────────────────────────────────── -->
+    <!-- GA4 -->
     <script
       is:inline
-      type='text/partytown'
-      src='https://www.googletagmanager.com/gtag/js?id=G-Q3KQF674YW'></script>
-
-    <!-- Clarity || Microsoft Clarity -->
-    <script type='text/javascript'>
-      (function (c, l, a, r, i, t, y) {
-        c[a] =
-          c[a] ||
-          function () {
-            (c[a].q = c[a].q || []).push(arguments);
-          };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = 'https://www.clarity.ms/tag/' + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-      })(window, document, 'clarity', 'script', 's7v3rqipza');
-    </script>
-    <script type='text/partytown'>
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q3KQF674YW"></script>
+    <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
+      function gtag() { dataLayer.push(arguments); }
       gtag('js', new Date());
-
-      // This is the important part
       gtag('consent', 'default', {
-        ad_storage: 'granted',
-        ad_user_data: 'granted',
-        ad_personalization: 'granted',
-        analytics_storage: 'granted',
+        ad_storage: 'granted', ad_user_data: 'granted',
+        ad_personalization: 'granted', analytics_storage: 'granted',
       });
-
       gtag('config', 'G-Q3KQF674YW');
     </script>
 
-  <!-- Sitemap Info -->
-  <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- ─── Fonts ─────────────────────────────────────────────────── -->
+    <!-- All fonts self-hosted via fontsource (see Layout.astro frontmatter imports) -->
 
+    <!-- ─── Favicon ────────────────────────────────────────────────── -->
+    <link rel="icon" type="image/x-icon" href="/my_favicon.ico" />
 
-    <meta name='viewport' content='width=device-width' />
-    <link rel='icon' href='/my_favicon.ico' />
-    <meta name='generator' content={Astro.generator} />
-    <SEO
-      title={makeTitle}
-      description={description}
-      canonical={canonicalURL}
-      twitter={{
-        creator: 'nerajno',
-      }}
-      openGraph={{
-        basic: {
-          url: canonicalURL,
-          type: 'website',
-          title: makeTitle,
-          image: resolvedImageWithDomain,
-        },
-        image: {
-          alt: "Nerando's Portfolio ~ Meme Image",
-        },
-      }}
+    <!-- ─── RSS & Sitemap ──────────────────────────────────────────── -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Nerando Johnson"
+      href="/rss.xml"
     />
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
-  <body
-    class='bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-200'>
+
+
+  <body>
+    <!-- Skip navigation — WCAG 2.4.1 Bypass Blocks -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-md btn-primary focus-ring"
+    >Skip to main content</a>
+
+    <!-- Reading Progress Bar (blog post pages only) -->
+    {showProgressBar && (
+      <div class="progress-bar" role="progressbar" aria-hidden="true" style="width: 0%" />
+    )}
+
     <Navbar />
+    <div id="main-content">
     <slot />
+    </div>
     <Footer />
+
     <style is:global>
-      /* Improve Page speed */
-      /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
-      img {
-        content-visibility: auto;
-      }
-
-      /* Dark mode styles */
-      :root {
-        --color-text: #333333;
-        --color-bg: #f5f5f5;
-      }
-
-      :root.dark {
-        --color-text: #ffffff;
-        --color-bg: #1a1a1a;
-      }
-
-      body {
-        color: var(--color-text);
-        background-color: var(--color-bg);
-        transition:
-          color 0.3s ease,
-          background-color 0.3s ease;
-      }
-
-      body a {
-        @apply text-blue-500 dark:text-blue-400;
-      }
+      img { content-visibility: auto; }
     </style>
+
+    <!-- Progress Bar Scroll Listener -->
+    {showProgressBar && (
+      <script is:inline>
+        (function () {
+          var bar = document.querySelector(".progress-bar");
+          if (!bar) return;
+          var rafPending = false;
+          function updateProgress() {
+            var scrollable = document.body.scrollHeight - window.innerHeight;
+            if (scrollable <= 0) { bar.style.width = "100%"; return; }
+            var pct = (window.scrollY / scrollable) * 100;
+            bar.style.width = Math.min(pct, 100) + "%";
+            rafPending = false;
+          }
+          window.addEventListener("scroll", function () {
+            if (!rafPending) { rafPending = true; requestAnimationFrame(updateProgress); }
+          }, { passive: true });
+          updateProgress();
+        })();
+      </script>
+    )}
   </body>
 </html>

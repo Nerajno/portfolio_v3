@@ -19,7 +19,7 @@ const features = [
   {
     title: 'Tech Speaker',
     description:
-      'I have been a speaker at tech conferences and meetups. I have been granted the opportunity to share and grow my knowledge and skills on various tech conferences and meetups, examples of such includes, Vue Conf 2024, ConnectTech 2023 among <a href="/speaking" class="underline hover:text-blue-600 dark:hover:text-blue-400" aria-label="View all speaking engagements">other events.</a>',
+      'I have been a speaker at tech conferences and meetups. I have been granted the opportunity to share and grow my knowledge and skills on various tech conferences and meetups, examples of such includes, Vue Conf 2024, ConnectTech 2023 among <a href="/speaking" class="link" aria-label="View all speaking engagements">other events.</a>',
     icon: 'bx:bxs-data',
     skills: ['Public speaking', 'Knowledge sharing', 'Vue.js expertise']
   },
@@ -56,12 +56,12 @@ const features = [
   <header class='mb-16'>
     <h2
       id='features-heading'
-      class='text-4xl lg:text-5xl font-bold lg:tracking-tight dark:text-white'
+      class='text-4xl lg:text-5xl font-bold lg:tracking-tight'
       itemprop='jobTitle'>
       Current Craft Characteristics
     </h2>
     <p
-      class='text-lg mt-4 text-slate-600 dark:text-slate-400'
+      class='text-lg mt-4 text-muted'
       itemprop='description'>
       Writing code moved from an interest to a passionate hobby to my current
       career/craft. I am currently working in the front-end space as a
@@ -83,22 +83,23 @@ const features = [
           itemtype="https://schema.org/Skill">
 
           <header class='flex items-center gap-3'>
-            <div class='bg-slate-100 dark:bg-slate-800 rounded-full p-3 flex items-center justify-center'>
+            <div class='bg-surface-2 rounded-full p-3 flex items-center justify-center'>
               <Icon
                 name={item.icon}
-                class='text-slate-500 dark:text-slate-300 h-[1.5em] w-[1.5em]'
+                class='h-[1.5em] w-[1.5em]'
+                style='color: var(--color-primary)'
                 aria-hidden='true'
               />
             </div>
             <h3
-              class='font-semibold text-lg dark:text-white'
+              class='font-semibold text-lg'
               itemprop='name'>
               {item.title}
             </h3>
           </header>
 
           <p
-            class='text-slate-500 dark:text-slate-400 leading-relaxed'
+            class='text-muted leading-relaxed'
             set:html={item.description}
             itemprop='description'
           />

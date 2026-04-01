@@ -185,18 +185,18 @@ const seoConfig = {
     <main class='mt-16'>
       {/* Filter Controls */}
       <div
-        class='max-w-6xl mx-auto mb-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow'>
+        class='max-w-6xl mx-auto mb-12 p-6 bg-surface-2 rounded-lg shadow-sm'>
         <div class='space-y-4'>
           <div>
             <label
               for='search'
-              class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+              class='block text-sm font-medium text-muted mb-1'
               >Search Posts</label
             >
             <input
               type='text'
               id='search'
-              class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'
+              class='w-full px-4 py-2 border border-[var(--border-primary)] rounded-md shadow-sm bg-[var(--bg-card)] text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--border-focus)] focus:border-[var(--border-focus)] outline-none'
               placeholder='Search by title or tags...'
             />
           </div>
@@ -204,12 +204,12 @@ const seoConfig = {
             <div>
               <label
                 for='series-filter'
-                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+                class='block text-sm font-medium text-muted mb-1'
                 >Filter by Series</label
               >
               <select
                 id='series-filter'
-                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
+                class='w-full px-4 py-2 border border-[var(--border-primary)] rounded-md shadow-sm bg-[var(--bg-card)] text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--border-focus)] focus:border-[var(--border-focus)] outline-none'>
                 <option value=''>All Posts</option>
                 {
                   allSeries.map((series) => (
@@ -221,12 +221,12 @@ const seoConfig = {
             <div>
               <label
                 for='sort'
-                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
+                class='block text-sm font-medium text-muted mb-1'
                 >Sort by Date</label
               >
               <select
                 id='sort'
-                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
+                class='w-full px-4 py-2 border border-[var(--border-primary)] rounded-md shadow-sm bg-[var(--bg-card)] text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--border-focus)] focus:border-[var(--border-focus)] outline-none'>
                 <option value='newest'>Newest First</option>
                 <option value='oldest'>Oldest First</option>
                 <option value='title-asc'>Title (A-Z)</option>
@@ -261,7 +261,7 @@ const seoConfig = {
                   <div>
                     {blogPostEntry.data.series && (
                       <div class='mb-2'>
-                        <span class='inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-semibold'>
+                        <span class='tag tag-primary'>
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                           </svg>
@@ -275,13 +275,13 @@ const seoConfig = {
 
                     <div class='flex gap-2 mt-3'>
                       <time
-                        class='text-gray-400'
+                        class='text-muted'
                         datetime={blogPostEntry.data.publishDate.toISOString()}>
                         {blogPostEntry.data.publishDate.toDateString()}
                       </time>
-                      <span class='text-gray-400'>•</span>
+                      <span class='text-muted'>•</span>
                       <span
-                        class='text-gray-400 inline-flex items-center view-counter-display'
+                        class='text-muted inline-flex items-center view-counter-display'
                         data-slug={blogPostEntry.slug}>
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
@@ -304,7 +304,7 @@ const seoConfig = {
                             : `${(allViewCounts[blogPostEntry.slug] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.slug] === 1 ? 'view' : 'views'}`}
                         </span>
                       </span>
-                      <span class='text-gray-400'>•</span>
+                      <span class='text-muted'>•</span>
                       <span class='text-gray-400 inline-flex items-center'>
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
@@ -324,14 +324,14 @@ const seoConfig = {
                       </span>
                     </div>
                     <div class='flex gap-2 mt-3'>
-                      <span class='text-blue-400 uppercase tracking-wider text-sm font-medium'>
+                      <span class='text-brand-primary uppercase tracking-wider text-sm font-medium'>
                         {blogPostEntry.data.category}
                       </span>
                     </div>
                     {blogPostEntry.data.tags && blogPostEntry.data.tags.length > 0 && (
                       <div class='flex gap-2 mt-3 flex-wrap' data-tags={blogPostEntry.data.tags.join(',')}>
                         {blogPostEntry.data.tags.map((tag: string) => (
-                          <span class='bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs'>
+                          <span class='tag tag-primary'>
                             {tag}
                           </span>
                         ))}
@@ -351,16 +351,16 @@ const seoConfig = {
         class='max-w-6xl mx-auto mt-12 flex items-center justify-center gap-4 hidden'>
         <button
           id='prev-page'
-          class='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors'
+          type='button'
+          class='btn-secondary focus-ring disabled:opacity-50 disabled:cursor-not-allowed'
           disabled>
           Previous
         </button>
-        <span id='page-info' class='text-gray-700 dark:text-gray-300 font-medium'
-          >Page 1 of 1</span
-        >
+        <span id='page-info' class='text-muted font-medium'>Page 1 of 1</span>
         <button
           id='next-page'
-          class='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors'>
+          type='button'
+          class='btn-secondary focus-ring disabled:opacity-50 disabled:cursor-not-allowed'>
           Next
         </button>
       </div>

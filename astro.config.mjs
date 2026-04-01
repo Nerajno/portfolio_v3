@@ -7,18 +7,22 @@ import { remarkGifPassthrough } from "./remark-gif-passthrough.mjs";
 import netlify from "@astrojs/netlify";
 import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
-import clarityIntegration from 'astro-microsoft-clarity-integration';
+import clarityIntegration from "astro-microsoft-clarity-integration";
 import react from "@astrojs/react";
 import rehypePrettyCode from "rehype-pretty-code";
 
-
 export default defineConfig({
+  // Sets Astro.site — used for canonical URLs, OG image absolute URLs, RSS href
   site: "https://developingdvlpr.com",
   output: "server",
   adapter: netlify(),
   integrations: [
     react(),
-    tailwind(),
+    tailwind({
+      // Prevents Tailwind base/components/utilities from being injected twice —
+      // global.css already has those directives.
+      applyBaseStyles: false,
+    }),
     mdx({
       syntaxHighlight: false,
       rehypePlugins: [
@@ -41,6 +45,7 @@ export default defineConfig({
         "simple-icons": ["*"],
         mdi: ["*"],
       },
+      iconLoader: "astro-icon/loader",
     }),
     partytown({
       config: {
@@ -49,11 +54,11 @@ export default defineConfig({
     }),
     clarityIntegration({
       projectId: import.meta.env.PUBLIC_CLARITY_ID,
-      enabled: true,                  // Optional: Enable the integration (defaults to true)
-      scriptStage: 'head-inline',     // Optional: Set scriptStage to 'head-inline', 'body-inline'
-      debug: false,                   // Optional: Enable debug (set to true if you want to log script injections)
-      async: true,                    // Optional: Enable async loading
-      defer: true,                    // Optional: Enable defer for script loading
+      enabled: true,
+      scriptStage: "head-inline",
+      debug: false,
+      async: true,
+      defer: true,
     }),
   ],
   image: {
@@ -62,7 +67,7 @@ export default defineConfig({
       entrypoint: "astro/assets/services/sharp",
       config: {
         limitInputPixels: false,
-      }
+      },
     },
     remotePatterns: [
       {
@@ -95,6 +100,7 @@ export default defineConfig({
       },
     ],
   },
+
   markdown: {
     remarkPlugins: [remarkReadingTime, remarkGifPassthrough],
     syntaxHighlight: false,
@@ -113,7 +119,7 @@ export default defineConfig({
   },
   vite: {
     ssr: {
-      noExternal: ['astro-social-share'],
+      noExternal: ["astro-social-share"],
     },
   },
 });

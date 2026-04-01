@@ -1,50 +1,149 @@
 ---
-import Container from "@components/container.astro";
-import { getFormattedDate } from "@utils/all";
 import Layout from "./Layout.astro";
 
-const { frontmatter } = Astro.props;
+interface Props {
+  title: string;
+  description?: string;
+  publishDate: Date;
+  updatedDate?: Date;
+  heroImage?: string;
+  tags?: string[];
+  minutesRead?: string;
+  category?: string;
+  author?: string;
+}
+
+const {
+  title,
+  description,
+  publishDate,
+  updatedDate,
+  heroImage,
+  tags = [],
+  minutesRead,
+  category,
+  author,
+} = Astro.props;
+
+const displayDate = publishDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const isoDate = publishDate.toISOString();
+const isoUpdated = updatedDate?.toISOString();
 ---
 
-<Layout title={frontmatter.title}>
-  <Container>
-    <div class="mx-auto max-w-[735px] mt-14">
-      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
-        {frontmatter.category}
-      </span>
-      <h1
-        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
-        {frontmatter.title}
-      </h1>
-      <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
-        <span class="text-gray-400">
-          {frontmatter.author}
-        </span>
-        <span class="text-gray-400">•</span>
-        <time class="text-gray-400" datetime={frontmatter.publishDate}>
-          {getFormattedDate(frontmatter.publishDate)}
-        </time>
-        <span class="text-gray-400 hidden md:block">•</span>
-        <div class="w-full md:w-auto flex flex-wrap gap-3">
-          {
-            frontmatter.tags.map((tag) => (
-              <span class="text-sm text-gray-500">#{tag}</span>
-            ))
-          }
-        </div>
-      </div>
-    </div>
+<Layout
+  title={title}
+  description={description}
+  image={heroImage}
+  showProgressBar={true}
+>
+  <main class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <article>
+      <!-- ─── Article Header ─────────────────────────────────────── -->
+      <header class="mb-10">
+        {category && (
+          <span class="text-brand-primary uppercase tracking-wider text-sm font-medium">
+            {category}
+          </span>
+        )}
 
-    <div class="mx-auto prose prose-lg mt-6">
-      <slot />
-    </div>
-    <div class="text-center mt-8">
-      <a
-        href="/blog"
-        target="_blank" rel="noopener noreferrer"
-        class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
-        >← Back to Blogs</a
-      >
-    </div>
-  </Container>
+        {tags.length > 0 && (
+          <div class="mb-4 mt-2 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <a
+                href={`/blog/tag/${tag.toLowerCase()}`}
+                class="tag tag-primary focus-ring hover:opacity-80 transition-opacity"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <h1 class="text-3xl font-bold leading-tight text-[var(--text-primary)] sm:text-4xl lg:text-5xl lg:tracking-tight">
+          {title}
+        </h1>
+
+        <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-[var(--text-muted)]">
+          {author && <span>{author}</span>}
+          {author && <span>•</span>}
+
+          <time datetime={isoDate}>{displayDate}</time>
+
+          {updatedDate && (
+            <>
+              <span>•</span>
+              <span>
+                Updated: <time datetime={isoUpdated}>
+                  {updatedDate.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+              </span>
+            </>
+          )}
+
+          {minutesRead && (
+            <>
+              <span class="hidden md:block">•</span>
+              <span>{minutesRead}</span>
+            </>
+          )}
+        </div>
+      </header>
+
+      <!-- ─── Hero Image (optional) ──────────────────────────────── -->
+      {heroImage && (
+        <div class="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={heroImage}
+            alt={`Hero image for ${title}`}
+            class="w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      )}
+
+      <!-- ─── Article Body ───────────────────────────────────────── -->
+      <div class="prose prose-lg dark:prose-invert max-w-none
+                  prose-headings:text-[var(--text-primary)]
+                  prose-a:text-[var(--color-primary)]
+                  prose-code:text-[var(--text-code)]
+                  prose-code:bg-[var(--bg-code)]
+                  prose-code:rounded
+                  prose-code:px-1.5
+                  prose-code:py-0.5
+                  prose-code:font-mono
+                  prose-code:before:content-none
+                  prose-code:after:content-none">
+        <slot />
+      </div>
+
+      <!-- ─── Article Footer ─────────────────────────────────────── -->
+      <footer class="mt-16 border-t border-[var(--border-primary)] pt-8">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <a href="/blog" class="link text-sm">← Back to all posts</a>
+
+          {tags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <a
+                  href={`/blog/tag/${tag.toLowerCase()}`}
+                  class="tag tag-accent focus-ring hover:opacity-80 transition-opacity"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </footer>
+    </article>
+  </main>
 </Layout>
