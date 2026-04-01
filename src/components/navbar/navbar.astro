@@ -1,5 +1,9 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import Container from '@components/container.astro';
+import Dropdown from './dropdown.astro';
+import { Astronav, MenuItems, MenuIcon } from 'astro-navbar';
+
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -165,3 +169,26 @@ function isActive(href: string) {
     iconClose?.classList.add('hidden');
   });
 </script>
+                {!('children' in item) && (
+                  <li>
+                    <a
+                      href={item.path}
+                      class='flex lg:px-3 py-2 items-center text-gray-600 hover:font-bold dark:text-gray-300 hover:text-gray-900 dark:hover:text-blue-300 hover:underline'>
+                      <span> {item.title}</span>
+                      {item.badge && (
+                        <span class='ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full'>
+                          New
+                        </span>
+                      )}
+                    </a>
+                  </li>
+                )}
+              </>
+            ))
+          }
+        </ul>
+        <ThemeToggle />
+      </MenuItems>
+    </Astronav>
+  </header>
+</Container>
