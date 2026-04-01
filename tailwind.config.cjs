@@ -30,8 +30,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans:    ["Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
-        display: ["Cal Sans", "Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
+        // font-sans  → body copy, UI labels
+        sans:    ["Plus Jakarta Sans Variable", "Plus Jakarta Sans", "Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
+        // font-serif → headings, display text, pull quotes
+        serif:   ["Fraunces Variable", "Fraunces", ...defaultTheme.fontFamily.serif],
+        // font-mono  → code blocks, inline code
         mono:    ["JetBrains Mono", "Fira Code", ...defaultTheme.fontFamily.mono],
       },
 
@@ -92,31 +95,11 @@ module.exports = {
         },
 
         // ─────────────────────────────────────────────────────────────────
-        // SURFACES
-        // Light: warm off-white with a faint green blush
-        // Dark: deep forest-black, not flat gray
+        // STRATEGY: All theming (bg, text, border) is handled via CSS custom
+        // properties in global.css. Do NOT add {light, dark} nested objects
+        // here — they generate unused classes like bg-bg-card-light and make
+        // dark mode harder to maintain. Use var(--token) in components.
         // ─────────────────────────────────────────────────────────────────
-        bg: {
-          primary:   { light: "#F9FAF8", dark: "#0A0F0D" },
-          secondary: { light: "#EEF5F0", dark: "#111812" },
-          card:      { light: "#FFFFFF", dark: "#161E18" },
-          elevated:  { light: "#FFFFFF", dark: "#1D2B20" },
-        },
-
-        // TEXT — green-tinted darks, warm near-whites
-        text: {
-          primary:   { light: "#0F1F17", dark: "#EBF4EE" },
-          secondary: { light: "#3D5247", dark: "#8FAF99" },
-          muted:     { light: "#6B8476", dark: "#536B5C" },
-          code:      { light: "#047857", dark: "#6ee7b7" },
-        },
-
-        // BORDERS
-        border: {
-          primary:   { light: "#D4E8DA", dark: "#1E3528" },
-          secondary: { light: "#E8F5EC", dark: "#162A1C" },
-          focus:     { light: "#059669", dark: "#10b981" },
-        },
       },
 
       typography: (theme) => ({
@@ -182,62 +165,6 @@ module.exports = {
         "fade-in": "fade-in 0.2s ease-out",
         shimmer:   "shimmer 2s linear infinite",
       },
-      colors: {
-        // Custom color palette
-        primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-        },
-        // Background colors
-        bg: {
-          primary: {
-            light: '#ffffff',
-            dark: '#0f172a'
-          },
-          secondary: {
-            light: '#f8fafc',
-            dark: '#1e293b'
-          },
-          card: {
-            light: '#ffffff',
-            dark: '#334155'
-          }
-        },
-        // Text colors
-        text: {
-          primary: {
-            light: '#0f172a',
-            dark: '#f1f5f9'
-          },
-          secondary: {
-            light: '#475569',
-            dark: '#cbd5e1'
-          },
-          muted: {
-            light: '#64748b',
-            dark: '#94a3b8'
-          }
-        },
-        // Border colors
-        border: {
-          primary: {
-            light: '#e2e8f0',
-            dark: '#475569'
-          },
-          secondary: {
-            light: '#f1f5f9',
-            dark: '#334155'
-          }
-        }
-      }
     }
   },
 

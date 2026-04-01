@@ -5,6 +5,7 @@
   id="theme-toggle"
   class="focus-ring rounded-md p-2 transition-colors hover:bg-[var(--color-primary-s)] lg:px-3 cursor-pointer"
   aria-label="Toggle dark mode"
+  aria-pressed="false"
   title="Toggle dark mode"
 >
   <!-- Sun icon — shown when in dark mode -->
@@ -54,15 +55,17 @@
   const iconSun  = document.getElementById("icon-sun");
   const iconMoon = document.getElementById("icon-moon");
 
-  /** Sync icon visibility to current theme */
+  /** Sync icon visibility and aria-pressed to current theme */
   function syncIcons(theme: string) {
-    if (theme === DARK) {
+    const isDark = theme === DARK;
+    if (isDark) {
       iconSun?.classList.remove("hidden");
       iconMoon?.classList.add("hidden");
     } else {
       iconSun?.classList.add("hidden");
       iconMoon?.classList.remove("hidden");
     }
+    btn?.setAttribute("aria-pressed", String(isDark));
   }
 
   /** Apply theme to <html> and persist it */

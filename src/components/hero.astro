@@ -24,14 +24,12 @@ import { Icon } from 'astro-icon/components';
   <div itemscope itemtype="https://schema.org/Person">
     <h1
       id='hero-heading'
-      class='text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'
+      class='text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter'
       itemprop='name'>
       Hi, I am Nerando
     </h1>
 
-    <h2 class='sr-only'>Software Developer & Frontend Specialist</h2>
-
-    <p class='text-medium mt-4 text-black-400 dark:text-gray-300 max-w-xl' itemprop='description'>
+    <p class='text-medium mt-4 text-muted max-w-xl' itemprop='description'>
       I am a <span itemprop='jobTitle'>software developer</span> currently working in the front-end in
       <span itemprop='knowsAbout'>Vue and JavaScript</span> space. Previously worked on the
       <span itemprop='knowsAbout'>MERN stack</span> with a little
@@ -40,34 +38,33 @@ import { Icon } from 'astro-icon/components';
     </p>
 
     <div class='mt-6 flex flex-col sm:flex-row gap-3'>
-      <Link
+      <a
         href='https://garden.developingdvlpr.com/note/crops-growing'
         target='_blank'
         rel='noopener noreferrer'
-        class='text-slate-300 hover:font-bold bg-slate-900 dark:text-slate-700 dark:hover:text-slate-500 dark:bg-slate-200 flex gap-1 items-center justify-center'
+        class='btn-primary focus-ring'
         aria-label='View what Nerando is currently learning in his digital garden'>
         <Icon
-          class='text-slate-300 hover:text-slate-600 dark:text-slate-700 dark:hover:text-slate-500 w-5 h-5'
+          class='w-5 h-5'
           name='bx:bxs-cloud-download'
           aria-hidden='true'
         />
         Currently Learning
-      </Link>
+      </a>
 
-      <Link
-        style='outline'
+      <a
         href='https://garden.developingdvlpr.com/note/stuff-building-2025'
         target='_blank'
         rel='noopener noreferrer'
-        class='flex gap-1 items-center justify-center border dark:hover:bg-gray-700 border-slate-500 dark:border-slate-300 dark:text-slate-300 hover:text-slate-600 hover:font-bold dark:bg-gray-600'
+        class='btn-secondary focus-ring'
         aria-label='View what Nerando is currently building in 2025'>
         <Icon
-          class='text-slate-500 dark:text-slate-300 w-4 h-4'
+          class='w-4 h-4'
           name='bx:bxl-github'
           aria-hidden='true'
         />
         Currently Building
-      </Link>
+      </a>
     </div>
 
     <!-- Hidden structured data for better SEO -->

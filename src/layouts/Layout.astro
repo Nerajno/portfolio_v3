@@ -3,6 +3,11 @@ import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
 import "../styles/global.css";
 import themeInitSrc from "../scripts/theme-init.js?raw";
+// Fontsource — self-hosted, no external request, font-display: swap built in
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/plus-jakarta-sans";
+import "@fontsource-variable/inter";
+import "@fontsource/jetbrains-mono";
 
 interface Props {
   title: string;
@@ -70,12 +75,7 @@ const ogImage = new URL(image, Astro.site);
     </script>
 
     <!-- ─── Fonts ─────────────────────────────────────────────────── -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-      rel="stylesheet"
-    />
+    <!-- All fonts self-hosted via fontsource (see Layout.astro frontmatter imports) -->
 
     <!-- ─── Favicon ────────────────────────────────────────────────── -->
     <link rel="icon" type="image/x-icon" href="/my_favicon.ico" />
@@ -91,14 +91,22 @@ const ogImage = new URL(image, Astro.site);
   </head>
 
 
-  <body >
+  <body>
+    <!-- Skip navigation — WCAG 2.4.1 Bypass Blocks -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-md btn-primary focus-ring"
+    >Skip to main content</a>
+
     <!-- Reading Progress Bar (blog post pages only) -->
     {showProgressBar && (
       <div class="progress-bar" role="progressbar" aria-hidden="true" style="width: 0%" />
     )}
 
     <Navbar />
+    <div id="main-content">
     <slot />
+    </div>
     <Footer />
 
     <style is:global>
