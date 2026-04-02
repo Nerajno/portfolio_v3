@@ -9,32 +9,20 @@ import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
 import clarityIntegration from "astro-microsoft-clarity-integration";
 import react from "@astrojs/react";
-import rehypePrettyCode from "rehype-pretty-code";
-
-import expressiveCode from "astro-expressive-code";
+import { rehypeShiki } from "./src/lib/shiki-rehype.mjs";
+import remarkAttr from "remark-attr";
 
 export default defineConfig({
   site: "https://developingdvlpr.com",
   output: "server",
   adapter: netlify(),
   integrations: [
-    expressiveCode(),
     react(),
     tailwind(),
     mdx({
       syntaxHighlight: false,
-      rehypePlugins: [
-        [
-          rehypePrettyCode,
-          {
-            theme: {
-              dark: "github-dark",
-              light: "github-light",
-            },
-            keepBackground: true,
-          },
-        ],
-      ],
+      remarkPlugins: [remarkAttr],
+      rehypePlugins: [rehypeShiki],
     }),
     sitemap(),
     icon({
@@ -98,20 +86,9 @@ export default defineConfig({
     ],
   },
   markdown: {
-    remarkPlugins: [remarkReadingTime, remarkGifPassthrough],
+    remarkPlugins: [remarkReadingTime, remarkGifPassthrough, remarkAttr],
     syntaxHighlight: false,
-    rehypePlugins: [
-      [
-        rehypePrettyCode,
-        {
-          theme: {
-            dark: "github-dark",
-            light: "github-light",
-          },
-          keepBackground: true,
-        },
-      ],
-    ],
+    rehypePlugins: [rehypeShiki],
   },
   vite: {
     ssr: {

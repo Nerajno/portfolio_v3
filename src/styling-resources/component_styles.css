@@ -180,57 +180,6 @@
   font-size: 0.875rem;
 }
 
-/* Code Blocks */
-.code-block {
-  background-color: var(--bg-code);
-  border: 1px solid var(--border-light);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  font-size: 0.875rem;
-  overflow-x: auto;
-  margin: 1rem 0;
-}
-
-.code-block pre {
-  margin: 0;
-  white-space: pre;
-  overflow-x: auto;
-}
-
-.code-block code {
-  color: var(--text-primary);
-  background: none;
-  padding: 0;
-  border-radius: 0;
-}
-
-/* Syntax Highlighting */
-.token.keyword {
-  color: var(--color-code-keyword);
-  font-weight: 600;
-}
-
-.token.string {
-  color: var(--color-code-string);
-}
-
-.token.number {
-  color: var(--color-code-number);
-}
-
-.token.comment {
-  color: var(--color-code-comment);
-  font-style: italic;
-}
-
-.token.function {
-  color: var(--color-code-function);
-}
-
-.token.variable {
-  color: var(--color-code-variable);
-}
 
 /* Links */
 .link {

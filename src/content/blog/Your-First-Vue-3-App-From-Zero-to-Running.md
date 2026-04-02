@@ -84,12 +84,9 @@ aiOptimization: {
 ---
 
 The best way to learn a framework isn't to read about it. It's to build something with it.
-
 In this article, we're spinning up a real Vue 3 project — not a CDN snippet, not a playground — an actual scaffolded project with a file structure, a dev server, and hot module reloading. By the end of this, you'll have something running in your browser and a mental model for how Vue 3 projects are organized.
 
 Here we go :
-
-
 
 ## Prerequisites
 <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2FqcHQza3VmMWJtNWt3azNmNTdxNDkzeHQya2YzNGd5cTZtZm04ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1oGXIfkeF4P4w3zPxk/giphy.gif" alt="What you'll need before we start" width="960" />
@@ -115,7 +112,7 @@ npm create vue@latest
 
 You'll be walked through a short setup wizard. For a beginner project, here's what I'd recommend selecting:
 
-```
+```text
 ✔ Project name: my-first-vue-app
 ✔ Add TypeScript? No
 ✔ Add JSX Support? No
@@ -131,7 +128,7 @@ Lets skip the extras for now. We'll introduce them when the time is right. Right
 
 Once it's done:
 
-```bash
+```text
 cd my-first-vue-app
 npm install
 npm run dev
@@ -146,7 +143,7 @@ Visit `http://localhost:5173` and you should see the default Vue 3 welcome page.
 
 Let's open the project and understand what you're looking at:
 
-```
+```text
 my-first-vue-app/
 ├── public/           → Static files served as-is (favicon, etc.)
 ├── src/
