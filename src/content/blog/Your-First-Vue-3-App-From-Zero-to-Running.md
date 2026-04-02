@@ -124,7 +124,7 @@ You'll be walked through a short setup wizard. For a beginner project, here's wh
 ✔ Add Prettier? Yes
 ```
 
-Lets skip the extras for now. We'll introduce them when the time is right. Right now, we want a clean, minimal project.
+Let's skip the extras for now. We'll introduce them when the time is right. Right now, we want a clean, minimal project.
 
 Once it's done:
 
