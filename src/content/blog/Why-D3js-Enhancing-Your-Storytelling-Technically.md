@@ -71,7 +71,7 @@ aiOptimization: {
 
 ## Prelude
 
-![D3.js Animation](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHdocGZubjBhaG1vaGxobTB6c3Jyejg3aXd2djRjcHVwYzF1aThyOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3PAL5bChWnak0WJ32x/giphy.gif)
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHdocGZubjBhaG1vaGxobTB6c3Jyejg3aXd2djRjcHVwYzF1aThyOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3PAL5bChWnak0WJ32x/giphy.gif" alt="D3.js Animation" />
 
 *This article explores my journey from hearing about data to learning traditional data visualization tools and how I applied them using D3.js. Also this article is written in somewhat of a technical style. I publish this article on my [blog](https://developingdvlpr.com/blog) first and then to any other platform such as dev.to or LinkedIn.*
 
@@ -93,7 +93,7 @@ This is where **D3.js** comes into play.
 
 ## What is D3.js?
 
-![Data Visualization](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExa212anRjZXJjendnaGNiYjE1aTZoa2E2dmRqczVvY2c4cHNzYmNpaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PrEUkNFD9pN2o/giphy.gif)
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExa212anRjZXJjendnaGNiYjE1aTZoa2E2dmRqczVvY2c4cHNzYmNpaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PrEUkNFD9pN2o/giphy.gif" alt="Data Visualization" />
 
 D3.js (Data-Driven Documents) is a powerful JavaScript library that enables developers to create **dynamic, interactive** data visualizations directly in web browsers. Unlike Excel, D3.js manipulates the Document Object Model (DOM) based on data, giving developers total control over how everything is displayed.
 
@@ -282,7 +282,7 @@ svg.append("path")
 
 ## Why JavaScript Fundamentals Matter
 
-![JavaScript Fundamentals](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWI4dm8wcmlmbjNyY2EzMzUyejUxOXBmc24yOW1pNTlwaTRrb2l4eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/88IW2J3A1pkBoJwqur/giphy.gif)
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWI4dm8wcmlmbjNyY2EzMzUyejUxOXBmc24yOW1pNTlwaTRrb2l4eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/88IW2J3A1pkBoJwqur/giphy.gif" alt="JavaScript Fundamentals" />
 
 **D3.js is built on JavaScript.** To unlock its full potential, you need to understand:
 
@@ -295,7 +295,7 @@ A solid JavaScript foundation makes learning and troubleshooting D3.js significa
 
 ## Real-World Examples
 
-![Data in Action](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDJiZmZnaWVqa3Q2a3Zrb2c3d2lkY2hoM3VoZzY3NDNtczUxMHZwbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DnLopzACtbu4z3YZ5l/giphy.gif)
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDJiZmZnaWVqa3Q2a3Zrb2c3d2lkY2hoM3VoZzY3NDNtczUxMHZwbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DnLopzACtbu4z3YZ5l/giphy.gif" alt="Data in Action" />
 
 Some of my favorite D3.js applications include:
 
@@ -307,7 +307,7 @@ Some of my favorite D3.js applications include:
 
 ## Learning Strategy and Best Practices
 
-![Learning Process](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHk2bHdkM3EyYnZ5N241a2Fvb2R1cjA2N3YydDQxMG0zZ2xnbzhuMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/40d1Z4ZkY9Ysg/giphy.gif)
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHk2bHdkM3EyYnZ5N241a2Fvb2R1cjA2N3YydDQxMG0zZ2xnbzhuMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/40d1Z4ZkY9Ysg/giphy.gif" alt="Learning Process" />
 
 Based on my experience, here's what works:
 
@@ -322,7 +322,7 @@ Based on my experience, here's what works:
 
 ## Essential Learning Resources
 
-![Learning Resources](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTFieGYza3dvejhuMTZ4YjE5M2dlNm9pYjBuNHFybmZsZ2w2cWRnZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YeGCDGYMicJdGDfsas/giphy.gif)
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTFieGYza3dvejhuMTZ4YjE5M2dlNm9pYjBuNHFybmZsZ2w2cWRnZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YeGCDGYMicJdGDfsas/giphy.gif" alt="Learning Resources" />
 
 - **Official Documentation**: [d3js.org](https://d3js.org)
 - **Interactive Examples**: [ObservableHQ](https://observablehq.com) (hands-on examples)
@@ -334,7 +334,7 @@ These resources cover everything from the basics to advanced techniques for crea
 
 ## Additional Recommendations
 
-![Community and Practice](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHA0eWRqZncza29taGU3MHJub21saW1tamlsY2RlN3R1bnNjN2pmdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bbshzgyFQDqPHXBo4c/giphy.gif)
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHA0eWRqZncza29taGU3MHJub21saW1tamlsY2RlN3R1bnNjN2pmdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bbshzgyFQDqPHXBo4c/giphy.gif" alt="Community and Practice" />
 
 To accelerate your D3.js mastery:
 
@@ -346,7 +346,7 @@ To accelerate your D3.js mastery:
 
 ## Take Action: Start Your D3.js Journey
 
-![Call to Action](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDk5ZjV4bnVoaHB2d2x6cXE1M2ZmaHNoZXJ5cXQxOTBybWY0dTlvYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NsBAHgohHByp2/giphy.gif)
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDk5ZjV4bnVoaHB2d2x6cXE1M2ZmaHNoZXJ5cXQxOTBybWY0dTlvYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NsBAHgohHByp2/giphy.gif" alt="Call to Action" />
 
 Ready to move beyond static charts? Dive into D3.js with a hands-on project. Pick a dataset that interests you, start with something simple, and let your creativity bring the numbers to life. Let data tell its story with interactivity and impact—you might be surprised by the opportunities it creates.
 

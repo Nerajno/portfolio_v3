@@ -88,21 +88,11 @@
   --color-accent-orange-500: #F97316;
   --color-accent-orange-700: #C2410C;
 
-  /* Code Syntax Colors */
-  --color-code-keyword: #FF6B6B;
-  --color-code-string: #51CF66;
-  --color-code-number: #FFD43B;
-  --color-code-comment: #8E8E93;
-  --color-code-function: #4DABF7;
-  --color-code-variable: #9775FA;
-
   /* Light Theme Semantic Colors */
   --bg-primary: var(--color-neutral-50);
   --bg-secondary: var(--color-neutral-100);
   --bg-tertiary: var(--color-neutral-200);
   --bg-elevated: #FFFFFF;
-  --bg-code: #F7F9FC;
-
   --text-primary: var(--color-neutral-900);
   --text-secondary: var(--color-neutral-700);
   --text-tertiary: var(--color-neutral-500);
@@ -143,7 +133,6 @@
   --bg-secondary: var(--color-neutral-900);
   --bg-tertiary: var(--color-neutral-800);
   --bg-elevated: var(--color-neutral-800);
-  --bg-code: #0D1117;
 
   --text-primary: var(--color-neutral-50);
   --text-secondary: var(--color-neutral-200);
@@ -180,7 +169,6 @@
     --bg-secondary: var(--color-neutral-900);
     --bg-tertiary: var(--color-neutral-800);
     --bg-elevated: var(--color-neutral-800);
-    --bg-code: #0D1117;
 
     --text-primary: var(--color-neutral-50);
     --text-secondary: var(--color-neutral-200);

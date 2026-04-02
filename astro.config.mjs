@@ -7,10 +7,10 @@ import { remarkGifPassthrough } from "./remark-gif-passthrough.mjs";
 import netlify from "@astrojs/netlify";
 import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
-import clarityIntegration from 'astro-microsoft-clarity-integration';
+import clarityIntegration from "astro-microsoft-clarity-integration";
 import react from "@astrojs/react";
-import rehypePrettyCode from "rehype-pretty-code";
-
+import { rehypeShiki } from "./src/lib/shiki-rehype.mjs";
+import remarkAttr from "remark-attr";
 
 export default defineConfig({
   site: "https://developingdvlpr.com",
@@ -21,18 +21,8 @@ export default defineConfig({
     tailwind(),
     mdx({
       syntaxHighlight: false,
-      rehypePlugins: [
-        [
-          rehypePrettyCode,
-          {
-            theme: {
-              dark: "github-dark",
-              light: "github-light",
-            },
-            keepBackground: true,
-          },
-        ],
-      ],
+      remarkPlugins: [remarkAttr],
+      rehypePlugins: [rehypeShiki],
     }),
     sitemap(),
     icon({
@@ -49,11 +39,11 @@ export default defineConfig({
     }),
     clarityIntegration({
       projectId: import.meta.env.PUBLIC_CLARITY_ID,
-      enabled: true,                  // Optional: Enable the integration (defaults to true)
-      scriptStage: 'head-inline',     // Optional: Set scriptStage to 'head-inline', 'body-inline'
-      debug: false,                   // Optional: Enable debug (set to true if you want to log script injections)
-      async: true,                    // Optional: Enable async loading
-      defer: true,                    // Optional: Enable defer for script loading
+      enabled: true, // Optional: Enable the integration (defaults to true)
+      scriptStage: "head-inline", // Optional: Set scriptStage to 'head-inline', 'body-inline'
+      debug: false, // Optional: Enable debug (set to true if you want to log script injections)
+      async: true, // Optional: Enable async loading
+      defer: true, // Optional: Enable defer for script loading
     }),
   ],
   image: {
@@ -62,7 +52,7 @@ export default defineConfig({
       entrypoint: "astro/assets/services/sharp",
       config: {
         limitInputPixels: false,
-      }
+      },
     },
     remotePatterns: [
       {
@@ -96,24 +86,13 @@ export default defineConfig({
     ],
   },
   markdown: {
-    remarkPlugins: [remarkReadingTime, remarkGifPassthrough],
+    remarkPlugins: [remarkReadingTime, remarkGifPassthrough, remarkAttr],
     syntaxHighlight: false,
-    rehypePlugins: [
-      [
-        rehypePrettyCode,
-        {
-          theme: {
-            dark: "github-dark",
-            light: "github-light",
-          },
-          keepBackground: true,
-        },
-      ],
-    ],
+    rehypePlugins: [rehypeShiki],
   },
   vite: {
     ssr: {
-      noExternal: ['astro-social-share'],
+      noExternal: ["astro-social-share"],
     },
   },
 });

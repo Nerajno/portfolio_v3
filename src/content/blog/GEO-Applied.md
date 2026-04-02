@@ -77,7 +77,6 @@ aiOptimization: {
 Implementing Generative Engine Optimization (GEO) means structuring your content so AI engines like ChatGPT, Claude, and Google Gemini can easily parse, understand, and cite your work. While the first article in this series explained what GEO is and why it matters, this guide shows you how to apply GEO principles in real projects using Astro components. GEO implementation focuses on three core pillars: semantic HTML structure, explicit content formatting, and structured data markup. When combined, these techniques make your content both human-readable and machine-parseable, maximizing visibility across traditional search engines and AI-powered platforms.
 
 
-![]()
 ## GEO Principles in Astro Components
 ![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGVoeDBhazJqa3d4azN0ZXVyeGRuaDRuNHJnYXh3c3A3NzZhdmU0aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hVazFLob1BnLpuWoXx/giphy.gif)
 
