@@ -190,7 +190,7 @@ That's it. Vue takes over that div and everything inside it.
 
 
 
-## Your First Real Component ~ Viola
+## Your First Real Component ~ Voilà
 <img src="https://media0.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Writing your first Vue component" width="960" />
 
 Now open `src/App.vue`. Delete everything in it and let's write something from scratch.
