@@ -6,8 +6,8 @@ author: "Nerando Johnson"
 title: "Your First Vue 3 App: From Zero to Running in Under 10 Minutes"
 snippet: "Stop reading about Vue and start running it. In this article we scaffold a real Vue 3 project, break down the file structure, and write a reactive component from scratch — no CDN snippets, no playgrounds."
 image: {
-    src: "https://img.appmaster.io/p/E7BlMiM6t5s/rs:fit:640:0/q:70/f:webp/plain/019b86d6-bd35-7e11-8dbc-335896b200fc/blog/019be269-5bb9-7d61-9924-5b2061cdfc55/019be2695b.webp",
-    alt: "Developer scaffolding a Vue 3 project in a terminal"
+    src: "/images/blog_covers/Vue3 Image.png",
+    alt: "Vue.js logo on a light blue background with geometric shapes"
 }
 publishDate: "2026-03-24 00:00"
 category: "Vue, JavaScript, Tutorials"
@@ -232,7 +232,6 @@ Save it. Go back to your browser. You should see a heading, an input field, and 
 Type into the input. Watch the heading update in real time. Click the button. Watch the greeting change. And you didn't write a single line of DOM manipulation.
 
 That's Vue doing its thing.
-
 
 
 ## Breaking Down That Component
