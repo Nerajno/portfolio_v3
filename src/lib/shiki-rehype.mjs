@@ -1,7 +1,7 @@
 import { createHighlighter } from 'shiki'
 import { visit } from 'unist-util-visit'
 
-const THEME = 'vitesse-dark'
+const THEMES = { light: 'vitesse-light', dark: 'vitesse-dark' }
 const LANGS = ['astro', 'bash', 'html', 'javascript', 'markdown', 'text', 'typescript', 'vue']
 const ALIASES = { js: 'javascript', ts: 'typescript', md: 'markdown' }
 
@@ -9,7 +9,7 @@ const ALIASES = { js: 'javascript', ts: 'typescript', md: 'markdown' }
 let _highlighter
 async function getHighlighter() {
   if (!_highlighter) {
-    _highlighter = await createHighlighter({ themes: [THEME], langs: LANGS })
+    _highlighter = await createHighlighter({ themes: Object.values(THEMES), langs: LANGS })
   }
   return _highlighter
 }
@@ -50,7 +50,7 @@ export function rehypeShiki() {
     for (const { index, parent, codeEl } of blocks) {
       const lang = resolveLang(codeEl.properties?.className ?? [])
       const code = codeEl.children?.map((c) => c.value ?? '').join('') ?? ''
-      const hast = hl.codeToHast(code, { lang, theme: THEME })
+      const hast = hl.codeToHast(code, { lang, themes: THEMES })
       parent.children.splice(index, 1, hast.children[0])
     }
 
@@ -58,7 +58,7 @@ export function rehypeShiki() {
     for (const { node, index, parent } of inlines) {
       const lang = resolveLang(node.properties?.className ?? [])
       const code = node.children?.map((c) => c.value ?? '').join('') ?? ''
-      const hast = hl.codeToHast(code, { lang, theme: THEME, structure: 'inline' })
+      const hast = hl.codeToHast(code, { lang, themes: THEMES, structure: 'inline' })
       // codeToHast with structure:'inline' returns root → code → spans
       const inner = hast.children[0]
       parent.children.splice(index, 1, inner)
