@@ -316,7 +316,7 @@ export const speakingData: SpeakingEvent[] = [
     name: "200OK Developer Conference",
     location: {
       city: "Tulsa",
-      state: "Ok",
+      state: "OK",
       country: "USA",
       venue: "200OK Developer Conference",
     },
