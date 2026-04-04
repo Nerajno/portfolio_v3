@@ -55,7 +55,7 @@ export const speakingData: SpeakingEvent[] = [
   },
   {
     id: "nebraska-code-2026",
-    title: "Skills to Bills: A Users Guide to Demonstrated Competency",
+    title: "Skills to Bills: A User's Guide to Demonstrated Competency",
     name: "Nebraska.Code() 2026",
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
