@@ -155,7 +155,7 @@ export const speakingData: SpeakingEvent[] = [
       venue: "Roam - Dunwoody",
     },
     type: "meetup",
-    tags: ["career", " communication", "software development"],
+    tags: ["career", "communication", "software development"],
     links: {
       conferenceWebsite:
         "https://www.meetup.com/atlantajug/events/311862222/?eventOrigin=your_events",
