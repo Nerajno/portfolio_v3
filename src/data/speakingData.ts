@@ -538,7 +538,7 @@ export const speakingData: SpeakingEvent[] = [
     title: "How !To Be Mentored",
     name: "Connect Tech 2022",
     description:
-      "How does one get the best out of a mentor-ship, while providing value to both the mentee and the mentor in times of time spent and growth? This talk provides actionable steps learned from wins and losses based on experience being a part of a learn-to-code mentorship group, covering value propositions, relationship fundamentals, time management, and dealing with challenges.",
+      "How does one get the best out of a mentorship, while providing value to both the mentee and the mentor in times of time spent and growth? This talk provides actionable steps learned from wins and losses based on experience being a part of a learn-to-code mentorship group, covering value propositions, relationship fundamentals, time management, and dealing with challenges.",
     date: "2022-10-19",
     location: {
       city: "Atlanta",
