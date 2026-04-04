@@ -564,7 +564,7 @@ export const speakingData: SpeakingEvent[] = [
     },
   },
   {
-    id: "atlanta-developers'-conference-2022",
+    id: "atlanta-developers-conference-2022",
     title: "Social Goodness || Civic Hacking - What's in it for me?",
     name: "Atlanta Developers' Conference 2022",
     description:
