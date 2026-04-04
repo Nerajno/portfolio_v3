@@ -237,6 +237,9 @@ aiOptimization: {
 
 ## Let's be honest about the graveyard
 
+![Placeholder: a cluttered desktop folder full of half-started project folders, symbolizing the side project graveyard](/images/blog_images/placeholder-graveyard.jpg)
+***Replace with: an image representing abandoned projects or a developer's chaotic project directory***
+
 If you have been coding long enough, you have one. A directory called `projects/` — or maybe `sandbox/`, or just a chaotic mess of folders on your desktop — that is essentially a cemetery for your ambitions. Every `README.md` in there was written with pure enthusiasm. Every `npm create` was a promise you made to yourself.
 
 Most of those promises are still waiting.
@@ -249,6 +252,9 @@ This is the case for why you should build one too. Or better yet, fork mine.
 
 ## The invisible tax of unfinished work
 
+![Placeholder: visual representation of cognitive load or attention debt — browser with too many open tabs](/images/blog_images/placeholder-attention-debt.jpg)
+***Replace with: an image illustrating mental overload or the Zeigarnik Effect***
+
 There is a cognitive load cost that nobody talks about when it comes to unfinished side projects. Every stalled idea living rent-free in your head takes up mental space that could go toward the things you *are* working on. Psychologists call it the Zeigarnik Effect — our brains hold onto incomplete tasks more persistently than completed ones. It is why you remember the one project you didn't ship louder than the three you did.
 
 The result? You are carrying invisible debt. Not financial debt. *Attention debt.* Every unfinished project is a tab left open in your mental browser, draining your RAM.
@@ -260,6 +266,9 @@ The kicker? I couldn't remember which ones were actually done, which ones were a
 ---
 
 ## Accountability is not a soft skill. It's architecture.
+
+![Placeholder: a developer at a standup or whiteboard — showing team accountability systems in action](/images/blog_images/placeholder-accountability-architecture.jpg)
+***Replace with: an image representing engineering systems, observability, or team accountability***
 
 Here is something I say on stage when I talk about developer culture: accountability is not a soft skill. It is architecture. And just like you would not build a production application without some kind of observability layer, you should not build your career without one either.
 
@@ -276,6 +285,9 @@ The research backs this up. Studies on implementation intentions — the plannin
 ---
 
 ## What building in public actually does for you
+
+![Placeholder: screenshot or mockup of IsNerandoDoneYet or a public project tracker page](/images/blog_images/placeholder-building-in-public.jpg)
+***Replace with: a screenshot of IsNerandoDoneYet or a public accountability page in action***
 
 When I first heard the phrase "build in public," I thought it was about being performative. Tweeting screenshots of code. Posting revenue numbers. That kind of thing.
 
@@ -299,6 +311,9 @@ Here's what I have observed since launching the tracker:
 
 ## The professional case: your tracker is also your brag doc
 
+![Placeholder: a developer updating a resume or preparing for a performance review — receipts and documentation](/images/blog_images/placeholder-brag-doc-professional.jpg)
+***Replace with: an image representing career documentation, self-advocacy, or a brag doc workflow***
+
 Here is where this stops being just a side-project productivity hack and starts being a career strategy.
 
 Most developers are terrible at self-advocacy. Not because they lack confidence — but because they lack receipts. When your annual review comes around, or you're updating your resume, or you're preparing for a promotion conversation, you are suddenly trying to reconstruct twelve months of work from memory. That is not a skills problem. That is a documentation problem.
@@ -310,6 +325,9 @@ A brag doc solves it. If you have not heard the term, a brag doc — popularized
 ---
 
 ## Why a brag doc is non-negotiable
+
+![Placeholder: a developer confidently presenting at a performance review or job interview with documented evidence](/images/blog_images/placeholder-brag-doc-nonnegotiable.jpg)
+***Replace with: an image representing self-advocacy, career growth, or bringing receipts to a review***
 
 Let me give you the concrete picture of why this matters before we get into how to build it.
 
@@ -326,6 +344,9 @@ The key mindset shift is this: your tracker is not just for other people to hold
 ---
 
 ## What a brag doc entry actually looks like
+
+![Placeholder: a filled-in brag doc entry in a markdown file or Notion page — showing the six-field format](/images/blog_images/placeholder-brag-doc-entry.jpg)
+***Replace with: a screenshot or mockup of a completed brag doc entry using the six-field format***
 
 The anatomy is simple. Each entry should answer six questions. You do not need a fancy tool — a section in Notion, a private GitHub repo, a plain markdown file, or even a new JSON field in your tracker all work equally well. The format matters less than the habit.
 
@@ -358,6 +379,9 @@ Here is what a real, filled-in entry looks like — pulled from actual work, not
 
 ## The trigger: when to write an entry
 
+![Placeholder: a developer writing notes immediately after shipping a project — laptop open, momentum captured](/images/blog_images/placeholder-trigger-entry.jpg)
+***Replace with: an image representing the habit of writing a brag entry right after shipping***
+
 The hardest part of a brag doc is not the writing — it is the habit of writing it at the right moment. Most people try to write it retrospectively, at the end of the year, from memory. That is where the effort breaks down.
 
 The better approach is to tie the entry to a status change in your tracker. Here is the workflow:
@@ -374,6 +398,9 @@ The better approach is to tie the entry to a status change in your tracker. Here
 
 ## How to maintain it without burning out
 
+![Placeholder: a sustainable weekly rhythm — calendar, short checklist, low effort habit loop](/images/blog_images/placeholder-maintain-without-burnout.jpg)
+***Replace with: an image representing a lightweight maintenance habit or sustainable documentation rhythm***
+
 A brag doc only works if it stays current. Here is a rhythm that does not require heroic effort:
 
 | When | What to do | Time needed |
@@ -389,6 +416,9 @@ You will notice the total ongoing cost of this system is roughly fifteen minutes
 ---
 
 ## Q1 2026 is done. What does that mean?
+
+![Placeholder: a quarterly calendar marking Q1 closed — April 1st, a new quarter beginning](/images/blog_images/placeholder-q1-2026-done.jpg)
+***Replace with: an image representing a quarter closing, retrospective, or time-based reflection***
 
 Here is a moment of honesty: Q1 2026 is over as of April 1st. Whether your Q1 went exactly according to plan or whether it looked nothing like what you intended in January, the quarter is closed. It is a fact now.
 
@@ -408,6 +438,9 @@ Q1 2026 had ninety days in it. Some of those days were productive. Some weren't.
 
 ## Progress over perfection is a philosophy, not a platitude
 
+![Placeholder: a shipped project marked "Done" — real, imperfect, live — versus a perfect project that never shipped](/images/blog_images/placeholder-progress-over-perfection.jpg)
+***Replace with: an image representing the "shipped > perfect" mindset — a live product, a deployed URL, a completed task***
+
 I built this entire site from a philosophy I started with a few years ago: Progress over Perfection. I write it on conference slides. I talk about it in meetup talks. I put it in my Twitter bio. But it only means something if I actually practice it.
 
 A public tracker is how I practice it.
@@ -422,6 +455,9 @@ Naming the stall is the first step to ending it.
 
 ## The technical case: why this pattern scales
 
+![Placeholder: Vue 3 / vanilla HTML project scaffold — a minimal, clean codebase with a JSON data layer](/images/blog_images/placeholder-technical-case.jpg)
+***Replace with: a screenshot of the project repo, component structure, or JSON data layer***
+
 From a pure technical standpoint, a project tracker like this one is a great exercise in building something real with minimal scope. The original version is built with Vue 3, TypeScript, and Tailwind. But the pattern is framework-agnostic — I've included a vanilla HTML/CSS/JS version and a full Vue 3 npm project with Vite, Tailwind, composables, and a JSON data layer.
 
 The data structure is simple: a list of projects, each with a name, a description, a status, a progress percentage, and a date. No database required if you don't want one — a JSON file works fine to start. When you're ready to extend into brag doc territory, add a `brag_doc_url` field to each project object and you have a cross-referenced system between your public tracker and your private career record.
@@ -431,6 +467,9 @@ The simplicity is intentional. The goal is to lower the activation energy to shi
 ---
 
 ## Your turn
+
+![Placeholder: a developer publishing their public tracker — laptop open, URL visible, accountability started](/images/blog_images/placeholder-your-turn.jpg)
+***Replace with: an image representing the call to action — pushing a project live, opening a brag doc, taking the first step***
 
 I want to be direct with you: if you are a developer who has side projects, you need a public accountability page. Not because the internet is owed your progress report. Not because it will make you go viral. But because *you* are owed an honest accounting of what you're working on.
 
