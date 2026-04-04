@@ -89,7 +89,7 @@ export const speakingData: SpeakingEvent[] = [
       "In an era where AI and tech influencers often promote jumping directly into framework development, this talk emphasizes the critical importance of mastering JavaScript fundamentals before diving into frameworks like Vue.js. Drawing from real-world experience transitioning into Vue 3 development, we'll explore why solid JavaScript foundations are crucial for effective framework usage. Through practical demonstrations and real-world examples, we'll examine how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example. This session will help developers understand why 'learning to walk before running' in JavaScript is essential for long-term success in framework development.",
     date: "2026-05-02",
     seoDescription:
-      "ATL DevCon 2025 – Master JavaScript fundamentals before diving into modern frameworks with Nerando Johnson's back-to-basics approach.",
+      "Boise Code Camp 2026 – Master JavaScript fundamentals before diving into modern frameworks with Nerando Johnson's back-to-basics approach.",
     location: {
       city: "Boise",
       state: "Idaho",
