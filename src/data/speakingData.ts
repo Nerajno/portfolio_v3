@@ -376,7 +376,7 @@ export const speakingData: SpeakingEvent[] = [
     name: "Orlando Code Camp 2024",
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
-    date: "2025-02",
+    date: "2024-02",
     image: "/images/other_images/Speaker_me.jpeg",
     seoDescription:
       "Orlando Code Camp 2024 – Essential people skills for developers, with Nerando Johnson.",
