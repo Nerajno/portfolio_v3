@@ -10,7 +10,9 @@ export const prerender = true;
 export const revalidate = 60; // Revalidate every 60 seconds
 
 // Filter blog entries with 'draft: false' & date before current date
+// In dev mode, include drafts and future-dated posts for previewing
 const publishedBlogEntries = await getCollection('blog', ({ data }) => {
+  if (import.meta.env.DEV) return true;
   return !data.draft && data.publishDate < new Date();
 });
 

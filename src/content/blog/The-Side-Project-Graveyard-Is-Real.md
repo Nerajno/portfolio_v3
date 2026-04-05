@@ -20,10 +20,8 @@ openGraph:
   section: "Career Development"
   tags:
     - side-projects
-    - building-in-public
     - brag-doc
     - accountability
-    - developer-culture
     - career-growth
 
 # ============================================================================
@@ -240,81 +238,62 @@ aiOptimization: {
 ![Placeholder: a cluttered desktop folder full of half-started project folders, symbolizing the side project graveyard](/images/blog_images/placeholder-graveyard.jpg)
 ***Replace with: an image representing abandoned projects or a developer's chaotic project directory***
 
-If you have been coding long enough, you have one. A directory called `projects/` — or maybe `sandbox/`, or just a chaotic mess of folders on your desktop — that is essentially a cemetery for your ambitions. Every `README.md` in there was written with pure enthusiasm. Every `npm create` was a promise you made to yourself.
+If you have been coding long enough, you have one, you know exactly what i am talking about A directory called `projects/` — or maybe `sandbox/`, or just a chaotic mess of folders on your desktop — that is essentially a cemetery for your ambitions. Every `README.md` in there was written with pure enthusiasm. Every `npm create` was a promise you made to yourself. Most of those promises are still waiting.
 
-Most of those promises are still waiting.
+I'm not judging, I was there too. I *am* there too, in some ways. But a few years ago, with the aid of some mild motivation (bullying), steps were taken so I would stop letting the graveyard win quietly. A domain was bought and a a website called *IsNerandoDoneYet.com* — was built. I have tried to abandon it but over the years, it has changed how I think about side projects, shipping, and what it actually means to build in public. This article is my call to action for you to build one also, a mean growth is important isnt it.
+Lets say this another way, this is the case for why you should build one too. Or better yet, fork mine.
 
-I'm not judging. I was there too. I *am* there too, in some ways. But a few years ago, I stopped letting the graveyard win quietly. I built something instead: a website called *IsNerandoDoneYet* — and it changed how I think about side projects, shipping, and what it actually means to build in public.
-
-This is the case for why you should build one too. Or better yet, fork mine.
-
----
 
 ## The invisible tax of unfinished work
 
 ![Placeholder: visual representation of cognitive load or attention debt — browser with too many open tabs](/images/blog_images/placeholder-attention-debt.jpg)
 ***Replace with: an image illustrating mental overload or the Zeigarnik Effect***
 
-There is a cognitive load cost that nobody talks about when it comes to unfinished side projects. Every stalled idea living rent-free in your head takes up mental space that could go toward the things you *are* working on. Psychologists call it the Zeigarnik Effect — our brains hold onto incomplete tasks more persistently than completed ones. It is why you remember the one project you didn't ship louder than the three you did.
+There is a cognitive load cost that nobody talks about when it comes to unfinished side projects. Every stalled idea living rent-free in your head takes up mental space that could go toward the things you *are* working on. Psychologists call it the Zeigarnik Effect — our brains hold onto incomplete tasks more persistently than completed ones. It is why you remember the one project you didn't ship louder than the three you did. The result? You are carrying invisible debt. Not financial debt. *Attention debt.* Every unfinished project is a tab left open in your mental browser, draining your RAM. The other take on this is that it reduces one's self confidence as yo keep breaking promises to yourself.
 
-The result? You are carrying invisible debt. Not financial debt. *Attention debt.* Every unfinished project is a tab left open in your mental browser, draining your RAM.
+I noticed this pattern in myself when I sat down one day and tried to count how many projects I had started in the last two years. I lost count somewhere around fifteen. Fifteen! Some had actual users. Some had detailed PRDs, design Specs etc. Some had GitHub repos with five plus commits and a hopeful `initial setup` message.The fun part ? I couldn't remember which ones were actually done, how I determined what done was, which ones were abandoned, and which ones were technically "in progress" in any definition of that phrase. I decided that I needed a system to track this stuff and something had to change.
 
-I noticed this pattern in myself when I sat down one day and tried to count how many projects I had started in the last two years. I lost count somewhere around fifteen. Fifteen! Some had actual users. Some had detailed PRDs. Some had GitHub repos with one commit and a hopeful `initial setup` message.
-
-The kicker? I couldn't remember which ones were actually done, which ones were abandoned, and which ones were technically "in progress" in the loosest possible definition of that phrase. That was the moment I decided something had to change.
-
----
 
 ## Accountability is not a soft skill. It's architecture.
 
 ![Placeholder: a developer at a standup or whiteboard — showing team accountability systems in action](/images/blog_images/placeholder-accountability-architecture.jpg)
 ***Replace with: an image representing engineering systems, observability, or team accountability***
 
-Here is something I say on stage when I talk about developer culture: accountability is not a soft skill. It is architecture. And just like you would not build a production application without some kind of observability layer, you should not build your career without one either.
+Here is something I say on stage when I talk about developer culture: accountability is not a soft skill. It is architecture. And just like you would not build a production application without some kind of observability layer, you should not build your career without one either. When you work at a company or are a student, accountability is baked into the process. Stand-ups, sprint reviews, Jira tickets, PR reviews, due dates and syllabuses — the entire system is designed to make your progress visible. Your team can see what you are working on, what is blocked, and what shipped.
 
-When you work at a company, accountability is baked into the process. Stand-ups, sprint reviews, Jira tickets, PR reviews — the entire system is designed to make your progress visible. Your team can see what you are working on, what is blocked, and what shipped.
-
-The moment you go solo on a side project, all of that infrastructure vanishes. No one is asking for your update on Friday. No one is waiting for your PR to merge. Just you, your ambition, and an infinite runway with no checkpoints.
+The moment you go solo on a side project, all of that infrastructure vanishes, if you don't begin with one. No one is asking for your update on Friday. No one is waiting for your PR to merge. Just you, your ambition, and an infinite runway with no checkpoints.
 
 That freedom is also a trap.
 
-The research backs this up. Studies on implementation intentions — the planning strategy where you commit to *when* and *where* you'll complete a goal — show that making your commitments specific and observable dramatically increases follow-through. Announcing a deadline publicly is even more effective because it introduces social accountability: you care what people think, and that is okay. That is a feature, not a character flaw.
+The research backs this up. Studies on implementation intentions — the planning strategy where you commit to *when* and *where* you'll complete a goal — show that making your commitments specific and observable dramatically increases follow-through. Announcing a deadline publicly is even more effective because it introduces social accountability: you care what people think, and that is okay. That is a feature, not a character flaw. The current version of *IsNerandoDoneYet* is my implementation intention made visible. It is my observability layer for personal projects.
 
-*IsNerandoDoneYet* is my implementation intention made visible. It is my observability layer for personal projects.
-
----
 
 ## What building in public actually does for you
 
 ![Placeholder: screenshot or mockup of IsNerandoDoneYet or a public project tracker page](/images/blog_images/placeholder-building-in-public.jpg)
 ***Replace with: a screenshot of IsNerandoDoneYet or a public accountability page in action***
 
-When I first heard the phrase "build in public," I thought it was about being performative. Tweeting screenshots of code. Posting revenue numbers. That kind of thing.
+When I first heard the phrase "build in public," I thought it was kinda performative and I was raised to work in secret and show the results. The tweeting screenshots of code. Posting view numbers. That kind of thing.
 
 I was wrong about what it actually does.
 
-Building in public is not primarily a marketing strategy. It is a clarity tool. When you have to articulate the status of a project to an audience — even a small one — you are forced to be honest with yourself in ways you wouldn't be otherwise. "Currently in progress" sounds fine in your head. It sounds a lot different when it is displayed on a public webpage next to a 15% progress bar that hasn't moved in three months.
+Building in public is not primarily a marketing strategy. It is a clarity tool. When you have to articulate the status of a project to an audience — even a small one — you are forced to be honest with yourself in ways you wouldn't be otherwise. "Currently in progress" sounds fine in your head. It sounds a lot different when it is displayed on a public webpage next to a 15% progress bar that hasn't moved in three months. That discomfort is productive. It is the friction that keeps you honest. Here's what I have observed since launching the tracker:
 
-That discomfort is productive. It is the friction that keeps you honest.
+**It kills scope creep.** When a project has a public status and a public URL, the question of "is it done?" has a real answer. You can't endlessly add features to avoid shipping it. The tracker makes being vague expensive.
 
-Here's what I have observed since launching the tracker:
-
-**It kills scope creep.** When a project has a public status and a public URL, the question of "is it done?" has a real answer. You can't endlessly add features to avoid shipping it. The tracker makes vagueness expensive.
-
-**It creates unexpected community.** I cannot tell you how many times someone has hit me up at a conference or in a Discord server asking, "Hey, is [project] live yet? I saw it on your site." That question — from a real person — does more for your momentum than any self-imposed deadline ever could.
+**It creates unexpected community.** I cannot tell you how many times someone has hit me up at a conference or on LinkedIn, "Hey, is [project] live yet? I saw it when you posted an update about it." That question — from a real person — does more for your momentum than any self-imposed deadline ever could.
 
 **It documents your growth.** Looking at past entries on the tracker is like reading a journal of your technical evolution. The stack choices, the project ideas, the things you were ambitious enough to start — that is a record of who you were as a developer. Future you will want that context.
 
 **It separates the ideas from the commitments.** Not every idea deserves your full energy. Having a tracker forces you to decide: is this a "planned" item I'm putting on the list, or is it a daydream I need to let go of? The act of categorizing is the act of deciding.
 
----
 
 ## The professional case: your tracker is also your brag doc
 
 ![Placeholder: a developer updating a resume or preparing for a performance review — receipts and documentation](/images/blog_images/placeholder-brag-doc-professional.jpg)
 ***Replace with: an image representing career documentation, self-advocacy, or a brag doc workflow***
 
-Here is where this stops being just a side-project productivity hack and starts being a career strategy.
+To put things into perspective, you are here ☝🏾.  A part of you being accountable is the ablity to have your achievements documented. Our long term is grow so that this stop being just a side-project productivity hack and starts being a career strategy.
 
 Most developers are terrible at self-advocacy. Not because they lack confidence — but because they lack receipts. When your annual review comes around, or you're updating your resume, or you're preparing for a promotion conversation, you are suddenly trying to reconstruct twelve months of work from memory. That is not a skills problem. That is a documentation problem.
 
