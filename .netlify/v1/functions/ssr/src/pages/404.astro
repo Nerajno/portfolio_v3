@@ -1,0 +1,117 @@
+---
+import Container from '@components/container.astro';
+import Layout from '@layouts/Layout.astro';
+import { AstroSEO } from 'astro-seo-plugin';
+
+// Enhanced SEO with GEO optimization for 404 page
+const seoConfig = {
+  title: '404 - Page Not Found | Nerando Johnson',
+  description: 'The page you are looking for could not be found. Return to the homepage to explore Nerando Johnson\'s portfolio, projects, and blog.',
+  canonical: 'https://developingdvlpr.com/404',
+  openGraph: {
+    basic: {
+      title: '404 - Page Not Found | Nerando Johnson',
+      type: 'website',
+      image: 'https://developingdvlpr.com/assets/Banner_for_site.png',
+      url: 'https://developingdvlpr.com/404',
+    },
+    optional: {
+      description: 'The page you are looking for could not be found. Return to explore projects, blog posts, and developer resources.',
+      siteName: 'Developing Developer',
+      locale: 'en_US',
+    },
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@nerajno',
+    creator: '@nerajno',
+    title: '404 - Page Not Found',
+    description: 'This page could not be found. Return to Nerando Johnson\'s portfolio homepage.',
+    image: 'https://developingdvlpr.com/assets/Banner_for_site.png',
+  },
+  extend: {
+    meta: [
+      { name: 'author', content: 'Nerando Johnson' },
+      { name: 'robots', content: 'noindex, follow' }, // Don't index 404 pages
+      { property: 'og:locale', content: 'en_US' },
+      { name: 'theme-color', content: '#1e293b' },
+      { name: 'geo.region', content: 'US-GA' },
+      { name: 'geo.placename', content: 'Atlanta' },
+      // GEO-specific meta tags
+      { property: 'profile:first_name', content: 'Nerando' },
+      { property: 'profile:last_name', content: 'Johnson' },
+      { property: 'profile:username', content: 'nerajno' },
+    ],
+  },
+};
+
+// Structured data for GEO optimization
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: '404 - Page Not Found',
+  description: 'The requested page could not be found.',
+  url: 'https://developingdvlpr.com/404',
+  author: {
+    '@type': 'Person',
+    name: 'Nerando Johnson',
+    url: 'https://developingdvlpr.com',
+    jobTitle: 'Software Developer',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Atlanta',
+      addressRegion: 'GA',
+      addressCountry: 'US',
+    },
+    sameAs: [
+      'https://github.com/Nerajno',
+      'https://twitter.com/nerajno',
+      'https://www.linkedin.com/in/nerando-johnson/',
+    ],
+  },
+  mainEntityOfPage: {
+    '@type': 'WebSite',
+    name: 'Developing Developer',
+    url: 'https://developingdvlpr.com',
+  },
+};
+---
+
+<Layout title='404 Not Found'>
+  <AstroSEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={seoConfig.openGraph}
+    twitter={seoConfig.twitter}
+    extend={seoConfig.extend}
+  />
+
+  <!-- Structured Data for GEO -->
+  <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
+  <Container>
+    <main>
+      <div class='min-h-[calc(100vh-16rem)] flex items-center justify-center'>
+        <div class='mt-16 text-center'>
+          <h1 class='text-4xl lg:text-5xl font-bold lg:tracking-tight'>404</h1>
+          <img
+            src='/src/assets/other_images/404.jpg'
+            alt='404 Not Found'
+            class='mx-auto my-6 max-w-2xl w-full rounded shadow'
+          />
+          <p class='text-lg mt-4 text-slate-600 dark:text-slate-300'>
+            Zilch, Nyet, Nope, Nada
+          </p>
+          <p class='text-lg mt-4 text-slate-600 dark:text-slate-300'>
+            Page not found.
+          </p>
+          <a
+            href='/'
+            class='inline-block mt-6 px-6 py-2 bg-blue-600 dark:bg-blue-800 text-white dark:text-slate-300 rounded hover:bg-blue-700 dark:hover:bg-blue-900 transition-colors'
+            >Beam Me Up Scotty || Home</a
+          >
+        </div>
+      </div>
+    </main>
+  </Container>
+</Layout>
