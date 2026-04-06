@@ -275,13 +275,13 @@ const seoConfig = {
 
                     <div class='flex gap-2 mt-3'>
                       <time
-                        class='text-gray-400'
+                        class='text-gray-600'
                         datetime={blogPostEntry.data.publishDate.toISOString()}>
                         {blogPostEntry.data.publishDate.toDateString()}
                       </time>
-                      <span class='text-gray-400'>•</span>
+                      <span class='text-gray-600'>•</span>
                       <span
-                        class='text-gray-400 inline-flex items-center view-counter-display'
+                        class='text-gray-600 inline-flex items-center view-counter-display'
                         data-slug={blogPostEntry.slug}>
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
@@ -304,8 +304,8 @@ const seoConfig = {
                             : `${(allViewCounts[blogPostEntry.slug] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.slug] === 1 ? 'view' : 'views'}`}
                         </span>
                       </span>
-                      <span class='text-gray-400'>•</span>
-                      <span class='text-gray-400 inline-flex items-center'>
+                      <span class='text-gray-600'>•</span>
+                      <span class='text-gray-600 inline-flex items-center'>
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
                           width='16'
