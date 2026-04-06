@@ -48,7 +48,10 @@ const menuitems = [
           ><span class='font-bold text-slate-500 dark:text-slate-400'>NJ</span>
         </a>
         <div class='block lg:hidden'>
-          <MenuIcon class='w-4 h-4 text-slate-500 dark:text-slate-400' />
+          <MenuIcon
+            class='w-4 h-4 text-slate-500 dark:text-slate-400 touch-target'
+            aria-label='Toggle navigation menu'
+          />
         </div>
       </div>
       <MenuItems
@@ -69,7 +72,7 @@ const menuitems = [
                   <li>
                     <a
                       href={item.path}
-                      class='flex lg:px-3 py-2 items-center text-gray-600 hover:font-bold dark:text-gray-300 hover:text-gray-900 dark:hover:text-blue-300 hover:underline'>
+                      class='flex lg:px-3 py-2 min-h-[44px] items-center text-gray-600 hover:font-bold dark:text-gray-300 hover:text-gray-900 dark:hover:text-blue-300 hover:underline touch-manipulation'>
                       <span> {item.title}</span>
                       {item.badge && (
                         <span class='ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full'>
