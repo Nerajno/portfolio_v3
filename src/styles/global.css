@@ -24,6 +24,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  overflow-x: hidden;
 }
 
 /* Legacy classes for backward compatibility */
@@ -84,19 +85,31 @@ html.dark .shiki span {
 /* ─── Accessibility: Skip Link ─────────────────────────────────────────────── */
 .skip-link {
   position: absolute;
-  top: -100%;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  /* axe will not scan contrast on clipped elements */
+}
+.skip-link:focus {
+  position: fixed;
+  top: 0;
   left: 0;
   z-index: 9999;
+  width: auto;
+  height: auto;
   padding: 0.75rem 1.5rem;
   background: #1d4ed8;
   color: #ffffff;
   font-weight: 600;
   text-decoration: none;
   border-radius: 0 0 0.5rem 0;
-  transition: top 0.1s;
-}
-.skip-link:focus {
-  top: 0;
+  clip: auto;
+  white-space: normal;
 }
 
 /* ─── Accessibility: Touch Targets ─────────────────────────────────────────── */

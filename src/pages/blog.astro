@@ -237,7 +237,7 @@ const seoConfig = {
         </div>
       </div>
 
-      <div id='blog-posts' class='grid gap-16 max-w-6xl mx-auto'>
+      <ul id='blog-posts' class='grid gap-16 max-w-6xl mx-auto list-none p-0 m-0'>
         {
           blogEntriesWithReadingTime.map((blogPostEntry, index) => (
             <li
@@ -343,7 +343,7 @@ const seoConfig = {
             </li>
           ))
         }
-      </div>
+      </ul>
 
       {/* Pagination Controls */}
       <div
