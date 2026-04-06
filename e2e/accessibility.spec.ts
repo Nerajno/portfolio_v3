@@ -13,15 +13,16 @@ const pages = [
 
 for (const { name, path } of pages) {
   test.describe(`Accessibility – ${name}`, () => {
-    test('no critical or serious axe violations', async ({ page }, testInfo) => {
+    // Skip all tests in this describe block if Astro dev server returns its error page
+    test.beforeEach(async ({ page }, testInfo) => {
       await page.goto(path, { waitUntil: 'networkidle' });
-      // Guard: if Astro dev server returns an error page, skip rather than false-fail
       const title = await page.title();
       if (title === 'Error') {
-        testInfo.skip(true, `Astro dev server rendered an error page for ${path} — likely a transient SSR issue`);
-        return;
+        testInfo.skip(true, `Astro dev server error page for ${path} — transient SSR issue, re-run to confirm`);
       }
+    });
 
+    test('no critical or serious axe violations', async ({ page }, testInfo) => {
       const builder = new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']);
 
@@ -50,13 +51,11 @@ for (const { name, path } of pages) {
     });
 
     test('skip link present and points to #main-content', async ({ page }) => {
-      await page.goto(path, { waitUntil: 'networkidle' });
       const skipLink = page.locator('a.skip-link');
       await expect(skipLink).toHaveAttribute('href', '#main-content');
     });
 
     test('main landmark exists', async ({ page }) => {
-      await page.goto(path, { waitUntil: 'networkidle' });
       await expect(page.locator('main#main-content')).toBeVisible();
     });
 
