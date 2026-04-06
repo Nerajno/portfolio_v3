@@ -16,9 +16,15 @@ for (const { name, path } of pages) {
     test('no critical or serious axe violations', async ({ page }, testInfo) => {
       await page.goto(path);
 
-      const results = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
-        .analyze();
+      const builder = new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']);
+
+      // Exclude third-party Cal.com embed — its internal buttons are not ours to fix
+      if (path === '/contact') {
+        builder.exclude('[data-cal-namespace]');
+      }
+
+      const results = await builder.analyze();
 
       // Attach full report for debugging in the HTML reporter
       await testInfo.attach('axe-results', {
