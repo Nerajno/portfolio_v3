@@ -95,7 +95,7 @@ const makeTitle = title || "Nerando's Portfolio";
   <link rel="sitemap" href="/sitemap-index.xml" />
 
 
-    <meta name='viewport' content='width=device-width' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='icon' href='/my_favicon.ico' />
     <meta name='generator' content={Astro.generator} />
     <SEO
@@ -120,8 +120,11 @@ const makeTitle = title || "Nerando's Portfolio";
   </head>
   <body
     class='bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-200'>
+    <a href='#main-content' class='skip-link'>Skip to main content</a>
     <Navbar />
-    <slot />
+    <main id='main-content'>
+      <slot />
+    </main>
     <Footer />
     <style is:global>
       /* Improve Page speed */
