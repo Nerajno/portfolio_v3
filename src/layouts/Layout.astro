@@ -150,10 +150,74 @@ const makeTitle = title || "Nerando's Portfolio";
         transition:
           color 0.3s ease,
           background-color 0.3s ease;
+        overflow-x: hidden;
       }
 
       body a {
         @apply text-blue-500 dark:text-blue-400;
+      }
+
+      /* ── Skip Link ───────────────────────────────────────────────────────── */
+      .skip-link {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .skip-link:focus {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        width: auto;
+        height: auto;
+        padding: 0.75rem 1.5rem;
+        background: #1d4ed8;
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 0 0 0.5rem 0;
+        clip: auto;
+        white-space: normal;
+      }
+
+      /* ── Touch Target Utility ────────────────────────────────────────────── */
+      .touch-target {
+        min-width: 44px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ── Focus Visible ───────────────────────────────────────────────────── */
+      :focus-visible {
+        outline: 2px solid #2563eb;
+        outline-offset: 2px;
+        scroll-margin-top: 80px;
+      }
+      .dark :focus-visible {
+        outline-color: #60a5fa;
+      }
+
+      /* ── Reduced Motion ──────────────────────────────────────────────────── */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* ── Prevent iOS input auto-zoom (font-size >= 16px) ────────────────── */
+      input, textarea, select {
+        font-size: 1rem;
       }
     </style>
   </body>
