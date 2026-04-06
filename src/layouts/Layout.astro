@@ -3,6 +3,7 @@ import { SEO } from 'astro-seo-plugin';
 import Footer from '@components/footer.astro';
 import Navbar from '@components/navbar/navbar.astro';
 import '@fontsource-variable/inter/index.css';
+import '../styles/global.css';
 
 export interface Props {
   title: string;
@@ -120,9 +121,15 @@ const makeTitle = title || "Nerando's Portfolio";
   </head>
   <body
     class='bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-200'>
+<<<<<<< HEAD
     <a href='#main-content' class='skip-link'>Skip to main content</a>
     <Navbar />
     <main id='main-content'>
+=======
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Navbar />
+    <main id="main-content">
+>>>>>>> 2aabe29 (updated main link hidden)
       <slot />
     </main>
     <Footer />
