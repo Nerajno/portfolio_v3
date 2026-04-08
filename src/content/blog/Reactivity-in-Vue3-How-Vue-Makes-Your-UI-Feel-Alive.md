@@ -9,7 +9,7 @@ image: {
     src: "/images/blog_covers/Vue3 Image.png",
     alt: "Vue.js logo on a light blue background with geometric shapes"
 }
-publishDate: "2026-04-09 00:00"
+publishDate: "2026-04-08 00:00"
 category: "Vue, JavaScript, Tutorials"
 tags: [vue3, javascript, frontend, tutorial, reactivity, composition-api]
 keywords: [Vue 3 reactivity, ref vs reactive, computed properties Vue 3, Vue watch, watchEffect, Vue 3 reactivity system, Composition API reactivity, Vue 3 tutorial]
