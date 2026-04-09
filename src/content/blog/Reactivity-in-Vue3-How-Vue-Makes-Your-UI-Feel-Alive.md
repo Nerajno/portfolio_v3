@@ -105,7 +105,7 @@ This is fundamentally different from vanilla JavaScript, where you'd have to man
 
 ## `ref`: Your Primary Reactivity Tool
 
-<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzU4MnFnajU1Z292dWptNnpkdjZtaTJ6ZHcxYWF1cG96Y3dmMGQzayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/oDyDSmr7StLCBKucHM/giphy.gif" alt="ref — your go-to reactive tool" width="960" />
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE4N3M4NXVkd3hua2F2M3NzandzNzAzaTIzZ202YnFrYWI1eGIzNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bcrOR2stk6tKIxqPOZ/giphy.gif" alt="ref — your go-to reactive tool" width="960" />
 
 The most common way to create reactive state in Vue 3 is `ref`:
 
