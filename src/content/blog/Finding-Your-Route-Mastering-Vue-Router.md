@@ -79,7 +79,7 @@ aiOptimization: {
 
 ## Finding Your Route: Mastering Vue Router
 
-*Part 4 of the **Vue 3 Fundamentals** series — adding client-side routing to your Vue 3 app.*
+*Part 5 of the **Vue 3 Fundamentals** series — adding client-side routing to your Vue 3 app.*
 
 ---
 
@@ -354,7 +354,7 @@ const cityId = computed(() => route.params.id)
 
 ## Your Turn
 
-Before moving to Article 5, try this:
+Before moving to Article 6, try this:
 
 1. Add a named route for `/city/:id` and navigate to it from a list using `router.push({ name: 'city', params: { id } })`
 2. Add a `query` param like `?unit=C` and read it with `route.query.unit`
@@ -374,4 +374,4 @@ You know how to move between pages. Now let's build what lives on them.
 
 ---
 
-*This is Part 4 of the Vue 3 Fundamentals series. Sources: [Vue Router Official Docs](https://router.vuejs.org/guide/), [Vue Router — Dynamic Route Matching](https://router.vuejs.org/guide/essentials/dynamic-matching.html).*
+*This is Part 5 of the Vue 3 Fundamentals series. Sources: [Vue Router Official Docs](https://router.vuejs.org/guide/), [Vue Router — Dynamic Route Matching](https://router.vuejs.org/guide/essentials/dynamic-matching.html).*
