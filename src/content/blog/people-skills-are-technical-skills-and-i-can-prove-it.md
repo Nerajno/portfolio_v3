@@ -297,8 +297,6 @@ Treat them accordingly.
 
 > **📣 Your turn.** If this resonated, I'd love to know which of the 7 tenets you're working on. Drop it in the comments or find me on X at [@Nerajno](https://twitter.com/nerajno). I talk about this stuff constantly, and the community that shows up to those conversations is one of the best parts of building in public.
 >
-> If you're in Atlanta, come to the next [freeCodeCamp meetup](https://www.meetup.com/freeCodeCamp-Atlanta/). We talk about code *and* the people skills that make the code worth shipping.
-
 ---
 
 *Nerando Johnson is a frontend developer based in Atlanta specializing in Vue 3, TypeScript, and React. He creates content for Vue Mastery, speaks at conferences, and organizes Atlanta freeCodeCamp. Find him at [developingdvlpr.com](https://developingdvlpr.com) and [@Nerajno](https://twitter.com/nerajno) everywhere.*
