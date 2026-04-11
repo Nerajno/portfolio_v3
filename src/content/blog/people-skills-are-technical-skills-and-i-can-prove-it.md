@@ -71,7 +71,7 @@ aiOptimization: {
 ---
 
 
-![The "wait, this is actually engineering" realization](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXJjamkybGpybWFiN2htb2JldG84bDU4OTBzczduMWMybHFpNWF6dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TvVck7lO4LDJS/giphy.gif)
+![The wait - this is actually engineering realization](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXJjamkybGpybWFiN2htb2JldG84bDU4OTBzczduMWMybHFpNWF6dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TvVck7lO4LDJS/giphy.gif)
 
 ## Introduction
 
@@ -91,7 +91,7 @@ This article is my attempt to fix that — and to give you a framework for the 7
 
 ## The Problem With "Soft Skills"
 
-![A developer looking confused at the term "soft skills" on a job description](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2hsd215aW12NzZkdjQ0NmUzaHl5cW43cXIzbXdncG40OTM3azBkMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/12RqokiekV5hGE/giphy.gif)
+![A developer looking confused at the term soft skills on a job description](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2hsd215aW12NzZkdjQ0NmUzaHl5cW43cXIzbXdncG40OTM3azBkMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/12RqokiekV5hGE/giphy.gif)
 
 I've read a lot of job descriptions in my time. Frontend developer, mid-level, senior, staff — they all have a section at the bottom. You know the one. "Strong communication skills." "Collaborative team player." "Demonstrated leadership potential."
 
@@ -105,7 +105,7 @@ Here's what I've come to believe after years of building, shipping, speaking, an
 
 ## What Actually Makes a Skill "Technical"?
 
-![The "let me define my terms" moment](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjV1aGtnbTFpY2VsaW5zanByd2w3cTF3ZWw0b3hqdjMxbHF0cGc1aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6Mb4F2Ct2Ro53Yvm/giphy.gif)
+![The let me define my terms moment](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjV1aGtnbTFpY2VsaW5zanByd2w3cTF3ZWw0b3hqdjMxbHF0cGc1aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6Mb4F2Ct2Ro53Yvm/giphy.gif)
 
 Here's a working definition: *a technical skill is specialized knowledge and expertise required to perform a specific task in real-world situations.*
 

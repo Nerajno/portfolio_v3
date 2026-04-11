@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "predev": "node scripts/validate-content.mjs",
+    "prebuild": "node scripts/validate-content.mjs",
     "build": "astro build --remote",
+    "postbuild": "npx partytown copylib dist/~partytown",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest",
