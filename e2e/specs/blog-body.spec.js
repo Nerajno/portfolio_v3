@@ -4,7 +4,10 @@ test.describe('Blog post body smoke test', () => {
   test('renders full body content (regression: silent empty-body failure)', async ({ page }) => {
     await page.goto('/blog');
 
-    const firstPostLink = page.locator('a[href^="/blog/"]').first();
+    const firstPostLink = page
+      .locator('#blog-posts .blog-post-item')
+      .locator('a[href^="/blog/"]')
+      .first();
     await expect(firstPostLink).toBeVisible();
 
     const postHref = await firstPostLink.getAttribute('href');
