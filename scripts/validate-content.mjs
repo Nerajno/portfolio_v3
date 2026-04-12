@@ -24,15 +24,35 @@ for (const file of files) {
     drafts.push(file);
   }
 
-  // Extract alt text from markdown images and check for unescaped double quotes.
-  // Matches ![alt text](url) — captures only the alt portion between [ and ](
+  // 1. Check frontmatter image.alt and ogImage.alt for unescaped double quotes.
+  // These are YAML string values; an unescaped " inside a double-quoted value
+  // will break YAML parsing and silently drop the body content at render time.
+  const frontmatterAltFields = [
+    { key: 'image', regex: /^image:\s*\{[^}]*alt:\s*"([^"\\]*(?:\\.[^"\\]*)*)"[^}]*\}/ms },
+    { key: 'ogImage', regex: /^ogImage:\s*\{[^}]*alt:\s*"([^"\\]*(?:\\.[^"\\]*)*)"[^}]*\}/ms },
+  ];
+  for (const { key, regex } of frontmatterAltFields) {
+    const fm = frontmatter.match(regex);
+    if (fm && /(?<!\\)"/.test(fm[1])) {
+      console.error(`❌ [${file}] Unescaped double quote in frontmatter ${key}.alt: "${fm[1].slice(0, 50)}"`);
+      errors++;
+    }
+    // Also catch block-style: alt: "value with "bad" quotes"
+    const lineMatch = frontmatter.match(new RegExp(`^\\s*alt:\\s*"(.*)"\\s*$`, 'm'));
+    if (lineMatch && /(?<!\\)"/.test(lineMatch[1])) {
+      console.error(`❌ [${file}] Unescaped double quote in frontmatter alt field: "${lineMatch[1].slice(0, 50)}"`);
+      errors++;
+    }
+  }
+
+  // 2. Check markdown body image alt text: ![alt](url)
   const imageAltRegex = /!\[([^\]]*)\]\(/g;
   let match;
   while ((match = imageAltRegex.exec(content)) !== null) {
     const alt = match[1];
     // Flag unescaped " — i.e. a " not preceded by a backslash
     if (/(?<!\\)"/.test(alt)) {
-      console.error(`❌ [${file}] Unescaped double quote in image alt text: ![${alt.slice(0, 50)}](`);
+      console.error(`❌ [${file}] Unescaped double quote in body image alt text: ![${alt.slice(0, 50)}](`);
       errors++;
     }
   }
