@@ -11,9 +11,7 @@ test.describe('Blog post body smoke test', () => {
 
     // Body must contain at least 5 headings (full article has 10+)
     const headings = page.locator('.prose h2, .prose h3');
-    await expect(headings).toHaveCount(await headings.count());
-    const count = await headings.count();
-    expect(count).toBeGreaterThanOrEqual(5);
+    await expect.poll(async () => await headings.count()).toBeGreaterThanOrEqual(5);
 
     // Body must NOT be empty / stuck on loading state only
     const prose = page.locator('.prose');
