@@ -16,9 +16,11 @@ const drafts = [];
 
 for (const file of files) {
   const content = readFileSync(join(BLOG_DIR, file), 'utf8');
+  const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  const frontmatter = frontmatterMatch ? frontmatterMatch[1] : '';
 
   // Warn on draft posts
-  if (/^draft:\s*true/m.test(content)) {
+  if (/^draft:\s*true\s*$/m.test(frontmatter)) {
     drafts.push(file);
   }
 
