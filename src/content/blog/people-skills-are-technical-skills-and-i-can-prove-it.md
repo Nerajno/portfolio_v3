@@ -295,8 +295,8 @@ Treat them accordingly.
 
 ---
 
-> **📣 Your turn.** If this resonated, I'd love to know which of the 7 tenets you're working on. Drop it in the comments or find me on X at [@Nerajno](https://twitter.com/nerajno). I talk about this stuff constantly, and the community that shows up to those conversations is one of the best parts of building in public.
+> **📣 Your turn.** If this resonated, I'd love to know which of the 7 tenets you're working on. Send me a message via my contact page or find me on X at [@Nerajno](https://twitter.com/nerajno). I talk about this stuff constantly, and the community that shows up to those conversations is one of the best parts of building in public.
 >
 ---
 
-*Nerando Johnson is a frontend developer based in Atlanta specializing in Vue 3, TypeScript, and React. He creates content for Vue Mastery, speaks at conferences, and organizes Atlanta freeCodeCamp. Find him at [developingdvlpr.com](https://developingdvlpr.com) and [@Nerajno](https://twitter.com/nerajno) everywhere.*
+*Nerando Johnson is a currently a junior frontend developer based in Atlanta specializing in Vue 3, TypeScript, and Nuxt. He creates content, speaks at conferences, and used to organizes Atlanta freeCodeCamp. Find him at [developingdvlpr.com](https://developingdvlpr.com) and [@Nerajno](https://twitter.com/nerajno) everywhere.*
