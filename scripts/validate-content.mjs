@@ -20,7 +20,7 @@ for (const file of files) {
   const frontmatter = frontmatterMatch ? frontmatterMatch[1] : '';
 
   // Warn on draft posts
-  if (/^draft:\s*true\s*$/m.test(frontmatter)) {
+  if (/^draft:\s*true(?:\s*(?:#.*)?)?$/m.test(frontmatter)) {
     drafts.push(file);
   }
 
