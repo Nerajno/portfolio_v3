@@ -24,12 +24,17 @@ for (const file of files) {
     drafts.push(file);
   }
 
-  // Check for unescaped double quotes inside markdown image alt text: ![alt](url)
-  const imageAltRegex = /!\[([^\]]*)"([^\]]*)\]\(/g;
+  // Extract alt text from markdown images and check for unescaped double quotes.
+  // Matches ![alt text](url) — captures only the alt portion between [ and ](
+  const imageAltRegex = /!\[([^\]]*)\]\(/g;
   let match;
   while ((match = imageAltRegex.exec(content)) !== null) {
-    console.error(`❌ [${file}] Unescaped double quote in image alt text: ${match[0].slice(0, 60)}`);
-    errors++;
+    const alt = match[1];
+    // Flag unescaped " — i.e. a " not preceded by a backslash
+    if (/(?<!\\)"/.test(alt)) {
+      console.error(`❌ [${file}] Unescaped double quote in image alt text: ![${alt.slice(0, 50)}](`);
+      errors++;
+    }
   }
 }
 
