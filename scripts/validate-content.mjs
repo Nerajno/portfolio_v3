@@ -6,8 +6,9 @@
  */
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
+import { fileURLToPath } from 'url';
 
-const BLOG_DIR = new URL('../src/content/blog', import.meta.url).pathname;
+const BLOG_DIR = fileURLToPath(new URL('../src/content/blog', import.meta.url));
 const files = readdirSync(BLOG_DIR).filter((f) => f.endsWith('.md') || f.endsWith('.mdx'));
 
 let errors = 0;
