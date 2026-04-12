@@ -37,12 +37,12 @@ for (const file of files) {
       console.error(`❌ [${file}] Unescaped double quote in frontmatter ${key}.alt: "${fm[1].slice(0, 50)}"`);
       errors++;
     }
-    // Also catch block-style: alt: "value with "bad" quotes"
-    const lineMatch = frontmatter.match(new RegExp(`^\\s*alt:\\s*"(.*)"\\s*$`, 'm'));
-    if (lineMatch && /(?<!\\)"/.test(lineMatch[1])) {
-      console.error(`❌ [${file}] Unescaped double quote in frontmatter alt field: "${lineMatch[1].slice(0, 50)}"`);
-      errors++;
-    }
+  }
+  // Also catch block-style: alt: "value with "bad" quotes"
+  const lineMatch = frontmatter.match(new RegExp(`^\\s*alt:\\s*"(.*)"\\s*$`, 'm'));
+  if (lineMatch && /(?<!\\)"/.test(lineMatch[1])) {
+    console.error(`❌ [${file}] Unescaped double quote in frontmatter alt field: "${lineMatch[1].slice(0, 50)}"`);
+    errors++;
   }
 
   // 2. Check markdown body image alt text: ![alt](url)
