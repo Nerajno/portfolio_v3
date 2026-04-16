@@ -95,7 +95,7 @@ In this article, we'll look at what components are, how to build them, and how t
 
 ## What Is a Component?
 
-<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2FqcHQza3VmMWJtNWt3azNmNTdxNDkzeHQya2YzNGd5cTZtZm04ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1oGXIfkeF4P4w3zPxk/giphy.gif" alt="Breaking UI into reusable pieces" width="960" />
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnkyOTB0MTBobmt0ZDdpOXNpNmJvZ282bGZyMTBldTN4NzByaGliNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3DI8UxOXJbX6BAWcuB/giphy.gif" alt="Breaking UI into reusable pieces" />
 
 A Vue component is a reusable, self-contained unit of UI. It encapsulates three things:
 
@@ -167,7 +167,7 @@ Notice the `<WeatherCard />` syntax — Vue components use PascalCase in templat
 
 ## Props: Passing Data Into a Component
 
-<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnVxYnlwYjRhZWI1aTdncHJoZmFob3VqcXpzcmkyZmNud2FwMWZtcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ge91zAgmwUqLMqiH2c/giphy.gif" alt="Passing data down to child components" width="960" />
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTFrdWZsY3c1bG53d3JsdWExcTgwaXpuY3M0NWtia2d4OXBtYXZsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d8eNm8dyFGYGHIPB4C/giphy.gif"  />
 
 A component that always shows the same city and temperature isn't very useful. Props let a parent pass data into a child.
 
@@ -229,7 +229,7 @@ Props flow **downward** — from parent to child. A child component should never
 
 ## Events: Sending Data Back Up
 
-<img src="https://media0.giphy.com/media/xT0xeuOy2Fcl9vDGiA/giphy.gif" alt="Events flowing back up to the parent" width="960" />
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejRhNGNrdTQ0dm9iMjR2dm1pMGN2MTZ3aGN6dTU1YTdhbm1lOGd3aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/efyEShk2FJ9X2Kpd7V/giphy.gif" />
 
 When something happens inside a child — a button click, a user removing a city — the child emits an event and the parent listens for it.
 
@@ -308,7 +308,7 @@ This is the **props down, events up** pattern. The parent owns the data. The chi
 
 ## Scoped Styles
 
-<img src="https://media0.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Styles that stay in their lane" width="960" />
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTB1cXFyM282ZzN1NGs1ODhkN2Nxdm0ybGdtYmdsOXNqMTVlZXZ3dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sEzatO7iSisrt1SmAu/giphy.gif" />
 
 The `scoped` attribute on `<style>` means the styles in a component only apply to that component's HTML:
 
@@ -327,7 +327,7 @@ Vue achieves this by adding a unique data attribute to the component's elements 
 
 ## Component Organization
 
-<img src="https://media0.giphy.com/media/OK27wINdQS5YQ/giphy.gif" alt="Keeping things organized" width="960" />
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHdhNDYwYzJ2czQyMjZzYWxmMDVnMzB3c2VrcTQ3bDc0ZG1nc3E3diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4sOZwdFKatZCw/giphy.gif" width="960" />
 
 As your app grows, keep your components folder organized by responsibility:
 
@@ -346,13 +346,13 @@ That separation makes each component independently testable — and means you ca
 
 ## The Mental Model
 
-<img src="https://media0.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" alt="The full picture coming together" width="960" />
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExajR1d3hybWNpNXg1YnowZzg4NDNtdXZpcHh0c2JrbGNmbXZsZjd1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/evB90wPnh5LxG3XU5o/giphy.gif" width="960" />
 
-- **SFC** → one `.vue` file = template + script + scoped styles
-- **`defineProps`** → declare what data flows in from the parent
-- **`defineEmits`** → declare what events flow out to the parent
-- **Props down, events up** → the rule that keeps data flow predictable
-- **Scoped styles** → CSS that stays in its lane
+- **SFC** → one `.vue` file = template + script + scoped styles.
+- **`defineProps`** → declare what data flows in from the parent.
+- **`defineEmits`** → declare what events flow out to the parent.
+- **Props down, events up** → the rule that keeps data flow predictable.
+- **Scoped styles** → CSS that stays in its lane.
 
 
 ## Your Turn
@@ -361,9 +361,9 @@ That separation makes each component independently testable — and means you ca
 
 Try these before moving to Article 5:
 
-1. Create a `UnitToggle.vue` component that emits a `'toggle'` event when clicked
-2. In `App.vue`, listen to `@toggle` and flip the `unit` ref between `'F'` and `'C'`
-3. Pass the updated `unit` as a prop to each `WeatherCard` and watch all the temperatures update at once
+1. Create a `UnitToggle.vue` component that emits a `'toggle'` event when clicked.
+2. In `App.vue`, listen to `@toggle` and flip the `unit` ref between `'F'` and `'C'`.
+3. Pass the updated `unit` as a prop to each `WeatherCard` and watch all the temperatures update at once.
 
 If all three work — you've just implemented the entire props-down events-up pattern on a real feature.
 
@@ -372,7 +372,7 @@ If all three work — you've just implemented the entire props-down events-up pa
 
 <img src="https://media0.giphy.com/media/wR4bJk4jF5Tl6/giphy.gif" alt="What's next" width="960" />
 
-In **Article 5**, we wire up Vue Router — turning our single-view dashboard into a navigable multi-page application with dynamic route segments, `router-link`, and `useRouter`.
+In **Article 5**, we'll cover the most important directives you'll use every day: `v-if`, `v-for`, `v-bind`, `v-model`, and `v-on`.
 
 Progress over perfection. Let's go.
 
