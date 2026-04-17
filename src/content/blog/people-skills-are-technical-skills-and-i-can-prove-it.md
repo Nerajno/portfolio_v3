@@ -12,7 +12,22 @@ image: {
 publishDate: "2026-04-10 00:00"
 category: "Career Development, Soft Skills, Leadership"
 tags: [softskills, career, communication, leadership, developer-growth]
-keywords: [people skills technical skills, soft skills for developers, developer communication skills, technical communication, interpersonal skills software engineering, developer career growth, leadership for developers, time management developers, adaptability in tech, attention to detail engineering, developer people skills framework, career skills beyond code, frontend developer career, junior to senior developer path]
+keywords: [
+  "people skills technical skills",
+  "soft skills for developers",
+  "developer communication skills",
+  "technical communication",
+  "interpersonal skills software engineering",
+  "developer career growth",
+  "leadership for developers",
+  "time management developers",
+  "adaptability in tech",
+  "attention to detail engineering",
+  "developer people skills framework",
+  "career skills beyond code",
+  "frontend developer career",
+  "junior to senior developer path"
+]
 
 # GEO-Enhanced Fields
 schema: {

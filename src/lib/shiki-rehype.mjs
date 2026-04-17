@@ -47,12 +47,17 @@ export function rehypeShiki() {
     })
 
     // Fenced code blocks
-    for (const { index, parent, codeEl } of blocks) {
-      const lang = resolveLang(codeEl.properties?.className ?? [])
-      const code = codeEl.children?.map((c) => c.value ?? '').join('') ?? ''
-      const hast = hl.codeToHast(code, { lang, themes: THEMES })
-      parent.children.splice(index, 1, hast.children[0])
-    }
+for (const { index, parent, codeEl } of blocks) {
+  const lang = resolveLang(codeEl.properties?.className ?? [])
+  const code = codeEl.children?.map((c) => c.value ?? '').join('') ?? ''
+  try {
+    const hast = hl.codeToHast(code, { lang, themes: THEMES })
+    const replacement = hast.children?.[0]
+    if (replacement) parent.children.splice(index, 1, replacement)
+  } catch (err) {
+    console.error(`Shiki failed on lang="${lang}":`, err)
+  }
+}
 
     // Inline code: `ref`{.js}  →  highlighted <span> tokens, no <pre>
     for (const { node, index, parent } of inlines) {
