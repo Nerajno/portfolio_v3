@@ -95,7 +95,7 @@ In this article, we'll look at what components are, how to build them, and how t
 
 ## What Is a Component?
 
-<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnkyOTB0MTBobmt0ZDdpOXNpNmJvZ282bGZyMTBldTN4NzByaGliNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3DI8UxOXJbX6BAWcuB/giphy.gif" alt="Breaking UI into reusable pieces" />
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnkyOTB0MTBobmt0ZDdpOXNpNmJvZ282bGZyMTBldTN4NzByaGliNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3DI8UxOXJbX6BAWcuB/giphy.gif" alt="Breaking UI into reusable pieces" width="960" />
 
 A Vue component is a reusable, self-contained unit of UI. It encapsulates three things:
 
@@ -167,7 +167,7 @@ Notice the `<WeatherCard />` syntax — Vue components use PascalCase in templat
 
 ## Props: Passing Data Into a Component
 
-<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTFrdWZsY3c1bG53d3JsdWExcTgwaXpuY3M0NWtia2d4OXBtYXZsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d8eNm8dyFGYGHIPB4C/giphy.gif"  />
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTFrdWZsY3c1bG53d3JsdWExcTgwaXpuY3M0NWtia2d4OXBtYXZsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d8eNm8dyFGYGHIPB4C/giphy.gif" alt="Passing data down to child components" width="960" />
 
 A component that always shows the same city and temperature isn't very useful. Props let a parent pass data into a child.
 
@@ -229,7 +229,7 @@ Props flow **downward** — from parent to child. A child component should never
 
 ## Events: Sending Data Back Up
 
-<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejRhNGNrdTQ0dm9iMjR2dm1pMGN2MTZ3aGN6dTU1YTdhbm1lOGd3aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/efyEShk2FJ9X2Kpd7V/giphy.gif" />
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejRhNGNrdTQ0dm9iMjR2dm1pMGN2MTZ3aGN6dTU1YTdhbm1lOGd3aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/efyEShk2FJ9X2Kpd7V/giphy.gif" alt="Events flowing back up to the parent" width="960" />
 
 When something happens inside a child — a button click, a user removing a city — the child emits an event and the parent listens for it.
 
@@ -308,7 +308,7 @@ This is the **props down, events up** pattern. The parent owns the data. The chi
 
 ## Scoped Styles
 
-<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTB1cXFyM282ZzN1NGs1ODhkN2Nxdm0ybGdtYmdsOXNqMTVlZXZ3dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sEzatO7iSisrt1SmAu/giphy.gif" />
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTB1cXFyM282ZzN1NGs1ODhkN2Nxdm0ybGdtYmdsOXNqMTVlZXZ3dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sEzatO7iSisrt1SmAu/giphy.gif" alt="Styles that stay in their lane" width="960" />
 
 The `scoped` attribute on `<style>` means the styles in a component only apply to that component's HTML:
 
@@ -327,7 +327,7 @@ Vue achieves this by adding a unique data attribute to the component's elements 
 
 ## Component Organization
 
-<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHdhNDYwYzJ2czQyMjZzYWxmMDVnMzB3c2VrcTQ3bDc0ZG1nc3E3diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4sOZwdFKatZCw/giphy.gif" width="960" />
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHdhNDYwYzJ2czQyMjZzYWxmMDVnMzB3c2VrcTQ3bDc0ZG1nc3E3diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4sOZwdFKatZCw/giphy.gif" alt="Keeping things organized" width="960" />
 
 As your app grows, keep your components folder organized by responsibility:
 
@@ -346,7 +346,7 @@ That separation makes each component independently testable — and means you ca
 
 ## The Mental Model
 
-<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExajR1d3hybWNpNXg1YnowZzg4NDNtdXZpcHh0c2JrbGNmbXZsZjd1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/evB90wPnh5LxG3XU5o/giphy.gif" width="960" />
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExajR1d3hybWNpNXg1YnowZzg4NDNtdXZpcHh0c2JrbGNmbXZsZjd1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/evB90wPnh5LxG3XU5o/giphy.gif" alt="The full picture coming together" width="960" />
 
 - **SFC** → one `.vue` file = template + script + scoped styles.
 - **`defineProps`** → declare what data flows in from the parent.
