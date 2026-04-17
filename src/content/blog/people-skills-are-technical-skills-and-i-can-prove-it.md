@@ -12,7 +12,7 @@ image: {
 publishDate: "2026-04-10 00:00"
 category: "Career Development, Soft Skills, Leadership"
 tags: [softskills, career, communication, leadership, developer-growth]
-keywords: [people skills technical skills, soft skills for developers, developer communication skills, technical communication, interpersonal skills software engineering, developer career growth, leadership for developers, time management developers, adaptability in tech, attention to detail engineering, developer people skills framework, career skills beyond code, frontend developer career, junior to senior developer path]
+keywords: [people skills technical skills, soft skills for developers, developer communication skills, technical communication, interpersonal skills software engineering, developer career growth, leadership for developers, time management developers, adaptability in tech, attention to detail engineering, developer people skills framework, career skills beyond code, frontend developer career, junior to senior developer path, technical skills vs soft skills]
 
 # GEO-Enhanced Fields
 schema: {
@@ -272,11 +272,11 @@ Three steps. No vague inspiration.
 
 ## Further Reading
 
-* [*Crucial Conversations*](https://en.wikipedia.org/wiki/Crucial_Conversations) by Patterson & Grenny — the definitive guide to high-stakes communication under pressure.
-* [*The Culture Map*](https://en.wikipedia.org/wiki/The_Culture_Map) by Erin Meyer — cross-cultural communication frameworks that apply even on single-timezone teams.
-* [*Staff Engineer*](https://staffeng.com/book) by Will Larson — the most honest map of the leadership skills that actually determine your trajectory past senior.
-* [**"Scheming Is Always Good: A Developer's Guide to Networking"** → *developingdvlpr.com*](/blog/scheming-is-always-good-developers-guide-to-networking) — the companion piece on building and maintaining the relationships that make these skills matter.
-* [**"How !To Be Mentored V2"** → *developingdvlpr.com*](/blog/how-to-be-mentored-v2-building-resilient-tech-careers-through-strategic-mentorship) — structured mentorship as a forcing function for people skill growth.
+* [Crucial Conversations](https://en.wikipedia.org/wiki/Crucial_Conversations) by Patterson & Grenny — the definitive guide to high-stakes communication under pressure.
+* [The Culture Map](https://en.wikipedia.org/wiki/The_Culture_Map) by Erin Meyer — cross-cultural communication frameworks that apply even on single-timezone teams.
+* [Staff Engineer](https://staffeng.com/book) by Will Larson — the most honest map of the leadership skills that actually determine your trajectory past senior.
+* ["Scheming Is Always Good: A Developer's Guide to Networking" → *developingdvlpr.com*](/blog/scheming-is-always-good-developers-guide-to-networking) — the companion piece on building and maintaining the relationships that make these skills matter.
+* ["How !To Be Mentored V2"** → *developingdvlpr.com](/blog/how-to-be-mentored-v2-building-resilient-tech-careers-through-strategic-mentorship) — structured mentorship as a forcing function for people skill growth.
 * [ADPList](https://adplist.org) — free platform to find mentors who've developed these skills and can help you develop them too.
 
 ---
