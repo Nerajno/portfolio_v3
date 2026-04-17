@@ -6,26 +6,40 @@ import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
 
-const { seriesName: seriesSlug } = Astro.params;
+export const prerender = true;
 
-const allBlogPosts = await getCollection('blog', ({ data }) => {
-  const now = new Date();
-  return !data.draft && data.series && data.publishDate && data.publishDate < now;
-});
+export async function getStaticPaths() {
+  const allBlogPosts = await getCollection('blog', ({ data }) => {
+    const now = new Date();
+    return !data.draft && data.series && data.publishDate && data.publishDate < now;
+  });
 
-const matchingPost = allBlogPosts.find(
-  (post) => post.data.series?.name.toLowerCase().replace(/\s+/g, '-') === seriesSlug
-);
+  // Group posts by series
+  const seriesMap = new Map<string, typeof allBlogPosts>();
+  allBlogPosts.forEach((post) => {
+    if (post.data.series?.name) {
+      const seriesName = post.data.series.name;
+      if (!seriesMap.has(seriesName)) {
+        seriesMap.set(seriesName, []);
+      }
+      seriesMap.get(seriesName)!.push(post);
+    }
+  });
 
-if (!matchingPost) {
-  return Astro.redirect('/blog');
+  // Create paths for each series
+  return Array.from(seriesMap.entries()).map(([seriesName, posts]) => {
+    const sortedPosts = posts.sort(
+      (a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0)
+    );
+
+    return {
+      params: { seriesName: seriesName.toLowerCase().replace(/\s+/g, '-') },
+      props: { seriesName, posts: sortedPosts },
+    };
+  });
 }
 
-const seriesName = matchingPost.data.series!.name;
-
-const posts = allBlogPosts
-  .filter((post) => post.data.series?.name === seriesName)
-  .sort((a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0));
+const { seriesName, posts } = Astro.props;
 
 // Get reading time for each post
 const postsWithReadingTime = await Promise.all(
