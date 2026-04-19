@@ -9,7 +9,7 @@
     "predev": "node scripts/validate-content.mjs",
     "prebuild": "node scripts/validate-content.mjs",
     "build": "astro build --remote",
-    "postbuild": "partytown copylib dist/~partytown",
+    "postbuild": "npx partytown copylib dist/~partytown",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest",
