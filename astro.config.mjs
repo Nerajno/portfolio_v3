@@ -35,6 +35,7 @@ export default defineConfig({
     partytown({
       config: {
         forward: ["dataLayer.push"],
+        proxyUrl: "/api/partytown-proxy",
       },
     }),
     clarityIntegration({
