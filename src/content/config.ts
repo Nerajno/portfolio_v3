@@ -30,6 +30,9 @@ const blogCollection = defineCollection({
     noindex: z.boolean().default(false), // Prevent indexing if true
     canonical: z.string().url().optional(), // Custom canonical URL if needed
 
+    // AEO FAQ fields
+    faqs: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
+
     // Series-related fields
     series: z.object({
       name: z.string(), // e.g., "Vue 3 Fundamentals"

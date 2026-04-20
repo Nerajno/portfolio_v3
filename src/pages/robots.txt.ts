@@ -4,6 +4,18 @@ const getRobotsTxt = (sitemapURL: URL) => `\
 User-agent: *
 Allow: /
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Googlebot-Extended
+Allow: /
+
 Sitemap: ${sitemapURL.href}
 `;
 

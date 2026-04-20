@@ -17,6 +17,7 @@ import {
   WhatsAppShareButton,
   BlueskyShareButton
 } from 'astro-social-share';
+import { buildArticleSchema, buildSpeakableSchema, buildFAQSchema, sanitizeSchema } from '@lib/schema';
 
 
 export const prerender = true;
@@ -199,71 +200,27 @@ const seoConfig = {
     }}
   />
 
-  <!-- JSON-LD Structured Data for Blog Post -->
+  <!-- AEO: TechArticle schema -->
   <script
     type='application/ld+json'
-    set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: entry.data.title,
-      description: seoDescription,
-      image: {
-        '@type': 'ImageObject',
-        url: new URL(ogImage, Astro.site).toString(),
-        alt: ogImageAlt,
-        width: 1200,
-        height: 630,
-      },
-      author: {
-        '@type': 'Person',
-        name: entry.data.author,
-        url: `${Astro.site}about`,
-        jobTitle: 'Software Developer',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Atlanta',
-          addressRegion: 'GA',
-          addressCountry: 'US',
-        },
-        sameAs: [
-          'https://github.com/Nerajno',
-          'https://twitter.com/nerajno',
-          'https://www.linkedin.com/in/nerando-johnson/',
-        ],
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'My MetaData',
-        url: Astro.site?.toString(),
-        logo: {
-          '@type': 'ImageObject',
-          url: `${Astro.site}logo.png`, // Add your logo
-          width: 400,
-          height: 400,
-        },
-      },
-      datePublished: entry.data.publishDate.toISOString(),
-      dateModified:
-        entry.data.updatedDate?.toISOString() ||
-        entry.data.publishDate.toISOString(),
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': postUrl,
-      },
+    set:html={sanitizeSchema(buildArticleSchema({
+      title: entry.data.title,
+      description: seoDescription ?? '',
       url: postUrl,
-      keywords: keywords?.join(', ') || (entry.data.tags ?? []).join(', '),
-      articleSection: entry.data.category,
-      wordCount: remarkPluginFrontmatter?.words || undefined,
-      timeRequired: remarkPluginFrontmatter?.minutesRead || undefined,
-      inLanguage: 'en-US',
-      copyrightYear: entry.data.publishDate.getFullYear(),
-      copyrightHolder: {
-        '@type': 'Person',
-        name: entry.data.author,
-        sameAs: `${Astro.site}about`, // Add your about page URL for the author
-      },
-    })}
+      image: new URL(ogImage, Astro.site).toString(),
+      publishDate: entry.data.publishDate,
+      updatedDate: entry.data.updatedDate,
+      keywords: keywords,
+    }))}
   />
+
+  <!-- AEO: SpeakableSpecification -->
+  <script type='application/ld+json' set:html={sanitizeSchema(buildSpeakableSchema(postUrl))} />
+
+  <!-- AEO: FAQPage (if frontmatter faqs present) -->
+  {entry.data.faqs && entry.data.faqs.length > 0 && (
+    <script type='application/ld+json' set:html={sanitizeSchema(buildFAQSchema(entry.data.faqs))} />
+  )}
 
   <Container>
     <div class='mx-auto max-w-4xl mt-14'>

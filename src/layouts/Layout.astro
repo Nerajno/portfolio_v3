@@ -3,6 +3,7 @@ import { SEO } from 'astro-seo-plugin';
 import Footer from '@components/footer.astro';
 import Navbar from '@components/navbar/navbar.astro';
 import '@fontsource-variable/inter/index.css';
+import { PERSON_ENTITY, sanitizeSchema } from '@lib/schema';
 
 export interface Props {
   title: string;
@@ -93,6 +94,9 @@ const makeTitle = title || "Nerando's Portfolio";
 
   <!-- Sitemap Info -->
   <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <!-- AEO: Person entity — identical on every page -->
+  <script type="application/ld+json" set:html={sanitizeSchema(PERSON_ENTITY)} />
 
 
     <meta name='viewport' content='width=device-width, initial-scale=1' />
