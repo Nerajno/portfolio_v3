@@ -139,14 +139,15 @@ export const speakingData: SpeakingEvent[] = [
   },
   {
     id: "devnexus-2026",
-    title: "Beyond SEO: Optimizing Your Web Content for the Age of AI",
+    title:
+      "The Engineer's Guide to Socialization: DB Associations as Networking Patterns: A Developer's Guide to Professional Connections",
     name: "Devnexus 2026",
     description:
-      "Most developers build websites that are well-coded, fast, and accessible — but invisible to AI. When someone asks ChatGPT 'what's the best way to handle state in Vue 3?' or 'who are the developers writing about Astro in Atlanta?', your content doesn't show up. Not because it's bad. Because it's not structured for how AI engines ingest and cite information. This talk covers Generative Engine Optimization (GEO) from the ground up — what it is, why it matters right now, and exactly how to implement it. We'll cover the core pillars: semantic HTML, structured data (JSON-LD), explicit content formatting, and FAQ architecture. Then we'll get hands-on with a real Astro implementation showing every technique applied to actual code. You'll leave with a practical checklist, reusable patterns, and the confidence to start making your projects — and your career — AI-discoverable.",
+      "This talk reimagines professional networking through the familiar lens of database associations, making relationship-building more approachable for developers. By mapping associations to networking scenarios, we'll transform technical knowledge into effective social strategies.",
     date: "2026-03",
     image: "/images/other_images/Speaker_me.jpeg",
     seoDescription:
-      "Devnexus 2026 – Learn how to optimize your web content for AI discovery with Generative Engine Optimization (GEO), with Nerando Johnson.",
+      "Devnexus 2026 – The Engineer's Guide to Socialization: reimagining professional networking through database associations, with Nerando Johnson.",
     location: {
       city: "Atlanta",
       state: "Georgia",
@@ -154,13 +155,11 @@ export const speakingData: SpeakingEvent[] = [
     },
     type: "conference",
     tags: [
-      "seo",
-      "geo",
-      "ai",
-      "content optimization",
-      "web development",
-      "astro",
-      "structured data",
+      "networking",
+      "career",
+      "databases",
+      "software development",
+      "people skills",
     ],
     links: {
       conferenceWebsite: "https://devnexus.com/",
