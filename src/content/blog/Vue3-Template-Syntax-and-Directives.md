@@ -15,7 +15,7 @@ tags: [vue3, javascript, frontend, tutorial, directives, template-syntax, compos
 keywords: [Vue 3 directives, v-if v-for, v-bind v-on, v-model Vue 3, Vue template syntax, conditional rendering Vue, list rendering Vue, Vue 3 tutorial]
 series:
   name: "Vue 3 Fundamentals"
-  order: 5
+  order: 6
 
 # GEO-Enhanced Fields
 schema: {
