@@ -182,7 +182,7 @@ const agreeToTerms = ref(false)
 </template>
 ```
 
-`v-model` works on text inputs, textareas, checkboxes, radio buttons, and selects. Under the hood, it's syntactic sugar for `:value` + `@input`, but the shorthand is clean enough that you'll almost always use `v-model` directly.
+`v-model` works on text inputs, textareas, checkboxes, radio buttons, and selects. For text-like inputs, it's often equivalent to `:value` + `@input` under the hood, but other controls use different props and events (for example, checkboxes and radios use `checked` + `change`, and component `v-model` uses `modelValue` + `update:modelValue`). In practice, the shorthand is clean enough that you'll almost always use `v-model` directly.
 
 ---
 
