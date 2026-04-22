@@ -236,7 +236,7 @@ const skills = ref(['Vue 3', 'TypeScript', 'Nuxt', 'Pinia'])
 </template>
 ```
 
-The `:key` attribute is required and important. It gives Vue a way to identify each item uniquely when the list updates, making DOM updates efficient. Use a unique identifier — ideally an `id` from your data. If you have no better option, you can use the index, but it's not ideal for dynamic lists.
+The `:key` attribute is strongly recommended and important when using `v-for`. It gives Vue a way to identify each item uniquely when the list updates, making DOM updates efficient, and it is required in some cases such as component lists or when preserving state. Use a unique identifier — ideally an `id` from your data. If you have no better option, you can use the index, but it's not ideal for dynamic lists.
 
 You can also access the index:
 
