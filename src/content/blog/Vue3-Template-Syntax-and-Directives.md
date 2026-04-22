@@ -55,9 +55,9 @@ semanticContext: {
 }
 ---
 
-# Vue 3 Template Syntax & Directives: Making HTML Do More
+## Vue 3 Template Syntax & Directives: Making HTML Do More
 
-> *Part 5 of the **Vue 3 Fundamentals** series — mastering `v-if`, `v-for`, `v-bind`, `v-on`, and `v-model`.*
+*Part 5 of the **Vue 3 Fundamentals** series — mastering `v-if`, `v-for`, `v-bind`, `v-on`, and `v-model`.*
 
 ---
 
