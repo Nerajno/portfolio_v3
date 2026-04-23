@@ -59,7 +59,7 @@ semanticContext: {
 
 *Part 5 of the **Vue 3 Fundamentals** series — mastering `v-if`, `v-for`, `v-bind`, `v-on`, and `v-model`.*
 
-![Making HTML Do More](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWNnMHRhZXFqZDduemc2N2RkNzNrMjZzZmJmZWE3bzN2Mnphcm9wNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Z3pez2XOAb11naBDbh/giphy.gif)
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWNnMHRhZXFqZDduemc2N2RkNzNrMjZzZmJmZWE3bzN2Mnphcm9wNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Z3pez2XOAb11naBDbh/giphy.gif" alt="Making HTML Do More" width="960" />
 
 Vanilla HTML is static. What you write is what you get. Vue's template syntax changes that.
 
