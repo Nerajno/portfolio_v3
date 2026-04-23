@@ -15,7 +15,7 @@ tags: [vue3, javascript, frontend, tutorial, directives, template-syntax, compos
 keywords: [Vue 3 directives, v-if v-for, v-bind v-on, v-model Vue 3, Vue template syntax, conditional rendering Vue, list rendering Vue, Vue 3 tutorial]
 series:
   name: "Vue 3 Fundamentals"
-  order: 6
+  order: 5
 
 # GEO-Enhanced Fields
 schema: {
@@ -59,13 +59,13 @@ semanticContext: {
 
 *Part 5 of the **Vue 3 Fundamentals** series — mastering `v-if`, `v-for`, `v-bind`, `v-on`, and `v-model`.*
 
----
+![Making HTML Do More](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWNnMHRhZXFqZDduemc2N2RkNzNrMjZzZmJmZWE3bzN2Mnphcm9wNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Z3pez2XOAb11naBDbh/giphy.gif)
 
 Vanilla HTML is static. What you write is what you get. Vue's template syntax changes that.
 
 Vue extends HTML with a set of directives — special attributes prefixed with `v-` — that let you bind data, respond to events, conditionally render elements, and loop over lists, all directly in your template. No manual DOM updates. No `querySelector` calls. Just declarative logic that Vue handles for you.
 
-In this article, we'll cover the most important directives you'll use every day.
+In this article, we'll cover the most common and maybe most important directives you'll use every day.
 
 ---
 
@@ -80,7 +80,7 @@ We've used this already, but let's be explicit. Double curly braces render a Jav
 <p>{{ isLoggedIn ? 'Welcome back' : 'Please log in' }}</p>
 ```
 
-This is called **text interpolation**. Vue evaluates the expression and inserts its value as plain text. Note that it's text only — you can't insert raw HTML this way (and for security reasons, you usually don't want to).
+This is called **text interpolation**. Vue evaluates the expression and inserts its value as plain text. Note that it's text only — you can't insert raw HTML this way (and for security reasons, you usually don't want to ....... DO NOT DO IT !!!!).
 
 ---
 
@@ -257,6 +257,7 @@ And loop over objects:
 ---
 
 ## Putting It Together
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWEwbXpwamJxNm9iZ3NzM2JhNTR1aGE1NmptN29vdzRjcGs1bXhwMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/N8HaPqnkQETss/giphy.gif" alt="Putting It Together" width="100%" />
 
 Here's a small component that combines everything from this article:
 
@@ -305,9 +306,11 @@ function addSkill() {
 
 ## What's Next
 
+<img src="https://media0.giphy.com/media/wR4bJk4jF5Tl6/giphy.gif" alt="What's next" width="960" />
+
 In **Article 6**, we bring everything together. We'll build a complete mini Todo app from scratch, using components, reactivity, props, events, and directives — everything from Articles 1 through 5.
 
-This is where it all clicks.
+This is where it we hope it all should make sense and click.
 
 ---
 
