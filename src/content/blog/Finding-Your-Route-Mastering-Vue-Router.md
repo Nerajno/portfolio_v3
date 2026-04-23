@@ -9,13 +9,13 @@ image: {
     src: "/images/blog_covers/Vue3 Image.png",
     alt: "Vue.js logo on a light blue background with geometric shapes"
 }
-publishDate: "2026-04-22 00:00"
+publishDate: "2026-04-30 00:00"
 category: "Vue, JavaScript, Tutorials"
 tags: [vue3, javascript, frontend, tutorial, vue-router, composition-api]
 keywords: [Vue Router tutorial, Vue 3 routing, router-link, useRouter, useRoute, dynamic routes, navigation guards, Vue 3 SPA routing, Vue Router setup, Vue 3 tutorial]
 series:
   name: "Vue 3 Fundamentals"
-  order: 5
+  order: 6
 
 # GEO-Enhanced Fields
 schema: {
@@ -79,7 +79,7 @@ aiOptimization: {
 
 ## Finding Your Route: Mastering Vue Router
 
-*Part 5 of the **Vue 3 Fundamentals** series — adding client-side routing to your Vue 3 app.*
+*Part 6 of the **Vue 3 Fundamentals** series — adding client-side routing to your Vue 3 app.*
 
 ---
 
@@ -374,4 +374,4 @@ You know how to move between pages. Now let's build what lives on them.
 
 ---
 
-*This is Part 5 of the Vue 3 Fundamentals series. Sources: [Vue Router Official Docs](https://router.vuejs.org/guide/), [Vue Router — Dynamic Route Matching](https://router.vuejs.org/guide/essentials/dynamic-matching.html).*
+*This is Part 6 of the Vue 3 Fundamentals series. Sources: [Vue Router Official Docs](https://router.vuejs.org/guide/), [Vue Router — Dynamic Route Matching](https://router.vuejs.org/guide/essentials/dynamic-matching.html).*
