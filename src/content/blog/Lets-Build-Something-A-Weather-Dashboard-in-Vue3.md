@@ -9,7 +9,7 @@ image: {
     src: "/images/blog_covers/Vue3 Image.png",
     alt: "Vue 3 Weather Dashboard app showing city cards with temperature and conditions"
 }
-publishDate: "2026-05-01 00:00"
+publishDate: "2026-05-07 00:00"
 category: "Vue, JavaScript, Tutorials"
 tags: [vue3, javascript, frontend, tutorial, composition-api, project]
 keywords: [Vue 3 project, weather dashboard Vue, props down events up, computed properties Vue 3, Vue 3 components, Composition API project, Vue 3 beginner project]
