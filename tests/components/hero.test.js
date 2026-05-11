@@ -32,8 +32,8 @@ describe('Hero Component', () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(Hero)
 
-    expect(result).toContain('software developer')
-    expect(result).toContain('Vue and JavaScript')
+    expect(result).toContain('frontend developer')
+    expect(result).toContain('Vue3, JavaScript and TypeScript')
     expect(result).toContain('MERN stack')
   })
 
@@ -41,14 +41,14 @@ describe('Hero Component', () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(Hero)
 
-    expect(result).toContain('software developer')
+    expect(result).toContain('frontend developer')
   })
 
   it('should mention technical skills', async () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(Hero)
 
-    expect(result).toContain('Vue and JavaScript')
+    expect(result).toContain('Vue3, JavaScript and TypeScript')
     expect(result).toContain('MERN stack')
     expect(result).toContain('PM and DevOps')
   })
