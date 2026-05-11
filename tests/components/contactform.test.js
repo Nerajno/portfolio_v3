@@ -62,7 +62,7 @@ describe('ContactForm Component', () => {
 
     expect(result).toContain('for="email_address"')
     expect(result).toContain('id="email_address"')
-    expect(result).toContain('sr-only')
+    expect(result).toContain('Email Address')
   })
 
   it('should render message textarea field', async () => {

@@ -28,6 +28,11 @@ export default defineConfig(
         'tests/**/*.{test,spec}.{js,mjs,ts,tsx}',
         'src/**/*.{test,spec}.{js,mjs,ts,tsx}',
       ],
+      exclude: [
+        'node_modules/**',
+        'e2e/**',
+        'tests/example.spec.ts',
+      ],
     },
   })
 )
