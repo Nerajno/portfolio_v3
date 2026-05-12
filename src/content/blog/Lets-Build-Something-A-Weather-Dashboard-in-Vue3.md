@@ -15,7 +15,7 @@ tags: [vue3, javascript, frontend, tutorial, composition-api, project]
 keywords: [Vue 3 project, weather dashboard Vue, props down events up, computed properties Vue 3, Vue 3 components, Composition API project, Vue 3 beginner project]
 series:
   name: "Vue 3 Fundamentals"
-  order: 6
+  order: 7
 
 # GEO-Enhanced Fields
 schema: {
