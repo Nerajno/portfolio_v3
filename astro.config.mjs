@@ -21,7 +21,7 @@ export default defineConfig({
     tailwind(),
     mdx({
       syntaxHighlight: false,
-      remarkPlugins: [remarkAttr],
+      remarkPlugins: [[remarkAttr, { extend: { link: ["target", "rel", "className"] } }]],
       rehypePlugins: [rehypeShiki],
     }),
     sitemap(),
@@ -87,7 +87,7 @@ export default defineConfig({
     ],
   },
   markdown: {
-    remarkPlugins: [remarkReadingTime, remarkGifPassthrough, remarkAttr],
+    remarkPlugins: [remarkReadingTime, remarkGifPassthrough, [remarkAttr, { extend: { link: ["target", "rel", "className"] } }]],
     syntaxHighlight: false,
     rehypePlugins: [rehypeShiki],
   },
