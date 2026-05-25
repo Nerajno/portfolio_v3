@@ -21,10 +21,125 @@ interface SpeakingEvent {
   tags?: string[];
   image?: string; // SEO image for event
   seoDescription?: string; // SEO meta description for event
+  acceptanceStatus?: "accepted" | "in-evaluation";
 }
 
 export const speakingData: SpeakingEvent[] = [
   // ─── 2026 Upcoming ───────────────────────────────────────────────────────────
+  {
+    id: "techbash-2026-back-to-basics",
+    title: "Back to Basics: Essential JavaScript Foundations for Modern Framework Development",
+    name: "TechBash 2026",
+    description:
+      "In an era where AI and tech influencers often promote jumping directly into framework development, this talk emphasizes the critical importance of mastering JavaScript fundamentals before diving into frameworks like Vue.js. Drawing from real-world experience transitioning into Vue 3 development, we'll explore why solid JavaScript foundations are crucial for effective framework usage. Through practical demonstrations and real-world examples, we'll examine how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example. This session will help developers understand why 'learning to walk before running' in JavaScript is essential for long-term success in framework development.",
+    date: "2026-10-13",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "TechBash 2026 – Master JavaScript fundamentals before diving into modern frameworks with Nerando Johnson's back-to-basics approach.",
+    location: {
+      city: "Pocono Manor",
+      state: "Pennsylvania",
+      country: "USA",
+      venue: "Kalahari Resorts",
+    },
+    type: "conference",
+    acceptanceStatus: "accepted",
+    tags: [
+      "javascript",
+      "vue.js",
+      "fundamentals",
+      "frameworks",
+      "software development",
+    ],
+    links: {
+      conferenceWebsite: "https://techbash.com",
+    },
+  },
+  {
+    id: "techbash-2026-skills-to-bills",
+    title: "Skills to Bills: A User's Guide to Demonstrated Competency",
+    name: "TechBash 2026",
+    description:
+      "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
+    date: "2026-10-13",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "TechBash 2026 – Demonstrating developer competency and confidence, with Nerando Johnson.",
+    location: {
+      city: "Pocono Manor",
+      state: "Pennsylvania",
+      country: "USA",
+      venue: "Kalahari Resorts",
+    },
+    type: "conference",
+    acceptanceStatus: "accepted",
+    tags: [
+      "career",
+      "business skills",
+      "processes",
+      "open source",
+      "programming",
+    ],
+    links: {
+      conferenceWebsite: "https://techbash.com",
+    },
+  },
+  {
+    id: "commit-your-code-2026-beyond-seo",
+    title: "Beyond SEO: Optimizing Your Web Content for the Age of AI",
+    name: "The Commit Your Code Conference 2026",
+    description:
+      "Search is no longer just about Google. AI assistants, large language models, and conversational search engines are reshaping how people discover content—and the old rules of SEO aren't enough. This talk explores AI Engine Optimization (AEO): how to structure your web content, metadata, and schema markup so that AI systems can accurately surface, cite, and recommend your work. Drawing from real-world implementation experience, we'll cover practical strategies for optimizing structured data, semantic clarity, and content authority in a world where your audience might be asking ChatGPT instead of searching Google.",
+    date: "2026-09-03",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "Commit Your Code 2026 – Beyond SEO: practical strategies for AI Engine Optimization in the age of LLMs and conversational search, with Nerando Johnson.",
+    location: {
+      city: "Dallas",
+      state: "Texas",
+      country: "USA",
+    },
+    type: "conference",
+    acceptanceStatus: "accepted",
+    tags: [
+      "SEO",
+      "AI",
+      "AEO",
+      "web development",
+      "content strategy",
+    ],
+    links: {
+      conferenceWebsite: "https://www.CommitYourCode.com",
+    },
+  },
+  {
+    id: "atlanta-cloud-ai-2026",
+    title: "Beyond SEO: Optimizing Your Web Content for the Age of AI",
+    name: "Atlanta Cloud+AI Conference 2026",
+    description:
+      "Search is no longer just about Google. AI assistants, large language models, and conversational search engines are reshaping how people discover content—and the old rules of SEO aren't enough. This talk explores AI Engine Optimization (AEO): how to structure your web content, metadata, and schema markup so that AI systems can accurately surface, cite, and recommend your work. Drawing from real-world implementation experience, we'll cover practical strategies for optimizing structured data, semantic clarity, and content authority in a world where your audience might be asking ChatGPT instead of searching Google.",
+    date: "2026-05-30",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "Atlanta Cloud+AI Conference 2026 – Beyond SEO: practical strategies for AI Engine Optimization in the age of LLMs and conversational search, with Nerando Johnson.",
+    location: {
+      city: "Atlanta",
+      state: "Georgia",
+      country: "USA",
+    },
+    type: "conference",
+    acceptanceStatus: "accepted",
+    tags: [
+      "SEO",
+      "AI",
+      "AEO",
+      "cloud",
+      "web development",
+    ],
+    links: {
+      conferenceWebsite: "https://www.AtlantaCloudConference.com",
+    },
+  },
   {
     id: "commit-your-code-2026",
     title:
@@ -69,6 +184,7 @@ export const speakingData: SpeakingEvent[] = [
       country: "USA",
     },
     type: "conference",
+    acceptanceStatus: "accepted",
     tags: [
       "career",
       "business skills",
