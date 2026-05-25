@@ -21,7 +21,6 @@ interface SpeakingEvent {
   tags?: string[];
   image?: string; // SEO image for event
   seoDescription?: string; // SEO meta description for event
-  acceptanceStatus?: "accepted" | "in-evaluation";
 }
 
 export const speakingData: SpeakingEvent[] = [
@@ -43,7 +42,6 @@ export const speakingData: SpeakingEvent[] = [
       venue: "Kalahari Resorts",
     },
     type: "conference",
-    acceptanceStatus: "accepted",
     tags: [
       "javascript",
       "vue.js",
@@ -72,7 +70,6 @@ export const speakingData: SpeakingEvent[] = [
       venue: "Kalahari Resorts",
     },
     type: "conference",
-    acceptanceStatus: "accepted",
     tags: [
       "career",
       "business skills",
@@ -100,7 +97,6 @@ export const speakingData: SpeakingEvent[] = [
       country: "USA",
     },
     type: "conference",
-    acceptanceStatus: "accepted",
     tags: [
       "SEO",
       "AI",
@@ -128,7 +124,6 @@ export const speakingData: SpeakingEvent[] = [
       country: "USA",
     },
     type: "conference",
-    acceptanceStatus: "accepted",
     tags: [
       "SEO",
       "AI",
@@ -138,34 +133,6 @@ export const speakingData: SpeakingEvent[] = [
     ],
     links: {
       conferenceWebsite: "https://www.AtlantaCloudConference.com",
-    },
-  },
-  {
-    id: "commit-your-code-2026",
-    title:
-      "The Kill List Framework: A Developer's Guide to Actually Finishing Side Projects",
-    name: "The Commit Your Code Conference 2026",
-    description:
-      "Every developer knows the pain: 47 project folders collecting dust, each one a monument to good intentions and poor execution. Some research shows the average developer maintains 3.7 unfinished side projects with completion rates hovering at a dismal 15-20%. The problem isn't your lack of time, motivation, or skill—it's that you've never learned to negotiate with yourself about what 'done' actually means. The Kill List Framework is a structured approach to murdering your darling ideas before they murder your project's chances of completion. Drawing from lessons learned shipping 6+ projects in the last few years, this session provides a practical, no-nonsense approach to transforming your project graveyard into a shipped portfolio.",
-    date: "2026-09-30",
-    image: "/images/other_images/Speaker_me.jpeg",
-    seoDescription:
-      "Commit Your Code 2026 – The Kill List Framework: a battle-tested system for shipping side projects, with Nerando Johnson.",
-    location: {
-      city: "Dallas",
-      state: "Texas",
-      country: "USA",
-    },
-    type: "conference",
-    tags: [
-      "side projects",
-      "productivity",
-      "software development",
-      "scope creep",
-      "career",
-    ],
-    links: {
-      conferenceWebsite: "https://www.CommitYourCode.com",
     },
   },
   {
@@ -184,7 +151,6 @@ export const speakingData: SpeakingEvent[] = [
       country: "USA",
     },
     type: "conference",
-    acceptanceStatus: "accepted",
     tags: [
       "career",
       "business skills",
