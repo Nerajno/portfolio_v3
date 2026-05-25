@@ -125,9 +125,9 @@ export const speakingData: SpeakingEvent[] = [
     },
     type: "conference",
     tags: [
-      "SEO",
-      "AI",
-      "AEO",
+      "seo",
+      "ai",
+      "aeo",
       "cloud",
       "web development",
     ],
