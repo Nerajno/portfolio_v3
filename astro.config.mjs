@@ -21,7 +21,7 @@ export default defineConfig({
     tailwind(),
     mdx({
       syntaxHighlight: false,
-      remarkPlugins: [[remarkAttr, { extend: { link: ["target", "rel", "className"] } }]],
+      remarkPlugins: [[remarkAttr, { enableAtxHeaderInline: false },{ extend: { link: ["target", "rel", "className"] } }]],
       rehypePlugins: [rehypeShiki],
     }),
     sitemap(),
