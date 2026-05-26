@@ -24,7 +24,15 @@ const isDevelopment = import.meta.env.MODE === 'development';
 let allViewCounts: Record<string, number> = {};
 
 if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
-  allViewCounts = await getAllViewCounts();
+  try {
+    const viewCountsPromise = getAllViewCounts();
+    const timeoutPromise = new Promise<Record<string, number>>((resolve) =>
+      setTimeout(() => resolve({}), 5000)
+    );
+    allViewCounts = await Promise.race([viewCountsPromise, timeoutPromise]);
+  } catch {
+    allViewCounts = {};
+  }
 }
 
 // Get reading time for each blog post
