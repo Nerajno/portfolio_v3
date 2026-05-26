@@ -10,7 +10,6 @@ import partytown from "@astrojs/partytown";
 import clarityIntegration from "astro-microsoft-clarity-integration";
 import react from "@astrojs/react";
 import { rehypeShiki } from "./src/lib/shiki-rehype.mjs";
-import remarkAttr from "remark-attr";
 
 export default defineConfig({
   site: "https://developingdvlpr.com",
@@ -21,7 +20,7 @@ export default defineConfig({
     tailwind(),
     mdx({
       syntaxHighlight: false,
-      remarkPlugins: [[remarkAttr, { enableAtxHeaderInline: false },{ extend: { link: ["target", "rel", "className"] } }]],
+      remarkPlugins: [],
       rehypePlugins: [rehypeShiki],
     }),
     sitemap(),
@@ -91,7 +90,7 @@ export default defineConfig({
     ],
   },
   markdown: {
-    remarkPlugins: [remarkReadingTime, remarkGifPassthrough, [remarkAttr, { extend: { link: ["target", "rel", "className"] } }]],
+    remarkPlugins: [remarkReadingTime, remarkGifPassthrough],
     syntaxHighlight: false,
     rehypePlugins: [rehypeShiki],
   },
