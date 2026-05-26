@@ -38,14 +38,18 @@ export default defineConfig({
         proxyUrl: "/api/partytown-proxy",
       },
     }),
-    clarityIntegration({
-      projectId: import.meta.env.PUBLIC_CLARITY_ID,
-      enabled: true, // Optional: Enable the integration (defaults to true)
-      scriptStage: "head-inline", // Optional: Set scriptStage to 'head-inline', 'body-inline'
-      debug: false, // Optional: Enable debug (set to true if you want to log script injections)
-      async: true, // Optional: Enable async loading
-      defer: true, // Optional: Enable defer for script loading
-    }),
+    ...(import.meta.env.PUBLIC_CLARITY_ID
+      ? [
+          clarityIntegration({
+            projectId: import.meta.env.PUBLIC_CLARITY_ID,
+            enabled: true,
+            scriptStage: "head-inline",
+            debug: false,
+            async: true,
+            defer: true,
+          }),
+        ]
+      : []),
   ],
   image: {
     domains: ["picsum.photos"],
