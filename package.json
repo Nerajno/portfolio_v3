@@ -22,8 +22,8 @@
     "test:all": "npm run test:run && npm run test:e2e"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.0.6",
-    "@astrojs/netlify": "^6.3.4",
+    "@astrojs/mdx": "^5.0.6",
+    "@astrojs/netlify": "^7.0.10",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.5.1",
@@ -38,7 +38,7 @@
     "@tailwindcss/postcss": "^4.1.10",
     "@tailwindcss/vite": "^4.1.10",
     "astro": "^5.1.7",
-    "astro-embed": "^0.9.0",
+    "astro-embed": "^0.13.0",
     "astro-icon": "^1.1.5",
     "astro-microsoft-clarity-integration": "^1.0.1",
     "astro-navbar": "^2.3.9",
@@ -47,7 +47,7 @@
     "astro-social-share": "^2.2.0",
     "boxicons": "^2.1.4",
     "mdast-util-to-string": "^4.0.0",
-    "nodemailer": "^6.10.0",
+    "nodemailer": "^8.0.9",
     "pinia": "^2.3.0",
     "reading-time": "^1.5.0",
     "remark-attr": "^0.11.1",
@@ -56,7 +56,7 @@
     "tinyurl": "^1.1.7"
   },
   "devDependencies": {
-    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/tailwind": "^2.1.3",
     "@axe-core/playwright": "^4.11.1",
     "@eslint/js": "^9.18.0",
     "@iconify-json/bx": "^1.2.2",
@@ -77,8 +77,8 @@
     "eslint-plugin-astro": "^1.3.0",
     "globals": "^15.14.0",
     "happy-dom": "^20.8.3",
-    "npm-check": "^6.0.1",
-    "reload": "^3.3.0",
+    "npm-check": "^3.2.10",
+    "reload": "^3.2.0",
     "shiki": "^4.0.2",
     "tailwind-merge": "^3.5.0",
     "vitest": "^4.0.18"
