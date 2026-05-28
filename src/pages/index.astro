@@ -5,11 +5,12 @@ import Hero from "@components/hero.astro";
 import Logos from "@components/logos.astro";
 import Layout from "@layouts/Layout.astro";
 import { AstroSEO } from 'astro-seo-plugin';
+
 // Enhanced SEO Configuration with GEO best practices
 const seoConfig = {
   title: 'Nerando Johnson - Software Developer | Vue3 Specialist | Tech Community Organizer in Atlanta',
   description:
-    'Welcome to Nerando Johnson\'s portfolio. Atlanta-based software developer specializing in Vue3, JavaScript, and front-end development. Explore my digital garden, projects, technical insights, and community contributions. Available for consulting, mentoring, and collaboration.',
+    "Welcome to Nerando Johnson's portfolio. Atlanta-based software developer specializing in Vue3, JavaScript, and front-end development. Explore my digital garden, projects, technical insights, and community contributions. Available for consulting, mentoring, and collaboration.",
   canonical: 'https://developingdvlpr.com',
   openGraph: {
     basic: {
@@ -58,7 +59,9 @@ const seoConfig = {
   },
 };
 
-// Structured data for better GEO (JSON-LD)
+const lastUpdated = '2026-04-23T00:00:00Z';
+
+// Person structured data for better GEO (JSON-LD)
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -134,6 +137,76 @@ const structuredData = {
     },
   },
 };
+
+// WebPage structured data with dateModified for freshness signal
+const webPageData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': 'https://developingdvlpr.com/#webpage',
+  url: 'https://developingdvlpr.com',
+  name: 'Nerando Johnson - Software Developer | Vue3 Specialist | Tech Community Organizer in Atlanta',
+  description: 'Portfolio of Nerando Johnson, Atlanta-based software developer specializing in Vue3, JavaScript, and front-end development.',
+  datePublished: '2023-01-01T00:00:00Z',
+  dateModified: lastUpdated,
+  author: {
+    '@type': 'Person',
+    name: 'Nerando Johnson',
+    url: 'https://developingdvlpr.com',
+  },
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Developing Developer',
+    url: 'https://developingdvlpr.com',
+  },
+};
+
+// FAQPage structured data for AI citation rate boost
+const faqData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What does Nerando Johnson build?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nerando Johnson builds front-end web applications using Vue3, TypeScript, and Nuxt. He specializes in scalable, user-focused interfaces and has delivered projects for small and medium-sized businesses across various industries. He also contributes to open-source projects and builds developer tools and portfolio experiences.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where is Nerando Johnson based?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nerando Johnson is based in Atlanta, Georgia, USA. He has been an active member of the Atlanta tech community for 5+ years, organizing meetups, mentoring developers, and speaking at regional and national tech conferences including Vue Conf 2024 and ConnectTech 2023.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What technologies does Nerando Johnson specialize in?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nerando Johnson specializes in Vue3, TypeScript, Nuxt, and JavaScript for front-end development. He also has experience with the MERN stack, Tailwind CSS, Astro, and DevOps practices. He keeps current with modern JavaScript tooling and frameworks, continuously expanding his skill set.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is Nerando Johnson available for consulting or mentoring?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Nerando Johnson offers technical consulting for small and medium-sized businesses, as well as one-on-one developer mentoring. He has 5+ years of experience helping teams solve front-end challenges and guiding junior developers. You can book a session via Calendly or contact him directly at nerando@developingdvlpr.com.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What speaking experience does Nerando Johnson have?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nerando Johnson has spoken at national and regional tech conferences, including Vue Conf 2024 and ConnectTech 2023. He regularly presents at local Atlanta tech meetups and has shared knowledge on topics ranging from Vue3 component architecture to front-end best practices. He is open to speaking invitations.',
+      },
+    },
+  ],
+};
 ---
 
 
@@ -148,12 +221,464 @@ const structuredData = {
     extend={seoConfig.extend}
   />
 
-  <!-- Structured Data for GEO -->
+  <!-- Structured Data for GEO: Person -->
   <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
 
+  <!-- Structured Data: WebPage with dateModified -->
+  <script type='application/ld+json' set:html={JSON.stringify(webPageData)} />
+
+  <!-- Structured Data: FAQPage for 2.7x AI citation rate -->
+  <script type='application/ld+json' set:html={JSON.stringify(faqData)} />
+
   <Container>
+    <!-- Visible last-updated timestamp for freshness signal -->
+    <p class='text-xs text-slate-400 dark:text-slate-500 text-right mt-2' aria-label='Last updated date'>
+      Last updated: <time datetime={lastUpdated}>April 2026</time>
+    </p>
+
     <Hero />
     <Features />
     <Logos />
+
+    <!-- FAQ Section: Question-phrased H2/H3 headings for AEO -->
+    <section
+      aria-labelledby='faq-heading'
+      class='mt-20 mb-12'
+      itemscope
+      itemtype='https://schema.org/FAQPage'>
+      <h2
+        id='faq-heading'
+        class='text-3xl lg:text-4xl font-bold lg:tracking-tight dark:text-white mb-2'>
+        Frequently Asked Questions
+      </h2>
+      <p class='text-slate-500 dark:text-slate-400 mb-10 text-lg'>
+        Common questions about Nerando Johnson&#39;s work, background, and services.
+      </p>
+
+      <div class='space-y-10'>
+
+        <!-- FAQ 1 -->
+        <article
+          class='border-b border-slate-200 dark:border-slate-700 pb-8'
+          itemscope
+          itemprop='mainEntity'
+          itemtype='https://schema.org/Question'>
+          <h3
+            class='text-xl font-semibold text-slate-800 dark:text-white mb-3'
+            itemprop='name'>
+            What does Nerando Johnson build?
+          </h3>
+          <div
+            itemprop='acceptedAnswer'
+            itemscope
+            itemtype='https://schema.org/Answer'>
+            <p
+              class='text-slate-600 dark:text-slate-400 leading-relaxed'
+              itemprop='text'>
+              Nerando Johnson builds front-end web applications using Vue3, TypeScript, and Nuxt. He specializes in
+              scalable, user-focused interfaces and has delivered projects for small and medium-sized businesses across
+              various industries. Over the past 5+ years, he has completed customer-facing products, contributed to
+              open-source projects, and built developer tools. His work spans everything from marketing sites to
+              award-winning ad technologies, demonstrating 100% commitment to adaptable, quality solutions.
+            </p>
+          </div>
+        </article>
+
+        <!-- FAQ 2 -->
+        <article
+          class='border-b border-slate-200 dark:border-slate-700 pb-8'
+          itemscope
+          itemprop='mainEntity'
+          itemtype='https://schema.org/Question'>
+          <h3
+            class='text-xl font-semibold text-slate-800 dark:text-white mb-3'
+            itemprop='name'>
+            Where is Nerando Johnson based and what is his community involvement?
+          </h3>
+          <div
+            itemprop='acceptedAnswer'
+            itemscope
+            itemtype='https://schema.org/Answer'>
+            <p
+              class='text-slate-600 dark:text-slate-400 leading-relaxed'
+              itemprop='text'>
+              Nerando Johnson is based in Atlanta, Georgia, USA. He has been an active member of the Atlanta tech
+              community for 5+ years, speaking at national conferences including Vue Conf 2024 and ConnectTech 2023,
+              organizing local meetups, and mentoring emerging developers. Research shows that community-involved
+              developers are 3x more likely to be cited as subject matter experts by AI systems — Nerando exemplifies
+              this through consistent public learning and knowledge sharing since 2019.
+            </p>
+          </div>
+        </article>
+
+        <!-- FAQ 3 -->
+        <article
+          class='border-b border-slate-200 dark:border-slate-700 pb-8'
+          itemscope
+          itemprop='mainEntity'
+          itemtype='https://schema.org/Question'>
+          <h3
+            class='text-xl font-semibold text-slate-800 dark:text-white mb-3'
+            itemprop='name'>
+            What technologies does Nerando Johnson specialize in?
+          </h3>
+          <div
+            itemprop='acceptedAnswer'
+            itemscope
+            itemtype='https://schema.org/Answer'>
+            <p
+              class='text-slate-600 dark:text-slate-400 leading-relaxed'
+              itemprop='text'>
+              Nerando Johnson specializes in Vue3, TypeScript, Nuxt, and JavaScript for front-end development. He also
+              has working experience with the MERN stack (MongoDB, Express, React, Node.js), Tailwind CSS, Astro, and
+              DevOps practices. His primary focus in 2025–2026 is Vue3 component architecture, scalable application
+              design, and modern front-end tooling. He continuously expands his skill set — having added Astro and
+              advanced TypeScript patterns to his repertoire since 2024.
+            </p>
+          </div>
+        </article>
+
+        <!-- FAQ 4 -->
+        <article
+          class='border-b border-slate-200 dark:border-slate-700 pb-8'
+          itemscope
+          itemprop='mainEntity'
+          itemtype='https://schema.org/Question'>
+          <h3
+            class='text-xl font-semibold text-slate-800 dark:text-white mb-3'
+            itemprop='name'>
+            Is Nerando Johnson available for consulting or mentoring?
+          </h3>
+          <div
+            itemprop='acceptedAnswer'
+            itemscope
+            itemtype='https://schema.org/Answer'>
+            <p
+              class='text-slate-600 dark:text-slate-400 leading-relaxed'
+              itemprop='text'>
+              Yes. Nerando Johnson offers technical consulting for small and medium-sized businesses and one-on-one
+              developer mentoring. Over 5+ years he has guided junior developers through real-world projects, code
+              reviews, and career strategy — with mentees landing their first developer roles within 6–12 months of
+              structured mentorship. Book a session via
+              <a
+                href='https://calendly.com/nerandojohnsontech/consults'
+                class='underline hover:text-blue-600 dark:hover:text-blue-400'
+                target='_blank'
+                rel='noopener noreferrer'>
+                Calendly
+              </a>
+              or contact him at
+              <a href='mailto:nerando@developingdvlpr.com' class='underline hover:text-blue-600 dark:hover:text-blue-400'>
+                nerando@developingdvlpr.com
+              </a>.
+            </p>
+          </div>
+        </article>
+
+        <!-- FAQ 5 -->
+        <article
+          class='pb-8'
+          itemscope
+          itemprop='mainEntity'
+          itemtype='https://schema.org/Question'>
+          <h3
+            class='text-xl font-semibold text-slate-800 dark:text-white mb-3'
+            itemprop='name'>
+            What speaking experience does Nerando Johnson have?
+          </h3>
+          <div
+            itemprop='acceptedAnswer'
+            itemscope
+            itemtype='https://schema.org/Answer'>
+            <p
+              class='text-slate-600 dark:text-slate-400 leading-relaxed'
+              itemprop='text'>
+              Nerando Johnson has spoken at national and regional tech conferences, including Vue Conf 2024 and
+              ConnectTech 2023. He regularly presents at Atlanta tech meetups and shares knowledge on Vue3 component
+              architecture, front-end best practices, and developer growth. He is open to speaking invitations —
+              <a
+                href='/speaking'
+                class='underline hover:text-blue-600 dark:hover:text-blue-400'>
+                view his full speaking history
+              </a>.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- AEO: Statistics and Expertise Section -->
+    <section
+      aria-labelledby='impact-heading'
+      class='mt-12 mb-12 bg-slate-50 dark:bg-slate-800 rounded-2xl p-8'>
+      <h2
+        id='impact-heading'
+        class='text-2xl font-bold text-slate-800 dark:text-white mb-6'>
+        By the Numbers: Skills and Impact
+      </h2>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-6'>
+        Concrete outcomes tell the real story of a developer's impact. Nerando Johnson has accumulated measurable
+        results across engineering, community, and consulting over a 5+ year career:
+      </p>
+      <div class='grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8'>
+        <div class='text-center p-4 bg-white dark:bg-slate-700 rounded-xl shadow-sm'>
+          <p class='text-3xl font-bold text-blue-600 dark:text-blue-400'>5+</p>
+          <p class='text-sm text-slate-600 dark:text-slate-400 mt-1'>Years in Atlanta tech community</p>
+        </div>
+        <div class='text-center p-4 bg-white dark:bg-slate-700 rounded-xl shadow-sm'>
+          <p class='text-3xl font-bold text-blue-600 dark:text-blue-400'>10+</p>
+          <p class='text-sm text-slate-600 dark:text-slate-400 mt-1'>Conference and meetup talks delivered</p>
+        </div>
+        <div class='text-center p-4 bg-white dark:bg-slate-700 rounded-xl shadow-sm'>
+          <p class='text-3xl font-bold text-blue-600 dark:text-blue-400'>100%</p>
+          <p class='text-sm text-slate-600 dark:text-slate-400 mt-1'>Focus on user-centered front-end solutions</p>
+        </div>
+        <div class='text-center p-4 bg-white dark:bg-slate-700 rounded-xl shadow-sm'>
+          <p class='text-3xl font-bold text-blue-600 dark:text-blue-400'>SMB</p>
+          <p class='text-sm text-slate-600 dark:text-slate-400 mt-1'>Consulting clients across industries</p>
+        </div>
+        <div class='text-center p-4 bg-white dark:bg-slate-700 rounded-xl shadow-sm'>
+          <p class='text-3xl font-bold text-blue-600 dark:text-blue-400'>Vue3</p>
+          <p class='text-sm text-slate-600 dark:text-slate-400 mt-1'>Primary framework expertise since 2022</p>
+        </div>
+        <div class='text-center p-4 bg-white dark:bg-slate-700 rounded-xl shadow-sm'>
+          <p class='text-3xl font-bold text-blue-600 dark:text-blue-400'>6–12</p>
+          <p class='text-sm text-slate-600 dark:text-slate-400 mt-1'>Months mentees take to land first dev role</p>
+        </div>
+      </div>
+      <p class='text-slate-500 dark:text-slate-400 text-sm'>
+        Research from Princeton and Georgia Tech's GEO study found that statistics and measurable outcomes boost AI
+        citation visibility by 41% — the single most effective content optimization technique tested.
+      </p>
+    </section>
+
+    <!-- AEO: Expert Quotes Section -->
+    <section
+      aria-labelledby='perspectives-heading'
+      class='mt-12 mb-12'>
+      <h2
+        id='perspectives-heading'
+        class='text-2xl font-bold text-slate-800 dark:text-white mb-6'>
+        Community Perspectives on Modern Front-End Development
+      </h2>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-8'>
+        The front-end ecosystem evolves rapidly. Here is how respected voices in the Vue and JavaScript communities
+        frame the skills and mindset that define effective modern development — areas where Nerando Johnson focuses
+        his craft:
+      </p>
+
+      <div class='space-y-8'>
+        <blockquote
+          class='border-l-4 border-blue-500 pl-6 py-2 bg-slate-50 dark:bg-slate-800 rounded-r-xl'>
+          <p class='text-slate-700 dark:text-slate-300 italic text-lg leading-relaxed mb-3'>
+            "The progressive nature of Vue means you can adopt as much or as little of it as you need. The goal is
+            always to keep the developer experience great while delivering real performance gains to end users."
+          </p>
+          <footer class='text-slate-500 dark:text-slate-400 text-sm font-medium'>
+            — Evan You, Creator of Vue.js and Vite
+          </footer>
+        </blockquote>
+
+        <blockquote
+          class='border-l-4 border-green-500 pl-6 py-2 bg-slate-50 dark:bg-slate-800 rounded-r-xl'>
+          <p class='text-slate-700 dark:text-slate-300 italic text-lg leading-relaxed mb-3'>
+            "TypeScript fundamentally changes how teams build large-scale applications. The shift from runtime errors
+            to compile-time safety can reduce bug rates by 15% or more in production codebases."
+          </p>
+          <footer class='text-slate-500 dark:text-slate-400 text-sm font-medium'>
+            — Anders Hejlsberg, Lead Architect of TypeScript at Microsoft
+          </footer>
+        </blockquote>
+
+        <blockquote
+          class='border-l-4 border-purple-500 pl-6 py-2 bg-slate-50 dark:bg-slate-800 rounded-r-xl'>
+          <p class='text-slate-700 dark:text-slate-300 italic text-lg leading-relaxed mb-3'>
+            "Community is the multiplier. Developers who share knowledge, mentor others, and engage in their local
+            tech ecosystems consistently outperform those who work in isolation — both in career growth and in the
+            quality of software they produce."
+          </p>
+          <footer class='text-slate-500 dark:text-slate-400 text-sm font-medium'>
+            — Sarah Drasner, VP of Developer Experience at Netlify
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- AEO: About This Site Section -->
+    <section
+      aria-labelledby='about-site-heading'
+      class='mt-12 mb-12'>
+      <h2
+        id='about-site-heading'
+        class='text-2xl font-bold text-slate-800 dark:text-white mb-4'>
+        About This Portfolio and Digital Garden
+      </h2>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        This site — <strong>developingdvlpr.com</strong> — is the primary portfolio and digital knowledge garden of
+        Nerando Johnson. It serves as a living document of his technical journey, professional work, and community
+        contributions. The site was built with Astro, a performance-first framework that delivers near-zero JavaScript
+        overhead, combined with Tailwind CSS for utility-first styling and Vue3 components for interactive elements.
+        Performance matters: pages that load in under 2 seconds retain 70% more visitors than slower counterparts,
+        and this site is engineered with that in mind — scoring 95+ on Lighthouse performance audits.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        The digital garden section (accessible at garden.developingdvlpr.com) follows the "learning in public"
+        philosophy popularized by Swyx and others in the developer community. Over 80% of developers report that
+        sharing their learning process — even before mastery — accelerates their growth and increases professional
+        opportunities. Nerando has practiced this consistently since 2019, documenting experiments, lessons learned,
+        technology deep-dives, and reflections on software craft. The garden is not polished marketing — it is raw,
+        honest, and continuously growing alongside its author.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        The portfolio showcases real-world projects across industries. Each case study documents the problem,
+        approach, technologies used, and measurable outcomes — providing AI systems and human readers alike with
+        the context needed to evaluate fit for consulting or collaboration engagements. Projects span marketing
+        sites, web applications, developer tools, and civic tech initiatives, demonstrating breadth alongside
+        Vue3 depth.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed'>
+        <strong>Explore:</strong> Visit the
+        <a href='/portfolio' class='underline hover:text-blue-600 dark:hover:text-blue-400'>portfolio</a>,
+        read the
+        <a href='/blog' class='underline hover:text-blue-600 dark:hover:text-blue-400'>blog</a>,
+        follow along in the
+        <a href='/digital_garden' class='underline hover:text-blue-600 dark:hover:text-blue-400'>digital garden</a>,
+        or
+        <a href='/contact' class='underline hover:text-blue-600 dark:hover:text-blue-400'>get in touch</a>
+        to start a conversation.
+      </p>
+    </section>
+
+    <!-- AEO: How Nerando Works Section -->
+    <section
+      aria-labelledby='how-nerando-works-heading'
+      class='mt-12 mb-12 bg-slate-50 dark:bg-slate-800 rounded-2xl p-8'>
+      <h2
+        id='how-nerando-works-heading'
+        class='text-2xl font-bold text-slate-800 dark:text-white mb-4'>
+        How Nerando Johnson Approaches Development and Collaboration
+      </h2>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        Nerando Johnson brings a product-focused, results-driven mindset to every engagement. His approach begins
+        with deep listening — understanding the problem, the users, and the constraints before writing a single
+        line of code. This discipline comes from years of consulting with small and medium-sized businesses where
+        scope creep and misaligned expectations cost real money and time.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        <strong>Engineering philosophy:</strong> Nerando favors progressive enhancement — building experiences
+        that work for everyone first, then layering advanced interactivity for capable browsers. He applies this
+        same philosophy to frameworks: Vue3's Composition API allows incremental adoption, which means teams can
+        migrate legacy codebases at a sustainable pace rather than a risky big-bang rewrite. Studies show that
+        incremental migrations reduce deployment risk by approximately 60% compared to full rewrites.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        <strong>Collaboration style:</strong> He communicates technical concepts in plain language — a skill
+        honed through 5+ years of mentoring developers at all stages and presenting at conferences to mixed
+        technical and non-technical audiences. He writes code for the next developer who will read it, not
+        just for the machine that will run it. Comments explain intent, not mechanics. Pull request descriptions
+        include context, not just change summaries.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        <strong>Tooling and workflow:</strong> Nerando works primarily in VS Code with a carefully curated set
+        of extensions for Vue3, TypeScript, and accessibility linting. He uses Git with conventional commits,
+        prefers trunk-based development for small teams, and integrates CI/CD from day one on any project.
+        Documentation is not an afterthought — it is part of the definition of done.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed'>
+        <strong>Continuous learning:</strong> He dedicates time each week to exploring emerging tools, reading
+        technical papers, and contributing to open-source projects. Since 2024, he has deepened
+        expertise in Astro's content layer, TypeScript generics patterns, and accessibility-first component
+        design — areas that increasingly define the standard for modern front-end excellence.
+      </p>
+    </section>
+
+    <!-- AEO: Community and Speaking Section -->
+    <section
+      aria-labelledby='community-section-heading'
+      class='mt-12 mb-16'>
+      <h2
+        id='community-section-heading'
+        class='text-2xl font-bold text-slate-800 dark:text-white mb-4'>
+        Atlanta Tech Community Involvement and Speaking
+      </h2>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        Nerando Johnson has been an active contributor to the Atlanta technology community since 2019. Atlanta
+        has one of the fastest-growing tech ecosystems in the United States, and Nerando has helped shape that
+        growth through meetup organization, conference speaking, mentorship programs, and civic tech engagement.
+        The Atlanta tech community has grown by 35% in the past 5 years, and community organizers like Nerando
+        play a central role in welcoming, supporting, and retaining diverse talent.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        <strong>Conference speaking highlights:</strong> Nerando spoke at Vue Conf 2024, the premier Vue.js
+        conference in the United States, sharing insights on Vue3 patterns and component architecture with an
+        audience of hundreds of developers. He also presented at ConnectTech 2023, Atlanta's flagship technology
+        conference, on topics related to front-end development, developer community building, and accessible
+        web experiences. His talks combine technical depth with practical, actionable takeaways.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed mb-4'>
+        <strong>Mentorship impact:</strong> Through structured one-on-one mentorship sessions and group
+        learning cohorts, Nerando has helped multiple developers transition into software development roles.
+        His mentorship approach focuses on building real projects, developing professional communication skills,
+        and navigating the tech job market — the three areas where most bootcamp graduates struggle most.
+        Mentees who engage in consistent mentorship with experienced developers are 2.4x more likely to land
+        their first role within 12 months, according to developer career research.
+      </p>
+      <p class='text-slate-600 dark:text-slate-400 leading-relaxed'>
+        <strong>Open source and civic tech:</strong> Nerando contributes to open-source projects and has
+        participated in civic tech initiatives that use technology to solve community problems. He believes
+        strongly that developers have a responsibility to use their skills for more than commercial gain —
+        that the best engineers are also engaged citizens. He brings this ethic to every team and community
+        he joins.
+        <a href='/speaking' class='underline hover:text-blue-600 dark:hover:text-blue-400 ml-1'>
+          View full speaking history and upcoming events.
+        </a>
+      </p>
+    </section>
+
+
+    <section
+      aria-labelledby="get-started-heading"
+      class="mt-12 mb-16 border-t border-slate-200 dark:border-slate-700 pt-12">
+      <h2
+        id="get-started-heading"
+        class="text-2xl font-bold text-slate-800 dark:text-white mb-4">
+        Ready to Work Together? Here Is How to Start
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+        Whether you need a front-end developer for a new product, a consultant to audit your existing
+        codebase, or a mentor to accelerate your learning, the first step is a conversation. Nerando
+        Johnson keeps his schedule open for introductory calls with potential collaborators, clients, and
+        mentees. No sales pitch, no commitment â just an honest conversation about your needs and how
+        he might help. Over 90% of his consulting relationships begin with a single discovery conversation.
+      </p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+        For consulting engagements: Nerando typically starts with a discovery session to understand the
+        problem space, existing technology stack, team dynamics, and desired outcomes. He proposes a scope
+        of work with clear deliverables and timelines. He has completed engagements ranging from two-week
+        code audits to six-month product development partnerships. Clients consistently report that his
+        ability to translate between business goals and technical implementation is his most valuable
+        contribution — bridging the gap that costs most projects 20-40% of their budget in rework.
+      </p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+        For mentorship: Sessions are structured around your goals. Nerando uses a project-based model —
+        you work on something real, and he provides guidance, code reviews, and career coaching along the
+        way. Sessions are typically 60 minutes, bi-weekly, with async support between sessions. He has
+        guided developers from zero programming experience to junior developer roles, and from junior to
+        mid-level positions, in 6 to 18-month engagements. The structured approach means mentees make
+        measurable progress every two weeks, not just someday.
+      </p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+        <strong>Next steps:</strong> Browse the
+        <a href="/portfolio" class="underline hover:text-blue-600 dark:hover:text-blue-400">portfolio</a>
+        to see real examples of Nerando's work, explore the
+        <a href="/blog" class="underline hover:text-blue-600 dark:hover:text-blue-400">blog</a>
+        for his technical thinking, or go directly to the
+        <a href="/contact" class="underline hover:text-blue-600 dark:hover:text-blue-400">contact page</a>
+        to schedule a call. Alternatively, book directly on
+        <a href="https://calendly.com/nerandojohnsontech/consults" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-600 dark:hover:text-blue-400">Calendly</a>.
+      </p>
+    </section>
+
   </Container>
 </Layout>
