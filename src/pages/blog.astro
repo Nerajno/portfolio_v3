@@ -166,7 +166,7 @@ const seoConfig = {
         '@type': 'BlogPosting',
         headline: post.data.title,
         description: post.data.description || post.data.snippet,
-        url: new URL(`blog/${post.slug}`, Astro.site).toString(),
+        url: new URL(`blog/${post.id.replace(/\.(md|mdx)$/, '')}`, Astro.site).toString(),
         datePublished: post.data.publishDate.toISOString(),
         dateModified:
           post.data.updatedDate?.toISOString() ||
@@ -252,7 +252,7 @@ const seoConfig = {
               class='blog-post-item'
               style='list-style: none;'
               data-series={blogPostEntry.data.series?.name || ''}>
-              <a href={`/blog/${blogPostEntry.slug}`}>
+              <a href={`/blog/${blogPostEntry.id.replace(/\.(md|mdx)$/, '')}`}>
                 <div class='grid md:grid-cols-2 gap-5 md:gap-10 items-center'>
                   <Picture
                     src={blogPostEntry.data.image.src}
@@ -290,7 +290,7 @@ const seoConfig = {
                       <span class='text-gray-600'>•</span>
                       <span
                         class='text-gray-600 inline-flex items-center view-counter-display'
-                        data-slug={blogPostEntry.slug}>
+                        data-slug={blogPostEntry.id.replace(/\.(md|mdx)$/, '')}>
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
                           width='16'
@@ -309,7 +309,7 @@ const seoConfig = {
                           {isDevelopment &&
                           import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
                             ? '-- views'
-                            : `${(allViewCounts[blogPostEntry.slug] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.slug] === 1 ? 'view' : 'views'}`}
+                            : `${(allViewCounts[blogPostEntry.id.replace(/\.(md|mdx)$/, '')] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.id.replace(/\.(md|mdx)$/, '')] === 1 ? 'view' : 'views'}`}
                         </span>
                       </span>
                       <span class='text-gray-600'>•</span>

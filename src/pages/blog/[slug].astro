@@ -31,13 +31,14 @@ interface Props {
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
   return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id.replace(/\.(md|mdx)$/, '') },
     props: { entry },
   }));
 }
 
 // Get the entry directly from the prop on render
 const { entry } = Astro.props;
+const entrySlug = entry.id.replace(/\.(md|mdx)$/, '');
 
 // Add error handling for entry rendering
 let Content;
@@ -53,7 +54,7 @@ try {
 }
 
 // SEO configuration for the blog post
-const postUrl = new URL(`blog/${entry.slug}`, Astro.site).toString();
+const postUrl = new URL(`blog/${entrySlug}`, Astro.site).toString();
 const seoTitle = entry.data.seoTitle || `${entry.data.title} | My MetaData`;
 const seoDescription =
   entry.data.seoDescription || entry.data.description || entry.data.snippet;
@@ -82,7 +83,7 @@ if (entry.data.series) {
     data.series?.name === seriesName
   )).sort((a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0));
 
-  const currentIndex = allSeriesPosts.findIndex((p) => p.slug === entry.slug);
+  const currentIndex = allSeriesPosts.findIndex((p) => p.id.replace(/\.(md|mdx)$/, '') === entrySlug);
 
   if (currentIndex !== -1) {
     seriesNavProps = {
@@ -330,7 +331,7 @@ const seoConfig = {
         )
       }
         <span class="text-slate-500 dark:text-slate-400">
-          <ViewCounter slug={entry.slug} increment={true} />
+          <ViewCounter slug={entrySlug} increment={true} />
         </span>
     </div>
 
