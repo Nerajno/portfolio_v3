@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
@@ -17,7 +16,6 @@ export default defineConfig({
   adapter: netlify(),
   integrations: [
     react(),
-    tailwind(),
     mdx({
       syntaxHighlight: false,
       remarkPlugins: [],
