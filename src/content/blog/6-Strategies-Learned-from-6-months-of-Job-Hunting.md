@@ -10,7 +10,6 @@ publishDate: "2021-09-26 12:00"
 category: "Interviewing, Jobhunting, JavaScript"
 tags: [jobhunting, interview, networking, javascript]
 keywords: [developer job search, job hunting strategies, networking for developers, LinkedIn for developers, developer portfolio, tech job search, career transition, developer resume, coding interview preparation, developer career advice]
-tweetIds: ["1438175151829442569"]
 
 # GEO-Enhanced Fields
 schema: {

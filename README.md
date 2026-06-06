@@ -451,6 +451,10 @@ For questions or support, please:
 | `/404` | ✅ Renders correctly |
 | `/blog` | ❌ Crashes — missing Supabase env vars |
 
+### Blog Content
+
+- [ ] **Tweet embeds broken** — `tweetIds` in blog post frontmatter passes bare tweet IDs to `astro-embed`'s `Tweet` component. Twitter/X public oembed API returns 400 (tweets may be deleted or X blocked unauthenticated oembed). Removed `tweetIds: ["1438175151829442569"]` from `6-Strategies-Learned-from-6-months-of-Job-Hunting.md`. Audit all other posts with `tweetIds` in frontmatter — verify each tweet still exists on X, replace dead embeds with screenshots or remove them.
+
 ### Future Upgrades
 
 - [ ] Consider upgrading to **Tailwind v4** once `@apply` usage is audited and config migrated.
