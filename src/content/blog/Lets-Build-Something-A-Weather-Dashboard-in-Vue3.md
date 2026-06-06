@@ -58,10 +58,10 @@ We're building a Weather Dashboard. The data is rich enough to be interesting, t
 
 By the end of this article you'll have:
 
-- A dashboard displaying current conditions for multiple tracked cities
-- A °F / °C toggle that converts temperatures across all cards simultaneously
-- The ability to add and remove cities
-- A clean component-based structure with clear separation of concerns
+- A dashboard displaying current conditions for multiple tracked cities.
+- A °F / °C toggle that converts temperatures across all cards simultaneously.
+- The ability to add and remove cities.
+- A clean component-based structure with clear separation of concerns.
 
 ---
 
@@ -327,25 +327,23 @@ This is **props down, events up** in a complete, working application. The comput
 
 You've completed the Vue 3 Fundamentals series. With what you've built here, you can:
 
-- Build applications with Vue 3's Composition API
-- Structure projects with communicating, reusable components
-- Manage reactive state and derive computed values
-- Handle user input and DOM events
-- Render lists and conditionals in templates
+- Build applications with Vue 3's Composition API.
+- Structure projects with communicating, reusable components.
+- Manage reactive state and derive computed values.
+- Handle user input and DOM events.
+- Render lists and conditionals in templates.
 
 Natural next steps:
 
-- **Vue Router** — add a city detail page, navigate between views
-- **Pinia** — move `cities` and `unit` into a store accessible by any component without prop drilling
-- **Real weather API** — replace mock data with calls to OpenWeatherMap or WeatherAPI
-- **Nuxt 3** — SSR and server-side API calls so data loads before the page renders
-- **TypeScript** — type your city objects with an interface and get autocomplete on every prop
+- **Vue Router** — add a city detail page, navigate between views.
+- **Pinia** — move `cities` and `unit` into a store accessible by any component without prop drilling.
+- **Real weather API** — replace mock data with calls to OpenWeatherMap or WeatherAPI.
+- **Nuxt 3** — SSR and server-side API calls so data loads before the page renders.
+- **TypeScript** — type your city objects with an interface and get autocomplete on every prop.
 
 The fundamentals you've built here aren't a temporary scaffold to discard. They're the foundation every one of those advanced topics builds on.
 
-Progress over perfection. You're here. Keep building.
-
 ---
 
-*Part 6 of 6 in the Vue 3 Fundamentals series.*
+*Part 7 of 7 in the Vue 3 Fundamentals series.*
 *Sources: [Vue.js Official Docs](https://vuejs.org/guide/introduction) · [Vue School — Vue Component Fundamentals](https://vueschool.io/articles/vuejs-tutorials/vue-component-fundamentals-with-the-composition-api/) · [Vue School — Reactivity 101](https://vueschool.io/articles/vuejs-tutorials/reactivity-101-in-vue-js/)*
