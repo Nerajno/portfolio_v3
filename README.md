@@ -26,9 +26,9 @@ This portfolio website is built to showcase my work as a front-end developer spe
 ## 🛠️ Tech Stack
 
 ### Core Framework
-- **[Astro](https://astro.build)** v5.1.7 - Static site generator with SSR capabilities
-- **[Tailwind CSS](https://tailwindcss.com)** v4.1.10 - Utility-first CSS framework
-- **[MDX](https://mdxjs.com)** v4.0.6 - Markdown with JSX for rich blog content
+- **[Astro](https://astro.build)** v6.3.8 - Static site generator with SSR capabilities
+- **[Tailwind CSS](https://tailwindcss.com)** v3.4.17 - Utility-first CSS framework (PostCSS integration)
+- **[MDX](https://mdxjs.com)** v5.0.6 - Markdown with JSX for rich blog content
 
 ### Integrations & Services
 - **Netlify** - Hosting and deployment platform
@@ -44,7 +44,7 @@ This portfolio website is built to showcase my work as a front-end developer spe
 - **Font Awesome** - Additional icon options
 
 ### SEO & Analytics
-- **astro-seo-plugin** - Comprehensive SEO configuration
+- **astro-seo** - Comprehensive SEO configuration (migrated from astro-seo-plugin for Astro v6 compatibility)
 - **@astrojs/sitemap** - Automatic sitemap generation
 - **Partytown** - Third-party script optimization
 - **Reading Time** - Blog post reading time calculation
@@ -135,6 +135,8 @@ This portfolio website is built to showcase my work as a front-end developer spe
    # or
    pnpm install
    ```
+
+   > **Note:** If you see peer dependency conflicts, run `npm install --legacy-peer-deps`.
 
 3. **Set up environment variables**
    ```bash
@@ -414,6 +416,50 @@ For questions or support, please:
 - Open an issue in this repository
 - Contact via the [website contact form](https://developingdvlpr.com/contact)
 - Reach out on [Twitter](https://twitter.com/nerajno)
+
+---
+
+## 🔧 Addendum: Known Issues & Planned Fixes
+
+> Last updated: 2026-06-04
+
+### Dependency & Build
+
+- [ ] **`astro-seo-plugin` removed** — Replaced with `astro-seo@0.8.4` for Astro v6 compatibility. All page imports updated.
+- [ ] **Tailwind downgraded to v3.4.17** — Tailwind v4 was incompatible with the existing `tailwind.config.cjs` and `@apply` usage across the codebase. PostCSS integration now handles compilation. If upgrading to v4 in future, all `@apply` directives and config syntax must be migrated.
+- [ ] **`astro-seo-plugin` peer dep warning** — Fully removed from `package.json`. `npm install` resolves cleanly.
+- [ ] **`src/content/team/` directory missing** — Dev server logs `[WARN] [glob-loader] The base directory does not exist`. Either create the directory or remove the glob loader entry from `src/content.config.ts`.
+
+### Local Development
+
+- [ ] **`/blog` page crashes locally** — Throws `Missing Supabase environment variables` at `src/lib/supabase.ts:8`. Requires `.env` with `SUPABASE_URL` and `SUPABASE_ANON_KEY` set. Copy `.env.example` and fill in values from your Supabase project dashboard.
+- [ ] **`/pricing` page renders empty** — Page loads with title and header but no project cards. Data source or content collection for pricing/completed projects needs investigation.
+- [ ] **Theme script missing `light` class** — Fixed: theme init script in `Layout.astro` now applies `light` class on `<html>` for light-mode users. Previously only `dark` was applied, causing `html:not(.light):not(.dark) { visibility: hidden }` to blank the entire page in light mode.
+- [ ] **`global.css` not imported in Layout** — Fixed: `import '../styles/global.css'` added to `Layout.astro`. Tailwind directives were not being processed in local dev.
+
+### Pages Verified (2026-06-04)
+
+| Page | Local Status |
+|---|---|
+| `/` Home | ✅ Renders correctly |
+| `/portfolio` | ✅ Renders correctly |
+| `/speaking` | ✅ Renders correctly |
+| `/about` | ✅ Renders correctly |
+| `/contact` | ✅ Renders correctly |
+| `/digital_garden` | ✅ Renders (needs scroll test) |
+| `/pricing` | ⚠️ Empty — no project cards |
+| `/404` | ✅ Renders correctly |
+| `/blog` | ❌ Crashes — missing Supabase env vars |
+
+### Blog Content
+
+- [ ] **Tweet embeds broken** — `tweetIds` in blog post frontmatter passes bare tweet IDs to `astro-embed`'s `Tweet` component. Twitter/X public oembed API returns 400 (tweets may be deleted or X blocked unauthenticated oembed). Removed `tweetIds: ["1438175151829442569"]` from `6-Strategies-Learned-from-6-months-of-Job-Hunting.md`. Audit all other posts with `tweetIds` in frontmatter — verify each tweet still exists on X, replace dead embeds with screenshots or remove them.
+
+### Future Upgrades
+
+- [ ] Consider upgrading to **Tailwind v4** once `@apply` usage is audited and config migrated.
+- [ ] Update README version numbers after each major dependency upgrade.
+- [ ] Add `.env.example` verification step to CI/build pipeline.
 
 ---
 

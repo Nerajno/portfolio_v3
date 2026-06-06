@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
@@ -10,7 +9,6 @@ import partytown from "@astrojs/partytown";
 import clarityIntegration from "astro-microsoft-clarity-integration";
 import react from "@astrojs/react";
 import { rehypeShiki } from "./src/lib/shiki-rehype.mjs";
-import remarkAttr from "remark-attr";
 
 export default defineConfig({
   site: "https://developingdvlpr.com",
@@ -18,10 +16,9 @@ export default defineConfig({
   adapter: netlify(),
   integrations: [
     react(),
-    tailwind(),
     mdx({
       syntaxHighlight: false,
-      remarkPlugins: [remarkAttr],
+      remarkPlugins: [],
       rehypePlugins: [rehypeShiki],
     }),
     sitemap(),
@@ -39,14 +36,18 @@ export default defineConfig({
         debug: false,
       },
     }),
-    clarityIntegration({
-      projectId: import.meta.env.PUBLIC_CLARITY_ID,
-      enabled: true, // Optional: Enable the integration (defaults to true)
-      scriptStage: "head-inline", // Optional: Set scriptStage to 'head-inline', 'body-inline'
-      debug: false, // Optional: Enable debug (set to true if you want to log script injections)
-      async: true, // Optional: Enable async loading
-      defer: true, // Optional: Enable defer for script loading
-    }),
+    ...(import.meta.env.PUBLIC_CLARITY_ID
+      ? [
+          clarityIntegration({
+            projectId: import.meta.env.PUBLIC_CLARITY_ID,
+            enabled: true,
+            scriptStage: "head-inline",
+            debug: false,
+            async: true,
+            defer: true,
+          }),
+        ]
+      : []),
   ],
   image: {
     domains: ["picsum.photos"],
@@ -88,7 +89,7 @@ export default defineConfig({
     ],
   },
   markdown: {
-    remarkPlugins: [remarkReadingTime, remarkGifPassthrough, remarkAttr],
+    remarkPlugins: [remarkReadingTime, remarkGifPassthrough],
     syntaxHighlight: false,
     rehypePlugins: [rehypeShiki],
   },
