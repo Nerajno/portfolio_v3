@@ -70,7 +70,7 @@ image: {
   alt: "Developer at a desk with notebook and laptop, representing the learn-build-teach loop"
 }
 
-publishDate: "2026-06-11 00:00"
+publishDate: "2026-06-11 10:00"
 category: "Career Development, Software Engineering, Learning"
 author: "Nerando Johnson"
 tags: [career, softwareengineering, learning, beginners, webdev]
