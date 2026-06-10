@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 
 # ============================================================================
 # SEO OPTIMIZATION
@@ -12,8 +12,8 @@ seoDescription: "Why the most effective engineers don't just write code — they
 # ============================================================================
 openGraph:
   type: article
-  publishedTime: 2026-06-04T00:00:00.000Z
-  modifiedTime: 2026-06-04T00:00:00.000Z
+  publishedTime: 2026-06-11T00:00:00.000Z
+  modifiedTime: 2026-06-11T00:00:00.000Z
   section: Career Development
   tags:
     - career
@@ -47,8 +47,8 @@ structuredData:
     url: "https://developingdvlpr.com"
     jobTitle: "Frontend Engineer"
     knowsAbout: ["JavaScript", "Vue.js", "React", "Web Development", "Career Development"]
-  datePublished: "2026-06-04"
-  dateModified: "2026-06-04"
+  datePublished: "2026-06-11"
+  dateModified: "2026-06-11"
   image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?&fit=crop&w=1200&h=630"
   publisher:
     "@type": "Organization"
@@ -70,7 +70,7 @@ image: {
   alt: "Developer at a desk with notebook and laptop, representing the learn-build-teach loop"
 }
 
-publishDate: "2026-06-04 00:00"
+publishDate: "2026-06-11 00:00"
 category: "Career Development, Software Engineering, Learning"
 author: "Nerando Johnson"
 tags: [career, softwareengineering, learning, beginners, webdev]
@@ -138,7 +138,7 @@ semanticContext: {
 
 citationMetadata: {
   citableAs: "Johnson, N. (2026). Learn. Build. Teach. The Technologist's Flywheel.",
-  lastReviewed: "2026-06-04",
+  lastReviewed: "2026-06-11",
   version: "1.0",
   originalPublisher: "Nerando Johnson's Blog"
 }
