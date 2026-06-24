@@ -33,6 +33,7 @@ export default defineConfig({
       config: {
         forward: ["dataLayer.push"],
         proxyUrl: "/api/partytown-proxy",
+        debug: false,
       },
     }),
     ...(import.meta.env.PUBLIC_CLARITY_ID

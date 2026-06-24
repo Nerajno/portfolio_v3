@@ -238,14 +238,14 @@ Welcome, if you have found yourself here, you or a loved one is most like a tech
 
 ## Starting with the End: Why Definition Matters More Than Motivation
 
-![Planning and defining project scope with clear objectives](https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=400&fit=crop" alt="Planning and defining project scope with clear objectives" width="800" height="400" />
 ***Define your destination before you start the journey***
 
 The difference between developers who ship and those who eternally tinker lies not in their technical abilities or available time, but in their ability to define completion before writing a single line of code. Most of us approach side projects like we're either building for a Fortune 500 company or wanna play with some new library or framework, architecting for millions of users who will never come, optimizing for scale we'll never need, and adding features for edge cases that exist only in our imagination .... you get the picture ... too much. There is no such thing as  strategic planning when it comes to some of our side projects — we wrap them in perfectionism wearing the disguise of professionalism and too much experimentation, and these are the silent killers of more projects than all technical debt combined. Before touching your keyboard, I have a suggestion for you: you must create what I call a "Done Contract" with yourself, explicitly stating what features constitute a shippable version beta and, more importantly, what features absolutely do not. This contract becomes your North Star when scope creep whispers sweet nothings about "just one more feature" at 2 AM, providing the clarity and boundaries that transform endless projects into shipped products.
 
 ## The Kill List Framework: Applied Violence for Project Survival
 
-![Ruthless prioritization and cutting unnecessary features](https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop" alt="Ruthless prioritization and cutting unnecessary features" width="800" height="400" />
 ***Ruthlessly cut features to protect your project's survival***
 
 The Kill List Framework isn't just another prioritization exercise—it's a structured approach to murdering your darling ideas before they murder your project's chances of completion. Start with a 15-minute brain dump where you write down every feature you've imagined for your project, including the realistic, the ambitious, and the absolutely absurd—this is your "everything list" that represents your unconstrained vision. Next comes the brutal categorization that separates dreamers from shippers:
@@ -258,7 +258,7 @@ For example, when I ~~built~~ rebuilt [isNerandodoneyet](https://isnerandodoneye
 
 ## The 48-Hour Recovery Protocol: Momentum Physics for Developers
 
-![Overcoming project inertia and maintaining momentum](https://images.unsplash.com/photo-1501139083538-0139583c060f?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1501139083538-0139583c060f?w=800&h=400&fit=crop" alt="Overcoming project inertia and maintaining momentum" width="800" height="400" />
 ***Break the inertia before it becomes permanent***
 
 When you stop working on a project, inertia takes over with the force of a black hole, and after 48 hours, the psychological barrier to restart increases exponentially—this isn't about guilt, it's about understanding the physics of momentum in creative work. Within two hours of realizing you've stalled, acknowledge it immediately without waiting for your next scheduled work session, and write down exactly why you stopped: was it technical blockers, scope confusion, burnout, distraction, or the siren call of perfectionism? Within 24 hours, identify and complete the smallest possible productive action—fixing one typo in documentation, writing one test, committing work-in-progress code as-is, updating your README with current progress, or even just deleting one unused file—because the goal is breaking inertia, not making progress. Within 48 hours, take decisive action: if you broke scope, revert to your last "known good" state; if blocked technically, time-box research to one hour then choose the "good enough" solution; if burned out, explicitly schedule your next 20-minute work session; if distracted by a shiny new idea, close all tabs and document it in an "Ideas Parking Lot" file for review in three months. This protocol has saved dozens of my projects from the special kind of death that comes from "I'll get back to it tomorrow" syndrome.
@@ -266,7 +266,7 @@ When you stop working on a project, inertia takes over with the force of a black
 
 ## Time-Boxing: The 30-Day Sprint to Reality
 
-![Calendar and sprint planning with strict deadlines](https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&h=400&fit=crop" alt="Calendar and sprint planning with strict deadlines" width="800" height="400" />
 ***30 days to ship: deadlines are sacred, features are negotiable***
 
 Time constraints breed creativity and prevent gold-plating, which is why I've adopted a strict 30-day sprint structure that forces completion decisions rather than endless deliberation.
@@ -278,7 +278,7 @@ If you slip behind schedule, you cut the most recent feature, not the deadline�
 
 ## The Psychology of Progress: Why Small Celebrations Matter
 
-![Celebrating small wins and milestones in development](https://images.unsplash.com/photo-1464618663641-bbdd760ae84a?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1464618663641-bbdd760ae84a?w=800&h=400&fit=crop" alt="Celebrating small wins and milestones in development" width="800" height="400" />
 ***Celebrate every win, no matter how small***
 
 So projects with clearly defined milestones and celebration rituals are 4x more likely to reach completion because our brains are wired for immediate gratification, while side projects by nature delay gratification for weeks or months—you need to hack this biological system. By maintaining a "Done Diary" where one logs every coding session's accomplishments no matter how small: "Fixed the CSS bug" counts, "Refactored the authentication flow" counts, and even "Spent 30 minutes and made everything worse" counts because showing up is half the battle. For public accountability ( I don't like it either) ,sharing progress openly even when it's embarrassing, posting screenshots of half-broken UI on Twitter with #buildinpublic, writing weekly Dev.to posts about challenges faced, and joining Discord communities where other builders share their struggles and wins.
@@ -287,14 +287,14 @@ My milestone reward system is different from others. I don't like the idea of re
 
 ## Energy Management: Your Secret Weapon Against Abandonment
 
-![Managing energy levels for optimal productivity](https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=400&fit=crop" alt="Managing energy levels for optimal productivity" width="800" height="400" />
 ***Energy, not time, is your most valuable resource***
 
 Your energy, not time, is the limiting resource in side project completion, yet most developers completely ignore this reality when scheduling their work sessions. I spent a week tracking my energy levels at different times (5-11 AM, 2-4 PM, 7-10 PM) and discovered my peak hours were completely different from when I had been trying to code, which explained why every session felt like pushing a boulder uphill. High-energy tasks like architectural decisions, complex algorithm implementation, learning new technology, and debugging gnarly bugs now get scheduled during peak hours only, while medium-energy tasks like implementing planned features, writing tests, and refactoring fill the normal hours. Low-energy periods aren't wasted—they're perfect for code formatting, updating dependencies, organizing files, reading documentation, and planning the next session's work, tasks that still move the project forward without requiring deep focus. Identifying and eliminated energy drains such as : decision fatigue (make all tool/stack decisions in week one), context switching (Slack and email are completely off during work sessions), perfectionism (when the timer goes off, I commit the code as-is), comparison (unfollowed all those 10x developers on Twitter), and negative self-talk (I keep a "Past Wins" document that I read when imposter syndrome strikes). This energy-aware approach has tripled my effective productivity without adding a single hour to my schedule.
 
 ## The Boring Tech Principle ~ !Learning: Choose Stability Over Novelty
 
-![Stable, proven technology stack over bleeding edge tools](https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop" alt="Stable, proven technology stack over bleeding edge tools" width="800" height="400" />
 ***Boring tech ships; shiny tech delays***
 
 Use the most boring, proven technology that solves your problem, because your side project is not the place to learn Rust, WebAssembly, and a new database simultaneously while also building something you want to ship ( unless you're building a learning project or a hackathon). This isn't about avoiding growth—it's about being intentional with your learning. When your goal is to ship a product, every new technology you introduce multiplies complexity and delays delivery.
@@ -304,7 +304,7 @@ I explicitly avoid bleeding-edge frameworks that might break next month, custom 
 The "Boring Tech Test" is simple but effective: if you abandon this project for three months, can you return and immediately understand what's happening without reading documentation or remembering complex setup? If the answer is no, you're using too much novel technology. Every moment spent debugging that experimental GraphQL federation setup or figuring out why your cutting-edge bundler broke after an update is a moment not spent shipping your actual project. Save the learning projects for when learning is the explicit goal, not when shipping is what matters. You can always rebuild it with the shiny stack after you've validated that people actually want what you're building.
 
 ## The Two-File Start: Defeating Analysis Paralysis
-![Minimal project setup with just essential files](https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop" alt="Minimal project setup with just essential files" width="800" height="400" />
 ***Start with two files, not twenty folders***
 
 Overcome blank-canvas paralysis by starting with just two files instead of spending days on perfect project structure that you'll inevitably reorganize anyway. There are different suggestions for various types of projects, but the general idea is to start with a written plan and then implement it. There are various schools of thought on project structuring and planning, here is [an example of  that tends to speak to me](https://dev.to/siddharthshyniben/a-guide-to-planning-a-programming-project-3287). With this in mind, here are a few suggestions:
@@ -315,20 +315,20 @@ Overcome blank-canvas paralysis by starting with just two files instead of spend
 With the advent of AI prompting and code generation, it is important to resist creating folders, configuration files, or "proper structure" until you have working code that does something useful, because structure should emerge from actual needs rather than anticipated ones, and every moment spent on hypothetical organization is a moment stolen from building real functionality. This approach has consistently gotten me from idea to working prototype in under two hours/days or weeks while my previous approach of "setting everything up properly" often took days before I wrote any actual feature code.
 
 ##  The Collaboration Paradox: Why Your First Project Should Be Solo
-![Solo developer working independently on project](https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=400&fit=crop" alt="Solo developer working independently on project" width="800" height="400" />
 ***Ship solo first, collaborate later***
 
 Here's a controversial take: for your first few side projects, work completely alone, no matter how tempting collaboration seems ... yes its ok to ask for help or advice, but coding along with you. Working solo eliminates coordination overhead, conflicting visions about features or implementation, waiting on others to review PRs or complete their parts, and the social awkwardness of having different commitment levels when a party loses interest. You maintain full creative control, make decisions instantly without discussion, pivot without consulting anyone, and most importantly, own both the success and failure completely without excuses or blame. Consider collaboration only after you've successfully shipped 1-2 solo projects and understand your own working style, when you genuinely need complementary skills like design when you're a backend developer, when someone else is equally committed with skin in the game, or when the project scope truly requires multiple people which is surprisingly rare for side projects. Rule of thumb: More cooks = more problems. If you do collaborate, keep it to a maximum of three people, ensure equal commitment levels through explicit discussion, hold weekly sync meetings with clear agendas not random Discord chats, and divide ownership cleanly so you're not both editing the same files and creating merge conflicts that kill momentum.
 
 ## The Launch Sequence: From Code Complete to Public Reality
-![Rocket launch representing project deployment](https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&h=400&fit=crop" alt="Rocket launch representing project deployment" width="800" height="400" />
 ***Launch day is sacred—ship it***
 
 One week before the planned launch (yes you must have a launch date), implement a strict feature freeze where no new code gets written except for bug fixes that prevent the app from working—this is when discipline matters most. Test your project with three different people who didn't build it and resist the urge to fix their "user errors" with code changes; instead, improve your documentation or UI text. Write your launch post (yes, you have to become your own marketer) in advance when you're not stressed, prepare screenshots and a demo video that shows real functionality not mockups, and set up basic analytics using tools like Clarity or Google Analytics so you know if anyone actually uses your project. On launch day, post to a maximum of three relevant communities to avoid being flagged as spam: I use dev.to, LinkedIn, and Twitter. Share on your personal social media without apologizing for imperfections, email your personal network with a brief explanation and clear call-to-action, and post in relevant Discord or Slack communities where you're already an active member, not a drive-by spammer. The critical post-launch period requires responding to ALL feedback within 24 hours even if just to say thanks, fixing truly critical bugs within 48 - 72 hours but not feature requests, resisting adding new features for at least two weeks to avoid knee-jerk reactions, and collecting all feedback in a "v1.1 Considerations" document for future evaluation rather than immediate action.
 
 ## The Failure Recovery Plan: Graceful Death Over Slow Decay
 
-![Learning from failure and moving forward](https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=800&h=400&fit=crop" alt="Learning from failure and moving forward" width="800" height="400" />
 ***Kill projects gracefully, learn deliberately***
 
 So there are two schools of thought when it comes to recovering from failure, as two types of failure exist: projects that were not completed and missing days of work. Lets start with later. Life happens and thus you may miss a work day or two. My rule of thumb is two never miss three days in a row. If you do, it becomes a new habit and this isn't the one you are trying to build. You are a builder, a builder of code and momentum, not a janitor of abandoned projects. I use a physical paper planner to track my building sessions and I feel uncomfortable missing more than two days in a row. I have screwed up a project or two in my time, I learnt from them and moved on.
@@ -336,7 +336,7 @@ So there are two schools of thought when it comes to recovering from failure, as
  The other type of failure is not completing a project. Not all projects deserve to ship, and having a graceful exit strategy prevents the guilt that compounds with each abandoned project folder on your desktop. Clear criteria for project termination include: after 30 days you've worked less than 5 total hours despite having time available, the core problem is now solved better by something released while you were building, you've lost genuine interest not just temporary motivation but actual caring about the problem, or technical blockers require learning an entirely new stack that would reset your progress to zero. When killing a project, write a proper post-mortem documenting what you learned technically and about yourself as a builder, archive the repo with a clear README explaining why it's abandoned so future-you doesn't wonder, extract any reusable code into your snippet library or a separate utility package, announce the decision publicly if you were building in public to close the loop, and immediately move to your next project without a mourning period. Create a lessons_learned.md file that captures the technical skills gained, project management insights discovered, what you learned about yourself as a builder, what you'd do differently next time, any reusable code patterns worth keeping, and how this experience informs your next build. This documentation transforms failure from shame into education, making each abandoned project a stepping stone rather than a stumbling block.
 
 ## Your 7-Day Quick-Start Challenge: From Theory to Reality
-![Starting the journey with action steps](https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop)
+<img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop" alt="Starting the journey with action steps" width="800" height="400" />
 ***7 days to momentum: start now***
 
 So here we are, the action part. Reading about finishing projects won't finish your projects, so here's my suggested actionable challenge for the next seven days that will break the cycle of abandonment:
