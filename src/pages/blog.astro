@@ -379,6 +379,13 @@ const seoConfig = {
         const sortSelect = document.getElementById('sort');
         const seriesFilter = document.getElementById('series-filter');
 
+        // Master list of all post elements, captured once at page load.
+        // Filtering always starts from this full set so filtered-out posts
+        // can be restored when the search/filter is cleared or broadened.
+        const allPostElements = Array.from(
+          document.querySelectorAll('#blog-posts > li')
+        );
+
         // Pagination state
         let currentPage = 1;
         const postsPerPage = 7;
@@ -497,10 +504,8 @@ const seoConfig = {
           const sortBy = sortSelect.value || "newest";
           const selectedSeries = seriesFilter?.value || '';
 
-          // Get all post elements
-          const posts = Array.from(
-            document.querySelectorAll('#blog-posts > li')
-          );
+          // Always filter from the full master list, not the current DOM
+          const posts = allPostElements;
 
           // Filter posts by title, tags, and series
           let filteredPosts = posts.filter((post) => {

@@ -1,7 +1,7 @@
 ---
 // src/components/MediaAccordion.astro
-import type { MediaItem } from '../data/otherMediaData';
-import { formatDate } from '../utils/dates';
+import type { MediaItem } from "../data/otherMediaData";
+import { formatDate } from "../utils/dates";
 
 interface Props {
   media: MediaItem;
@@ -10,172 +10,214 @@ interface Props {
 
 const { media, index } = Astro.props;
 
-function getTypeIcon(type: MediaItem['type']) {
+function getTypeIcon(type: MediaItem["type"]) {
   switch (type) {
-    case 'podcast': return '🎙️';
-    case 'interview': return '🎤';
-    case 'video': return '📹';
-    case 'workshop-recording': return '🎥';
-    case 'panel-discussion': return '👥';
-    default: return '📱';
+    case "podcast":
+      return "🎙️";
+    case "interview":
+      return "🎤";
+    case "video":
+      return "📹";
+    case "workshop-recording":
+      return "🎥";
+    case "panel-discussion":
+      return "👥";
+    default:
+      return "📱";
   }
 }
 
-function getTypeColor(type: MediaItem['type']) {
+function getTypeColor(type: MediaItem["type"]) {
   const colors = {
-    'podcast': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
-    'interview': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
-    'video': 'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-300',
-    'workshop-recording': 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300',
-    'panel-discussion': 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300'
-  };
-  return colors[type] || 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300';
+    podcast:
+      "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+    interview: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
+    video: "bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-300",
+    "workshop-recording":
+      "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300",
+    "panel-discussion":
+      "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300",
+  } as const;
+
+  return (
+    colors[type] ||
+    "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300"
+  );
 }
+
+const contentId = `accordion-content-${index}`;
+const headerId = `accordion-header-${index}`;
 ---
 
-<div class="accordion-item border border-gray-200 dark:border-slate-700 rounded-lg mb-4 overflow-hidden transition-shadow hover:shadow-md">
-  <button
-    class="accordion-header w-full px-6 py-4 text-left bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
-    aria-expanded="false"
-    aria-controls={`accordion-content-${index}`}
-    data-accordion-button
-  >
-    <div class="flex items-center justify-between">
-      <div class="flex-1">
-        <div class="flex items-center gap-3 flex-wrap mb-2">
-          <span class="text-xl" aria-hidden="true">{getTypeIcon(media.type)}</span>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-slate-100">
-            {media.title}
-          </h3>
+<article
+  class="accordion-item border border-gray-200 dark:border-slate-700 rounded-lg mb-4 overflow-hidden transition-shadow hover:shadow-md">
+  <details class="group">
+    <summary
+      id={headerId}
+      class="accordion-header list-none w-full px-6 py-4 text-left bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 cursor-pointer"
+      aria-controls={contentId}
+      data-accordion-button>
+      <div class="flex items-center justify-between">
+        <div class="flex-1">
+          <div class="flex items-center gap-3 flex-wrap mb-2">
+            <span class="text-xl" aria-hidden="true"
+              >{getTypeIcon(media.type)}</span
+            >
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-slate-100">
+              {media.title}
+            </h3>
+          </div>
+          <div
+            class="flex items-center gap-4 text-sm text-gray-600 dark:text-slate-400">
+            <span
+              class={`px-2 py-1 text-xs rounded-full ${getTypeColor(media.type)}`}>
+              {media.type.replace("-", " ")}
+            </span>
+            {media.platform && <span>{media.platform}</span>}
+            <span>{formatDate(media.date)}</span>
+            {media.duration && <span>⏱️ {media.duration}</span>}
+          </div>
         </div>
-        <div class="flex items-center gap-4 text-sm text-gray-600 dark:text-slate-400">
-          <span class={`px-2 py-1 text-xs rounded-full ${getTypeColor(media.type)}`}>
-            {media.type.replace('-', ' ')}
-          </span>
-          {media.platform && <span>{media.platform}</span>}
-          <span>{formatDate(media.date)}</span>
-          {media.duration && <span>⏱️ {media.duration}</span>}
-        </div>
+        <svg
+          class="accordion-icon w-5 h-5 text-gray-500 transition-transform duration-200"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
       </div>
-      <svg
-        class="accordion-icon w-5 h-5 text-gray-500 transition-transform duration-200"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </div>
-  </button>
+    </summary>
 
-  <div
-    id={`accordion-content-${index}`}
-    class="accordion-content hidden"
-    aria-labelledby={`accordion-header-${index}`}
-  >
-    <div class="px-6 py-4 bg-gray-50/50 dark:bg-slate-800/50 border-t border-gray-200 dark:border-slate-700">
+    <div
+      id={contentId}
+      class="accordion-content px-6 py-4 bg-gray-50/50 dark:bg-slate-800/50 border-t border-gray-200 dark:border-slate-700"
+      aria-labelledby={headerId}>
       <p class="text-gray-700 dark:text-slate-300 mb-4 leading-relaxed">
         {media.description}
       </p>
 
-      {media.host && (
-        <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">
-          <strong>Host:</strong> {media.host}
-        </p>
-      )}
+      {
+        media.host && (
+          <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">
+            <strong>Host:</strong> {media.host}
+          </p>
+        )
+      }
 
-      {media.publication && (
-        <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">
-          <strong>Published in:</strong> {media.publication}
-        </p>
-      )}
+      {
+        media.publication && (
+          <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">
+            <strong>Published in:</strong> {media.publication}
+          </p>
+        )
+      }
 
-      {media.tags && media.tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mb-4">
-          {media.tags.map(tag => (
-            <span class="text-xs px-2.5 py-1 bg-gray-100 dark:bg-slate-700/50 text-gray-700 dark:text-slate-300 rounded-full border border-gray-200 dark:border-slate-600">
-              #{tag}
-            </span>
-          ))}
-        </div>
-      )}
+      {
+        media.tags && media.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-4">
+            {media.tags.map((tag) => (
+              <span class="text-xs px-2.5 py-1 bg-gray-100 dark:bg-slate-700/50 text-gray-700 dark:text-slate-300 rounded-full border border-gray-200 dark:border-slate-600">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
 
       <div class="flex flex-wrap gap-3 mt-4">
-        {media.links.primary && (
-          <a
-            href={media.links.primary}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-700 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            View {media.type}
-          </a>
-        )}
-        {media.links.secondary && (
-          <a
-            href={media.links.secondary}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-600 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            Additional Link
-          </a>
-        )}
-        {media.links.transcript && (
-          <a
-            href={media.links.transcript}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-600 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            View Transcript
-          </a>
-        )}
+        {
+          media.links.primary && (
+            <a
+              href={media.links.primary}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-700 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+              View {media.type}
+            </a>
+          )
+        }
+
+        {
+          media.links.secondary && (
+            <a
+              href={media.links.secondary}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-600 transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+              Additional Link
+            </a>
+          )
+        }
+
+        {
+          media.links.transcript && (
+            <a
+              href={media.links.transcript}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-600 transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              View Transcript
+            </a>
+          )
+        }
       </div>
     </div>
-  </div>
+  </details>
+</article>
 
 <style>
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
+  .accordion-header::-webkit-details-marker {
+    display: none;
   }
 
-  .accordion-content.show {
-    display: block;
-    max-height: 500px;
-    transition: max-height 0.3s ease-in;
+  .accordion-icon {
+    transition: transform 0.2s ease;
   }
 
-  .accordion-header[aria-expanded="true"] .accordion-icon {
+  details[open] .accordion-icon {
     transform: rotate(180deg);
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const accordionButtons = document.querySelectorAll('[data-accordion-button]');
-
-    accordionButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        const content = button.nextElementSibling;
-
-        if (content) {
-          button.setAttribute('aria-expanded', (!expanded).toString());
-          content.classList.toggle('show');
-        }
-      });
-    });
-  });
-</script>

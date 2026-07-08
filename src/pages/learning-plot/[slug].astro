@@ -123,7 +123,7 @@ const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.grow
           <div class="flex items-center gap-4 mb-6">
             <a href="/portfolio" class="text-blue-600 hover:text-blue-800 font-medium">← Back to Portfolio</a>
             <span class="text-gray-400">|</span>
-            <a href={`/learning-projects/${project.id}`} class="text-blue-600 hover:text-blue-800 font-medium">← Back to Project Details</a>
+            <a href={`/case-study/${project.id}`} class="text-blue-600 hover:text-blue-800 font-medium">← Back to Project Details</a>
           </div>
           <div class="flex items-center gap-4 mb-4">
             <h1 class="text-4xl font-bold text-gray-900 dark:text-white">{project.title} - Learning Plot</h1>
@@ -265,7 +265,7 @@ const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.grow
         <!-- Action Buttons -->
         <section class="text-center">
           <div class="flex justify-center gap-4">
-            <a href={`/learning-projects/${project.id}`} class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+            <a href={`/case-study/${project.id}`} class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
               View Full Project Details
             </a>
             {project.demo && (
