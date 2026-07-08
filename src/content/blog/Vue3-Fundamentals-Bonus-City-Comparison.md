@@ -627,8 +627,8 @@ Every article in the series showed up in this build. Here's where:
 | `:class` | 5 | `.is-pinned`, `.is-warmer`, `.active` |
 | `:style` | 5 | Temperature color in `ComparisonCard` |
 | `@click` | 5 | Pin, unpin, swap, unit toggle |
-| Component composition | 6 | `App.vue` orchestrating three child components |
-| Single source of truth | 6 | All state in `App.vue`, computed derived state, children never mutate |
+| Component composition | 4 | `App.vue` orchestrating three child components |
+| Single source of truth | 4 | All state in `App.vue`, computed derived state, children never mutate |
 
 If every row in that table makes sense to you, you're ready for the next stage: Vue Router, Pinia, and real API integration.
 
