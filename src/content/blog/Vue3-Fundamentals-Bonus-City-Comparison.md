@@ -122,7 +122,7 @@ App.vue                      → All state, all logic
 
 ---
 
-## Step 1 — Declare Your State (`ref`, `reactive`)
+## Step 1 — Declare Your State (`ref`)
 
 > Concept from Article 3: `ref` for reactive state
 
