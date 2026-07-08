@@ -555,14 +555,9 @@ const emit = defineEmits(['toggle-unit', 'swap'])
 
       <!-- Unit toggle -->
       <div class="unit-toggle">
-        <button
-          :class="{ active: unit === 'F' }"
-          @click="emit('toggle-unit')"
-        >°F</button>
-        <button
-          :class="{ active: unit === 'C' }"
-          @click="emit('toggle-unit')"
-        >°C</button>
+        <button @click="emit('toggle-unit')">
+          {{ unit === 'F' ? '°F → °C' : '°C → °F' }}
+        </button>
       </div>
     </div>
   </header>
