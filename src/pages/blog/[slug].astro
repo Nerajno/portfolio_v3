@@ -29,7 +29,9 @@ interface Props {
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
+  const blogEntries = await getCollection('blog', ({ data }) => {
+    return !data.draft && data.publishDate < new Date();
+  });
   return blogEntries.map((entry) => ({
     params: { slug: entry.id.replace(/\.(md|mdx)$/, '') },
     props: { entry },

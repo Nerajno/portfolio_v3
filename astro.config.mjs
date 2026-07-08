@@ -8,7 +8,6 @@ import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
 import clarityIntegration from "astro-microsoft-clarity-integration";
 import react from "@astrojs/react";
-import { rehypeShiki } from "./src/lib/shiki-rehype.mjs";
 
 export default defineConfig({
   site: "https://developingdvlpr.com",
@@ -17,9 +16,7 @@ export default defineConfig({
   integrations: [
     react(),
     mdx({
-      syntaxHighlight: false,
       remarkPlugins: [],
-      rehypePlugins: [rehypeShiki],
     }),
     sitemap(),
     icon({
@@ -89,8 +86,11 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [remarkReadingTime, remarkGifPassthrough],
-    syntaxHighlight: false,
-    rehypePlugins: [rehypeShiki],
+    shikiConfig: {
+      themes: { light: "vitesse-light", dark: "vitesse-dark" },
+      langs: ["astro", "bash", "html", "javascript", "markdown", "text", "typescript", "vue"],
+      langAlias: { js: "javascript", ts: "typescript", md: "markdown" },
+    },
   },
   vite: {
     ssr: {
