@@ -99,7 +99,7 @@ By the end, you'll have built a City Comparison Tool — a dashboard where you c
 
 ## What We're Building
 
-<img src="https://media0.giphy.com/media/wR4bJk4jF5Tl6/giphy.gif" alt="What's coming next in the series" width="960" />
+<img src="https://media0.giphy.com/media/wR4bJk4jF5Tl6/giphy.gif" alt="Animated preview of the Vue 3 City Comparison Tool interface for comparing two cities side by side" width="960" />
 
 The app has three screens worth of behavior in a single view:
 
