@@ -389,7 +389,7 @@ const conditionEmoji = {
       >
         <span class="city-emoji">{{ conditionEmoji[city.condition] ?? '🌡️' }}</span>
         <span class="city-name">{{ city.name }}</span>
-        <span class="city-temp">{{ city.temp }}°F</span>
+        <span class="city-temp">{{ city.displayTemp ?? city.temp }}°{{ city.displayUnit ?? 'F' }}</span>
 
         <!-- v-if: show "Pinned" badge or "Pin" button depending on state -->
         <span v-if="pinnedIds.includes(city.id)" class="pinned-badge">
