@@ -468,7 +468,7 @@ const conditionEmoji = {
     <!-- Header row with city name + unpin button -->
     <header class="card-header">
       <h3>{{ city.name }}</h3>
-      <button class="unpin-btn" @click="emit('unpin', side)">Unpin</button>
+      <button class="unpin-btn" @click="emit('unpin')">Unpin</button>
     </header>
 
     <!-- Temperature — color comes from local computed -->
