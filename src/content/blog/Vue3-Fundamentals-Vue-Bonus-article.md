@@ -613,27 +613,28 @@ body          { margin: 0; font-family: system-ui, sans-serif; background: #f8fa
 
 ## The Concept Map
 
-Every article in the series showed up in this build. Here's where:
+Every article in the series showed up in this build. Here's where. Catch anything you missed by revisiting the article it came from:
+
 
 | Concept | Article | Where it appeared in this project |
 |---|---|---|
-| Vue extends HTML | 1 | All templates — HTML + directives, nothing replaced |
-| SFC structure (`script` / `template` / `style`) | 2 | All four `.vue` files |
-| `ref` | 3 | `allCities`, `pinnedLeft`, `pinnedRight`, `unit`, `search` |
-| `computed` | 3 | `filteredCities`, `pinnedIds`, `leftDisplay`, `rightDisplay`, `warmerSide`, `isComparing`, `tempColor` |
-| `watch` | 3 | Unit persistence to localStorage, comparison logging |
-| Props down | 4 | Every parent→child data relationship |
-| Events up | 4 | `@pin`, `@unpin`, `@swap`, `@toggle-unit`, `@update:search` |
-| `defineProps` / `defineEmits` | 4 | Every child component |
-| Scoped styles | 4 | All component `<style scoped>` blocks |
-| `v-if` / `v-else` | 5 | Comparison panel, pin prompt, warmer badge, pinned badge |
-| `v-for` + `:key` | 5 | City list |
-| `v-model` / controlled input | 5 | Search input in `CityList` |
-| `:class` | 5 | `.is-pinned`, `.is-warmer`, `.active` |
-| `:style` | 5 | Temperature color in `ComparisonCard` |
-| `@click` | 5 | Pin, unpin, swap, unit toggle |
-| Component composition | 6 | `App.vue` orchestrating three child components |
-| Single source of truth | 6 | All state in `App.vue`, computed derived state, children never mutate |
+| Vue extends HTML | <a href="/blog/seeing-vue-clearly-the-basics" target="_blank" rel="noopener">1</a> | All templates — HTML + directives, nothing replaced |
+| SFC structure (`script` / `template` / `style`) | <a href="/blog/your-first-vue-3-app-from-zero-to-running" target="_blank" rel="noopener">2</a> | All four `.vue` files |
+| `ref` | <a href="/blog/reactivity-in-vue3-how-vue-makes-your-ui-feel-alive" target="_blank" rel="noopener">3</a> | `allCities`, `pinnedLeft`, `pinnedRight`, `unit`, `search` |
+| `computed` | <a href="/blog/reactivity-in-vue3-how-vue-makes-your-ui-feel-alive" target="_blank" rel="noopener">3</a> | `filteredCities`, `pinnedIds`, `leftDisplay`, `rightDisplay`, `warmerSide`, `isComparing`, `tempColor` |
+| `watch` | <a href="/blog/reactivity-in-vue3-how-vue-makes-your-ui-feel-alive" target="_blank" rel="noopener">3</a> | Unit persistence to localStorage, comparison logging |
+| Props down | <a href="/blog/vue3-components-building-reusable-ui-blocks" target="_blank" rel="noopener">4</a> | Every parent→child data relationship |
+| Events up | <a href="/blog/vue3-components-building-reusable-ui-blocks" target="_blank" rel="noopener">4</a> | `@pin`, `@unpin`, `@swap`, `@toggle-unit`, `@update:search` |
+| `defineProps` / `defineEmits` | <a href="/blog/vue3-components-building-reusable-ui-blocks" target="_blank" rel="noopener">4</a> | Every child component |
+| Scoped styles | <a href="/blog/vue3-components-building-reusable-ui-blocks" target="_blank" rel="noopener">4</a> | All component `<style scoped>` blocks |
+| `v-if` / `v-else` | <a href="/blog/vue3-template-syntax-and-directives" target="_blank" rel="noopener">5</a> | Comparison panel, pin prompt, warmer badge, pinned badge |
+| `v-for` + `:key` | <a href="/blog/vue3-template-syntax-and-directives" target="_blank" rel="noopener">5</a> | City list |
+| `v-model` / controlled input | <a href="/blog/vue3-template-syntax-and-directives" target="_blank" rel="noopener">5</a> | Search input in `CityList` |
+| `:class` | <a href="/blog/vue3-template-syntax-and-directives" target="_blank" rel="noopener">5</a> | `.is-pinned`, `.is-warmer`, `.active` |
+| `:style` | <a href="/blog/vue3-template-syntax-and-directives" target="_blank" rel="noopener">5</a> | Temperature color in `ComparisonCard` |
+| `@click` | <a href="/blog/vue3-template-syntax-and-directives" target="_blank" rel="noopener">5</a> | Pin, unpin, swap, unit toggle |
+| Component composition | <a href="/blog/finding-your-route-mastering-vue-router" target="_blank" rel="noopener">6</a> | `App.vue` orchestrating three child components |
+| Single source of truth | <a href="/blog/finding-your-route-mastering-vue-router" target="_blank" rel="noopener">6</a> | All state in `App.vue`, computed derived state, children never mutate |
 
 If every row in that table makes sense to you, you're ready for the next stage: Vue Router, Pinia, and real API integration.
 
