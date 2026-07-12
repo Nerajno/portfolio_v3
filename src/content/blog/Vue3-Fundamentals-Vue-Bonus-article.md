@@ -642,8 +642,7 @@ If every row in that table makes sense to you, you're ready for the next stage: 
 
 ## My Solution
 
-So the saying goes: "Dogfood your own solution". Thus here is my completed version of the app, built in the same deliberate step-by-step way as above. You can compare it to your own work and see if you missed any concepts. Link is below:
- "Some codepen.io link to the completed solution"
+So the saying goes: "Dogfood your own solution". Thus here is my <a href="https://weather-comparison.fly.dev/" target="_blank" rel="noopener">completed version of the app</a>, built in the same deliberate step-by-step way as above. You can compare it to your own work and see if you missed any concepts.
 
 
 ## What to Try Next
