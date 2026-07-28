@@ -160,6 +160,8 @@ export const speakingData: SpeakingEvent[] = [
     ],
     links: {
       conferenceWebsite: "https://nebraskacode.amegala.com",
+      slides:
+        "https://docs.google.com/presentation/d/1q8gkdgUckRgdorW4BIKwktW0v9W6wnPdPsp04J090LE/edit?usp=sharing",
     },
   },
   {
