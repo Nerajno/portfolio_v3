@@ -109,7 +109,6 @@ export const speakingData: SpeakingEvent[] = [
     },
   },
   {
-    // TODO: replace TBD event name, date and conferenceWebsite before merging
     id: "virtual-skills-to-bills-2026",
     title: "Skills to Bills: A User's Guide to Demonstrated Competency",
     name: "Tech Business Community Live 2026",
