@@ -109,6 +109,32 @@ export const speakingData: SpeakingEvent[] = [
     },
   },
   {
+    // TODO: replace TBD event name, date and conferenceWebsite before merging
+    id: "virtual-skills-to-bills-2026",
+    title: "Skills to Bills: A User's Guide to Demonstrated Competency",
+    name: "Tech Business Community Live 2026",
+    description:
+      "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
+    date: "2026-08",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "Tech Business Community Live 2026 – Demonstrating developer competency and confidence, with Nerando Johnson.",
+    location: {
+      city: "Online",
+      state: "",
+      country: "Virtual",
+    },
+    type: "conference",
+    tags: [
+      "career",
+      "business skills",
+      "processes",
+      "open source",
+      "programming",
+    ],
+    links: {},
+  },
+  {
     id: "atlanta-cloud-ai-2026",
     title: "Beyond SEO: Optimizing Your Web Content for the Age of AI",
     name: "Atlanta Cloud+AI Conference 2026",
