@@ -28,6 +28,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
+        mono: [...defaultTheme.fontFamily.mono],
       },
       colors: {
         // Custom color palette

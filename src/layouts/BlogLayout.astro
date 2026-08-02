@@ -1,4 +1,4 @@
----
+--- 
 import Container from "@components/container.astro";
 import { getFormattedDate } from "@utils/all";
 import Layout from "./Layout.astro";
@@ -6,7 +6,7 @@ import Layout from "./Layout.astro";
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={frontmatter.title}>
+<Layout title={frontmatter.title} surface="teach">
   <Container>
     <div class="mx-auto max-w-[735px] mt-14">
       <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialects Preview — four surfaces, one token spine</title>
+<style>
+  /* ════════════════════════════════════════════════════════════
+     Dialects Preview — standalone side-by-side comparison of the
+     four surfaces. Self-contained mirror of src/styles/tokens.css:
+     the same five --dial-* variables drive every panel; the shared
+     semantic classes (.bg-surface, .text-body, .bg-accent, ...) are
+     identical in every panel. Only the dial values change.
+     ════════════════════════════════════════════════════════════ */
+
+  * { box-sizing: border-box; margin: 0; }
+
+  /* Fonts */
+  :root {
+    --font-sans: "Inter Variable", Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  /* ── Dial defaults (portfolio) ── */
+  [data-surface],
+  [data-surface="portfolio"] {
+    --dial-font: sans;
+    --dial-type-scale: 1.125;
+    --dial-accent-hue: 265;
+    --dial-accent-chroma: 0.035;
+    --dial-accent-light: 0.5;
+  }
+  [data-surface="learn"] {
+    --dial-font: mono;
+    --dial-type-scale: 0.875;
+    --dial-accent-hue: 72;
+    --dial-accent-chroma: 0.1;
+    --dial-accent-light: 0.48;
+  }
+  [data-surface="teach"] {
+    --dial-font: sans;
+    --dial-type-scale: 1;
+    --dial-accent-hue: 168;
+    --dial-accent-chroma: 0.09;
+    --dial-accent-light: 0.48;
+  }
+  [data-surface="build"] {
+    --dial-font: mono;
+    --dial-type-scale: 0.875;
+    --dial-accent-hue: 38;
+    --dial-accent-chroma: 0.16;
+    --dial-accent-light: 0.5;
+  }
+
+  /* ── Dial → face mapping ── */
+  [data-surface] { --font-body: var(--font-sans); --font-heading: var(--font-sans); }
+  [data-surface="learn"],
+  [data-surface="build"] { --font-body: var(--font-mono); --font-heading: var(--font-mono); }
+
+  /* ── Light semantic tokens (shared) ── */
+  [data-surface] {
+    --bg:           oklch(0.985 0.006 var(--dial-accent-hue));
+    --bg-alt:       oklch(0.965 0.008 var(--dial-accent-hue));
+    --bg-card:      oklch(0.998 0.004 var(--dial-accent-hue));
+    --text-strong:  oklch(0.24 0.02 var(--dial-accent-hue));
+    --text-body:    oklch(0.34 0.016 var(--dial-accent-hue));
+    --text-soft:    oklch(0.46 0.014 var(--dial-accent-hue));
+    --text-muted:   oklch(0.5 0.012 var(--dial-accent-hue));
+    --border:       oklch(0.89 0.012 var(--dial-accent-hue));
+    --accent:       oklch(var(--dial-accent-light) var(--dial-accent-chroma) var(--dial-accent-hue));
+    --accent-hover: oklch(calc(var(--dial-accent-light) - 0.06) var(--dial-accent-chroma) var(--dial-accent-hue));
+    --accent-soft:  oklch(calc(var(--dial-accent-light) + 0.36) calc(var(--dial-accent-chroma) * 0.5) var(--dial-accent-hue));
+    --success:      oklch(0.62 0.15 152);
+    --warning:      oklch(0.74 0.14 85);
+    --danger:       oklch(0.55 0.17 27);
+  }
+
+  /* ── Dark semantic tokens (shared) ── */
+  .theme-dark [data-surface] {
+    --bg:           oklch(0.16 0.01 var(--dial-accent-hue));
+    --bg-alt:       oklch(0.19 0.012 var(--dial-accent-hue));
+    --bg-card:      oklch(0.21 0.014 var(--dial-accent-hue));
+    --text-strong:  oklch(0.95 0.01 var(--dial-accent-hue));
+    --text-body:    oklch(0.85 0.012 var(--dial-accent-hue));
+    --text-soft:    oklch(0.72 0.012 var(--dial-accent-hue));
+    --text-muted:   oklch(0.7 0.012 var(--dial-accent-hue));
+    --border:       oklch(0.28 0.012 var(--dial-accent-hue));
+    --accent:       oklch(calc(var(--dial-accent-light) + 0.24) calc(var(--dial-accent-chroma) + 0.02) var(--dial-accent-hue));
+    --accent-hover: oklch(calc(var(--dial-accent-light) + 0.3) calc(var(--dial-accent-chroma) + 0.02) var(--dial-accent-hue));
+    --accent-soft:  oklch(calc(var(--dial-accent-light) + 0.08) calc(var(--dial-accent-chroma) * 0.6) var(--dial-accent-hue));
+  }
+
+  /* ── Shared semantic classes (identical in every panel) ── */
+  .bg-surface     { background-color: var(--bg); }
+  .bg-surface-alt { background-color: var(--bg-alt); }
+  .bg-surface-card{ background-color: var(--bg-card); }
+  .text-strong    { color: var(--text-strong); }
+  .text-body      { color: var(--text-body); }
+  .text-soft      { color: var(--text-soft); }
+  .text-muted     { color: var(--text-muted); }
+  .text-accent    { color: var(--accent); }
+  .bg-accent      { background-color: var(--accent); }
+  .bg-accent-soft { background-color: var(--accent-soft); }
+  .border-surface { border-color: var(--border); }
+
+  .panel {
+    font-family: var(--font-body);
+    font-size: calc(16px * var(--dial-type-scale));
+    color: var(--text-body);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .panel a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .panel a:hover { color: var(--accent-hover); text-decoration: underline; }
+  .panel button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .dial-badge {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-soft);
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 8px;
+    display: inline-block;
+  }
+  .chip { width: 14px; height: 14px; border-radius: 999px; display: inline-block; vertical-align: middle; }
+
+  .status { display: inline-block; font-family: var(--font-mono); font-size: 12px; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+  .status.ok    { color: #0b3d2e; background: var(--success); }
+  .status.warn  { color: #3d2c00; background: var(--warning); }
+  .status.err   { color: #fff;    background: var(--danger); }
+  .theme-dark .status.ok   { color: #052014; }
+  .theme-dark .status.warn { color: #241800; }
+</style>
+</head>
+<body class="theme-light">
+
+<header style="padding: 24px; font-family: system-ui, sans-serif;">
+  <h1 style="font-size: 24px;">Four surfaces, one token spine</h1>
+  <p style="color: #666; margin: 8px 0 16px;">Same semantic classes in every panel — only the five <code>--dial-*</code> variables change.</p>
+  <button id="theme-toggle" style="padding: 8px 16px; border-radius: 8px; border: 1px solid #ccc; cursor: pointer; background: #fff; color: #111; font-weight: 600;">
+    Toggle dark mode
+  </button>
+</header>
+
+<main style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; padding: 0 24px 48px;">
+
+  <section class="panel" data-surface="portfolio">
+    <h2 class="text-strong" style="margin:0;">portfolio</h2>
+    <p class="text-muted" style="margin:0; font-size:.9em;">the front door · sans · 1.125× · hue 265</p>
+    <p class="dial-badge">font: sans · density: 1.125× · hue: 265</p>
+    <p class="text-body" style="margin:0;">Surface <code style="background:var(--bg-surface-alt); padding:0 4px;">--bg</code> is a near-neutral violet. <a href="#">Accent links</a> stay calm but readable.</p>
+    <p style="margin:0;"><button class="bg-accent" style="color:var(--bg-card); border:0; border-radius:8px; padding:8px 14px; font-weight:700; cursor:pointer;">Primary action</button>
+      <span class="status ok">ok</span> <span class="status warn">warn</span> <span class="status err">err</span></p>
+  </section>
+
+  <section class="panel" data-surface="learn">
+    <h2 class="text-strong" style="margin:0;">learn</h2>
+    <p class="text-muted" style="margin:0; font-size:.9em;">the notebook · mono · 0.875× · hue 72</p>
+    <p class="dial-badge">font: mono · density: 0.875× · hue: 72</p>
+    <p class="text-body" style="margin:0;">Surface <code style="background:var(--bg-surface-alt); padding:0 4px;">--bg</code> is a tight chlorophyll green. <a href="#">Accent links</a> feel like ink on paper.</p>
+    <p style="margin:0;"><button class="bg-accent" style="color:var(--bg-card); border:0; border-radius:8px; padding:8px 14px; font-weight:700; cursor:pointer;">Primary action</button>
+      <span class="status ok">ok</span> <span class="status warn">warn</span> <span class="status err">err</span></p>
+  </section>
+
+  <section class="panel" data-surface="teach">
+    <h2 class="text-strong" style="margin:0;">teach</h2>
+    <p class="text-muted" style="margin:0; font-size:.9em;">the lecture · sans · 1× · hue 168</p>
+    <p class="dial-badge">font: sans · density: 1× · hue: 168</p>
+    <p class="text-body" style="margin:0;">Surface <code style="background:var(--bg-surface-alt); padding:0 4px;">--bg</code> is a chalkboard teal. <a href="#">Accent links</a> read like a slide accent.</p>
+    <p style="margin:0;"><button class="bg-accent" style="color:var(--bg-card); border:0; border-radius:8px; padding:8px 14px; font-weight:700; cursor:pointer;">Primary action</button>
+      <span class="status ok">ok</span> <span class="status warn">warn</span> <span class="status err">err</span></p>
+  </section>
+
+  <section class="panel" data-surface="build">
+    <h2 class="text-strong" style="margin:0;">build</h2>
+    <p class="text-muted" style="margin:0; font-size:.9em;">the workbench · mono · 0.875× · hue 38</p>
+    <p class="dial-badge">font: mono · density: 0.875× · hue: 38</p>
+    <p class="text-body" style="margin:0;">Surface <code style="background:var(--bg-surface-alt); padding:0 4px;">--bg</code> is a bright workshop amber. <a href="#">Accent links</a> pop like a power tool.</p>
+    <p style="margin:0;"><button class="bg-accent" style="color:var(--bg-card); border:0; border-radius:8px; padding:8px 14px; font-weight:700; cursor:pointer;">Primary action</button>
+      <span class="status ok">ok</span> <span class="status warn">warn</span> <span class="status err">err</span></p>
+  </section>
+
+</main>
+
+<script>
+  var toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', function () {
+    var dark = document.body.classList.toggle('theme-dark');
+    document.body.classList.toggle('theme-light', !dark);
+    toggle.textContent = dark ? 'Toggle light mode' : 'Toggle dark mode';
+  });
+</script>
+</body>
+</html>
