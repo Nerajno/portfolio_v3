@@ -1,5 +1,5 @@
 ---
-import { SEO } from 'astro-seo-plugin';
+import { SEO } from 'astro-seo';
 import Footer from '@components/footer.astro';
 import Navbar from '@components/navbar/navbar.astro';
 import '@fontsource-variable/inter/index.css';
@@ -48,9 +48,7 @@ const makeTitle = title || "Nerando's Portfolio";
           return 'light';
         }
         const theme = getInitialTheme();
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        }
+        document.documentElement.classList.add(theme === 'dark' ? 'dark' : 'light');
       })();
     </script>
     <!-- GA4 || Google Analytics -->

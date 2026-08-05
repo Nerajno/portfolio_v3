@@ -802,7 +802,7 @@ const projects = {
       visible: true,
     },
     {
-      id: "demo",
+      id: "demo-2",
       name: "Demo 2",
       title: "Demo Project",
       description: "A demonstration project for learning showcase.",

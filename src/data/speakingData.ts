@@ -26,16 +26,71 @@ interface SpeakingEvent {
 export const speakingData: SpeakingEvent[] = [
   // ─── 2026 Upcoming ───────────────────────────────────────────────────────────
   {
-    id: "commit-your-code-2026",
-    title:
-      "The Kill List Framework: A Developer's Guide to Actually Finishing Side Projects",
-    name: "The Commit Your Code Conference 2026",
+    id: "techbash-2026-back-to-basics",
+    title: "Back to Basics: Essential JavaScript Foundations for Modern Framework Development",
+    name: "TechBash 2026",
     description:
-      "Every developer knows the pain: 47 project folders collecting dust, each one a monument to good intentions and poor execution. Some research shows the average developer maintains 3.7 unfinished side projects with completion rates hovering at a dismal 15-20%. The problem isn't your lack of time, motivation, or skill—it's that you've never learned to negotiate with yourself about what 'done' actually means. The Kill List Framework is a structured approach to murdering your darling ideas before they murder your project's chances of completion. Drawing from lessons learned shipping 6+ projects in the last few years, this session provides a practical, no-nonsense approach to transforming your project graveyard into a shipped portfolio.",
-    date: "2026-09-30",
+      "In an era where AI and tech influencers often promote jumping directly into framework development, this talk emphasizes the critical importance of mastering JavaScript fundamentals before diving into frameworks like Vue.js. Drawing from real-world experience transitioning into Vue 3 development, we'll explore why solid JavaScript foundations are crucial for effective framework usage. Through practical demonstrations and real-world examples, we'll examine how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example. This session will help developers understand why 'learning to walk before running' in JavaScript is essential for long-term success in framework development.",
+    date: "2026-10-13",
     image: "/images/other_images/Speaker_me.jpeg",
     seoDescription:
-      "Commit Your Code 2026 – The Kill List Framework: a battle-tested system for shipping side projects, with Nerando Johnson.",
+      "TechBash 2026 – Master JavaScript fundamentals before diving into modern frameworks with Nerando Johnson's back-to-basics approach.",
+    location: {
+      city: "Pocono Manor",
+      state: "Pennsylvania",
+      country: "USA",
+      venue: "Kalahari Resorts",
+    },
+    type: "conference",
+    tags: [
+      "javascript",
+      "vue.js",
+      "fundamentals",
+      "frameworks",
+      "software development",
+    ],
+    links: {
+      conferenceWebsite: "https://techbash.com",
+    },
+  },
+  {
+    id: "techbash-2026-skills-to-bills",
+    title: "Skills to Bills: A User's Guide to Demonstrated Competency",
+    name: "TechBash 2026",
+    description:
+      "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
+    date: "2026-10-13",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "TechBash 2026 – Demonstrating developer competency and confidence, with Nerando Johnson.",
+    location: {
+      city: "Pocono Manor",
+      state: "Pennsylvania",
+      country: "USA",
+      venue: "Kalahari Resorts",
+    },
+    type: "conference",
+    tags: [
+      "career",
+      "business skills",
+      "processes",
+      "open source",
+      "programming",
+    ],
+    links: {
+      conferenceWebsite: "https://techbash.com",
+    },
+  },
+  {
+    id: "commit-your-code-2026-beyond-seo",
+    title: "Beyond SEO: Optimizing Your Web Content for the Age of AI",
+    name: "The Commit Your Code Conference 2026",
+    description:
+      "Search is no longer just about Google. AI assistants, large language models, and conversational search engines are reshaping how people discover content—and the old rules of SEO aren't enough. This talk explores AI Engine Optimization (AEO): how to structure your web content, metadata, and schema markup so that AI systems can accurately surface, cite, and recommend your work. Drawing from real-world implementation experience, we'll cover practical strategies for optimizing structured data, semantic clarity, and content authority in a world where your audience might be asking ChatGPT instead of searching Google.",
+    date: "2026-09-03",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "Commit Your Code 2026 – Beyond SEO: practical strategies for AI Engine Optimization in the age of LLMs and conversational search, with Nerando Johnson.",
     location: {
       city: "Dallas",
       state: "Texas",
@@ -43,14 +98,66 @@ export const speakingData: SpeakingEvent[] = [
     },
     type: "conference",
     tags: [
-      "side projects",
-      "productivity",
-      "software development",
-      "scope creep",
-      "career",
+      "seo",
+      "ai",
+      "aeo",
+      "web development",
+      "content strategy",
     ],
     links: {
       conferenceWebsite: "https://www.CommitYourCode.com",
+    },
+  },
+  {
+    id: "virtual-skills-to-bills-2026",
+    title: "Skills to Bills: A User's Guide to Demonstrated Competency",
+    name: "Tech Business Community Live 2026",
+    description:
+      "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
+    date: "2026-08",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "Tech Business Community Live 2026 – Demonstrating developer competency and confidence, with Nerando Johnson.",
+    location: {
+      city: "Online",
+      state: "",
+      country: "Virtual",
+    },
+    type: "conference",
+    tags: [
+      "career",
+      "business skills",
+      "processes",
+      "open source",
+      "programming",
+    ],
+    links: {},
+  },
+  {
+    id: "atlanta-cloud-ai-2026",
+    title: "Beyond SEO: Optimizing Your Web Content for the Age of AI",
+    name: "Atlanta Cloud+AI Conference 2026",
+    description:
+      "Search is no longer just about Google. AI assistants, large language models, and conversational search engines are reshaping how people discover content—and the old rules of SEO aren't enough. This talk explores AI Engine Optimization (AEO): how to structure your web content, metadata, and schema markup so that AI systems can accurately surface, cite, and recommend your work. Drawing from real-world implementation experience, we'll cover practical strategies for optimizing structured data, semantic clarity, and content authority in a world where your audience might be asking ChatGPT instead of searching Google.",
+    date: "2026-05-30",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "Atlanta Cloud+AI Conference 2026 – Beyond SEO: practical strategies for AI Engine Optimization in the age of LLMs and conversational search, with Nerando Johnson.",
+    location: {
+      city: "Atlanta",
+      state: "Georgia",
+      country: "USA",
+    },
+    type: "conference",
+    tags: [
+      "seo",
+      "ai",
+      "aeo",
+      "cloud",
+      "web development",
+    ],
+    links: {
+      conferenceWebsite: "https://www.AtlantaCloudConference.com",
     },
   },
   {
@@ -78,6 +185,8 @@ export const speakingData: SpeakingEvent[] = [
     ],
     links: {
       conferenceWebsite: "https://nebraskacode.amegala.com",
+      slides:
+        "https://docs.google.com/presentation/d/1q8gkdgUckRgdorW4BIKwktW0v9W6wnPdPsp04J090LE/edit?usp=sharing",
     },
   },
   {
@@ -135,6 +244,34 @@ export const speakingData: SpeakingEvent[] = [
     ],
     links: {
       conferenceWebsite: "https://orlandocodecamp.com/",
+    },
+  },
+  {
+    id: "devnexus-2026",
+    title:
+      "The Engineer's Guide to Socialization: DB Associations as Networking Patterns: A Developer's Guide to Professional Connections",
+    name: "Devnexus 2026",
+    description:
+      "This talk reimagines professional networking through the familiar lens of database associations, making relationship-building more approachable for developers. By mapping associations to networking scenarios, we'll transform technical knowledge into effective social strategies.",
+    date: "2026-03",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "Devnexus 2026 – The Engineer's Guide to Socialization: reimagining professional networking through database associations, with Nerando Johnson.",
+    location: {
+      city: "Atlanta",
+      state: "Georgia",
+      country: "USA",
+    },
+    type: "conference",
+    tags: [
+      "networking",
+      "career",
+      "databases",
+      "software development",
+      "people skills",
+    ],
+    links: {
+      conferenceWebsite: "https://devnexus.com/",
     },
   },
   // ─── 2025 ────────────────────────────────────────────────────────────────────
