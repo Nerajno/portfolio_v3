@@ -91,5 +91,10 @@ export function buildCollectionSchema(opts: {
 }
 
 export function sanitizeSchema(schema: object): string {
-  return JSON.stringify(schema, (_, v) => (v === undefined ? undefined : v));
+  const json = JSON.stringify(schema, (_, v) => (v === undefined ? undefined : v));
+
+  return json
+    .replace(/&/g, '\\u0026')
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e');
 }
