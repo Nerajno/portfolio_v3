@@ -1,11 +1,12 @@
 ---
-import { SEO as AstroSEO } from "astro-seo";
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
-import Projectcard from "@components/projectcard.astro";
-import Learningprojectcard from "@components/learningprojectcard.astro";
-import projectsData from "../data/projects.js";
+import { AstroSEO } from 'astro-seo-plugin';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import Sectionhead from '@components/sectionhead.astro';
+import Projectcard from '@components/projectcard.astro';
+import Learningprojectcard from '@components/learningprojectcard.astro';
+import projectsData from '../data/projects.js';
+import { buildCollectionSchema, sanitizeSchema } from '@lib/schema';
 // Combine all projects
 const allProjects = [
   ...projectsData.showcase_projects.filter(
@@ -72,58 +73,14 @@ const seoConfig = {
   },
 };
 
-// Structured data for GEO optimization
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "Portfolio Projects - Nerando Johnson",
-  description:
-    "A collection of software development projects with detailed case studies showcasing problem-solving, technical decisions, and measurable outcomes.",
-  url: "https://developingdvlpr.com/portfolio",
-  author: {
-    "@type": "Person",
-    name: "Nerando Johnson",
-    url: "https://developingdvlpr.com",
-    jobTitle: "Software Developer",
-    email: "nerando@developingdvlpr.com",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Atlanta",
-      addressRegion: "GA",
-      addressCountry: "US",
-    },
-    knowsAbout: [
-      "Vue3",
-      "React",
-      "JavaScript",
-      "Front-End Development",
-      "Software Architecture",
-      "Web Development",
-    ],
-    sameAs: [
-      "https://github.com/Nerajno",
-      "https://twitter.com/nerajno",
-      "https://www.linkedin.com/in/nerando-johnson/",
-    ],
-  },
-  mainEntity: {
-    "@type": "ItemList",
-    itemListElement: allProjects.slice(0, 10).map((project, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "CreativeWork",
-        name: project.title,
-        description: project.description,
-        url: `https://developingdvlpr.com/case-study/${project.id}`,
-        author: {
-          "@type": "Person",
-          name: "Nerando Johnson",
-        },
-      },
-    })),
-  },
-};
+const structuredData = buildCollectionSchema({
+  name: "Portfolio Projects — Nerando Johnson",
+  url: new URL('/portfolio', 'https://developingdvlpr.com').toString(),
+  items: allProjects.slice(0, 10).map((project) => ({
+    name: project.title,
+    url: new URL(`/case-study/${project.id}`, 'https://developingdvlpr.com').toString(),
+  })),
+});
 ---
 
 <AstroSEO
@@ -135,8 +92,8 @@ const structuredData = {
   extend={seoConfig.extend}
 />
 
-<!-- Structured Data for GEO -->
-<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+<!-- AEO: CollectionPage + ItemList -->
+<script type='application/ld+json' set:html={sanitizeSchema(structuredData)} />
 
 <Layout title="Projects">
   <Container>
