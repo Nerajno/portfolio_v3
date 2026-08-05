@@ -42,14 +42,16 @@ export function buildArticleSchema(opts: {
   };
 }
 
-export function buildSpeakableSchema(url: string) {
+export function buildSpeakableSchema(url: string, selectors?: string[]) {
+  const cssSelector = selectors && selectors.length > 0 ? selectors : ['h1', 'article'];
+
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     url,
     speakable: {
       '@type': 'SpeakableSpecification',
-      cssSelector: ['h1', '.post-summary', '.hero-description'],
+      cssSelector,
     },
   };
 }
