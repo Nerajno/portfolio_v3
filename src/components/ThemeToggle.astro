@@ -71,7 +71,7 @@
 
     // Apply theme
     const applyTheme = (theme) => {
-      document.documentElement.classList.toggle('dark', theme === 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
       updateIcons(theme);
     };
@@ -82,7 +82,8 @@
 
     // Handle toggle
     toggleButton.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.contains('dark');
+      const isDark =
+        document.documentElement.getAttribute('data-theme') === 'dark';
       const newTheme = isDark ? 'light' : 'dark';
       applyTheme(newTheme);
     });

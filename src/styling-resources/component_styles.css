@@ -78,17 +78,12 @@
 
 /* Navigation */
 .nav {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
   position: sticky;
   top: 0;
   z-index: 50;
-}
-
-[data-theme="dark"] .nav {
-  background-color: rgba(15, 20, 25, 0.8);
-  border-bottom-color: var(--border-light);
 }
 
 .nav-link {
@@ -318,12 +313,7 @@
 }
 
 .glass-effect {
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-[data-theme="dark"] .glass-effect {
-  background: rgba(26, 32, 44, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
 }

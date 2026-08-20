@@ -23,7 +23,7 @@ module.exports = {
     "text-[#273347]",   // Asana
     "text-[#F24E1E]",   // Figma
   ],
-  darkMode: 'class',
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       fontFamily: {

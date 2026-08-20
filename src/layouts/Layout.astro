@@ -3,6 +3,9 @@ import { SEO } from 'astro-seo';
 import Footer from '@components/footer.astro';
 import Navbar from '@components/navbar/navbar.astro';
 import '@fontsource-variable/inter/index.css';
+import '../styles/global.css';
+import '../styling-resources/css_variables.css';
+import '../styling-resources/component_styles.css';
 import { PERSON_ENTITY, sanitizeSchema } from '@lib/schema';
 
 export interface Props {
@@ -48,7 +51,10 @@ const makeTitle = title || "Nerando's Portfolio";
           return 'light';
         }
         const theme = getInitialTheme();
-        document.documentElement.classList.add(theme === 'dark' ? 'dark' : 'light');
+        document.documentElement.setAttribute(
+          'data-theme',
+          theme === 'dark' ? 'dark' : 'light'
+        );
       })();
     </script>
     <!-- GA4 || Google Analytics -->

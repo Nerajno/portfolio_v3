@@ -44,6 +44,7 @@
   /* Success Colors */
   --color-success-50: #ECFDF5;
   --color-success-100: #D1FAE5;
+  --color-success-200: #A7F3D0;
   --color-success-300: #6EE7B7;
   --color-success-500: #10B981;
   --color-success-600: #059669;
@@ -55,6 +56,7 @@
   /* Warning Colors */
   --color-warning-50: #FFFBEB;
   --color-warning-100: #FEF3C7;
+  --color-warning-200: #FDE68A;
   --color-warning-300: #FCD34D;
   --color-warning-500: #F59E0B;
   --color-warning-600: #D97706;
@@ -66,6 +68,7 @@
   /* Error Colors */
   --color-error-50: #FEF2F2;
   --color-error-100: #FEE2E2;
+  --color-error-200: #FECACA;
   --color-error-300: #FCA5A5;
   --color-error-500: #EF4444;
   --color-error-600: #DC2626;
@@ -120,6 +123,14 @@
   --card-shadow: 0 2px 4px rgba(15, 12, 41, 0.08);
   --card-shadow-hover: 0 8px 25px rgba(15, 12, 41, 0.15);
 
+  /* Component Surfaces */
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.2);
+
+  /* Focus */
+  --focus-ring: var(--color-primary-500);
+
   /* Animations */
   --transition-fast: 0.15s ease-out;
   --transition-normal: 0.3s ease-out;
@@ -160,38 +171,16 @@
   --card-border: var(--color-neutral-700);
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   --card-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.5);
+
+  /* Dark Component Surfaces */
+  --nav-bg: rgba(15, 20, 25, 0.8);
+  --glass-bg: rgba(26, 32, 44, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* Dark Focus */
+  --focus-ring: var(--color-primary-400);
 }
 
-/* Auto dark mode based on system preference */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg-primary: var(--color-neutral-950);
-    --bg-secondary: var(--color-neutral-900);
-    --bg-tertiary: var(--color-neutral-800);
-    --bg-elevated: var(--color-neutral-800);
-
-    --text-primary: var(--color-neutral-50);
-    --text-secondary: var(--color-neutral-200);
-    --text-tertiary: var(--color-neutral-400);
-    --text-inverted: var(--color-neutral-900);
-    --text-accent: var(--color-primary-400);
-
-    --border-light: var(--color-neutral-800);
-    --border-medium: var(--color-neutral-700);
-    --border-heavy: var(--color-neutral-600);
-    --border-interactive: var(--color-primary-500);
-
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
-
-    --shadow-button-primary: 0 4px 14px 0 rgba(79, 70, 229, 0.4);
-    --shadow-button-secondary: 0 4px 14px 0 rgba(6, 182, 212, 0.4);
-
-    --card-bg: var(--color-neutral-800);
-    --card-border: var(--color-neutral-700);
-    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    --card-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.5);
-  }
-}
+/* System preference is resolved in JS by the inline script in Layout.astro,
+   which writes data-theme before first paint. The block above is therefore the
+   single definition of every dark value. */
