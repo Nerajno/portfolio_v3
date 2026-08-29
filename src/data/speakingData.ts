@@ -119,9 +119,9 @@ export const speakingData: SpeakingEvent[] = [
     seoDescription:
       "Tech Business Community Live 2026 – Demonstrating developer competency and confidence, with Nerando Johnson.",
     location: {
-      city: "Online",
+      city: "Virtual",
       state: "",
-      country: "Virtual",
+      country: "",
     },
     type: "conference",
     tags: [
@@ -131,7 +131,10 @@ export const speakingData: SpeakingEvent[] = [
       "open source",
       "programming",
     ],
-    links: {},
+    links: {
+      conferenceWebsite:
+        "https://www.hclbcommunities.com/conferences/tech-business-community-live-2026",
+    },
   },
   {
     id: "atlanta-cloud-ai-2026",
