@@ -131,7 +131,10 @@ export const speakingData: SpeakingEvent[] = [
       "open source",
       "programming",
     ],
-    links: {},
+    links: {
+      conferenceWebsite:
+        "https://www.hclbcommunities.com/conferences/tech-business-community-live-2026",
+    },
   },
   {
     id: "atlanta-cloud-ai-2026",
