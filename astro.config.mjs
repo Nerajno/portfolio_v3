@@ -29,7 +29,24 @@ export default defineConfig({
     partytown({
       config: {
         forward: ["dataLayer.push"],
-        proxyUrl: "/api/partytown-proxy",
+        // Serialized to the client by partytownSnippet, so it must stay
+        // self-contained — no references to anything outside this function.
+        resolveUrl(url, location) {
+          const isProxied =
+            url.hostname === "www.googletagmanager.com" ||
+            url.hostname === "analytics.google.com" ||
+            url.hostname === "stats.g.doubleclick.net" ||
+            url.hostname === "www.clarity.ms" ||
+            url.hostname.endsWith(".google-analytics.com");
+
+          if (isProxied) {
+            const proxyUrl = new URL("/api/partytown-proxy", location.origin);
+            proxyUrl.searchParams.set("url", url.href);
+            return proxyUrl;
+          }
+
+          return url;
+        },
       },
     }),
     ...(import.meta.env.PUBLIC_CLARITY_ID
