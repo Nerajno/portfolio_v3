@@ -26,6 +26,34 @@ interface SpeakingEvent {
 export const speakingData: SpeakingEvent[] = [
   // ─── 2026 Upcoming ───────────────────────────────────────────────────────────
   {
+    id: "jcon-usa-2026-beyond-seo",
+    title: "Beyond SEO: Optimizing Your Web Content for the Age of AI",
+    name: "JCON USA @ IBM TechXchange 2026",
+    description:
+      "Most developers ship clean, accessible code that's invisible to AI. Ask ChatGPT \"best way to handle state in Vue 3?\" and your content won't show up — not because it's bad, but because it's not structured for how AI engines ingest and cite content. Generative Engine Optimization (GEO) is the next layer past SEO, and most developers don't know it exists yet. Two acts, zero to implementation: GEO Explained (what it is, how it differs from SEO, why AI needs structured content) and GEO Applied (semantic HTML, JSON-LD schema, citable writing, FAQ sections built for AI queries) — plus how to measure citation frequency and \"conversational reach.\" For developers who want their work found when AI answers come before search results. No prior GEO experience needed.",
+    date: "2026-10",
+    image: "/images/other_images/Speaker_me.jpeg",
+    seoDescription:
+      "JCON USA @ IBM TechXchange 2026 – Generative Engine Optimization (GEO): structuring web content so AI engines can ingest and cite it, with Nerando Johnson.",
+    location: {
+      city: "Atlanta",
+      state: "Georgia",
+      country: "USA",
+      venue: "Georgia World Congress Center",
+    },
+    type: "conference",
+    tags: [
+      "geo",
+      "seo",
+      "ai",
+      "structured data",
+      "web development",
+    ],
+    links: {
+      conferenceWebsite: "https://2026.usa.jcon.one/",
+    },
+  },
+  {
     id: "techbash-2026-back-to-basics",
     title: "Back to Basics: Essential JavaScript Foundations for Modern Framework Development",
     name: "TechBash 2026",
