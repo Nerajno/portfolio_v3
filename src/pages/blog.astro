@@ -66,13 +66,13 @@ const seoConfig = {
   title: 'My MetaData - Blog & Learning Notes',
   description:
     "Notes and blog posts created from things I've learned. All these articles I've written that helped me level up my skills and knowledge. Discover insights on web development, programming, and technology.",
-  canonical: new URL('blog', Astro.site).toString(),
+  canonical: new URL('blog/', Astro.site).toString(),
   openGraph: {
     basic: {
       title: 'My MetaData - Blog & Learning Notes',
       type: 'website',
       image: '/og-blog.jpg', // Add your blog's Open Graph image
-      url: new URL('blog', Astro.site).toString(),
+      url: new URL('blog/', Astro.site).toString(),
     },
     optional: {
       description:

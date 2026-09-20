@@ -29,13 +29,13 @@ if (notFound) {
 <AstroSEO
   title={`${project.title} | Learning Project | Nerando Johnson`}
   description={project.description || `Learning project: ${project.title} by Nerando Johnson.`}
-  canonical={`https://developingdvlpr.com/learning-projects/${project.id}`}
+  canonical={`https://developingdvlpr.com/learning-projects/${project.id}/`}
   openGraph={{
     basic: {
       title: `${project.title} | Learning Project | Nerando Johnson`,
       type: 'article',
       image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
-      url: `https://developingdvlpr.com/learning-projects/${project.id}`,
+      url: `https://developingdvlpr.com/learning-projects/${project.id}/`,
     },
     optional: {
       description: project.description || `Learning project: ${project.title} by Nerando Johnson.`,

@@ -19,13 +19,13 @@ export const prerender = true;
 const seoConfig = {
   title: `${event.title} - Nerando Johnson Speaking Engagement`,
   description: event.description || `${event.title} at ${event.name}. Speaking engagement by Nerando Johnson on ${event.date} in ${event.location}.`,
-  canonical: `https://developingdvlpr.com/events/${event.id}`,
+  canonical: `https://developingdvlpr.com/events/${event.id}/`,
   openGraph: {
     basic: {
       title: `${event.title} - Nerando Johnson`,
       type: 'article',
       image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
-      url: `https://developingdvlpr.com/events/${event.id}`,
+      url: `https://developingdvlpr.com/events/${event.id}/`,
     },
     optional: {
       description: event.description || `${event.title} at ${event.name}. Speaking engagement by Nerando Johnson.`,

@@ -27,13 +27,13 @@ const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.grow
   <AstroSEO
     title={`${project.title} - Learning Plot | Nerando Johnson`}
     description={project.description || `Learning journey and insights from building ${project.title}.`}
-    canonical={`https://developingdvlpr.com/learning-plot/${project.id}`}
+    canonical={`https://developingdvlpr.com/learning-plot/${project.id}/`}
     openGraph={{
       basic: {
         title: `${project.title} - Learning Plot | Nerando Johnson`,
         type: 'article',
         image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
-        url: `https://developingdvlpr.com/learning-plot/${project.id}`,
+        url: `https://developingdvlpr.com/learning-plot/${project.id}/`,
       },
       optional: {
         description: project.description || `Learning journey and insights from building ${project.title}.`,

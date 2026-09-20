@@ -34,13 +34,13 @@ const caseStudy = project.case_study;
 const seoConfig = {
   title: `${project.title} - Case Study | Nerando Johnson`,
   description: caseStudy.overview || `Detailed case study of ${project.title}. Explore the problem-solving process, technical decisions, architecture, and real-world impact.`,
-  canonical: `https://developingdvlpr.com/case-study/${project.id}`,
+  canonical: `https://developingdvlpr.com/case-study/${project.id}/`,
   openGraph: {
     basic: {
       title: `${project.title} - Case Study | Nerando Johnson`,
       type: 'article',
       image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
-      url: `https://developingdvlpr.com/case-study/${project.id}`,
+      url: `https://developingdvlpr.com/case-study/${project.id}/`,
     },
     optional: {
       description: caseStudy.overview || `Case study: ${project.title}. Problem-solving, technical architecture, and measurable outcomes.`,

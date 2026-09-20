@@ -57,7 +57,7 @@ try {
 }
 
 // SEO configuration for the blog post
-const postUrl = new URL(`blog/${entrySlug}`, Astro.site).toString();
+const postUrl = new URL(`blog/${entrySlug}/`, Astro.site).toString();
 const seoTitle = entry.data.seoTitle || `${entry.data.title} | My MetaData`;
 const seoDescription =
   entry.data.seoDescription || entry.data.description || entry.data.snippet;

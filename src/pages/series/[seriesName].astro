@@ -57,7 +57,7 @@ const seoConfig = {
   title: `${seriesName} - Blog Series | My MetaData`,
   description: `Explore the complete ${seriesName} blog series. A comprehensive collection of ${posts.length} articles covering everything you need to know.`,
   canonical: new URL(
-    `series/${seriesName.toLowerCase().replace(/\s+/g, '-')}`,
+    `series/${seriesName.toLowerCase().replace(/\s+/g, '-')}/`,
     Astro.site
   ).toString(),
 };
