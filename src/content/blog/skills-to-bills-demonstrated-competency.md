@@ -7,7 +7,7 @@ snippet: "Skills alone don't pay bills — demonstrated competence does. From my
 image:
   src: "https://images.pexels.com/photos/29284294/pexels-photo-29284294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   alt: "Developer presenting their work to a room of peers"
-publishDate: "2026-10-14T00:00:00Z"
+publishDate: "2026-10-13T00:00:00Z"
 category: "Career Development, Public Speaking, Personal Branding"
 author: "Nerando Johnson"
 tags:
