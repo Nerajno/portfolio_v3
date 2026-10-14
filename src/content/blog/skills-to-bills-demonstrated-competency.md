@@ -7,7 +7,7 @@ snippet: "Skills alone don't pay bills — demonstrated competence does. From my
 image:
   src: "https://images.pexels.com/photos/29284294/pexels-photo-29284294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   alt: "Developer presenting their work to a room of peers"
-publishDate: "2026-10-14T00:00:00Z"
+publishDate: "2026-10-13T00:00:00Z"
 category: "Career Development, Public Speaking, Personal Branding"
 author: "Nerando Johnson"
 tags:
@@ -98,7 +98,7 @@ Have you ever watched a developer explain a gnarly production fix in a code revi
 
 The skill was never the problem. The ability to narrate the skill was.
 
-![Developer presenting their work](https://images.pexels.com/photos/29284294/pexels-photo-29284294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
+![Developer presenting their work](https://images.pexels.com/photos/29284294/pexels-photo-29284294.jpeg)
 
 In today's job market, being good at the work isn't the differentiator it used to be. Being able to articulate *why* you made the choices you did, and how those choices solved a real business problem, is. That's demonstrated competence — and it's a skill you build intentionally over time, not one you wake up with.
 
@@ -196,7 +196,7 @@ Turn your 3-sentence pitch from Step 1 into one public post this week. A simple 
 
 ## Step 4: Handle the Emotional Weight — Imposter Syndrome Is a Liar
 
-![Working through self-doubt](https://images.pexels.com/photos/7216021/pexels-photo-7216021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
+![Working through self-doubt](https://images.pexels.com/photos/7216021/pexels-photo-7216021.jpeg)
 
 Executing all three steps above does not make self-doubt vanish. It just changes what the doubt whispers to you.
 
