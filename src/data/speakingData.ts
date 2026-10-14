@@ -162,6 +162,8 @@ export const speakingData: SpeakingEvent[] = [
     links: {
       conferenceWebsite:
         "https://www.hclbcommunities.com/conferences/tech-business-community-live-2026",
+      article:
+        "https://developingdvlpr.com/blog/skills-to-bills-demonstrated-competency/",
     },
   },
   {
