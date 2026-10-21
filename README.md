@@ -244,7 +244,7 @@ Each page includes comprehensive SEO setup with:
 Example from `about.astro`:
 ```javascript
 const seoConfig = {
-  title: 'About Nerando Johnson - Software Developer',
+  title: 'About Nerando Johnson - Software Engineer',
   description: '...',
   canonical: 'https://developingdvlpr.com/about',
   // ... more configuration
