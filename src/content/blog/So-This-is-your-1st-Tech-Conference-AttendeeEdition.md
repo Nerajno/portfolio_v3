@@ -124,7 +124,7 @@ To wrap up : create clear goals, making a plan, bringing the right gear, make go
 
 ![](https://media.giphy.com/media/lGlWve5XSS1e8/giphy.gif)
 ### Who Am I ( Currently)
-Nerando is a software developer with full-stack training, team building, and a dynamic approach to creating realistic web, mobile, and executive hot takes. He has been a part of teams that have conquered broken code, patched legacy codebases, and stopped releasing on Fridays for the overall mental health of his team. When he is not saving the world from bad algorithms, implementations, and a lack of good documentation, you can find him coding and drinking his third cup of coffee.
+Nerando is a software engineer with full-stack training, team building, and a dynamic approach to creating realistic web, mobile, and executive hot takes. He has been a part of teams that have conquered broken code, patched legacy codebases, and stopped releasing on Fridays for the overall mental health of his team. When he is not saving the world from bad algorithms, implementations, and a lack of good documentation, you can find him coding and drinking his third cup of coffee.
      Nerando is currently **_seeking new opportunities_** that align and grow with his skillset and experiences, especially with programming languages in React, Ruby, Ruby on Rails, DevOps skills, MERN and so much more. He can be found via his [portfolio](https://developindvlpr.com/),
 [@nerajno](https://twitter.com/nerajno) **_(for now)_** and on [LinkedIn](https://www.linkedin.com/in/nerando-johnson/).
 
