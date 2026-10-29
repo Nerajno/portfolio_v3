@@ -5,8 +5,8 @@ seoTitle: "Buttons vs. Links: Choosing the Right Element | Accessible HTML Guide
 seoDescription: "A link takes you somewhere. A button does something. A beginner-friendly guide with intermediate deep dives on semantics, accessibility, WCAG 2.2, SEO, security and polymorphic Vue/Nuxt button components."
 snippet: "A link takes you somewhere. A button does something. They can look identical on screen, but the browser, the keyboard and assistive tech treat them very differently. Here's how to choose, with deep dives for developers already shipping UI."
 image:
-  src: "/images/blog_images/buttons-vs-links/01-door-vs-switch.png"
-  alt: "Side-by-side illustration: a link is a door (takes you somewhere new, announced as 'About us, link'), a button is a light switch (changes something here, announced as 'Save, button'). Below, two identical-looking dark buttons labelled About us and Save, one a link and one a button."
+  src: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  alt: "Developer typing code on a laptop in front of two monitors showing code"
 publishDate: "2026-10-29T00:00:00Z"
 category: "Accessibility, Front-End Development, Vue"
 author: "Nerando Johnson"
