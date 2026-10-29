@@ -8,7 +8,7 @@ import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
 const BLOG_DIR = new URL('../src/content/blog', import.meta.url).pathname;
-const files = readdirSync(BLOG_DIR).filter((f) => f.endsWith('.md') || f.endsWith('.mdx'));
+const files = readdirSync(BLOG_DIR, { recursive: true }).filter((f) => f.endsWith('.md') || f.endsWith('.mdx'));
 
 let errors = 0;
 const drafts = [];
