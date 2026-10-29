@@ -8,6 +8,11 @@ const isAllowedHost = (hostname: string) =>
   hostname === "www.clarity.ms" ||
   hostname.endsWith(".google-analytics.com");
 
+// Statuses like 204 (GA hits) must have a null body or the Response constructor throws.
+const NULL_BODY_STATUSES = new Set([101, 103, 204, 205, 304]);
+const readBody = (response: Response) =>
+  NULL_BODY_STATUSES.has(response.status) ? null : response.arrayBuffer();
+
 const resolveTarget = (request: Request) => {
   const target = new URL(request.url).searchParams.get("url");
 
@@ -37,7 +42,7 @@ export const GET: APIRoute = async ({ request }) => {
     headers: { "User-Agent": request.headers.get("User-Agent") ?? "" },
   });
 
-  const body = await response.arrayBuffer();
+  const body = await readBody(response);
 
   return new Response(body, {
     status: response.status,
@@ -64,7 +69,7 @@ export const POST: APIRoute = async ({ request }) => {
     body: await request.arrayBuffer(),
   });
 
-  const body = await response.arrayBuffer();
+  const body = await readBody(response);
 
   return new Response(body, {
     status: response.status,
