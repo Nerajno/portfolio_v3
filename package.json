@@ -48,6 +48,7 @@
     "astro-seo": "^0.8.4",
     "astro-social-share": "^2.2.0",
     "autoprefixer": "^10.6.0",
+    "github-slugger": "^2.0.0",
     "mdast-util-to-string": "^4.0.0",
     "nodemailer": "^8.0.9",
     "react": "^19.3.0",
