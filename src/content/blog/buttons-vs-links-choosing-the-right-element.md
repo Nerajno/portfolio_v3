@@ -5,8 +5,8 @@ seoTitle: "Buttons vs. Links: Choosing the Right Element | Accessible HTML Guide
 seoDescription: "A link takes you somewhere. A button does something. A beginner-friendly guide with intermediate deep dives on semantics, accessibility, WCAG 2.2, SEO, security and polymorphic Vue/Nuxt button components."
 snippet: "A link takes you somewhere. A button does something. They can look identical on screen, but the browser, the keyboard and assistive tech treat them very differently. Here's how to choose, with deep dives for developers already shipping UI."
 image:
-  src: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  alt: "Developer working on code at a laptop"
+  src: "/images/blog_images/buttons-vs-links/01-door-vs-switch.png"
+  alt: "Side-by-side illustration: a link is a door (takes you somewhere new, announced as 'About us, link'), a button is a light switch (changes something here, announced as 'Save, button'). Below, two identical-looking dark buttons labelled About us and Save, one a link and one a button."
 publishDate: "2026-10-29T00:00:00Z"
 category: "Accessibility, Front-End Development, Vue"
 author: "Nerando Johnson"
@@ -39,7 +39,7 @@ Think of a building. A link is a door: you walk through it and end up in a diffe
 
 They can look identical on screen. Underneath, the browser, the keyboard and tools for disabled users treat them very differently. Choosing the wrong one usually doesn't break anything you can see, which is why it's such a common mistake.
 
-<!-- FIGURE 1: Door vs. light switch. -->
+![Side-by-side illustration: a link is a door (takes you somewhere new, announced as 'About us, link'), a button is a light switch (changes something here, announced as 'Save, button'). Below, two identical-looking dark buttons labelled About us and Save, one a link and one a button.](/images/blog_images/buttons-vs-links/01-door-vs-switch.png)
 *Figure 1. Door vs. light switch. Two elements can look identical while the browser and assistive tech treat them completely differently.*
 
 ## How to read this guide
@@ -69,7 +69,7 @@ Ask yourself one question: **after I click this, am I somewhere new, or did some
 
 A quick test: would it make sense to open this in a new tab or bookmark it? If yes, it's a link. You can't bookmark "Save".
 
-<!-- FIGURE 2: Core rule flowchart. -->
+![Decision flowchart. Start: after I click this, am I somewhere new, or did something happen right here? Somewhere new leads to a new-tab tiebreaker and then Link (a href or NuxtLink to). Right here leads to: does it send data, open/close, toggle, save or delete? Then Button with an explicit type, even if it navigates afterwards like Save and continue.](/images/blog_images/buttons-vs-links/02-core-rule-flowchart.png)
 *Figure 2. The core rule as a flowchart. Readers who skim will often stop here, so it carries the whole article in one picture.*
 
 ### What you get for free by choosing correctly
@@ -106,7 +106,7 @@ All buttons "do something", but they do different kinds of things. Here are the 
 | Icon-only | × close, ▶ play | Same as the others, but shows only an icon |
 | Destructive | Delete, Remove | Does something that's hard to undo |
 
-<!-- FIGURE 3: Button types and their announcements. -->
+![Grid of eight real button examples: Action (Copy), Submit (Place order), Toggle (Mute, aria-pressed true), Show/hide (Show more, aria-expanded false), Menu (three dots, aria-haspopup menu), Dialog (Edit profile), Icon-only (close X with aria-label Close), Destructive (Delete invoice). Each shows the key attribute and what a screen reader announces.](/images/blog_images/buttons-vs-links/03-button-types.png)
 *Figure 3. Every one of these is a `<button>`. The attributes change what a screen reader announces.*
 
 ### Three habits that prevent most button bugs
@@ -149,7 +149,7 @@ Every link needs an `href`, the address it goes to. The rest is about *where* it
 
 Screen reader users often jump through a page link by link, hearing only the link text. Imagine hearing "click here, click here, read more". Instead of "Read more", write "Read more about cleaning schedules". Instead of "Click here", link the words that describe the destination.
 
-<!-- FIGURE 4: Link text heard out of context. -->
+![Two mock screen reader link lists. Left, vague: click here, read more, read more, here, download. Right, descriptive: Pricing plans, Read more about cleaning schedules, Vue docs (opens in new tab), Skip to content, Report (PDF, 2 MB).](/images/blog_images/buttons-vs-links/04-link-text-out-of-context.png)
 *Figure 4. Link text heard out of context, the way screen reader users often browse a page.*
 
 ### Going deeper: links in real apps
@@ -183,7 +183,7 @@ The good news: if you use real `<button>` and `<a href>` elements, most of this 
 
 Try it now on any page you've built: put the mouse away and press Tab.
 
-<!-- FIGURE 5 (animated): The Tab test. -->
+![Animated demo: pressing Tab moves a blue focus ring from the About us link to the Save button, then jumps straight to Export, skipping a Delete control built from a div, which gets outlined in red dashes.](/images/blog_images/buttons-vs-links/05-tab-test.gif)
 *Figure 5 (animated). The Tab test in action. Focus jumps from Save to Export because the Delete `<div>` isn't in the tab order.*
 
 ### Going deeper: the specs behind the checklist
@@ -227,7 +227,7 @@ Try it now on any page you've built: put the mouse away and press Tab.
 <button type="button" @click="openMenu">Options</button>
 ```
 
-<!-- FIGURE 6 (animated): Mistake 2, live. -->
+![Animated demo: with focus on a fake link Options (a href='#'), pressing Space scrolls the page and no menu opens. With focus on a real button Options, pressing Space opens a menu with Rename, Duplicate and Archive and the page stays put.](/images/blog_images/buttons-vs-links/06-space-fake-link.gif)
 *Figure 6 (animated). Mistake 2, live. Space scrolls the page on a fake link but opens the menu on a real button.*
 
 **Mistake 3: a button that's really a link.** It goes to a new page, but you can't open it in a new tab, copy it, or rely on the Back button.
@@ -253,7 +253,7 @@ Try it now on any page you've built: put the mouse away and press Tab.
 - **Whole-card click targets.** Don't wrap the entire card in `<a>`: the link name becomes the whole card's text, and nested buttons become invalid. Put the link on the heading and stretch its hit area with a `::after` pseudo-element positioned over the card.
 - **Logout and other state changes.** Logging out changes server state, so a form POST behind a button is more correct than a GET link. Prefetchers and crawlers can follow links without a human clicking.
 
-<!-- FIGURE 7: Whole-card click target, two ways. -->
+![Comparison of two article cards. Left: the whole card wrapped in one link with a nested Save button, announced as the entire card text followed by 'link', and invalid HTML. Right: the link is only on the heading, with an ::after pseudo-element stretched over the card so the whole card is clickable, announced as 'Weekly cleaning schedules, link'; the Save button sits above the overlay.](/images/blog_images/buttons-vs-links/07-whole-card-click.png)
 *Figure 7. The whole-card click target, done two ways.*
 
 ## Beyond accessibility
@@ -273,7 +273,7 @@ Choosing correctly also affects search engines, security and speed. In short: re
 
 If your team has a shared `<BaseButton>` component, it should be able to render as either a button or a link, with the same look. Then nobody is tempted to use the wrong element just to get the right style.
 
-<!-- FIGURE 8: One component, three elements. -->
+![Diagram of BaseButton rendering. With a to prop it renders NuxtLink, which outputs a href=/reports. With an href prop it renders a plain a href. With only a click handler it renders button type=button. All three look identical on screen.](/images/blog_images/buttons-vs-links/08-basebutton-polymorphic.png)
 *Figure 8. One component, three possible elements, identical styling.*
 
 ### Going deeper: a polymorphic button in Vue/Nuxt
@@ -330,7 +330,7 @@ Rules that keep it honest:
 - Is it only an icon? → Give it a name a screen reader can say.
 - Does it need to look like the other one? → Change the CSS, never the element.
 
-<!-- FIGURE 9: Checklist cheat sheet image. -->
+![Shareable checklist card titled Link or button. Use a link when it takes you to a new page, section or file; someone might open it in a new tab; it could be bookmarked or shared; Back should undo it; search engines should follow it. Use a button when it sends, saves or deletes; changes server data; opens, closes or toggles something here; it only has an icon; it lives in a form. Footer: change the CSS, never the element.](/images/blog_images/buttons-vs-links/09-checklist.png)
 *Figure 9. The checklist as a single image, sized for social sharing or a printable cheat sheet.*
 
 ## Further reading (pick your rabbit hole)
