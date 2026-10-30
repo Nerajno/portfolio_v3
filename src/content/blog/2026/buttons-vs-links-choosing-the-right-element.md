@@ -33,6 +33,8 @@ keywords:
 
 ## Start here
 
+![Man at a desk leans over his closed laptop and says 'Alright.' (PBS)](https://media.giphy.com/media/Yy6GhtIk8l76u8nlIF/giphy.gif)
+
 The short answer: **a link takes you somewhere. A button does something.**
 
 Think of a building. A link is a door: you walk through it and end up in a different room (a different page or place). A button is a light switch: you stay in the same room, but something in it changes (a menu opens, a form is sent, an item is deleted).
