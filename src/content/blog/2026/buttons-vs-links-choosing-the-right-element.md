@@ -37,9 +37,9 @@ keywords:
 
 The short answer: **a link takes you somewhere. A button does something.**
 
-Think of a building. A link is a door: you walk through it and end up in a different room (a different page or place). A button is a light switch: you stay in the same room, but something in it changes (a menu opens, a form is sent, an item is deleted).
+So essentially, it depends on what you want to achieve. Think of a building. A link is a door: you walk through it and end up in a different room (a different page or place). A button is a light switch: you stay in the same room, but something in it changes (a menu opens, a form is sent, an item is deleted).
 
-They can look identical on screen. Underneath, the browser, the keyboard and tools for disabled users treat them very differently. Choosing the wrong one usually doesn't break anything you can see, which is why it's such a common mistake.
+They can look identical on screen. Underneath, the browser, the keyboard and tools for disabled users treat them very differently. Choosing the wrong one usually doesn't break anything you can see, which is why it is such a common mistake made.
 
 ![Side-by-side illustration: a link is a door (takes you somewhere new, announced as 'About us, link'), a button is a light switch (changes something here, announced as 'Save, button'). Below, two identical-looking dark buttons labelled About us and Save, one a link and one a button.](/images/blog_images/buttons-vs-links/01-door-vs-switch.png)
 *Figure 1. Door vs. light switch. Two elements can look identical while the browser and assistive tech treat them completely differently.*
@@ -48,6 +48,19 @@ They can look identical on screen. Underneath, the browser, the keyboard and too
 
 - **New to this?** Read the main part of each section. It uses plain language and small examples. You can skip anything labelled *Going deeper*.
 - **Already shipping UI?** Each section ends with a *Going deeper* part: the edge cases, specs and trade-offs worth knowing as an intermediate developer. The last two topic sections, on concerns beyond accessibility and on component libraries, are mostly for you.
+
+<details>
+<summary><em>Going deeper</em> sections (7)</summary>
+
+- [Why the browser treats them differently](#going-deeper-why-the-browser-treats-them-differently)
+- [Types, states and disabling](#going-deeper-types-states-and-disabling)
+- [Links in real apps](#going-deeper-links-in-real-apps)
+- [The specs behind the checklist](#going-deeper-the-specs-behind-the-checklist)
+- [The gray areas](#going-deeper-the-gray-areas)
+- [The other costs of getting it wrong](#going-deeper-the-other-costs-of-getting-it-wrong)
+- [A polymorphic button in Vue/Nuxt](#going-deeper-a-polymorphic-button-in-vuenuxt)
+
+</details>
 
 ## Words you'll see
 
