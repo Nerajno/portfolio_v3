@@ -46,7 +46,7 @@ They can look identical on screen. Underneath, the browser, the keyboard and too
 
 ## How to read this guide
 
-- **New to this?** Read the main part of each section. It uses plain language and small examples. You can skip anything labelled *Going deeper*.
+- **New to this concept?** Read the main part of each section. It uses plain language and small examples. You can skip anything labelled *Going deeper*.
 - **Already shipping UI?** Each section ends with a *Going deeper* part: the edge cases, specs and trade-offs worth knowing as an intermediate developer. The last two topic sections, on concerns beyond accessibility and on component libraries, are mostly for you.
 
 <details>
@@ -77,7 +77,7 @@ They can look identical on screen. Underneath, the browser, the keyboard and too
 
 ## The core rule
 
-Ask yourself one question: **after I click this, am I somewhere new, or did something happen right here?**
+Ask yourself one question: **after I click this, did I go somewhere (navigation), or did something happen ( action)?**
 
 - **Somewhere new** (another page, another part of this page, a file) → use a link: `<a href="/about">About us</a>`
 - **Something happened here** (form sent, menu opened, item saved) → use a button: `<button type="button">Save</button>`
@@ -102,7 +102,7 @@ You don't write any code for these. The browser gives them to you, as long as yo
 ### Going deeper: why the browser treats them differently
 
 - **Implicit ARIA roles.** `<a href>` maps to `role="link"` and `<button>` to `role="button"` in the accessibility tree. Remove the `href` and an `<a>` has no role (it's "generic") and drops out of the tab order.
-- **Activation behavior.** The HTML spec gives each element its own activation behavior. Links navigate. Buttons run their form-owner behavior (submit/reset) or nothing. That's why Space activates buttons but scrolls the page on a link.
+- **Activation behavior.** The HTML spec gives each element its own activation behavior. Links navigate while buttons run their form-owner behavior (submit/reset/etc). That's why Space activates buttons but scrolls the page on a link.
 - **Navigation is a browser feature, not your code.** A real link participates in history, `:visited`, prefetch, link-hover status text, modifier-key clicks and "open in new tab". A click handler that calls `location.href = …` or `router.push()` reimplements one sliver of that.
 - **The mental model screen reader users rely on.** Users pick their keyboard command based on the announced role. Mismatches cost them time even when the action still technically works.
 
@@ -124,11 +124,11 @@ All buttons "do something", but they do different kinds of things. Here are the 
 ![Grid of eight real button examples: Action (Copy), Submit (Place order), Toggle (Mute, aria-pressed true), Show/hide (Show more, aria-expanded false), Menu (three dots, aria-haspopup menu), Dialog (Edit profile), Icon-only (close X with aria-label Close), Destructive (Delete invoice). Each shows the key attribute and what a screen reader announces.](/images/blog_images/buttons-vs-links/03-button-types.png)
 *Figure 3. Every one of these is a `<button>`. The attributes change what a screen reader announces.*
 
-### Three habits that prevent most button bugs
+### Common habits that prevent most button bugs
 
 - **Always write the type.** A button inside a form submits the form by default. Write `type="button"` unless you really mean `type="submit"`.
 - **Give icon-only buttons a name.** A screen reader can't describe a picture of an ×. Add hidden text or `aria-label="Close"`.
-- **Say what will happen.** "Delete invoice" beats "OK". Don't rely on a red color to signal danger.
+- **Say what will happen.** "Delete invoice" beats "OK". Don't rely on a branding colors to signal button purpose.
 
 ### Looks are not types
 
@@ -140,7 +140,7 @@ All buttons "do something", but they do different kinds of things. Here are the 
 - **State lives in ARIA.**
   - *Toggle:* `aria-pressed="true|false"`, with a constant label ("Mute", not "Mute"/"Unmute"). Changing both the label and the state double-signals and confuses users.
   - *Disclosure:* `aria-expanded` plus `aria-controls` pointing at the region.
-  - *Menu button:* `aria-haspopup="menu"` + `aria-expanded`, and the menu itself must implement arrow-key navigation per the ARIA Authoring Practices menu pattern.
+  - *Menu button:* `aria-haspopup="menu"` + `aria-expanded`, and the menu itself must implement arrow-key navigation per the [ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/) menu pattern.
   - *Dialog trigger:* move focus into the dialog on open, trap it there, and return it to the trigger on close. Native `<dialog>` with `showModal()` handles most of this.
 - **`disabled` vs `aria-disabled`.** Native `disabled` removes the button from the tab order and blocks events, so keyboard and screen reader users may never discover it or learn why it's off. `aria-disabled="true"` keeps it focusable and announced; you block activation in code and can explain the reason. For form submit buttons, many teams prefer leaving them enabled and showing validation errors instead.
 - **Loading states.** Keep the button's width stable, set `aria-busy="true"` or announce progress via an `aria-live` region, and guard against double submission.
