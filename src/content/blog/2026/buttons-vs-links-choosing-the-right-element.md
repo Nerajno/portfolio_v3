@@ -89,7 +89,7 @@ A quick test: would it make sense to open this in a new tab or bookmark it? If y
 
 ### What you get for free by choosing correctly
 
-| | Link | Button |
+| What is happens| Link | Button |
 | --- | --- | --- |
 | Screen reader says | "About us, link" | "Save, button" |
 | Activate with the keyboard | Enter | Enter or Space |
@@ -97,29 +97,32 @@ A quick test: would it make sense to open this in a new tab or bookmark it? If y
 | Browser Back button | Takes you back | Not involved |
 | Works if JavaScript fails | Yes | Only inside a form |
 
-You don't write any code for these. The browser gives them to you, as long as you use the real element.
+You don't have to write any code for these. The browser should give them to you, as long as you use the correct element.
 
-### Going deeper: why the browser treats them differently
+<details class="going-deeper">
+<summary><h3 id="going-deeper-why-the-browser-treats-them-differently">Going deeper: why the browser treats them differently</h3></summary>
 
 - **Implicit ARIA roles.** `<a href>` maps to `role="link"` and `<button>` to `role="button"` in the accessibility tree. Remove the `href` and an `<a>` has no role (it's "generic") and drops out of the tab order.
 - **Activation behavior.** The HTML spec gives each element its own activation behavior. Links navigate while buttons run their form-owner behavior (submit/reset/etc). That's why Space activates buttons but scrolls the page on a link.
 - **Navigation is a browser feature, not your code.** A real link participates in history, `:visited`, prefetch, link-hover status text, modifier-key clicks and "open in new tab". A click handler that calls `location.href = …` or `router.push()` reimplements one sliver of that.
 - **The mental model screen reader users rely on.** Users pick their keyboard command based on the announced role. Mismatches cost them time even when the action still technically works.
 
+</details>
+
 ## Types of buttons
 
-All buttons "do something", but they do different kinds of things. Here are the ones you'll meet most.
+All buttons "do something" or perform an action, but they do different kinds of things. Here are the ones you'll use the most: 
 
-| Kind | Everyday example | What it does |
-| --- | --- | --- |
-| Action | Save, Copy, Retry | Does one thing, once |
-| Submit | Sign in, Place order | Sends a form |
-| Toggle | Mute, Bold, Favorite | Switches something on or off |
-| Show/hide | "Show more", accordion headers | Reveals or hides content |
-| Menu | The ⋯ "more options" button | Opens a list of actions |
-| Dialog | "Edit profile" | Opens a pop-up window |
-| Icon-only | × close, ▶ play | Same as the others, but shows only an icon |
-| Destructive | Delete, Remove | Does something that's hard to undo |
+|      Type       | Everyday example               | What it does                               |
+| ----------- | ------------------------------ | ------------------------------------------ |
+| Action      | Save, Copy, Retry              | Does one thing, once.                     |
+| Submit      | Sign in, Place order           | Sends a form.                               |
+| Toggle      | Mute, Bold, Favorite           | Switches something on or off.              |
+| Show/hide   | "Show more", accordion headers | Reveals or hides content.                   |
+| Menu        | The ⋯ "more options" button    | Opens a list of actions.                    |
+| Dialog      | "Edit profile"                 | Opens a pop-up window/modal.                      |
+| Icon-only   | × close, ▶ play                | Same as the others, but shows only an icon. |
+| Destructive | Delete, Remove                 | Does something that's hard to undo.         |
 
 ![Grid of eight real button examples: Action (Copy), Submit (Place order), Toggle (Mute, aria-pressed true), Show/hide (Show more, aria-expanded false), Menu (three dots, aria-haspopup menu), Dialog (Edit profile), Icon-only (close X with aria-label Close), Destructive (Delete invoice). Each shows the key attribute and what a screen reader announces.](/images/blog_images/buttons-vs-links/03-button-types.png)
 *Figure 3. Every one of these is a `<button>`. The attributes change what a screen reader announces.*
@@ -134,7 +137,8 @@ All buttons "do something", but they do different kinds of things. Here are the 
 
 "Primary", "secondary", "ghost" and "text" are just styles. A link can wear a primary-button style and still be a link. Choose the element by behavior, then pick the style.
 
-### Going deeper: types, states and disabling
+<details class="going-deeper">
+<summary><h3 id="going-deeper-types-states-and-disabling">Going deeper: types, states and disabling</h3></summary>
 
 - **HTML `type` values.** `submit` (the default inside a `<form>`), `button` (no default behavior) and `reset` (clears the form, and is rarely worth the risk of lost work). A button outside a form can still submit one via the `form="form-id"` attribute.
 - **State lives in ARIA.**
@@ -145,6 +149,8 @@ All buttons "do something", but they do different kinds of things. Here are the 
 - **`disabled` vs `aria-disabled`.** Native `disabled` removes the button from the tab order and blocks events, so keyboard and screen reader users may never discover it or learn why it's off. `aria-disabled="true"` keeps it focusable and announced; you block activation in code and can explain the reason. For form submit buttons, many teams prefer leaving them enabled and showing validation errors instead.
 - **Loading states.** Keep the button's width stable, set `aria-busy="true"` or announce progress via an `aria-live` region, and guard against double submission.
 - **Split buttons** are two buttons (the action and the menu trigger), each needing its own accessible name.
+
+</details>
 
 ## Types of links
 
@@ -162,12 +168,13 @@ Every link needs an `href`, the address it goes to. The rest is about *where* it
 
 ### Write link text that makes sense on its own
 
-Screen reader users often jump through a page link by link, hearing only the link text. Imagine hearing "click here, click here, read more". Instead of "Read more", write "Read more about cleaning schedules". Instead of "Click here", link the words that describe the destination.
+Screen reader users often jump through a page link by link, hearing only the link text. Imagine hearing "click here, click here, read more". So writing descriptive link text like "Read more about cleaning schedules" instead of "Read more" or "Click here", link the words that describe the destination.
 
 ![Two mock screen reader link lists. Left, vague: click here, read more, read more, here, download. Right, descriptive: Pricing plans, Read more about cleaning schedules, Vue docs (opens in new tab), Skip to content, Report (PDF, 2 MB).](/images/blog_images/buttons-vs-links/04-link-text-out-of-context.png)
 *Figure 4. Link text heard out of context, the way screen reader users often browse a page.*
 
-### Going deeper: links in real apps
+<details class="going-deeper">
+<summary><h3 id="going-deeper-links-in-real-apps">Going deeper: links in real apps</h3></summary>
 
 - **Router links.** `<RouterLink>` and `<NuxtLink>` render a real `<a href>` and intercept the click for client-side navigation. You keep every native link behavior and get SPA speed. `NuxtLink` also decides internal vs external for you and prefetches route chunks.
 - **Current page.** Mark the active nav item with `aria-current="page"` (router links can add this automatically). Don't rely on bold or color alone.
@@ -176,9 +183,11 @@ Screen reader users often jump through a page link by link, hearing only the lin
 - **`download`** only works for same-origin URLs (or `blob:`/`data:`); cross-origin it falls back to normal navigation. The server's `Content-Disposition` header can override it.
 - **Visible label vs `aria-label`.** If you add `aria-label`, it *replaces* the visible text for screen readers. Voice-control users speak what they see, so the accessible name must contain the visible words (WCAG 2.5.3, Label in Name). Visually hidden extra text is usually safer than `aria-label` on links.
 
+</details>
+
 ## Accessibility
 
-Accessibility means people can use your site however they use a computer. For buttons and links, the people most affected are:
+Accessibility boils down to ensuring everyone can use your site however they use a computer. For buttons and links, the people most affected are:
 
 - **Keyboard users**, who press Tab, Enter and Space instead of using a mouse.
 - **Screen reader users**, who hear the page instead of seeing it.
@@ -201,7 +210,8 @@ Try it now on any page you've built: put the mouse away and press Tab.
 ![Animated demo: pressing Tab moves a blue focus ring from the About us link to the Save button, then jumps straight to Export, skipping a Delete control built from a div, which gets outlined in red dashes.](/images/blog_images/buttons-vs-links/05-tab-test.gif)
 *Figure 5 (animated). The Tab test in action. Focus jumps from Save to Export because the Delete `<div>` isn't in the tab order.*
 
-### Going deeper: the specs behind the checklist
+<details class="going-deeper">
+<summary><h3 id="going-deeper-the-specs-behind-the-checklist">Going deeper: the specs behind the checklist</h3></summary>
 
 | WCAG 2.2 criterion | Level | What it requires here |
 | --- | --- | --- |
@@ -219,6 +229,8 @@ Try it now on any page you've built: put the mouse away and press Tab.
 - **The first rule of ARIA:** don't use ARIA if a native element does the job. `role="button"` on a `<div>` changes the announcement but not the behavior: you then owe `tabindex="0"`, Enter *and* Space handling, and disabled handling. Use ARIA for *state* (`aria-pressed`, `aria-expanded`, `aria-current`), not to turn one element into another.
 - **Don't nest interactive elements.** A `<button>` inside an `<a>` (or vice versa) is invalid HTML and announces unpredictably across screen readers.
 - **Test with real tools.** Keyboard only, then VoiceOver (macOS/iOS) or NVDA (Windows), plus an automated checker like axe. Automated tools catch roughly a third of issues; the role/behavior mismatch is often one they miss.
+
+</details>
 
 ## Common mistakes (and the fix)
 
@@ -259,7 +271,8 @@ Try it now on any page you've built: put the mouse away and press Tab.
 
 **Mistake 5: a form button with no `type`.** Clicking "Cancel" submits the form, because `submit` is the default.
 
-### Going deeper: the gray areas
+<details class="going-deeper">
+<summary><h3 id="going-deeper-the-gray-areas">Going deeper: the gray areas</h3></summary>
 
 - **A "Sign up" call-to-action styled as a big button.** If it goes to `/signup`, it's a link with button styling. That's correct. Style follows design; element follows behavior.
 - **Submit, then redirect.** "Save and continue" sends data and then navigates. The user's action is the submit, so it's a button. The navigation is a consequence.
@@ -268,6 +281,8 @@ Try it now on any page you've built: put the mouse away and press Tab.
 - **Whole-card click targets.** Don't wrap the entire card in `<a>`: the link name becomes the whole card's text, and nested buttons become invalid. Put the link on the heading and stretch its hit area with a `::after` pseudo-element positioned over the card.
 - **Logout and other state changes.** Logging out changes server state, so a form POST behind a button is more correct than a GET link. Prefetchers and crawlers can follow links without a human clicking.
 
+</details>
+
 ![Comparison of two article cards. Left: the whole card wrapped in one link with a nested Save button, announced as the entire card text followed by 'link', and invalid HTML. Right: the link is only on the heading, with an ::after pseudo-element stretched over the card so the whole card is clickable, announced as 'Weekly cleaning schedules, link'; the Save button sits above the overlay.](/images/blog_images/buttons-vs-links/07-whole-card-click.png)
 *Figure 7. The whole-card click target, done two ways.*
 
@@ -275,7 +290,8 @@ Try it now on any page you've built: put the mouse away and press Tab.
 
 Choosing correctly also affects search engines, security and speed. In short: real links help Google find your pages, and buttons keep risky actions from firing by accident.
 
-### Going deeper: the other costs of getting it wrong
+<details class="going-deeper">
+<summary><h3 id="going-deeper-the-other-costs-of-getting-it-wrong">Going deeper: the other costs of getting it wrong</h3></summary>
 
 - **SEO and crawlability.** Crawlers follow `<a href>`. They don't click buttons or run click handlers, so navigation hidden behind `router.push()` on a button is invisible to search engines and link-preview bots.
 - **Browser features users expect.** Links get middle-click, Cmd/Ctrl-click, drag-to-bookmark, copy link address, hover URL preview, `:visited` and Back. Fake links lose all of it, and users feel it even if they can't name it.
@@ -284,6 +300,8 @@ Choosing correctly also affects search engines, security and speed. In short: re
 - **Analytics.** Name events by intent (`signup_started`), not by element (`button_click`), so swapping a button for a link doesn't break dashboards.
 - **Testing.** Query by role in tests (`getByRole('link', { name: 'Reports' })` in Testing Library, Playwright or Vitest browser mode). If the test can't find it by role, neither can a screen reader. This turns semantics into something CI enforces.
 
+</details>
+
 ## Building it into a component library
 
 If your team has a shared `<BaseButton>` component, it should be able to render as either a button or a link, with the same look. Then nobody is tempted to use the wrong element just to get the right style.
@@ -291,7 +309,8 @@ If your team has a shared `<BaseButton>` component, it should be able to render 
 ![Diagram of BaseButton rendering. With a to prop it renders NuxtLink, which outputs a href=/reports. With an href prop it renders a plain a href. With only a click handler it renders button type=button. All three look identical on screen.](/images/blog_images/buttons-vs-links/08-basebutton-polymorphic.png)
 *Figure 8. One component, three possible elements, identical styling.*
 
-### Going deeper: a polymorphic button in Vue/Nuxt
+<details class="going-deeper">
+<summary><h3 id="going-deeper-a-polymorphic-button-in-vuenuxt">Going deeper: a polymorphic button in Vue/Nuxt</h3></summary>
 
 The component picks the element from its props: `to` means a router link, `href` means a plain link, and neither means a button.
 
@@ -334,6 +353,8 @@ Rules that keep it honest:
 - **One set of styles for both elements**, including `:focus-visible`, `:hover` and a reset for the link underline, so styling never drives element choice.
 - **Document the decision rule** in the component's docs page, with the "new tab" test, so consumers pick `to`/`href` vs `@click` correctly.
 - **Lint for it.** `eslint-plugin-vuejs-accessibility` flags clickable non-interactive elements and missing labels. Add role-based component tests (see the testing note above).
+
+</details>
 
 ## Quick checklist
 
