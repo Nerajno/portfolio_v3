@@ -150,3 +150,11 @@ textarea,
 select {
   font-size: 1rem;
 }
+
+/* Collapsible "Going deeper" sections in blog posts */
+details.going-deeper > summary {
+  cursor: pointer;
+}
+details.going-deeper > summary > h3 {
+  display: inline;
+}

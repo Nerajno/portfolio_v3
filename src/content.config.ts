@@ -1,8 +1,22 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { slug as githubSlug } from 'github-slugger';
 
 const blogCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+  loader: glob({
+    pattern: '**/*.{md,mdx}',
+    base: './src/content/blog',
+    // Posts live in year folders (e.g. 2026/), but URLs stay /blog/<slug>.
+    // Mirrors Astro's default id (github-slugger per segment) minus the year.
+    generateId: ({ entry, data }) =>
+      (data.slug as string | undefined) ??
+      entry
+        .replace(/\.(md|mdx)$/, '')
+        .split('/')
+        .filter((segment) => !/^\d{4}$/.test(segment))
+        .map((segment) => githubSlug(segment))
+        .join('/'),
+  }),
   schema: z.object({
     draft: z.boolean(),
     title: z.string(),
