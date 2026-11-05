@@ -1,0 +1,34 @@
+# Nerando Johnson - Developing Developer
+
+> Atlanta-based software developer and tech community builder specializing in Vue3, JavaScript, and TypeScript front-end development. Available for consulting, mentoring, and collaboration.
+
+## Key Pages
+
+- [Home](https://developingdvlpr.com): Portfolio overview, skills, and introduction to Nerando Johnson
+- [About](https://developingdvlpr.com/about): Background, professional journey, and expertise
+- [Portfolio](https://developingdvlpr.com/portfolio): Featured projects and case studies
+- [Blog](https://developingdvlpr.com/blog): Technical articles, tutorials, and insights on Vue3, JavaScript, and front-end development
+- [Speaking](https://developingdvlpr.com/speaking): Conference talks including Vue Conf 2024 and ConnectTech 2023
+- [Digital Garden](https://developingdvlpr.com/digital_garden): Growing ideas and curated knowledge on software development
+- [Contact](https://developingdvlpr.com/contact): Get in touch for consulting, mentoring, or collaboration
+
+## About Nerando Johnson
+
+Nerando Johnson (also known as @nerajno) is a software developer based in Atlanta, Georgia, USA. He specializes in front-end development with Vue3, TypeScript, Nuxt, and JavaScript. With 5+ years of engagement in the Atlanta tech community, he has served as a speaker at conferences including Vue Conf 2024 and ConnectTech 2023, a mentor to junior developers, and a technical consultant for small and medium-sized businesses.
+
+Nerando is a hobbyist, freeCodeCamp learner, bootcamp graduate, and continuous learner who believes great software is equally about people and code. He builds thoughtful, impactful tech experiences at the intersection of code, design, creativity, problem-solving, and community.
+
+## Services
+
+- Front-end software development (Vue3, TypeScript, Nuxt, JavaScript)
+- Technical consulting for small and medium-sized businesses
+- Developer mentorship and coaching
+- Technical speaking and knowledge sharing
+
+## Contact
+
+- Email: nerando@developingdvlpr.com
+- GitHub: https://github.com/Nerajno
+- LinkedIn: https://www.linkedin.com/in/nerando-johnson/
+- Twitter/X: https://twitter.com/nerajno
+- Calendly: https://calendly.com/nerandojohnsontech/consults
