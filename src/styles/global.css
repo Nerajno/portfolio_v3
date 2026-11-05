@@ -3,15 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background-color-light: #f5f5f5;
-  --text-color-light: #333333;
+  --background-color: #f5f5f5;
+  --text-color: #333333;
   --navbar-bg-light: #e0e0e0;
   --navbar-shadow-light: rgba(0, 0, 0, 0.1);
   --card-bg-light: #ffffff;
   --link-color-light: #2563eb;
 }
 
-[data-theme="dark"] {
+[data-theme="dark"],
+html.dark {
   --background-color: #121212;
   --text-color: #E0E0E0;
   --navbar-bg: #2d2d2d;
@@ -72,8 +73,8 @@ html.light {
 
 /* Shiki dual-theme support: light tokens are inlined by default;
    dark tokens are stored in CSS variables and activated here. */
-html.dark .shiki,
-html.dark .shiki span {
+html.dark .astro-code,
+html.dark .astro-code span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
   font-style: var(--shiki-dark-font-style) !important;
@@ -148,4 +149,12 @@ input,
 textarea,
 select {
   font-size: 1rem;
+}
+
+/* Collapsible "Going deeper" sections in blog posts */
+details.going-deeper > summary {
+  cursor: pointer;
+}
+details.going-deeper > summary > h3 {
+  display: inline;
 }

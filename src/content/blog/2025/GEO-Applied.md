@@ -70,6 +70,12 @@ aiOptimization: {
 
 *This article provides a practical guide and documents my exploration to implementing Generative Engine Optimization (GEO) in my projects, thus by extension, your work. It's part two of a series that explores modern search optimization techniques for developers, here is [part one](https://developingdvlpr.com/blog/geo-explained). This is written in a technical style for developers, I publish this first on my [blog](https://developingdvlpr.com/blog) before sharing to dev.to and LinkedIn.*
 
+## Series
+
+- [GEO: Generative Engine Optimization - Explained](https://developingdvlpr.com/blog/geo-explained)
+- GEO: Generative Engine Optimization - Applied *(this post)*
+- [GEO's Cousins: Making Sense of SEO, AEO, GEO, and LLMO](https://developingdvlpr.com/blog/geo-cousins)
+
 
 ## Introduction
 ![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNG83dmV1NGV6dTE4dm1vbXZjMnA3NDhpMG9hZzk0bGRkOGl0YTF0MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kMM3vtBEgSsLu/giphy.gif)

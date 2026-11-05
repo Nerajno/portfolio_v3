@@ -2,7 +2,15 @@ import sgMail from '@sendgrid/mail';
 import type { APIRoute } from 'astro';
 
 export const POST: APIRoute = async ({ request }) => {
-  const body = await request.json();
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid JSON body' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
   const { name, email, message } = body;
 
   // Input validation
@@ -25,8 +33,8 @@ export const POST: APIRoute = async ({ request }) => {
 // const apiKey = process.env.SENDGRID_API_KEY || "";
 const apiKey = import.meta.env.SENDGRID_API_KEY;
 
-  if (!apiKey.startsWith("SG.")) {
-    console.error("Invalid SendGrid API key format", process.env);
+  if (!apiKey || !apiKey.startsWith("SG.")) {
+    console.error("SendGrid API key is missing or has an invalid format");
     return new Response(JSON.stringify({ error: 'Invalid API key configuration' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },

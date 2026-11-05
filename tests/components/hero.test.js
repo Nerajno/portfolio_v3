@@ -17,7 +17,7 @@ describe('Hero Component', () => {
 
     expect(result).toMatch(/<h1[^>]*>[\s\S]*Hi, I am Nerando[\s\S]*<\/h1>/)
     expect(result).toContain('<h2')
-    expect(result).toContain('Software Developer & Frontend Specialist')
+    expect(result).toContain('Software Engineer & Frontend Specialist')
   })
 
   it('should have screen reader only subtitle', async () => {
@@ -25,14 +25,14 @@ describe('Hero Component', () => {
     const result = await container.renderToString(Hero)
 
     expect(result).toContain('sr-only')
-    expect(result).toContain('Software Developer & Frontend Specialist')
+    expect(result).toContain('Software Engineer & Frontend Specialist')
   })
 
   it('should render description paragraph', async () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(Hero)
 
-    expect(result).toContain('software developer')
+    expect(result).toContain('software engineer')
     expect(result).toContain('Vue and JavaScript')
     expect(result).toContain('MERN stack')
   })
@@ -41,7 +41,7 @@ describe('Hero Component', () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(Hero)
 
-    expect(result).toContain('software developer')
+    expect(result).toContain('software engineer')
   })
 
   it('should mention technical skills', async () => {

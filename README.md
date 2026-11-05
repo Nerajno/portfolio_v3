@@ -160,7 +160,7 @@ This portfolio website is built to showcase my work as a front-end developer spe
    ```
 
 4. **Set up Supabase (Optional - for blog view tracking)**
-   See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for detailed instructions.
+   See [SUPABASE_SETUP.md](./docs/SUPABASE_SETUP.md) for detailed instructions.
 
 ### Development
 
@@ -244,7 +244,7 @@ Each page includes comprehensive SEO setup with:
 Example from `about.astro`:
 ```javascript
 const seoConfig = {
-  title: 'About Nerando Johnson - Software Developer',
+  title: 'About Nerando Johnson - Software Engineer',
   description: '...',
   canonical: 'https://developingdvlpr.com/about',
   // ... more configuration
@@ -275,7 +275,7 @@ This project is optimized for Netlify deployment:
 3. **Add environment variables** in Netlify dashboard
 4. **Deploy!**
 
-See [DEPLOY.md](./DEPLOY.md) for detailed deployment instructions.
+See [DEPLOY.md](./docs/DEPLOY.md) for detailed deployment instructions.
 
 ### Environment Variables in Production
 
@@ -300,7 +300,7 @@ Configure in `.env` based on your preference.
 Blog posts include view counting powered by Supabase. Views are tracked automatically when visitors read posts.
 
 To enable:
-1. Set up Supabase (see [SUPABASE_SETUP.md](./SUPABASE_SETUP.md))
+1. Set up Supabase (see [SUPABASE_SETUP.md](./docs/SUPABASE_SETUP.md))
 2. Configure environment variables
 3. Run the schema SQL scripts
 
@@ -375,8 +375,8 @@ npm run test:coverage
 ## 📚 Documentation
 
 Additional documentation files:
-- [DEPLOY.md](./DEPLOY.md) - Deployment guide
-- [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) - Supabase configuration
+- [DEPLOY.md](./docs/DEPLOY.md) - Deployment guide
+- [SUPABASE_SETUP.md](./docs/SUPABASE_SETUP.md) - Supabase configuration
 
 
 ## 🤝 Contributing
