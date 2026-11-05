@@ -70,6 +70,12 @@ aiOptimization: {
 
 *This article documents my exploration of Generative Engine Optimization (GEO)—from understanding its differences with SEO to implementing structured data for AI discoverability. Written in a technical style for developers, I publish this first on my [blog](https://developingdvlpr.com/blog) before sharing to dev.to and LinkedIn.*
 
+## Series
+
+- GEO: Generative Engine Optimization - Explained *(this post)*
+- [GEO: Generative Engine Optimization - Applied](https://developingdvlpr.com/blog/geo-applied)
+- [GEO's Cousins: Making Sense of SEO, AEO, GEO, and LLMO](https://developingdvlpr.com/blog/geo-cousins)
+
 
 
 ![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHdocGZubjBhaG1vaGxobTB6c3Jyejg3aXd2djRjcHVwYzF1aThyOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3PAL5bChWnak0WJ32x/giphy.gif)

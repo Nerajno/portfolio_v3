@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { Picture } from 'astro:assets';
 import { SEO } from 'astro-seo';
 import Layout from '@layouts/Layout.astro';
@@ -44,7 +44,7 @@ const { seriesName, posts } = Astro.props;
 // Get reading time for each post
 const postsWithReadingTime = await Promise.all(
   posts.map(async (post: any) => {
-    const { remarkPluginFrontmatter } = await post.render();
+    const { remarkPluginFrontmatter } = await render(post);
     return {
       ...post,
       minutesRead: remarkPluginFrontmatter?.minutesRead || '1 min read',
@@ -180,7 +180,7 @@ const seoConfig = {
             const isCompleted = index < postsWithReadingTime.length - 1; // All but last are "completed"
             return (
               <a
-                href={`/blog/${post.slug}`}
+                href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}`}
                 class='block group hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl p-6 border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all'>
                 <div class='flex gap-6'>
                   {/* Number badge */}

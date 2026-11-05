@@ -1,7 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
-import { SEO } from 'astro-seo-plugin';
+import { SEO } from 'astro-seo';
 import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
 import type { CollectionEntry } from 'astro:content';
@@ -17,6 +17,7 @@ import {
   WhatsAppShareButton,
   BlueskyShareButton
 } from 'astro-social-share';
+import { buildArticleSchema, buildSpeakableSchema, buildFAQSchema, sanitizeSchema } from '@lib/schema';
 
 
 export const prerender = true;
@@ -29,22 +30,25 @@ interface Props {
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
+  const blogEntries = await getCollection('blog', ({ data }) => {
+    return !data.draft && data.publishDate < new Date();
+  });
   return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id.replace(/\.(md|mdx)$/, '') },
     props: { entry },
   }));
 }
 
 // Get the entry directly from the prop on render
 const { entry } = Astro.props;
+const entrySlug = entry.id.replace(/\.(md|mdx)$/, '');
 
 // Add error handling for entry rendering
 let Content;
 let remarkPluginFrontmatter: { minutesRead?: string } | undefined;
 
 try {
-  const rendered = await entry.render();
+  const rendered = await render(entry);
   Content = rendered.Content;
   remarkPluginFrontmatter = rendered.remarkPluginFrontmatter;
 } catch (error) {
@@ -53,7 +57,7 @@ try {
 }
 
 // SEO configuration for the blog post
-const postUrl = new URL(`blog/${entry.slug}`, Astro.site).toString();
+const postUrl = new URL(`blog/${entrySlug}`, Astro.site).toString();
 const seoTitle = entry.data.seoTitle || `${entry.data.title} | My MetaData`;
 const seoDescription =
   entry.data.seoDescription || entry.data.description || entry.data.snippet;
@@ -82,7 +86,7 @@ if (entry.data.series) {
     data.series?.name === seriesName
   )).sort((a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0));
 
-  const currentIndex = allSeriesPosts.findIndex((p) => p.slug === entry.slug);
+  const currentIndex = allSeriesPosts.findIndex((p) => p.id.replace(/\.(md|mdx)$/, '') === entrySlug);
 
   if (currentIndex !== -1) {
     seriesNavProps = {
@@ -199,71 +203,27 @@ const seoConfig = {
     }}
   />
 
-  <!-- JSON-LD Structured Data for Blog Post -->
+  <!-- AEO: TechArticle schema -->
   <script
     type='application/ld+json'
-    set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: entry.data.title,
-      description: seoDescription,
-      image: {
-        '@type': 'ImageObject',
-        url: new URL(ogImage, Astro.site).toString(),
-        alt: ogImageAlt,
-        width: 1200,
-        height: 630,
-      },
-      author: {
-        '@type': 'Person',
-        name: entry.data.author,
-        url: `${Astro.site}about`,
-        jobTitle: 'Software Developer',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Atlanta',
-          addressRegion: 'GA',
-          addressCountry: 'US',
-        },
-        sameAs: [
-          'https://github.com/Nerajno',
-          'https://twitter.com/nerajno',
-          'https://www.linkedin.com/in/nerando-johnson/',
-        ],
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'My MetaData',
-        url: Astro.site?.toString(),
-        logo: {
-          '@type': 'ImageObject',
-          url: `${Astro.site}logo.png`, // Add your logo
-          width: 400,
-          height: 400,
-        },
-      },
-      datePublished: entry.data.publishDate.toISOString(),
-      dateModified:
-        entry.data.updatedDate?.toISOString() ||
-        entry.data.publishDate.toISOString(),
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': postUrl,
-      },
+    set:html={sanitizeSchema(buildArticleSchema({
+      title: entry.data.title,
+      description: seoDescription ?? '',
       url: postUrl,
-      keywords: keywords?.join(', ') || (entry.data.tags ?? []).join(', '),
-      articleSection: entry.data.category,
-      wordCount: remarkPluginFrontmatter?.words || undefined,
-      timeRequired: remarkPluginFrontmatter?.minutesRead || undefined,
-      inLanguage: 'en-US',
-      copyrightYear: entry.data.publishDate.getFullYear(),
-      copyrightHolder: {
-        '@type': 'Person',
-        name: entry.data.author,
-        sameAs: `${Astro.site}about`, // Add your about page URL for the author
-      },
-    })}
+      image: new URL(ogImage, Astro.site).toString(),
+      publishDate: entry.data.publishDate,
+      updatedDate: entry.data.updatedDate,
+      keywords: keywords,
+    }))}
   />
+
+  <!-- AEO: SpeakableSpecification -->
+  <script type='application/ld+json' set:html={sanitizeSchema(buildSpeakableSchema(postUrl))} />
+
+  <!-- AEO: FAQPage (if frontmatter faqs present) -->
+  {entry.data.faqs && entry.data.faqs.length > 0 && (
+    <script type='application/ld+json' set:html={sanitizeSchema(buildFAQSchema(entry.data.faqs))} />
+  )}
 
   <Container>
     <div class='mx-auto max-w-4xl mt-14'>
@@ -330,7 +290,7 @@ const seoConfig = {
         )
       }
         <span class="text-slate-500 dark:text-slate-400">
-          <ViewCounter slug={entry.slug} increment={true} />
+          <ViewCounter slug={entrySlug} increment={true} />
         </span>
     </div>
 
@@ -341,7 +301,7 @@ const seoConfig = {
       class='mx-auto prose prose-lg mt-6 max-w-4xl text-slate-500 dark:text-slate-400 prose-headings:text-slate-500 prose-headings:dark:text-slate-400 prose-p:text-slate-500 prose-p:dark:text-slate-400 prose-strong:text-slate-500 prose-strong:dark:text-slate-400 prose-em:text-slate-500 prose-em:dark:text-slate-400 prose-a:text-blue-600 prose-a:dark:text-blue-400 prose-code:text-slate-500 prose-code:dark:text-slate-400 prose-img:mx-auto'>
       {Content && <Content />}
       <!-- For embedding tweets -->
-      {entry.data.tweetIds?.map((id) => <Tweet id={id} />)}
+      {entry.data.tweetIds?.map((id) => <Tweet id={`https://twitter.com/i/web/status/${id}`} />)}
     </div>
 
     <!-- Series Navigation at bottom (if part of a series) -->
@@ -368,6 +328,7 @@ const seoConfig = {
           />
         </div>
       </div>
+    </div>
     </div>
   </Container>
 </Layout>

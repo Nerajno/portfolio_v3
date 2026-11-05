@@ -4,7 +4,7 @@ import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-import { AstroSEO } from 'astro-seo-plugin';
+import { SEO as AstroSEO } from 'astro-seo';
 import Ava from '@assets/images/gardening.png';
 
 // Enhanced SEO Configuration with GEO best practices
@@ -79,7 +79,7 @@ const structuredData = {
     '@type': 'Person',
     '@id': 'https://developingdvlpr.com/#nerando-johnson',
     name: 'Nerando Johnson',
-    jobTitle: 'Software Developer',
+    jobTitle: 'Software Engineer',
     url: 'https://developingdvlpr.com',
     sameAs: [
       'https://www.linkedin.com/in/nerando-johnson/',
@@ -106,6 +106,7 @@ const structuredData = {
     'JavaScript',
     'front-end development',
     'note-taking',
+    'Atlanta software engineer',
     'Atlanta software developer',
     'Nerando Johnson'
   ],

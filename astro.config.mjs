@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
@@ -9,8 +8,6 @@ import icon from "astro-icon";
 import partytown from "@astrojs/partytown";
 import clarityIntegration from "astro-microsoft-clarity-integration";
 import react from "@astrojs/react";
-import { rehypeShiki } from "./src/lib/shiki-rehype.mjs";
-import remarkAttr from "remark-attr";
 
 export default defineConfig({
   site: "https://developingdvlpr.com",
@@ -18,11 +15,8 @@ export default defineConfig({
   adapter: netlify(),
   integrations: [
     react(),
-    tailwind(),
     mdx({
-      syntaxHighlight: false,
-      remarkPlugins: [remarkAttr],
-      rehypePlugins: [rehypeShiki],
+      remarkPlugins: [],
     }),
     sitemap(),
     icon({
@@ -35,17 +29,38 @@ export default defineConfig({
     partytown({
       config: {
         forward: ["dataLayer.push"],
-        proxyUrl: "/api/partytown-proxy",
+        // Serialized to the client by partytownSnippet, so it must stay
+        // self-contained — no references to anything outside this function.
+        resolveUrl(url, location) {
+          const isProxied =
+            url.hostname === "www.googletagmanager.com" ||
+            url.hostname === "analytics.google.com" ||
+            url.hostname === "stats.g.doubleclick.net" ||
+            url.hostname === "www.clarity.ms" ||
+            url.hostname.endsWith(".google-analytics.com");
+
+          if (isProxied) {
+            const proxyUrl = new URL("/api/partytown-proxy", location.origin);
+            proxyUrl.searchParams.set("url", url.href);
+            return proxyUrl;
+          }
+
+          return url;
+        },
       },
     }),
-    clarityIntegration({
-      projectId: import.meta.env.PUBLIC_CLARITY_ID,
-      enabled: true, // Optional: Enable the integration (defaults to true)
-      scriptStage: "head-inline", // Optional: Set scriptStage to 'head-inline', 'body-inline'
-      debug: false, // Optional: Enable debug (set to true if you want to log script injections)
-      async: true, // Optional: Enable async loading
-      defer: true, // Optional: Enable defer for script loading
-    }),
+    ...(import.meta.env.PUBLIC_CLARITY_ID
+      ? [
+          clarityIntegration({
+            projectId: import.meta.env.PUBLIC_CLARITY_ID,
+            enabled: true,
+            scriptStage: "head-inline",
+            debug: false,
+            async: true,
+            defer: true,
+          }),
+        ]
+      : []),
   ],
   image: {
     domains: ["picsum.photos"],
@@ -87,9 +102,12 @@ export default defineConfig({
     ],
   },
   markdown: {
-    remarkPlugins: [remarkReadingTime, remarkGifPassthrough, remarkAttr],
-    syntaxHighlight: false,
-    rehypePlugins: [rehypeShiki],
+    remarkPlugins: [remarkReadingTime, remarkGifPassthrough],
+    shikiConfig: {
+      themes: { light: "vitesse-light", dark: "vitesse-dark" },
+      langs: ["astro", "bash", "html", "javascript", "markdown", "text", "typescript", "vue"],
+      langAlias: { js: "javascript", ts: "typescript", md: "markdown" },
+    },
   },
   vite: {
     ssr: {

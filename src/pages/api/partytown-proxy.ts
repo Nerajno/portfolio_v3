@@ -1,41 +1,81 @@
 import type { APIRoute } from "astro";
 
-export const GET: APIRoute = async ({ request }) => {
-  const url = new URL(request.url);
-  const target = url.searchParams.get("url");
+// Keep in sync with the `resolveUrl` allowlist in astro.config.mjs.
+const isAllowedHost = (hostname: string) =>
+  hostname === "www.googletagmanager.com" ||
+  hostname === "analytics.google.com" ||
+  hostname === "stats.g.doubleclick.net" ||
+  hostname === "www.clarity.ms" ||
+  hostname.endsWith(".google-analytics.com");
+
+// Statuses like 204 (GA hits) must have a null body or the Response constructor throws.
+const NULL_BODY_STATUSES = new Set([101, 103, 204, 205, 304]);
+const readBody = (response: Response) =>
+  NULL_BODY_STATUSES.has(response.status) ? null : response.arrayBuffer();
+
+const resolveTarget = (request: Request) => {
+  const target = new URL(request.url).searchParams.get("url");
 
   if (!target) {
-    return new Response("Missing url parameter", { status: 400 });
+    return { error: new Response("Missing url parameter", { status: 400 }) };
   }
 
   let targetUrl: URL;
   try {
     targetUrl = new URL(target);
   } catch {
-    return new Response("Invalid url parameter", { status: 400 });
+    return { error: new Response("Invalid url parameter", { status: 400 }) };
   }
 
-  const allowedHosts = [
-    "www.googletagmanager.com",
-    "www.google-analytics.com",
-    "www.clarity.ms",
-  ];
-
-  if (!allowedHosts.includes(targetUrl.hostname)) {
-    return new Response("Host not allowed", { status: 403 });
+  if (!isAllowedHost(targetUrl.hostname)) {
+    return { error: new Response("Host not allowed", { status: 403 }) };
   }
+
+  return { targetUrl };
+};
+
+export const GET: APIRoute = async ({ request }) => {
+  const { targetUrl, error } = resolveTarget(request);
+  if (error) return error;
 
   const response = await fetch(targetUrl.toString(), {
     headers: { "User-Agent": request.headers.get("User-Agent") ?? "" },
   });
 
-  const body = await response.arrayBuffer();
+  const body = await readBody(response);
 
   return new Response(body, {
     status: response.status,
     headers: {
       "Content-Type": response.headers.get("Content-Type") ?? "text/plain",
       "Cache-Control": "public, max-age=3600",
+    },
+  });
+};
+
+// GA4 sends its measurement hits as POSTs, which would otherwise fall through
+// to the 404 page and break the JSON the worker expects back.
+export const POST: APIRoute = async ({ request }) => {
+  const { targetUrl, error } = resolveTarget(request);
+  if (error) return error;
+
+  const response = await fetch(targetUrl.toString(), {
+    method: "POST",
+    headers: {
+      "User-Agent": request.headers.get("User-Agent") ?? "",
+      "Content-Type":
+        request.headers.get("Content-Type") ?? "text/plain;charset=UTF-8",
+    },
+    body: await request.arrayBuffer(),
+  });
+
+  const body = await readBody(response);
+
+  return new Response(body, {
+    status: response.status,
+    headers: {
+      "Content-Type": response.headers.get("Content-Type") ?? "text/plain",
+      "Cache-Control": "no-store",
     },
   });
 };

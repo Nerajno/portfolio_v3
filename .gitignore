@@ -5,6 +5,7 @@ dist/
 .vercel
 .netlify
 
+
 # dependencies
 node_modules/
 
@@ -33,3 +34,7 @@ sendgrid.env
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+
+#AOB
+/.claude/

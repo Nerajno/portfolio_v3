@@ -35,7 +35,7 @@ Before you start, make sure you have:
 
 1. **Navigate to:** SQL Editor (left sidebar)
 2. **Click:** "New Query"
-3. **Open:** `SUPABASE_QUICK_FIX.md` in your project
+3. **Open:** `docs/SUPABASE_QUICK_FIX.md` in your project
 4. **Copy:** The entire SQL script
 5. **Paste:** Into Supabase SQL Editor
 6. **Click:** "Run" or press `Ctrl/Cmd + Enter`
@@ -48,7 +48,7 @@ Success. No rows returned
 **Alternative:** Use individual files in order:
 ```sql
 -- First run: supabase-schema.sql
--- Then run: SUPABASE_QUICK_FIX.md (for security fixes)
+-- Then run: docs/SUPABASE_QUICK_FIX.md (for security fixes)
 ```
 
 ---
@@ -539,9 +539,9 @@ DELETE FROM views WHERE slug LIKE 'test%';
    - Browser: Console (F12)
 
 2. **Review documentation:**
-   - `SUPABASE_SETUP.md` - Initial setup
-   - `SUPABASE_SECURITY_FIX.md` - Security warnings
-   - `SUPABASE_QUICK_FIX.md` - Quick fixes
+   - `docs/SUPABASE_SETUP.md` - Initial setup
+   - `docs/SUPABASE_SECURITY_FIX.md` - Security warnings
+   - `docs/SUPABASE_QUICK_FIX.md` - Quick fixes
 
 3. **Common resources:**
    - [Supabase Docs](https://supabase.com/docs)
