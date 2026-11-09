@@ -210,8 +210,7 @@ const faqData = {
 
 
 <Layout title={seoConfig.title}>
-  <!-- SEO Component for Homepage -->
-  <AstroSEO
+  <AstroSEO slot='head'
     title={seoConfig.title}
     description={seoConfig.description}
     canonical={seoConfig.canonical}
@@ -219,6 +218,7 @@ const faqData = {
     twitter={seoConfig.twitter}
     extend={seoConfig.extend}
   />
+  <!-- SEO Component for Homepage -->
 
   <!-- Structured Data for GEO: Person -->
   <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />

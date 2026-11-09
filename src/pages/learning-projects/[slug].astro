@@ -29,7 +29,10 @@ if (notFound) {
 }
 ---
 
-<AstroSEO
+
+
+<Layout title={`${project.title} - Learning Project`}>
+<AstroSEO slot='head'
   title={`${project.title} | Learning Project | Nerando Johnson`}
   description={project.description || `Learning project: ${project.title} by Nerando Johnson.`}
   canonical={`https://developingdvlpr.com/learning-projects/${project.id}`}
@@ -76,7 +79,6 @@ if (notFound) {
     ],
   }}
 />
-
 <!-- Structured Data for GEO -->
 <script type='application/ld+json' set:html={JSON.stringify({
   "@context": "https://schema.org",
@@ -124,8 +126,6 @@ if (notFound) {
     name: feature,
   })) || [],
 })} />
-
-<Layout title={`${project.title} - Learning Project`}>
   <Container>
     <main class='max-w-4xl mx-auto py-8'>
       <!-- Header -->

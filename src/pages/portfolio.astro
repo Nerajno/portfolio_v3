@@ -83,7 +83,11 @@ const structuredData = buildCollectionSchema({
 });
 ---
 
-<AstroSEO
+
+<!-- AEO: CollectionPage + ItemList -->
+
+<Layout title="Projects">
+<AstroSEO slot='head'
   title={seoConfig.title}
   description={seoConfig.description}
   canonical={seoConfig.canonical}
@@ -91,11 +95,7 @@ const structuredData = buildCollectionSchema({
   twitter={seoConfig.twitter}
   extend={seoConfig.extend}
 />
-
-<!-- AEO: CollectionPage + ItemList -->
 <script type='application/ld+json' set:html={sanitizeSchema(structuredData)} />
-
-<Layout title="Projects">
   <Container>
     <Sectionhead>
       <Fragment slot="title">Projects with Case Studies</Fragment>

@@ -147,9 +147,7 @@ const seoConfig = {
 ---
 
 <Layout title={entry.data.title}>
-  <ReadingProgressBar />
-  <MarkContentAsSeen />
-  <SEO
+  <SEO slot='head'
     title={seoConfig.title}
     description={seoConfig.description}
     canonical={seoConfig.canonical}
@@ -202,6 +200,8 @@ const seoConfig = {
       ],
     }}
   />
+  <ReadingProgressBar />
+  <MarkContentAsSeen />
 
   <!-- AEO: TechArticle schema -->
   <script
