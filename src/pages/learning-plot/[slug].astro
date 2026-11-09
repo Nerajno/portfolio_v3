@@ -27,7 +27,9 @@ const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.grow
 
 {notFound && <meta http-equiv="refresh" content="0; url=/404" />}
 {!notFound && (
-  <AstroSEO
+  <Fragment>
+  <Layout title={`${project.title} - Learning Plot`}>
+  <AstroSEO slot='head'
     title={`${project.title} - Learning Plot | Nerando Johnson`}
     description={project.description || `Learning journey and insights from building ${project.title}.`}
     canonical={`https://developingdvlpr.com/learning-plot/${project.id}`}
@@ -74,7 +76,6 @@ const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.grow
       ],
     }}
   />
-
   <!-- Structured Data for GEO -->
   <script type='application/ld+json' set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -118,7 +119,6 @@ const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.grow
       description: project.description,
     },
   })} />
-  <Layout title={`${project.title} - Learning Plot`}>
     <Container>
       <main class="max-w-4xl mx-auto py-8">
         <!-- Header -->
@@ -281,4 +281,5 @@ const growthStatus = project?.growth_status ? getGrowthStatusConfig(project.grow
       </main>
     </Container>
   </Layout>
+  </Fragment>
 )}
