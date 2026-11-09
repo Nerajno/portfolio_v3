@@ -13,6 +13,10 @@ export async function getStaticPaths() {
 }
 
 const { event } = Astro.props;
+const ogImage = new URL(
+  event.image || '/other_images/Speaker_me.jpeg',
+  'https://developingdvlpr.com'
+).href;
 export const prerender = true;
 
 // Enhanced SEO with GEO optimization
@@ -24,7 +28,7 @@ const seoConfig = {
     basic: {
       title: `${event.title} - Nerando Johnson`,
       type: 'article',
-      image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+      image: ogImage,
       url: `https://developingdvlpr.com/events/${event.id}`,
     },
     optional: {
@@ -43,7 +47,7 @@ const seoConfig = {
     creator: '@nerajno',
     title: `${event.title} - Nerando Johnson`,
     description: event.description || `${event.title} at ${event.name}`,
-    image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+    image: ogImage,
   },
   extend: {
     meta: [
@@ -88,7 +92,7 @@ const structuredData = {
       'https://www.linkedin.com/in/nerando-johnson/',
     ],
   },
-  image: event.image || 'https://developingdvlpr.com/images/other_images/Speaker_me.jpeg',
+  image: ogImage,
   url: `https://developingdvlpr.com/events/${event.id}`,
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
 };

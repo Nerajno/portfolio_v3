@@ -22,6 +22,9 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+const ogImage = project?.image?.src
+  ? new URL(project.image.src, 'https://developingdvlpr.com').href
+  : 'https://developingdvlpr.com/Banner_for_site.png';
 
 // Add null checking for case_study
 if (!project || !project.case_study) {
@@ -39,7 +42,7 @@ const seoConfig = {
     basic: {
       title: `${project.title} - Case Study | Nerando Johnson`,
       type: 'article',
-      image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/Banner_for_site.png',
+      image: ogImage,
       url: `https://developingdvlpr.com/case-study/${project.id}`,
     },
     optional: {
@@ -59,7 +62,7 @@ const seoConfig = {
     creator: '@nerajno',
     title: `${project.title} - Case Study`,
     description: caseStudy.overview || `Case study: ${project.title}`,
-    image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/Banner_for_site.png',
+    image: ogImage,
   },
   extend: {
     meta: [
@@ -85,7 +88,7 @@ const structuredData = {
   '@type': 'TechArticle',
   headline: `${project.title} - Case Study`,
   description: caseStudy.overview || `Case study of ${project.title}`,
-  image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/Banner_for_site.png',
+  image: ogImage,
   author: {
     '@type': 'Person',
     name: 'Nerando Johnson',

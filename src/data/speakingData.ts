@@ -32,7 +32,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "Most developers ship clean, accessible code that's invisible to AI. Ask ChatGPT \"best way to handle state in Vue 3?\" and your content won't show up — not because it's bad, but because it's not structured for how AI engines ingest and cite content. Generative Engine Optimization (GEO) is the next layer past SEO, and most developers don't know it exists yet. Two acts, zero to implementation: GEO Explained (what it is, how it differs from SEO, why AI needs structured content) and GEO Applied (semantic HTML, JSON-LD schema, citable writing, FAQ sections built for AI queries) — plus how to measure citation frequency and \"conversational reach.\" For developers who want their work found when AI answers come before search results. No prior GEO experience needed.",
     date: "2026-10",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "JCON USA @ IBM TechXchange 2026 – Generative Engine Optimization (GEO): structuring web content so AI engines can ingest and cite it, with Nerando Johnson.",
     location: {
@@ -60,7 +60,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "In an era where AI and tech influencers often promote jumping directly into framework development, this talk emphasizes the critical importance of mastering JavaScript fundamentals before diving into frameworks like Vue.js. Drawing from real-world experience transitioning into Vue 3 development, we'll explore why solid JavaScript foundations are crucial for effective framework usage. Through practical demonstrations and real-world examples, we'll examine how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example. This session will help developers understand why 'learning to walk before running' in JavaScript is essential for long-term success in framework development.",
     date: "2026-10-13",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "TechBash 2026 – Master JavaScript fundamentals before diving into modern frameworks with Nerando Johnson's back-to-basics approach.",
     location: {
@@ -88,7 +88,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
     date: "2026-10-13",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "TechBash 2026 – Demonstrating developer competency and confidence, with Nerando Johnson.",
     location: {
@@ -116,7 +116,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "Search is no longer just about Google. AI assistants, large language models, and conversational search engines are reshaping how people discover content—and the old rules of SEO aren't enough. This talk explores AI Engine Optimization (AEO): how to structure your web content, metadata, and schema markup so that AI systems can accurately surface, cite, and recommend your work. Drawing from real-world implementation experience, we'll cover practical strategies for optimizing structured data, semantic clarity, and content authority in a world where your audience might be asking ChatGPT instead of searching Google.",
     date: "2026-09-03",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Commit Your Code 2026 – Beyond SEO: practical strategies for AI Engine Optimization in the age of LLMs and conversational search, with Nerando Johnson.",
     location: {
@@ -143,7 +143,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
     date: "2026-08",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Tech Business Community Live 2026 – Demonstrating developer competency and confidence, with Nerando Johnson.",
     location: {
@@ -173,7 +173,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "Search is no longer just about Google. AI assistants, large language models, and conversational search engines are reshaping how people discover content—and the old rules of SEO aren't enough. This talk explores AI Engine Optimization (AEO): how to structure your web content, metadata, and schema markup so that AI systems can accurately surface, cite, and recommend your work. Drawing from real-world implementation experience, we'll cover practical strategies for optimizing structured data, semantic clarity, and content authority in a world where your audience might be asking ChatGPT instead of searching Google.",
     date: "2026-05-30",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Atlanta Cloud+AI Conference 2026 – Beyond SEO: practical strategies for AI Engine Optimization in the age of LLMs and conversational search, with Nerando Johnson.",
     location: {
@@ -200,7 +200,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
     date: "2026-07-23",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Nebraska.Code() 2026 – Demonstrating developer competency and confidence, with Nerando Johnson.",
     location: {
@@ -258,7 +258,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "In the tech industry, we often focus heavily on technical abilities while undervaluing the crucial 'soft skills' that can make or break a developer's career. This talk delves into nine fundamental people skills that are essential for thriving in software engineering, presenting practical, actionable steps for improvement in each area.",
     date: "2026-04-11",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Orlando Code Camp 2026 – This is Technical Talk - Essential People Skills for Developers, with Nerando Johnson.",
     location: {
@@ -287,7 +287,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This talk reimagines professional networking through the familiar lens of database associations, making relationship-building more approachable for developers. By mapping associations to networking scenarios, we'll transform technical knowledge into effective social strategies.",
     date: "2026-03",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Devnexus 2026 – The Engineer's Guide to Socialization: reimagining professional networking through database associations, with Nerando Johnson.",
     location: {
@@ -315,7 +315,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "The how and why of creating effective lightning talks for technical audiences.",
     date: "2025-11-18",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Walk before you run: Essential tips for crafting compelling lightning talks for technical audiences at AJUG November meetup.",
     location: {
@@ -339,7 +339,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "In an era where AI and tech influencers often promote jumping directly into framework development, this talk emphasizes the critical importance of mastering JavaScript fundamentals before diving into frameworks like Vue.js. Drawing from real-world experience transitioning into Vue 3 development, we'll explore why solid JavaScript foundations are crucial for effective framework usage. Through practical demonstrations and real-world examples, we'll examine how core JavaScript concepts directly map to modern framework features, using Vue 3 as our primary example. This session will help developers understand why 'learning to walk before running' in JavaScript is essential for long-term success in framework development.",
     date: "2025-10-11",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "ATL DevCon 2025 – Master JavaScript fundamentals before diving into modern frameworks with Nerando Johnson's back-to-basics approach.",
     location: {
@@ -369,7 +369,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "Every developer has a graveyard of abandoned side projects—brilliant ideas that died in the planning phase or halfway through execution. But what if the secret to successful side projects isn't better time management or more motivation? What if it's learning to negotiate with yourself, your scope, and reality itself?",
     date: "2025-10-22",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Magnolia Conf 2025 – Learn how negotiation, scope, and reality shape successful side projects with Nerando Johnson.",
     location: {
@@ -402,7 +402,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "You've created the perfect solution, but it's useless without proper documentation. In our open-source-driven world, countless powerful tools sit unused because developers skip the documentation step. This creates a critical gap as software becomes increasingly dependent on open-source components. Learn practical tips, templates, and strategies to transform your documentation from afterthought to essential craft. Drawing from experience as both science educator and full-stack developer, discover why clear documentation isn't just helpful—it's the bridge between brilliant code and actual impact.",
     date: "2025-08-01",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Carolina Codes 2025 – The importance of documentation and ReadMes in open source, with Nerando Johnson.",
     location: {
@@ -428,7 +428,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This talk explores how participating in civic hacking can benefit your career while making a positive community impact. Through personal experiences with Marta Hackathons, AT&T C3 Hackathons, Civic Hack Nights, and Atl Thinks competitions, the speaker demonstrates how donating time and talent led to improved development and project management skills, networking opportunities, and even charitable contributions of $40,000. Attendees will learn actionable strategies for leveraging civic hacking to enhance technical abilities, develop essential soft skills, expand professional networks, and strengthen their position in the job market.",
     date: "2025-04",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "DevOpsDays Atlanta 2025 – Civic hacking for career growth and community impact, with Nerando Johnson.",
     location: {
@@ -453,7 +453,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
     date: "2025-04",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Orlando Code Camp 2025 – Demonstrating developer competency and confidence, with Nerando Johnson.",
     location: {
@@ -498,7 +498,7 @@ export const speakingData: SpeakingEvent[] = [
       "framework-development",
       "best-practices",
     ],
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "200OK Developer Conference – JavaScript fundamentals for modern frameworks, with Nerando Johnson.",
     links: {
@@ -531,7 +531,7 @@ export const speakingData: SpeakingEvent[] = [
       "relationship-building",
       "professional-growth",
     ],
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "DevNexus 2025 – Actionable steps for successful mentorship, with Nerando Johnson.",
     links: {
@@ -547,7 +547,7 @@ export const speakingData: SpeakingEvent[] = [
     description:
       "This session focuses on bridging technical competence and professional confidence by teaching developers how to effectively demonstrate and communicate their skills through building solutions, sharing knowledge, and presenting work. The practical framework includes speaking about experiences, building projects both at work and elsewhere, sharing expertise through social media, and managing impostor syndrome. By the end of the session, participants will have practical strategies to confidently discuss their work and prove their capabilities as developers.",
     date: "2024-02",
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Orlando Code Camp 2024 – Essential people skills for developers, with Nerando Johnson.",
     location: {
@@ -592,7 +592,7 @@ export const speakingData: SpeakingEvent[] = [
       "social-skills",
       "professional-development",
     ],
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Modern Web Meetup – Networking for developers using database association patterns, with Nerando Johnson.",
     links: {
@@ -622,7 +622,7 @@ export const speakingData: SpeakingEvent[] = [
       "career development",
       "networking",
     ],
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "ConnectTech 2024 – How to Conference: A user guide for introverts and professionals, with Nerando Johnson.",
     links: {
@@ -656,7 +656,7 @@ export const speakingData: SpeakingEvent[] = [
       "skill-development",
       "career-growth",
     ],
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Orlando Code Camp 2024 – Growing your skills through open source and civic hacking, with Nerando Johnson.",
     links: {
@@ -694,7 +694,7 @@ export const speakingData: SpeakingEvent[] = [
       "career development",
       "networking",
     ],
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "ConnectTech 2023 – Essential people skills for developers, teamwork, and leadership, with Nerando Johnson.",
     links: {
@@ -724,7 +724,7 @@ export const speakingData: SpeakingEvent[] = [
       "relationship-building",
       "professional-growth",
     ],
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Connect Tech 2022 – How to get the most out of mentorship, with Nerando Johnson.",
     links: {
@@ -754,7 +754,7 @@ export const speakingData: SpeakingEvent[] = [
       "networking",
       "social-impact",
     ],
-    image: "/images/other_images/Speaker_me.jpeg",
+    image: "/other_images/Speaker_me.jpeg",
     seoDescription:
       "Atlanta Developers' Conference 2022 – Civic hacking for skill and community growth, with Nerando Johnson.",
     links: {
