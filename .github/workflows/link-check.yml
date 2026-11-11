@@ -1,0 +1,59 @@
+name: Link Check
+
+on:
+  schedule:
+    - cron: '17 13 * * 1' # Mondays 13:17 UTC
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: 'Site to crawl (e.g. a Netlify deploy preview URL)'
+        required: false
+        default: 'https://developingdvlpr.com'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The site is SSR, so there's no static dist/ to scan — check the live pages listed in the sitemap.
+      - name: Collect page URLs from sitemap
+        id: urls
+        run: |
+          SITE="${{ inputs.site_url || 'https://developingdvlpr.com' }}"
+          SITE="${SITE%/}"
+          {
+            echo "$SITE/"
+            for sm in $(curl -fsSL "$SITE/sitemap-index.xml" | grep -oE '<loc>[^<]+' | sed 's/<loc>//'); do
+              curl -fsSL "$sm" | grep -oE '<loc>[^<]+' | sed 's/<loc>//'
+            done
+          } | sed "s#^https://developingdvlpr.com#$SITE#" | sort -u > urls.txt
+          echo "Found $(wc -l < urls.txt) pages"
+          echo "list=$(tr '\n' ' ' < urls.txt)" >> "$GITHUB_OUTPUT"
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: false
+          # 1) every live page (internal + external links, images)
+          # 2) source files, external links only (local file paths are covered by scripts/validate-content.mjs)
+          args: >-
+            --no-progress
+            --max-concurrency 8
+            --accept '200..=299,429'
+            --exclude '^file://'
+            ${{ steps.urls.outputs.list }}
+            './src/**/*.md' './src/**/*.mdx' './src/**/*.astro' './src/**/*.vue'
+
+      - name: Open issue with broken links
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: 'Link check: broken links or images found'
+          content-filepath: ./lychee/out.md
+          labels: broken-links

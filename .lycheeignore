@@ -1,0 +1,10 @@
+# Sites that block automated requests (false positives)
+^https?://(www\.)?linkedin\.com
+^https?://(www\.)?(twitter|x)\.com
+^https?://(www\.)?calendly\.com
+^https?://(www\.)?instagram\.com
+^https?://(www\.)?facebook\.com
+# Placeholder / local URLs
+^https?://(localhost|127\.0\.0\.1|example\.com)
+# Site API endpoints (not pages)
+/api/
