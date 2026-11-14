@@ -1,5 +1,5 @@
 ---
-draft: false
+draft: true
 title: "Buttons vs. Links: Choosing the Right Element"
 seoTitle: "Buttons vs. Links: Choosing the Right Element | Accessible HTML Guide"
 seoDescription: "A link takes you somewhere. A button does something. A beginner-friendly guide with intermediate deep dives on semantics, accessibility, WCAG 2.2, SEO, security and polymorphic Vue/Nuxt button components."
