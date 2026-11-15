@@ -28,7 +28,7 @@ Fair warning: this is my system, not a standard. The useful thing to steal is pr
 
 ## The stages
 
-![Stages diagram. How a note gets in: Seed and Transplant enter at Sprout, Graft enters at Budding. Sprout leads to Budding, then the path splits: concepts reach Bloom, projects reach Fruit. Outside the growth path sit Dormant, computed after six months untended, and Composted, retired on purpose with a reason.](/images/blog_images/learning-garden/stages.png)
+![Stages diagram. How a note gets in: Seed and Transplant enter at Sprout, Graft enters at Budding. Sprout leads to Budding, then the path splits: concepts reach Bloom, projects reach Fruit. Outside the growth path sit Dormant, computed after six months untended, and Composted, a solid tint, retired on purpose with a reason.](/images/blog_images/learning-garden/stages.png)
 
 Seeds and transplants start at Sprout; a graft can start at Budding, because the rootstock is doing the work. Then `type` decides the ending. Dormant and Composted sit outside the path entirely, which is the point — stepping away is a state, not a failure.
 
@@ -42,7 +42,7 @@ title: "Concept: Vue 3 Composables"
 type: concept        # the shelf it sits on; the track follows from it
 stage: bloom         # sprout | budding | bloom | fruit | composted
 origin: transplant   # seed | transplant | graft
-planted: 2025-02-11
+date: 2025-02-11     # planted
 tended: 2026-10-23   # dormant is computed from this, never typed
 log:
   - 2025-02-11: planted after a code review comment I didn't understand
@@ -121,6 +121,6 @@ Two things get computed rather than typed:
 
 **I don't know what happens when a concept becomes a project.** A note that blooms and then gets built into something has arguably changed track. Right now I'd write a second note and link them, but that's a guess, not a rule.
 
-The chip design — the colours, the icons, why Dormant is a dashed outline and Composted is inverted — is its own thing and it's written up in the [design decisions note](https://garden.developingdvlpr.com/note/Garden-Design-Decisions) on the garden.
+The chip design — the colours, the icons, why Dormant is a dashed outline and Composted is a quiet solid tint — is its own thing and it's written up in the [design decisions note](https://garden.developingdvlpr.com/note/Garden-Design-Decisions) on the garden.
 
 If you keep a garden, I'd like to know what you do with the notes you've stepped away from. Hide them, or let them rest in public?
