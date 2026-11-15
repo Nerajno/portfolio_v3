@@ -143,6 +143,18 @@ test.describe('Homepage', () => {
     expect(h2Count).toBeGreaterThan(0);
   });
 
+  test('should show a hiring CTA above the fold', async ({ page }) => {
+    const cta = page.locator('main a[href="/contact"]', { hasText: 'Work with me' });
+
+    // Desktop: visible without scrolling
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await expect(cta).toBeInViewport();
+
+    // Mobile: text-first hero keeps the CTA above the fold
+    await page.setViewportSize({ width: 375, height: 667 });
+    await expect(cta).toBeInViewport();
+  });
+
   test('should collapse features and technologies sections by default', async ({ page }) => {
     for (const headingId of ['features-heading', 'technologies-heading']) {
       const details = page.locator(`details:has(#${headingId})`);

@@ -10,7 +10,7 @@ import { Icon } from 'astro-icon/components';
   role='main'
   aria-labelledby='hero-heading'>
 
-  <div class='py-6 md:order-1'>
+  <div class='py-6 order-last md:order-1'>
     <Picture
       src={heroImage}
       alt='Professional headshot of Nerando, a software engineer specializing in Vue.js and JavaScript front-end development'
@@ -41,6 +41,18 @@ import { Icon } from 'astro-icon/components';
     </p>
 
     <div class='mt-6 flex flex-col sm:flex-row gap-3'>
+      <Link
+        href='/contact'
+        class='!bg-emerald-600 hover:!bg-emerald-700 !text-white flex gap-1 items-center justify-center'
+        aria-label='Contact Nerando about working together'>
+        <Icon
+          class='text-white w-5 h-5'
+          name='bx:bxs-envelope'
+          aria-hidden='true'
+        />
+        Work with me
+      </Link>
+
       <Link
         href='https://garden.developingdvlpr.com/note/crops-growing'
         target='_blank'
