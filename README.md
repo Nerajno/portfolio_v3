@@ -1,6 +1,7 @@
 # Nerando Johnson - Portfolio & Developer Website
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e2cb8d28-2711-421d-b71d-044bbb28ddda/deploy-status)](https://app.netlify.com/sites/radiant-sprinkles-d2960e/deploys)
+[![Tests](https://github.com/Nerajno/portfolio_v3/actions/workflows/playwright.yml/badge.svg)](https://github.com/Nerajno/portfolio_v3/actions/workflows/playwright.yml)
 
 A modern, SEO-optimized portfolio website built with Astro, showcasing projects, blog posts, speaking engagements, and professional experience. This site serves as both a personal brand hub and a technical demonstration of modern web development practices.
 
@@ -322,6 +323,7 @@ npm run astro check
 ## 🧪 Testing
 
 This project includes comprehensive testing coverage using Vitest and Playwright.
+See [TESTING.md](./TESTING.md) for the full guide: how to run and write tests, CI details, and known gaps.
 
 ### Test Suite
 
