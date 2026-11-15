@@ -28,7 +28,7 @@ Fair warning: this is my system, not a standard. The useful thing to steal is pr
 
 ## The stages
 
-\[TODO: stages diagram image (two tracks, two resting states). Export it from the draft doc and add it under public/images/.\]
+![Stages diagram. How a note gets in: Seed and Transplant enter at Sprout, Graft enters at Budding. Sprout leads to Budding, then the path splits: concepts reach Bloom, projects reach Fruit. Outside the growth path sit Dormant, computed after six months untended, and Composted, retired on purpose with a reason.](/images/blog_images/learning-garden/stages.png)
 
 Seeds and transplants start at Sprout; a graft can start at Budding, because the rootstock is doing the work. Then `type` decides the ending. Dormant and Composted sit outside the path entirely, which is the point — stepping away is a state, not a failure.
 
