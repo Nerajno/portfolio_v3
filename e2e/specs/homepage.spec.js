@@ -142,6 +142,25 @@ test.describe('Homepage', () => {
     expect(h2Count).toBeGreaterThan(0);
   });
 
+  test('should collapse features and technologies sections by default', async ({ page }) => {
+    for (const headingId of ['features-heading', 'technologies-heading']) {
+      const details = page.locator(`details:has(#${headingId})`);
+      await expect(details).not.toHaveAttribute('open');
+      await expect(page.locator(`#${headingId}`)).toBeVisible();
+    }
+    await expect(page.locator('[aria-label="Professional skills and characteristics"]')).toBeHidden();
+    await expect(page.locator('[aria-label="Technology stack and tools"]')).toBeHidden();
+  });
+
+  test('should expand collapsed sections on click and keyboard', async ({ page }) => {
+    await page.locator('summary:has(#features-heading)').click();
+    await expect(page.locator('[aria-label="Professional skills and characteristics"]')).toBeVisible();
+
+    await page.locator('summary:has(#technologies-heading)').focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('[aria-label="Technology stack and tools"]')).toBeVisible();
+  });
+
   test('should have working links that open in new tabs', async ({ page }) => {
     const externalLinks = page.locator('a[target="_blank"]');
     const count = await externalLinks.count();
