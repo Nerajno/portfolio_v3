@@ -53,13 +53,20 @@ const features = [
   itemscope
   itemtype="https://schema.org/Person">
 
-  <header class='mb-16'>
+  <details class='group'>
+  <summary class='list-none [&::-webkit-details-marker]:hidden cursor-pointer flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 rounded'>
     <h2
       id='features-heading'
       class='text-4xl lg:text-5xl font-bold lg:tracking-tight dark:text-white'
       itemprop='jobTitle'>
       Current Craft Characteristics
     </h2>
+    <svg class='w-6 h-6 shrink-0 text-slate-500 transition-transform duration-200 group-open:rotate-180' fill='none' stroke='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
+      <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'></path>
+    </svg>
+  </summary>
+
+  <header class='mb-16'>
     <p
       class='text-lg mt-4 text-slate-600 dark:text-slate-400'
       itemprop='description'>
@@ -111,6 +118,7 @@ const features = [
       ))
     }
   </div>
+  </details>
 
   <!-- Additional structured data -->
   <meta itemprop='workLocation' content='Atlanta, Georgia' />
