@@ -40,3 +40,5 @@ sendgrid.env
 /.claude/
 # graphify knowledge graph (generated)
 graphify-out/
+# Playwright MCP screenshots/snapshots (generated)
+.playwright-mcp/

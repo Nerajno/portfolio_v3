@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
+  presets: [require("@nerajno/dialects/tailwind-preset")],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
     "./pages/**/*.{html,js}'",
     "./components/**/*.{html,js}"
@@ -26,9 +26,6 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
-      },
       colors: {
         // Custom color palette
         primary: {

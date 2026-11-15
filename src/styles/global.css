@@ -3,28 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --background-color: #f5f5f5;
-  --text-color: #333333;
-  --navbar-bg-light: #e0e0e0;
-  --navbar-shadow-light: rgba(0, 0, 0, 0.1);
-  --card-bg-light: #ffffff;
-  --link-color-light: #2563eb;
-}
-
-[data-theme="dark"],
-html.dark {
-  --background-color: #121212;
-  --text-color: #E0E0E0;
-  --navbar-bg: #2d2d2d;
-  --navbar-shadow: rgba(255, 255, 255, 0.1);
-  --card-bg: #1e1e1e;
-  --link-color: #60a5fa;
+  /* Legacy names mapped onto Dialects tokens (light/dark handled by tokens.css) */
+  --background-color: var(--bg);
+  --text-color: var(--text-body);
+  --navbar-bg-light: var(--bg-elevated);
+  --navbar-shadow-light: var(--border);
+  --card-bg-light: var(--bg-card);
+  --link-color-light: var(--accent);
+  --navbar-bg: var(--bg-elevated);
+  --navbar-shadow: var(--border);
+  --card-bg: var(--bg-card);
+  --link-color: var(--accent);
 }
 body {
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   overflow-x: hidden;
+}
+
+/* Dialects base: headings follow the surface (Fraunces on teach) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
 
 /* Legacy classes for backward compatibility */
@@ -71,17 +71,6 @@ html.light {
   color-scheme: light;
 }
 
-/* Shiki dual-theme support: light tokens are inlined by default;
-   dark tokens are stored in CSS variables and activated here. */
-html.dark .astro-code,
-html.dark .astro-code span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
 /* ─── Accessibility: Skip Link ─────────────────────────────────────────────── */
 .skip-link {
   position: absolute;
@@ -103,8 +92,8 @@ html.dark .astro-code span {
   width: auto;
   height: auto;
   padding: 0.75rem 1.5rem;
-  background: #1d4ed8;
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--bg);
   font-weight: 600;
   text-decoration: none;
   border-radius: 0 0 0.5rem 0;
@@ -123,13 +112,9 @@ html.dark .astro-code span {
 
 /* ─── Accessibility: Focus Visible ─────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
   scroll-margin-top: 80px;
-}
-
-html.dark :focus-visible {
-  outline-color: #60a5fa;
 }
 
 /* ─── Accessibility: Reduced Motion ────────────────────────────────────────── */
