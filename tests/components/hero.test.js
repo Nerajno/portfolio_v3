@@ -15,17 +15,15 @@ describe('Hero Component', () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(Hero)
 
-    expect(result).toMatch(/<h1[^>]*>[\s\S]*Hi, I am Nerando[\s\S]*<\/h1>/)
-    expect(result).toContain('<h2')
-    expect(result).toContain('Software Engineer & Frontend Specialist')
+    expect(result).toMatch(/<h1[^>]*>[\s\S]*Software engineer who ships, writes, and teaches[\s\S]*<\/h1>/)
   })
 
-  it('should have screen reader only subtitle', async () => {
+  it('should render greeting above the positioning headline', async () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(Hero)
 
-    expect(result).toContain('sr-only')
-    expect(result).toContain('Software Engineer & Frontend Specialist')
+    expect(result).toContain('Hi, I am')
+    expect(result.indexOf('Hi, I am')).toBeLessThan(result.indexOf('<h1'))
   })
 
   it('should render description paragraph', async () => {
@@ -33,8 +31,8 @@ describe('Hero Component', () => {
     const result = await container.renderToString(Hero)
 
     expect(result).toContain('software engineer')
-    expect(result).toContain('Vue and JavaScript')
-    expect(result).toContain('MERN stack')
+    expect(result).toContain('Vue 3, TypeScript, and Nuxt')
+    expect(result).toContain('Atlanta tech community')
   })
 
   it('should include job title in description', async () => {
@@ -48,9 +46,7 @@ describe('Hero Component', () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(Hero)
 
-    expect(result).toContain('Vue and JavaScript')
-    expect(result).toContain('MERN stack')
-    expect(result).toContain('PM and DevOps')
+    expect(result).toContain('Vue 3, TypeScript, and Nuxt')
   })
 
   it('should include personal interests', async () => {

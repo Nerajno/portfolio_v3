@@ -6,10 +6,11 @@ test.describe('Homepage', () => {
   });
 
   test('should display hero section with correct content', async ({ page }) => {
-    // Check heading
+    // Check positioning headline and greeting
     const heading = page.locator('main h1').first();
     await expect(heading).toBeVisible();
-    await expect(heading).toContainText('Nerando');
+    await expect(heading).toContainText(/software engineer who ships, writes, and teaches/i);
+    await expect(page.locator('main').getByText('Hi, I am Nerando')).toBeVisible();
 
     // Check description - use more specific selectors
     await expect(page.locator('main span[itemprop="jobTitle"]')).toBeVisible();
