@@ -15,7 +15,8 @@ describe('ThemeToggle Component', () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(ThemeToggle)
 
-    expect(result).toContain('aria-label="Toggle theme"')
+    expect(result).toContain('aria-label="Dark mode"')
+    expect(result).toContain('aria-pressed="false"')
     expect(result).toContain('title="Toggle between light and dark mode"')
   })
 
@@ -24,7 +25,7 @@ describe('ThemeToggle Component', () => {
     const result = await container.renderToString(ThemeToggle)
 
     expect(result).toContain('id="sun-icon"')
-    expect(result).toContain('text-yellow-500')
+    expect(result).toContain('text-accent')
   })
 
   it('should render moon icon', async () => {
@@ -32,7 +33,7 @@ describe('ThemeToggle Component', () => {
     const result = await container.renderToString(ThemeToggle)
 
     expect(result).toContain('id="moon-icon"')
-    expect(result).toContain('text-slate-700')
+    expect(result).toContain('text-accent')
   })
 
   it('should include both SVG icons', async () => {
@@ -52,39 +53,27 @@ describe('ThemeToggle Component', () => {
     expect(result).toContain('transition-all')
   })
 
-  it('should have light mode styles', async () => {
+  it('should use Dialects surface tokens', async () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(ThemeToggle)
 
-    expect(result).toContain('bg-slate-100')
-    expect(result).toContain('hover:bg-slate-200')
-    expect(result).toContain('border-slate-200')
+    expect(result).toContain('bg-surface-alt')
+    expect(result).toContain('hover:bg-accent-soft')
+    expect(result).toContain('border-surface-strong')
   })
 
-  it('should have dark mode styles', async () => {
+  it('should not use raw Tailwind palette classes', async () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(ThemeToggle)
 
-    expect(result).toContain('dark:bg-slate-800')
-    expect(result).toContain('dark:hover:bg-slate-700')
-    expect(result).toContain('dark:border-slate-600')
+    expect(result).not.toMatch(/\b(?:dark:)?(?:bg|text|border|ring)-(?:slate|gray|blue|yellow|indigo|emerald)-\d+/)
   })
 
-  it('should have focus ring styles', async () => {
+  it('should update aria-pressed when the theme is applied', async () => {
     const container = await AstroContainer.create()
     const result = await container.renderToString(ThemeToggle)
 
-    expect(result).toContain('focus:outline-none')
-    expect(result).toContain('focus:ring-2')
-    expect(result).toContain('focus:ring-blue-500')
-    expect(result).toContain('focus:ring-offset-2')
-  })
-
-  it('should have dark mode focus ring offset', async () => {
-    const container = await AstroContainer.create()
-    const result = await container.renderToString(ThemeToggle)
-
-    expect(result).toContain('dark:focus:ring-offset-slate-900')
+    expect(result).toContain("setAttribute('aria-pressed', String(theme === 'dark'))")
   })
 
   it('should include theme toggle script', async () => {

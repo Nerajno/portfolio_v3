@@ -12,7 +12,7 @@ test.describe('Theme Toggle', () => {
 
   test('should have accessible button attributes', async ({ page }) => {
     const themeToggle = page.locator('#theme-toggle');
-    await expect(themeToggle).toHaveAttribute('aria-label', 'Toggle theme');
+    await expect(themeToggle).toHaveAttribute('aria-label', 'Dark mode');
     await expect(themeToggle).toHaveAttribute('title', /dark|light|theme/i);
   });
 
@@ -266,4 +266,70 @@ test.describe('Theme Toggle - System Preference', () => {
     // Should be dark or have user preference
     expect(typeof isDark).toBe('boolean');
   });
+});
+
+// #335 — zero-FOUC test matrix. Each test starts with empty storage.
+test.describe('Theme - zero FOUC (#335)', () => {
+  for (const scheme of ['light', 'dark']) {
+    test(`no stored theme follows system ${scheme} preference`, async ({ page }) => {
+      await page.emulateMedia({ colorScheme: scheme });
+      await page.goto('/');
+      const html = page.locator('html');
+      await expect(html).toHaveClass(new RegExp(`\\b${scheme}\\b`));
+      await expect(html).toHaveAttribute('data-theme', scheme);
+      await expect(page.locator('#theme-toggle')).toHaveAttribute('aria-pressed', String(scheme === 'dark'));
+    });
+  }
+
+  test('theme is set before first paint (inline head script)', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('theme', 'dark'));
+    // Record the html state as soon as <body> exists, before any paint-relevant content.
+    await page.addInitScript(() => {
+      new MutationObserver((_, obs) => {
+        if (document.body) {
+          window.__themeAtBody = document.documentElement.getAttribute('data-theme');
+          obs.disconnect();
+        }
+      }).observe(document, { childList: true, subtree: true });
+    });
+    await page.goto('/');
+    expect(await page.evaluate(() => window.__themeAtBody)).toBe('dark');
+  });
+
+  test('toggle light -> dark -> light updates class, data-theme and aria-pressed', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.goto('/');
+    const html = page.locator('html');
+    const toggle = page.locator('#theme-toggle');
+
+    await toggle.click();
+    await expect(html).toHaveClass(/\bdark\b/);
+    await expect(html).not.toHaveClass(/\blight\b/);
+    await expect(html).toHaveAttribute('data-theme', 'dark');
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+
+    await toggle.click();
+    await expect(html).toHaveClass(/\blight\b/);
+    await expect(html).not.toHaveClass(/\bdark\b/);
+    await expect(html).toHaveAttribute('data-theme', 'light');
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  test('choice persists across reload and overrides system preference', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.goto('/');
+    await page.locator('#theme-toggle').click();
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    expect(await page.evaluate(() => localStorage.getItem('theme'))).toBe('dark');
+  });
+
+  for (const scheme of ['light', 'dark']) {
+    test(`color-scheme is ${scheme} in ${scheme} mode`, async ({ page }) => {
+      await page.emulateMedia({ colorScheme: scheme });
+      await page.goto('/');
+      const cs = await page.evaluate(() => getComputedStyle(document.documentElement).colorScheme);
+      expect(cs).toBe(scheme);
+    });
+  }
 });
