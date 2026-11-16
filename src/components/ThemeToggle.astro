@@ -10,7 +10,8 @@
     border border-surface-strong
     transition-all duration-200
   "
-  aria-label="Toggle theme"
+  aria-label="Dark mode"
+  aria-pressed="false"
   title="Toggle between light and dark mode"
 >
   <!-- Sun icon (visible in dark mode) -->
@@ -73,6 +74,7 @@
       html.classList.add(theme);
       html.setAttribute('data-theme', theme);
       try { localStorage.setItem('theme', theme); } catch {}
+      toggleButton.setAttribute('aria-pressed', String(theme === 'dark'));
       updateIcons(theme);
     };
 
