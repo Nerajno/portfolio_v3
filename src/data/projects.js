@@ -32,6 +32,73 @@ const getGrowthStatusConfig = (status) => {
 
 const projects = {
   showcase_projects: [
+    // #458 outcomes-first cards. Copy is DRAFT (from the design canvas) and
+    // needs owner approval. null = no verified content yet; the card renders
+    // a visible "pending" placeholder for it.
+    {
+      id: "receipts-poll",
+      name: "Receipts Poll",
+      type: "Live app",
+      shipStatus: "shipped",
+      outcome: "Replaced Slido for a 200-person conference audience",
+      impact:
+        "Live audience polling built for my Connect.Tech talk: questions, votes, and results in realtime, on my own stack.",
+      tags: ["Nuxt 3", "Supabase", "Realtime"],
+      image: null,
+      github: null,
+      website: null,
+      caseStudyUrl: null,
+      proof: null,
+      visible: true,
+    },
+    {
+      id: "isnerandodoneyet",
+      name: "IsNerandoDoneYet",
+      type: "Live app",
+      shipStatus: "shipped",
+      outcome: "A public accountability tracker that shipped 40+ items",
+      impact:
+        "Talks, projects, and articles tracked in the open. The tracker itself became a talk.",
+      tags: ["Vue 3", "Pinia", "TypeScript", "Tailwind"],
+      image: null,
+      github: "https://github.com/Nerajno/isnerandodoneyet-com",
+      website: "https://isnerandodoneyet.com/",
+      caseStudyUrl: null,
+      proof: null,
+      visible: true,
+    },
+    {
+      id: "blog-rag",
+      name: "Blog RAG System",
+      type: "LLM app",
+      shipStatus: "in_progress",
+      outcome: "Q&A over 70+ posts, with evals, cost, and fallbacks documented",
+      impact:
+        "Retrieval over my writing with eval scores, latency numbers, and known limits in the case study.",
+      tags: ["RAG", "Python", "Evals"],
+      image: null,
+      github: null,
+      website: null,
+      caseStudyUrl: null,
+      proof: null,
+      visible: true,
+    },
+    {
+      id: "tiny-desk-api",
+      name: "Tiny Desk API",
+      type: "Public API",
+      shipStatus: "in_progress",
+      outcome: "A scraped dataset turned into a documented public API",
+      impact:
+        "Flask + SQLite scraper for NPR Tiny Desk concerts, being rebuilt as a Vue 3 + Nuxt artifact.",
+      tags: ["Flask", "SQLite", "Vue 3"],
+      image: null,
+      github: null,
+      website: null,
+      caseStudyUrl: null,
+      proof: null,
+      visible: true,
+    },
     {
       id: "taskflow-pro",
       name: "TaskFlow Pro",
@@ -245,7 +312,7 @@ const projects = {
           "https://images.pexels.com/photos/27776677/pexels-photo-27776677/free-photo-of-uluyayla.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         ],
       },
-      visible: true,
+      visible: false, // #458: replaced on the card grid; case study page still builds
     },
     {
       id: "burble",
@@ -347,7 +414,7 @@ const projects = {
           "https://github.com/Nerajno/Burble-V1/blob/DevBranch/src/assets/Burble_Screenshot.jpeg?raw=true",
         ],
       },
-      visible: true,
+      visible: false, // #458: replaced on the card grid; case study page still builds
     },
     {
       id: "terminus",
@@ -450,7 +517,7 @@ const projects = {
           "https://github.com/Nerajno/Terminus/blob/main/Jan_Screen_Shot.png?raw=true",
         ],
       },
-      visible: true,
+      visible: false, // #458: replaced on the card grid; case study page still builds
     },
   ],
   learning_projects: [
