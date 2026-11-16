@@ -37,6 +37,7 @@ const projects = {
     // a visible "pending" placeholder for it.
     {
       id: "receipts-poll",
+      featured: true,
       name: "Receipts Poll",
       type: "Live app",
       shipStatus: "shipped",
@@ -53,6 +54,7 @@ const projects = {
     },
     {
       id: "isnerandodoneyet",
+      featured: true,
       name: "IsNerandoDoneYet",
       type: "Live app",
       shipStatus: "shipped",
@@ -69,6 +71,7 @@ const projects = {
     },
     {
       id: "blog-rag",
+      featured: true,
       name: "Blog RAG System",
       type: "LLM app",
       shipStatus: "in_progress",

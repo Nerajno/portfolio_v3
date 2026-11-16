@@ -1,16 +1,16 @@
 ---
 import { Picture } from 'astro:assets';
 import heroImage from 'assets/Banner_for_site.png';
-import Link from '@components/ui/link.astro';
-import { Icon } from 'astro-icon/components';
+
+const button = 'inline-flex min-h-11 items-center justify-center rounded-lg px-6 py-3 text-base font-semibold';
+const pending = 'inline-flex min-h-11 items-center justify-center rounded-lg border border-dashed border-surface-strong px-6 py-3 text-base text-muted';
 ---
 
-<main
-  class='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'
-  role='main'
+<section
+  class='grid lg:grid-cols-[3fr_2fr] items-center gap-10 pt-6 pb-8 md:pt-10 md:pb-16'
   aria-labelledby='hero-heading'>
 
-  <div class='py-6 order-last md:order-1'>
+  <div class='py-6 order-last lg:order-1 max-w-md justify-self-center'>
     <Picture
       src={heroImage}
       alt='Professional headshot of Nerando, a software engineer specializing in Vue.js and JavaScript front-end development'
@@ -21,70 +21,44 @@ import { Icon } from 'astro-icon/components';
     />
   </div>
 
-  <div itemscope itemtype="https://schema.org/Person">
-    <p class='text-xl font-semibold text-slate-600 dark:text-slate-300'>
+  <div itemscope itemtype='https://schema.org/Person'>
+    <p class='text-sm font-semibold uppercase tracking-widest text-accent'>
       Hi, I am <span itemprop='name'>Nerando</span>
     </p>
 
     <h1
       id='hero-heading'
-      class='mt-2 text-4xl lg:text-5xl xl:text-6xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'>
+      class='mt-3 text-3xl sm:text-4xl xl:text-5xl font-bold leading-tight tracking-tight text-strong'>
       Software engineer who ships, writes, and teaches code on the frontend (including Vue3)
     </h1>
 
-    <p class='text-medium mt-4 text-black-400 dark:text-gray-300 max-w-xl' itemprop='description'>
-      I am a <span itemprop='jobTitle'>front-end software engineer</span> who ships with
+    <!-- CTA row sits directly under the headline so the hiring CTA stays above the fold at 375x667 (#455) -->
+    <div class='mt-6 flex flex-wrap gap-3'>
+      <a href='/contact' class={`${button} bg-accent text-surface hover:bg-accent-hover`}>
+        Work with me
+      </a>
+      <a href='/portfolio' class={`${button} border border-surface-strong bg-surface-card text-body hover:bg-surface-alt`}>
+        See my work
+      </a>
+      <span class={pending} data-pending='resume'>Résumé pending</span>
+    </div>
+
+    <p class='mt-4 text-sm' data-pending='target-roles'>
+      <span class='inline-flex items-center rounded border border-dashed border-surface-strong px-2 py-0.5 text-xs text-muted'>
+        Target roles link pending
+      </span>
+    </p>
+
+    <p class='mt-6 text-base md:text-lg leading-relaxed text-body max-w-2xl' itemprop='description'>
+      I am a <span itemprop='jobTitle'>front-end software engineer</span> who ships with{' '}
       <span itemprop='knowsAbout'>Vue 3, TypeScript, and Nuxt</span> — and who cares as much about why an
       interface works as whether it does. Five-plus years in the Atlanta tech community have taught me that
       good software is a team sport: I build, I write about it, and I teach what I learn. Outside of tech,
       I am a bookworm with a spatula among other things.
     </p>
 
-    <div class='mt-6 flex flex-col sm:flex-row gap-3'>
-      <Link
-        href='/contact'
-        class='!bg-emerald-600 hover:!bg-emerald-700 !text-white flex gap-1 items-center justify-center'
-        aria-label='Contact Nerando about working together'>
-        <Icon
-          class='text-white w-5 h-5'
-          name='bx:bxs-envelope'
-          aria-hidden='true'
-        />
-        Work with me
-      </Link>
-
-      <Link
-        href='https://garden.developingdvlpr.com/note/crops-growing'
-        target='_blank'
-        rel='noopener noreferrer'
-        class='text-slate-300 hover:font-bold bg-slate-900 dark:text-slate-700 dark:hover:text-slate-500 dark:bg-slate-200 flex gap-1 items-center justify-center'
-        aria-label='View what Nerando is currently learning in his digital garden'>
-        <Icon
-          class='text-slate-300 hover:text-slate-600 dark:text-slate-700 dark:hover:text-slate-500 w-5 h-5'
-          name='bx:bxs-cloud-download'
-          aria-hidden='true'
-        />
-        Currently Learning
-      </Link>
-
-      <Link
-        style='outline'
-        href='https://garden.developingdvlpr.com/note/stuff-building-2025'
-        target='_blank'
-        rel='noopener noreferrer'
-        class='flex gap-1 items-center justify-center border dark:hover:bg-gray-700 border-slate-500 dark:border-slate-300 dark:text-slate-300 hover:text-slate-600 hover:font-bold dark:bg-gray-600'
-        aria-label='View what Nerando is currently building in 2025'>
-        <Icon
-          class='text-slate-500 dark:text-slate-300 w-4 h-4'
-          name='bx:bxl-github'
-          aria-hidden='true'
-        />
-        Currently Building
-      </Link>
-    </div>
-
     <!-- Hidden structured data for better SEO -->
     <meta itemprop='url' content='https://developingdvlpr.com' />
     <meta itemprop='sameAs' content='https://garden.developingdvlpr.com' />
   </div>
-</main>
+</section>
