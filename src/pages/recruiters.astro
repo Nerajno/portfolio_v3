@@ -1,0 +1,131 @@
+---
+import { getCollection } from 'astro:content';
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import CopyBlock from '@components/hiring/CopyBlock.astro';
+import { speakingData } from '../data/speakingData';
+import projectsData from '../data/projects.js';
+
+export const prerender = true;
+
+// #457 recruiter fast lane. Only verified facts; null = "pending" until supplied.
+const now = new Date();
+const talkCount = speakingData.filter((talk) => new Date(talk.date) <= now).length;
+const postCount = (await getCollection('blog', ({ data }) => !data.draft && data.publishDate < now)).length;
+const featured = projectsData.showcase_projects.filter((p) => p.featured && p.visible !== false).slice(0, 3);
+
+const facts = [
+  [
+    { label: 'Target roles', value: null, pendingKey: 'target-roles' },
+    { label: 'Current', value: 'Frontend Software Engineer @ Hygiena (life sciences SaaS)' },
+    { label: 'Stack', value: 'Vue 3 · TypeScript · Nuxt · Supabase' },
+  ],
+  [
+    { label: 'Location', value: 'Atlanta, GA' },
+    { label: 'Availability', value: null, pendingKey: 'availability' },
+    { label: 'Work authorization', value: null, pendingKey: 'work-auth' },
+  ],
+  [
+    { label: 'Résumé', value: 'HTML, printable to PDF', href: '/resume' },
+    { label: 'Receipts', value: `${talkCount} talks · ${postCount} articles`, href: '/speaking' },
+    { label: 'Contact', value: 'nerando@developingdvlpr.com', href: 'mailto:nerando@developingdvlpr.com' },
+  ],
+];
+
+const blurb = `Nerando Johnson: front-end software engineer (Vue 3 / TypeScript) in Atlanta, currently at Hygiena (life sciences SaaS). ${talkCount} talks given, ${postCount} articles at developingdvlpr.com. Portfolio: developingdvlpr.com/portfolio`;
+
+const eyebrow = 'text-sm font-semibold uppercase tracking-widest text-accent';
+const pending = 'inline-flex items-center rounded border border-dashed border-surface-strong px-2 py-0.5 text-xs text-muted';
+const button = 'inline-flex min-h-11 items-center rounded-lg px-6 font-semibold';
+
+const seoConfig = {
+  title: 'Recruiters: the 60-second version | Nerando Johnson',
+  description: 'Everything a recruiter needs to qualify Nerando Johnson, front-end software engineer in Atlanta (Vue 3, TypeScript), on one page.',
+  canonical: new URL('recruiters', Astro.site).toString(),
+};
+---
+
+<Layout title='Recruiters'>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={{
+      basic: { title: seoConfig.title, type: 'website', image: '/opengraph.jpg', url: seoConfig.canonical },
+      optional: { description: seoConfig.description, siteName: 'My MetaData' },
+    }}
+    twitter={{ creator: '@nerajno', site: '@nerajno', card: 'summary_large_image' }}
+  />
+
+  <Container>
+    <header class='pb-8 pt-14'>
+      <p class={eyebrow}>Recruiter fast lane · 60 seconds</p>
+      <h1 class='mt-2 text-4xl md:text-5xl font-bold tracking-tight text-strong'>The short version of Nerando Johnson</h1>
+      <p class='mt-3 max-w-prose text-lg leading-relaxed text-soft'>
+        Everything you need to qualify me, on one page. The long version is one click deep everywhere.
+      </p>
+    </header>
+
+    <section aria-label='Facts' class='grid gap-6 md:grid-cols-3' id='facts'>
+      {facts.map((column) => (
+        <dl class='flex flex-col gap-4 rounded-xl border border-surface bg-surface-card p-6'>
+          {column.map((fact) => (
+            <div>
+              <dt class='font-mono text-xs uppercase tracking-wide text-soft'>{fact.label}</dt>
+              <dd class='mt-1 text-body'>
+                {fact.value === null ? (
+                  <span class={pending} data-pending={fact.pendingKey}>Pending</span>
+                ) : fact.href ? (
+                  <a href={fact.href} class='underline hover:no-underline'>{fact.value}</a>
+                ) : (
+                  fact.value
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      ))}
+    </section>
+
+    <section aria-labelledby='click-heading' class='pt-10'>
+      <h2 id='click-heading' class={eyebrow}>Three things to click</h2>
+      <ul class='mt-2 list-none p-0' id='three-things'>
+        {featured.map((project) => {
+          const href = project.website || project.github || project.caseStudyUrl || '/portfolio';
+          const external = href.startsWith('http');
+          return (
+            <li class='flex flex-wrap items-center justify-between gap-3 border-t border-surface py-4 last:border-b'>
+              <div>
+                <h3 class='text-lg font-semibold text-strong'>{project.name}</h3>
+                <p class='mt-0.5 text-sm text-soft'>{project.tags.join(' · ')}</p>
+              </div>
+              <a href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                Open{external ? ' ↗' : ' →'}<span class='sr-only'> {project.name}{external ? ' (opens in a new tab)' : ''}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+
+    <section aria-label='Paste-ready blurb' class='pb-14 pt-10'>
+      <CopyBlock id='recruiter-blurb' heading='Paste-ready blurb' text={blurb} />
+      <p class='mt-3 text-sm text-soft'>
+        Referring me instead of recruiting me? The full referral kit lives at <a href='/refer' class='underline hover:no-underline'>/refer</a>.
+      </p>
+    </section>
+  </Container>
+
+  <section aria-labelledby='recruiter-cta' class='bg-surface-alt'>
+    <Container>
+      <div class='flex flex-wrap items-center justify-between gap-5 py-11'>
+        <h2 id='recruiter-cta' class='text-2xl font-bold text-strong'>Have a role in mind? Let's talk.</h2>
+        <div class='flex flex-wrap gap-3'>
+          <a href='/contact' class={`${button} bg-accent text-surface hover:bg-accent-hover`}>Get in touch</a>
+          <a href='/resume' class={`${button} border border-surface-strong bg-surface-card text-body hover:bg-surface`}>Résumé</a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

@@ -1,0 +1,40 @@
+---
+// Paste-ready text with a Copy button (#457). Text stays selectable if the clipboard is unavailable.
+interface Props { id: string; heading: string; text: string; headingLevel?: 'h2' | 'h3' }
+const { id, heading, text, headingLevel: H = 'h2' } = Astro.props;
+---
+
+<div class='flex flex-col gap-3 rounded-xl border border-surface bg-surface-card p-5 sm:p-6' data-copy-block>
+  <div class='flex flex-wrap items-center justify-between gap-3'>
+    <H class='text-lg font-semibold text-strong'>{heading}</H>
+    <button
+      type='button'
+      class='inline-flex min-h-11 items-center rounded-lg bg-accent px-4 text-sm font-semibold text-surface hover:bg-accent-hover'
+      data-copy-target={id}
+      aria-describedby={`${id}-status`}>
+      Copy
+    </button>
+  </div>
+  <p id={id} class='rounded-lg bg-surface-alt p-4 font-mono text-sm leading-relaxed text-body'>
+    {text.split('\n').map((line) => <span class='block'>{line}</span>)}
+  </p>
+  <p id={`${id}-status`} class='sr-only' aria-live='polite'></p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-target]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const id = button.dataset.copyTarget!;
+      const status = document.getElementById(`${id}-status`);
+      try {
+        // innerText keeps one line per block span
+        await navigator.clipboard.writeText(document.getElementById(id)?.innerText ?? '');
+        button.textContent = 'Copied';
+        if (status) status.textContent = 'Copied to clipboard';
+      } catch {
+        if (status) status.textContent = 'Copy failed; select the text instead';
+      }
+      setTimeout(() => (button.textContent = 'Copy'), 2000);
+    });
+  });
+</script>
