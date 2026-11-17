@@ -5,9 +5,9 @@ test.describe('How I build', () => {
     await page.goto('/how-i-build');
     await expect(page.locator('html')).toHaveAttribute('data-surface', 'build');
     await expect(page.locator('main h1')).toHaveText('How I build');
-    for (const key of ['workflow', 'ai-split', 'data-handling']) {
-      await expect(page.locator(`[data-pending="${key}"]`)).toHaveCount(1);
-    }
+    await expect(page.locator('[data-draft="workflow"] li')).toHaveCount(6);
+    await expect(page.locator('[data-draft="ai-split"] dt')).toHaveText(['ai does', 'i own']);
+    await expect(page.locator('[data-pending="data-handling"]')).toHaveCount(1);
     await expect(page.locator('[data-pending="scorecard"]')).toHaveCount(5);
   });
 

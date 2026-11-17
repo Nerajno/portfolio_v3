@@ -6,8 +6,20 @@ import BuildNav from '@components/build/BuildNav.astro';
 
 export const prerender = true;
 
-// #460 How I build. The workflow, AI split, scorecard, and data-handling statement are the
-// owner's to write: they render as "pending" until supplied. Only repo-verifiable facts are stated.
+// #460 How I build. Workflow and AI split are draft copy (data-draft) drawn from the repo's
+// working rules; owner to confirm wording. Scorecard and data-handling stay "pending" until supplied.
+const workflow = [
+  'Plan first: state what will change, which files, and how it will be verified.',
+  'Wait for approval of the plan before touching code.',
+  'Branch per update from an up-to-date base, named by type (feature/, fix/, docs/…).',
+  'Build in small, surgical changes; match the existing style.',
+  'Verify: unit tests, end-to-end tests, and an axe accessibility pass in light and dark.',
+  'Open a pull request; merge only when it is reviewed and asked for.',
+];
+const aiSplit = {
+  ai: 'Drafts code and tests, searches the codebase, runs the checks, and writes the first pass of commits and PR descriptions.',
+  me: 'The plan, the approval, every factual claim on the page, the merge, and anything that ships to the live site.',
+};
 const pending = 'inline-flex items-center rounded border border-dashed border-surface-strong px-2 py-0.5 text-xs text-muted';
 const card = 'rounded-lg border border-surface bg-surface-card p-5';
 const scorecard = ['eval score (blog rag)', 'p95 latency', 'cost / 1k queries', 'model (pinned)', 'fallback'];
@@ -45,15 +57,20 @@ const seoConfig = {
 
     <section aria-labelledby='workflow-heading' class='pb-8'>
       <h2 id='workflow-heading' class='font-mono text-lg font-bold text-strong'>workflow</h2>
-      <div class={`${card} mt-3 border-dashed`} data-pending='workflow'>
-        <span class={pending}>Workflow steps pending</span>
+      <div class={`${card} mt-3`} data-draft='workflow'>
+        <ol class='list-decimal pl-5 text-sm leading-relaxed text-body'>
+          {workflow.map((step) => <li>{step}</li>)}
+        </ol>
       </div>
     </section>
 
     <div class='grid gap-6 pb-8 lg:grid-cols-2'>
-      <section aria-labelledby='split-heading' class={card}>
+      <section aria-labelledby='split-heading' class={card} data-draft='ai-split'>
         <h2 id='split-heading' class='font-mono text-lg font-bold text-strong'>ai does / i own</h2>
-        <p class='mt-3' data-pending='ai-split'><span class={pending}>Pending</span></p>
+        <dl class='mt-3 grid gap-3 text-sm leading-relaxed text-body'>
+          <div><dt class='font-mono font-bold text-strong'>ai does</dt><dd>{aiSplit.ai}</dd></div>
+          <div><dt class='font-mono font-bold text-strong'>i own</dt><dd>{aiSplit.me}</dd></div>
+        </dl>
       </section>
       <section aria-labelledby='scorecard-heading' class={card}>
         <h2 id='scorecard-heading' class='font-mono text-lg font-bold text-strong'>llm artifact scorecard</h2>
