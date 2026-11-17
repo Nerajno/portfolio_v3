@@ -48,6 +48,9 @@ const blogCollection = defineCollection({
     series: z.object({
       name: z.string(),
       order: z.number(),
+      // Series page extras (#469): set on any one post in the series
+      companion: z.object({ title: z.string(), note: z.string().optional(), href: z.string() }).optional(),
+      talk: z.object({ text: z.string(), href: z.string() }).optional(),
     }).optional(),
   }),
 });
