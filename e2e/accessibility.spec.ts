@@ -7,8 +7,18 @@ const pages = [
   { name: 'Portfolio',     path: '/portfolio' },
   { name: 'Speaking',      path: '/speaking' },
   { name: 'About',         path: '/about' },
+  { name: 'Résumé',        path: '/resume' },
   { name: 'Contact',       path: '/contact' },
+  { name: 'Recruiters',    path: '/recruiters' },
+  { name: 'Refer',         path: '/refer' },
+  { name: 'How I build',   path: '/how-i-build' },
+  { name: 'Decisions',     path: '/decisions' },
   { name: 'Digital Garden',path: '/digital_garden' },
+  { name: '404',           path: '/this-route-does-not-exist' },
+  { name: 'Learning plot', path: '/learning-projects/vue-3-testing' },
+  { name: 'Changelog',     path: '/changelog' },
+  { name: 'Blog post',     path: '/blog/geo-cousins' },
+  { name: 'Series',        path: '/series/vue-3-fundamentals' },
 ];
 
 for (const { name, path } of pages) {

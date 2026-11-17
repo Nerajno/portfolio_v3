@@ -1,37 +1,75 @@
-// Growth status utility function
-const getGrowthStatusConfig = (status) => {
-  const statusConfigs = {
-    in_progress: {
-      color: "bg-blue-500 text-white",
-      label: "In Progress",
-    },
-    started: {
-      color: "bg-green-600 text-white",
-      label: "Started",
-    },
-    paused: {
-      color: "bg-amber-500 text-white",
-      label: "Paused",
-    },
-    completed: {
-      color: "bg-emerald-600 text-white",
-      label: "Completed",
-    },
-    completedDemoSpaceholder: {
-      color: "bg-emerald-600 text-white",
-      label: "Completed Demo",
-    },
-    refactoring: {
-      color: "bg-purple-500 text-white",
-      label: "Refactoring",
-    },
-  };
-
-  return statusConfigs[status] || statusConfigs.started;
-};
-
 const projects = {
   showcase_projects: [
+    // #458 outcomes-first cards. Copy is DRAFT (from the design canvas) and
+    // needs owner approval. null = no verified content yet; the card renders
+    // a visible "pending" placeholder for it.
+    {
+      id: "receipts-poll",
+      featured: true,
+      name: "Receipts Poll",
+      type: "Live app",
+      shipStatus: "shipped",
+      outcome: "Replaced Slido for a 200-person conference audience",
+      impact:
+        "Live audience polling built for my Connect.Tech talk: questions, votes, and results in realtime, on my own stack.",
+      tags: ["Nuxt 3", "Supabase", "Realtime"],
+      image: null,
+      github: null,
+      website: null,
+      caseStudyUrl: null,
+      proof: null,
+      visible: true,
+    },
+    {
+      id: "isnerandodoneyet",
+      featured: true,
+      name: "IsNerandoDoneYet",
+      type: "Live app",
+      shipStatus: "shipped",
+      outcome: "A public accountability tracker that shipped 40+ items",
+      impact:
+        "Talks, projects, and articles tracked in the open. The tracker itself became a talk.",
+      tags: ["Vue 3", "Pinia", "TypeScript", "Tailwind"],
+      image: null,
+      github: "https://github.com/Nerajno/isnerandodoneyet-com",
+      website: "https://isnerandodoneyet.com/",
+      caseStudyUrl: null,
+      proof: null,
+      visible: true,
+    },
+    {
+      id: "blog-rag",
+      featured: true,
+      name: "Blog RAG System",
+      type: "LLM app",
+      shipStatus: "in_progress",
+      outcome: "Q&A over 70+ posts, with evals, cost, and fallbacks documented",
+      impact:
+        "Retrieval over my writing with eval scores, latency numbers, and known limits in the case study.",
+      tags: ["RAG", "Python", "Evals"],
+      image: null,
+      github: null,
+      website: null,
+      caseStudyUrl: null,
+      proof: null,
+      visible: true,
+    },
+    {
+      id: "tiny-desk-api",
+      name: "Tiny Desk API",
+      type: "Public API",
+      shipStatus: "in_progress",
+      outcome: "A scraped dataset turned into a documented public API",
+      impact:
+        "Flask + SQLite scraper for NPR Tiny Desk concerts, being rebuilt as a Vue 3 + Nuxt artifact.",
+      tags: ["Flask", "SQLite", "Vue 3"],
+      image: null,
+      github: null,
+      website: null,
+      caseStudyUrl: null,
+      proof: null,
+      visible: true,
+    },
     {
       id: "taskflow-pro",
       name: "TaskFlow Pro",
@@ -245,7 +283,7 @@ const projects = {
           "https://images.pexels.com/photos/27776677/pexels-photo-27776677/free-photo-of-uluyayla.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         ],
       },
-      visible: true,
+      visible: false, // #458: replaced on the card grid; case study page still builds
     },
     {
       id: "burble",
@@ -347,7 +385,7 @@ const projects = {
           "https://github.com/Nerajno/Burble-V1/blob/DevBranch/src/assets/Burble_Screenshot.jpeg?raw=true",
         ],
       },
-      visible: true,
+      visible: false, // #458: replaced on the card grid; case study page still builds
     },
     {
       id: "terminus",
@@ -450,10 +488,49 @@ const projects = {
           "https://github.com/Nerajno/Terminus/blob/main/Jan_Screen_Shot.png?raw=true",
         ],
       },
-      visible: true,
+      visible: false, // #458: replaced on the card grid; case study page still builds
     },
   ],
   learning_projects: [
+    // DRAFT (from the design canvas, #472): confirm milestones/log wording.
+    {
+      id: "vue-3-testing",
+      name: "Testing Vue 3 like I mean it",
+      title: "Testing Vue 3 like I mean it",
+      stage: "budding",
+      startDate: "2026-09",
+      goal:
+        "Test every feature I own at work with Vitest + Playwright, and write it up so the next junior on the team doesn't start from zero.",
+      tags: ["Vitest", "Playwright", "Testing Library"],
+      facts: {
+        stack: ["vitest", "playwright", "testing-library"],
+        feeds: null,
+        repo: null,
+      },
+      milestones: [
+        { state: "done", text: "Unit-test composables with Vitest" },
+        { state: "done", text: "Component tests with Testing Library" },
+        { state: "done", text: "Playwright e2e on the portfolio (CI gated)" },
+        { state: "now", text: "Visual regression + axe in the same run" },
+        { state: "next", text: "Write it up for the team" },
+      ],
+      log: [
+        {
+          date: "2026-11-15",
+          text: "CI was never running on the deploy branch. Fixed the trigger; three stale unit tests surfaced immediately.",
+          til: true,
+        },
+        {
+          date: "2026-10-28",
+          text: "toBeInViewport() beats bounding-box math for above-the-fold assertions.",
+        },
+        {
+          date: "2026-09-30",
+          text: "Started the plot. First flaky test: a stale dev server on :4321.",
+        },
+      ],
+      visible: true,
+    },
     /*
     {
       id: "weather-app",
@@ -891,5 +968,4 @@ const projects = {
   ],
 };
 
-export { getGrowthStatusConfig };
 export default projects;

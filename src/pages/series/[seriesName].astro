@@ -1,69 +1,82 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { Picture } from 'astro:assets';
 import { SEO } from 'astro-seo';
 import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
-import Sectionhead from '@components/sectionhead.astro';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const allBlogPosts = await getCollection('blog', ({ data }) => {
-    const now = new Date();
-    return !data.draft && data.series && data.publishDate && data.publishDate < now;
-  });
+  // Helpers live here: getStaticPaths runs in isolation from the rest of the frontmatter
+  const slugify = (name: string) => name.toLowerCase().replace(/\s+/g, '-');
+  const isPublished = (data: { draft?: boolean; publishDate?: Date }) =>
+    !data.draft && !!data.publishDate && data.publishDate < new Date();
 
-  // Group posts by series
-  const seriesMap = new Map<string, typeof allBlogPosts>();
-  allBlogPosts.forEach((post) => {
-    if (post.data.series?.name) {
-      const seriesName = post.data.series.name;
-      if (!seriesMap.has(seriesName)) {
-        seriesMap.set(seriesName, []);
-      }
-      seriesMap.get(seriesName)!.push(post);
-    }
-  });
+  // All parts, drafts included: unpublished parts are listed (not linked) on the page (#469)
+  const seriesPosts = await getCollection('blog', ({ data }) => !!data.series);
 
-  // Create paths for each series
-  return Array.from(seriesMap.entries()).map(([seriesName, posts]) => {
-    const sortedPosts = posts.sort(
-      (a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0)
-    );
+  const seriesMap = new Map<string, typeof seriesPosts>();
+  for (const post of seriesPosts) {
+    const name = post.data.series!.name;
+    if (!seriesMap.has(name)) seriesMap.set(name, []);
+    seriesMap.get(name)!.push(post);
+  }
 
-    return {
-      params: { seriesName: seriesName.toLowerCase().replace(/\s+/g, '-') },
-      props: { seriesName, posts: sortedPosts },
-    };
-  });
+  // A series gets a page once at least one part is published
+  return Array.from(seriesMap.entries())
+    .filter(([, posts]) => posts.some((p) => isPublished(p.data)))
+    .map(([seriesName, posts]) => ({
+      params: { seriesName: slugify(seriesName) },
+      props: {
+        seriesName,
+        seriesSlug: slugify(seriesName),
+        posts: posts
+          .sort((a, b) => a.data.series!.order - b.data.series!.order)
+          .map((post) => ({ post, published: isPublished(post.data) }))
+          // A draft that shares its slot with a published part is a stale copy: skip it
+          .filter((e, _, all) =>
+            e.published || !all.some((o) => o.published && o.post.data.series!.order === e.post.data.series!.order)
+          ),
+      },
+    }));
 }
 
-const { seriesName, posts } = Astro.props;
+const { seriesName, seriesSlug, posts: entries } = Astro.props;
+const posts = entries.map((e) => e.post);
 
-// Get reading time for each post
-const postsWithReadingTime = await Promise.all(
-  posts.map(async (post: any) => {
-    const { remarkPluginFrontmatter } = await render(post);
+const parts = await Promise.all(
+  entries.map(async ({ post, published }) => {
+    let minutesRead = '';
+    if (published) {
+      const { remarkPluginFrontmatter } = await render(post);
+      minutesRead = remarkPluginFrontmatter?.minutesRead || '1 min read';
+    }
     return {
-      ...post,
-      minutesRead: remarkPluginFrontmatter?.minutesRead || '1 min read',
+      title: post.data.title,
+      snippet: post.data.snippet,
+      order: post.data.series!.order,
+      href: `/blog/${post.id.replace(/\.(md|mdx)$/, '')}`,
+      published,
+      minutesRead,
     };
   })
 );
 
-// SEO configuration
+const publishedCount = parts.filter((p) => p.published).length;
+const total = parts.length;
+const percent = Math.round((publishedCount / total) * 100);
+const companion = posts.find((p) => p.data.series?.companion)?.data.series?.companion;
+const talk = posts.find((p) => p.data.series?.talk)?.data.series?.talk;
+const firstImage = entries.find((e) => e.published && e.post.data.image)?.post.data.image;
+
 const seoConfig = {
   title: `${seriesName} - Blog Series | My MetaData`,
-  description: `Explore the complete ${seriesName} blog series. A comprehensive collection of ${posts.length} articles covering everything you need to know.`,
-  canonical: new URL(
-    `series/${seriesName.toLowerCase().replace(/\s+/g, '-')}`,
-    Astro.site
-  ).toString(),
+  description: `The ${seriesName} series: ${total} parts, ${publishedCount} published so far. Read it in order or jump to a part.`,
+  canonical: new URL(`series/${seriesSlug}`, Astro.site).toString(),
 };
 ---
 
-<Layout title={`${seriesName} Series`}>
+<Layout title={`${seriesName} Series`} surface='teach'>
   <SEO
     title={seoConfig.title}
     description={seoConfig.description}
@@ -72,7 +85,7 @@ const seoConfig = {
       basic: {
         title: seoConfig.title,
         type: 'website',
-        image: posts[0]?.data.image?.src || '/og-blog.jpg',
+        image: firstImage?.src || '/og-blog.jpg',
         url: seoConfig.canonical,
       },
       optional: {
@@ -88,202 +101,84 @@ const seoConfig = {
   />
 
   <Container>
-    <Sectionhead>
-      <Fragment slot='title'>
-        <div class='flex items-center gap-3 flex-wrap justify-center'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            class='h-10 w-10 text-blue-600 dark:text-blue-400'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'>
-            <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='2'
-              d='M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
-            ></path>
-          </svg>
-          <span>{seriesName}</span>
+    <nav aria-label='Breadcrumb' class='mx-auto max-w-3xl pt-8 text-sm text-soft'>
+      <a href='/blog' class='text-soft hover:text-accent'>Writing</a>
+      <span aria-hidden='true'> / </span>Series<span aria-hidden='true'> / </span>
+      <span aria-current='page'>{seriesName}</span>
+    </nav>
+
+    <header class='mx-auto max-w-3xl pt-10'>
+      <p class='text-sm font-medium uppercase tracking-wider text-accent'>Series · {total} parts</p>
+      <h1 class='mt-2 font-heading text-4xl md:text-5xl font-bold tracking-tight text-strong'>{seriesName}</h1>
+      <p class='mt-3 text-lg leading-relaxed text-soft'>
+        Read it in order or jump to a part. Parts still in progress are listed so you can see where it's headed.
+      </p>
+      <div class='mt-5 flex items-center gap-4' id='series-progress'>
+        <div class='h-2 max-w-xs flex-1 rounded bg-surface-alt' aria-hidden='true'>
+          <div class='h-2 rounded bg-accent' style={`width: ${percent}%`}></div>
         </div>
-      </Fragment>
-      <Fragment slot='desc'>
-        A comprehensive {posts.length}-part series. Follow along from start to
-        finish or jump to specific topics.
-      </Fragment>
-    </Sectionhead>
+        <span class='font-mono text-sm text-soft'>{publishedCount} of {total} published</span>
+      </div>
+    </header>
 
-    <main class='mt-16'>
-      <!-- Series Overview Card -->
-      <div
-        class='max-w-4xl mx-auto mb-12 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700 rounded-xl p-8 border border-blue-200 dark:border-slate-600'>
-        <h2 class='text-2xl font-bold mb-4 text-slate-800 dark:text-slate-100'>
-          About This Series
-        </h2>
-        <div class='space-y-4 text-slate-600 dark:text-slate-300'>
-          <div class='flex items-center gap-4'>
-            <div class='flex items-center gap-2'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                class='h-5 w-5 text-blue-600 dark:text-blue-400'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'>
-                <path
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                  stroke-width='2'
-                  d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
-                ></path>
-              </svg>
-              <span class='font-semibold'>{posts.length} articles</span>
+    <ol class='mx-auto mt-8 max-w-3xl list-none p-0 pb-14' id='series-parts' aria-label={`${seriesName} parts`}>
+      {
+        parts.map((part) => {
+          const num = String(part.order).padStart(2, '0');
+          const body = (
+            <>
+              <span class={`w-8 flex-shrink-0 font-mono text-sm ${part.published ? 'text-accent' : 'text-soft'}`}>{num}</span>
+              <span class='min-w-0 flex-1'>
+                <span class={`block font-heading text-xl font-semibold ${part.published ? 'text-strong group-hover:text-accent' : 'text-soft'}`}>
+                  {part.title}
+                </span>
+                <span class='mt-1 block text-sm text-soft line-clamp-2'>
+                  {part.published ? `${part.snippet ? part.snippet + ' · ' : ''}${part.minutesRead}` : 'In progress'}
+                </span>
+              </span>
+              <span class={`flex-shrink-0 font-mono text-xs uppercase ${part.published ? 'text-accent' : 'text-muted'}`}>
+                {part.published ? 'Published' : 'Drafting'}
+              </span>
+            </>
+          );
+          return (
+            <li class='border-t border-surface last:border-b' data-status={part.published ? 'published' : 'drafting'}>
+              {part.published ? (
+                <a href={part.href} class='group flex items-baseline gap-4 px-2 py-4 no-underline'>{body}</a>
+              ) : (
+                <div class='flex items-baseline gap-4 px-2 py-4'>{body}</div>
+              )}
+            </li>
+          );
+        })
+      }
+      {
+        companion && (
+          <li class='border-t border-surface last:border-b' data-status='companion'>
+            <div class='flex items-baseline gap-4 px-2 py-4'>
+              <span class='w-8 flex-shrink-0 font-mono text-sm text-soft' aria-hidden='true'>★</span>
+              <span class='min-w-0 flex-1'>
+                <span class='block font-heading text-xl font-semibold text-strong'>{companion.title}</span>
+                {companion.note && <span class='mt-1 block text-sm text-soft'>{companion.note}</span>}
+              </span>
+              <a href={companion.href} class='flex-shrink-0 font-mono text-xs uppercase'>Artifact →</a>
             </div>
-            <div class='flex items-center gap-2'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                class='h-5 w-5 text-blue-600 dark:text-blue-400'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'>
-                <path
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                  stroke-width='2'
-                  d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'></path>
-              </svg>
-              <span
-                >{
-                  postsWithReadingTime.reduce(
-                    (acc, post) =>
-                      acc +
-                      parseInt(
-                        post.minutesRead?.match(/\d+/)?.[0] || '0',
-                        10
-                      ),
-                    0
-                  )
-                } min total read</span
-              >
-            </div>
-          </div>
-          <p class='text-sm'>
-            Published weekly • Follow along to build your expertise step by
-            step.
-          </p>
-        </div>
-      </div>
-
-      <!-- Series Articles List -->
-      <div class='max-w-4xl mx-auto space-y-6'>
-        {
-          postsWithReadingTime.map((post, index) => {
-            const isCompleted = index < postsWithReadingTime.length - 1; // All but last are "completed"
-            return (
-              <a
-                href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}`}
-                class='block group hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl p-6 border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all'>
-                <div class='flex gap-6'>
-                  {/* Number badge */}
-                  <div class='flex-shrink-0'>
-                    <div class='relative'>
-                      <div
-                        class={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
-                          isCompleted
-                            ? 'bg-blue-600 dark:bg-blue-500 text-white'
-                            : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
-                        }`}>
-                        {post.data.series?.order}
-                      </div>
-                      {index < postsWithReadingTime.length - 1 && (
-                        <div class='absolute top-12 left-1/2 -translate-x-1/2 w-0.5 h-12 bg-slate-300 dark:bg-slate-600' />
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div class='flex-grow min-w-0'>
-                    <div class='flex items-start gap-4 mb-2'>
-                      <div class='flex-grow'>
-                        <h3 class='text-xl font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-2'>
-                          {post.data.title}
-                        </h3>
-                        <p class='text-sm text-slate-600 dark:text-slate-400 line-clamp-2'>
-                          {post.data.snippet}
-                        </p>
-                      </div>
-                      {post.data.image && (
-                        <Picture
-                          src={post.data.image.src}
-                          alt={post.data.image.alt}
-                          width={120}
-                          height={80}
-                          class='rounded-lg object-cover flex-shrink-0 hidden md:block'
-                        />
-                      )}
-                    </div>
-
-                    <div class='flex flex-wrap gap-3 items-center text-xs text-slate-500 dark:text-slate-400 mt-3'>
-                      <time datetime={post.data.publishDate.toISOString()}>
-                        {post.data.publishDate.toDateString()}
-                      </time>
-                      <span>•</span>
-                      <span class='inline-flex items-center gap-1'>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          class='h-4 w-4'
-                          fill='none'
-                          viewBox='0 0 24 24'
-                          stroke='currentColor'>
-                          <path
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                            stroke-width='2'
-                            d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
-                          />
-                        </svg>
-                        {post.minutesRead}
-                      </span>
-                      {post.data.tags && post.data.tags.length > 0 && (
-                        <>
-                          <span>•</span>
-                          <div class='flex gap-2'>
-                            {post.data.tags.slice(0, 3).map((tag: string) => (
-                              <span class='bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded'>
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </a>
-            );
-          })
-        }
-      </div>
-
-      <!-- Back to Blog -->
-      <div class='max-w-4xl mx-auto mt-12 text-center'>
-        <a
-          href='/blog'
-          class='inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-medium'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            class='h-5 w-5'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'>
-            <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='2'
-              d='M10 19l-7-7m0 0l7-7m-7 7h18'></path>
-          </svg>
-          Back to All Blog Posts
-        </a>
-      </div>
-    </main>
+          </li>
+        )
+      }
+    </ol>
   </Container>
+
+  {
+    talk && (
+      <section class='bg-surface-alt' aria-label='Talk version'>
+        <Container>
+          <div class='mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 py-9'>
+            <span class='text-body'>{talk.text}</span>
+            <a href={talk.href} class='font-semibold'>See the talk version →</a>
+          </div>
+        </Container>
+      </section>
+    )
+  }
 </Layout>

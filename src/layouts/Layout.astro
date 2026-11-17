@@ -2,13 +2,19 @@
 import { SEO } from 'astro-seo';
 import Footer from '@components/footer.astro';
 import Navbar from '@components/navbar/navbar.astro';
-import '@fontsource-variable/inter/index.css';
+import '@nerajno/dialects/fonts.css';
+import '@nerajno/dialects/tokens.css';
+import '@nerajno/dialects/code.css';
+import themeInit from '@nerajno/dialects/theme-init.js?raw';
 import '../styles/global.css';
 import { PERSON_ENTITY, sanitizeSchema } from '@lib/schema';
 
 export interface Props {
   title: string;
   description?: string;
+  surface?: 'portfolio' | 'teach' | 'learn' | 'build';
+  /** Page renders its own <SEO> into the `head` slot; skip the default one. */
+  customSeo?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -18,8 +24,12 @@ const resolvedImageWithDomain = new URL(
   Astro.site
 ).toString();
 
-const { title, description = "Nerando's Portfolio - Full-stack Developer" } =
-  Astro.props;
+const {
+  title,
+  description = "Nerando's Portfolio - Full-stack Developer",
+  surface = 'portfolio',
+  customSeo = false,
+} = Astro.props;
 
 // Use the provided title or fallback to default
 const makeTitle = title || "Nerando's Portfolio";
@@ -29,29 +39,8 @@ const makeTitle = title || "Nerando's Portfolio";
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
-    <meta name='description' content={description} />
-    <!-- Prevent flash of unstyled content -->
-    <script is:inline>
-      (function () {
-        function getInitialTheme() {
-          if (typeof localStorage !== 'undefined') {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-              return savedTheme;
-            }
-          }
-          if (
-            window.matchMedia &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches
-          ) {
-            return 'dark';
-          }
-          return 'light';
-        }
-        const theme = getInitialTheme();
-        document.documentElement.classList.add(theme === 'dark' ? 'dark' : 'light');
-      })();
-    </script>
+    <!-- Theme + Dialects surface, set before first paint -->
+    <script is:inline data-surface={surface} set:html={themeInit}></script>
     <!-- GA4 || Google Analytics -->
     <script
       is:inline
@@ -101,28 +90,31 @@ const makeTitle = title || "Nerando's Portfolio";
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='icon' href='/my_favicon.ico' />
     <meta name='generator' content={Astro.generator} />
-    <SEO
-      title={makeTitle}
-      description={description}
-      canonical={canonicalURL}
-      twitter={{
-        creator: 'nerajno',
-      }}
-      openGraph={{
-        basic: {
-          url: canonicalURL,
-          type: 'website',
-          title: makeTitle,
-          image: resolvedImageWithDomain,
-        },
-        image: {
-          alt: "Nerando's Portfolio ~ Meme Image",
-        },
-      }}
-    />
+    {!customSeo && (
+      <SEO
+        title={makeTitle}
+        description={description}
+        canonical={canonicalURL}
+        twitter={{
+          creator: 'nerajno',
+        }}
+        openGraph={{
+          basic: {
+            url: canonicalURL,
+            type: 'website',
+            title: makeTitle,
+            image: resolvedImageWithDomain,
+          },
+          image: {
+            alt: "Nerando's Portfolio ~ Meme Image",
+          },
+        }}
+      />
+    )}
+    <slot name='head' />
   </head>
   <body
-    class='bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-200'>
+    class='bg-surface text-body font-body transition-colors duration-200'>
     <a href='#main-content' class='skip-link'>Skip to main content</a>
     <Navbar />
     <main id='main-content'>
@@ -142,13 +134,8 @@ const makeTitle = title || "Nerando's Portfolio";
 
       /* Dark mode styles */
       :root {
-        --color-text: #333333;
-        --color-bg: #f5f5f5;
-      }
-
-      :root.dark {
-        --color-text: #ffffff;
-        --color-bg: #1a1a1a;
+        --color-text: var(--text-body);
+        --color-bg: var(--bg);
       }
 
       body {
@@ -161,7 +148,7 @@ const makeTitle = title || "Nerando's Portfolio";
       }
 
       body a {
-        @apply text-blue-700 dark:text-blue-400;
+        @apply text-accent hover:text-accent-hover;
       }
 
       /* ─── Accessibility: Skip Link ─────────────────────────────────────────── */
@@ -184,8 +171,8 @@ const makeTitle = title || "Nerando's Portfolio";
         width: auto;
         height: auto;
         padding: 0.75rem 1.5rem;
-        background: #1d4ed8;
-        color: #ffffff;
+        background: var(--accent);
+        color: var(--bg);
         font-weight: 600;
         text-decoration: none;
         border-radius: 0 0 0.5rem 0;

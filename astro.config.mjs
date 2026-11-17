@@ -104,7 +104,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkReadingTime, remarkGifPassthrough],
     shikiConfig: {
-      themes: { light: "vitesse-light", dark: "vitesse-dark" },
+      theme: "css-variables",
       langs: ["astro", "bash", "html", "javascript", "markdown", "text", "typescript", "vue"],
       langAlias: { js: "javascript", ts: "typescript", md: "markdown" },
     },

@@ -6,33 +6,28 @@ test.describe('Homepage', () => {
   });
 
   test('should display hero section with correct content', async ({ page }) => {
-    // Check heading
+    // Check positioning headline and greeting
     const heading = page.locator('main h1').first();
     await expect(heading).toBeVisible();
-    await expect(heading).toContainText('Nerando');
+    await expect(heading).toContainText(/software engineer who ships, writes, and teaches/i);
+    await expect(page.locator('main').getByText('Hi, I am Nerando')).toBeVisible();
 
     // Check description - use more specific selectors
     await expect(page.locator('main span[itemprop="jobTitle"]')).toBeVisible();
     await expect(page.locator('main')).toContainText('Vue');
   });
 
-  test('should have working "Currently Learning" link', async ({ page }) => {
-    const learningLink = page.locator('a:has-text("Currently Learning")');
-    await expect(learningLink).toBeVisible();
-
-    // Check it has correct attributes
-    await expect(learningLink).toHaveAttribute('target', '_blank');
-    await expect(learningLink).toHaveAttribute('rel', 'noopener noreferrer');
-    await expect(learningLink).toHaveAttribute('href', /garden\.developingdvlpr\.com/);
+  test('should show hero CTA row: Work with me, See my work, Résumé', async ({ page }) => {
+    const hero = page.locator('section[aria-labelledby="hero-heading"]');
+    await expect(hero.getByRole('link', { name: 'Work with me' })).toHaveAttribute('href', '/contact');
+    await expect(hero.getByRole('link', { name: 'See my work' })).toHaveAttribute('href', '/portfolio');
+    await expect(hero.getByRole('link', { name: 'Résumé' })).toHaveAttribute('href', '/resume');
   });
 
-  test('should have working "Currently Building" link', async ({ page }) => {
-    const buildingLink = page.locator('a:has-text("Currently Building")');
-    await expect(buildingLink).toBeVisible();
-
-    await expect(buildingLink).toHaveAttribute('target', '_blank');
-    await expect(buildingLink).toHaveAttribute('rel', 'noopener noreferrer');
-    await expect(buildingLink).toHaveAttribute('href', /garden\.developingdvlpr\.com/);
+  test('should have exactly one h1, the positioning headline', async ({ page }) => {
+    const h1s = page.locator('main h1');
+    await expect(h1s).toHaveCount(1);
+    await expect(h1s).toContainText(/software engineer who ships/i);
   });
 
   test('should display hero image', async ({ page }) => {
@@ -98,7 +93,7 @@ test.describe('Homepage', () => {
   test('should have theme toggle button', async ({ page }) => {
     const themeToggle = page.locator('#theme-toggle');
     await expect(themeToggle).toBeVisible();
-    await expect(themeToggle).toHaveAttribute('aria-label', 'Toggle theme');
+    await expect(themeToggle).toHaveAttribute('aria-label', 'Dark mode');
   });
 
   test('should load without console errors', async ({ page }) => {
@@ -140,6 +135,56 @@ test.describe('Homepage', () => {
     // Check h2s exist
     const h2Count = await page.locator('h2').count();
     expect(h2Count).toBeGreaterThan(0);
+  });
+
+  test('should show a hiring CTA above the fold', async ({ page }) => {
+    const cta = page.locator('main a[href="/contact"]', { hasText: 'Work with me' });
+
+    // Desktop: visible without scrolling
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await expect(cta).toBeInViewport();
+
+    // Mobile: text-first hero keeps the CTA above the fold
+    await page.setViewportSize({ width: 375, height: 667 });
+    await expect(cta).toBeInViewport();
+  });
+
+  test('should show proof strip numbers counted from data', async ({ page }) => {
+    const strip = page.locator('section[aria-label="By the numbers"]');
+    const talks = strip.locator('dl > div', { hasText: 'Talks given' }).locator('dd a');
+    const articles = strip.locator('dl > div', { hasText: 'Articles published' }).locator('dd a');
+    await expect(talks).toHaveText(/^\d+$/);
+    await expect(talks).toHaveAttribute('href', '/speaking');
+    await expect(articles).toHaveText(/^\d+$/);
+    await expect(articles).toHaveAttribute('href', '/blog');
+  });
+
+  test('should show three featured project cards', async ({ page }) => {
+    const cards = page.locator('section[aria-labelledby="featured-heading"] article[data-project]');
+    await expect(cards).toHaveCount(3);
+    await expect(page.getByRole('link', { name: 'All projects →' })).toHaveAttribute('href', '/portfolio');
+  });
+
+  test('should list latest writing and talks with working links', async ({ page }) => {
+    const posts = page.locator('section[aria-labelledby="writing-heading"] li a');
+    const talks = page.locator('section[aria-labelledby="speaking-heading"] li a');
+    await expect(posts).toHaveCount(3);
+    await expect(talks).toHaveCount(3);
+
+    const postHref = await posts.first().getAttribute('href');
+    expect(postHref).toMatch(/^\/blog\/[^/]+$/);
+    const postRes = await page.request.get(postHref);
+    expect(postRes.status()).toBe(200);
+
+    const talkHref = await talks.first().getAttribute('href');
+    expect(talkHref).toMatch(/^\/events\/[^/]+$/);
+    const talkRes = await page.request.get(talkHref);
+    expect(talkRes.status()).toBe(200);
+  });
+
+  test('should show the CTA band linking to contact', async ({ page }) => {
+    const band = page.locator('section[aria-labelledby="cta-heading"]');
+    await expect(band.getByRole('link', { name: 'Get in touch' })).toHaveAttribute('href', '/contact');
   });
 
   test('should have working links that open in new tabs', async ({ page }) => {
