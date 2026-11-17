@@ -1,5 +1,5 @@
 ---
-draft: false
+draft: true
 title: "Addendum — Buttons vs. Links: When Links Live in a Menubar"
 seoTitle: "Buttons vs. Links in a Menubar: ARIA menuitem Explained"
 seoDescription: "Inside a menubar, links and buttons become \"menu items.\" Learn what changes, what doesn't, and why most site nav should use <nav> and disclosure buttons."
