@@ -1,0 +1,90 @@
+---
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import CopyBlock from '@components/hiring/CopyBlock.astro';
+import { speakingData } from '../data/speakingData';
+
+export const prerender = true;
+
+// #457 referral kit. Only verified facts; [BRACKETS] are for the referrer to fill in.
+const talkCount = speakingData.filter((talk) => new Date(talk.date) <= new Date()).length;
+
+const oneLiner = "Nerando Johnson is a front-end engineer (Vue 3 / TypeScript) I'd vouch for: ships, writes, and teaches. developingdvlpr.com/recruiters";
+const intro = `Hi [NAME], I want to introduce Nerando Johnson, a front-end software engineer in Atlanta working in Vue 3 and TypeScript at a life sciences SaaS company.
+He's a former teacher who has given ${talkCount} talks and writes regularly at developingdvlpr.com. His portfolio is at developingdvlpr.com/portfolio.
+I think he'd be a strong fit for [ROLE]. The 60-second version is at developingdvlpr.com/recruiters.`;
+
+const links = [
+  { label: 'Résumé', href: '/resume' },
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Recruiter fast lane', href: '/recruiters' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/nerando-johnson/' },
+];
+
+const eyebrow = 'text-sm font-semibold uppercase tracking-widest text-accent';
+const pending = 'inline-flex items-center rounded border border-dashed border-surface-strong px-2 py-0.5 text-xs text-muted';
+const card = 'rounded-xl border border-surface bg-surface-card p-5';
+
+const seoConfig = {
+  title: 'Refer Nerando: referral kit | Nerando Johnson',
+  description: 'Copy-ready blurbs and links for referring Nerando Johnson, front-end software engineer in Atlanta (Vue 3, TypeScript).',
+  canonical: new URL('refer', Astro.site).toString(),
+};
+---
+
+<Layout title='Refer Nerando'>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={{
+      basic: { title: seoConfig.title, type: 'website', image: '/opengraph.jpg', url: seoConfig.canonical },
+      optional: { description: seoConfig.description, siteName: 'My MetaData' },
+    }}
+    twitter={{ creator: '@nerajno', site: '@nerajno', card: 'summary_large_image' }}
+  />
+
+  <Container>
+    <div class='mx-auto max-w-4xl pb-14'>
+      <header class='pb-8 pt-14'>
+        <p class={eyebrow}>Referral kit</p>
+        <h1 class='mt-2 text-4xl md:text-5xl font-bold tracking-tight text-strong'>Thinking of referring me? Thank you.</h1>
+        <p class='mt-3 max-w-prose text-lg leading-relaxed text-soft'>
+          Everything you'd need to vouch for me in under a minute. Copy what fits, skip what doesn't.
+        </p>
+      </header>
+
+      <div class='flex flex-col gap-5'>
+        <CopyBlock id='refer-one-liner' heading='One-liner (for Slack or a DM)' text={oneLiner} />
+        <CopyBlock id='refer-intro' heading='Short intro (for an email)' text={intro} />
+
+        <div class='grid gap-5 md:grid-cols-3'>
+          <section aria-labelledby='fit-heading' class={card}>
+            <h2 id='fit-heading' class='font-semibold text-strong'>Roles I'm a fit for</h2>
+            <p class='mt-2'><span class={pending} data-pending='target-roles'>Target roles pending</span></p>
+          </section>
+          <section aria-labelledby='links-heading' class={card}>
+            <h2 id='links-heading' class='font-semibold text-strong'>Links to share</h2>
+            <ul class='mt-2 flex list-none flex-col gap-1.5 p-0 text-sm'>
+              {links.map((link) => <li><a href={link.href} class='underline hover:no-underline'>{link.label}</a></li>)}
+            </ul>
+          </section>
+          <section aria-labelledby='notfit-heading' class={card}>
+            <h2 id='notfit-heading' class='font-semibold text-strong'>Not a fit if…</h2>
+            <p class='mt-2'><span class={pending} data-pending='not-a-fit'>Pending</span></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </Container>
+
+  <section aria-labelledby='refer-cta' class='bg-surface-alt'>
+    <Container>
+      <div class='mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-5 py-11'>
+        <h2 id='refer-cta' class='text-2xl font-bold text-strong'>Let me know you referred me so I can say thanks.</h2>
+        <a href='/contact' class='inline-flex min-h-11 items-center rounded-lg bg-accent px-6 font-semibold text-surface hover:bg-accent-hover'>Tell me</a>
+      </div>
+    </Container>
+  </section>
+</Layout>
