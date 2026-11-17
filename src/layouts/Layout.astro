@@ -12,7 +12,9 @@ import { PERSON_ENTITY, sanitizeSchema } from '@lib/schema';
 export interface Props {
   title: string;
   description?: string;
-  surface?: 'portfolio' | 'teach';
+  surface?: 'portfolio' | 'teach' | 'learn' | 'build';
+  /** Page renders its own <SEO> into the `head` slot; skip the default one. */
+  customSeo?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -26,6 +28,7 @@ const {
   title,
   description = "Nerando's Portfolio - Full-stack Developer",
   surface = 'portfolio',
+  customSeo = false,
 } = Astro.props;
 
 // Use the provided title or fallback to default
@@ -36,7 +39,6 @@ const makeTitle = title || "Nerando's Portfolio";
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
-    <meta name='description' content={description} />
     <!-- Theme + Dialects surface, set before first paint -->
     <script is:inline data-surface={surface} set:html={themeInit}></script>
     <!-- GA4 || Google Analytics -->
@@ -88,25 +90,28 @@ const makeTitle = title || "Nerando's Portfolio";
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='icon' href='/my_favicon.ico' />
     <meta name='generator' content={Astro.generator} />
-    <SEO
-      title={makeTitle}
-      description={description}
-      canonical={canonicalURL}
-      twitter={{
-        creator: 'nerajno',
-      }}
-      openGraph={{
-        basic: {
-          url: canonicalURL,
-          type: 'website',
-          title: makeTitle,
-          image: resolvedImageWithDomain,
-        },
-        image: {
-          alt: "Nerando's Portfolio ~ Meme Image",
-        },
-      }}
-    />
+    {!customSeo && (
+      <SEO
+        title={makeTitle}
+        description={description}
+        canonical={canonicalURL}
+        twitter={{
+          creator: 'nerajno',
+        }}
+        openGraph={{
+          basic: {
+            url: canonicalURL,
+            type: 'website',
+            title: makeTitle,
+            image: resolvedImageWithDomain,
+          },
+          image: {
+            alt: "Nerando's Portfolio ~ Meme Image",
+          },
+        }}
+      />
+    )}
+    <slot name='head' />
   </head>
   <body
     class='bg-surface text-body font-body transition-colors duration-200'>
