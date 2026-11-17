@@ -5,7 +5,7 @@ test.describe('Blog post body smoke test', () => {
     await page.goto('/blog');
 
     const firstPostLink = page
-      .locator('#blog-posts .blog-post-item')
+      .locator('#blog-posts .blog-post-item:not([hidden])')
       .locator('a[href^="/blog/"]')
       .first();
     await expect(firstPostLink).toBeVisible();
@@ -16,7 +16,7 @@ test.describe('Blog post body smoke test', () => {
     await page.goto(postHref);
 
     // Title must be visible
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('main h1')).toBeVisible();
 
     // Body must NOT be empty / stuck on loading state only
     const prose = page.locator('.prose');
