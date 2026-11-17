@@ -81,7 +81,8 @@ const seoConfig = {
   },
 };
 
-const lastUpdated = '2026-04-23T00:00:00Z';
+// Freshness derives from the newest changelog entry at build time (#463)
+const lastUpdated = changelog.map((item) => item.date).sort().at(-1);
 
 // Person structured data for better GEO (JSON-LD)
 const structuredData = {
@@ -204,7 +205,7 @@ const webPageData = {
   <Container>
     <!-- Visible last-updated timestamp for freshness signal -->
     <p class='text-xs text-muted text-right mt-2' aria-label='Last updated date'>
-      Last updated: <time datetime={lastUpdated}>April 2026</time>
+      Last updated: <time datetime={lastUpdated}>{new Date(lastUpdated + '-01').toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}</time>
     </p>
 
     <Hero />
@@ -285,7 +286,7 @@ const webPageData = {
         <h2 id="whats-new-heading" class={`${eyebrow} text-accent`}>What's new</h2>
         <ul class="mt-4 flex flex-col gap-3">
           {
-            changelog.map((item) => (
+            changelog.slice(0, 3).map((item) => (
               <li class="flex flex-wrap items-baseline gap-x-5 gap-y-1">
                 <span class="font-mono text-xs uppercase text-soft">{monthYear(item.date + "-01")}</span>
                 <a href={item.href} class="text-body hover:text-accent hover:underline" target="_blank" rel="noopener noreferrer">{item.text}</a>
@@ -293,6 +294,7 @@ const webPageData = {
             ))
           }
         </ul>
+        <a href="/changelog" class="mt-5 inline-block text-sm font-semibold">Full changelog →</a>
       </div>
     </Container>
   </section>

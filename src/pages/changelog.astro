@@ -1,0 +1,71 @@
+---
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import changelog from '../data/changelog.js';
+
+export const prerender = true;
+
+// Newest first, grouped by month (#463). Entries come from src/data/changelog.js,
+// the same source as the home page's "What's new".
+const entries = [...changelog].sort((a, b) => b.date.localeCompare(a.date));
+const months: { key: string; items: typeof entries }[] = [];
+for (const entry of entries) {
+  const last = months.at(-1);
+  if (last?.key === entry.date) last.items.push(entry);
+  else months.push({ key: entry.date, items: [entry] });
+}
+const monthLabel = (ym: string) =>
+  new Date(`${ym}-01`).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+const seoConfig = {
+  title: "Changelog - What's new | Nerando Johnson",
+  description: 'Every shipped change to this site, newest first, each linked to the pull request or issue behind it.',
+  canonical: new URL('changelog', Astro.site).toString(),
+};
+---
+
+<Layout title='Changelog'>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={{
+      basic: { title: seoConfig.title, type: 'website', image: '/opengraph.jpg', url: seoConfig.canonical },
+      optional: { description: seoConfig.description, siteName: 'My MetaData' },
+    }}
+    twitter={{ creator: '@nerajno', site: '@nerajno', card: 'summary_large_image' }}
+  />
+
+  <Container>
+    <header class='mx-auto max-w-3xl pt-14'>
+      <p class='text-sm font-semibold uppercase tracking-widest text-accent'>What's new</p>
+      <h1 class='mt-2 text-4xl md:text-5xl font-bold tracking-tight text-strong'>Changelog</h1>
+      <p class='mt-3 text-lg leading-relaxed text-soft'>
+        Proof this site is alive: every shipped change, newest first, each linked to the work behind it.
+      </p>
+    </header>
+
+    <div class='mx-auto max-w-3xl pb-16 pt-6' id='changelog'>
+      {
+        months.map((month) => (
+          <section aria-labelledby={`m-${month.key}`} class='mt-8'>
+            <h2 id={`m-${month.key}`} class='mb-2 font-mono text-sm font-medium uppercase text-soft'>
+              <time datetime={month.key}>{monthLabel(month.key)}</time>
+            </h2>
+            <ul class='list-none p-0'>
+              {month.items.map((item) => (
+                <li class='border-t border-surface py-4 last:border-b'>
+                  <a href={item.href} class='text-body hover:text-accent hover:underline' target='_blank' rel='noopener noreferrer'>
+                    {item.text}
+                    <span class='sr-only'> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </Container>
+</Layout>
