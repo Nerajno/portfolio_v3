@@ -12,6 +12,7 @@ const pages = [
   { name: '404',           path: '/this-route-does-not-exist' },
   { name: 'Learning plot', path: '/learning-projects/vue-3-testing' },
   { name: 'Blog post',     path: '/blog/geo-cousins' },
+  { name: 'Series',        path: '/series/vue-3-fundamentals' },
 ];
 
 for (const { name, path } of pages) {
