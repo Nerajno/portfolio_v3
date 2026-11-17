@@ -1,0 +1,87 @@
+---
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import BuildNav from '@components/build/BuildNav.astro';
+import decisions from '../data/decisions.js';
+
+export const prerender = true;
+
+const fields = ['context', 'options', 'decision', 'consequences'];
+const seoConfig = {
+  title: 'Decision records | Nerando Johnson',
+  description: 'Architectural decisions behind this site, written down with context, options, decision, and consequences.',
+  canonical: new URL('decisions', Astro.site).toString(),
+};
+---
+
+<Layout title='Decision records' surface='build'>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={{
+      basic: { title: seoConfig.title, type: 'website', image: '/opengraph.jpg', url: seoConfig.canonical },
+      optional: { description: seoConfig.description, siteName: 'My MetaData' },
+    }}
+    twitter={{ creator: '@nerajno', site: '@nerajno', card: 'summary_large_image' }}
+  />
+
+  <Container>
+    <BuildNav />
+
+    <header class='pb-6 pt-10'>
+      <h1 class='text-3xl md:text-4xl font-bold tracking-tight text-strong'>Decision records</h1>
+      <p class='mt-3 max-w-prose leading-relaxed text-soft'>
+        Architectural calls worth defending, written down with context, options, decision, and consequences. Each one links to the work behind it.
+      </p>
+    </header>
+
+    <div class='overflow-x-auto rounded-lg border border-surface bg-surface-card'>
+      <table class='w-full min-w-[40rem] border-collapse font-mono text-sm' id='adr-index'>
+        <caption class='sr-only'>Decision records, newest first</caption>
+        <thead class='bg-surface-alt text-left text-strong'>
+          <tr>
+            {['id', 'decision', 'artifact', 'status', 'date'].map((h) => <th scope='col' class='px-4 py-3 font-bold'>{h}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {decisions.map((adr) => (
+            <tr class='border-t border-surface'>
+              <td class='px-4 py-3 font-bold'><a href={`#${adr.id}`}>{adr.id}</a></td>
+              <td class='px-4 py-3 text-body'>{adr.title}</td>
+              <td class='px-4 py-3 text-body'>{adr.artifact}</td>
+              <td class='px-4 py-3 text-body' data-status={adr.status}>{adr.status}</td>
+              <td class='px-4 py-3 text-soft'><time datetime={adr.date}>{adr.date}</time></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class='flex flex-col gap-6 pb-16 pt-8'>
+      {decisions.map((adr) => (
+        <article id={adr.id} aria-labelledby={`${adr.id}-title`} class='scroll-mt-24 rounded-lg border border-surface bg-surface-card p-6'>
+          <p class='font-mono text-xs uppercase text-soft'>
+            {adr.id} · {adr.status}{adr.supersededBy && <> by <a href={adr.supersededBy.href} class='underline hover:no-underline'>{adr.supersededBy.label}</a></>} · {adr.date}
+          </p>
+          <h2 id={`${adr.id}-title`} class='mt-1 text-xl font-bold text-strong'>{adr.title}</h2>
+          <dl class='mt-4 grid gap-4 text-sm leading-relaxed md:grid-cols-2'>
+            {fields.map((field) => (
+              <div>
+                <dt class='font-mono font-bold text-accent'>{field}</dt>
+                <dd class='mt-1 text-body'>{adr[field]}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class='mt-4 font-mono text-xs text-soft'>
+            sources:{' '}
+            {adr.sources.map((source, i) => (
+              <>{i > 0 && ' · '}<a href={source.href} class='underline hover:no-underline'>{source.label}</a></>
+            ))}
+          </p>
+        </article>
+      ))}
+    </div>
+  </Container>
+</Layout>

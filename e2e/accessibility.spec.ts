@@ -11,6 +11,8 @@ const pages = [
   { name: 'Contact',       path: '/contact' },
   { name: 'Recruiters',    path: '/recruiters' },
   { name: 'Refer',         path: '/refer' },
+  { name: 'How I build',   path: '/how-i-build' },
+  { name: 'Decisions',     path: '/decisions' },
   { name: 'Digital Garden',path: '/digital_garden' },
   { name: '404',           path: '/this-route-does-not-exist' },
   { name: 'Learning plot', path: '/learning-projects/vue-3-testing' },
