@@ -34,6 +34,7 @@ const blogCollection = defineCollection({
     faqs: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
 
     // Series-related fields
+    featured: z.boolean().optional(), // #341: pin as the Featured card on /blog
     series: z.object({
       name: z.string(), // e.g., "Vue 3 Fundamentals"
       order: z.number(), // Position in series (1, 2, 3, etc.)

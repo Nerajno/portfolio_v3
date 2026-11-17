@@ -4,7 +4,6 @@ import { Picture } from 'astro:assets';
 import { SEO } from 'astro-seo';
 import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
-import Sectionhead from '@components/sectionhead.astro';
 import { getAllViewCounts } from '../lib/supabase';
 export const prerender = true;
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -60,6 +59,25 @@ blogEntriesWithReadingTime.forEach((post) => {
 
 // Get unique series names
 const allSeries = Array.from(seriesMap.keys());
+
+// #341 redesign data
+const slugOf = (entry) => entry.id.replace(/\.(md|mdx)$/, '');
+const seriesSlug = (name) => name.toLowerCase().replace(/\s+/g, '-');
+const featuredPost =
+  blogEntriesWithReadingTime.find((post) => post.data.featured) ?? blogEntriesWithReadingTime[0];
+const viewsLabel = (slug) => {
+  if (isDevelopment && import.meta.env.TRACK_VIEWS_IN_DEV !== 'true') return '-- views';
+  const n = allViewCounts[slug] || 0;
+  return `${n.toLocaleString()} ${n === 1 ? 'view' : 'views'}`;
+};
+const monthYear = (date) => date.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+const eyebrow = (post) =>
+  post.data.series ? `Series · ${post.data.series.name} · Part ${post.data.series.order}` : post.data.category;
+const tagCounts = new Map();
+blogEntriesWithReadingTime.forEach((post) =>
+  (post.data.tags || []).forEach((tag) => tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1)),
+);
+const topTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 12).map(([tag]) => tag);
 
 // SEO configuration for the blog page
 const seoConfig = {
@@ -182,443 +200,242 @@ const seoConfig = {
   />
 
   <Container>
-    <Sectionhead>
-      <Fragment slot='title'>My MetaData</Fragment>
-      <Fragment slot='desc'>
-        Notes and blog posts created from things I've learned. All these articles
-        I've written that helped me level up my skills and knowledge. Discover
-        insights on web development, programming, and technology.
-      </Fragment>
-    </Sectionhead>
-    <main class='mt-16'>
-      {/* Filter Controls */}
-      <div
-        class='max-w-6xl mx-auto mb-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow'>
-        <div class='space-y-4'>
-          <div>
-            <label
-              for='search'
-              class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
-              >Search Posts</label
-            >
+    <header class='pt-14'>
+      <p class='font-mono text-xs uppercase tracking-wider text-soft'>Teach surface · font: sans · density: 1× · hue: 168</p>
+      <h1 class='mt-2 font-heading text-4xl md:text-5xl font-bold tracking-tight text-strong'>My MetaData</h1>
+      <p class='mt-3 max-w-2xl text-lg leading-relaxed text-soft'>
+        {blogEntriesWithReadingTime.length} posts of learning in public: Vue, the craft around it, and the career that code built. Progress over perfection.
+      </p>
+    </header>
+
+    <section aria-label='Featured post' id='featured-post' class='mt-10'>
+      <article class='flex flex-wrap items-center gap-8 rounded-xl border border-surface bg-surface-card p-6 md:p-8'>
+        <Picture
+          src={featuredPost.data.image.src}
+          alt={featuredPost.data.image.alt}
+          sizes='(max-width: 800px) 100vw, 420px'
+          width={640}
+          height={400}
+          format='webp'
+          quality={80}
+          loading='eager'
+          class='aspect-[16/10] w-full flex-[1_1_16rem] rounded-lg object-cover'
+        />
+        <div class='min-w-0 flex-[999_1_26rem]'>
+          <p class='text-xs font-medium uppercase tracking-wider text-accent'>Featured · {eyebrow(featuredPost)}</p>
+          <h2 class='mt-2 font-heading text-2xl md:text-3xl font-bold leading-tight text-strong'>
+            <a href={`/blog/${slugOf(featuredPost)}`} class='hover:text-accent hover:underline'>{featuredPost.data.title}</a>
+          </h2>
+          <p class='mt-3 leading-relaxed text-body'>{featuredPost.data.snippet}</p>
+          <p class='mt-3 text-sm text-soft'>
+            <time datetime={featuredPost.data.publishDate.toISOString()}>{monthYear(featuredPost.data.publishDate)}</time>
+            {' · '}{featuredPost.minutesRead}{' · '}
+            <span class='view-counter-display' data-slug={slugOf(featuredPost)}><span class='view-count-text'>{viewsLabel(slugOf(featuredPost))}</span></span>
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <div class='mt-10 flex flex-wrap gap-12 pb-16'>
+      <div class='min-w-0 flex-[999_1_34rem]'>
+        <div class='flex flex-wrap gap-4' role='search'>
+          <div class='min-w-0 flex-[2_1_16rem]'>
+            <label for='search' class='block text-sm font-medium text-body'>Search posts</label>
             <input
-              type='text'
+              type='search'
               id='search'
-              class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'
-              placeholder='Search by title or tags...'
+              class='mt-1 min-h-11 w-full rounded-lg border border-surface-strong bg-surface-card px-4 text-body placeholder:text-muted'
+              placeholder='Search by title or tags…'
             />
           </div>
-          <div class='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            <div>
-              <label
-                for='series-filter'
-                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
-                >Filter by Series</label
-              >
-              <select
-                id='series-filter'
-                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
-                <option value=''>All Posts</option>
-                {
-                  allSeries.map((series) => (
-                    <option value={series}>{series}</option>
-                  ))
-                }
-              </select>
-            </div>
-            <div>
-              <label
-                for='sort'
-                class='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
-                >Sort by Date</label
-              >
-              <select
-                id='sort'
-                class='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'>
-                <option value='newest'>Newest First</option>
-                <option value='oldest'>Oldest First</option>
-                <option value='title-asc'>Title (A-Z)</option>
-                <option value='title-desc'>Title (Z-A)</option>
-              </select>
-            </div>
+          <div class='min-w-0 flex-[1_1_12rem]'>
+            <label for='series-filter' class='block text-sm font-medium text-body'>Series</label>
+            <select id='series-filter' class='mt-1 min-h-11 w-full rounded-lg border border-surface-strong bg-surface-card px-3 text-body'>
+              <option value=''>All posts</option>
+              {allSeries.map((series) => <option value={series}>{series}</option>)}
+            </select>
           </div>
         </div>
+        <p class='sr-only' aria-live='polite' id='blog-status'></p>
+
+        <ul id='blog-posts' class='mt-6 list-none p-0'>
+          {
+            blogEntriesWithReadingTime.map((post) => (
+              <li
+                class='blog-post-item border-t border-surface py-5'
+                data-series={post.data.series?.name || ''}
+                data-featured={post.id === featuredPost.id ? 'true' : undefined}>
+                <p class='text-xs font-medium uppercase tracking-wider text-accent'>{eyebrow(post)}</p>
+                <h2 class='mt-1 font-heading text-xl md:text-2xl font-semibold leading-snug text-strong'>
+                  <a href={`/blog/${slugOf(post)}`} class='hover:text-accent hover:underline'>{post.data.title}</a>
+                </h2>
+                <p class='mt-1.5 leading-relaxed text-soft'>{post.data.snippet}</p>
+                <p class='mt-1.5 text-sm text-soft'>
+                  <time datetime={post.data.publishDate.toISOString()}>{monthYear(post.data.publishDate)}</time>
+                  {' · '}{post.minutesRead}{' · '}
+                  <span class='view-counter-display' data-slug={slugOf(post)}><span class='view-count-text'>{viewsLabel(slugOf(post))}</span></span>
+                </p>
+                {post.data.tags?.length > 0 && <span hidden data-tags={post.data.tags.join(',')} />}
+              </li>
+            ))
+          }
+        </ul>
+        <p id='no-results' class='border-t border-surface py-6 text-soft' hidden>No posts match that search.</p>
+
+        <nav aria-label='Pagination' id='pagination-controls' class='flex flex-wrap items-center gap-2 pt-6' hidden>
+          <button type='button' id='prev-page' class='min-h-11 rounded-lg border border-surface-strong px-4 text-sm font-medium text-body hover:bg-surface-alt disabled:opacity-50'>← Previous</button>
+          <span id='page-numbers' class='flex flex-wrap gap-2'></span>
+          <button type='button' id='next-page' class='min-h-11 rounded-lg border border-surface-strong px-4 text-sm font-medium text-body hover:bg-surface-alt disabled:opacity-50'>Next →</button>
+          <span id='page-info' class='sr-only'>Page 1 of 1</span>
+        </nav>
       </div>
 
-      <ul id='blog-posts' class='grid gap-16 max-w-6xl mx-auto list-none p-0 m-0'>
-        {
-          blogEntriesWithReadingTime.map((blogPostEntry, index) => (
-            <li
-              class='blog-post-item'
-              style='list-style: none;'
-              data-series={blogPostEntry.data.series?.name || ''}>
-              <a href={`/blog/${blogPostEntry.id.replace(/\.(md|mdx)$/, '')}`}>
-                <div class='grid md:grid-cols-2 gap-5 md:gap-10 items-center'>
-                  <Picture
-                    src={blogPostEntry.data.image.src}
-                    alt={blogPostEntry.data.image.alt}
-                    sizes='(max-width: 800px) 100vw, 800px'
-                    width={800}
-                    height={600}
-                    format='webp'
-                    quality={80}
-                    loading={index <= 2 ? 'eager' : 'lazy'}
-                    decoding={index <= 2 ? 'sync' : 'async'}
-                    class='w-full rounded-md object-cover object-center bg-white'
-                  />
-                  <div>
-                    {blogPostEntry.data.series && (
-                      <div class='mb-2'>
-                        <span class='inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-semibold'>
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                          </svg>
-                          {blogPostEntry.data.series.name} - Part {blogPostEntry.data.series.order}
-                        </span>
-                      </div>
-                    )}
-                    <h2 class='text-3xl font-semibold leading-snug tracking-tight mt-1 '>
-                      {blogPostEntry.data.title}
-                    </h2>
+      <aside class='flex flex-[1_1_16rem] flex-col gap-4 md:max-w-xs' aria-label='Blog sidebar'>
+        <section aria-labelledby='series-heading' class='rounded-xl border border-surface bg-surface-card p-5'>
+          <h2 id='series-heading' class='font-semibold text-strong'>Series</h2>
+          <ul class='mt-3 flex flex-col gap-2 text-sm'>
+            {
+              allSeries.map((name) => (
+                <li>
+                  <a href={`/series/${seriesSlug(name)}`} class='text-accent hover:underline'>
+                    {name} — {seriesMap.get(name).length} {seriesMap.get(name).length === 1 ? 'part' : 'parts'}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+        <section aria-labelledby='topics-heading' class='rounded-xl border border-surface bg-surface-card p-5'>
+          <h2 id='topics-heading' class='font-semibold text-strong'>Topics</h2>
+          <ul class='mt-3 flex flex-wrap gap-2'>
+            {
+              topTags.map((tag) => (
+                <li>
+                  <button type='button' class='topic-chip min-h-9 rounded border border-surface bg-surface-alt px-2.5 font-mono text-xs text-body hover:border-surface-strong' data-tag={tag}>
+                    {tag}
+                  </button>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+        <section aria-label='RSS' class='rounded-xl bg-surface-alt p-5 text-sm'>
+          <p class='leading-relaxed text-body'>Posts land on dev.to too, but this is the canonical home.</p>
+          <a href='/rss.xml' class='mt-2 inline-flex min-h-11 items-center font-semibold text-accent hover:underline'>RSS feed →</a>
+        </section>
+      </aside>
+    </div>
 
-                    <div class='flex gap-2 mt-3'>
-                      <time
-                        class='text-gray-600'
-                        datetime={blogPostEntry.data.publishDate.toISOString()}>
-                        {blogPostEntry.data.publishDate.toDateString()}
-                      </time>
-                      <span class='text-gray-600'>•</span>
-                      <span
-                        class='text-gray-600 inline-flex items-center view-counter-display'
-                        data-slug={blogPostEntry.id.replace(/\.(md|mdx)$/, '')}>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          width='16'
-                          height='16'
-                          viewBox='0 0 24 24'
-                          fill='none'
-                          stroke='currentColor'
-                          stroke-width='2'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                          class='inline-block mr-1'>
-                          <path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z' />
-                          <circle cx='12' cy='12' r='3' />
-                        </svg>
-                        <span class='view-count-text'>
-                          {isDevelopment &&
-                          import.meta.env.TRACK_VIEWS_IN_DEV !== 'true'
-                            ? '-- views'
-                            : `${(allViewCounts[blogPostEntry.id.replace(/\.(md|mdx)$/, '')] || 0).toLocaleString()} ${allViewCounts[blogPostEntry.id.replace(/\.(md|mdx)$/, '')] === 1 ? 'view' : 'views'}`}
-                        </span>
-                      </span>
-                      <span class='text-gray-600'>•</span>
-                      <span class='text-gray-600 inline-flex items-center'>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          width='16'
-                          height='16'
-                          viewBox='0 0 24 24'
-                          fill='none'
-                          stroke='currentColor'
-                          stroke-width='2'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                          class='inline-block mr-1'>
-                          <circle cx='12' cy='12' r='10' />
-                          <polyline points='12 6 12 12 16 14' />
-                        </svg>
-                        {blogPostEntry.minutesRead}
-                      </span>
-                    </div>
-                    <div class='flex gap-2 mt-3'>
-                      <span class='text-blue-400 uppercase tracking-wider text-sm font-medium'>
-                        {blogPostEntry.data.category}
-                      </span>
-                    </div>
-                    {blogPostEntry.data.tags && blogPostEntry.data.tags.length > 0 && (
-                      <div class='flex gap-2 mt-3 flex-wrap' data-tags={blogPostEntry.data.tags.join(',')}>
-                        {blogPostEntry.data.tags.map((tag: string) => (
-                          <span class='bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs'>
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+    <script>
+      const searchInput = document.getElementById('search') as HTMLInputElement;
+      const seriesFilter = document.getElementById('series-filter') as HTMLSelectElement;
+      const featured = document.getElementById('featured-post');
+      const noResults = document.getElementById('no-results');
+      const status = document.getElementById('blog-status');
+      const nav = document.getElementById('pagination-controls');
+      const pageNumbers = document.getElementById('page-numbers');
+      const prevBtn = document.getElementById('prev-page') as HTMLButtonElement;
+      const nextBtn = document.getElementById('next-page') as HTMLButtonElement;
+      const pageInfo = document.getElementById('page-info');
+      const postsPerPage = 7;
+      // Every post element, captured once. Filtering only toggles `hidden`,
+      // so nothing is ever removed from the DOM (#373).
+      const allPosts = Array.from(document.querySelectorAll<HTMLElement>('#blog-posts > li'));
+      let matches: HTMLElement[] = [];
+      let currentPage = 1;
 
-      {/* Pagination Controls */}
-      <div
-        id='pagination-controls'
-        class='max-w-6xl mx-auto mt-12 flex items-center justify-center gap-4 hidden'>
-        <button
-          id='prev-page'
-          class='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors'
-          disabled>
-          Previous
-        </button>
-        <span id='page-info' class='text-gray-700 dark:text-gray-300 font-medium'
-          >Page 1 of 1</span
-        >
-        <button
-          id='next-page'
-          class='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors'>
-          Next
-        </button>
-      </div>
-
-      <script>
-        const blogPosts = document.getElementById('blog-posts');
-        const searchInput = document.getElementById('search');
-        const sortSelect = document.getElementById('sort');
-        const seriesFilter = document.getElementById('series-filter');
-
-        // Master list of all post elements, captured once at page load.
-        // Filtering always starts from this full set so filtered-out posts
-        // can be restored when the search/filter is cleared or broadened.
-        const allPostElements = Array.from(
-          document.querySelectorAll('#blog-posts > li')
-        );
-
-        // Pagination state
-        let currentPage = 1;
-        const postsPerPage = 7;
-
-        // Debounce function
-        function debounce(func, wait) {
-          let timeout;
-          return function executedFunction(...args) {
-            const later = () => {
-              clearTimeout(timeout);
-              func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-          };
-        }
-
-        // Update view counts client-side
-        async function updateViewCounts() {
-          const viewCounters = document.querySelectorAll(
-            '.view-counter-display'
+      function render() {
+        const totalPages = Math.max(1, Math.ceil(matches.length / postsPerPage));
+        currentPage = Math.min(currentPage, totalPages);
+        const start = (currentPage - 1) * postsPerPage;
+        allPosts.forEach((post) => (post.hidden = true));
+        matches.slice(start, start + postsPerPage).forEach((post) => (post.hidden = false));
+        if (noResults) noResults.hidden = matches.length > 0;
+        if (nav) nav.hidden = totalPages <= 1;
+        if (pageInfo) pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages;
+        if (pageNumbers) {
+          pageNumbers.replaceChildren(
+            ...Array.from({ length: totalPages }, (_, i) => {
+              const b = document.createElement('button');
+              b.type = 'button';
+              b.textContent = String(i + 1);
+              b.className =
+                'min-h-11 min-w-11 rounded-lg border border-surface-strong px-3 text-sm font-medium text-body hover:bg-surface-alt aria-[current=page]:border-transparent aria-[current=page]:bg-accent aria-[current=page]:text-surface';
+              if (i + 1 === currentPage) b.setAttribute('aria-current', 'page');
+              b.setAttribute('aria-label', `Page ${i + 1}`);
+              b.addEventListener('click', () => goTo(i + 1));
+              return b;
+            }),
           );
-
-          for (const counter of viewCounters) {
-            const slug = counter.getAttribute('data-slug');
-            const textEl = counter.querySelector('.view-count-text');
-
-            if (slug && textEl) {
-              try {
-                const response = await fetch(`/api/views/${slug}`);
-                const data = await response.json();
-
-                if (data.count !== undefined) {
-                  const formatted = data.count.toLocaleString();
-                  const label = data.count === 1 ? 'view' : 'views';
-                  textEl.textContent = `${formatted} ${label}`;
-                }
-              } catch (err) {
-                console.error(`Failed to fetch view count for ${slug}:`, err);
-              }
-            }
-          }
         }
+      }
 
-        // Update view counts when page loads
-        updateViewCounts();
+      function goTo(page: number) {
+        currentPage = page;
+        render();
+        document.getElementById('blog-posts')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
 
-        // Pagination function
-        function paginatePosts(posts) {
-          const totalPages = Math.ceil(posts.length / postsPerPage);
-          const start = (currentPage - 1) * postsPerPage;
-          const end = start + postsPerPage;
+      function filter() {
+        const term = searchInput.value.toLowerCase().trim();
+        const series = seriesFilter.value;
+        const active = Boolean(term || series);
+        if (featured) featured.hidden = active;
+        matches = allPosts.filter((post) => {
+          if (!active && post.dataset.featured) return false; // shown in the Featured card instead
+          if (series && post.dataset.series !== series) return false;
+          if (!term) return true;
+          const title = post.querySelector('h2')?.textContent?.toLowerCase() || '';
+          const tags = post.querySelector('[data-tags]')?.getAttribute('data-tags')?.toLowerCase() || '';
+          return title.includes(term) || tags.includes(term);
+        });
+        currentPage = 1;
+        render();
+        if (status) status.textContent = active ? `${matches.length} ${matches.length === 1 ? 'post' : 'posts'} found` : '';
+      }
 
-          // Show only posts for current page
-          posts.forEach((post, idx) => {
-            post.style.display = (idx >= start && idx < end) ? 'block' : 'none';
-          });
+      let timer: ReturnType<typeof setTimeout>;
+      searchInput.addEventListener('input', () => {
+        clearTimeout(timer);
+        timer = setTimeout(filter, 300);
+      });
+      seriesFilter.addEventListener('change', filter);
+      prevBtn.addEventListener('click', () => goTo(currentPage - 1));
+      nextBtn.addEventListener('click', () => goTo(currentPage + 1));
+      document.querySelectorAll<HTMLButtonElement>('.topic-chip').forEach((chip) =>
+        chip.addEventListener('click', () => {
+          searchInput.value = chip.dataset.tag || '';
+          filter();
+          searchInput.focus();
+        }),
+      );
 
-          // Update pagination controls
-          updatePaginationControls(totalPages);
-        }
-
-        // Update pagination controls
-        function updatePaginationControls(totalPages) {
-          const paginationContainer = document.getElementById('pagination-controls');
-          if (!paginationContainer) return;
-
-          // Show/hide pagination based on total pages
-          if (totalPages <= 1) {
-            paginationContainer.style.display = 'none';
-            return;
-          }
-
-          paginationContainer.style.display = 'flex';
-
-          // Update page info
-          const pageInfo = document.getElementById('page-info');
-          if (pageInfo) {
-            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-          }
-
-          // Update button states
-          const prevBtn = document.getElementById('prev-page');
-          const nextBtn = document.getElementById('next-page');
-
-          if (prevBtn) {
-            prevBtn.disabled = currentPage === 1;
-          }
-
-          if (nextBtn) {
-            nextBtn.disabled = currentPage === totalPages;
-          }
-        }
-
-        // Navigate to specific page
-        function goToPage(page) {
-          // Get all posts currently in the DOM (already filtered by filterPosts if applicable)
-          const allPosts = Array.from(document.querySelectorAll('#blog-posts > li'));
-          const totalPages = Math.ceil(allPosts.length / postsPerPage);
-
-          if (page < 1 || page > totalPages) return;
-
-          currentPage = page;
-
-          // Apply pagination to all posts in DOM
-          paginatePosts(allPosts);
-
-          // Scroll to top of blog posts
-          const blogPostsTop = blogPosts?.offsetTop || 0;
-          window.scrollTo({ top: blogPostsTop - 100, behavior: 'smooth' });
-        }
-
-        // Filter posts function
-        function filterPosts() {
-          const searchTerm = searchInput.value.toLowerCase().trim();
-          const sortBy = sortSelect.value || "newest";
-          const selectedSeries = seriesFilter?.value || '';
-
-          // Always filter from the full master list, not the current DOM
-          const posts = allPostElements;
-
-          // Filter posts by title, tags, and series
-          let filteredPosts = posts.filter((post) => {
-            // Filter by series if selected
-            if (selectedSeries) {
-              const postSeries = post.getAttribute('data-series') || '';
-              if (postSeries !== selectedSeries) return false;
-            }
-
-            // Filter by search term
-            if (!searchTerm) return true;
-
-            const titleEl = post.querySelector('h2');
-            const title = titleEl?.textContent?.toLowerCase() || '';
-            const tagsContainer = post.querySelector('[data-tags]');
-            const tags = tagsContainer?.getAttribute('data-tags')?.toLowerCase() || '';
-
-            // Search in both title and tags
-            return title.includes(searchTerm) || tags.includes(searchTerm);
-          });
-
-          // Sort posts based on selected option
-          switch (sortBy) {
-            case 'oldest':
-              filteredPosts.sort((a, b) => {
-                const timeA = a.querySelector('time')?.dateTime;
-                const timeB = b.querySelector('time')?.dateTime;
-                if (!timeA || !timeB) return 0;
-                return new Date(timeA).valueOf() - new Date(timeB).valueOf();
+      // Refresh view counts client-side (server values are a fallback).
+      // One request at a time, as before: ~40 parallel calls swamp the API.
+      // The featured post's slug appears twice (card + list), so fetch once per slug.
+      (async () => {
+        const counters = Array.from(document.querySelectorAll<HTMLElement>('.view-counter-display'));
+        const slugs = [...new Set(counters.map((c) => c.dataset.slug).filter(Boolean))];
+        for (const slug of slugs) {
+          try {
+            const data = await (await fetch(`/api/views/${slug}`)).json();
+            if (data.count === undefined) continue;
+            const label = `${data.count.toLocaleString()} ${data.count === 1 ? 'view' : 'views'}`;
+            counters
+              .filter((c) => c.dataset.slug === slug)
+              .forEach((c) => {
+                const textEl = c.querySelector('.view-count-text');
+                if (textEl) textEl.textContent = label;
               });
-              break;
-            case 'title-asc':
-              filteredPosts.sort((a, b) => {
-                const titleA =
-                  a.querySelector('h2')?.textContent?.toLowerCase() || '';
-                const titleB =
-                  b.querySelector('h2')?.textContent?.toLowerCase() || '';
-                return titleA.localeCompare(titleB);
-              });
-              break;
-            case 'title-desc':
-              filteredPosts.sort((a, b) => {
-                const titleA =
-                  a.querySelector('h2')?.textContent?.toLowerCase() || '';
-                const titleB =
-                  b.querySelector('h2')?.textContent?.toLowerCase() || '';
-                return titleB.localeCompare(titleA);
-              });
-              break;
-            default: // 'newest' (default)
-              filteredPosts.sort((a, b) => {
-                const timeA = a.querySelector('time')?.dateTime;
-                const timeB = b.querySelector('time')?.dateTime;
-                if (!timeA || !timeB) return 0;
-                return new Date(timeB).valueOf() - new Date(timeA).valueOf();
-              });
+          } catch (err) {
+            console.error(`Failed to fetch view count for ${slug}:`, err);
           }
-
-          // Clear and re-add sorted posts
-          if (!blogPosts) {
-            console.error('Blog posts container not found');
-            return;
-          }
-
-          blogPosts.innerHTML = '';
-          filteredPosts.forEach((post) => blogPosts.appendChild(post));
-
-          // Reset to page 1 when filtering/sorting changes
-          currentPage = 1;
-
-          // Apply pagination to filtered results
-          paginatePosts(filteredPosts);
         }
+      })();
 
-        // Create debounced version of filterPosts (300ms delay)
-        const debouncedFilterPosts = debounce(filterPosts, 300);
-
-        // Add event listeners
-        searchInput.addEventListener('input', debouncedFilterPosts);
-        sortSelect.addEventListener('change', filterPosts);
-        if (seriesFilter) {
-          seriesFilter.addEventListener('change', filterPosts);
-        }
-
-        // Pagination button event listeners
-        const prevBtn = document.getElementById('prev-page');
-        const nextBtn = document.getElementById('next-page');
-
-        if (prevBtn) {
-          prevBtn.addEventListener('click', () => {
-            goToPage(currentPage - 1);
-          });
-        }
-
-        if (nextBtn) {
-          nextBtn.addEventListener('click', () => {
-            const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
-            const totalPages = Math.ceil(posts.length / postsPerPage);
-            if (currentPage < totalPages) {
-              goToPage(currentPage + 1);
-            }
-          });
-        }
-
-        // Initialize pagination on page load
-        function initializePagination() {
-          const posts = Array.from(document.querySelectorAll('#blog-posts > li'));
-          paginatePosts(posts);
-        }
-
-        // Run initialization
-        initializePagination();
-      </script>
-    </main>
+      filter();
+    </script>
   </Container>
 </Layout>
