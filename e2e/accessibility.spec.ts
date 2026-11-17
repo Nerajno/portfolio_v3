@@ -7,6 +7,7 @@ const pages = [
   { name: 'Portfolio',     path: '/portfolio' },
   { name: 'Speaking',      path: '/speaking' },
   { name: 'About',         path: '/about' },
+  { name: 'Résumé',        path: '/resume' },
   { name: 'Contact',       path: '/contact' },
   { name: 'Digital Garden',path: '/digital_garden' },
   { name: '404',           path: '/this-route-does-not-exist' },
