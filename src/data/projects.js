@@ -1,35 +1,3 @@
-// Growth status utility function
-const getGrowthStatusConfig = (status) => {
-  const statusConfigs = {
-    in_progress: {
-      color: "bg-blue-500 text-white",
-      label: "In Progress",
-    },
-    started: {
-      color: "bg-green-600 text-white",
-      label: "Started",
-    },
-    paused: {
-      color: "bg-amber-500 text-white",
-      label: "Paused",
-    },
-    completed: {
-      color: "bg-emerald-600 text-white",
-      label: "Completed",
-    },
-    completedDemoSpaceholder: {
-      color: "bg-emerald-600 text-white",
-      label: "Completed Demo",
-    },
-    refactoring: {
-      color: "bg-purple-500 text-white",
-      label: "Refactoring",
-    },
-  };
-
-  return statusConfigs[status] || statusConfigs.started;
-};
-
 const projects = {
   showcase_projects: [
     // #458 outcomes-first cards. Copy is DRAFT (from the design canvas) and
@@ -524,6 +492,45 @@ const projects = {
     },
   ],
   learning_projects: [
+    // DRAFT (from the design canvas, #472): confirm milestones/log wording.
+    {
+      id: "vue-3-testing",
+      name: "Testing Vue 3 like I mean it",
+      title: "Testing Vue 3 like I mean it",
+      stage: "budding",
+      startDate: "2026-09",
+      goal:
+        "Test every feature I own at work with Vitest + Playwright, and write it up so the next junior on the team doesn't start from zero.",
+      tags: ["Vitest", "Playwright", "Testing Library"],
+      facts: {
+        stack: ["vitest", "playwright", "testing-library"],
+        feeds: null,
+        repo: null,
+      },
+      milestones: [
+        { state: "done", text: "Unit-test composables with Vitest" },
+        { state: "done", text: "Component tests with Testing Library" },
+        { state: "done", text: "Playwright e2e on the portfolio (CI gated)" },
+        { state: "now", text: "Visual regression + axe in the same run" },
+        { state: "next", text: "Write it up for the team" },
+      ],
+      log: [
+        {
+          date: "2026-11-15",
+          text: "CI was never running on the deploy branch. Fixed the trigger; three stale unit tests surfaced immediately.",
+          til: true,
+        },
+        {
+          date: "2026-10-28",
+          text: "toBeInViewport() beats bounding-box math for above-the-fold assertions.",
+        },
+        {
+          date: "2026-09-30",
+          text: "Started the plot. First flaky test: a stale dev server on :4321.",
+        },
+      ],
+      visible: true,
+    },
     /*
     {
       id: "weather-app",
@@ -961,5 +968,4 @@ const projects = {
   ],
 };
 
-export { getGrowthStatusConfig };
 export default projects;

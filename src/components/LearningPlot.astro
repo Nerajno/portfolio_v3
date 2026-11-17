@@ -1,0 +1,148 @@
+---
+// Shared learning template (#472) for /learning-plot/[slug] and
+// /learning-projects/[slug]. Renders on the `learn` surface. Missing fields
+// show a visible "pending" placeholder; nothing is invented.
+interface Props {
+  project: any;
+  section: 'plots' | 'projects';
+}
+const { project, section } = Astro.props;
+
+const isReal = (url) => typeof url === 'string' && url.length > 1 && url !== '#';
+const title = project.title || project.name;
+const stack =
+  project.facts?.stack ??
+  (project.case_study?.tech_stack
+    ? Object.values(project.case_study.tech_stack).flat()
+    : project.tags);
+const repo = project.facts?.repo ?? project.github;
+const feeds = project.facts?.feeds;
+const milestones = project.milestones ?? [];
+const doneCount = milestones.filter((m) => m.state === 'done').length;
+const log = [...(project.log ?? [])].sort((a, b) => b.date.localeCompare(a.date));
+const started = project.startDate
+  ? new Date(`${project.startDate}-01T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' }).toLowerCase()
+  : null;
+
+const MILESTONE = {
+  done: { label: 'done', tone: 'text-success', marker: 'rounded-full' }, // tone colours the marker only
+  now: { label: 'now', tone: 'text-accent', marker: 'rotate-45' },
+  next: { label: 'next', tone: 'text-soft', marker: 'rounded-none border border-current bg-transparent' },
+};
+const pending = 'inline-flex items-center rounded border border-dashed border-surface-strong px-2 py-0.5 text-xs text-muted';
+---
+
+<div class='font-mono text-sm text-body'>
+  <nav aria-label='Breadcrumb' class='border-b border-surface'>
+    <ol class='mx-auto flex max-w-screen-lg flex-wrap gap-1 px-5 py-4 text-xs text-soft'>
+      <li><a href='/digital_garden' class='hover:text-accent hover:underline'>garden</a> /</li>
+      <li>{section} /</li>
+      <li aria-current='page' class='text-body'>{project.id}</li>
+    </ol>
+  </nav>
+
+  <div class='mx-auto max-w-screen-lg px-5'>
+    <section class='flex flex-wrap gap-8 pb-6 pt-10'>
+      <div class='min-w-0 flex-[999_1_32rem]'>
+        <p class='text-xs text-accent'>
+          learning {section === 'plots' ? 'plot' : 'project'}
+          {project.stage ? <> · {project.stage}</> : <> · <span class={pending} data-pending='stage'>stage pending</span></>}
+          {started && <> · started {started}</>}
+        </p>
+        <h1 class='mt-2 text-3xl font-bold tracking-tight text-strong'>{title}</h1>
+        {
+          project.goal ? (
+            <p class='mt-3 max-w-prose leading-relaxed text-soft'>Goal: {project.goal}</p>
+          ) : (
+            <p class='mt-3'><span class={pending} data-pending='goal'>Goal pending</span></p>
+          )
+        }
+        {
+          milestones.length > 0 && (
+            <div class='mt-5 flex items-center gap-3'>
+              <div class='h-2 max-w-sm flex-1 rounded bg-surface-alt' aria-hidden='true'>
+                <div class='h-2 rounded bg-accent' style={`width: ${Math.round((doneCount / milestones.length) * 100)}%`} />
+              </div>
+              <span class='text-xs uppercase text-soft'>{doneCount} of {milestones.length} milestones</span>
+            </div>
+          )
+        }
+      </div>
+
+      <aside aria-labelledby='facts-heading' class='flex-[1_1_16rem] max-w-sm self-start rounded-xl border border-surface bg-surface-card p-5 leading-loose'>
+        <h2 id='facts-heading' class='font-bold text-strong'>plot facts</h2>
+        <p>stack · {stack?.length ? stack.join(', ').toLowerCase() : <span class={pending}>pending</span>}</p>
+        <p>
+          feeds ·{' '}
+          {feeds && isReal(feeds.href) ? (
+            <a href={feeds.href} class='text-accent underline'>{feeds.label}</a>
+          ) : (
+            <span class={pending} data-pending='feeds'>pending</span>
+          )}
+        </p>
+        <p>
+          practice repo ·{' '}
+          {isReal(repo) ? (
+            <a href={repo} class='text-accent underline' target='_blank' rel='noopener noreferrer'>github ↗</a>
+          ) : (
+            <span class={pending} data-pending='repo'>pending</span>
+          )}
+        </p>
+        {
+          isReal(project.caseStudyUrl) && (
+            <p><a href={project.caseStudyUrl} class='text-accent underline'>full case study →</a></p>
+          )
+        }
+      </aside>
+    </section>
+
+    <section aria-labelledby='milestones-heading' class='pb-8'>
+      <h2 id='milestones-heading' class='mb-3 text-lg font-bold text-strong'>milestones</h2>
+      {
+        milestones.length ? (
+          <ol class='flex flex-col gap-2.5'>
+            {milestones.map((m) => {
+              const s = MILESTONE[m.state] ?? MILESTONE.next;
+              return (
+                <li class='flex items-baseline gap-3.5 rounded-lg border border-surface bg-surface-card px-4 py-3.5'>
+                  <span class='inline-flex w-14 shrink-0 items-center gap-1.5 font-bold text-strong'>
+                    <span aria-hidden='true' class={`inline-block h-2 w-2 bg-current ${s.tone} ${s.marker}`} />
+                    {s.label}
+                  </span>
+                  <span>{m.text}</span>
+                </li>
+              );
+            })}
+          </ol>
+        ) : (
+          <p class={pending} data-pending='milestones'>Milestones pending</p>
+        )
+      }
+    </section>
+
+    <section aria-labelledby='log-heading' class='pb-10'>
+      <h2 id='log-heading' class='mb-3 text-lg font-bold text-strong'>log</h2>
+      {
+        log.length ? (
+          <ol class='rounded-xl border border-surface bg-surface-card px-5'>
+            {log.map((entry) => (
+              <li class='border-b border-surface py-3.5 last:border-b-0'>
+                <time datetime={entry.date} class='text-xs text-soft'>{entry.date}</time>
+                <p class='mt-1 leading-relaxed'>
+                  {entry.text}
+                  {entry.til && <span class='ml-1.5 rounded border border-surface-strong px-1.5 py-px text-xs text-body'>til</span>}
+                </p>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p class={pending} data-pending='log'>Log pending</p>
+        )
+      }
+    </section>
+
+    <p class='border-t border-surface py-6 text-xs text-soft'>
+      Graduation rule: a learning project moves to the <a href='/portfolio' class='text-accent underline'>portfolio</a> once it has a demo, a repo, tests and a case study.
+    </p>
+  </div>
+</div>
