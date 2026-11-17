@@ -15,6 +15,7 @@
     "build": "astro build --remote",
     "postbuild": "npx partytown copylib dist/~partytown",
     "preview": "astro preview",
+    "garden:sync": "node scripts/sync-garden.mjs",
     "astro": "astro",
     "test": "vitest",
     "test:run": "vitest run",

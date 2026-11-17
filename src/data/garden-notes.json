@@ -1,0 +1,78 @@
+{
+  "source": "Nerajno/digital_garden/_notes/Public",
+  "syncedAt": "2026-11-17",
+  "notes": [
+    {
+      "title": "The Rolodex",
+      "stage": "budding",
+      "planted": "2026-03-28",
+      "tended": "2026-10-09",
+      "summary": "Terms I understand, in my own words.",
+      "url": "https://garden.developingdvlpr.com/note/rolodex"
+    },
+    {
+      "title": "Garden Design Decisions",
+      "stage": "budding",
+      "planted": "2026-10-07",
+      "tended": "2026-10-08",
+      "summary": "How the garden shows how far along each idea is.",
+      "url": "https://garden.developingdvlpr.com/note/garden-design-decisions"
+    },
+    {
+      "title": "Concept: Vue 3 Composables",
+      "stage": "budding",
+      "planted": "2026-03-26",
+      "tended": "2026-03-26",
+      "summary": "Reusable stateful logic with the Composition API.",
+      "url": "https://garden.developingdvlpr.com/note/concept-vue-3-composables"
+    },
+    {
+      "title": "Q1 2026 - Work Notes",
+      "stage": "seedling",
+      "planted": "2026-01-01",
+      "tended": "2026-03-26",
+      "summary": "Portfolio to the new standard; projects to Vue and vanilla JS.",
+      "url": "https://garden.developingdvlpr.com/note/work-notes-q1-26"
+    },
+    {
+      "title": "Q2 2025 - Work Notes",
+      "stage": "budding",
+      "planted": "2025-05-09",
+      "tended": "2026-03-24",
+      "summary": "Terms learned and still to study.",
+      "url": "https://garden.developingdvlpr.com/note/work-notes-q2-25"
+    },
+    {
+      "title": "Q3 2025 - Work Notes",
+      "stage": "budding",
+      "planted": "2025-07-06",
+      "tended": "2026-03-24",
+      "summary": "Rebuilds, a holiday card app, TinyDesk.",
+      "url": "https://garden.developingdvlpr.com/note/work-notes-q3-25"
+    },
+    {
+      "title": "Crops Growing",
+      "stage": "seedling",
+      "planted": "2025-05-08",
+      "tended": "2025-09-06",
+      "summary": "Where the journey started and how the garden is built.",
+      "url": "https://garden.developingdvlpr.com/note/crops-growing"
+    },
+    {
+      "title": "Temare - Learning Showcase",
+      "stage": "seedling",
+      "planted": "2025-07-22",
+      "tended": "2025-09-06",
+      "summary": "Completed-ish learning journeys.",
+      "url": "https://garden.developingdvlpr.com/note/temare"
+    },
+    {
+      "title": "Projects Building",
+      "stage": "seedling",
+      "planted": "2025-07-14",
+      "tended": "2025-08-22",
+      "summary": "Building progress and what is still growing.",
+      "url": "https://garden.developingdvlpr.com/note/stuff-building-2025"
+    }
+  ]
+}
