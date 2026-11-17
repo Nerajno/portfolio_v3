@@ -76,5 +76,7 @@ export default defineConfig({
     url: 'http://localhost:4321',
     reuseExistingServer: true,
     timeout: 120000,
+    /* #488: banner on by default in tests; run with PUBLIC_SHOW_UPGRADE_BANNER=false to cover "off" */
+    env: { PUBLIC_SHOW_UPGRADE_BANNER: process.env.PUBLIC_SHOW_UPGRADE_BANNER ?? 'true' },
   },
 });
