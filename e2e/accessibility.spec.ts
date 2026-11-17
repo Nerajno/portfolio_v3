@@ -9,6 +9,7 @@ const pages = [
   { name: 'About',         path: '/about' },
   { name: 'Contact',       path: '/contact' },
   { name: 'Digital Garden',path: '/digital_garden' },
+  { name: '404',           path: '/this-route-does-not-exist' },
 ];
 
 for (const { name, path } of pages) {
