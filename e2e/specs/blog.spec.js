@@ -105,11 +105,12 @@ test.describe('Blog post', () => {
     expect(await prose.locator('p').count()).toBeGreaterThan(0);
   });
 
-  // Blog posts currently emit duplicate meta descriptions (one inside <main>).
-  // Fixed with the post template in #342; re-enable there.
-  test.fixme('has exactly one meta description', async ({ page }) => {
+  test('has exactly one meta description, inside <head> (#342)', async ({ page }) => {
     await openFirstPost(page);
     await expect(page.locator('meta[name="description"]')).toHaveCount(1);
+    await expect(page.locator('head meta[name="description"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+    await expect(page.locator('body script[type="application/ld+json"]')).toHaveCount(0);
   });
 
   test('images in posts have alt text', async ({ page }) => {
@@ -132,5 +133,60 @@ test.describe('Blog post', () => {
     await openFirstPost(page);
     await page.locator('nav a:has-text("Blog")').first().click();
     await expect(page).toHaveURL(/\/blog\/?$/);
+  });
+});
+
+test.describe('Blog post template (#342)', () => {
+  const POST = '/blog/buttons-vs-links-menubar';
+
+  test('teach surface, one h1, eyebrow and meta row', async ({ page }) => {
+    await page.goto(POST);
+    await expect(page.locator('html')).toHaveAttribute('data-surface', 'teach');
+    await expect(page.locator('main h1')).toHaveCount(1);
+    const header = page.locator('main article header');
+    await expect(header.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}T/);
+    await expect(header).toContainText(/min read/);
+  });
+
+  test('prose measures 56rem max at 18px / 1.78', async ({ page }) => {
+    await page.goto(POST);
+    const article = await page.locator('main article').evaluate((el) => getComputedStyle(el).maxWidth);
+    expect(article).toBe('896px'); // 56rem
+    const prose = await page.locator('.post-prose').evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return [cs.fontSize, (parseFloat(cs.lineHeight) / parseFloat(cs.fontSize)).toFixed(2)];
+    });
+    expect(prose).toEqual(['18px', '1.78']);
+  });
+
+  test('reading progress bar is decorative and fills on scroll', async ({ page }) => {
+    await page.goto(POST);
+    const bar = page.locator('#reading-progress');
+    await expect(bar.locator('..')).toHaveAttribute('aria-hidden', 'true');
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await expect.poll(async () => bar.evaluate((el) => parseFloat(el.style.width))).toBeGreaterThan(90);
+  });
+
+  test('footer: tags, author card, and previous/next posts that resolve', async ({ page }) => {
+    await page.goto(POST);
+    await expect(page.getByRole('list', { name: 'Tags' }).locator('li').first()).toBeVisible();
+    await expect(page.getByRole('region', { name: 'About the author' })).toContainText('Nerando Johnson');
+    const more = page.getByRole('navigation', { name: 'More posts' }).locator('a');
+    expect(await more.count()).toBeGreaterThan(0);
+    for (const href of await more.evaluateAll((els) => els.map((a) => a.getAttribute('href')))) {
+      expect(href).toMatch(/^\/blog\/[^/]+$/);
+      expect((await page.request.get(href)).status()).toBe(200);
+    }
+  });
+
+  test('no audio player when a post has no narration', async ({ page }) => {
+    await page.goto(POST);
+    await expect(page.locator('main audio')).toHaveCount(0);
+  });
+
+  test('works at 375px without horizontal scroll', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto(POST);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 });

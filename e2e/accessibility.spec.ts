@@ -11,6 +11,7 @@ const pages = [
   { name: 'Digital Garden',path: '/digital_garden' },
   { name: '404',           path: '/this-route-does-not-exist' },
   { name: 'Learning plot', path: '/learning-projects/vue-3-testing' },
+  { name: 'Blog post',     path: '/blog/geo-cousins' },
 ];
 
 for (const { name, path } of pages) {

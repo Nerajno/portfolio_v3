@@ -35,6 +35,10 @@ const blogCollection = defineCollection({
 
     // Series-related fields
     featured: z.boolean().optional(), // #341: pin as the Featured card on /blog
+    // #342: optional narration; the player renders only when present
+    audio: z.object({ src: z.string(), duration: z.string().optional() }).optional(),
+    // #342: artifact this post pairs with, linked from the author card
+    relatedArtifact: z.object({ label: z.string(), href: z.string() }).optional(),
     series: z.object({
       name: z.string(), // e.g., "Vue 3 Fundamentals"
       order: z.number(), // Position in series (1, 2, 3, etc.)
