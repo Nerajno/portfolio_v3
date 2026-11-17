@@ -6,12 +6,11 @@ const bannerOn = (process.env.PUBLIC_SHOW_UPGRADE_BANNER ?? 'true') === 'true';
 
 test.describe('Upgrade banner (#488)', () => {
   if (bannerOn) {
-    test('shows below the navbar with a status role and blog link', async ({ page }) => {
+    test('shows below the navbar with a status role', async ({ page }) => {
       await page.goto('/');
       const banner = page.getByRole('status').filter({ hasText: 'Site upgrade in progress.' });
       await expect(banner).toBeVisible();
-      await expect(banner).toContainText('Progress over perfection.');
-      await expect(banner.getByRole('link', { name: 'Read the blog' })).toHaveAttribute('href', '/blog');
+      await expect(banner).toContainText('a few pages may look off for a bit.');
       // Sits between the navbar and <main>.
       await expect(page.locator('main#main-content [data-testid="upgrade-banner"]')).toHaveCount(0);
     });
