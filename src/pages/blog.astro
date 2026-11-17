@@ -1,6 +1,7 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { Picture } from 'astro:assets';
+import { minutesRead } from '../lib/readingTime';
 import { SEO } from 'astro-seo';
 import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
@@ -35,15 +36,10 @@ if (!isDevelopment || import.meta.env.TRACK_VIEWS_IN_DEV === 'true') {
 }
 
 // Get reading time for each blog post
-const blogEntriesWithReadingTime = await Promise.all(
-  sortedBlogEntries.map(async (entry) => {
-    const { remarkPluginFrontmatter } = await render(entry);
-    return {
-      ...entry,
-      minutesRead: remarkPluginFrontmatter?.minutesRead || '1 min read',
-    };
-  })
-);
+const blogEntriesWithReadingTime = sortedBlogEntries.map((entry) => ({
+  ...entry,
+  minutesRead: minutesRead(entry.body),
+}));
 
 // Group posts by series for quick lookups
 const seriesMap = new Map<string, typeof blogEntriesWithReadingTime>();
