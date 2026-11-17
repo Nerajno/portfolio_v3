@@ -1,0 +1,86 @@
+---
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import BuildNav from '@components/build/BuildNav.astro';
+
+export const prerender = true;
+
+// #460 How I build. The workflow, AI split, scorecard, and data-handling statement are the
+// owner's to write: they render as "pending" until supplied. Only repo-verifiable facts are stated.
+const pending = 'inline-flex items-center rounded border border-dashed border-surface-strong px-2 py-0.5 text-xs text-muted';
+const card = 'rounded-lg border border-surface bg-surface-card p-5';
+const scorecard = ['eval score (blog rag)', 'p95 latency', 'cost / 1k queries', 'model (pinned)', 'fallback'];
+const repo = 'https://github.com/Nerajno/portfolio_v3';
+
+const seoConfig = {
+  title: 'How I build | Nerando Johnson',
+  description: 'The workflow behind every artifact: where AI sits, what gets verified, and the calls I own.',
+  canonical: new URL('how-i-build', Astro.site).toString(),
+};
+---
+
+<Layout title='How I build' surface='build'>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={{
+      basic: { title: seoConfig.title, type: 'website', image: '/opengraph.jpg', url: seoConfig.canonical },
+      optional: { description: seoConfig.description, siteName: 'My MetaData' },
+    }}
+    twitter={{ creator: '@nerajno', site: '@nerajno', card: 'summary_large_image' }}
+  />
+
+  <Container>
+    <BuildNav />
+
+    <header class='pb-6 pt-10'>
+      <p class='font-mono text-xs uppercase text-soft'>Build surface · font: mono · density: 0.875×</p>
+      <h1 class='mt-2 text-3xl md:text-4xl font-bold tracking-tight text-strong'>How I build</h1>
+      <p class='mt-3 max-w-prose leading-relaxed text-soft'>
+        The workflow behind every artifact: where AI sits in it, what I verify by hand, and the calls I own.
+      </p>
+    </header>
+
+    <section aria-labelledby='workflow-heading' class='pb-8'>
+      <h2 id='workflow-heading' class='font-mono text-lg font-bold text-strong'>workflow</h2>
+      <div class={`${card} mt-3 border-dashed`} data-pending='workflow'>
+        <span class={pending}>Workflow steps pending</span>
+      </div>
+    </section>
+
+    <div class='grid gap-6 pb-8 lg:grid-cols-2'>
+      <section aria-labelledby='split-heading' class={card}>
+        <h2 id='split-heading' class='font-mono text-lg font-bold text-strong'>ai does / i own</h2>
+        <p class='mt-3' data-pending='ai-split'><span class={pending}>Pending</span></p>
+      </section>
+      <section aria-labelledby='scorecard-heading' class={card}>
+        <h2 id='scorecard-heading' class='font-mono text-lg font-bold text-strong'>llm artifact scorecard</h2>
+        <dl class='mt-3 flex flex-col gap-2 font-mono text-sm'>
+          {scorecard.map((row) => (
+            <div class='flex items-center justify-between gap-4 border-b border-surface pb-2 last:border-0'>
+              <dt class='text-body'>{row}</dt>
+              <dd data-pending='scorecard'><span class={pending}>Pending</span></dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    </div>
+
+    <section aria-labelledby='verified-heading' class={`${card} mb-6`}>
+      <h2 id='verified-heading' class='font-mono text-lg font-bold text-strong'>verified on this site</h2>
+      <ul class='mt-3 list-disc pl-5 text-sm leading-relaxed text-body'>
+        <li>Unit tests run with Vitest; end-to-end and accessibility (axe) tests run with Playwright.</li>
+        <li>GitHub Actions runs both on every push and pull request to the deploy branch.</li>
+        <li>New pages join the axe suite; see <a href={`${repo}/blob/Netlify-main/TESTING.md`} class='underline hover:no-underline'>TESTING.md</a>.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby='data-heading' class='mb-16 rounded-lg bg-surface-alt p-5'>
+      <h2 id='data-heading' class='font-mono text-lg font-bold text-strong'>data handling</h2>
+      <p class='mt-2' data-pending='data-handling'><span class={pending}>LLM data handling statement pending</span></p>
+      <a href='/decisions' class='mt-3 inline-block font-mono text-sm font-bold'>read the decision records →</a>
+    </section>
+  </Container>
+</Layout>
