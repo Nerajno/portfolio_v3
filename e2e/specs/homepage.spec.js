@@ -17,11 +17,11 @@ test.describe('Homepage', () => {
     await expect(page.locator('main')).toContainText('Vue');
   });
 
-  test('should show hero CTA row: Work with me, See my work, Résumé placeholder', async ({ page }) => {
+  test('should show hero CTA row: Work with me, See my work, Résumé', async ({ page }) => {
     const hero = page.locator('section[aria-labelledby="hero-heading"]');
     await expect(hero.getByRole('link', { name: 'Work with me' })).toHaveAttribute('href', '/contact');
     await expect(hero.getByRole('link', { name: 'See my work' })).toHaveAttribute('href', '/portfolio');
-    await expect(hero.locator('[data-pending="resume"]')).toBeVisible();
+    await expect(hero.getByRole('link', { name: 'Résumé' })).toHaveAttribute('href', '/resume');
   });
 
   test('should have exactly one h1, the positioning headline', async ({ page }) => {

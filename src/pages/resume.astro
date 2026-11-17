@@ -1,0 +1,142 @@
+---
+import { getCollection } from 'astro:content';
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import { speakingData } from '../data/speakingData';
+
+// #456 HTML résumé, front-end track. Only facts already published on this site are used;
+// anything else renders as a dashed "pending" placeholder (data-pending) until supplied.
+const now = new Date();
+const posts = await getCollection('blog', ({ data }) => !data.draft && data.publishDate < now);
+const pastTalks = speakingData
+  .filter((talk) => new Date(talk.date) <= now)
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+const recentEvents = [...new Set(pastTalks.map((talk) => talk.name))].slice(0, 5);
+
+const experience = [
+  { role: 'Frontend Software Engineer', org: 'Hygiena (life sciences SaaS)' },
+  { role: 'Founder', org: 'TechTile LLC (boutique development studio)' },
+  { role: 'Middle School Teacher', org: 'career before code' },
+];
+
+const skills = [
+  { label: 'Front-end', items: 'Vue 3 · Nuxt · TypeScript · JavaScript · Tailwind CSS · Astro' },
+  { label: 'Testing', items: 'Vitest · Playwright · Testing Library · axe · GitHub Actions' },
+  { label: 'Back-end & data', items: 'Supabase' },
+  { label: 'Practice', items: 'Design tokens · accessibility · technical writing · public speaking' },
+];
+
+const heading = 'text-sm font-semibold uppercase tracking-widest text-accent';
+const pending = 'inline-flex items-center rounded border border-dashed border-surface-strong px-2 py-0.5 text-xs text-muted';
+const button = 'inline-flex min-h-11 items-center rounded-lg px-5 text-sm font-semibold';
+
+const seoConfig = {
+  title: 'Résumé | Nerando Johnson, Front-End Software Engineer',
+  description: 'Résumé for Nerando Johnson, front-end software engineer in Atlanta working in Vue 3, TypeScript, and Nuxt. Printable as PDF.',
+  canonical: new URL('resume', Astro.site).toString(),
+};
+---
+
+<Layout title='Résumé'>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={{
+      basic: { title: seoConfig.title, type: 'profile', image: '/opengraph.jpg', url: seoConfig.canonical },
+      optional: { description: seoConfig.description, siteName: 'My MetaData' },
+    }}
+    twitter={{ creator: '@nerajno', site: '@nerajno', card: 'summary_large_image' }}
+  />
+
+  <Container>
+    <div class='mx-auto max-w-4xl pb-16 pt-8'>
+      <nav aria-label='Résumé actions' class='flex flex-wrap items-center justify-between gap-3' data-print-hide>
+        <span class='font-mono text-sm text-soft'>Front-end track</span>
+        <div class='flex flex-wrap gap-3'>
+          <button type='button' id='print-resume' class={`${button} border border-surface-strong bg-surface-card text-body hover:bg-surface-alt`}>
+            Print / PDF
+          </button>
+          <a href='/contact' class={`${button} bg-accent text-surface hover:bg-accent-hover`}>Contact me</a>
+        </div>
+      </nav>
+
+      <article id='resume' class='mt-6 flex flex-col gap-7 rounded-xl border border-surface bg-surface-card p-6 sm:p-12'>
+        <header>
+          <h1 class='text-3xl md:text-4xl font-bold text-strong'>Nerando Johnson</h1>
+          <p class='mt-1 text-lg font-medium text-accent'>Software Engineer, Front-End (Vue 3 · TypeScript · Nuxt)</p>
+          <p class='mt-1 text-sm text-soft'>
+            Atlanta, GA ·{' '}
+            <a href='https://developingdvlpr.com'>developingdvlpr.com</a> ·{' '}
+            <a href='https://github.com/Nerajno'>github.com/Nerajno</a> ·{' '}
+            <a href='https://www.linkedin.com/in/nerando-johnson/'>linkedin.com/in/nerando-johnson</a>
+          </p>
+        </header>
+
+        <section aria-labelledby='summary-heading' class='border-t border-surface pt-5'>
+          <h2 id='summary-heading' class={heading}>Summary</h2>
+          <p class='mt-2 leading-relaxed text-body'>
+            Front-end software engineer at Hygiena, a life sciences SaaS company, working in Vue and TypeScript.
+            A former middle school teacher who still teaches what I learn: {pastTalks.length} talks given and
+            {' '}{posts.length} articles published on this site.
+          </p>
+        </section>
+
+        <section aria-labelledby='experience-heading'>
+          <h2 id='experience-heading' class={heading}>Experience</h2>
+          <ul class='mt-3 flex list-none flex-col gap-4 p-0'>
+            {experience.map((job) => (
+              <li>
+                <div class='flex flex-wrap items-baseline justify-between gap-2'>
+                  <h3 class='text-lg font-semibold text-strong'>
+                    {job.role} <span class='text-sm font-normal text-soft'>· {job.org}</span>
+                  </h3>
+                  <span class={pending} data-pending='dates'>Dates pending</span>
+                </div>
+                <p class='mt-1'><span class={pending} data-pending='highlights'>Highlights pending</span></p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby='skills-heading'>
+          <h2 id='skills-heading' class={heading}>Skills</h2>
+          <dl class='mt-3 grid gap-2 text-sm sm:grid-cols-[9rem_1fr] sm:gap-x-4'>
+            {skills.map((group) => (
+              <>
+                <dt class='font-mono text-xs uppercase text-soft sm:pt-0.5'>{group.label}</dt>
+                <dd class='text-body'>{group.items}</dd>
+              </>
+            ))}
+          </dl>
+        </section>
+
+        <section aria-labelledby='education-heading'>
+          <h2 id='education-heading' class={heading}>Education &amp; community</h2>
+          <ul class='mt-3 list-disc pl-5 text-sm leading-relaxed text-body'>
+            <li data-pending='education'><span class={pending}>Education pending</span></li>
+            <li>Speaker: {recentEvents.join(', ')} (<a href='/speaking' class='underline hover:no-underline'>full list</a>)</li>
+            <li>Writing: <a href='/blog' class='underline hover:no-underline'>{posts.length} articles</a> on Vue, the craft around it, and tech careers</li>
+          </ul>
+        </section>
+      </article>
+    </div>
+  </Container>
+</Layout>
+
+<script>
+  document.getElementById('print-resume')?.addEventListener('click', () => window.print());
+</script>
+
+<style is:global>
+  @media print {
+    html, html.dark { color-scheme: light !important; }
+    body > :not(main), .skip-link, [data-print-hide] { display: none !important; }
+    html, body, #resume { background: Canvas !important; color: CanvasText !important; }
+    #resume { border: 0 !important; padding: 0 !important; }
+    #resume * { color: CanvasText !important; }
+    #resume a { text-decoration: none; }
+    [data-pending] { display: none !important; }
+  }
+</style>

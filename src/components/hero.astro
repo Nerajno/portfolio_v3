@@ -3,7 +3,6 @@ import { Picture } from 'astro:assets';
 import heroImage from 'assets/Banner_for_site.png';
 
 const button = 'inline-flex min-h-11 items-center justify-center rounded-lg px-6 py-3 text-base font-semibold';
-const pending = 'inline-flex min-h-11 items-center justify-center rounded-lg border border-dashed border-surface-strong px-6 py-3 text-base text-muted';
 ---
 
 <section
@@ -40,7 +39,9 @@ const pending = 'inline-flex min-h-11 items-center justify-center rounded-lg bor
       <a href='/portfolio' class={`${button} border border-surface-strong bg-surface-card text-body hover:bg-surface-alt`}>
         See my work
       </a>
-      <span class={pending} data-pending='resume'>Résumé pending</span>
+      <a href='/resume' class={`${button} border border-surface-strong bg-surface-card text-body hover:bg-surface-alt`}>
+        Résumé
+      </a>
     </div>
 
     <p class='mt-4 text-sm' data-pending='target-roles'>
