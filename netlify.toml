@@ -16,3 +16,8 @@
   targetPort = 3000
 
 
+
+# #488: temporary "site upgrade in progress" banner while the redesign (#316) is in progress.
+# Set to "false" (or remove) when the redesign merges.
+[context.production.environment]
+  PUBLIC_SHOW_UPGRADE_BANNER = "true"

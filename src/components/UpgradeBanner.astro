@@ -1,0 +1,19 @@
+---
+// #488 Temporary notice while the redesign (#316) is in progress.
+// Rendered by Layout.astro only when PUBLIC_SHOW_UPGRADE_BANNER === "true".
+interface Props {
+  href?: string;
+  linkText?: string;
+}
+const { href = '/blog', linkText = 'Read the blog' } = Astro.props;
+---
+
+<aside role='status' class='max-w-screen-xl mx-auto px-5 mt-4' data-testid='upgrade-banner'>
+  <div
+    class='rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-3 text-sm text-slate-700 dark:text-slate-200 text-center'>
+    <span aria-hidden='true'>🚧</span>
+    <strong class='text-black dark:text-white'>Site upgrade in progress.</strong>
+    I'm rebuilding things here, so a few pages may look off for a bit. Progress over perfection.
+    <a href={href} class='underline underline-offset-2 font-medium text-black dark:text-white'>{linkText}</a>
+  </div>
+</aside>

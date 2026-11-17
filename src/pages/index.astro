@@ -59,6 +59,7 @@ const seoConfig = {
 };
 
 const lastUpdated = '2026-04-23T00:00:00Z';
+const showUpgradeBanner = import.meta.env.PUBLIC_SHOW_UPGRADE_BANNER === 'true';
 
 // Person structured data for better GEO (JSON-LD)
 const structuredData = {
@@ -180,9 +181,15 @@ const webPageData = {
 
   <Container>
     <!-- Visible last-updated timestamp for freshness signal -->
-    <p class='text-xs text-slate-400 dark:text-slate-500 text-right mt-2' aria-label='Last updated date'>
-      Last updated: <time datetime={lastUpdated}>April 2026</time>
-    </p>
+    {showUpgradeBanner ? (
+      <p class='text-xs text-slate-500 dark:text-slate-400 text-right mt-2' data-testid='site-meta'>
+        Upgrade in progress — <time datetime='2026-11'>November 2026</time>
+      </p>
+    ) : (
+      <p class='text-xs text-slate-500 dark:text-slate-400 text-right mt-2' aria-label='Last updated date' data-testid='site-meta'>
+        Last updated: <time datetime={lastUpdated}>April 2026</time>
+      </p>
+    )}
 
     <Hero />
     <Features />
