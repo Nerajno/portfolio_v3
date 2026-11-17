@@ -61,6 +61,14 @@ so it gets an axe scan, skip-link check, and landmark check.
 1. **unit** — `npm run test:run`
 2. **test** — full Playwright suite, with the HTML report uploaded as an artifact
 
+## Maintenance cadence (#463)
+
+- **Monthly:** run the link check (#467), confirm every showcased demo and repo link
+  still works, ship at least one new artifact or post, and add it to
+  `src/data/changelog.js` (newest first). The home page's "Last updated" date and
+  `/changelog` both derive from that file.
+- **Quarterly:** review metrics and keep CI badges green on showcased repos.
+
 ## Troubleshooting
 
 - **Astro dev server error page in e2e runs** — transient SSR hiccup; the a11y suite
