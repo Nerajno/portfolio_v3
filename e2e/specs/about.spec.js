@@ -23,8 +23,8 @@ test.describe('About page', () => {
   test('unfilled content shows as pending, never invented', async ({ page }) => {
     await page.goto('/about');
     await expect(page.locator('[data-pending="testimonial"]')).toHaveCount(2);
-    await expect(page.locator('[data-pending="resume"]')).toHaveCount(1);
-    await expect(page.locator('[data-pending="recruiters"]')).toHaveCount(1);
+    await expect(page.getByRole('link', { name: 'View my résumé →' })).toHaveAttribute('href', '/resume');
+    await expect(page.getByRole('link', { name: 'Recruiter fast lane' })).toHaveAttribute('href', '/recruiters');
   });
 
   test('CTA band links to contact', async ({ page }) => {
