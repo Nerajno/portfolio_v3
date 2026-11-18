@@ -59,3 +59,15 @@ for (const path of ['/recruiters', '/refer']) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 }
+
+test('/recruiters has no element past the edge at 320px', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/recruiters');
+  // Layout sets overflow-x: hidden on html/body, so scrollWidth hides overflow; measure elements instead.
+  const overflowing = await page.evaluate(() =>
+    [...document.querySelectorAll('main *')]
+      .filter((el) => el.getBoundingClientRect().right > 320.5)
+      .map((el) => `${el.tagName.toLowerCase()} right=${Math.round(el.getBoundingClientRect().right)}`)
+  );
+  expect(overflowing).toEqual([]);
+});

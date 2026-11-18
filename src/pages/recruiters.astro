@@ -67,13 +67,13 @@ const seoConfig = {
       </p>
     </header>
 
-    <section aria-label='Facts' class='grid gap-6 md:grid-cols-3' id='facts'>
+    <section aria-label='Facts' class='grid grid-cols-1 gap-6 md:grid-cols-3' id='facts'>
       {facts.map((column) => (
         <dl class='flex flex-col gap-4 rounded-xl border border-surface bg-surface-card p-6'>
           {column.map((fact) => (
             <div>
               <dt class='font-mono text-xs uppercase tracking-wide text-soft'>{fact.label}</dt>
-              <dd class='mt-1 text-body'>
+              <dd class='mt-1 break-words text-body'>
                 {fact.value === null ? (
                   <span class={pending} data-pending={fact.pendingKey}>Pending</span>
                 ) : fact.href ? (
