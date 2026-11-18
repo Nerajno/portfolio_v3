@@ -33,7 +33,7 @@ const projects = {
       image: null,
       github: "https://github.com/Nerajno/isnerandodoneyet-com",
       website: "https://isnerandodoneyet.com/",
-      caseStudyUrl: null,
+      caseStudyUrl: "/case-study/isnerandodoneyet",
       proof: null,
       visible: true,
     },
