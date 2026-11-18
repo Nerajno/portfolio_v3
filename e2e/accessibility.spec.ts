@@ -25,7 +25,7 @@ for (const { name, path } of pages) {
   test.describe(`Accessibility – ${name}`, () => {
     // Skip all tests in this describe block if Astro dev server returns its error page
     test.beforeEach(async ({ page }, testInfo) => {
-      await page.goto(path, { waitUntil: 'networkidle' });
+      await page.goto(path, { waitUntil: 'load' });
       const title = await page.title();
       if (title === 'Error') {
         testInfo.skip(true, `Astro dev server error page for ${path} — transient SSR issue, re-run to confirm`);
@@ -71,7 +71,7 @@ for (const { name, path } of pages) {
 
     test('no horizontal scroll at 320px width', async ({ page }) => {
       await page.setViewportSize({ width: 320, height: 568 });
-      await page.goto(path, { waitUntil: 'networkidle' });
+      await page.goto(path, { waitUntil: 'load' });
       const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
       expect(scrollWidth, `Horizontal overflow on ${name} at 320px`).toBeLessThanOrEqual(320);
     });
