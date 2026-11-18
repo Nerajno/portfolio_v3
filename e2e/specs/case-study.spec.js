@@ -53,8 +53,13 @@ test.describe('IsNerandoDoneYet case study', () => {
   test('no horizontal overflow at 320px', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 800 });
     expect((await page.goto(PAGE)).status()).toBe(200);
-    const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
-    expect(scrollWidth).toBeLessThanOrEqual(320);
+    // Layout sets overflow-x: hidden on html/body, so scrollWidth hides overflow; measure elements instead.
+    const overflowing = await page.evaluate(() =>
+      [...document.querySelectorAll('main *')]
+        .filter((el) => el.getBoundingClientRect().right > 320.5)
+        .map((el) => `${el.tagName.toLowerCase()} right=${Math.round(el.getBoundingClientRect().right)}`)
+    );
+    expect(overflowing).toEqual([]);
   });
 
   test('no serious axe violations in dark theme', async ({ page }) => {
