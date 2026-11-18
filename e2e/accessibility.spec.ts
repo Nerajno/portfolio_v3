@@ -10,6 +10,7 @@ const pages = [
   { name: 'Résumé',        path: '/resume' },
   { name: 'Contact',       path: '/contact' },
   { name: 'Recruiters',    path: '/recruiters' },
+  { name: 'Case study',    path: '/case-study/isnerandodoneyet' },
   { name: 'Refer',         path: '/refer' },
   { name: 'How I build',   path: '/how-i-build' },
   { name: 'Decisions',     path: '/decisions' },

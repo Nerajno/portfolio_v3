@@ -1,0 +1,162 @@
+---
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+
+export const prerender = true;
+
+// Deep dive for IsNerandoDoneYet, built from the design-canvas mockup.
+// NOTE: success criteria, architecture, ADR-005/006, outcome numbers, v2, AI notes and CI line are
+// SAMPLE COPY for review on feat/224. Replace with real facts before the redesign goes live (#454).
+const sections = [
+  {
+    n: '01',
+    title: 'Problem & business context',
+    body: 'Side projects rarely fail loudly. They become zombies: technically alive on GitHub, practically dead. My rule for that is the Kill List — anything sitting untouched gets finished or cut. A rule only has teeth if breaking it is visible, so I put my commitments on a public URL with my name on it. "Almost done" stops being a comfortable place to hide.',
+  },
+  {
+    n: '02',
+    title: 'Success criteria',
+    body: 'Set before the rebuild: every tracked item ends as shipped or killed — never parked · nothing sits "in progress" longer than 90 days · a status change takes under a minute from my laptop · the list gets a 15-minute Kill List audit every Saturday.',
+  },
+  {
+    n: '03',
+    title: 'Approach & architecture',
+    body: 'Commitments live as one JSON file in the repo. A build step validates it against a schema, Pinia loads it into a store, and three Vue views read from that store: the board, the shipped log, and the graveyard. The rebuild started from a long wish list — real-time collaboration, AI suggestions, mobile apps, plugins, themes, team workspaces — and shipped only the must-haves.',
+  },
+  {
+    n: '04',
+    title: 'Key tradeoffs',
+    body: null,
+  },
+  {
+    n: '05',
+    title: 'Measurable outcome',
+    body: '31 items shipped · 14 killed on purpose · 0 items "in progress" past 90 days since the rebuild · median 23 days from started to done.',
+  },
+  {
+    n: '06',
+    title: "What I'd change in v2",
+    body: 'Ship the simpler boilerplate so other developers can run their own public tracker, add an RSS feed of status changes, and require a two-line post-mortem before an item can be killed — the graveyard should teach, not just record.',
+  },
+];
+const flow = ['commitments.json', 'schema check (build)', 'Pinia store', 'Board · Shipped · Graveyard', 'Netlify'];
+const evidence = [
+  { label: 'Live site — isnerandodoneyet.com', href: 'https://isnerandodoneyet.com/', external: true },
+  { label: 'Repo + README', href: 'https://github.com/Nerajno/isnerandodoneyet-com', external: true },
+  { label: 'Decision records (ADR 005–006)', href: '/decisions' },
+  { label: 'Related post: Skills to Bills', href: '/blog/skills-to-bills-demonstrated-competency' },
+  { label: 'Related post: Start with the End in Mind', href: '/blog/start-with-the-end-in-mind-developers-side-project-survival-guide' },
+];
+
+const eyebrow = 'text-sm font-semibold uppercase tracking-widest text-accent';
+const num = 'mr-2.5 font-mono text-sm text-accent';
+const prose = 'text-base leading-relaxed text-body';
+const inline = 'text-accent underline hover:no-underline';
+
+const seoConfig = {
+  title: 'IsNerandoDoneYet case study | Nerando Johnson',
+  description: 'How IsNerandoDoneYet turns the Kill List into a public finish line: problem, criteria, architecture, tradeoffs, outcome, and what AI got wrong.',
+  canonical: new URL('case-study/isnerandodoneyet', Astro.site).toString(),
+};
+---
+
+<Layout title='IsNerandoDoneYet case study'>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={{
+      basic: { title: seoConfig.title, type: 'article', image: '/opengraph.jpg', url: seoConfig.canonical },
+      optional: { description: seoConfig.description, siteName: 'My MetaData' },
+    }}
+    twitter={{ creator: '@nerajno', site: '@nerajno', card: 'summary_large_image' }}
+  />
+
+  <Container>
+    <nav aria-label='Breadcrumb' class='pt-8 text-sm text-soft'>
+      <a href='/portfolio' class='underline hover:no-underline'>Artifacts</a>
+      <span aria-hidden='true'> / </span>
+      <span aria-current='page'>IsNerandoDoneYet</span>
+    </nav>
+
+    <header class='pb-9 pt-8'>
+      <p class={eyebrow}>Artifact deep dive</p>
+      <h1 class='mt-2 max-w-[24ch] text-4xl font-bold leading-tight tracking-tight text-strong'>IsNerandoDoneYet — a public finish line for my side projects</h1>
+      <ul class='mt-4 flex flex-wrap gap-x-5 gap-y-1 font-mono text-sm text-soft'>
+        <li>Role: solo build</li>
+        <li>Stack: Vue 3 · TypeScript · Pinia · Tailwind</li>
+        <li>Started: Apr 2022</li>
+        <li>Status: live</li>
+      </ul>
+    </header>
+
+    <div class='flex flex-wrap items-start gap-10 pb-14'>
+      <div class='flex min-w-0 flex-[999_1_560px] flex-col gap-9'>
+        {sections.map((s) => (
+          <section aria-labelledby={`s-${s.n}`}>
+            <h2 id={`s-${s.n}`} class='mb-2.5 text-2xl font-semibold text-strong'><span class={num}>{s.n}</span>{s.title}</h2>
+            {s.n === '04' ? (
+              <p class={prose}>
+                A JSON file in git over a database (<a href='/decisions' class={inline}>ADR-005</a>): every status change is a commit, so the history is the audit log and hosting costs nothing — the price is no editing from my phone. Three statuses only (<a href='/decisions' class={inline}>ADR-006</a>): shipped, in progress, killed. No "paused", because paused is where zombies live. The rebuild also wrote down its WON'T-HAVE features, so they couldn't sneak back in between audits.
+              </p>
+            ) : (
+              <p class={prose}>{s.body}</p>
+            )}
+            {s.n === '03' && (
+              <figure class='mt-4 rounded-lg bg-surface-alt px-5 py-7'>
+                <ol class='flex flex-wrap items-center justify-center gap-3 font-mono text-sm text-strong'>
+                  {flow.map((step, i) => (
+                    <li class='flex items-center gap-3'>
+                      {i > 0 && <span aria-hidden='true' class='text-accent'>→</span>}
+                      <span class='rounded-md border border-surface bg-surface-card px-3.5 py-2.5'>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+                <figcaption class='mt-4 text-center text-sm text-soft'>Architecture: the JSON file is schema-checked at build, loaded into Pinia, rendered by three views, and deployed to Netlify.</figcaption>
+              </figure>
+            )}
+          </section>
+        ))}
+
+        <aside aria-label='AI collaboration' class='flex flex-col gap-3 rounded-xl border border-surface bg-surface-alt p-6'>
+          <p class={eyebrow}>AI collaboration</p>
+          <p class='text-[15px] leading-relaxed text-body'>Tools: Claude + Copilot. AI drafted the Pinia store, the status filters, and the Vitest scaffolds; I owned the status model, the Kill List rules, and every merge.</p>
+          <p class='text-[15px] leading-relaxed text-soft'><strong class='text-strong'>Where AI got it wrong:</strong> its first data model added a "paused" status with a resume date — the exact zombie state the app exists to forbid. It was reasonable product thinking for a generic tracker and wrong for this one. Cut in review; the rule came from me, not the model.</p>
+        </aside>
+      </div>
+
+      <aside aria-label='Evidence' class='flex max-w-[360px] flex-[1_1_300px] flex-col gap-3 rounded-xl border border-surface bg-surface-card p-6'>
+        <h2 class='text-xl font-semibold text-strong'>Evidence</h2>
+        <ul class='flex flex-col gap-3'>
+          {evidence.map((e) => (
+            <li>
+              <a
+                href={e.href}
+                class='text-[15px] text-accent underline hover:no-underline'
+                {...(e.external ? { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${e.label} (opens in a new tab)` } : {})}>
+                {e.label}{e.external ? ' ↗' : ''}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class='mt-1 flex flex-col gap-1.5 border-t border-surface pt-3 font-mono text-xs text-soft'>
+          <span>✓ tests passing · CI green</span>
+          <span>REPO SINCE APR 2022 · DEPLOYED ON NETLIFY</span>
+        </div>
+      </aside>
+    </div>
+  </Container>
+
+  <section aria-labelledby='recruiter-band' class='bg-surface-alt'>
+    <Container>
+      <div class='flex flex-wrap items-center justify-between gap-5 py-10'>
+        <div>
+          <h2 id='recruiter-band' class='text-2xl font-bold text-strong'>Hiring for a front-end role?</h2>
+          <p class='mt-1 text-[15px] text-soft'>The 60-second version of me lives at /recruiters — role targets, résumé, and receipts.</p>
+        </div>
+        <a href='/recruiters' class='inline-flex min-h-11 items-center rounded-lg bg-accent px-6 font-semibold text-surface hover:bg-accent-hover'>Recruiter fast lane →</a>
+      </div>
+    </Container>
+  </section>
+</Layout>
