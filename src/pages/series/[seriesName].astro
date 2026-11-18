@@ -1,6 +1,7 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { SEO } from 'astro-seo';
+import { minutesRead as getMinutesRead } from '../../lib/readingTime';
 import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
 
@@ -44,23 +45,14 @@ export async function getStaticPaths() {
 const { seriesName, seriesSlug, posts: entries } = Astro.props;
 const posts = entries.map((e) => e.post);
 
-const parts = await Promise.all(
-  entries.map(async ({ post, published }) => {
-    let minutesRead = '';
-    if (published) {
-      const { remarkPluginFrontmatter } = await render(post);
-      minutesRead = remarkPluginFrontmatter?.minutesRead || '1 min read';
-    }
-    return {
-      title: post.data.title,
-      snippet: post.data.snippet,
-      order: post.data.series!.order,
-      href: `/blog/${post.id.replace(/\.(md|mdx)$/, '')}`,
-      published,
-      minutesRead,
-    };
-  })
-);
+const parts = entries.map(({ post, published }) => ({
+  title: post.data.title,
+  snippet: post.data.snippet,
+  order: post.data.series!.order,
+  href: `/blog/${post.id.replace(/\.(md|mdx)$/, '')}`,
+  published,
+  minutesRead: published ? getMinutesRead(post.body) : '',
+}));
 
 const publishedCount = parts.filter((p) => p.published).length;
 const total = parts.length;
