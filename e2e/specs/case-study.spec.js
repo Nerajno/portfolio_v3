@@ -102,6 +102,17 @@ test.describe('IsNerandoDoneYet case study', () => {
     for (const text of await rows.allTextContents()) expect(text).toContain('→');
   });
 
+  test('every /decisions link lands on a real record', async ({ page }) => {
+    await page.goto(PAGE);
+    const hrefs = await page.locator('main a[href^="/decisions"]').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+    const html = await (await page.request.get('/decisions')).text();
+    for (const href of hrefs) {
+      const id = href.split('#')[1];
+      expect(id, `${href} has no #anchor`).toBeTruthy();
+      expect(html, `${href} has no matching record`).toContain(`id="${id}"`);
+    }
+  });
+
   test('operations note covers observability and secrets', async ({ page }) => {
     await page.goto(PAGE);
     await expect(page.getByRole('complementary', { name: 'Running it' })).toContainText(/secrets/i);

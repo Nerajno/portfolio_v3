@@ -6,7 +6,7 @@ import Container from '@components/container.astro';
 export const prerender = true;
 
 // Deep dive for IsNerandoDoneYet, built from the design-canvas mockup.
-// NOTE: success criteria, architecture, ADR-005/006, outcome numbers, v2, AI notes and CI line are
+// NOTE: success criteria, architecture, outcome numbers, v2, AI notes and CI line are
 // SAMPLE COPY for review on feat/224. Replace with real facts before the redesign goes live (#454).
 // Also sample: cost + constraints (01), why-this-stack + data model (03), before → after rows (05), "Running it" note.
 // Conflict to resolve: the "Start with the End in Mind" post lists the rebuild's must-haves as a markdown
@@ -30,7 +30,7 @@ const sections = [
   {
     n: '04',
     title: 'Key tradeoffs',
-    body: null,
+    body: "A JSON file in git over a database (decision record to come): every status change is a commit, so the history is the audit log and hosting costs nothing — the price is no editing from my phone. Three statuses only (decision record to come): shipped, in progress, killed. No \"paused\", because paused is where zombies live. The rebuild also wrote down its WON'T-HAVE features, so they couldn't sneak back in between audits.",
   },
   {
     n: '05',
@@ -66,7 +66,6 @@ const flow = ['commitments.json', 'schema check (build)', 'Pinia store', 'Board 
 const evidence = [
   { label: 'Live site — isnerandodoneyet.com', href: 'https://isnerandodoneyet.com/', external: true },
   { label: 'Repo + README', href: 'https://github.com/Nerajno/isnerandodoneyet-com', external: true },
-  { label: 'Decision records (ADR 005–006)', href: '/decisions' },
   { label: 'Related post: Skills to Bills', href: '/blog/skills-to-bills-demonstrated-competency' },
   { label: 'Related post: Start with the End in Mind', href: '/blog/start-with-the-end-in-mind-developers-side-project-survival-guide' },
 ];
@@ -74,7 +73,6 @@ const evidence = [
 const eyebrow = 'text-sm font-semibold uppercase tracking-widest text-accent';
 const num = 'mr-2.5 font-mono text-sm text-accent';
 const prose = 'text-base leading-relaxed text-body';
-const inline = 'text-accent underline hover:no-underline';
 
 const seoConfig = {
   title: 'IsNerandoDoneYet case study | Nerando Johnson',
@@ -118,13 +116,7 @@ const seoConfig = {
         {sections.map((s) => (
           <section aria-labelledby={`s-${s.n}`}>
             <h2 id={`s-${s.n}`} class='mb-2.5 text-2xl font-semibold text-strong'><span class={num}>{s.n}</span>{s.title}</h2>
-            {s.n === '04' ? (
-              <p class={prose}>
-                A JSON file in git over a database (<a href='/decisions' class={inline}>ADR-005</a>): every status change is a commit, so the history is the audit log and hosting costs nothing — the price is no editing from my phone. Three statuses only (<a href='/decisions' class={inline}>ADR-006</a>): shipped, in progress, killed. No "paused", because paused is where zombies live. The rebuild also wrote down its WON'T-HAVE features, so they couldn't sneak back in between audits.
-              </p>
-            ) : (
-              <p class={prose}>{s.body}</p>
-            )}
+            <p class={prose}>{s.body}</p>
             {s.n === '01' && (
               <dl class='mt-3 flex flex-col gap-1 text-base leading-relaxed text-body'>
                 {problemFacts.map((f) => (
