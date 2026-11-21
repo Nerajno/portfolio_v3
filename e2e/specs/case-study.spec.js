@@ -54,8 +54,10 @@ test.describe('IsNerandoDoneYet case study', () => {
     await page.setViewportSize({ width: 320, height: 800 });
     expect((await page.goto(PAGE)).status()).toBe(200);
     // Layout sets overflow-x: hidden on html/body, so scrollWidth hides overflow; measure elements instead.
+    // Content inside its own horizontal scroll box (e.g. a code block) is allowed; the box itself must fit.
     const overflowing = await page.evaluate(() =>
       [...document.querySelectorAll('main *')]
+        .filter((el) => !el.parentElement?.closest('main [class*="overflow-x-auto"]'))
         .filter((el) => el.getBoundingClientRect().right > 320.5)
         .map((el) => `${el.tagName.toLowerCase()} right=${Math.round(el.getBoundingClientRect().right)}`)
     );
@@ -71,5 +73,37 @@ test.describe('IsNerandoDoneYet case study', () => {
       .analyze();
     const serious = results.violations.filter((v) => v.impact === 'critical' || v.impact === 'serious');
     expect(serious.map((v) => `${v.id}: ${v.nodes.map((n) => n.target).join(', ')}`)).toEqual([]);
+  });
+
+  const section = (page, n) => page.locator(`section[aria-labelledby="s-${n}"]`);
+
+  test('problem names cost and constraints', async ({ page }) => {
+    await page.goto(PAGE);
+    await expect(section(page, '01')).toContainText('Cost:');
+    await expect(section(page, '01')).toContainText('Constraints:');
+  });
+
+  test('approach explains the stack choice', async ({ page }) => {
+    await page.goto(PAGE);
+    await expect(section(page, '03')).toContainText('Why this stack:');
+  });
+
+  test('data model is shown', async ({ page }) => {
+    await page.goto(PAGE);
+    const fig = section(page, '03').locator('figure').filter({ has: page.locator('figcaption', { hasText: /^Data model/ }) });
+    await expect(fig).toHaveCount(1);
+    await expect(fig.locator('pre code')).toContainText('"status"');
+  });
+
+  test('outcome shows before and after per criterion', async ({ page }) => {
+    await page.goto(PAGE);
+    const rows = section(page, '05').locator('li');
+    expect(await rows.count()).toBeGreaterThanOrEqual(3);
+    for (const text of await rows.allTextContents()) expect(text).toContain('→');
+  });
+
+  test('operations note covers observability and secrets', async ({ page }) => {
+    await page.goto(PAGE);
+    await expect(page.getByRole('complementary', { name: 'Running it' })).toContainText(/secrets/i);
   });
 });

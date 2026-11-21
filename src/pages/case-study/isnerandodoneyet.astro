@@ -8,6 +8,9 @@ export const prerender = true;
 // Deep dive for IsNerandoDoneYet, built from the design-canvas mockup.
 // NOTE: success criteria, architecture, ADR-005/006, outcome numbers, v2, AI notes and CI line are
 // SAMPLE COPY for review on feat/224. Replace with real facts before the redesign goes live (#454).
+// Also sample: cost + constraints (01), why-this-stack + data model (03), before → after rows (05), "Running it" note.
+// Conflict to resolve: the "Start with the End in Mind" post lists the rebuild's must-haves as a markdown
+// editor (create/edit, preview, save locally); the JSON → Pinia → three-views architecture here is invented.
 const sections = [
   {
     n: '01',
@@ -39,6 +42,25 @@ const sections = [
     title: "What I'd change in v2",
     body: 'Ship the simpler boilerplate so other developers can run their own public tracker, add an RSS feed of status changes, and require a two-line post-mortem before an item can be killed — the graveyard should teach, not just record.',
   },
+];
+const problemFacts = [
+  { k: 'Cost:', v: "two half-finished apps a year and the credibility of saying 'I ship'." },
+  { k: 'Constraints:', v: 'solo, evenings only, $0 hosting, no backend to babysit.' },
+];
+const whyStack =
+  "Vue 3 + Pinia because I teach it and can debug it half asleep; TypeScript so the schema and the store agree; a JSON file because a database would be the first thing I'd stop maintaining.";
+const dataModel = `{
+  "id": "string",
+  "title": "string",
+  "status": "shipped | in-progress | killed",
+  "started": "YYYY-MM-DD",
+  "finished": "YYYY-MM-DD | null",
+  "killReason": "string | null"
+}`;
+const beforeAfter = [
+  "Items parked forever: 9 → 0",
+  "Longest 'in progress': 14 months → under 90 days",
+  'Time to update status: edit + redeploy, ~10 min → one commit, under a minute',
 ];
 const flow = ['commitments.json', 'schema check (build)', 'Pinia store', 'Board · Shipped · Graveyard', 'Netlify'];
 const evidence = [
@@ -103,6 +125,21 @@ const seoConfig = {
             ) : (
               <p class={prose}>{s.body}</p>
             )}
+            {s.n === '01' && (
+              <dl class='mt-3 flex flex-col gap-1 text-base leading-relaxed text-body'>
+                {problemFacts.map((f) => (
+                  <div><dt class='inline font-semibold text-strong'>{f.k}</dt> <dd class='inline'>{f.v}</dd></div>
+                ))}
+              </dl>
+            )}
+            {s.n === '03' && (
+              <p class={`mt-3 ${prose}`}><strong class='text-strong'>Why this stack:</strong> {whyStack}</p>
+            )}
+            {s.n === '05' && (
+              <ul class='mt-3 flex list-disc flex-col gap-1 pl-5 text-base leading-relaxed text-body'>
+                {beforeAfter.map((row) => <li>{row}</li>)}
+              </ul>
+            )}
             {s.n === '03' && (
               <figure class='mt-4 rounded-lg bg-surface-alt px-5 py-7'>
                 <ol class='flex flex-wrap items-center justify-center gap-3 font-mono text-sm text-strong'>
@@ -116,6 +153,12 @@ const seoConfig = {
                 <figcaption class='mt-4 text-center text-sm text-soft'>Architecture: the JSON file is schema-checked at build, loaded into Pinia, rendered by three views, and deployed to Netlify.</figcaption>
               </figure>
             )}
+            {s.n === '03' && (
+              <figure class='mt-4'>
+                <pre tabindex='0' class='overflow-x-auto rounded-md border border-surface bg-surface-card p-4 font-mono text-sm text-strong'><code>{dataModel}</code></pre>
+                <figcaption class='mt-2 text-sm text-soft'>Data model: one record per commitment in commitments.json; the build fails if a record breaks this shape.</figcaption>
+              </figure>
+            )}
           </section>
         ))}
 
@@ -123,6 +166,11 @@ const seoConfig = {
           <p class={eyebrow}>AI collaboration</p>
           <p class='text-[15px] leading-relaxed text-body'>Tools: Claude + Copilot. AI drafted the Pinia store, the status filters, and the Vitest scaffolds; I owned the status model, the Kill List rules, and every merge.</p>
           <p class='text-[15px] leading-relaxed text-soft'><strong class='text-strong'>Where AI got it wrong:</strong> its first data model added a "paused" status with a resume date — the exact zombie state the app exists to forbid. It was reasonable product thinking for a generic tracker and wrong for this one. Cut in review; the rule came from me, not the model.</p>
+        </aside>
+
+        <aside aria-labelledby='running-it' class='flex flex-col gap-3 rounded-xl border border-surface bg-surface-card p-6'>
+          <h2 id='running-it' class='text-xl font-semibold text-strong'>Running it</h2>
+          <p class='text-[15px] leading-relaxed text-body'>Failures surface at build: a bad record fails the schema check and Netlify keeps the last good deploy. No secrets — the site is static, reads one public JSON file, and holds no API keys or user data.</p>
         </aside>
       </div>
 
