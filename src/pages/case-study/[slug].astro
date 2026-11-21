@@ -39,7 +39,7 @@ const seoConfig = {
     basic: {
       title: `${project.title} - Case Study | Nerando Johnson`,
       type: 'article',
-      image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+      image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/Banner_for_site.png',
       url: `https://developingdvlpr.com/case-study/${project.id}`,
     },
     optional: {
@@ -59,7 +59,7 @@ const seoConfig = {
     creator: '@nerajno',
     title: `${project.title} - Case Study`,
     description: caseStudy.overview || `Case study: ${project.title}`,
-    image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+    image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/Banner_for_site.png',
   },
   extend: {
     meta: [
@@ -85,7 +85,7 @@ const structuredData = {
   '@type': 'TechArticle',
   headline: `${project.title} - Case Study`,
   description: caseStudy.overview || `Case study of ${project.title}`,
-  image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/images/og-portfolio.jpg',
+  image: project.image?.src ? `https://developingdvlpr.com${project.image.src}` : 'https://developingdvlpr.com/Banner_for_site.png',
   author: {
     '@type': 'Person',
     name: 'Nerando Johnson',
