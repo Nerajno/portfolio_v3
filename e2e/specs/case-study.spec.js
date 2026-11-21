@@ -113,6 +113,16 @@ test.describe('IsNerandoDoneYet case study', () => {
     }
   });
 
+  test('related posts link back to the case study', async ({ page }) => {
+    for (const post of [
+      '/blog/skills-to-bills-demonstrated-competency',
+      '/blog/start-with-the-end-in-mind-developers-side-project-survival-guide',
+    ]) {
+      expect((await page.goto(post)).status(), post).toBe(200);
+      expect(await page.locator(`main a[href="${PAGE}"]`).count(), post).toBeGreaterThanOrEqual(1);
+    }
+  });
+
   test('operations note covers observability and secrets', async ({ page }) => {
     await page.goto(PAGE);
     await expect(page.getByRole('complementary', { name: 'Running it' })).toContainText(/secrets/i);
