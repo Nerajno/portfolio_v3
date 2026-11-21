@@ -166,7 +166,7 @@ The **Kill List** is how I keep projects from dying slow, undignified deaths. It
 
 Commit to a real finish line, or kill the project and clear the mental overhead. Both outcomes are wins. The only losing move is the zombie project that's technically alive on GitHub but practically dead.
 
-To enforce this publicly, I built [IsNerandoDoneYet](https://isnerandodoneyet.com) — a personal accountability tracker. When your commitments live on a public URL with your name on it, "almost done" stops being a comfortable place to hide.
+To enforce this publicly, I built [IsNerandoDoneYet](https://isnerandodoneyet.com) — a personal accountability tracker. When your commitments live on a public URL with your name on it, "almost done" stops being a comfortable place to hide. ([Read the case study](/case-study/isnerandodoneyet).)
 
 **Ship it** doesn't mean ship it perfect. It means ship it *real*: deployed, accessible, and finished enough that you can speak to the decisions behind it.
 

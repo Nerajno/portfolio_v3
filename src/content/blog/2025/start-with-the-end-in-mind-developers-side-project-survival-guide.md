@@ -254,7 +254,7 @@ The Kill List Framework isn't just another prioritization exercise—it's a stru
 - **COULD-HAVE features** that sound great but will delay your launch by months.
 - **WON'T-HAVE features** that you explicitly reject and document to prevent their resurrection.
 
-For example, when I ~~built~~ rebuilt [isNerandodoneyet](https://isnerandodoneyet.com), my original feature list included real-time collaboration, AI-powered suggestions, mobile apps, plugin systems, themes, and team workspaces—but my Kill List reduced this to just three must-haves: create and edit markdown files, preview rendered markdown, and save files locally. Every Saturday at 3 PM, I performed a 15-minute Kill List audit, checking if any features tried to sneak back in, whether I added scope that wasn't on the MUST-HAVE list, and updating the "Last Updated" date to create accountability with myself.
+For example, when I ~~built~~ rebuilt [isNerandodoneyet](https://isnerandodoneyet.com), my original feature list included real-time collaboration, AI-powered suggestions, mobile apps, plugin systems, themes, and team workspaces—but my Kill List reduced this to just three must-haves: create and edit markdown files, preview rendered markdown, and save files locally. Every Saturday at 3 PM, I performed a 15-minute Kill List audit, checking if any features tried to sneak back in, whether I added scope that wasn't on the MUST-HAVE list, and updating the "Last Updated" date to create accountability with myself. ([Read the case study](/case-study/isnerandodoneyet).)
 
 ## The 48-Hour Recovery Protocol: Momentum Physics for Developers
 
