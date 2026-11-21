@@ -29,6 +29,7 @@ export default defineConfig({
     partytown({
       config: {
         forward: ["dataLayer.push"],
+        debug: false,
         // Serialized to the client by partytownSnippet, so it must stay
         // self-contained — no references to anything outside this function.
         resolveUrl(url, location) {
@@ -44,7 +45,6 @@ export default defineConfig({
             proxyUrl.searchParams.set("url", url.href);
             return proxyUrl;
           }
-
           return url;
         },
       },
