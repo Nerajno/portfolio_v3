@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" font-family="ui-sans-serif, system-ui, sans-serif">
+  <!-- PLACEHOLDER: swap for a real screenshot once isnerandodoneyet.com renders again -->
+  <rect width="1280" height="800" fill="#f1f5f9"/>
+  <rect width="1280" height="56" fill="#e2e8f0"/>
+  <circle cx="32" cy="28" r="7" fill="#cbd5e1"/><circle cx="56" cy="28" r="7" fill="#cbd5e1"/><circle cx="80" cy="28" r="7" fill="#cbd5e1"/>
+  <rect x="120" y="14" width="420" height="28" rx="14" fill="#f8fafc"/>
+  <text x="140" y="33" font-size="15" fill="#64748b">isnerandodoneyet.com</text>
+  <text x="64" y="128" font-size="34" font-weight="700" fill="#334155">Is Nerando done yet?</text>
+  <g font-size="18" font-weight="600" fill="#475569">
+    <text x="64" y="196">In progress</text><text x="456" y="196">Shipped</text><text x="848" y="196">Graveyard</text>
+  </g>
+  <g fill="#ffffff" stroke="#cbd5e1" stroke-width="2">
+    <rect x="64" y="216" width="368" height="96" rx="10"/><rect x="64" y="328" width="368" height="96" rx="10"/>
+    <rect x="456" y="216" width="368" height="96" rx="10"/><rect x="456" y="328" width="368" height="96" rx="10"/><rect x="456" y="440" width="368" height="96" rx="10"/>
+    <rect x="848" y="216" width="368" height="96" rx="10"/>
+  </g>
+  <g fill="#e2e8f0">
+    <rect x="88" y="240" width="220" height="14" rx="7"/><rect x="88" y="268" width="140" height="12" rx="6"/>
+    <rect x="88" y="352" width="260" height="14" rx="7"/><rect x="88" y="380" width="120" height="12" rx="6"/>
+    <rect x="480" y="240" width="240" height="14" rx="7"/><rect x="480" y="268" width="130" height="12" rx="6"/>
+    <rect x="480" y="352" width="200" height="14" rx="7"/><rect x="480" y="380" width="150" height="12" rx="6"/>
+    <rect x="480" y="464" width="230" height="14" rx="7"/><rect x="480" y="492" width="110" height="12" rx="6"/>
+    <rect x="872" y="240" width="210" height="14" rx="7"/><rect x="872" y="268" width="160" height="12" rx="6"/>
+  </g>
+  <rect x="440" y="620" width="400" height="64" rx="32" fill="#334155"/>
+  <text x="640" y="660" font-size="22" font-weight="600" fill="#f8fafc" text-anchor="middle">Screenshot coming soon</text>
+</svg>

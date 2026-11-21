@@ -123,6 +123,15 @@ test.describe('IsNerandoDoneYet case study', () => {
     }
   });
 
+  test('shows a screenshot of the live product', async ({ page }) => {
+    await page.goto(PAGE);
+    const fig = page.locator('main header + figure');
+    await expect(fig.locator('figcaption')).toHaveText(/^The live board/);
+    const img = fig.locator('img');
+    await expect(img).toHaveAttribute('alt', /\S/);
+    await expect.poll(() => img.evaluate((el) => el.complete && el.naturalWidth)).toBeGreaterThan(0);
+  });
+
   test('operations note covers observability and secrets', async ({ page }) => {
     await page.goto(PAGE);
     await expect(page.getByRole('complementary', { name: 'Running it' })).toContainText(/secrets/i);
