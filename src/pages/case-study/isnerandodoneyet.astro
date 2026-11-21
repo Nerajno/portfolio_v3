@@ -1,13 +1,16 @@
 ---
 import { SEO } from 'astro-seo';
 import Layout from '@layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import Container from '@components/container.astro';
+import boardShot from '@assets/images/case-studies/isnerandodoneyet-board-placeholder.svg';
 
 export const prerender = true;
 
 // Deep dive for IsNerandoDoneYet, built from the design-canvas mockup.
 // NOTE: success criteria, architecture, outcome numbers, v2, AI notes and CI line are
 // SAMPLE COPY for review on feat/224. Replace with real facts before the redesign goes live (#454).
+// Placeholder: the board image is a drawn stand-in — the live site renders blank (deploy serves /src/main.ts).
 // Also sample: cost + constraints (01), why-this-stack + data model (03), before → after rows (05), "Running it" note.
 // Conflict to resolve: the "Start with the End in Mind" post lists the rebuild's must-haves as a markdown
 // editor (create/edit, preview, save locally); the JSON → Pinia → three-views architecture here is invented.
@@ -110,6 +113,16 @@ const seoConfig = {
         <li>Status: live</li>
       </ul>
     </header>
+
+    <figure class='-mt-3 mb-10'>
+      <Image
+        src={boardShot}
+        alt='Placeholder sketch of the IsNerandoDoneYet board: In progress, Shipped and Graveyard columns of project cards.'
+        loading='eager'
+        class='h-auto w-full rounded-xl border border-surface'
+      />
+      <figcaption class='mt-2 text-sm text-soft'>The live board at isnerandodoneyet.com — screenshot coming soon.</figcaption>
+    </figure>
 
     <div class='flex flex-wrap items-start gap-10 pb-14'>
       <div class='flex min-w-0 flex-[999_1_560px] flex-col gap-9'>
