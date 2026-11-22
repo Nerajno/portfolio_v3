@@ -56,10 +56,10 @@ test.describe('Six flagship projects (#515)', () => {
   });
 });
 
-test('schema item urls never point at a missing case study', async ({ page }) => {
+test('schema case study urls all resolve', async ({ page }) => {
   await page.goto('/portfolio');
   const text = (await page.locator('script[type="application/ld+json"]').allTextContents()).join('\n');
-  for (const id of ['portfolio-v3', 'dialects', 'finance-controls-lab', 'slide-warehouse', 'lanyard']) {
-    expect(text, id).not.toContain(`/case-study/${id}`);
-  }
+  const paths = [...new Set([...text.matchAll(/developingdvlpr\.com(\/case-study\/[a-z0-9-]+)/g)].map((m) => m[1]))];
+  expect(paths.length).toBeGreaterThan(0);
+  for (const path of paths) expect((await page.request.get(path)).status(), path).toBe(200);
 });

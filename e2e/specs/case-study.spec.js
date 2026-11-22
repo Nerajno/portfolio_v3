@@ -11,13 +11,6 @@ test.describe('IsNerandoDoneYet case study', () => {
     await expect(caseStudyLink(page, 'isnerandodoneyet')).toHaveAttribute('href', PAGE);
   });
 
-  test('other featured cards keep a pending case study', async ({ page }) => {
-    await page.goto('/portfolio');
-    for (const id of ['portfolio-v3', 'dialects', 'finance-controls-lab', 'slide-warehouse', 'lanyard']) {
-      await expect(caseStudyLink(page, id)).toHaveCount(0);
-    }
-  });
-
   test('page renders the six-part story', async ({ page }) => {
     const res = await page.goto(PAGE);
     expect(res.status()).toBe(200);

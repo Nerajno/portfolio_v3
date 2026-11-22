@@ -1,0 +1,138 @@
+---
+// Artifact deep dive template (#459 seed). Renders a case study from src/data/caseStudies.js;
+// any null field shows a visible "pending" marker, never an invented value or a dead link.
+import { SEO } from 'astro-seo';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+
+const { study } = Astro.props;
+
+const STATUS = { shipped: 'Shipped', in_progress: 'In progress' };
+const sections = [
+  { n: '01', title: 'Problem & business context', body: study.problem },
+  { n: '02', title: 'Success criteria', body: study.criteria },
+  { n: '03', title: 'Approach & architecture', body: study.approach },
+  { n: '04', title: 'Key tradeoffs', body: study.tradeoffs },
+  { n: '05', title: 'Measurable outcome', body: study.outcome },
+  { n: '06', title: "What I'd change in v2", body: study.v2 },
+];
+const evidence = [
+  { label: 'Live site', href: study.live, external: true, key: 'live' },
+  { label: 'Repo + README', href: study.repo, external: true, key: 'repo' },
+  ...study.extraEvidence,
+];
+
+const pending = 'inline-flex items-center rounded border border-dashed border-surface-strong px-2 py-0.5 text-xs text-muted';
+const eyebrow = 'text-sm font-semibold uppercase tracking-widest text-accent';
+const prose = 'text-base leading-relaxed text-body';
+const boxTitle = 'text-xl font-semibold text-strong';
+const title = study.tagline ? `${study.name} — ${study.tagline}` : study.name;
+
+const seoConfig = {
+  title: `${study.name} case study | Nerando Johnson`,
+  description: `${study.name}: ${study.type}. Problem, criteria, architecture, tradeoffs, outcome, and AI collaboration.`,
+  canonical: new URL(`case-study/${study.id}`, Astro.site).toString(),
+};
+---
+
+<Layout title={`${study.name} case study`}>
+  <SEO
+    title={seoConfig.title}
+    description={seoConfig.description}
+    canonical={seoConfig.canonical}
+    openGraph={{
+      basic: { title: seoConfig.title, type: 'article', image: '/opengraph.jpg', url: seoConfig.canonical },
+      optional: { description: seoConfig.description, siteName: 'My MetaData' },
+    }}
+    twitter={{ creator: '@nerajno', site: '@nerajno', card: 'summary_large_image' }}
+  />
+
+  <Container>
+    <nav aria-label='Breadcrumb' class='pt-8 text-sm text-soft'>
+      <a href='/portfolio' class='underline hover:no-underline'>Artifacts</a>
+      <span aria-hidden='true'> / </span>
+      <span aria-current='page'>{study.name}</span>
+    </nav>
+
+    <header class='pb-9 pt-8'>
+      <p class={eyebrow}>Artifact deep dive</p>
+      <h1 class='mt-2 max-w-[24ch] break-words text-4xl font-bold leading-tight tracking-tight text-strong'>{title}</h1>
+      <ul class='mt-4 flex flex-wrap gap-x-5 gap-y-1 font-mono text-sm text-soft'>
+        <li>Type: {study.type}</li>
+        <li>Status: {STATUS[study.shipStatus]}</li>
+        <li class='break-words'>Stack: {study.stack.join(' · ')}</li>
+      </ul>
+      {study.note && <p class={`mt-4 max-w-3xl ${prose}`}>{study.note}</p>}
+    </header>
+
+    <div
+      class='mb-10 flex h-32 w-full items-center justify-center rounded-xl border border-dashed border-surface-strong bg-surface-alt text-sm text-soft'
+      data-pending='screenshot'>
+      Screenshot pending
+    </div>
+
+    <div class='flex flex-wrap items-start gap-10 pb-14'>
+      <div class='flex min-w-0 flex-[999_1_560px] flex-col gap-9'>
+        {sections.map((s) => (
+          <section aria-labelledby={`s-${s.n}`}>
+            <h2 id={`s-${s.n}`} class='mb-2.5 text-2xl font-semibold text-strong'>
+              <span class='mr-2.5 font-mono text-sm text-accent'>{s.n}</span>{s.title}
+            </h2>
+            {s.body ? <p class={prose}>{s.body}</p> : <p class={pending} data-pending={`section-${s.n}`}>Pending</p>}
+            {s.n === '03' && (
+              <div class='mt-3 flex flex-wrap gap-2'>
+                <span class={pending} data-pending='architecture-diagram'>Architecture diagram pending</span>
+                <span class={pending} data-pending='data-model'>Data model pending</span>
+              </div>
+            )}
+          </section>
+        ))}
+
+        <aside aria-labelledby={`ai-${study.id}`} class='flex flex-col gap-3 rounded-xl border border-surface bg-surface-alt p-6'>
+          <h2 id={`ai-${study.id}`} class={boxTitle}>AI collaboration</h2>
+          {study.ai ? <p class={prose}>{study.ai}</p> : <p class={pending} data-pending='ai'>How AI was used: pending</p>}
+          {study.aiWrong ? <p class={prose}>{study.aiWrong}</p> : <p class={pending} data-pending='ai-wrong'>Where AI got it wrong: pending</p>}
+        </aside>
+
+        <aside aria-labelledby={`run-${study.id}`} class='flex flex-col gap-3 rounded-xl border border-surface bg-surface-card p-6'>
+          <h2 id={`run-${study.id}`} class={boxTitle}>Running it</h2>
+          {study.runningIt ? <p class={prose}>{study.runningIt}</p> : <p class={pending} data-pending='running-it'>Observability and secrets: pending</p>}
+        </aside>
+      </div>
+
+      <aside aria-labelledby={`ev-${study.id}`} class='flex max-w-[360px] flex-[1_1_300px] flex-col gap-3 rounded-xl border border-surface bg-surface-card p-6'>
+        <h2 id={`ev-${study.id}`} class={boxTitle}>Evidence</h2>
+        <ul class='flex flex-col gap-3'>
+          {evidence.map((e) => (
+            <li>
+              {e.href ? (
+                <a
+                  href={e.href}
+                  class='text-[15px] text-accent underline hover:no-underline'
+                  {...(e.external ? { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${e.label} (opens in a new tab)` } : {})}>
+                  {e.label}{e.external ? ' ↗' : ''}
+                </a>
+              ) : (
+                <span class={pending} data-pending={e.key}>{e.label} pending</span>
+              )}
+            </li>
+          ))}
+          {study.posts.length === 0 && <li><span class={pending} data-pending='posts'>Related posts pending</span></li>}
+          {study.posts.map((p) => <li><a href={p.href} class='text-[15px] text-accent underline hover:no-underline'>{p.label}</a></li>)}
+        </ul>
+      </aside>
+    </div>
+  </Container>
+
+  <section aria-labelledby='recruiter-band' class='bg-surface-alt'>
+    <Container>
+      <div class='flex flex-wrap items-center justify-between gap-5 py-10'>
+        <div>
+          <h2 id='recruiter-band' class='text-2xl font-bold text-strong'>Hiring for a front-end role?</h2>
+          <p class='mt-1 text-[15px] text-soft'>The 60-second version of me lives at /recruiters — role targets, résumé, and receipts.</p>
+        </div>
+        <a href='/recruiters' class='inline-flex min-h-11 items-center rounded-lg bg-accent px-6 font-semibold text-surface hover:bg-accent-hover'>Recruiter fast lane <span aria-hidden='true'>→</span></a>
+      </div>
+    </Container>
+  </section>
+</Layout>
