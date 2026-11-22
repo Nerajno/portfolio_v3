@@ -76,8 +76,12 @@ const structuredData = buildCollectionSchema({
   name: "Portfolio Projects — Nerando Johnson",
   url: new URL('/portfolio', 'https://developingdvlpr.com').toString(),
   items: allProjects.slice(0, 10).map((project) => ({
-    name: project.title,
-    url: new URL(`/case-study/${project.id}`, 'https://developingdvlpr.com').toString(),
+    name: project.name ?? project.title,
+    // Only real destinations: case study, then live site, then repo, else the card itself
+    url: new URL(
+      project.caseStudyUrl ?? project.website ?? project.github ?? `/portfolio#${project.id}`,
+      'https://developingdvlpr.com',
+    ).toString(),
   })),
 });
 ---

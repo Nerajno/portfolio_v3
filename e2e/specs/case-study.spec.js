@@ -13,7 +13,7 @@ test.describe('IsNerandoDoneYet case study', () => {
 
   test('other featured cards keep a pending case study', async ({ page }) => {
     await page.goto('/portfolio');
-    for (const id of ['receipts-poll', 'blog-rag', 'tiny-desk-api']) {
+    for (const id of ['portfolio-v3', 'dialects', 'finance-controls-lab', 'slide-warehouse', 'lanyard']) {
       await expect(caseStudyLink(page, id)).toHaveCount(0);
     }
   });
