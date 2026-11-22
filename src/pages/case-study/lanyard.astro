@@ -1,0 +1,8 @@
+---
+import CaseStudy from '@components/CaseStudy.astro';
+import caseStudies from '../../data/caseStudies.js';
+
+export const prerender = true;
+---
+
+<CaseStudy study={caseStudies['lanyard']} />
