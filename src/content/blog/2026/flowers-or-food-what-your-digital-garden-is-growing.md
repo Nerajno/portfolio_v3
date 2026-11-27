@@ -9,7 +9,7 @@ image: {
     src: "/images/blog_covers/growth_garden.jpg",
     alt: "Soil-covered hands holding a small terracotta pot with young cacti, surrounded by empty pots"
 }
-publishDate: "2026-11-24 12:00"
+publishDate: "2026-12-08 12:00"
 category: "Career Growth, Learning in Public"
 tags: [learning-garden, digital-garden, learning-in-public, note-taking, knowledge-management]
 keywords: [digital garden stages, seedling budding evergreen, digital garden for developers, learning garden model, personal knowledge management, note taking for developers, flowers vs food, imposter syndrome developer]
