@@ -9,7 +9,7 @@ image: {
     src: "/images/blog_covers/growth_garden.jpg",
     alt: "Soil-covered hands holding a small terracotta pot with young cacti, surrounded by empty pots"
 }
-publishDate: "2026-12-01 12:00"
+publishDate: "2026-12-15 12:00"
 category: "Career Growth, Learning in Public"
 tags: [learning-garden, digital-garden, front-matter, knowledge-management, jekyll]
 keywords: [digital garden front matter, digital garden stages, learning garden implementation, note taking system for developers, personal knowledge management, dormant notes, digital garden data model, tending a digital garden]
