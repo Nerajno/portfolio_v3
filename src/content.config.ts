@@ -18,7 +18,9 @@ const blogCollection = defineCollection({
         .join('/'),
   }),
   schema: z.object({
-    draft: z.boolean(),
+    // Lifecycle: draft (never rendered) → preview (dev only) → published. See src/lib/posts.ts
+    draft: z.boolean().default(false),
+    preview: z.boolean().default(false),
     title: z.string(),
     snippet: z.string().min(1),
     image: z.object({

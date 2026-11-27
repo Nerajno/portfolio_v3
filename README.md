@@ -216,6 +216,22 @@ tags: [javascript, web-development]
 Your content here...
 ```
 
+### Draft → Preview → Publish
+
+Two frontmatter flags control where a post shows up. Both default to `false`.
+
+| Frontmatter | `npm run dev` | Production build |
+|---|---|---|
+| `draft: true` | Hidden (listed on `/drafts`, no link) | Hidden |
+| `preview: true` | Rendered at its real URL with a preview banner, listed on `/blog` and series pages | Hidden |
+| neither | Shown once `publishDate` has passed | Shown once `publishDate` has passed |
+
+- If both flags are set, `draft` wins.
+- Previews ignore `publishDate` in dev, so scheduled posts can be read early.
+- `/drafts` (dev only, 404 in production) lists every draft and preview.
+- To publish, remove the flag or set it to `false`.
+- Always query posts with `getVisiblePosts()` from `src/lib/posts.ts`, not `getCollection('blog')`, so these rules apply everywhere.
+
 ### Updating Portfolio Projects
 
 Edit portfolio data in the relevant page components or data files in `src/data/`.
