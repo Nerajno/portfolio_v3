@@ -18,7 +18,8 @@ export default defineConfig({
     mdx({
       remarkPlugins: [],
     }),
-    sitemap(),
+    // /drafts is dev-only (404 in production), so keep it out of the sitemap (#519)
+    sitemap({ filter: (page) => !page.includes('/drafts') }),
     icon({
       include: {
         bx: ["*"],

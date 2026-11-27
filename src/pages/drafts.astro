@@ -1,0 +1,48 @@
+---
+// Dev-only list of unpublished posts (#519). Returns 404 in production.
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+
+export const prerender = false;
+
+if (import.meta.env.PROD) {
+  return new Response('Not found', { status: 404 });
+}
+
+// Unfiltered on purpose: this page exists to show what getVisiblePosts() hides.
+const posts = (await getCollection('blog', ({ data }) => data.draft || data.preview)).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<Layout title='Drafts'>
+  <Container>
+    <div class='mx-auto max-w-4xl mt-14'>
+      <h1 class='text-4xl font-bold'>Drafts &amp; previews</h1>
+      <p class='mt-2 text-sm text-gray-500 dark:text-gray-400'>
+        Dev only. Previews link to their real URL; drafts aren't rendered. Publish by removing the flag.
+      </p>
+      <ul class='mt-8 space-y-3'>
+        {posts.map((post) => (
+          <li data-testid='drafts-item' class='flex items-center gap-3'>
+            {post.data.draft ? (
+              <>
+                <span class='rounded px-2 py-0.5 text-xs font-semibold bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-200'>Draft</span>
+                <span>{post.data.title}</span>
+              </>
+            ) : (
+              <>
+                <span class='rounded px-2 py-0.5 text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200'>Preview</span>
+                <a href={`/blog/${post.id}`} class='underline underline-offset-2'>{post.data.title}</a>
+              </>
+            )}
+            <time class='ml-auto text-sm text-gray-500' datetime={post.data.publishDate.toISOString()}>
+              {post.data.publishDate.toISOString().slice(0, 10)}
+            </time>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Container>
+</Layout>
