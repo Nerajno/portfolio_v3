@@ -10,6 +10,7 @@ image: {
     alt: "The lobby at Refactr Tech Conference in Atlanta in 2023.",
 }
 publishDate: "2023-05-03 12:00"
+series: { name: "So...This is Your 1st Tech Conference", order: 1 }
 category: "How-To-Do, Conference, Learning"
 tags: [beginners, career, learning, community]
 keywords: [tech conference volunteering, first-time tech conference volunteer, conference volunteer tips, tech event volunteering guide, volunteer at tech conferences, networking as a volunteer, tech conference volunteer duties, conference volunteering best practices, tech community volunteering, RenderATL volunteer, how to volunteer at tech events, tech conference volunteer responsibilities, conference networking tips, first tech conference experience]

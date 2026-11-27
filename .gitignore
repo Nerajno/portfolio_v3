@@ -38,3 +38,5 @@ sendgrid.env
 
 #AOB
 /.claude/
+# graphify knowledge graph (generated)
+graphify-out/

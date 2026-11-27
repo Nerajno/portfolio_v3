@@ -10,6 +10,7 @@ image: {
     alt: "Render 2022, Westside stage"
 }
 publishDate: "2023-05-15 12:00"
+series: { name: "So...This is Your 1st Tech Conference", order: 2 }
 category: "How-To-Do, Conference, Learning"
 tags: [productivity, conference, learning, community ]
 keywords: [first tech conference guide, tech conference tips, conference networking strategies, developer conference preparation, tech event survival guide, conference note-taking, professional networking tech, LinkedIn networking tips, tech conference checklist, developer community building, conference follow-up strategies, tech event best practices, RenderATL conference, developer networking tools]

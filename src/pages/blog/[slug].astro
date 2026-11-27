@@ -1,5 +1,6 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getVisiblePosts } from '@lib/posts';
 import { Image } from 'astro:assets';
 import { SEO } from 'astro-seo';
 import Layout from '@layouts/Layout.astro';
@@ -30,9 +31,7 @@ interface Props {
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog', ({ data }) => {
-    return !data.draft && data.publishDate < new Date();
-  });
+  const blogEntries = await getVisiblePosts();
   return blogEntries.map((entry) => ({
     params: { slug: entry.id.replace(/\.(md|mdx)$/, '') },
     props: { entry },
@@ -80,11 +79,9 @@ let seriesNavProps: {
 
 if (entry.data.series) {
   const seriesName = entry.data.series.name;
-  const allSeriesPosts = (await getCollection('blog', ({ data }) =>
-    !data.draft &&
-    data.publishDate < new Date() &&
-    data.series?.name === seriesName
-  )).sort((a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0));
+  const allSeriesPosts = (await getVisiblePosts())
+    .filter((p) => p.data.series?.name === seriesName)
+    .sort((a, b) => (a.data.series?.order || 0) - (b.data.series?.order || 0));
 
   const currentIndex = allSeriesPosts.findIndex((p) => p.id.replace(/\.(md|mdx)$/, '') === entrySlug);
 
@@ -227,6 +224,16 @@ const seoConfig = {
 
   <Container>
     <div class='mx-auto max-w-4xl mt-14'>
+      {
+        entry.data.preview && (
+          <div
+            role='status'
+            data-testid='preview-banner'
+            class='mb-6 rounded-md border border-amber-300 dark:border-amber-700 bg-amber-100 dark:bg-amber-900 px-4 py-3 text-sm font-semibold text-amber-800 dark:text-amber-200 text-center'>
+            PREVIEW — not published. Only visible in local dev.
+          </div>
+        )
+      }
       {
         entry.data.image && (
           <Image
