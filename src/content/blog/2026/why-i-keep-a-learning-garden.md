@@ -9,7 +9,7 @@ image: {
     src: "/images/blog_covers/day_in_a_garden.jpg",
     alt: "A tree-lined city park path in spring, with a low iron fence around green planting beds"
 }
-publishDate: "2026-11-17 12:00"
+publishDate: "2026-12-01 12:00"
 category: "Career Growth, Learning in Public"
 tags: [learning-garden, digital-garden, learning-in-public, career-growth, imposter-syndrome]
 keywords: [learning garden, digital garden, digital garden for developers, learning in public, imposter syndrome developer, the garden and the stream, developer note taking, proof of work, progress over perfection]
