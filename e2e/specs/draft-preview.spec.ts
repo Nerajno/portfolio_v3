@@ -8,7 +8,8 @@ test.describe('Draft and preview posts (dev)', () => {
   test('preview post renders at its real URL with a banner', async ({ page }) => {
     const res = await page.goto(PREVIEW);
     expect(res?.status()).toBe(200);
-    await expect(page.locator('h1')).toContainText('E2E Preview Fixture');
+    // Role locator: the Astro dev toolbar injects its own <h1>s in dev
+    await expect(page.getByRole('heading', { level: 1, name: 'E2E Preview Fixture' })).toBeVisible();
     await expect(page.getByTestId('preview-banner')).toContainText('PREVIEW');
   });
 
