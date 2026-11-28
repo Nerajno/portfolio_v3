@@ -1,5 +1,6 @@
 ---
-draft: true
+draft: false
+preview: true
 seoTitle: "Why I Keep a Learning Garden (and What Happened When I Stopped)"
 seoDescription: "What a learning garden is, why every maker and software engineer should keep one, what mine gave me, and the shame loop of letting it go untended."
 author: "Nerando Johnson"
